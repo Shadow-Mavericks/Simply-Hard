@@ -8,3 +8,47 @@ model BlastBolt
 
 	FrameIndex BLAS A 0 0
 }
+
+model DL44Bolt
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlasterTracer.png"
+	Scale 16.0 3.0 3.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model RifBlast
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlasterTracer.png"
+	Scale 16.0 3.25 3.25
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model GoldShot
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlasterTracer.png"
+	Scale 16.5 3.25 3.25
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model GoldShotZoom
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlasterTracer.png"
+	Scale 18.0 3.25 3.25
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
