@@ -4907,110 +4907,112 @@ actor Autogun : Weapon
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.RestrictedTo "MaximusPrime"
-  weapon.BobStyle "InverseSmooth"  
-  Weapon.SlotNumber 4
-  weapon.BobRangeX 1
-  weapon.BobRangeY 1
-  weapon.bobspeed 1
+	weapon.BobStyle "InverseSmooth"  
+	Weapon.SlotNumber 4
+	weapon.BobRangeX 1
+	weapon.BobRangeY 1
+	weapon.bobspeed 1
 	states
- {
-	Ready:
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldReady")
-	AUTO A 1 A_WeaponReady
-	Loop
-	Select:
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldSelect")
-	AUTO A 1 A_Raise
-	NULL AA 0 A_Raise
-	Loop
-	Deselect:
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldDeselect")
-	NULL A 0 A_StopSound(5)
-	AUTO A 1 A_Lower
-	NULL AA 0 A_Lower
-	Loop
-	Fire:
-	TNT1 A 0 A_Jumpifnoammo("Ready")
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldFire")
-	AUTO B 0 A_GunFlash
-	AUTO B 0 A_PlaySound ("Max/autogun", 5)
-	AUTO B 3 A_FireCustomMissile ("Bullet",0.25,1,9,0,0)
-	AUTO C 1 
-	AUTO C 0 A_ReFire
-	Goto Ready
-	Hold:
-	TNT1 A 0 A_Jumpifnoammo("Ready")	
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldHold")
-	NULL A 0 A_GunFlash
-	NULL A 0 A_PlaySound ("Max/autoloop", 5, 1, 1)
-	AUTO C 3
-	AUTO B 3 Bright A_FireCustomMissile ("Bullet",0.25,1,9,0,0)
-	AUTO C 1
-	NULL C 0 A_ReFire
-	NULL A 0 A_StopSound(5)
-	NULL A 0 A_ClearReFire
-	Goto Ready
-	AltFire:
-	TNT1 A 0 A_Jumpifnoammo("Ready")
-	TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldAltFire")
-	AUTO B 0 A_PlaySound ("Max/autogun", 5)
-	AUTO B 0 A_FireCustomMissile ("Bullet",0.25,1,6,-9,0)
-	AUTO B 0 A_FireCustomMissile ("Bullet",0.25,0,15,-9,0)
-	AUTO B 9 BRIGHT A_FireCustomMissile ("Bullet",0.25,0,9,0,0)
-	AUTO C 6
-	AUTO C 0 A_ReFire
-	Goto Ready
-	Flash:
-	TNT1 A 2 bright A_Light1
-	TNT1 A 2 bright A_Light0
-	stop
-	GoldReady:
-	GYRO A 1 A_WeaponReady
-	Loop
-	GoldSelect:
-	GYRO A 1 A_Raise
-	NULL AA 0 A_Raise
-	Loop
-	GoldDeselect:
-	GYRO A 1 A_Lower
-	NULL AA 0 A_Lower
-	Loop
-	GoldFire:
-	TNT1 A 0 A_Jumpifnoammo("Ready")
-	GYRO B 0 A_GunFlash
-	GYRO B 0 A_PlaySound ("Max/GAutogun", 5)
-	GYRO B 3 bright A_FireCustomMissile ("GoldBullet",0.25,1,9,0,0)
-	GYRO C 1 
-	GYRO C 0 A_ReFire
-	Goto Ready
-	GoldHold:
-	TNT1 A 0 A_Jumpifnoammo("Ready")
-	NULL A 0 A_GunFlash
-	NULL A 0 A_PlaySound ("Max/GAutoloop", 5, 1, 1)
-	GYRO C 3
-	GYRO B 3 Bright A_FireCustomMissile ("GoldBullet",0.25,1,9,0,0)
-	GYRO C 1 Bright 
-	GYRO C 0 A_ReFire
-	GYRO A 0 A_StopSound(5)
-	GYRO A 0 A_ClearReFire
-	Goto Ready
-	GoldAltFire:
-	TNT1 A 0 A_Jumpifnoammo("Ready")
-	GYRO B 0 A_PlaySound ("Max/GAutogun", 5)
-	GYRO B 0 A_FireCustomMissile ("GoldBullet",0.25,1,4,-9,0)
-	GYRO B 0 A_FireCustomMissile ("GoldBullet",0.25,0,15,-9,0)
-	GYRO B 9 BRIGHT A_FireCustomMissile ("GoldBullet",0.25,0,9,0,0)
-	GYRO C 6
-	GYRO C 0 A_ReFire
-	Goto Ready
-	Spawn:
-	AGUN A -1
-	Stop
+	{
+		Ready:
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldReady")
+			AUTO A 1 A_WeaponReady
+			Loop
+		Select:
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldSelect")
+			AUTO A 1 A_Raise
+			NULL AA 0 A_Raise
+			Loop
+		Deselect:
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldDeselect")
+			NULL A 0 A_StopSound(5)
+			AUTO A 1 A_Lower
+			NULL AA 0 A_Lower
+			Loop
+		Fire:
+			TNT1 A 0 A_Jumpifnoammo("Ready")
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldFire")
+			AUTO B 0 A_GunFlash
+			AUTO B 0 A_PlaySound ("Max/autogun", 5)
+			AUTO B 3 A_FireCustomMissile ("Bullet",0.25,1,9,0,0)
+			AUTO C 1 
+			AUTO C 0 A_ReFire
+			Goto Ready
+		Hold:
+			TNT1 A 0 A_Jumpifnoammo("Ready")	
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldHold")
+			NULL A 0 A_GunFlash
+			NULL A 0 A_PlaySound ("Max/autoloop", 5, 1, 1)
+			AUTO C 3
+			AUTO B 3 Bright A_FireCustomMissile ("Bullet",0.25,1,9,0,0)
+			AUTO C 1
+			NULL C 0 A_ReFire
+			NULL A 0 A_StopSound(5)
+			NULL A 0 A_ClearReFire
+			Goto Ready
+		AltFire:
+			TNT1 A 0 A_Jumpifnoammo("Ready")
+			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldAltFire")
+			AUTO B 0 A_PlaySound ("Max/autogun", 5)
+			AUTO B 0 A_FireCustomMissile ("Bullet",0.25,1,6,-9,0)
+			AUTO B 0 A_FireCustomMissile ("Bullet",0.25,0,15,-9,0)
+			AUTO B 9 BRIGHT A_FireCustomMissile ("Bullet",0.25,0,9,0,0)
+			AUTO C 6
+			AUTO C 0 A_ReFire
+			Goto Ready
+		Flash:
+			TNT1 A 2 bright A_Light1
+			TNT1 A 2 bright A_Light0
+			stop
+		GoldReady:
+			GYRO A 1 A_WeaponReady
+			Loop
+		GoldSelect:
+			GYRO A 1 A_Raise
+			NULL AA 0 A_Raise
+			Loop
+		GoldDeselect:
+			GYRO A 1 A_Lower
+			NULL AA 0 A_Lower
+			Loop
+		GoldFire:
+			TNT1 A 0 A_Jumpifnoammo("Ready")
+			GYRO B 0 A_GunFlash
+			GYRO B 0 A_PlaySound ("Max/GAutogun", 5)
+			GYRO B 3 bright A_FireCustomMissile ("GoldBullet",0.25,1,9,0,0)
+			GYRO C 1 
+			GYRO C 0 A_ReFire
+			Goto Ready
+		GoldHold:
+			TNT1 A 0 A_Jumpifnoammo("Ready")
+			NULL A 0 A_GunFlash
+			NULL A 0 A_PlaySound ("Max/GAutoloop", 5, 1, 1)
+			GYRO C 3
+			GYRO B 3 Bright A_FireCustomMissile ("GoldBullet",0.25,1,9,0,0)
+			GYRO C 1 Bright 
+			GYRO C 0 A_ReFire
+			GYRO A 0 A_StopSound(5)
+			GYRO A 0 A_ClearReFire
+			Goto Ready
+		GoldAltFire:
+			TNT1 A 0 A_Jumpifnoammo("Ready")
+			GYRO B 0 A_PlaySound ("Max/GAutogun", 5)
+			GYRO B 0 A_FireCustomMissile ("GoldBullet",0.25,1,4,-9,0)
+			GYRO B 0 A_FireCustomMissile ("GoldBullet",0.25,0,15,-9,0)
+			GYRO B 9 BRIGHT A_FireCustomMissile ("GoldBullet",0.25,0,9,0,0)
+			GYRO C 6
+			GYRO C 0 A_ReFire
+			Goto Ready
+		Spawn:
+			AGUN A -1
+			Stop
 	}
 }
 
 actor Bullet
 {
+	RenderStyle Add
+	Alpha 1.0
 	+Notimefreeze
 	PROJECTILE
 	Radius 2
@@ -5020,7 +5022,7 @@ actor Bullet
 	Decal "BulletChip"
 	Obituary "%o got blasted by %k, like the rebel scum he is!"
 	DeathSound "Max/LZHIT"
-	Scale 0.55
+	Scale 0.64
 	States
 	{
 	Spawn:
