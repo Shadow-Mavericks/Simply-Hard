@@ -304,27 +304,27 @@ ACTOR GosimersBlueArmorBonus : BasicArmorBonus
   }
 }
 
-ACTOR MaxArmorBonus : BasicArmorBonus
+ACTOR SH_MaxArmorBonus : BasicArmorBonus replaces MaxArmorBonus
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Inventory.Icon "ARM1A0"
-  Inventory.RespawnTics "99999999"
-  Armor.SavePercent 100
-  Armor.SaveAmount 10
-  Armor.MaxSaveAmount 150
-  Damagefactor 0.5
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	Inventory.Icon "ARM1A0"
+	Inventory.RespawnTics "99999999"
+	Armor.SavePercent 100
+	Armor.SaveAmount 10
+	Armor.MaxSaveAmount 150
+	Damagefactor 0.5
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+		Spawn:
+			BON2 ABCDCB 6
+			Loop
+	}
 }
-  
+
 
 ACTOR GreenArmorFiend : BasicArmorPickup
 {
