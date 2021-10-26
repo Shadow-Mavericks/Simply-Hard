@@ -91,74 +91,9 @@ script "SV_Fiendsult" (void) // <- Music re-write code for invulnerability state
 
 Script "shieldRegeneration" (void) //Currently unable to get the timecount thing to work. doing it the old fasion unoptimized way
 {
-	Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
+	for(int i = 0; i < 35; i++)
+	{
 		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
-		Giveinventory("Greenarmorbonus", 1);
-	Delay(35);
+		Delay(35);
+	}
 }
