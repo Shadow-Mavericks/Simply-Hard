@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+*.dbs
+*.backup*
+*.bak
+*.qc
+builds/SimplyHard_*.pk3
+*.tmp
+backups/*
+junk
+out
