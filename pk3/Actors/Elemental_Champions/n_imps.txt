@@ -1,0 +1,262 @@
+
+actor ImpBall_Base : DoomImpBall1 
+{ 
+	Radius 6
+	Height 8
+	Speed 10
+	Alpha 0.75
+	Damage (18)
+	Renderstyle add
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+}
+
+// Acid Imp
+actor ImpBall_Acid : ImpBall_Base 
+{
+	Scale 0.8
+	DamageType "Acid"
+//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
+  States
+  {
+  Spawn:
+    ACD1 A 1 Bright A_SpawnItemEx ("impballtrailGreen")
+	ACD1 B 1 Bright A_SpawnItemEx ("impballtrailGreen")
+    Loop
+  Death:
+    ACD1 CDE 6 Bright
+    Stop
+  }
+}
+actor N_Imp_Acid : Hardimp 
+{
+//	Scale 1.2
+	Translation "61:79=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+		Melee:
+		  TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Acid")
+			Goto See
+			
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile("ImpBall_Acid") 
+			Goto See
+			
+	}
+}
+
+// Void Imp
+actor ImpBall_Void 	: ImpBall_Base 
+{ 
+	Scale 0.8
+	DamageType "Void" 
+//	Translation "168:191=[192, 128, 255]:[32, 0, 64]", "208:223=[192, 128, 255]:[32, 0, 64]", "231:231=[192, 128, 255]:[32, 0, 64]", "233:233=[192, 128, 255]:[32, 0, 64]"
+  States
+  {
+  Spawn:
+    CNF1 A 1 Bright A_SpawnItemEx ("impballtrailPurple")
+    CNF1 B 1 Bright A_SpawnItemEx ("impballtrailPurple")
+    Loop
+  Death:
+    CNF1 CDE 6 Bright
+    Stop
+  }
+}
+actor N_Imp_Void : Hardimp 
+{
+//	Scale 1.2
+	Translation "61:79=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+		Melee:
+		    TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Void")
+			Goto See
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile ("ImpBall_Void") 
+			Goto See
+	}
+}
+
+// Fire Imp
+actor ImpBall_Fire 	: ImpBall_Base
+{
+	Scale 0.8
+	DamageType "Fire" 
+  States
+  {
+  Spawn:
+    FIR1 A 1 Bright A_SpawnItemEx ("impballtrailRed")
+    FIR1 B 1 Bright A_SpawnItemEx ("impballtrailRed")
+    Loop
+  Death:
+    FIR1 CDE 6 Bright
+    Stop
+  }
+}
+actor N_Imp_Fire : Hardimp 
+{
+//	Scale 1.2
+	Translation "61:79=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Melee:
+		    TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Fire")
+			Goto See
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile ("ImpBall_Fire") 
+			Goto See
+	}
+}
+
+// Electric Imp
+actor ImpBall_Electric	: ImpBall_Base 
+{
+	Scale 0.8
+	DamageType "Electric"
+//	Translation "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]", "233:233=[255, 255, 96]:[64, 64, 32]"
+	+FORCEPAIN
+	+PIERCEARMOR
+	States
+	{
+		Spawn:
+			SHK1 A 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			SHK1 B 1 Bright A_SpawnItemEx ("impballtrailYellow")
+		    SHK1 A 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			SHK1 B 1 Bright A_SpawnItemEx ("impballtrailYellow")
+			Loop
+		Death:
+			SHK1 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			Stop
+	}	
+}
+actor N_Imp_Electric : Hardimp 
+{
+//	Scale 1.1
+	Translation "61:79=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+		Melee:
+		    TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Electric")
+			Goto See
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile ("ImpBall_Electric") 
+			Goto See
+	}
+}
+
+// Ice Imp
+actor ImpBall_Ice : ImpBall_Base 
+{ 
+	Scale 0.8
+	Damage (7) 
+	DamageType "Ice" 
+//		Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
+  States
+  {
+  Spawn:
+    ICE1 A 1 Bright A_SpawnItemEx ("impballtrailBlue")
+	ICE1 A 1 Bright A_SpawnItemEx ("impballtrailBlue")
+    Loop
+  Death:
+    ICE1 CDE 6 Bright
+    Stop
+  }
+}
+actor N_Imp_Ice: Hardimp 
+{
+//	Scale 1.1
+	+NOICEDEATH
+	Translation "61:79=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Melee:
+		    TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (2, "imp/melee", "", "Ice")
+			Goto See
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile ("ImpBall_Ice") 
+			Goto See
+	}
+}
+
+// Metal Imp
+actor ImpBall_Metal : ImpBall_Base 
+{ 
+	Scale 0.8
+	Damage (15) 
+	DamageType "HeavyMetal" 
+//	Translation "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]", "233:233=[255, 255, 255]:[0, 0, 0]"
+  States
+  {
+  Spawn:
+    MET1 A 1 Bright A_SpawnItemEx ("impballtrailWhite")
+    MET1 B 1 Bright A_SpawnItemEx ("impballtrailWhite")
+	Loop
+  Death:
+    MET1 CDE 6 Bright
+    Stop
+  }
+}
+actor N_Imp_HeavyMetal: Hardimp 
+{
+//	Scale 1.1
+  PainChance 0
+	Translation "61:79=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+		Melee:
+		    TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMeleeAttack (2, "imp/melee", "", "HeavyMetal")
+			Goto See
+		Missile:
+			TROO EF 8 A_FaceTarget
+			TROO G 6 A_CustomMissile ("ImpBall_Metal") 
+			Goto See
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

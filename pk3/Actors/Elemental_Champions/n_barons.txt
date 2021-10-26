@@ -1,0 +1,349 @@
+ACTOR N_Baron_Base : Monster_Base 
+{
+  Health 1000
+    +BOSSDEATH
+	+FLOORCLIP
+  Radius 24
+  Height 64
+  Mass 1000
+  Speed 15
+  SeeSound "baron/sight"
+  PainSound "baron/pain"
+  DeathSound "baron/death"
+  ActiveSound "baron/active"
+  Obituary "$OB_BARON"
+  HitObituary "$OB_BARONHIT"
+  Dropitem "ExtraLifeThingy " 1
+  Dropitem "Activebox1" 1
+  States
+  {
+	Spawn:
+		BOSS A 0
+		
+  Spawn2:
+    BOSS AB 10 A_Look
+    Loop
+  See:
+    BOSS AABBCCDD 3 A_Chase
+    Loop
+  Melee:
+  Missile:
+    BOSS EF 8 A_FaceTarget
+    BOSS G 8 A_BruisAttack
+	BOSS EF 8 A_FaceTarget
+    BOSS G 8 A_BruisAttack
+	BOSS EF 8 A_FaceTarget
+    BOSS G 8 A_BruisAttack
+    Goto See
+  Pain:
+    BOSS H 2
+    BOSS H 2 A_Pain
+    Goto See
+  Death:
+  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    BOSS I 8
+    BOSS J 8 A_Scream
+    BOSS K 8
+    BOSS L 8 A_NoBlocking
+    BOSS MN 8
+    BOSS O -1 A_BossDeath
+    Stop
+Ice:
+    BOSS H 5 A_GenericFreezeDeath
+
+  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    BOSS H 1 A_FreezeDeathChunks  
+	wait
+  Raise:
+    BOSS O 8
+    BOSS NMLKJI 8
+    Goto See
+  }
+}
+
+
+ACTOR BaronBall_Base : Projectile_Base
+{
+  Radius 6
+  Height 16
+  Speed 15
+  Damage (18)
+  Alpha 0.75
+  Renderstyle Add
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    BAL7 AB 4 Bright
+    Loop
+  Death:
+    BAL7 CDE 6 Bright
+    Stop
+  }
+}
+
+
+// Acid Baron
+actor BaronBall_Acid : BaronBall_Base 
+{ 
+	DamageType "Acid" 
+	  States
+  {
+  Spawn:
+    ACD7 A 1 Bright A_SpawnItemEx ("BaronballtrailGreen")
+	ACD7 B 1 Bright A_SpawnItemEx ("BaronballtrailGreen")
+    Loop
+  Death:
+    ACD7 CDE 6 Bright
+    Stop
+  }
+}
+
+
+
+actor N_Baron_Acid : N_Baron_Base 
+{
+//	Scale 1.1
+  PainChance 50
+	Translation "16:47=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Acid")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
+			Goto See
+			
+	}
+}
+
+// Void Baron
+actor BaronBall_Void : BaronBall_Base 
+{ 
+//	Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+	DamageType "Void"
+	  States
+  {
+  Spawn:
+    CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
+    CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
+    Loop
+  Death:
+    CNF7 CDE 6 Bright
+    Stop
+  }
+}
+
+actor N_Baron_Void : N_Baron_Base 30055
+{
+//	Scale 1.1
+	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Void")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
+			Goto See
+			
+	}
+}
+
+// Fire Baron
+actor BaronBall_Fire : BaronBall_Base 
+{ 
+//	Translation "112:127=[255, 128, 0]:[64, 32, 0]"
+	DamageType "Fire"
+	  States
+  {
+  Spawn:
+    FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed")
+    FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed")
+    Loop
+  Death:
+    FIR7 CDE 6 Bright
+    Stop
+  }
+}
+
+
+actor N_Baron_Fire : N_Baron_Base 
+{
+//	Scale 1.1
+  PainChance 50
+	Translation "16:47=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Fire")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
+			Goto See
+	}
+}
+
+// Electric Baron
+actor BaronBall_Electric : BaronBall_Base 
+{ 
+	
+//	Translation "112:127=[255, 255, 96]:[64, 64, 32]"
+	DamageType "Electric"
+	+FORCEPAIN
+	+PIERCEARMOR
+	States
+	{
+		Spawn:
+			SHK7 A 1 Bright A_SpawnItemEx ("BaronballtrailYellow")
+			SHK7 A 0 Bright A_SpawnItemEx("Particle_Lightning5")
+			SHK7 B 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			SHK7 B 0 Bright A_SpawnItemEx ("BaronballtrailYellow")
+			Loop
+		Death:
+			SHK7 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			Stop
+	}
+}
+
+actor N_Baron_Electric : N_Baron_Base 
+{
+//	Scale 1.1
+  PainChance 50
+	Translation "16:47=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Electric")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
+			Goto See
+	}
+}
+
+// Ice Baron
+actor BaronBall_Ice : BaronBall_Base 
+{ 
+	Damage (4)
+//	Translation "112:127=[128, 192, 255]:[32, 48, 64]"
+	DamageType "Ice"
+	  States
+  {
+  Spawn:
+    ICE7 A 1 Bright A_SpawnItemEx ("BaronballtrailBlue")
+    ICE7 A 1 Bright A_SpawnItemEx ("BaronballtrailBlue")
+    Loop
+  Death:
+    ICE7 CDE 6 Bright
+    Stop
+  }
+}
+
+actor N_Baron_Ice : N_Baron_Base 
+{
+//	Scale 1.1
+  PainChance 50
+	Translation "16:47=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Ice")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
+			Goto See
+	}
+}
+
+// Metal Baron
+actor BaronBall_Metal : BaronBall_Base 
+{ 
+	Damage (4)
+//	Translation "112:127=[255, 255, 255]:[0, 0, 0]"
+	DamageType "HeavyMetal"
+	  States
+  {
+  Spawn:
+    MET7 A 1 Bright A_SpawnItemEx ("BaronballtrailWhite")
+	MET7 A 1 Bright A_SpawnItemEx ("BaronballtrailWhite")
+    Loop
+  Death:
+    MET7 CDE 6 Bright
+    Stop
+  }
+}
+
+
+actor N_Baron_HeavyMetal : N_Baron_Base 
+{
+//	Scale 1.1
+  PainChance 0
+	Translation "16:47=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+		Melee:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "HeavyMetal")
+			Goto See
+		Missile:
+			BOSS EF 8 A_FaceTarget
+			BOSS G 0 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
+			BOSS G 8 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
+			Goto See
+	}
+}
+

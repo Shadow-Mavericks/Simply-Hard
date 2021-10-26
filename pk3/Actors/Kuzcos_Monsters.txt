@@ -1,0 +1,4554 @@
+actor Booster : Segwayzombie
+{
+  painchance 100
+  +NOICEDEATH
+  Deathsound "Booster/death"
+  obituary "%o was flattened by Booster!"
+  states
+  {
+  Spawn:
+    BOST A 10 A_Look
+    BOST A 0 A_Stop
+    BOST A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    BOST A 0 A_Jump (8, "Coward", "Brave")
+    BOST A 1 A_Chase
+    BOST A 0 A_Recoil (-2)
+    BOST A 0 A_MeleeAttack
+    BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    BOST A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    BOST A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    BOST A 0 A_Pain
+    BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    BOST A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    BOST A 0 A_StopSoundEx ("SoundSlot7")
+    BOST A 0 A_PlaySound ("weapons/rocklx")
+    BOST A 5 A_Scream
+    BOST A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Bowser : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Bowser/death"
+  obituary "%o was run down by a Boswer!"
+  States
+  {
+Spawn:
+    BWSR A 10 A_Look
+    BWSR A 0 A_Stop
+    BWSR A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    BWSR A 0 A_Jump (8, "Coward", "Brave")
+    BWSR A 1 A_Chase
+    BWSR A 0 A_Recoil (-2)
+    BWSR A 0 A_MeleeAttack
+    BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    BWSR A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    BWSR A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    BWSR A 0 A_Pain
+    BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    BWSR A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    BWSR A 0 A_StopSoundEx ("SoundSlot7")
+    BWSR A 0 A_PlaySound ("weapons/rocklx")
+    BWSR A 5 A_Scream
+    BWSR A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor CaptainFalcon : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  deathsound "cptf/death"
+  obituary "%o was Falcon ran over!"
+  states
+  {
+  Spawn:
+    CPTF A 10 A_Look
+    CPTF A 0 A_Stop
+    CPTF A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    CPTF A 0 A_Jump (8, "Coward", "Brave")
+    CPTF A 1 A_Chase
+    CPTF A 0 A_Recoil (-2)
+    CPTF A 0 A_MeleeAttack
+    CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    CPTF A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    CPTF A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    CPTF A 0 A_Pain
+    CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    CPTF A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    CPTF A 0 A_StopSoundEx ("SoundSlot7")
+    CPTF A 0 A_PlaySound ("weapons/rocklx")
+    CPTF A 5 A_Scream
+    CPTF A 5 A_NoBlocking
+    stop
+  }
+}
+  
+  actor Crashbandicock : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  deathsound "crash/death"
+  obituary "%o Crashed into a bandicoot!"
+  states
+  {
+  Spawn:
+    CRSH A 10 A_Look
+    CRSH A 0 A_Stop
+    CRSH A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    CRSH A 0 A_Jump (8, "Coward", "Brave")
+    CRSH A 1 A_Chase
+    CRSH A 0 A_Recoil (-2)
+    CRSH A 0 A_MeleeAttack
+    CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    CRSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    CRSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    CRSH A 0 A_Pain
+    CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    CRSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    CRSH A 0 A_StopSoundEx ("SoundSlot7")
+    CRSH A 0 A_PlaySound ("weapons/rocklx")
+    CRSH A 5 A_Scream
+    CRSH A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor DunkyKung : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  obituary "%o was Monkeying around!"
+  deathsound "dnky/death"
+  states
+  {
+  Spawn:
+    DNKY A 10 A_Look
+    DNKY A 0 A_Stop
+    DNKY A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    DNKY A 0 A_Jump (8, "Coward", "Brave")
+    DNKY A 1 A_Chase
+    DNKY A 0 A_Recoil (-2)
+    DNKY A 0 A_MeleeAttack
+    DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    DNKY A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    DNKY A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    DNKY A 0 A_Pain
+    DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    DNKY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    DNKY A 0 A_StopSoundEx ("SoundSlot7")
+    DNKY A 0 A_PlaySound ("weapons/rocklx")
+    DNKY A 5 A_Scream
+    DNKY A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor HyperMetalSonic : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Metalsonic/death"
+  obituary "%o was Outdone by Metal!"
+  states
+  {
+  Spawn:
+    MSNC A 10 A_Look
+    MSNC A 0 A_Stop
+    MSNC A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    MSNC A 0 A_Jump (8, "Coward", "Brave")
+    MSNC A 1 A_Chase
+    MSNC A 0 A_Recoil (-2)
+    MSNC A 0 A_MeleeAttack
+    MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    MSNC A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    MSNC A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    MSNC A 0 A_Pain
+    MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    MSNC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    MSNC A 0 A_StopSoundEx ("SoundSlot7")
+    MSNC A 0 A_PlaySound ("weapons/rocklx")
+    MSNC A 5 A_Scream
+    MSNC A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Knux : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Sonc/death"
+  obituary "%o was run down by an Echidna!"
+  states
+  {
+  Spawn:
+    KNUK A 10 A_Look
+    KNUK A 0 A_Stop
+    KNUK A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    KNUK A 0 A_Jump (8, "Coward", "Brave")
+    KNUK A 1 A_Chase
+    KNUK A 0 A_Recoil (-2)
+    KNUK A 0 A_MeleeAttack
+    KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    KNUK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    KNUK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    KNUK A 0 A_Pain
+    KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    KNUK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    KNUK A 0 A_StopSoundEx ("SoundSlot7")
+    KNUK A 0 A_PlaySound ("weapons/rocklx")
+    KNUK A 5 A_Scream
+    KNUK A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Koopa : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  deathsound "Koopa/death"
+  obituary "%o was Flattened by a Koopa Troopa"
+  states
+  {
+  Spawn:
+    KOOP A 10 A_Look
+    KOOP A 0 A_Stop
+    KOOP A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    KOOP A 0 A_Jump (8, "Coward", "Brave")
+    KOOP A 1 A_Chase
+    KOOP A 0 A_Recoil (-2)
+    KOOP A 0 A_MeleeAttack
+    KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    KOOP A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    KOOP A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    KOOP A 0 A_Pain
+    KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    KOOP A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    KOOP A 0 A_StopSoundEx ("SoundSlot7")
+    KOOP A 0 A_PlaySound ("weapons/rocklx")
+    KOOP A 5 A_Scream
+    KOOP A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Linkin : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Link/death"
+  obituary "%o was Defeated by The Hero of Time!"
+  states
+  {
+  Spawn:
+    LINK A 10 A_Look
+    LINK A 0 A_Stop
+    LINK A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    LINK A 0 A_Jump (8, "Coward", "Brave")
+    LINK A 1 A_Chase
+    LINK A 0 A_Recoil (-2)
+    LINK A 0 A_MeleeAttack
+    LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    LINK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    LINK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    LINK A 0 A_Pain
+    LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    LINK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    LINK A 0 A_StopSoundEx ("SoundSlot7")
+    LINK A 0 A_PlaySound ("weapons/rocklx")
+    LINK A 5 A_Scream
+    LINK A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Luigi : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  deathsound "Luigi/death"
+  obituary "%o was run over by Luigi!"
+  states
+  {
+  Spawn:
+    LUIG A 10 A_Look
+    LUIG A 0 A_Stop
+    LUIG A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    LUIG A 0 A_Jump (8, "Coward", "Brave")
+    LUIG A 1 A_Chase
+    LUIG A 0 A_Recoil (-2)
+    LUIG A 0 A_MeleeAttack
+    LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    LUIG A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    LUIG A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    LUIG A 0 A_Pain
+    LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    LUIG A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    LUIG A 0 A_StopSoundEx ("SoundSlot7")
+    LUIG A 0 A_PlaySound ("weapons/rocklx")
+    LUIG A 5 A_Scream
+    LUIG A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Mario : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  deathsound "Mario/death"
+  obituary "%o was Stomped by the Italian Plumber!"
+  states
+  {
+  Spawn:
+    MARI A 10 A_Look
+    MARI A 0 A_Stop
+    MARI A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    MARI A 0 A_Jump (8, "Coward", "Brave")
+    MARI A 1 A_Chase
+    MARI A 0 A_Recoil (-2)
+    MARI A 0 A_MeleeAttack
+    MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    MARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    MARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    MARI A 0 A_Pain
+    MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    MARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    MARI A 0 A_StopSoundEx ("SoundSlot7")
+    MARI A 0 A_PlaySound ("weapons/rocklx")
+    MARI A 5 A_Scream
+    MARI A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Megaman : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Megaman/death"
+  obituary "%o was Inferior to Megaman!!"
+  states
+  {
+  Spawn:
+    MGMN A 10 A_Look
+    MGMN A 0 A_Stop
+    MGMN A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    MGMN A 0 A_Jump (8, "Coward", "Brave")
+    MGMN A 1 A_Chase
+    MGMN A 0 A_Recoil (-2)
+    MGMN A 0 A_MeleeAttack
+    MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    MGMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    MGMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    MGMN A 0 A_Pain
+    MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    MGMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    MGMN A 0 A_StopSoundEx ("SoundSlot7")
+    MGMN A 0 A_PlaySound ("weapons/rocklx")
+    MGMN A 5 A_Scream
+    MGMN A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Motobug : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Motorbug/death"
+  obituary "%o was bulldozed by Motorbug!"
+  states
+  {
+  Spawn:
+    MOTO A 10 A_Look
+    MOTO A 0 A_Stop
+    MOTO A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    MOTO A 0 A_Jump (8, "Coward", "Brave")
+    MOTO A 1 A_Chase
+    MOTO A 0 A_Recoil (-2)
+    MOTO A 0 A_MeleeAttack
+    MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    MOTO A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    MOTO A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    MOTO A 0 A_Pain
+    MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    MOTO A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    MOTO A 0 A_StopSoundEx ("SoundSlot7")
+    MOTO A 0 A_PlaySound ("weapons/rocklx")
+    MOTO A 5 A_Scream
+    MOTO A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Pacman : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Pacman/death"
+  obituary "%o was Eaten by Pacman!"
+  states
+  {
+  Spawn:
+    PCMN A 10 A_Look
+    PCMN A 0 A_Stop
+    PCMN A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    PCMN A 0 A_Jump (8, "Coward", "Brave")
+    PCMN A 1 A_Chase
+    PCMN A 0 A_Recoil (-2)
+    PCMN A 0 A_MeleeAttack
+    PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    PCMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    PCMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    PCMN A 0 A_Pain
+    PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    PCMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    PCMN A 0 A_StopSoundEx ("SoundSlot7")
+    PCMN A 0 A_PlaySound ("weapons/rocklx")
+    PCMN A 5 A_Scream
+    PCMN A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Peach : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Peach/death"
+  obituary "%o was demolished by the princess!"
+  states
+  {
+  Spawn:
+    PECH A 10 A_Look
+    PECH A 0 A_Stop
+    PECH A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    PECH A 0 A_Jump (8, "Coward", "Brave")
+    PECH A 1 A_Chase
+    PECH A 0 A_Recoil (-2)
+    PECH A 0 A_MeleeAttack
+    PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    PECH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    PECH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    PECH A 0 A_Pain
+    PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    PECH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    PECH A 0 A_StopSoundEx ("SoundSlot7")
+    PECH A 0 A_PlaySound ("weapons/rocklx")
+    PECH A 5 A_Scream
+    PECH A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Robotnik : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Robotnik/death"
+  obituary "%o was annihilated by Dr.Robotnik!"
+  states
+  {
+  Spawn:
+    RBNK A 10 A_Look
+    RBNK A 0 A_Stop
+    RBNK A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    RBNK A 0 A_Jump (8, "Coward", "Brave")
+    RBNK A 1 A_Chase
+    RBNK A 0 A_Recoil (-2)
+    RBNK A 0 A_MeleeAttack
+    RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    RBNK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    RBNK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    RBNK A 0 A_Pain
+    RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    RBNK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    RBNK A 0 A_StopSoundEx ("SoundSlot7")
+    RBNK A 0 A_PlaySound ("weapons/rocklx")
+    RBNK A 5 A_Scream
+    RBNK A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Snake : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Jack/death"
+  obituary "%o was Eliminated by Snake!"
+  states
+  {
+  Spawn:
+    JACK A 10 A_Look
+    JACK A 0 A_Stop
+    JACK A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    JACK A 0 A_Jump (8, "Coward", "Brave")
+    JACK A 1 A_Chase
+    JACK A 0 A_Recoil (-2)
+    JACK A 0 A_MeleeAttack
+    JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    JACK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    JACK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    JACK A 0 A_Pain
+    JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    JACK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    JACK A 0 A_StopSoundEx ("SoundSlot7")
+    JACK A 0 A_PlaySound ("weapons/rocklx")
+    JACK A 5 A_Scream
+    JACK A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Sonic : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Sonc/death"
+  obituary "%o was defeated by Sonic The Hedgehog!"
+  states
+  {
+  Spawn:
+    SONC A 10 A_Look
+    SONC A 0 A_Stop
+    SONC A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    SONC A 0 A_Jump (8, "Coward", "Brave")
+    SONC A 1 A_Chase
+    SONC A 0 A_Recoil (-2)
+    SONC A 0 A_MeleeAttack
+    SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    SONC A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    SONC A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    SONC A 0 A_Pain
+    SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    SONC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    SONC A 0 A_StopSoundEx ("SoundSlot7")
+    SONC A 0 A_PlaySound ("weapons/rocklx")
+    SONC A 5 A_Scream
+    SONC A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Tails : Segwayzombie
+{
+  +NOICEDEATH
+  Deathsound "sonc/death"
+  painchance 100
+  obituary "%o was beaten by a two tailed fox!"
+  states
+  {
+  Spawn:
+    TAIL A 10 A_Look
+    TAIL A 0 A_Stop
+    TAIL A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    TAIL A 0 A_Jump (8, "Coward", "Brave")
+    TAIL A 1 A_Chase
+    TAIL A 0 A_Recoil (-2)
+    TAIL A 0 A_MeleeAttack
+    TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    TAIL A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    TAIL A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    TAIL A 0 A_Pain
+    TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    TAIL A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    TAIL A 0 A_StopSoundEx ("SoundSlot7")
+    TAIL A 0 A_PlaySound ("weapons/rocklx")
+    TAIL A 5 A_Scream
+    TAIL A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Toad : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Toad/death"
+  obituary "%o was run over by Toad!"
+  states
+  {
+  Spawn:
+    TOAD A 10 A_Look
+    TOAD A 0 A_Stop
+    TOAD A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    TOAD A 0 A_Jump (8, "Coward", "Brave")
+    TOAD A 1 A_Chase
+    TOAD A 0 A_Recoil (-2)
+    TOAD A 0 A_MeleeAttack
+    TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    TOAD A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    TOAD A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    TOAD A 0 A_Pain
+    TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    TOAD A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    TOAD A 0 A_StopSoundEx ("SoundSlot7")
+    TOAD A 0 A_PlaySound ("weapons/rocklx")
+    TOAD A 5 A_Scream
+    TOAD A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor VariaSuitSamus : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Varidth1"
+  obituary "%o was Crushed By A Galatic Bounty Hunter!"
+  states
+  {
+  Spawn:
+    VARI A 10 A_Look
+    VARI A 0 A_Stop
+    VARI A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    VARI A 0 A_Jump (8, "Coward", "Brave")
+    VARI A 1 A_Chase
+    VARI A 0 A_Recoil (-2)
+    VARI A 0 A_MeleeAttack
+    VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    VARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    VARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    VARI A 0 A_Pain
+    VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    VARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    VARI A 0 A_StopSoundEx ("SoundSlot7")
+    VARI A 0 A_PlaySound ("weapons/rocklx")
+    VARI A 5 A_Scream
+    VARI A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Wario : Segwayzombie
+{
+  +NOICEDEATH
+  painchance 100
+  Deathsound "Wario/death"
+  obituary "%o was Crushed by Wario!"
+  states
+  {
+  Spawn:
+    WARI A 10 A_Look
+    WARI A 0 A_Stop
+    WARI A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    WARI A 0 A_Jump (8, "Coward", "Brave")
+    WARI A 1 A_Chase
+    WARI A 0 A_Recoil (-2)
+    WARI A 0 A_MeleeAttack
+    WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    WARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    WARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    WARI A 0 A_Pain
+    WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    WARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    WARI A 0 A_StopSoundEx ("SoundSlot7")
+    WARI A 0 A_PlaySound ("weapons/rocklx")
+    WARI A 5 A_Scream
+    WARI A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor Yoshi : Segwayzombie
+{
+  +NOICEDEATH
+  obituary "%o was Killed by Yoshi"
+  painchance 100
+  Deathsound "Yoshi/death"
+  states
+  {
+  Spawn:
+    YOSH A 10 A_Look
+    YOSH A 0 A_Stop
+    YOSH A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    YOSH A 0 A_Jump (8, "Coward", "Brave")
+    YOSH A 1 A_Chase
+    YOSH A 0 A_Recoil (-2)
+    YOSH A 0 A_MeleeAttack
+    YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    YOSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    YOSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    YOSH A 0 A_Pain
+    YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    YOSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    YOSH A 0 A_StopSoundEx ("SoundSlot7")
+    YOSH A 0 A_PlaySound ("weapons/rocklx")
+    YOSH A 5 A_Scream
+    YOSH A 5 A_NoBlocking
+    stop
+  }
+}
+
+actor ZeroSuitSamus : Segwayzombie
+{
+  +NOICEDEATH
+  obituary "%o was smashed by Samus"
+  painchance 100
+  Deathsound "Sammy/death"
+  states
+  {
+  Spawn:
+    SAMY A 10 A_Look
+    SAMY A 0 A_Stop
+    SAMY A 0 A_StopSoundEx ("SoundSlot7")
+	TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
+    Goto See
+  See:
+    SAMY A 0 A_Jump (8, "Coward", "Brave")
+    SAMY A 1 A_Chase
+    SAMY A 0 A_Recoil (-2)
+    SAMY A 0 A_MeleeAttack
+    SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Coward:
+    SAMY A 0 A_ChangeFlag ("FRIGHTENED", 1)
+    goto See
+  Brave:
+    SAMY A 0 A_ChangeFlag ("FRIGHTENED", 0)
+    goto See
+  Pain:
+    SAMY A 0 A_Pain
+    SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+    goto See
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    SAMY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    SAMY A 0 A_StopSoundEx ("SoundSlot7")
+    SAMY A 0 A_PlaySound ("weapons/rocklx")
+    SAMY A 5 A_Scream
+    SAMY A 5 A_NoBlocking
+    stop
+  }
+}
+
+ACTOR Swarm
+{
+	MONSTER
+	+FLOAT
+	+NOGRAVITY
+	+LOOKALLAROUND
+	+NONSHOOTABLE
+	-SOLID
+	+CANTSEEK
+	Health 10
+	Radius 24
+	Height 48
+	Speed 10
+	DeathSound "Hornet/Splat"
+	activesound "Hornet/Fly"
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory ("SwarmGibbed", 1, "SpawnedAlready")
+		TNT1 A 0 A_SpawnItemEX ("SwarmBody", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		goto SpawnedAlready
+	SpawnedAlready:
+		TNT1 AA 4 A_Look
+		goto SpawnedAlready
+	See:
+		TNT1 A 0 A_JumpIfCloser (256, "SeeGib")
+		TNT1 A 4
+		goto See
+	SeeGib:
+		TNT1 A 0 A_PlaySoundEx ("SwarmFlySight", Auto)
+		TNT1 A 0 A_SpawnItemEX ("SwarmGibber", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAAA 2 A_CustomMissile("SwarmFly", 0, 0, random (0, 360), 2, random (-40, 40))
+		goto death
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_Fall
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_TakeInventory ("SwarmGibbed", 1)
+		TNT1 A 35
+		Stop
+	}
+}
+
+ACTOR SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_Jump (256, "SpawnPlayer", "SpawnDemon", "SpawnImp", "SpawnZombie")
+	SpawnPlayer:
+		SBOD A -1
+		Stop
+	SpawnDemon:
+		SBOD B -1
+		Stop
+	SpawnImp:
+		SBOD C -1
+		Stop
+	SpawnZombie:
+		SBOD D -1
+		Stop
+	}
+}
+
+ACTOR SwarmBody1 : SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SBOD A -1
+		Stop
+	}
+}
+
+ACTOR SwarmBody2 : SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SBOD B -1
+		Stop
+	}
+}
+
+ACTOR SwarmBody3 : SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SBOD C -1
+		Stop
+	}
+}
+
+ACTOR SwarmBody4 : SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SBOD D -1
+		Stop
+	}
+}
+
+ACTOR SwarmBody5 : SwarmBody
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SBOD E -1
+		Stop
+	}
+}
+
+ACTOR SwarmFly
+{
+	Health 1
+	Radius 10
+	Height 19
+	Speed 15
+	Monster
+	Damage 1
+    Scale 0.2
+	+FLOAT
+	+NOGRAVITY
+	+LOOKALLAROUND
+	+THRUSPECIES
+	+DONTHURTSPECIES
+	MeleeThreshold 384
+	States
+	{
+	Spawn:
+		WASP AB 2 A_Look
+		Goto See
+	See:
+		WASP AB 2 A_Chase
+		Goto see
+	Melee:
+	Missile:
+		WASP A 8 A_Facetarget
+		WASP A 8 A_Skullattack
+		WASP A 8 A_Facetarget
+		Goto see
+	Death:
+		WASP A 0
+		TNT1 A 35 A_SpawnItemEX ("DeadFly", 0, 0, 0)
+		Stop
+	SpawnNewFly:
+		WASP AB	2 A_CustomMissile("SwarmFly", 0, 0, random (-40, 40))
+		stop
+	}
+}
+
+ACTOR DeadFly
+{
+	Radius 1
+	Height 1
+	Scale 0.1
+	+Floorclip
+	States
+	{
+	Spawn:
+		WASP A 0
+		WASP CD 35
+		Stop
+	}
+}
+
+ACTOR SwarmGibbed : Inventory
+{
+	Inventory.MaxAmount 1
+}
+
+ACTOR SwarmGibber
+{
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 35 A_SpawnDebris ("SwarmGibs")
+		Stop
+	}
+}
+
+ACTOR SwarmGibs
+{
+	Health 20
+	Radius 1
+	Height 1
+	States
+	{
+	Spawn:
+		SGIB A -1
+		SGIB B -1
+		SGIB C -1
+		SGIB D -1
+		SGIB E -1
+		SGIB F -1
+
+	}
+}
+
+ACTOR metroidSwarm : Swarm
+{
+	MONSTER
+	+FLOAT
+	+NOGRAVITY
+	+LOOKALLAROUND
+	+NONSHOOTABLE
+	-SOLID
+	+CANTSEEK
+	Health 10
+	Mass 10000
+	Radius 24
+	Height 48
+	Speed 10
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory ("SwarmGibbed", 1, "SpawnedAlready")
+		TNT1 A 0 A_SpawnItemEX ("SwarmBody", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		goto SpawnedAlready
+	SpawnedAlready:
+		TNT1 AA 4 A_Look
+		goto SpawnedAlready
+	See:
+		TNT1 A 0 A_JumpIfInventory ("SwarmGibbed", 1, "SeeGibbed")
+		TNT1 A 0 A_JumpIfCloser (256, "SeeGib")
+		TNT1 A 4
+		goto See
+	SeeGib:
+		TNT1 A 0 A_PlaySoundEx ("SwarmFlySight", Auto)
+		TNT1 A 0 A_SpawnItemEX ("SwarmGibber", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 2 A_CustomMissile("Metroid", 0, 0, random (0, 360), 2, random (-40, 40))
+		TNT1 A 0 A_GiveInventory ("SwarmGibbed", 1)
+		goto SeeGibbed
+	SeeGibbed:
+		TNT1 AAAA 4 A_Chase
+		TNT1 A 0 A_PlaySoundEx ("SwarmFly", Auto)
+		Loop
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_Fall
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_TakeInventory ("SwarmGibbed", 1)
+		TNT1 A 35
+		Stop
+	}
+}
+
+ACTOR metroidSwarm2 : Swarm
+{
+	MONSTER
+	+FLOAT
+	+NOGRAVITY
+	+LOOKALLAROUND
+	+NONSHOOTABLE
+	-SOLID
+	+CANTSEEK
+	Health 10
+	Mass 10000
+	Radius 24
+	Height 48
+	Speed 10
+	RenderStyle None
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory ("SwarmGibbed", 1, "SpawnedAlready")
+		TNT1 A 0 A_SpawnItemEX ("SwarmBody", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		goto SpawnedAlready
+	SpawnedAlready:
+		TNT1 AA 4 A_Look
+		goto SpawnedAlready
+	See:
+		TNT1 A 0 A_JumpIfInventory ("SwarmGibbed", 1, "SeeGibbed")
+		TNT1 A 0 A_JumpIfCloser (256, "SeeGib")
+		TNT1 A 4
+		goto See
+	SeeGib:
+		TNT1 A 0 A_PlaySoundEx ("SwarmFlySight", Auto)
+		TNT1 A 0 A_SpawnItemEX ("SwarmGibber", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		TNT1 A 2 A_CustomMissile("iceMetroid", 0, 0, random (0, 360), 2, random (-40, 40))
+		TNT1 A 0 A_GiveInventory ("SwarmGibbed", 1)
+		goto SeeGibbed
+	SeeGibbed:
+		TNT1 AAAA 4 A_Chase
+		TNT1 A 0 A_PlaySoundEx ("SwarmFly", Auto)
+		Loop
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_Fall
+		TNT1 A 0 A_Scream
+		TNT1 A 0 A_TakeInventory ("SwarmGibbed", 1)
+		TNT1 A 35
+		Stop
+	}
+}
+
+ACTOR Metroid
+{
+   Health 600
+   Radius 16
+   Height 56
+   Speed 10
+   Damage 3
+   PainChance 0
+   Monster
+   +NOBLOOD
+   +FLOAT
+   +QUICKTORETALIATE
+   +NOGRAVITY
+   +SHOOTABLE
+   +NOICEDEATH
+   +NOINFIGHTING
+   +FLOATBOB
+   +MISSILEEVENMORE
+   AttackSound "Metroid3"
+   PainSound "Metroid1"
+   DeathSound "DTHX1"
+   ActiveSound "Metroid2"
+   Obituary "%o was devoured by a Metroid"
+   States
+   {
+   Spawn:
+      mtrd AB 10 BRIGHT A_Look
+      Loop
+   See:
+      MTRD AB 6 BRIGHT A_Chase
+      Loop
+   Melee:
+   Missile:
+      MTRD C 1 BRIGHT A_FaceTarget
+      MTRD D 1 BRIGHT
+      MTRD E 1 BRIGHT
+      MTRD F 1 BRIGHT
+      MTRD G 0 BRIGHT A_SkullAttack
+      MTRD CDEFG 1 BRIGHT
+      Goto Missile+2
+   Pain:
+      MTRD E 3 BRIGHT
+      MTRD E 3 BRIGHT A_Pain
+      Goto See
+   Death:
+      DTHX A 1 BRIGHT A_Die
+      DTHX B 1 BRIGHT 
+      DTHX C 1 BRIGHT 
+      DTHX D 1 BRIGHT 
+      DTHX E 1 BRIGHT 
+      Stop
+   }
+}
+
+ACTOR IceMetroid
+{
+   Health 800
+   Radius 16
+   Height 56
+   Speed 10
+   Damage 5
+   PainChance 0
+   Monster
+   +NOBLOOD
+   +FLOAT
+   +QUICKTORETALIATE
+   +NOGRAVITY
+   +SHOOTABLE
+   +NOICEDEATH
+   +NOINFIGHTING
+   +FLOATBOB
+   +MISSILEEVENMORE
+   AttackSound "Metroid3"
+   PainSound "Metroid1"
+   DeathSound "DTHX1"
+   ActiveSound "Metroid2"
+   Obituary "%o was devoured by a Metroid"
+   States
+   {
+   Spawn:
+      METD AB 10 BRIGHT A_Look
+      Loop
+   See:
+      METD AB 6 BRIGHT A_FastChase
+      Loop
+	Melee:
+    Missile:
+      METD C 1 BRIGHT A_FaceTarget
+      METD D 1 BRIGHT
+      METD E 1 BRIGHT
+      METD F 1 BRIGHT
+      METD G 0 BRIGHT A_SkullAttack
+      METD CDEFG 3 BRIGHT
+      Goto Missile+2
+   Pain:
+      METD E 3 BRIGHT
+      METD E 3 BRIGHT A_Pain
+      Goto See
+   Death:
+      DTHX A 1 BRIGHT A_Die
+      DTHX B 1 BRIGHT 
+      DTHX C 1 BRIGHT 
+      DTHX D 1 BRIGHT 
+      DTHX E 1 BRIGHT 
+      Stop
+   }
+}
+
+actor Mawfulmole
+{
+  health 200
+  radius 20
+  height 20
+  mass 100
+  speed 100
+  painchance 100
+  MONSTER
+  +FLOORHUGGER
+  +FLOORCLIP
+  states
+  {
+  Spawn:
+    TNT1 A 10 A_Look
+  See:
+	HOLE ABCDFGHIJKLMNOP 4
+	MOLE A 30 A_Facetarget
+	HOLE PONMLKJIHGFEDCBA 4
+	TNT1 A 30 A_Chase
+  MISSILE:
+    HOLE ABCDFGHIJKLMNOP 4
+	MOLE A 5 A_Facetarget
+	MOLE BCDEF 4 A_Facetarget
+	HOLE E 0 A_playsound("MOLE/PICKUP")
+	MOLE GHIJKLMNSO 4
+	MOLE P 5 A_Custommissile("Molerock")
+	MOLE Q 0 A_playsound("MOLE/THROW")
+	MOLE Q 5 
+	MOLE RS 5
+	HOLE PONMLKJIHGFEDCBA 4
+	goto see
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    HOLE P 4 A_playsound("MOLE/DEATH") 
+	HOLE ONMLKJIHGFEDCBA 4
+	Stop
+  }
+}
+
+Actor Molerock
+{
+  Radius 22
+  Height 22
+  Mass 400
+  Gravity 0.5
+  speed 15
+  Projectile
+  Damage 5
+  States
+  {
+  Spawn:
+    ROKK A 1 A_spawnitem("Rockshadow") 
+	LOOP
+  Death:
+    Null A 5
+	Stop
+}
+}
+
+Actor Rockshadow
+{
+  Radius 22
+  Height 22
+  speed 0
+  +FLOORHUGGER
+  +NOINTERACTION
+  +THRUACTORS
+  +THRUGHOST
+  +THRUSPECIES
+  States
+  {
+  Spawn:
+    RSDW A 1
+	Stop
+}
+}
+
+ACTOR Papyrus : HardRevenant
+{
+  +NOICEDEATH
+  Health 300
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 10
+  Monster
+  +Boss
+  SCALE 2.0
+  MeleeThreshold 196
+  pain 0
+  +MISSILEMORE 
+  +FLOORCLIP
+  +NOPAIN
+  +Noicedeath
+  Activesound ""
+  DeathSound "UNDER/DEATH"
+  MeleeSound "skeleton/melee"
+  HitObituary "$OB_UNDEADHIT" // "%o ate lots of spaghetti!"
+  Obituary "$OB_UNDEAD" // "%o rest's in spahetti, never forggetti!"
+  States
+  {
+  Spawn:
+    PAPY A 20 A_Look
+    Loop
+  See:
+    PAPY BACBACBACBAC 2 A_Chase
+    Loop
+  Melee:
+    PAPY D 0 A_FaceTarget
+    PAPY D 6 A_SkelWhoosh
+    PAPY E 6 A_FaceTarget
+    PAPY F 6 A_SkelFist
+    Goto See
+  Missile:
+    PAPY D 0 Bright A_playsound("MOLE/PICKUP")
+	PAPY D 10 Bright A_FaceTarget
+    PAPY E 10 Bright A_FaceTarget
+//	PAPY F 0 Bright A_Playsound("ROKKTHRW")
+    PAPY F 10 A_custommissile("spaghetti",40)
+    PAPY F 10 A_FaceTarget
+    Goto See
+  Pain:
+	PAPY T 5 A_Pain
+	PAPY T 2
+	Goto See
+	Ice:
+    PAPY S 5 A_GenericFreezeDeath
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    PAPY S 1 A_FreezeDeathChunks
+    wait
+  Death:
+    PAPY A 7 A_Scream
+    PAPY G 7 A_Scream
+	PAPY H 7 A_NoBlocking
+	PAPY I 7
+	PAPY J 7
+	PAPY K 7
+	PAPY L 7
+	PAPY M 7
+	PAPY N 7
+	PAPY O 7
+    PAPY P 7
+    PAPY Q 7
+    PAPY R 7
+	NULL A -1
+    Stop
+  }
+}
+
+ACTOR spaghetti : RevenantTracer
+{
+  Radius 11
+  Height 8
+  Speed 10
+  scale 1.5
+  Damage 20
+  Projectile
+  Renderstyle Normal
+  +SEEKERMISSILE
+  +RANDOMIZE
+  SeeSound "MOLE/THROW"
+  DeathSound "HEALTH/MMEDKIT"
+  States
+  {
+  Spawn:
+    SPAG A 2 Bright A_Tracer
+    Loop
+  Death:
+    FBXP A 8 Bright
+    FBXP B 6 Bright
+    FBXP C 4 Bright
+    Stop
+  }
+}
+
+ACTOR SphereMaster
+{
+  Health 150
+  Radius 32
+  Height 64
+  Speed 24
+  Mass 10000
+  obituary "%o was killed by a Spheremaster"
+  deathsound "sfxexp1"
+  seesound "sfxitem"
+  Activesound ""
+  Monster
+  +LOOKALLAROUND
+  +FLOAT
+  +NOGRAVITY
+  +SOLID
+  +NOBLOOD
+  +NORADIUSDMG
+  +QUICKTORETALIATE
+  +BOSS
+  +NOPAIN
+    +NOICEDEATH
+  States
+  {
+  Spawn:
+    SPHM A 6 A_Look
+    Loop
+  See:
+    SPHM A 6 A_chase
+    SPHM A 0 A_RadiusGive("Health", 320, RGF_MONSTERS, 10)
+	SPHM A 0 A_AlertMonsters
+    Goto see
+  Melee:
+  Missile:
+  Heal:
+    SPHM A 6 A_FaceTarget
+	SPHM A 6 A_Quake(2,35,0,0,"world/quake")
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,0,0,210)
+       SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,20,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,40,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,60,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,80,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,100,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,120,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,140,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,160,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,180,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-20,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-40,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-60,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-80,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-100,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-120,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-140,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-160,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-180,0,210)
+       SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,10,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,30,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,50,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,70,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,90,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,110,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,130,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,150,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,170,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-10,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-30,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-50,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-70,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-90,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-110,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-130,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-150,0,210)
+	   SPHM D 0 Bright A_CustomMissile("ResurrectionPulse",0,16,-170,0,210)
+    SPHM D 0 Bright A_CustomMissile("Healwave",0,16,0,0,210)
+       SPHM D 0 Bright A_CustomMissile("Healwave",0,16,20,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,40,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,60,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,80,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,100,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,120,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,140,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,160,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,180,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-20,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-40,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-60,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-80,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-100,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-120,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-140,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-160,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-180,0,210)
+       SPHM D 0 Bright A_CustomMissile("Healwave",0,16,10,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,30,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,50,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,70,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,90,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,110,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,130,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,150,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,170,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-10,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-30,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-50,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-70,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-90,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-110,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-130,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-150,0,210)
+	   SPHM D 0 Bright A_CustomMissile("Healwave",0,16,-170,0,210)
+    SPHM A 6 A_FaceTarget
+	Goto see
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    EXPL A 4 A_Scream
+    EXPL B 4 
+    EXPL C 4
+    EXPL D 4
+    EXPL E 4
+    EXPL F 4
+    EXPL G 4
+    EXPL H 4
+    Stop
+  }
+}
+
+ACTOR Healwave : archvile
+{ 
+Health 2000
+PainChance 1
+Speed 35
+Radius 20 
+Height 56 
+Mass 150 
+MONSTER
+reactiontime 8
+Alpha 0.1
++INVULNERABLE
++NOGRAVITY
++NOCLIP
++NOTARGET
++FLOORHUGGER
++FLOORCLIP
++NOBLOCKMAP
++CANPASS
++NOPAIN
+-Frightened
++Thruspecies
++thruactors
+DeathSound""
+ActiveSound""
+seesound""
+States 
+   { 
+   Spawn: 
+       NULL A 5 Bright A_Look
+       Loop 
+   See:
+        NULL A 4 A_VileChase
+        NULL A 0 A_countdown
+       goto see
+   Melee:
+ Missile:
+        NULL A 1
+       goto SEE
+   Heal:
+        NULL A 2
+        NULL A 2
+        NULL A 2
+        NULL A 10
+       goto DEATH
+   Death: 
+     NULL A 1
+	 Stop 
+   } 
+}
+
+ACTOR ResurrectionPulse
+{
+   Radius 10
+   Height 20
+   Speed 10
+   PROJECTILE
+   Renderstyle add
+   Scale 0.5
++INVULNERABLE
++NOGRAVITY
++NOCLIP
++NOTARGET
++FLOORHUGGER
++FLOORCLIP
++NOBLOCKMAP
++CANPASS
++NOPAIN
+-Frightened
++Thruspecies
++thruactors
+   States
+   {
+   Spawn:
+      VOID L 0 Bright
+      Riku FEHGI 4 Bright 
+      stop
+   }
+}
+
+ACTOR RabbitLord 
+{
+Health 4000 
+PainChance 50
+Speed 15
+Radius 72
+Height 72 
+Mass 300 
+MONSTER
+Scale 3.0
+Damage 10
+BloodColor "red"
+Seesound"Monster/Evildead"
++ALWAYSFAST
++QUICKTORETALIATE
++Floorclip
++BOSS
+states
+	{
+	spawn:
+	RBTL A 5 A_Look
+	Loop
+See:
+	RBTL ABCD 5 A_Chase
+	goto see
+Missile:
+Melee:
+	RBTL A 0 A_playsound("MONSTER/WHTRATT")
+    RBTL A 2 A_Facetarget
+	RBTL A 5 A_skullattack
+    RBTL A 2 A_Facetarget
+	goto see
+Pain:
+	RBTL F 3
+	Goto See
+Death:
+	RBTL GHIJKLM 3
+	stop
+}
+}
+
+ACTOR bunny 
+{
+Health 15 
+PainChance 500
+Speed 10
+Radius 12 
+Height 12
+Scale 0.5 
+Mass 2 
+MONSTER
+BloodColor "red"
++Friendly
++FRIGHTENED
+Dropitem "RabbitLord" 96
+states
+	{
+	spawn:
+	DASY A 5 A_Look
+	Loop
+See:
+	DASY ABCD 5 A_Wander
+	loop
+Pain:
+	DASY F 3
+	Goto See
+Death:
+	DASY HIJKLM 3
+	DASY N -1
+	stop
+}
+}
+actor CCCDroid
+{
+    Monster
+    Health 1500
+    Radius 31
+    Height 56
+    Speed 10
+    Scale 2.0
+    Painchance 8
+    Mass 500
+    Seesound "Droid/See"
+    Activesound "Droid/Active"
+    Deathsound "Droid/Death"
+    Painsound "Droid/Pain"
+    Damagefactor "Fire", 0
+    var int user_theta;
+	+QUICKTORETALIATE
+    +ripper
+    +FLOAT
+    +NOGRAVITY
+    +SOLID
+    +LOOKALLAROUND
+    -FLOORCLIP
+    +NOBLOOD
+    +DONTHURTSPECIES
+    States
+    {
+        Spawn:
+        CCCD ABCD 3
+        Goto see
+        See:
+        CCCD ABCD 3 A_Chase
+        Goto see
+        Melee:
+        Missile:
+        CCCD A 0 A_playsound("Droid/Charge")
+        CCCD EFGHEFGHEFGHEFGHEFGH 2 
+        CCCD IJKL 2 Bright A_Facetarget
+		CCCD A 0 Bright A_Facetarget
+        CCCD A 0 A_playsound("Droid/Attack")
+        // CCCD A 0 A_giveinventory("Ragerune", 1)
+        // CCCD L 5 Bright A_CustomMissile("CCCCPAINIS",36, 0, 0,0,0)
+        TBAL C 0 bright A_SetUserVar("user_theta",0)
+        Missile2:
+        // CCCD L 0 Bright A_CustomRailgun(5, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 25, 5.0, 1.0, "DroidLaser")
+        CCCD L 0 Bright A_SetUserVar("user_theta",user_theta+2)
+		CCCD L 1 Bright A_CustomRailgun(15, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, "none", user_theta, 0, 0, 25, 5.0, 1.0, "DroidLaser",0)
+        CCCD L 0 Bright A_JumpIf(user_theta>=360,"Missile2B")
+        Loop
+        Missile2B:
+        CCCD L 5 Bright
+        goto see
+        Pain:
+        CCCD MNOP 3 A_PAIN
+        Goto see
+        Death:
+		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+        // CCCD A 0 BRIGHT A_playsound("Droid/Death")
+        CDXP A 2 BRIGHT A_explode(2,64)
+        CDXP B 2 BRIGHT A_explode(2,64)
+        CDXP C 2 BRIGHT A_explode(2,64)
+        CDXP D 2 BRIGHT A_explode(2,64)
+        CDXP E 2 BRIGHT A_explode(2,64)
+        CDXP F 2 BRIGHT A_explode(2,64)
+        CDXP G 2 BRIGHT A_explode(2,64)
+        CDXP H 2 BRIGHT A_explode(2,64)
+        CDXP I 2 BRIGHT A_explode(2,64)
+        CDXP J 2 BRIGHT A_explode(2,64)
+        CDXP K 2 BRIGHT A_explode(2,64)
+        CDXP L 2 BRIGHT A_explode(2,64)
+        CDXP M 2 BRIGHT A_explode(2,64)
+        CDXP N 2 BRIGHT A_explode(2,64)
+        CDXP O 2 BRIGHT A_explode(2,64)
+        CDXP P 2 BRIGHT A_explode(2,64)
+        CDXP Q 2 BRIGHT A_explode(2,64)
+        CDXP R 2 BRIGHT A_explode(2,64)
+        CDXP S 2 BRIGHT A_explode(2,64)
+        CDXP T 2 BRIGHT A_explode(2,64)
+        CDXP U 2 BRIGHT
+        CDXP V 2 BRIGHT
+        CDXP W 2 BRIGHT
+        CDXP X 2 BRIGHT
+        CDXP Y 2 BRIGHT
+        CDXP Z 2 BRIGHT
+        CDEX A 2 BRIGHT
+        CDEX B 2 BRIGHT
+        CDEX C 2 BRIGHT
+        Stop
+    }
+}
+
+Actor redlaser
+{
+ Projectile
+ Damage 5
+ Height 5
+ Radius 10
+ Speed 25
+ RenderStyle add
+ Damagetype Fire
+ DeathSound "weapons/plasmax"
+ Decal "Pulse"
+ +FLOAT
+ +NOGRAVITY
+ +BLOODLESSIMPACT
+ +FORCEPAIN
+ +thruactors
+ +RIPPER
+ States
+ {
+ Spawn:
+ CCDL A 1 BRIGHT
+ LOOP
+ Death:
+ LSXP A 2 BRIGHT A_EXPLODE(5,32)
+ LSXP B 2 BRIGHT
+ LSXP C 2 BRIGHT
+ LSXP D 2 BRIGHT
+ LSXP E 2 BRIGHT
+ LSXP F 2 BRIGHT
+ LSXP G 2 BRIGHT
+ Stop
+ }
+}
+
+ACTOR Mastersphere
+{
+  Health 300
+  Radius 31
+  Height 56
+  Speed 24
+  Mass 1000
+  obituary "%o was killed by a Spheremaster"
+  deathsound "sfxexp1"
+  seesound "sfxitem"
+  Activesound ""
+  Monster
+  +LOOKALLAROUND
+  +FLOAT
+  +NOGRAVITY
+  +LOOKALLAROUND
+  +SOLID
+  +NOBLOOD
+  +NORADIUSDMG
+  +QUICKTORETALIATE
+  +BOSS
+  +NOPAIN
+  +THRUSPECIES
+  States
+  {
+  Spawn:
+    SPHM A 6 A_Look
+    Loop
+  See:
+    SPHM A 5 A_chase
+	SPHM A 0 A_AlertMonsters
+    Goto see
+  Melee:
+  Missile:
+    SPHM A 5 A_Facetarget
+	SPHM B 5 BRIGHT
+	SPHM C 5 BRIGHT
+	SPHM D 5 BRIGHT
+	SPHM E 5 BRIGHT
+	SPHM F 5 BRIGHT
+	SPHM A 0 A_playsound("steam")
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,0,0,210)
+    SPHM A 0 Bright A_CustomMissile("steam",32,16,20,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,40,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,60,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,80,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,100,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,120,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,140,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,160,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,180,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-20,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-40,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-60,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-80,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-100,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-120,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-140,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-160,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-180,0,210)
+    SPHM A 0 Bright A_CustomMissile("steam",32,16,10,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,30,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,50,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,70,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,90,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,110,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,130,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,150,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,170,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-10,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-30,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-50,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-70,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-90,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-110,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-130,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-150,0,210)
+	SPHM A 0 Bright A_CustomMissile("steam",32,16,-170,0,210)
+	SPHM G 14 BRIGHT
+	SPHM H 14 BRIGHT
+	SPHM I 14 BRIGHT
+	SPHM J 14 BRIGHT
+	SPHM K 14 BRIGHT
+	SPHM L 14 BRIGHT
+	SPHM M 14 BRIGHT
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,0,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,40,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,80,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,120,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,180,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-40,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-80,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-120,0,210)
+	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-180,0,210)
+	SPHM N 3 BRIGHT
+	SPHM O 3 BRIGHT
+	SPHM P 3 BRIGHT
+	SPHM Q 3 BRIGHT
+	SPHM R 3 BRIGHT
+	goto see
+  Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    EXPL A 4 BRIGHT A_Scream
+	EXPL A 4 BRIGHT A_explode(10,100)
+    EXPL B 4 BRIGHT A_explode(10,100)
+    EXPL C 4 BRIGHT A_explode(10,100)
+    EXPL D 4 BRIGHT A_explode(10,100)
+    EXPL E 4 BRIGHT A_explode(10,100)
+    EXPL F 4 BRIGHT
+    EXPL G 4 BRIGHT
+    EXPL H 4 BRIGHT
+    Stop
+  }
+}
+
+ACTOR Spheredroid
+{
+Health 38
+PainChance 1
+Speed 15
+Radius 20 
+Height 56 
+Mass 150 
+MONSTER
+obituary "%o was swarmed by the Spheredroids"
+deathsound "weapons/rocklx"
++NOGRAVITY
++NOPAIN
+-Frightened
++Thruspecies
++Lookallaround
++THRUACTORS
++NOBLOOD
+States 
+   { 
+   Spawn: 
+    SPHD A 5 Bright A_Look
+    Loop 
+   See:
+    SPHD A 4 A_chase
+    goto see
+   Missile:
+   SPHD A 2 A_Facetarget
+   SPHD A 2 A_changeflag("thruactors", FALSE)
+   SPHD A 2 A_Skullattack
+   Goto see
+   Melee:
+   Goto death
+   Death:
+    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    NULL A 0 A_setscale(0.5)   
+	EXPL A 4 BRIGHT A_Scream
+	EXPL A 0 BRIGHT A_explode(10,100)
+    EXPL B 4 BRIGHT
+    EXPL A 0 BRIGHT A_explode(10,100)	
+    EXPL C 4 BRIGHT
+    EXPL A 0 BRIGHT A_explode(10,100)	
+    EXPL D 4 BRIGHT
+	EXPL A 0 BRIGHT A_explode(10,100)
+    EXPL E 4 BRIGHT
+	EXPL A 0 BRIGHT A_explode(10,100)
+    EXPL F 4 BRIGHT
+    EXPL G 4 BRIGHT
+    EXPL H 4 BRIGHT
+	 Stop 
+   } 
+}
+
+ACTOR Steam
+{
+   Radius 32
+   Height 16
+   Speed 3
+   Projectile
+   renderstyle add
+   scale 0.5
+   alpha 0.1
+   +FLOAT
+   +NOGRAVITY
+   +clientsideonly
+   States
+   {
+   Spawn:
+      CRYO A 4
+	  CRYO B 4
+	  CRYO C 4
+	  CRYO D 4
+	  CRYO E 4
+	  CRYO F 4
+	  CRYO G 4
+	  CRYO H 4
+	  CRYO I 4
+	  CRYO J 4
+	  stop
+   }
+}
+
+Actor LaserGunMajor : ChaingunGuy
+{
+  Health 120
+  Painchance 40
+  Mass 5000
+  Obituary "%o was perforated by the Lasergunun major."
+  Decal "Pulse"
+  Dropitem "Batterypackspecial" 128
+  Dropitem "Plasmarifle" 50
+  States
+  {
+  Spawn:
+    LSGC AB 10 A_Look
+    Loop
+  See:
+    LSGC AABBCCDD 3 A_Chase
+    Loop
+  Missile:
+    LSGC E 10 A_FaceTarget
+    LSGC F 3 A_custommissile("Bluelaser",32,0, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+	LSGC F 0 A_playsound("LDroid/Attack")
+	LSGC E 3 A_custommissile("Bluelaser",32,0, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+	LSGC E 0 A_playsound("LasergunMajor/Attack")
+    LSGC F 1 A_CPosRefire
+	LSGC E 0 A_FaceTarget
+    Goto missile+1
+  Pain:
+    LSGC G 3
+    LSGC G 3 A_Pain
+    Goto See
+  Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    LSGC H 5
+    LSGC I 5 A_Scream
+    LSGC J 5 A_Fall
+    LSGC KLMNO 5
+    LSGC P -1 A_BossDeath
+    Stop
+  XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    LSGC Q 5 
+    LSGC R 5 A_XScream
+    LSGC S 5 A_Fall
+    LSGC TUVW 5
+    LSGC X -1
+    Stop
+  Raise:
+    LSGC P 5
+    LSGC ONMLKJIH 5
+    Goto See
+  }
+}
+
+Actor Bluelaser
+{
+ Projectile
+ Damage 3
+ Height 5
+ Radius 10
+ Speed 50
+ Scale 0.5
+ Renderstyle add
+ Damagetype Fire
+ DeathSound "weapons/plasmax"
+ Decal "Pulse"
+ +FLOAT
+ +NOGRAVITY
+ +BLOODLESSIMPACT
+ +FORCEPAIN
+ States
+ {
+ Spawn:
+ BLSR A 1 BRIGHT
+ LOOP
+ Death:
+ BLSX A 2 BRIGHT
+ BLSX B 2 BRIGHT
+ BLSX C 2 BRIGHT
+ BLSX D 2 BRIGHT
+ BLSX E 2 BRIGHT
+ BLSX F 2 BRIGHT
+ BLSX G 2 BRIGHT
+ Stop
+ }
+}
+
+ACTOR Flyingcybermind : Cyberdemon
+{
+Obituary "The Flying Cybermind blew %o away with its Arsenal."
+Health 3000 
+Radius 40 
+Height 55 
+Mass 1000 
+Speed 16 
+PainChance 40 
+MONSTER
++NOGRAVITY
+-FLOORCLIP 
++NORADIUSDMG 
++BOSS 
++MISSILEEVENMORE 
++FLOAT
++SPAWNFLOAT
++QUICKTORETALIATE
+MeleeThreshold 384
+SeeSound "cyber/sight"
+PainSound "cybermind/pain"
+DeathSound "spider/death"
+ActiveSound "cyber/active" 
+Dropitem "extralifethingy" 127
+States 
+   {    
+   Spawn: 
+       FLCM AB 1 A_Look 
+       Loop 
+   See: 
+       FLCM ABABABABAB 4 A_Chase 
+       Loop 
+   Missile:
+       FLCM CQCQCQCQCQ 2 A_FaceTarget
+	   FLCM C 0 A_Playsound("Cybermind/Attack")
+	   FLCM D 0 BRIGHT A_CustomMissile("CyberRocketBarrage",32,-16,-10,0,0)
+	   FLCM D 4 BRIGHT A_CustomMissile("CyberRocketBarrage",32,16,-10,0,0)
+	   FLCM C 4
+	   FLCM C 0 A_Playsound("Cybermind/Attack")
+	   FLCM D 0 BRIGHT A_CustomMissile("CyberRocketBarrage",32,16,-5,0,0)
+	   FLCM D 4 BRIGHT A_CustomMissile("CyberRocketBarrage",32,-16,-5,0,0)
+	   FLCM C 4
+	   FLCM C 0 A_Playsound("Cybermind/Attack")
+	   FLCM D 0 BRIGHT A_CustomMissile("CyberRocketBarrage",32,16,0,0,0)
+	   FLCM D 4 BRIGHT A_CustomMissile("CyberRocketBarrage",32,-16,0,0,0)
+	   FLCM C 4
+	   FLCM C 0 A_Playsound("Cybermind/Attack")
+	   FLCM D 0 BRIGHT A_CustomMissile("CyberRocketBarrage",32,16,5,0,0)
+	   FLCM D 4 BRIGHT A_CustomMissile("CyberRocketBarrage",32,-16,5,0,0)
+	   FLCM C 4
+	   FLCM C 0 A_Playsound("Cybermind/Attack")
+	   FLCM D 0 BRIGHT A_CustomMissile("CyberRocketBarrage",32,16,10,0,0)
+	   FLCM D 4 BRIGHT A_CustomMissile("CyberRocketBarrage",32,-16,10,0,0)
+	   FLCM C 4
+	   Goto see
+  Melee:
+       FLCM G 2 A_FaceTarget 
+	   FLCM G 2 Bright A_playsound("spider/attack")
+       FLCM H 2 Bright A_SpidRefire
+       Goto See
+   Pain: 
+       FLCM EF 1 A_Pain
+       Goto See 
+   Death:
+   	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+       FLCM I 10 Bright
+       FLCM J 10 Bright A_Scream 
+       FLCM KLM 10 Bright
+       FLCM N 10 Bright A_NoBlocking 
+       FLCM O 10 Bright
+       FLCM P 30 A_BossDeath
+       Stop
+   } 
+}
+
+actor CyberRocketbarrage : Rocket
+{
+  Radius 11
+  Height 8
+  Speed 25
+  Damage 10
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  +ROCKETTRAIL
+  seesound "weapons/rocklf"
+  deathsound "weapons/rocklx"
+  Obituary "%o rode %k's rocket."
+  PROJECTILE  
+  Decal Scorch
+  states
+  {
+  Spawn:
+    FCMM A 1 bright
+    loop
+  Death:
+    MISL B 0 bright A_SetTranslucent (0.67,1)
+    MISL B 8 bright A_Explode
+    MISL C 6 bright
+    MISL D 4 bright
+    stop
+  }
+}
+
+actor Dejavuskelebob : Segwayzombie
+{
+  obituary "%o Took the Initial D!"
+  health 8000
+  radius 32
+  height 56
+  mass 100
+  speed 1
+  Scale 0.25
+  painchance 100
+  meleedamage 2
+  meleerange 42
+  +Noicedeath
+  Dropitem "Activebox1" 1
+  +noicedeath
+  MONSTER
+  +FLOORCLIP
+  +STRIFEDAMAGE
+  +SOLID
+  +NOBLOOD
+  +DONTRIP
+  +QUICKTORETALIATE
+  +NOBLOCKMONST
+  Dropitem "Papyrus"
+  Dropitem "Energy-tank"
+  states
+  {
+  Spawn:
+    DJVZ A 10 A_Look
+    DJVZ A 0 A_Stop
+    DJVZ A 0 A_StopSoundEx ("SoundSlot7")
+    loop
+  See:
+    DJVZ A 1 A_Chase
+    DJVZ A 0 A_Recoil (-2)
+    DJVZ A 0 A_MeleeAttack
+    DJVZ A 0 A_PlaySoundEx ("Drifter/Go", "SoundSlot7", 1)
+    DJVZ A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+    DJVZ A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+    loop
+  Pain:
+    DJVZ A 0 A_Pain
+    DJVZ A 0 A_PlaySoundEx ("Drifter/Go", "SoundSlot7", 1)
+    goto See
+	Ice:
+    DJVZ B 0 A_StopSoundEx ("SoundSlot7")
+    DJVZ A 5 A_GenericFreezeDeath
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    DJVZ A 1 A_FreezeDeathchunks
+    wait
+  Death:
+	DJVZ A 0 ACS_Namedexecutewithresult("SV_RESETMOOSIC")
+    DJVZ B 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+    DJVZ B 0 A_StopSoundEx ("SoundSlot7")
+    DJVZ B 0 A_PlaySound ("weapons/rocklx")
+    DJVZ C 5 A_Scream
+    DJVZ D 5 A_NoBlocking
+    TNT1 A -1
+  Death2:
+	DJVZ A 0 ACS_Namedexecutewithresult("SV_RESETMOOSIC")
+    TNT1 A 0 A_SpawnItemEx ("papyrusBoom", 0, 0, 32, 0, 0, 0, 0, 160)
+    TNT1 A 0 A_StopSoundEx ("SoundSlot7")
+    TNT1 A 0 A_PlaySound ("weapons/rocklx")
+    TNT1 A 0 A_Scream
+    TNT1 A 5 A_NoBlocking
+    TNT1 A -1
+    stop
+  }
+}
+
+actor papyrusBoom
+{
+  Radius 11
+  Height 8
+  Speed 0
+  Damage 1
+  Projectile
+  renderstyle Add
+  States
+  {
+  Spawn:
+    DJVZ B 8 bright A_Explode(5,64)
+	DJVZ C 8 bright A_Explode(5,64)
+	DJVZ D 8 bright A_Explode(5,64)
+	DJVZ E 8 bright A_Explode(5,64)
+	DJVZ F 8 bright A_Explode(5,64)
+	DJVZ G 8 bright A_Explode(5,64)
+	DJVZ H 8 bright A_Explode(5,64)
+	DJVZ I 8 bright A_Explode(5,64)
+	DJVZ J 8 bright A_Explode(5,64)
+	DJVZ K 8 bright A_Explode(5,64)
+	DJVZ L 8 bright A_Explode(5,64)
+	DJVZ M 8 bright A_Explode(5,64)
+	DJVZ N 8 bright A_Explode(5,64)
+	DJVZ O 8 bright A_Explode(5,64)
+	DJVZ P 8 bright A_Explode(5,64)
+	DJVZ Q 8 bright A_Explode(5,64)
+	DJVZ R 8 bright A_Explode(5,64)
+	DJVZ S 8 bright A_Explode(5,64)
+	DJVZ T 8 bright A_Explode(5,64)
+	DJVZ U 8 bright A_Explode(5,64)
+	DJVZ V 8 bright A_Explode(5,64)
+	DJVZ W 8 bright A_Explode(5,64)
+	DJVZ X 8 bright A_Explode(5,64)
+	DJVZ Y 8 bright A_Explode(5,64)
+    stop
+  }
+}
+
+ACTOR Kagohive
+{
+  Health 400
+  Radius 32
+  Height 32
+  Speed 0
+  Scale 1.5
+  PainChance 255
+  Meleethreshold 384
+  Monster
+  +FLOORCLIP
+  +SOLID
+  -NOGRAVITY
+  -FLOAT
+  +Missilemore
+  +Missileevenmore
+  SeeSound ""
+  PainSound ""
+  DeathSound ""
+  ActiveSound ""
+  States
+  {
+  Spawn:
+    KAGO ABCDE 5 A_Look
+    goto see
+  See:
+    KAGO ABCDE 5 Bright
+    goto See
+  Melee:
+  Missile:
+    KAGO A 0 Bright A_FaceTarget
+	KAGO A 5 Bright A_CustomMissile("Kago",32,48,0,0,210)
+    KAGO BCDE 5 Bright
+    Goto See
+  Pain:
+	KAGO A 0 Bright A_FaceTarget
+	KAGO A 5 Bright A_CustomMissile("Kago",32,48,0,0,210)
+    KAGO BCDE 5 Bright
+    Goto See
+  Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+    KAGO AAAAAAAAAA 0 Bright A_CustomMissile("Kago",32,48,0,0,210)
+    DTHX A 0 BRIGHT A_setscale(2.0)
+    DTHX A 0 BRIGHT A_Scream
+	DTHX A 1 BRIGHT A_Die
+    DTHX B 1 BRIGHT 
+    DTHX C 1 BRIGHT 
+    DTHX D 1 BRIGHT 
+    DTHX E 1 BRIGHT 
+    Stop
+  }
+}
+
+ACTOR Kago : SwarmFly
+{
+	Health 5
+	Radius 10
+	Height 10
+	Speed 1
+	Monster
+	Damage 1
+    Scale 1.0
+	BloodColor "Green"
+	+FLOAT
+	+NOGRAVITY
+	+LOOKALLAROUND
+	+THRUSPECIES
+	+DONTHURTSPECIES
+	States
+	{
+    Spawn:
+	  KAGO FGH 1 A_Look
+	  Goto See
+	See:
+	  KAGO FGHFGHFGHFGHFGH 1 A_Chase
+	  Goto see
+	Melee:
+	Missile:
+      KAGO FG 1 A_Facetarget
+	  KAGO H 8 A_Skullattack
+	  KAGO FGH 8 A_Facetarget
+	Goto see
+	Death:
+	  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	  DTHX A 0 BRIGHT A_setscale(0.25)
+      DTHX A 0 BRIGHT A_Scream
+	  DTHX A 1 BRIGHT A_Die
+      DTHX B 1 BRIGHT 
+      DTHX C 1 BRIGHT 
+      DTHX D 1 BRIGHT 
+      DTHX E 1 BRIGHT 
+	Stop
+	}
+}
+/*
+
+//===========================================================================
+//
+// Commonus
+//
+//===========================================================================
+
+ACTOR Commonus
+{
+	Health 20
+	Radius 20
+	Height 56
+	Speed 8
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	PainChance 200
+	Monster
+	+FLOORCLIP +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_COMMONUS"
+	States
+	{
+	Spawn:
+		FMCS AB 10 A_Look
+		Loop
+	See:
+		FMCS AABBCCDD 4 A_Chase
+		Loop
+	Melee:
+		FMCS E 10 A_FaceTarget
+		FMCS F 10 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "FLEM/SLAP", "Flem")
+		Goto See
+	Pain:
+		FMCS G 3
+		FMCS G 3 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FMCS H 5 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FMCS I 5 A_Scream
+		FMCS J 5 A_NoBlocking
+		FMCS K 5
+		FMCS L -1
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FMCS M 5 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FMCS N 5 A_XScream
+		FMCS O 5 A_NoBlocking
+		FMCS PQRST 5
+		FMCS U -1
+		Stop
+	Raise:
+		FMCS K 5
+		FMCS JIH 5
+		Goto See
+	}
+}
+
+ACTOR Commonus2 : Commonus
+{
+	Health 20
+	Radius 20
+	Height 56
+	Speed 8
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	PainChance 200 
+	Monster
+	+FLOORCLIP +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_COMMONUS"
+	States
+	{
+	Spawn:
+		FMCS AB 10 A_Look
+		Loop
+	See:
+		FMCS AABBCCDD 4 A_Chase
+		Loop
+	Melee:
+		FMCS E 10 A_FaceTarget
+		FMCS F 10 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "FLEM/SLAP", "Flem")
+		Goto See
+	Pain:
+		FMCS G 3
+		FMCS G 3 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FMCS H 5
+		FMCS I 5 A_Scream
+		FMCS J 5 A_NoBlocking
+		FMCS K 5
+		FMCS L -1
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FMCS M 5
+		FMCS N 5 A_XScream
+		FMCS O 5 A_NoBlocking
+		FMCS PQRST 5
+		FMCS U -1
+		Stop
+	Raise:
+		FMCS K 5
+		FMCS JIH 5
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Sergeant / Shotgun guy (Bipedicus)
+//
+//===========================================================================
+
+ACTOR Bipedicus : Commonus
+{
+	Health 30
+	Radius 20
+	Height 56
+	Mass 100
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 170
+	Monster
+	+FLOORCLIP +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_BIPEDICUS"
+	States
+	{
+	Spawn:
+		FLBP AB 10 A_Look
+		Loop
+	See:
+		FLBP AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+		FLBP E 14 A_FaceTarget
+		FLBP F 14 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "FLEM/SLAP", "Flem")
+		Goto See
+	Pain:
+		FLBP G 3
+		FLBP G 3 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLBP H 5 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLBP I 5 A_Scream
+		FLBP J 5 A_NoBlocking
+		FLBP K 5
+		FLBP L -1
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLBP M 5 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLBP N 5 A_XScream
+		FLBP O 5 A_NoBlocking
+		FLBP PQRST 5
+		FLBP U -1
+		Stop
+	Raise:
+		FLBP L 5
+		FLBP KJIH 5
+		Goto See
+	}
+}
+
+ACTOR Bipedicus2 : Commonus
+{
+	Health 30
+	Radius 20
+	Height 56
+	Mass 100
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 170
+	Monster
+	+FLOORCLIP +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_BIPEDICUS"
+	States
+	{
+	Spawn:
+		FLBP AB 10 A_Look
+		Loop
+	See:
+		FLBP AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+		FLBP E 14 A_FaceTarget
+		FLBP F 14 A_CustomMeleeAttack(random[posattack](1,5)*3, "", "FLEM/SLAP", "Flem")
+		Goto See
+	Pain:
+		FLBP G 3
+		FLBP G 3 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLBP H 5
+		FLBP I 5 A_Scream
+		FLBP J 5 A_NoBlocking
+		FLBP K 5
+		FLBP L -1
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLBP M 5
+		FLBP N 5 A_XScream
+		FLBP O 5 A_NoBlocking
+		FLBP PQRST 5
+		FLBP U -1
+		Stop
+	Raise:
+		FLBP L 5
+		FLBP KJIH 5
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Bipedicus with Armor
+//
+//===========================================================================
+
+ACTOR A-Bipedicus : Commonus
+{
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 200
+	Monster
+	+FLOORCLIP +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SHOOT"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_BIPEDICUS2"
+	States
+	{
+	Spawn:
+		AFLB AB 10 A_Look
+		Loop
+	See:
+		AFLB AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+	Missile:
+		AFLB EF 8 A_FaceTarget
+		AFLB G 6 A_CustomComboAttack("BipedicusBallV3", 32, random[troopattack](1,8)*3, "FLEM/SHOOT", "flem")
+		Goto See
+	Pain:
+		AFLB H 2
+		AFLB H 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		AFLB I 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		AFLB J 8 A_Scream
+		AFLB K 6
+		AFLB L 6 A_NoBlocking
+		AFLB M 6
+		AFLB N 6
+		AFLB O 6
+		AFLB P 6
+		AFLB Q 6
+		AFLB R 6
+		AFLB S 6
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		AFLB N 5 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		AFLB O 5 A_XScream
+		AFLB P 5
+		AFLB Q 5 A_NoBlocking
+		AFLB RST 5
+		AFLB U 5
+		Stop
+	Raise:
+		AFLB MLKJI 8
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Bipedicus slimeball
+//
+//===========================================================================
+
+ACTOR BipedicusBallV3
+{
+	Game Chex
+	SpawnID 10
+	SpawnID 10
+	Radius 6
+	Height 8
+	Speed 10
+	FastSpeed 20
+	Damage 3
+	Projectile
+	DamageType Flem
+	damagetype "Poison"
+	+RANDOMIZE
+	SeeSound ""
+	DeathSound "FLEM/BOOGER"
+	States
+	{
+	Spawn:
+		BAL1 AB 4
+		Loop
+	Death:
+		BAL1 CDE 6
+		Stop
+	}
+}
+
+//===========================================================================
+//
+// Stridicus
+//
+//===========================================================================
+ACTOR Stridicus : Commonus
+{
+	Health 500
+	PainChance 100
+	Speed 20
+	Radius 30
+	Height 56
+	Mass 400
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	Damagetype "Poison"
+	Damage 5
+	Monster
+	+FLOORCLIP +FASTER +FASTMELEE +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/STRIDICUS"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_STRIDICUS"
+	States
+	{
+	Spawn:
+		FSTR AB 10 A_Look
+		Loop
+	See:
+		FSTR AABBCCDD 2 A_Chase
+		Loop
+	Melee:
+		FSTR EF 2 A_FaceTarget
+		FSTR G 2 A_CustomMeleeAttack(random[sargattack](1,10)*4, "", "FLEM/STRIDICUS", "Flem")
+		Goto See
+	Pain:
+		FSTR H 2
+		FSTR H 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FSTR I 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FSTR J 8 A_Scream
+		FSTR K 4
+		FSTR L 4 A_NoBlocking
+		FSTR M 4
+		FSTR N -1
+		Stop
+	Raise:
+		FSTR N 5
+		FSTR MLKJI 5
+		Goto See
+	}
+}
+	
+
+//===========================================================================
+//
+// Cycloptis
+//
+//===========================================================================
+ACTOR Cycloptis : Stridicus
+{
+	Health 150
+	PainChance 180
+	Speed 10
+	Radius 30
+	Height 56
+	Mass 400
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Monster
+	+FLOORCLIP +FASTER +FASTMELEE +FLOAT +NOGRAVITY +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_FLMCOPTIS"
+	States
+	{
+	Spawn:
+		FLMC AB 10 A_Look
+		Loop
+	See:
+		FLMC AABBCCDD 2 A_Chase
+		Loop
+	Melee:
+		FLMC EF 8 A_FaceTarget
+		FLMC G 8 A_CustomMeleeAttack(random[sargattack](1,10)*4, "", "FLEM/STRIDICUS", "Flem")
+		Goto See
+	Pain:
+		FLMC H 2
+		FLMC H 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLMC I 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLMC J 8 A_Scream
+		FLMC K 4
+		FLMC L 4 A_NoBlocking
+		FLMC M 4
+		FLMC N -1
+		Stop
+	Raise:
+		FLMC N 5
+		FLMC MLKJI 5
+		Goto See
+	}
+}
+
+
+//===========================================================================
+//
+// Flem Mine
+//
+//===========================================================================
+ACTOR FlemMine : SuicideBomber
+{
+	Health 100
+	Radius 16
+	Height 56
+	Mass 50
+	damagefactor "Flem", 0.0  //flem damage doesn't hurt flemoids
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	Speed 8
+	Damage 3
+	damagetype "Poison"
+	PainChance 256
+	Monster
+	+FLOAT +NOGRAVITY +MISSILEMORE +DONTFALL +NOICEDEATH +NOINFIGHTING
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound ""
+	AttackSound ""
+	PainSound ""
+	DeathSound "FLEMMINE/DEATH"
+	ActiveSound ""
+	Obituary "$OB_FLEMMINE"
+	States
+	{
+	Spawn:
+		FLMM AB 10 A_Look
+		Loop
+	See:
+	    FLMM A 0 a_jumpifcloser(200,"Melee")
+		FLMM A 0 a_jumpifcloser(600,"Alert")
+		FLMM A 0 a_jumpifcloser(400,"Danger")
+		FLMM A 0 A_PlaySound ("FLEMMINE/FLOAT")
+		FLMM AB 10 A_Chase
+		Loop
+	Alert:
+	    FLMM A 0 a_jumpifcloser(200,"Melee")
+		FLMM A 0 A_PlaySound ("FLEMMINE/ALERT")
+		FLMM AB 10 A_Chase
+		Goto See
+	Danger:
+	    FLMM A 0 a_jumpifcloser(200,"Melee")
+		FLMM A 0 A_PlaySound ("FLEMMINE/DANGER")
+		FLMM AB 10 A_Chase
+		Goto See
+	Melee:
+        FLMM A 0 A_Die
+        goto Death
+	Missile:
+	    FLMM A 0 a_jumpifcloser(200,"Melee")
+	    FLMM A 0 A_jumpifcloser(300,"Missile2")
+		FLMM A 1
+		Goto See
+	Missile2:
+		FLMM A 10 A_FaceTarget
+		FLMM CD 4 A_SkullAttack
+		FLMM A 0 a_jumpifcloser(200,"Melee")
+		FLMM CD 4 
+		Goto see
+	Pain:
+		FLMM E 3 
+		FLMM E 3 A_Pain
+		Goto See
+	Death:
+        FLMM G 0 bright A_Explode (75, 384)
+		FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,0,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,180,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-180,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,170,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-170,0,210)
+        FLMM G 0 bright A_PlaySound ("weapons/rocklx")
+		FLMM G 5 bright A_XScream
+		FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,0,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,180,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-180,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,170,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-170,0,210)
+        FLMM H 5 bright A_NoBlocking
+		FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,0,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,180,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-20,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-40,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-60,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-80,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-100,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-120,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-140,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-160,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-180,0,210)
+        FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,170,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-10,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-30,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-50,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-70,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-90,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-110,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-130,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-150,0,210)
+	    FLMM G 0 A_CustomMissile("PoisonSoulPoison2",0,16,-170,0,210)
+		FLMM I 5 bright
+		FLMM JK 5 bright
+		stop
+		}
+}
+
+//===========================================================================
+//
+// Super Cycloptis
+//
+//===========================================================================
+ACTOR SuperCycloptis : Commonus
+{
+	Health 400
+	Radius 31
+	Height 56
+	Mass 400
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 128
+	Monster
+	+FLOAT +NOGRAVITY +DONTFALL +NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SHOOT"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_SUPERFLMCOPTIS"
+	States
+	{
+	Spawn:
+		FLCU A 10 A_Look
+		Loop
+	See:
+	    FLCU A 3 A_jumpifcloser(384,2)
+		FLCU AAA 3 A_Chase
+		Loop
+		FLCU A 3 A_FastChase
+		Loop
+	Missile:
+		FLCU B 5 A_FaceTarget
+		FLCU C 5 A_FaceTarget
+		FLCU D 5 A_Custommissile("FLMCoptisBall", 32)
+		Goto See
+	Pain:
+		FLCU E 3
+		FLCU E 3 A_Pain
+		FLCU F 6
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLCU G 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLCU H 8 A_Scream
+		FLCU I 8
+		FLCU J 8
+		FLCU K 8 A_NoBlocking
+		FLCU L -1 A_SetFloorClip
+		Stop
+	Raise:
+		FLCU L 8 A_UnSetFloorClip
+		FLCU KJIHG 8
+		Goto See
+	}
+}
+	
+//===========================================================================
+//
+// FLMCoptis ball
+//
+//===========================================================================
+ACTOR FLMCoptisBall
+{
+	Radius 6
+	Height 8
+	Speed 10
+	FastSpeed 20
+	Damage 5
+	Projectile 
+	DamageType Flem
+	damagetype "Poison"
+	+RANDOMIZE
+	DeathSound "FLEM/BOOGER"
+	States
+	{
+	Spawn:
+		SNOT AB 4
+		Loop
+	Death:
+		SNOT CDE 6
+		Stop
+	}
+}
+
+ACTOR FLMCoptisBall2
+{
+	Radius 6
+	Height 8
+	Speed 20
+	FastSpeed 25
+	Damage 5
+	Projectile 
+	DamageType Flem
+	damagetype "Poison"
+	+RANDOMIZE
+	DeathSound "FLEM/BOOGER"
+	States
+	{
+	Spawn:
+		SNOT AB 4
+		Loop
+	Death:
+		SNOT CDE 6
+		Stop
+	}
+}
+
+//===========================================================================
+//
+// Maximus
+//
+//===========================================================================
+ACTOR Maximus : Commonus
+{
+	Health 1000
+	Radius 24
+	Height 64
+	Mass 1000
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 50
+	Monster
+	+FLOORCLIP
+	+NOINFIGHTING +THRUSPECIES
+	+DONTGIB
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SHOOT"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_MAXIMUS"
+	States
+	{
+	Spawn:
+		FMAX AB 10 A_Look 
+		Loop
+	See:
+		FMAX AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+	Missile:
+		FMAX EF 8 A_FaceTarget
+		FMAX G 8 A_CustomComboAttack("MaximusBall", 32, random[headattack](1,8)*10, "FLEM/SHOOT", "flem")
+		Goto See
+	Pain:
+		FMAX H  2
+		FMAX H  2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FMAX I  8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FMAX J  8 A_Scream
+		FMAX K  8
+		FMAX L  8 A_NoBlocking
+		FMAX MN 8
+		FMAX O -1   
+		Stop
+	Raise:
+		FMAX O 8
+		FMAX NMLKJI  8
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Maximus ball
+//
+//===========================================================================
+ACTOR MaximusBall
+{
+	Radius 6
+	Height 16
+	Speed 15
+	FastSpeed 20
+	Damage 8
+	Projectile
+	DamageType Flem 
+	damagetype "Poison"
+	+RANDOMIZE
+	DeathSound "FLEM/BOOGER"
+	States
+	{
+	Spawn:
+		BOOG AB 4
+		Loop
+	Death:
+		BOOG CDE 6
+		Stop
+	}
+}
+
+ACTOR MaximusBall2
+{
+	Radius 6
+	Height 16
+	Speed 20
+	FastSpeed 20
+	Damage 8
+	Projectile
+	DamageType Flem 
+	damagetype "Poison"
+	+RANDOMIZE
+	DeathSound "FLEM/BOOGER"
+	Scale 1.2
+	States
+	{
+	Spawn:
+		BOOG AB 4
+		Loop
+	Death:
+		BOOG CDE 6
+		Stop
+	}
+}
+
+
+//===========================================================================
+//
+// Larva
+//
+//===========================================================================
+ACTOR Larva : Stridicus
+{
+	Health 100
+	PainChance 180
+	Speed 15
+	Radius 30
+	Height 56
+	Mass 400
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Monster
+	+FLOORCLIP +FASTER +FASTMELEE +THRUSPECIES
+	+DONTGIB
+	+NOINFIGHTING
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_LARVA"
+	States
+	{
+	Spawn:
+		LRVF AB 10 A_Look
+		Loop
+	See:
+		LRVF AABBAABB 2 A_Chase
+		Loop
+	Melee:
+		LRVF CD 6 A_FaceTarget
+		LRVF E 6 A_CustomMeleeAttack(random[sargattack](1,10)*4, "", "FLEM/STRIDICUS", "Flem")
+		Goto See
+	Pain:
+		LRVF F 2
+		LRVF F 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		LRVF G 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LRVF H 8 A_Scream
+		LRVF I 4
+		LRVF J 4 A_NoBlocking
+		LRVF K 4
+		LRVF L -1
+		Stop
+	Raise:
+		LRVF L 5
+		LRVF KJIHG 5
+		Goto See
+	}
+}
+
+ACTOR Larva2 : Stridicus
+{
+	Health 100
+	PainChance 180
+	Speed 15
+	Radius 30
+	Height 56
+	Mass 400
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Monster
+	+FLOORCLIP +FASTER +FASTMELEE +THRUSPECIES
+	+DONTGIB
+	+NOINFIGHTING
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_LARVA"
+	States
+	{
+	Spawn:
+		LRVF AB 10 A_Look
+		Loop
+	See:
+		LRVF AABBAABB 2 A_Chase
+		Loop
+	Melee:
+		LRVF CD 6 A_FaceTarget
+		LRVF E 6 A_CustomMeleeAttack(random[sargattack](1,10)*4, "", "FLEM/STRIDICUS", "Flem")
+		Goto See
+	Pain:
+		LRVF F 2
+		LRVF F 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		LRVF G 8
+		LRVF H 8 A_Scream
+		LRVF I 4
+		LRVF J 4 A_NoBlocking
+		LRVF K 4
+		LRVF L -1
+		Stop
+	Raise:
+		LRVF L 5
+		LRVF KJIHG 5
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Quadrumpus
+//
+//===========================================================================
+ACTOR Quadrumpus : A-Bipedicus
+{
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 8
+	PainChance 200
+	Monster
+	+FLOORCLIP +THRUSPECIES
+	+DONTGIB
+	+NOINFIGHTING
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/SHOOT"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_Quadrumpus"
+	States
+	{
+	Spawn:
+		FLQD AB 10 A_Look
+		Loop
+	See:
+		FLQD AABBCCDD 3 A_Chase
+		Loop
+	Melee:
+	Missile:
+		FLQD EF 8 A_FaceTarget
+		FLQD G 6 BRIGHT A_CustomMissile("MaximusBall",32,32, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+		FLQD G 6 BRIGHT A_CustomMissile("MaximusBall",25,32, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+		FLQD G 6 BRIGHT A_CustomMissile("MaximusBall",32,-32, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+		FLQD G 6 BRIGHT A_CustomMissile("MaximusBall",25,-32, random(4, -4), CMF_OFFSETPITCH, random(2, -2))		
+		Goto See
+	Pain:
+		FLQD H 2
+		FLQD H 2 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLQD I 8 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLQD J 8 A_Scream
+		FLQD K 6
+		FLQD L 6 A_NoBlocking
+		FLQD M -1
+		Stop
+	XDeath:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLQD N 5
+		FLQD O 5 A_XScream
+		FLQD P 5
+		FLQD Q 5 A_NoBlocking
+		FLQD RST 5
+		FLQD U -1
+		Stop
+	Raise:
+		FLQD MLKJI 8
+		Goto See
+	}
+}
+
+//===========================================================================
+//
+// Lord Snotfolus
+//
+//===========================================================================
+ACTOR Snotfolus : Commonus
+{
+	Health 4000
+	Radius 40
+	Height 110
+	Mass 1000
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Damage 20
+	Speed 16
+	PainChance 20
+	Monster
+	MinMissileChance 160
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+DONTGIB
+	+NOINFIGHTING
+	+THRUSPECIES
+	MeleeThreshold 196
+	//+NOBLOODDECALS
+	BloodColor "green"
+	SeeSound "FLEM/ROAR"
+	AttackSound "FLEM/SLAP"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_SNOTFOLUS"
+	States
+	{
+	Spawn:
+		LDSN AB 10 A_Look
+		Loop
+	See:
+	    LDSN A 3 A_jump(180,2)
+		goto see
+		LDSN A 3 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LDSN AABBCCDD 6 A_Chase
+		Loop
+	Melee:
+	Missile:
+		LDSN E 6 A_FaceTarget
+		LDSN FEFEFEFEFE 4 BRIGHT A_CustomMissile("MaximusBall2",Random(64,64),0, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+		Goto See
+	Pain:
+		LDSN G 10 A_Pain
+		LDSN GGGGG 0 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		LDSN HHHHHHHHHHH 0 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LDSN H 10
+		LDSN I 10 A_Scream
+		LDSN JKL 10
+		LDSN M 10 A_NoBlocking
+		LDSN NO 10
+		LDSN P 30
+		LDSN P -1
+		Stop
+	}
+}
+
+//===========================================================================
+//
+// Flembomination
+//
+//===========================================================================
+ACTOR Flembomination : Commonus
+{
+	Health 3000
+	Radius 100
+	Height 100
+	Mass 1000
+	damagefactor "Flem", 0.0
+	damagefactor "Slime", 0.0  //in chex3.exe the slam now has slime damagetype
+	damagetype "Poison"
+	Speed 12
+	PainChance 40
+	Monster
+	MinMissileChance 160
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+DONTGIB
+	+NOINFIGHTING
+	+THRUSPECIES
+	BloodColor "green"
+	SeeSound "FLEM/SEE"
+	AttackSound "FLEM/GATTLING"
+	PainSound "FLEM/PAIN"
+	DeathSound "FLEM/DEATH"
+	ActiveSound "FLEM/WANDER"
+	Obituary "$OB_FLEMBOMINATION"
+	States
+	{
+	Spawn:
+		FLBN ABCD 6 A_Look
+		Loop
+	See:
+		FLBN A 3
+		FLBN ABBCC 3 A_Chase
+		FLBN D 3 A_Metal
+		FLBN D 3 A_Chase
+		Loop
+	Missile:
+		FLBN F 4 A_FaceTarget 
+		FLBN GH 3 BRIGHT A_CustomMissile("FLMCoptisBall2",Random(64,32),0, random(64, -64), CMF_OFFSETPITCH, random(2, -2))
+		FLBN F 0 A_MonsterRefire(10, "See")
+		Goto Missile+1
+	Pain:
+		FLBN I 3
+		FLBN I 3 A_Pain
+		Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+		FLBN J 20 A_Scream
+		FLBN K 10 A_NoBlocking
+		FLBN LLLLLLLLLLL 0 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		FLBN L 10
+		FLBN LMNOPQR 10
+		FLBN S 30
+		FLBN S -1
+		Stop
+	}
+}
+
+Actor Slimegoop
+{
+	Health 99999
+	Radius 5
+	Height 5
+	Mass 1
+	Speed 6
+	Monster
+	+FLOORHUGGER +FLOORCLIP +THRUACTORS +THRUGHOST +NOTELESTOMP +NEVERTARGET +invulnerable -SOLID +NOPAIN
+	States
+	{
+	Spawn:
+	See:
+	    FLSP A 60 A_chase
+		FLSP A 0 A_jump(240,"Commonus")
+		FLSP A 0 A_jump(240,"Bipedicus")
+		FLSP A 0 A_jump(240,"ABipedicus")
+		FLSP A 0 A_jump(240,"Larva")
+		FLSP A 0 A_jump(240,"Stridicus")
+		FLSP A 0 A_jump(240,"Cycloptis")
+		FLSP A 0 A_jump(240,"Quadrumpus")
+		FLSP A 0 A_jump(255,"FlemMine")
+		FLSP A 0 A_jump(240,"SuperCycloptis")
+		FLSP A 0 A_jump(240,"Maximus")
+		FLSP A 0 A_jump(255,"Death")
+		Loop
+	Commonus:	
+		FLSP A 1 A_spawnitemex("Commonus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		goto death
+    Bipedicus:
+		FLSP A 1 A_spawnitemex("Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	ABipedicus:
+		FLSP A 1 A_spawnitemex("A-Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Larva:
+		FLSP A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Stridicus:
+		FLSP A 1 A_spawnitemex("Stridicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Cycloptis:
+		FLSP A 1 A_spawnitemex("Cycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	Quadrumpus:
+		FLSP A 1 A_spawnitemex("Quadrumpus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	FlemMine:
+		FLSP A 1 A_spawnitemex("FlemMine", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	SuperCycloptis:
+		FLSP A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	SuperCycloptis:
+		FLSP A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	Maximus:
+		FLSP A 1 A_spawnitemex("Maximus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+	Death:
+		FLSP A 1
+	Stop
+	}
+}
+
+Actor Flemgoop
+{
+	Health 99999	
+	Radius 5
+	Height 5
+	Mass 1
+	Speed 6
+	Monster
+	+FLOORHUGGER +FLOORCLIP +THRUACTORS +THRUGHOST +NOTELESTOMP +NEVERTARGET +invulnerable -SOLID +NOPAIN
+	States
+	{
+	Spawn:
+	See:
+		FLSP A 0 A_jump(85,"Commonus")
+		FLSP A 0 A_jump(85,"Bipedicus")
+		FLSP A 0 A_jump(85,"Larva")
+		FLSP A 0 A_jump(85,"Death")
+		FLSP A 60 A_chase
+		Loop
+	Commonus:	
+		FLSP A 1 A_spawnitemex("Commonus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		goto death
+    Bipedicus:
+		FLSP A 1 A_spawnitemex("Bipedicus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Larva:
+		FLSP A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Death:
+		FLSP A 1
+	Stop
+	}
+}
+
+Actor Flemmeteorite
+{
+	Health 400
+	Radius 30
+	Height 30
+	Mass 800
+	Speed 0
+	Monster
+	+FLOORHUGGER 
+	+FLOORCLIP 
+	+ALWAYSFAST 
+	+SOLID
+    -NOGRAVITY
+    -FLOAT
+	+LOOKALLAROUND
+	+NOPAIN
+	+CANNOTPUSH
+	States
+	{
+	Spawn:
+	POL4  AAAAAAAAAAAAAAAA 4 A_Look
+	Loop
+	see:
+	POL4 AAAAAAAAAAAAAAAA 4 A_Chase
+	Loop
+	Melee:
+	Missile:
+	POL4 A 60 A_spawnitemex("Flemgoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	Goto See
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	POL4 B 4
+	POL4 C 4
+	POL4 D 4
+	POL4 E 4 
+	POL4 F 4
+	Stop
+	}
+}
+
+Actor Slimemeteorite
+{
+	Health 400
+	Radius 30
+	Height 30
+	Mass 800
+	Speed 0
+	Monster
+	+FLOORHUGGER 
+	+FLOORCLIP 
+	+ALWAYSFAST 
+	+SOLID
+    -NOGRAVITY
+    -FLOAT
+	+LOOKALLAROUND
+	+NOPAIN
+	+CANNOTPUSH
+	States
+	{
+	Spawn:
+	POL4  AAAAAAAAAAAAAAAA 4 A_Look
+	Loop
+	see:
+	POL4 AAAAAAAAAAAAAAAA 4 A_Chase
+	Loop
+	Melee:
+	Missile:
+	POL4 A 100 A_spawnitemex("Slimegoop", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	goto see
+	Death:
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
+	POL4 B 4
+	POL4 C 4
+	POL4 D 4
+	POL4 E 4 
+	POL4 F 4
+	Stop
+	}
+}
+*/
+
+ACTOR BlackMarine
+{
+	Scale 0.5
+	Health 400
+	Radius 17
+	Height 56
+	Mass 400
+	MaxTargetRange 2000
+	Speed 10
+	FastSpeed 20
+	PainChance 15
+	Species "Marines"
+	Deathsound "MARINE/DEATH"
+	Seesound "MARINE/TALK"
+	MONSTER
+	+QUICKTORETALIATE
+	+LOOKALLAROUND
+	+FLOORCLIP
+	+THRUSPECIES
+	+DONTHURTSPECIES
+	+SOLID
+	+CANNOTPUSH
+	+Missilemore
+	+Missileevenmore
+	States
+ {
+ 	Spawn:
+		 BPFS A 1
+		 BPFS A 1 A_Look
+		 Loop
+	See:
+		BPFS AB 5 A_Chase
+		Goto See
+    Melee:
+	Missile:
+	    TNT1 A 0 A_PlaySound("MARINE/TALK ")
+		BPFS E 2 A_FaceTarget
+		TNT1 A 0 A_PlaySound("GATTLIN/START")
+		BPFS E 1 A_PlaySound("GATTLIN/SPIN")
+		BPFS E 0 A_PlaySound("GATTLIN/FIRE")
+        BPFS F 1 BRIGHT A_CustomMissile("UberTracer2",35,0, random(2, -2), CMF_OFFSETPITCH, random(1, -1))
+	    BPFS E 1 A_SpawnItemEx("Smoke",20,10,35,1,0,1,0,0,0,0)
+		BPFS E 0 A_PlaySound("GATTLIN/FIRE")
+	    BPFS F 1 BRIGHT A_CustomMissile("UberTracer2",35,0, random(2, -2), CMF_OFFSETPITCH, random(1, -1))
+		UCHF A 0 A_MonsterRefire(130,"Winddown")
+		Goto Missile+4
+	Winddown:
+		TNT1 A 2 A_PlaySound("GATTLIN/STOP")
+		Goto see
+	Pain:
+		BPFS G 2
+		TNT1 A 0 A_PlaySound("MARINE/DEATH")
+		BPFS G 2 A_Pain
+		Goto See + 1
+ 	Death:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("MARINE/DEATH")
+		BTOP I 6 A_NoBlocking
+		BTOP JKLM 6
+		BTOP N -1
+		Stop
+ }
+}

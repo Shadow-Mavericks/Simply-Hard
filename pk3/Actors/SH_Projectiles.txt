@@ -1,0 +1,4688 @@
+//Bouncing rail projectile for Fiendzy's class
+Actor Fiendzys_PlasmaBall : Plasmaball
+{
+	Radius 13
+	Height 8
+	Speed 40
+ 	Damage 10
+	Projectile
+	+RANDOMIZE
+	Alpha 1
+	SeeSound "weapons/plasmaf"
+	DeathSound "weapons/plasmax"
+	Obituary "$OB_MPPLASMARIFLE" // "%o was melted by %k's plasma gun."
+	States
+	{
+ 	Spawn:
+		FPBL AB 6 Bright
+		Loop
+	Death:
+		FPBL CDEF 4 Bright
+		Stop
+	}
+}
+
+Actor Rainbowrailshot 
+{
+  Radius 8
+  Height 8
+  Speed 60
+  Damage 8
+  Gravity 0
+  scale 0.025
+  Projectile
+  -NoGravity
+  +DoomBounce
+  +NOTIMEFREEZE
+  +Nointeraction
+   BounceCount 2
+  RenderStyle Add
+  Alpha 0.75
+  +Ripper
+  seeSound "FiendsRailgun/Bounce"
+//  DeathSound "Weapon/CRITSHOT"
+  DamageType Fire
+  States
+  {
+  Spawn:
+    FRPJ ABCDEF 2 Bright 
+    Loop
+  Death:
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+	FRPJ A 0 A_FadeOut(0.1)
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+	FRPJ A 0 A_FadeOut(0.1)
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+	FRPJ A 0 A_FadeOut(0.1)
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+	FRPJ A 0 A_FadeOut(0.1)
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+	FRPJ A 0 A_FadeOut(0.1)
+    FRPJ A 2 Bright A_SetScale(scalex+0.05, scaley+0.05)
+    Loop
+  }
+}
+
+
+
+//-----------------------------< Crit Rocket
+
+ACTOR Rawket : Rocket
+{
+  Radius 11
+  Height 8
+  Speed 15
+  Damage 20
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  -ROCKETTRAIL
+  Scale 1.5
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "$OB_MPROCKET" // "%o rode %k's rocket."
+  States
+  {
+  Spawn:
+    MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3")
+    MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4")
+    FRCK A 1
+    Loop
+  Death:
+    MISL B 0 Bright A_Explode
+    GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+    GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+    GXPL ABCDEFGH 1 Bright
+    GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+
+    Stop
+  }
+}
+
+ACTOR FiendsRawket : Rocket
+{
+  Radius 11
+  Height 8
+  Speed 50
+  Damage 20
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  -ROCKETTRAIL
+  +NOTIMEFREEZE
+  Scale 1
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "$OB_MPROCKET" // "%o rode %k's rocket."
+  States
+  {
+  Spawn:
+    MISL A 0 A_SpawnItemEx ("EriMissileTrail")
+    FRCK A 1
+    Loop
+  Death:
+    MISL B 8 Bright A_Explode
+    MISL C 6 Bright
+    MISL D 4 Bright
+    Stop
+  }
+}
+Actor Rockettrail1
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		MISL A 1 A_FadeOut(0.02)
+		loop
+	}
+}
+
+
+ACTOR CRocket : Rocket //Recolor by Fiend Kitsune
+{
+  Game Doom
+  SpawnID 127
+  Radius 11
+  Height 8
+  Speed 20
+  Damage 40
+  SCALE 1.5
+  Projectile
+  +RANDOMIZE
+  +DEHEXPLOSION
+  -ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "%o Is Blasting off again!"
+  States
+  {
+  Spawn:
+    MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3")
+    MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4")
+    CRCK A 1
+    Loop
+  Death:
+    MISL B 0 Bright A_Explode
+    PXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+    PXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+    PXPL ABCDEFGH 1 Bright
+    PXPL IJKLLM 1 Bright A_FadeOut(0.1)
+    Stop
+  }
+}
+
+ACTOR FiendsCRocket : Rocket //Recolor by Fiend Kitsune
+{
+  Game Doom
+  SpawnID 127
+  Radius 11
+  Height 8
+  Speed 60
+  Damage 60
+  SCALE 1
+  Projectile
+  +NOTIMEFREEZE
+  +RANDOMIZE
+  +DEHEXPLOSION
+  -ROCKETTRAIL
+  SeeSound "weapons/rocklf"
+  DeathSound "weapons/rocklx"
+  Obituary "%o Is Blasting off again!"
+  States
+  {
+  Spawn:
+    CRCK A 0 A_SpawnItemEx ("EriMissileTrail")
+    CRCK A 1
+    Loop
+  Death:
+    CRCK B 8 Bright A_Explode
+    CRCK C 6 Bright
+    CRCK D 4 Bright
+    Stop
+  }
+}
+Actor Rockettrail2
+{
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CRCK A 1 A_FadeOut(0.01)
+		loop
+	}
+}
+
+
+
+
+Actor Manncobfgtrap : BFGBall
+{
+	DeathSound "weapons/bfgx"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	States
+	{
+	Spawn:
+		BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL A 0 A_Explode(100, 1000)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+		NULL A 10 A_BFGSPRAY
+		stop
+	}
+}
+
+ACTOR CryoSmoke3
+{
+    Radius 2
+	+NOTIMEFREEZE
+    Height 2
+	+CLIENTSIDEONLY
+    +NOINTERACTION
+    +FORCEXYBILLBOARD
+    RenderStyle Shaded
+    StencilColor "A0 A0 A0"
+    Alpha 0.2
+    Scale 0.05
+    States
+    {
+    Spawn:
+		SMOK A 0
+        SMOK A 2 A_FadeOut (0.05)
+        Wait
+    }
+}
+
+Actor CryoSmoke4 : CryoSmoke3 
+{ 
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	  +Nointeraction
+StencilColor "DD DD DD"
+Scale 0.1
+Alpha 0.25
+	States {
+	Spawn:
+		TNT1 A 0
+		SMOK A 6 A_FadeOut(0.04)
+		Wait
+	}
+}
+
+
+//-----------------------------<plasma ball projectile(s) [Blue and Green]
+
+Actor KewlPlasma : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.03
+	Speed 25
+	Damage (Random(25,35))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		PLAB ABCDEFG 1 bright A_SpawnItemEx ("PlasmaVapour", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
+		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		//NULL A 0 A_SpawnItem("PlasmaExplosion")
+		NULL A 10
+		stop
+	}
+}
+
+Actor KewlPlasma2 : plasmaball //Sprites by Blueshadow?
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.5
+	Scale .1
+	Speed 30
+	Damage (Random(30,40))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+	Stop
+	}
+}
+
+Actor PlasmaVapour
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		PLAV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor PlasmaWave
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	RenderStyle Add
+	Alpha 0.25
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 3
+		PBBT A 2 bright A_FadeOut(0.01)
+		goto Spawn+1
+	}
+}
+
+Actor PlasmaExplosion
+{
+	+NOBLOCKMAP
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Radius 1
+	Height 1
+	Speed 0.25
+	Alpha 0.15
+	Scale 0.4
+	States
+	{
+	Spawn:
+		PLAX ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 bright
+		PLAZ ABCDEF 1 bright
+		stop
+	}
+}
+
+//----------------------------<BFG BALL
+
+Actor KewlBFG : BFGBall
+{
+	DeathSound "weapons/bfgx"
+	RenderStyle Add
+	Damagetype "PlayerDynamite"
+	Alpha 0.8
+	Scale 0.5
+	States
+	{
+	Spawn:
+		BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+		stop
+	}
+}
+
+Actor REDKEWLBFG : BFGBall
+{
+	Damagetype "PlayerDynamite"
+	DeathSound "weapons/bfgx"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	States
+	{
+	Spawn:
+		CFGB ABCDE 1 bright A_SpawnItemEx ("CRITBFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+
+
+		stop
+	}
+}
+
+Actor CRITKEWLBFG : BFGBall
+{
+	DeathSound "weapons/bfgx"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	States
+	{
+	Spawn:
+		CFGB ABCDE 1 bright A_SpawnItemEx ("CRITBFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+		NULL A 0 A_BFGSPRAY
+
+		stop
+	}
+}
+
+
+Actor BFGStuffSpawner
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle None
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx ("BFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 0 A_Jump(128,2)
+		NULL A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 1
+		stop
+	}
+}
+
+Actor BFGStuffSpawner2
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle None
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx ("BFGVapour2", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 1
+		stop
+	}
+}
+
+Actor CRITBFGStuffSpawner2
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle None
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx ("CRITBFGVapour2", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 1
+		stop
+	}
+}
+
+Actor CRITBFGStuffSpawner
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle None
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx ("CRITBFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 0 A_Jump(128,2)
+		NULL A 0 A_SpawnItemEx ("CRITBFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 0 A_SpawnItemEx ("CRITBFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
+		NULL A 1
+		stop
+	}
+}
+
+
+Actor BFGVapour
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.5
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		BFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor CRITBFGVapour
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.5
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor BFGVapour2
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		BFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor CRITBFGVapour2
+{
+	+CLIENTSIDEONLY
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor BFGWave
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.4
+	States
+	{
+	Spawn:
+		NULL A 3
+		BBBT A 1 bright A_FadeOut(0.01)
+		goto Spawn+1
+	}
+}
+
+Actor BFGParticle1
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 2
+	Loopy:
+		BFGP A 1 bright A_FadeOut(0.02)
+		loop
+	}
+}
+
+Actor critBFGParticle1
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.1
+	States
+	{
+	Spawn:
+		NULL A 2
+	Loopy:
+		CFGP A 1 bright A_FadeOut(0.02)
+		loop
+	}
+}
+
+Actor BFGParticle2
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	//BounceCount 1
+	+NOBLOCKMAP
+	+NOINTERACTION
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.1
+	States
+	{
+	Spawn:
+		BFGP A 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+Actor CRITBFGParticle2
+{
+	+CLIENTSIDEONLY
+	projectile
+	//+DOOMBOUNCE
+	//+BOUNCEONACTORS
+	//BounceCount 1
+	+NOBLOCKMAP
+	+NOINTERACTION
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.1
+	States
+	{
+	Spawn:
+		CFGP A 1 bright A_FadeOut(0.01)
+		loop
+	}
+}
+
+ACTOR RedBaronBall
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+	RenderStyle Add
+	Alpha 0.1
+  Projectile
+  +RANDOMIZE
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    BNBL AB 4 Bright
+    Loop
+  Death:
+    BNBL CDE 6 Bright
+    Stop
+  }
+}
+
+ACTOR GreenBaronBall
+{
+  Radius 6
+  Height 16
+  Speed 15
+  FastSpeed 20
+  Damage 8
+	RenderStyle Add
+	Alpha 0.1
+  Projectile
+  +RANDOMIZE
+  Alpha 1
+  SeeSound "baron/attack"
+  DeathSound "baron/shotx"
+  Decal "BaronScorch"
+  States
+  {
+  Spawn:
+    KNBL AB 4 Bright
+    Loop
+  Death:
+    KNBL CDE 6 Bright
+    Stop
+  }
+}
+
+
+ACTOR DoomImpBall1
+{
+  Radius 6
+  Height 8
+  Speed 10
+  FastSpeed 20
+  Damage 3
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "imp/attack"
+  DeathSound "imp/shotx"
+  States
+  {
+  Spawn:
+    BAL1 A 1 Bright A_SpawnItemEx ("impballtrail")
+    Loop
+  Death:
+    BAL1 CDE 6 Bright
+    Stop
+  }
+}
+
+ACTOR Healgunshot
+{
+  Radius 6
+  Height 8
+  +NOTIMEFREEZE
+  Speed 100
+  FastSpeed 100
+  scale 0.01
+  Damage (-6)
+  Projectile
+  RenderStyle Add
+  Alpha 1
+  DeathSound "HPGET"
+  States
+  {
+  Spawn:
+    HPST A 3
+  Death:
+    HPST A 0 Bright
+    Stop
+  }
+}
+
+Actor Healgunshottrail
+{
+	+CLIENTSIDEONLY
+	projectile
+	+NOTIMEFREEZE
+	RenderStyle Add
+	Alpha 0.5
+	 scale 0.5
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		HPST B 1 Bright A_FadeOut(0.025)
+		loop
+	}
+}
+
+ACTOR CRITImpBall
+{
+  Radius 6
+  Height 8
+  Speed 20
+  FastSpeed 30
+  Damage 8
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  DeathSound "imp/shotx"
+  States
+  {
+  Spawn:
+    KBAL A 1 Bright A_SpawnItemEx ("critballtrail")
+    Loop
+  Death:
+    KDED ABCD 4 Bright
+    Stop
+  }
+}
+
+Actor impballtrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 B 1 Bright A_FadeOut(0.025)
+		loop
+	}
+}
+
+Actor impballtrailGreen
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ACD1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor impballtrailRed
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		FIR1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor impballtrailYellow
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+	//Translation "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]", "233:233=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		SHK1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor impballtrailPurple
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+	//Translation "168:191=[192, 128, 255]:[32, 0, 64]", "208:223=[192, 128, 255]:[32, 0, 64]", "231:231=[192, 128, 255]:[32, 0, 64]", "233:233=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CNF1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+
+
+Actor  impballtrailBlue
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+	//Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ICE1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor  IMPballtrailWhite
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 0.8
+	//Translation "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]", "233:233=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		MET1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor BaronballtrailRed
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		FIR7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor BaronballtrailGreen
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ACD7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor BaronballtrailYellow
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		SHK7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor BaronballtrailPurple
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CNF7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+
+
+Actor  BaronballtrailBlue
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//	Translation "112:127=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ICE7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor  BaronballtrailWhite
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		MET7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET7 A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+//fATTY TRAILS
+
+Actor Redfattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		MANF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MANF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor Orangefattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		FIRF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIRF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor Greenfattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ACDF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACDF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor Yellowfattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		SHKF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHKF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor Purplefattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		CNFF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNFF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+
+
+Actor  Bluefattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//	Translation "112:127=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		ICEF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICEF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor  Whitefattrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.5
+	SCALE 1
+	//Translation "112:127=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		METF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF B 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		METF A 1 Bright A_FadeOut(0.025)
+		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		loop
+	}
+}
+
+Actor critballtrail
+{
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	projectile
+	RenderStyle Add
+	Alpha 0.2
+	SCALE 1
+	States
+	{
+	Spawn:
+		NULL A 3
+	Loopy:
+		KBAL A 1 A_FadeOut(0.015)
+		KBAL A 1 A_FadeOut(0.015)
+		KBAL A 1 A_FadeOut(0.015)
+		KBAL A 1 A_FadeOut(0.015)
+		KBAL B 1 A_FadeOut(0.015)
+		KBAL B 1 A_FadeOut(0.015)
+		KBAL B 1 A_FadeOut(0.015)
+		KBAL B 1 A_FadeOut(0.015)
+		loop
+	}
+}
+
+//Projectiles by Garrett / ZDwiki as base
+
+
+ACTOR babyball //Small Cacoball
+{
+  Radius 6
+  Height 8
+  Speed 10
+  FastSpeed 20
+  Damage 3
+  scale 0.25
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "ball/attack"
+  DeathSound "ball/death"
+  States
+  {
+  Spawn:
+    BBAL AB 4 Bright
+    Loop
+  Death:
+    BBAL CDE 6 Bright
+   Stop
+  }
+}
+
+ACTOR dragoonshot : FastProjectile
+{
+  radius 1
+  height 1
+  speed 100
+  damage 3
+  renderstyle Add
+  decal RailScorchLower
+  deathsound "Gaster/Blast"
+  obituary ""
+  PROJECTILE
+  +RANDOMIZE
+  +BLOODSPLATTER
+   +FOILINVUL
+   +DONTREFLECT
+  states
+  {
+  Spawn:
+    TNT1 A 1 bright A_SpawnItemEx("dragoontrail", 0, 0, 0,0,0,0,0,128)
+    loop
+  Death:
+    TNT1 A 2 bright A_SpawnItemEx("dragoonpow", 0, 0, 0,0,0,0,0,128)
+    stop
+  }
+}
+
+ACTOR dragoonshotfriend : FastProjectile
+{
+  radius 1
+  height 1
+  speed 100
+  damage 75
+  renderstyle Add
+  decal RailScorchLower
+  deathsound "Gaster/Blast"
+  obituary ""
+  PROJECTILE
+  +BLOODSPLATTER
+  +FOILINVUL
+  +DONTREFLECT
+  states
+  {
+  Spawn:
+    TNT1 A 1 bright A_SpawnItemEx("dragoontrail", 0, 0, 0,0,0,0,0,128)
+    loop
+  Death:
+    TNT1 A 2 bright A_SpawnItemEx("dragoonpow", 0, 0, 0,0,0,0,0,128)
+    stop
+  }
+}
+
+ACTOR dragoonshotgaster : FastProjectile
+{
+  radius 1
+  height 1
+  speed 100
+  damage 15
+  renderstyle Add
+  decal RailScorchLower
+  deathsound "Gaster/Blast"
+  obituary ""
+  PROJECTILE
+  +BLOODSPLATTER
+  +FOILINVUL
+  +DONTREFLECT
+  states
+  {
+  Spawn:
+    TNT1 A 1 bright A_SpawnItemEx("dragoontrail", 0, 0, 0,0,0,0,0,128)
+    loop
+  Death:
+    TNT1 A 2 bright A_SpawnItemEx("dragoonpow", 0, 0, 0,0,0,0,0,128)
+    stop
+  }
+}
+
+
+ACTOR dragoontrail
+{
+   Radius 2
+   Height 2
+   Speed 0
+   scale 0.5
+   PROJECTILE
+   +CLIENTSIDEONLY
+   +NOINTERACTION
+   States
+   {
+   Spawn:
+   APLS ABABAB 3 BRIGHT
+   Stop
+   }
+}
+
+ACTOR dragoonpow
+{
+   Radius 2
+   Height 2
+   Speed 0
+   Scale 0.5
+   PROJECTILE
+   +NOINTERACTION
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+     APBX ABCDE 5 bright
+     Stop
+   }
+}
+
+ACTOR GasterLaser
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	RenderStyle Add
+	Scale 0.3
+	States
+	{
+		Spawn:
+			PART A 0 Bright A_JumpIf(scalex > 3.0, "Spawn2")
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			Loop
+			
+		Spawn2:
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			
+		Spawn3:
+			PART A 0 Bright A_JumpIf(scalex < 0.1, "End")
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			Loop
+			
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+ACTOR Droidlaser
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	RenderStyle Add
+	Scale 0.7
+	States
+	{
+		Spawn:
+			DLRL A 16 Bright			
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+ACTOR Devistaterblast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	  +Nointeraction
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.5
+	States
+	{
+		Spawn:
+			TBAL C 1 Bright A_SetScale(scalex+3.0, scaley+3.0)
+		Spawn2:
+			TBAL C 0 Bright A_JumpIf(scalex < 0.1, "End")
+			TBAL C 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			Loop
+			
+		End:
+			TBAL C 2 A_FadeOut(0.1)
+			Loop
+	}
+}
+
+Actor LightRailBlast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	+NOTIMEFREEZE
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.15
+	States
+	{
+		Spawn:
+			TBAL A 1 Bright
+			
+		Death:
+			TBAL A 1 A_FadeOut(0.05)
+			Loop
+	}
+}
+
+Actor LightninggunBlast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	  +Nointeraction
+	+NOTIMEFREEZE
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.1
+	States
+	{
+		Spawn:
+			TBAL A 1 Bright
+			
+		Death:
+			TBAL A 1 Bright
+			stop
+	}
+}
+
+
+Actor Healgunblast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	  +Nointeraction
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.05
+	States
+	{
+		Spawn:
+			TBAL A 1 Bright
+		Spawn2:
+			TBAL B 1 Bright
+			TBAL D 1 Bright
+			TBAL C 1 Bright			
+		Death:
+			TBAL ABCD 1 A_FadeOut(0.01)
+			Loop
+	}
+}
+
+Actor REDLightRailBlast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.15
+	States
+	{
+		Spawn:
+			TBAL C 1 Bright	
+		End:
+			TBAL C 1 Bright A_FadeOut(0.05)
+			Loop
+	}
+}
+
+Actor REDLightninggunBlast
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.1
+	States
+	{
+		Spawn:
+			TBAL C 1 Bright	
+		End:
+			TBAL C 1 Bright
+			Stop
+	}
+}
+
+
+Actor Greenlitningzap
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+alwayspuff
+	+FORCEXYBILLBOARD
+	  +Nointeraction
+	RenderStyle Add
+	+NOTIMEFREEZE
+	Alpha 0.75
+	Scale 0.05
+    Obituary "%o was zapped by %k's BFG."
+    Damagetype "laser"
+	States
+	{
+		Spawn:
+			TBAL B 1 Bright
+			TBAL D 1 Bright
+					
+		Death:
+			TBAL B 1 BRIGHT
+			Stop
+	}
+}
+
+Actor Bluerailcoil
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+NOTIMEFREEZE
+	+alwayspuff
+	+FORCEXYBILLBOARD
+	  +Nointeraction
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.05
+    Obituary "%o was zapped by %k's BFG."
+    Damagetype "laser"
+	States
+	{
+		Spawn:
+			TBAL A 6 Bright
+			
+					
+		Death:
+			TBAL A 6 BRIGHT
+			Stop
+	}
+}
+
+//CryoBow
+
+ACTOR CryoShot : FastProjectile
+{
+	Radius 4
+	Height 8
+	Speed 100
+	Damage 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		BSHT A 0 Bright
+		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		BSHT A 1 Bright
+		Loop
+	Death:		
+		BXPL A 0 Bright A_StopSound(CHAN_BODY)
+		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+		BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPL ABCDEFGH 1 Bright
+		BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR SlowCryoShot
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+NOTIMEFREEZE
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		BSHT A 1 Bright
+		Loop
+	Death:		
+		BXPL A 0 Bright A_StopSound(CHAN_BODY)
+		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+		BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPL ABCDEFGH 1 Bright
+		BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+
+ACTOR GoldCryoShot : FastProjectile
+{
+	Radius 4
+	Height 8
+	Speed 100
+	Damage 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "GoldCryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		GSHT A 1 Bright
+		Loop
+	Death:		
+		GXPL A 0 Bright A_StopSound(CHAN_BODY)
+		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
+		GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+
+ACTOR SlowGoldCryoShot
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 0
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "GoldCryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		GSHT A 1 Bright
+		Loop
+	Death:		
+		GXPL A 0 Bright A_StopSound(CHAN_BODY)
+		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
+		GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR Fiendsautoaimshot : FastProjectile
+{
+	Radius 4
+	Height 8
+	Speed 100
+	Damage 7
+	Scale 0.25
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+       +SeekerMissile
+//	DeathSound "weapons/cryobowhit"
+	MissileType "AutoaimTrail"
+	MissileHeight 8
+	Decal "scorch"
+	States
+	{
+	Spawn:
+		GSHT A 1 bright A_SeekerMissile(9,6,SMF_LOOK|SMF_CURSPEED,75,10)
+		loop
+	Death:		
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR ChargeCryoShotBlue1
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		BSHT A 0 Bright
+		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		BXPL A 0 Bright A_StopSound(CHAN_BODY)
+		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+		BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPL ABCDEFGH 1 Bright
+		BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR ChargeCryoShotGold1
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "GoldCryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+	States
+	{
+	Spawn:
+		GSHT A 0 Bright
+		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		GXPL A 0 Bright A_StopSound(CHAN_BODY)
+		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
+		GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR ChargeCryoShotGold2
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAA 0 A_BishopMissileWeave
+        goto Spawn1
+		Spawn1:
+		GSHT A 0 Bright
+		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		GXPL A 0 Bright A_StopSound(CHAN_BODY)
+		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
+		GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+ACTOR ChargeCryoShotGold3
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAA 0 A_BishopMissileWeave
+        TNT1 AAAAAAAAAA 0 A_BishopMissileWeave
+        goto Spawn1
+		Spawn1:
+		GSHT A 0 Bright
+		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+		GSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		GXPL A 0 Bright A_StopSound(CHAN_BODY)
+		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
+		GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR ChargeCryoShotBlue2
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+FORCERADIUSDMG
+	+NOTIMEFREEZE
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAA 0 A_BishopMissileWeave
+        goto Spawn1
+		Spawn1:
+		BSHT A 0 Bright
+		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		BXPL A 0 Bright A_StopSound(CHAN_BODY)
+		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+		BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPL ABCDEFGH 1 Bright
+		BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+ACTOR ChargeCryoShotBlue3
+{
+	Radius 4
+	Height 8
+	Speed 30
+	Damage 10
+	Projectile
+	RenderStyle Add
+	Alpha 0.9
+	+NOTIMEFREEZE
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+	DeathSound "weapons/cryobowhit"
+	MissileType "CryoTrail"
+	MissileHeight 8
+	Decal "PlasmaScorchLower"
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAA 0 A_BishopMissileWeave
+        TNT1 AAAAAAAAAA 0 A_BishopMissileWeave
+        goto Spawn1
+		Spawn1:
+		BSHT A 0 Bright
+		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+		BSHT A 1 Bright A_BishopMissileWeave
+		Loop
+	Death:		
+		BXPL A 0 Bright A_StopSound(CHAN_BODY)
+		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
+		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+		BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
+		BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
+		BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
+		BXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
+		BXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
+		BXPL ABCDEFGH 1 Bright
+		BXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+ACTOR CryoTrail
+{
++NOTIMEFREEZE
+	+NOINTERACTION
+	Radius 4
+	Height 8
+	Renderstyle Add
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		BSHT AABBCDEFG 1 Bright
+		Stop
+	}
+}
+
+ACTOR GoldCryoTrail
+{
++NOTIMEFREEZE
+	+NOINTERACTION
+	Radius 4
+	Height 8
+	Renderstyle Add
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		GSHT AABBCDEFG 1 Bright
+		Stop
+	}
+}
+
+ACTOR CryoTrail2
+{
++NOTIMEFREEZE
+	+NOINTERACTION
+	Radius 4
+	Height 8
+	Renderstyle Add
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		BSHT AABBCDEFG 3 Bright
+		Stop
+	}
+}
+
+ACTOR GoldCryoTrail2
+{
++NOTIMEFREEZE
+	+NOINTERACTION
+	Radius 4
+	Height 8
+	Renderstyle Add
+	Alpha 0.5
+	States
+	{
+	Spawn:
+		GSHT AABBCDEFG 3 Bright
+		Stop
+	}
+}
+
+
+ACTOR AutoaimTrail
+{
++NOTIMEFREEZE
+	+NOINTERACTION
+	Radius 4
+	Height 8
+	Renderstyle Add
+	Alpha 0.5
+	Scale 0.25
+	States
+	{
+	Spawn:
+		GSHT AABBCDEFG 1 Bright
+		Stop
+	}
+}
+
+ACTOR CryoSmoke
+{
+    Radius 2
+    Height 2
+	+NOTIMEFREEZE
+		+CLIENTSIDEONLY
+    +NOINTERACTION
+    +FORCEXYBILLBOARD
+    RenderStyle Shaded
+    StencilColor "A0 A0 A0"
+    Alpha 1.0
+    Scale 0.4
+    States
+    {
+    Spawn:
+		SMOK A 0
+        SMOK A 2 A_FadeOut (0.05)
+        Wait
+    }
+}
+
+Actor CryoSmoke2 : CryoSmoke
+{
+	+CLIENTSIDEONLY
++NOTIMEFREEZE
+  +Nointeraction
+ StencilColor "DD DD DD"
+ Scale 0.7
+ Alpha 0.5
+ VSpeed 2.5
+	States {
+	Spawn:
+		TNT1 A 0
+		SMOK A 6 A_FadeOut(0.04)
+		Wait
+	}
+}
+
+//Blackholegen
+
+Actor DMBall
+{
+Radius 13
+Height 8
+Speed 17
+Damage 10
+Projectile
++RIPPER
++FORCEXYBILLBOARD
++NODAMAGETHRUST
++FORCERADIUSDMG
+Renderstyle Translucent
+Alpha 0.75
+DeathSound "DMBall/Impact"
+Decal BHoleDecal
+States
+{
+Spawn:
+	VOIP ABCDEF 2 Bright A_SpawnItem("DMBTrail",0,0,0)
+	VOIP AA 1 Bright A_RadiusThrust(-220,130)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP BB 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP CC 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP DD 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP EE 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP FF 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	Goto Spawn+6
+Death:
+	TNT1 A 0 A_SpawnItem("NewBlackHole",0,0,0)
+	TNT1 A 0 A_SetScale(1.2)
+	VORX ABCDEFGH 2 Bright
+	Stop
+}
+}
+
+Actor DMBTrail
+{
++NOGRAVITY
++FORCEXYBILLBOARD
+  +Nointeraction
+RenderStyle Translucent
+Alpha 0.70
+Scale 0.7
+States
+{
+Spawn:
+	VORX ABCDEFGH 2 Bright A_FadeOut(0.1)
+	Stop
+}
+}
+
+Actor BlackHole
+{
+Radius 20
+Height 20
+Speed 0
+Projectile
++NOCLIP
++NODAMAGETHRUST
++FORCEXYBILLBOARD
++FORCERADIUSDMG
+RenderStyle Translucent
+Alpha 0.85
+Scale 1.5
+ReactionTime 30
+Obituary "%o got absorved by the darkness."
+States
+{
+Spawn:
+	TNT1 A 0 A_CountDown
+	TNT1 A 0 A_PlaySoundEx("BHole/Suck","Voice",1)
+	BHOL A 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL B 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL C 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL D 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL E 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL F 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL G 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL H 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL I 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	Loop
+Death:
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
+	TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
+	TNT1 A 0 A_PlaySound("BHole/Explosion")
+	BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
+	BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
+	BHOL C 1 Light("BHOLE_4") A_FadeOut(0.08)
+	BHOL D 1 Light("BHOLE_5") A_FadeOut(0.08)
+	BHOL E 1 Light("BHOLE_6") A_FadeOut(0.08)
+	BHOL F 1 Light("BHOLE_7") A_FadeOut(0.08)
+	BHOL G 1 Light("BHOLE_8") A_FadeOut(0.08)
+	BHOL H 1 Light("BHOLE_9") A_FadeOut(0.08)
+	BHOL I 1 Light("BHOLE_10") A_FadeOut(0.08)
+	Stop
+}
+}
+
+
+Actor DMBallTrap
+{
+Radius 13
+Height 8
+Speed 17
+Damage 10
+Projectile
++RIPPER
++FORCEXYBILLBOARD
++NODAMAGETHRUST
++FORCERADIUSDMG
+Renderstyle Translucent
+Alpha 0.75
+DeathSound "DMBall/Impact"
+Decal BHoleDecal
+States
+{
+Spawn:
+	VOIP ABCDEF 2 Bright A_SpawnItem("DMBTrail",0,0,0)
+	VOIP AA 1 Bright A_RadiusThrust(-220,130)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP BB 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP CC 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP DD 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP EE 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	VOIP FF 1 Bright A_RadiusThrust(-220,150)
+	TNT1 A 0 A_Explode(10,90,0)
+	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+	Goto Spawn+6
+Death:
+	TNT1 A 0 A_SpawnItem("NewBlackHoleTrap",0,0,0)
+//	TNT1 A 0 A_SetScale(1.2)
+	VORX ABCDEFGH 2 Bright
+	Stop
+}
+}
+
+Actor BlackHoleTrap
+{
+Radius 20
+Height 20
+Speed 0
+Projectile
++NOCLIP
++NODAMAGETHRUST
++FORCEXYBILLBOARD
++FORCERADIUSDMG
+RenderStyle Translucent
+Alpha 0.85
+Scale 1.5
+ReactionTime 30
+Obituary "%o got absorved by the darkness."
+States
+{
+Spawn:
+	TNT1 A 0 A_CountDown
+	TNT1 A 0 A_PlaySoundEx("BHole/Suck","Voice",1)
+	BHOL A 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL B 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL C 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL D 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL E 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL F 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL G 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL H 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	BHOL I 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+	TNT1 A 0 A_Explode(15,100)
+	Loop
+Death:
+	TNT1 A 0 A_StopSoundEx("Voice")
+	TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
+	TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
+	TNT1 A 0 A_PlaySound("BHole/Explosion")
+	BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
+	BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
+	BHOL C 1 Light("BHOLE_4") A_FadeOut(0.08)
+	BHOL D 1 Light("BHOLE_5") A_FadeOut(0.08)
+	BHOL E 1 Light("BHOLE_6") A_FadeOut(0.08)
+	BHOL F 1 Light("BHOLE_7") A_FadeOut(0.08)
+	BHOL G 1 Light("BHOLE_8") A_FadeOut(0.08)
+	BHOL H 1 Light("BHOLE_9") A_FadeOut(0.08)
+	BHOL I 1 Light("BHOLE_10") A_FadeOut(0.08)
+	Stop
+}
+}
+
+Actor BHSmoke : DMBTrail
+{
+Scale 2.2
++NOCLIP
++NOGRAVITY
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+	BHXP ABCDEFGHIJKLMNO 2 A_FadeOut(0.03)
+	Stop
+}
+}
+
+Actor BHExplosion
+{
++NOCLIP
++NOGRAVITY
++FORCEXYBILLBOARD
+States
+{
+Spawn:
+	DBX3 A 1 Light("BHEXP_1") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_2") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_3") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_4") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_5") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_6") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Light("BHEXP_7") Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Bright 
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Bright 
+	TNT1 A 0 A_FadeOut(0.13)
+	DBX3 A 1 Bright
+	TNT1 A 0 A_FadeOut(0.13)
+	Stop
+}
+}
+
+//Channeler
+
+Actor ChannelerBeam : FastProjectile
+{
+  Speed 100
+  Radius 13
+  Height 8
+  Damage (Random(10,15))
+  Decal DoomImpScorch
+  Renderstyle Add
+  SeeSound ""
+  Scale 0.5
+  -CANNOTPUSH
+  +NOTIMEFREEZE
+  -NODAMAGETHRUST
+  +NOEXTREMEDEATH
+  MissileType "ChannelerTrailSpawner"
+  states
+  {
+  Death:
+    TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
+    TBAL A 2 bright
+    stop
+  }
+}
+
+Actor ChannelerBeamhoming : FastProjectile
+{
+  Speed 100
+  Radius 13
+  Height 8
+  Damage (Random(5,10))
+  Decal DoomImpScorch
+  Renderstyle Add
+  SeeSound ""
+  Scale 0.5
+  -CANNOTPUSH
+  +NOTIMEFREEZE
+  -NODAMAGETHRUST
+  +NOEXTREMEDEATH
+  MissileType "ChannelerTrailSpawner"
+  states
+  {
+  Death:
+    TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
+    TBAL A 2 bright
+    stop
+  }
+}
+
+
+
+ACTOR ChannelerBeam2 : ChannelerBeam
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("ChannelerBeam3",0,0,random(0,360),4,random(0,360))
+    TBAL A 2 bright
+    stop
+  }
+}
+
+ACTOR ChannelerBeam3 : ChannelerBeamHoming
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("ChannelerBeam4",0,0,random(0,360),4,random(0,360))
+    TBAL A 2 bright
+    stop
+  }
+}
+
+ACTOR ChannelerBeam4 : ChannelerBeamHoming //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0
+    TBAL A 2 bright
+    stop
+  }
+}
+
+ACTOR ChannelerSeducer : ChannelerBeam
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("ChannelerSeductor",0,0,0,4,0)
+    TBAL A 2 bright
+    stop
+  }
+}
+
+ACTOR ChannelerSeductor
+{  
+   Radius 0
+   Height 0
+   Scale 0.5
+   +ISMONSTER
+   +FRIENDLY
+   +LOOKALLAROUND
+   +NOBLOCKMONST
+   +NOGRAVITY
+   +NOTIMEFREEZE
+   +NOINTERACTION
+   Obituary "%o was burned by %k's volatile plasma."
+   RenderStyle None
+   States
+   {
+   Spawn:
+     TNT1 A 0 A_Look
+   See:
+      TNT1 A 0 A_Chase
+   Missile:
+      TNT1 A 0 A_FaceTarget
+      TNT1 A 1 A_CustomMissile("ChannelerBeam4",0,0,0)
+      Stop
+   }
+}
+
+ACTOR ChannelerTrailSpawner
+{
+  +NoGravity
+  +NoClip
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 1 BRIGHT A_SpawnItemEx ("ChannelerTrail", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
+    stop
+  }
+}
+
+ACTOR ChannelerTrail
+{
+  Radius 2
+  Height 2
+  RenderStyle Add
+  Scale 0.5
+  +NOTIMEFREEZE
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+    TBAL AAAAAAAAAA 1 Bright A_FadeOut
+    stop
+  }
+}
+
+
+// RED BEAM
+
+Actor REDChannelerBeam : FastProjectile
+{
+  Speed 100
+  Radius 13
+  Height 8
+  Damage (Random(10,15))
+  Decal DoomImpScorch
+  Renderstyle Add
+  SeeSound ""
+  Scale 0.5
+  -CANNOTPUSH
+  -NODAMAGETHRUST
+  +NOEXTREMEDEATH
+  +NOTIMEFREEZE
+  MissileType "REDChannelerTrailSpawner"
+  states
+  {
+  Death:
+    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
+    TBAL C 2 bright
+    stop
+  }
+}
+
+
+Actor REDChannelerBeamHoming : FastProjectile
+{
+  Speed 100
+  Radius 13
+  Height 8
+  Damage (Random(5,10))
+  Decal DoomImpScorch
+  Renderstyle Add
+  SeeSound ""
+  Scale 0.5
+  -CANNOTPUSH
+  -NODAMAGETHRUST
+  +NOEXTREMEDEATH
+  +NOTIMEFREEZE
+  MissileType "REDChannelerTrailSpawner"
+  states
+  {
+  Death:
+    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
+    TBAL C 2 bright
+    stop
+  }
+}
+
+ACTOR REDChannelerBeam2 : REDChannelerBeam
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("REDChannelerBeam3",0,0,random(0,360),4,random(0,360))
+    TBAL C 2 bright
+    stop
+  }
+}
+
+ACTOR REDChannelerBeam3 : REDChannelerBeamHoming
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("REDChannelerBeam4",0,0,random(0,360),4,random(0,360))
+    TBAL C 2 bright
+    stop
+  }
+}
+
+ACTOR REDChannelerBeam4 : REDChannelerBeamHoming //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0
+    TBAL C 2 bright
+    stop
+  }
+}
+
+
+
+ACTOR REDChannelerSeducer : REDChannelerBeam
+{
++NOTIMEFREEZE
+  states
+  {
+  Death:
+    TBAL A 0 A_CustomMissile("REDChannelerSeductor",0,0,0,4,0)
+    TBAL C 2 bright
+    stop
+  }
+}
+
+ACTOR REDChannelerSeductor
+{  
+   Radius 0
+   Height 0
+   Scale 0.5
+   +NOTIMEFREEZE
+   +ISMONSTER
+   +FRIENDLY
+   +LOOKALLAROUND
+   +NOBLOCKMONST
+   +NOGRAVITY
+   +NOINTERACTION
+   Obituary "%o was burned by %k's OVERCHARGED plasma."
+   RenderStyle None
+   States
+   {
+   Spawn:
+     TNT1 A 0 A_Look
+   See:
+      TNT1 A 0 A_Chase
+   Missile:
+      TNT1 A 0 A_FaceTarget
+      TNT1 A 1 A_CustomMissile("REDChannelerBeam4",0,0,0)
+      Stop
+   }
+}
+
+
+ACTOR REDChannelerTrailSpawner
+{
+  +NoGravity
+  +NoClip
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    TNT1 A 0
+    TNT1 A 1 BRIGHT A_SpawnItemEx ("REDChannelerTrail", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
+    stop
+  }
+}
+
+ACTOR REDChannelerTrail
+{
+  Radius 2
+  Height 2
+  +NOTIMEFREEZE
+  RenderStyle Add
+  Scale 0.5
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+    TBAL CCCCCCCCC 1 Bright A_FadeOut
+    stop
+  }
+}
+
+//Quake 2 Grenade  //CodeBase from HFC2X
+
+actor Nades
+{
+	Radius 6
+	Height 7
+	Speed 20
+	Damage 0
+	Projectile
+	Mass 300
+	BounceFactor 0.6
+	WallBounceFactor 0.7
+	-NOGRAVITY
+        Gravity 0.5
+		+NOTIMEFREEZE
+	+DEHEXPLOSION
+	+FORCEXYBILLBOARD
+	+FORCERADIUSDMG
+	ReactionTime 127
+	BounceType Doom
+	+MBFBOUNCER
+	BounceSound "Weapon/nadebounce"
+	DeathSound "Weapon/Nadeboom"
+	Obituary "$OB_GRENS"
+	States
+	{
+	Spawn:
+		SGRN A 1 A_CountDown
+		TNT1 A 0 A_JumpIf (velz == 0, "OnFloor")
+		Loop
+	OnFloor:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag (GRENADETRAIL, 0)
+		TNT1 A 0 A_ChangeFlag (NOBLOCKMAP, 0)
+		Goto Resting
+	Resting:
+		SGRN A 1 A_CountDown
+		Wait
+	Death:
+		TNT1 A 0 A_Explode(200,165)
+  		MISL B 8 Bright A_Scream
+   		MISL C 6 Bright
+   		MISL D 4 Bright
+		Stop
+	}
+}
+
+actor CRITNades
+{
+	Radius 6
+	Height 7
+	Speed 20
+	Damage 0
+	Projectile
+	Mass 300
+	BounceFactor 0.6
+	WallBounceFactor 0.7
+	-NOGRAVITY
+        Gravity 0.75
+	+DEHEXPLOSION
+	+NOTIMEFREEZE
+	+FORCEXYBILLBOARD
+	+FORCERADIUSDMG
+	ReactionTime 127
+	BounceType Doom
+	+MBFBOUNCER
+	BounceSound "Weapon/nadebounce"
+	Obituary "$OB_GRENS"
+	States
+	{
+	Spawn:
+		SGRN A 1 A_CountDown
+		TNT1 A 0 A_JumpIf (velz == 0, "OnFloor")
+		Loop
+	OnFloor:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_ChangeFlag (GRENADETRAIL, 0)
+		TNT1 A 0 A_ChangeFlag (NOBLOCKMAP, 0)
+		Goto Resting
+	Resting:
+		SGRN A 1 A_CountDown
+		Wait
+	Death:
+		TNT1 A 0 A_Explode(300,200)
+    	CRCK B 8 Bright A_Playsound("Weapon/nadeboom",Chan_auto)
+   		CRCK C 6 Bright
+   		CRCK D 4 Bright
+		Stop
+	}
+}
+
+Actor Nadez
+{
+  Radius 8
+  Height 8
+  Speed 25
+  Damage 20
+  Gravity 0.5
+  Projectile
+  -NoGravity
+  +NOTIMEFREEZE
+  +DoomBounce
+  +DehExplosion
+  +GrenadeTrail
+  +ExplodeOnDeath
+  seeSound "Weapon/nadebounce"
+  DeathSound "Weapon/Nadeboom"
+  DamageType Fire
+  States
+  {
+  Spawn:
+    SGRN A 0 Bright
+    SGRN A 0 Bright A_StopSound
+    SGRN A 0 Bright
+    SGRN A 1 Bright 
+    Goto Spawn+3
+  Death:
+    MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
+    MISL B 8 Bright A_Explode
+    MISL C 6 Bright
+    MISL D 4 Bright
+    stop
+  }
+}
+
+Actor Critnadez
+{
+ Radius 8
+  Height 8
+  Speed 25
+  Damage 20
+  Gravity 0.5
+  Projectile
+  -NoGravity
+  +NOTIMEFREEZE
+  +DoomBounce
+  +DehExplosion
+  +GrenadeTrail
+  +ExplodeOnDeath
+  seeSound "Weapon/nadebounce"
+  DeathSound "Weapon/Nadeboom"
+  DamageType Fire
+  States
+  {
+  Spawn:
+    SGRN A 0 Bright
+    SGRN A 0 Bright A_StopSound
+    SGRN A 0 Bright A_PlaySound("Weapons/GrenLF")
+    SGRN A 1 Bright 
+    Goto Spawn+3
+  Death:
+    CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
+    CRCK B 8 Bright A_Explode
+    CRCK B 0 A_Explode
+    CRCK C 6 Bright
+    CRCK D 4 Bright
+    stop
+  }
+}
+
+Actor ALTNadez
+{
+  Radius 8
+  Height 8
+  Speed 25
+  Damage 20
+  Gravity 0.5
+  Projectile
+  +NOTIMEFREEZE
+  -NoGravity
+  +DehExplosion
+  +GrenadeTrail
+  +ExplodeOnDeath
+  seeSound "Weapon/nadebounce"
+  DeathSound "Weapon/Nadeboom"
+  DamageType Fire
+  States
+  {
+  Spawn:
+    SGRN A 0 Bright
+    SGRN A 0 Bright A_StopSound
+    SGRN A 0 Bright
+    SGRN A 1 Bright 
+    Goto Spawn+3
+  Death:
+    MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
+    MISL B 8 Bright A_Explode
+    MISL C 6 Bright
+    MISL D 4 Bright
+    stop
+  }
+}
+
+Actor ALTCritnadez
+{
+  Radius 8
+  Height 8
+  Speed 25
+  Damage 60
+  Gravity 0.5
+  Projectile
+  +NOTIMEFREEZE
+  -NoGravity
+  +DehExplosion
+  +GrenadeTrail
+  +ExplodeOnDeath
+  SeeSound "Weapon/nadebounce"
+  DeathSound "Weapon/Nadeboom"
+  DamageType Fire
+  States
+  {
+  Spawn:
+    SGRN A 0 Bright
+    SGRN A 0 Bright A_StopSound
+    SGRN A 0 Bright A_PlaySound("Weapons/GrenLF")
+    SGRN A 1 Bright 
+    Goto Spawn+3
+  Death:
+    CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
+    CRCK B 8 Bright A_Explode
+    CRCK B 0 A_Explode
+    CRCK C 6 Bright
+    CRCK D 4 Bright
+    stop
+  }
+}
+
+
+
+Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.3
+	Speed 60
+	+NOTIMEFREEZE
+	Damage (Random(25,40))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
+		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		//NULL A 0 A_SpawnItem("PlasmaExplosion")
+		NULL A 10
+		stop
+	}
+}
+
+Actor Lisaplasma
+{
+	SeeSound ""
+	Speed 20
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		FKYU A 1 bright
+		Loop
+	Death:
+		FKYU A -1
+		stop
+	}
+}
+
+
+Actor Kewlplasma6 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.1
+	Speed 30
+	+NOTIMEFREEZE
+	Damage (Random(5, 10))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL A 1 bright A_SpawnItemEx ("PlasmaVapour", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
+		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		//NULL A 0 A_SpawnItem("PlasmaExplosion")
+		NULL A 10
+		stop
+	}
+}
+
+
+Actor FiendsPlasma2 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 30
+	+NOTIMEFREEZE
+	Damage (Random(10,25))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+	Stop
+	}
+}
+
+
+Actor FiendsPlasma3 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 30
+	+ripper
+	+NOTIMEFREEZE
+	Damage (Random(1,12))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL A 1 bright A_SpawnItemEx ("PlasmaVapour", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
+		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		//NULL A 0 A_SpawnItem("PlasmaExplosion")
+		NULL A 10
+		stop
+	}
+}
+
+Actor FiendsPlasma5 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 10
+	+ripper
+	+NOTIMEFREEZE
+	Damage (Random(10,13))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL A 1 bright A_SpawnItemEx ("PlasmaVapour", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL AAAAAAAAAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
+		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+		//NULL A 0 A_SpawnItem("PlasmaExplosion")
+		NULL A 10
+		stop
+	}
+}
+
+Actor FiendsPlasma6 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 10
+	+ripper
+	+NOTIMEFREEZE
+	Damage (Random(10,14))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+	Stop
+	}
+}
+
+Actor FiendsPlasma4 : Plasmaball //Sprites by Kunai Kitsune
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 30
+	+ripper
+	+NOTIMEFREEZE
+	Damage (Random(1,14))
+	//MissileType "PlasmaVapor"
+	States
+	{
+	Spawn:
+		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		Loop
+	Death:
+		NULL A 0 //A_SpawnItem("PlasmaExplosion")
+	Stop
+	}
+}
+
+
+/*
+Actor GosimersPlasma : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 1
+	Speed 15
+	+ripper
+	var int user_theta;
+	Damage (Random(75,100))
+	States
+	{
+	Spawn:
+		TBAL C 15 bright A_SetUserVar("user_theta",0)
+	//	loop
+	Death:
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_JumpIf(user_theta==360,"Death2")
+		loop
+	Death2:
+		NULL A 0
+	Stop
+	}
+}
+
+Actor GosimersPlasma3 : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 1.25
+	Speed 7
+	+ripper
+	var int user_theta;
+	Damage (Random(10,40))
+	States
+	{
+	Spawn:
+		TBAL B 15 bright A_SetUserVar("user_theta",0)
+
+	Spawn2:
+		TBAL B 1 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		loop
+	Death:
+		NULL A 0
+	Stop
+	}
+}
+*/
+/*Actor CCCCPAINIS : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 1.25
+	Speed 0
+	+ripper
+	var int user_theta;
+	Damage (Random(10,40))
+	States
+	{
+	Spawn:
+		TBAL C 0 bright A_SetUserVar("user_theta",0)
+	Death:
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_JumpIf(user_theta==360,"Death2")
+		loop
+	Death2:
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+	Death3:
+		NULL A 0
+	Stop
+	}
+}*/
+
+Actor CCCCPAINIS : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	damagetype cclaser
+	Damagetype Fire
+	Alpha 0.8
+	Scale 1.25
+	Speed 0
+	+ripper
+	var int user_theta;
+	Damage (Random(10,40))
+	States
+	{
+	Spawn:
+		TBAL C 0 bright A_SetUserVar("user_theta",0)
+	Death:
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_JumpIf(user_theta==360,"Death2")
+		loop
+	Death2:
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+		TBAL C 0 A_CustomRailgun(25, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
+	Death3:
+		NULL A 0
+	Stop
+	}
+}
+
+Actor GosimersPlasma2 : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 20
+	+ripper
+	Damage (Random(1,16))
+	States
+	{
+	Spawn:
+		TBAL C 2 bright 
+		loop
+	Death:
+		NULL A 0
+	Stop
+	}
+}
+
+Actor GosimersPlasma4 : Plasmaball
+{
+	SeeSound ""
+	DeathSound "weapons/plasma/impact"
+	RenderStyle Add
+	Alpha 0.8
+	Scale 0.5
+	Speed 10
+	+ripper
+	Damage (Random(10,15))
+	States
+	{
+	Spawn:
+		TBAL C 2 bright 
+		loop
+	Death:
+		NULL A 0
+	Stop
+	}
+}
+//Scatter PIstol
+
+ACTOR ScatterPShot : FastProjectile
+{
+   Speed 75
+   Radius 4
+   Height 4
+   Damage (3*random(3,6))
+   Scale 0.25
+   PROJECTILE
+   +BRIGHT
+   RenderStyle Add
+   MissileHeight 8
+   MissileType "ScatterPShotTrail"
+   SeeSound "NDLSHOT"
+   States
+   {
+   Spawn:
+      SPPJ A 1
+	  TNT1 A 0 A_SpawnItemEx("ScatterShotGlow", 0, 0, 0, 0, 0, 0, 0, 32)
+      Loop
+   Death:
+      TNT1 A 0
+	  TNT1 A 0 A_PlaySound("SPRPIMPT")
+	  TNT1 A 0 A_SetScale(0.20)
+	  TNT1 AAAA 0 A_CustomMissile("ScatterSpark",0,0,random(0,360),CMF_AIMDIRECTION,random(0,12))
+      SPRI ABCDE 1
+      Stop
+   }
+}
+
+ACTOR CritScatterPShot : FastProjectile
+{
+   Speed 50
+   Radius 4
+   Height 4
+   Damage (6*random(3,6))
+   Scale 0.25
+   PROJECTILE
+   +BRIGHT
+   RenderStyle Add
+   MissileHeight 8
+   MissileType "ScatterPShotTrail"
+   SeeSound "NDLSHOT"
+   States
+   {
+   Spawn:
+      SPPJ A 1
+	  TNT1 A 0 A_SpawnItemEx ("PlasmaVapour", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_ABSOLUTEMOMENTUM)
+      Loop
+   Death:
+      TNT1 A 0
+	  TNT1 A 0 A_PlaySound("SPRPIMPT")
+	  TNT1 A 0 A_SetScale(0.20)
+	  TNT1 AAAA 0 A_CustomMissile("ScatterSpark",0,0,random(0,360),CMF_AIMDIRECTION,random(0,12))
+      SPRI ABCDE 1
+      Stop
+   }
+}
+
+ACTOR ScatterSpark
+{
+   Speed 15
+   Radius 4
+   Height 4
+   Scale 0.15
+   Gravity 0.3
+   PROJECTILE
+   +BRIGHT
+   -NOGRAVITY
+   +DROPOFF 
+   +THRUACTORS
+   RenderStyle Add
+   States
+   {
+   Spawn:
+      SPPJ A 1
+	  TNT1 A 0 A_SpawnItemEx("ScatterShotGlowSmall", 0, 0, 0, 0, 0, 0, 0, 32)
+	  TNT1 A 0 A_SpawnItemEx("ScatterShotXDMG", 0, 0, 0, 0, 0, 0, 0, 32)
+      Loop
+   Death:
+      TNT1 A 0
+	  TNT1 A 0 A_PlaySound("SPRPIMPT",5,0.12,0)
+	  TNT1 A 0 A_SetScale(0.08)
+      SPRI ABCDE 1
+      Stop
+   }
+}
+
+ACTOR ScatterShotXDMG
+{                 
+   Speed 2
+   Radius 6
+   Height 7
+   Damage (1*random(1,2))
+   PROJECTILE
+   +NODAMAGETHRUST
+   States
+   {
+   Spawn:
+      TNT1 A 1
+      Stop
+   Death:
+      TNT1 A 0
+      Stop
+   }
+}
+
+//AESTHETIC EFFECTS
+
+ACTOR ScatterShotGlow
+{
+   +NOINTERACTION
+   +THRUACTORS
+   RenderStyle Add
+   Alpha 0.4
+   Scale 0.25
+   States
+   {
+   Spawn:
+      TNT1 A 0
+	  SPGL A 1 Bright
+      Stop
+   }
+}
+
+ACTOR ScatterShotGlowSmall : ScatterShotGlow
+{
+   Scale 0.1
+}
+
+ACTOR ScatterPShotTrail
+{
+    Radius 6
+    Height 8
+    Scale 0.06
+    RenderStyle Add
+    Alpha 0.4
+	+NOINTERACTION
+	+THRUACTORS
+    States
+    {
+    Spawn:
+	NDTL A 1 A_FadeOut (0.1)
+	Loop
+    }
+}
+
+
+//AESTHETIC EFFECTS
+
+ACTOR ScatterShotGlow
+{
+   +NOINTERACTION
+   +THRUACTORS
+   RenderStyle Add
+   Alpha 0.4
+   Scale 0.25
+   States
+   {
+   Spawn:
+      TNT1 A 0
+	  SPGL A 1 Bright
+      Stop
+   }
+}
+
+ACTOR ScatterShotGlowSmall : ScatterShotGlow
+{
+   Scale 0.1
+}
+
+ACTOR ScatterPShotTrail
+{
+    Radius 6
+    Height 8
+    Scale 0.06
+    RenderStyle Add
+    Alpha 0.4
+	+NOINTERACTION
+	+THRUACTORS
+    States
+    {
+    Spawn:
+	NDTL A 1 A_FadeOut (0.1)
+	Loop
+    }
+}
+
+
+Actor Flarenadered
+{
+  Radius 8
+  Height 8
+  Speed 25
+  Damage 0
+  +NOTIMEFREEZE
+  Gravity 0.5
+  Projectile
+  -NoGravity
+  States
+  {
+  Spawn:
+    SGRN A 0
+    SGRN A 0
+    SGRN A 0
+    SGRN A 1
+    Goto Spawn+3
+  Death:
+    TNT1 A 0 A_SpawnItemEx ("ActiveFlarered", 0, 0, 0, 0, 0, 0, 0, 1)
+    Stop
+  }
+}
+
+
+Actor ActiveFlarered //You can give this a DoomEdNum, to place it in a map editor
+{
+  Radius 22
+  Height 11
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    PHLR A 0 Bright
+    PHLR A 0 Bright A_PlaySound("Flare/Light")
+    PHLR A 0 Bright A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1)
+    PHLR AB 1 Bright Light("FLARERED")
+    Goto Spawn+3
+  }
+}
+
+Actor FlarenadeGold
+{
+  Radius 8
+  Height 8
+  Speed 25
+  +NOTIMEFREEZE
+  Damage 0
+  Gravity 0.5
+  Projectile
+  -NoGravity
+  States
+  {
+  Spawn:
+    SGRN A 0
+    SGRN A 0
+    SGRN A 0
+    SGRN A 1
+    Goto Spawn+3
+  Death:
+    TNT1 A 0 A_SpawnItemEx ("ActiveFlaregold", 0, 0, 0, 0, 0, 0, 0, 1)
+    Stop
+  }
+}
+
+
+Actor ActiveFlaregold //You can give this a DoomEdNum, to place it in a map editor
+{
+  Radius 22
+  Height 11
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    PHLY A 0 Bright
+    PHLY A 0 Bright A_PlaySound("Flare/Light")
+    PHLY A 0 Bright A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1)
+    PHLY AB 1 Bright Light("FLAREGOLD")
+    Goto Spawn+3
+  }
+}
+
+Actor FlarenadeGReen
+{
+  Radius 8
+  Height 8
+  Speed 25
+  +NOTIMEFREEZE
+  Damage 0
+  Gravity 0.5
+  Projectile
+  -NoGravity
+  States
+  {
+  Spawn:
+    SGRN A 0
+    SGRN A 0
+    SGRN A 0
+    SGRN A 1
+    Goto Spawn+3
+  Death:
+    TNT1 A 0 A_SpawnItemEx ("ActiveFlareGreen", 0, 0, 0, 0, 0, 0, 0, 1)
+    Stop
+  }
+}
+
+
+Actor ActiveFlareGreen //You can give this a DoomEdNum, to place it in a map editor
+{
+  Radius 22
+  Height 11
+  +NOTIMEFREEZE
+  States
+  {
+  Spawn:
+    PHLG A 0 Bright
+    PHLG A 0 Bright A_PlaySound("Flare/Light")
+    PHLG A 0 Bright A_PlaySoundEx("Flare/Loop", "SoundSlot7", 1, -1)
+    PHLG AB 1 Bright Light("FLAREGREEN")
+    Goto Spawn+3
+  }
+}
+/*Actor KunaisFlare : Ammo
+{
+  Radius 4
+  Height 18
+  +NOTIMEFREEZE
+  +INVENTORY.IGNORESKILL
+  Inventory.MaxAmount 20
+  ammo.Backpackmaxamount 30
+  ammo.BackpackAmount 10
+ Inventory.Icon ""
+  Inventory.PickupMessage "You picked up a flare."
+  States
+  {
+  Spawn:
+    PHLR D -1
+    Stop
+  }
+*/
+
+//Tribeams Code
+
+actor Projectile_Base
+{
+	Projectile
+	+FORCEXYBILLBOARD
+	-NOTELEPORT			// lets make things different
+	+SEEKERMISSILE		// lets get this out of the way
+	+FORCERADIUSDMG
+	+SPAWNSOUNDSOURCE
+	+DONTSEEKINVISIBLE
+	+THRUGHOST
+	+NOBOSSRIP
+	+MTHRUSPECIES
+	-FORCEPAIN
+	+RANDOMIZE
+	//$Category Tribeam's particles
+}
+
+
+
+
+
+
+actor Flameshotfire: Projectile_Base 
+{
+	Radius 6
+	Height 8
+	Speed 35
+	Damage (25)
+	Scale 0.1
+	+NOTIMEFREEZE
+	DAMAGETYPE "Fire"
+	RenderStyle "Add"
+	States
+	{
+		Spawn:
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK A 1 Bright A_FadeOut(0.13)
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK B 1 Bright A_FadeOut(0.13)
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK C 1 Bright A_FadeOut(0.13)
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK D 1 Bright A_FadeOut(0.13)
+			Loop
+		Death:
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK C 1 Bright A_FadeOut(0.17)
+			Loop
+	}
+}
+
+actor FlameshotICE : Projectile_Base 
+{
+	Radius 6
+	Height 8
+	Speed 50
+	Damage (15)
+	+NOTIMEFREEZE
+	Scale 0.1
+	DAMAGETYPE "Fire"
+	RenderStyle "Add"
+	+Ripper
+	States
+	{
+		Spawn:
+			AATK I 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK J 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK K 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK L 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			Loop
+		Death:
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK J 1 Bright A_FadeOut(0.17)
+			Loop
+	}
+}
+
+actor FlameshotICE2 : Projectile_Base 
+{
+	Radius 6
+	Height 8
+	Speed 50
+	Damage (5)
+	+NOTIMEFREEZE
+	Scale 0.1
+	DAMAGETYPE "Ice"
+	RenderStyle "Add"
+	+Ripper
+	States
+	{
+		Spawn:
+			AATK I 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK J 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK K 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			AATK L 1 Bright A_FadeOut(0.11)
+			AATK A 0 Bright A_SetScale(scalex+0.4, scaley+0.4)
+			Loop
+		Death:
+			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			AATK J 1 Bright A_FadeOut(0.17)
+			Loop
+	}
+}
+
+
+actor DarkSeeker
+{
+    Radius 8
+    Height 6
+    Speed 8
+    Damage 5
+    +SEEKERMISSILE
+    PROJECTILE
+    RENDERSTYLE ADD
+    ALPHA 0.67
+    SeeSound "imp/attack"
+    DeathSound "imp/shotx"
+    Decal DoomImpScorch
+    States
+    {
+    Spawn:
+		CNF1 A 1 Bright A_SeekerMissile (5,5)
+		CNF1 A 0 Bright A_SpawnItemEx("IMPballtrailpurple")	
+		ICE1 B 1 Bright A_SeekerMissile (5,5)
+		ICE1 A 0 Bright A_SpawnItemEx("IMPballtrailblue")	
+        Loop
+    Death:
+        CNF1 C 1 Bright
+		ICE1 D 1 Bright
+		CNF1 E 1 Bright
+        Stop
+    }
+}
+
+ACTOR Meatballprojectile : Cacodemonball replaces cacodemonball
+{
+  Radius 6
+  Height 8
+  Speed 10
+  FastSpeed 20
+  Damage 7
+  Projectile
+  +RANDOMIZE
+  RenderStyle Add
+  Alpha 1
+  SeeSound "caco/attack"
+  DeathSound "caco/shotx"
+  States
+  {
+  Spawn:
+    BAL2 ABCDEFGH  1 Bright
+    Loop
+  Death:
+    BAL2 A 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 B 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 C 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 D 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 E 2 Bright A_SetScale(scalex-0.1, scaley-0.1) 
+    BAL2 F 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 G 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+    BAL2 H 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+	Stop
+  }
+}
+
+ACTOR Beem_Slash
+{
+	Damage 35
+	Speed 30
+	Height 16
+	Radius 16
+	Projectile
+	+NOTIMEFREEZE
+	Deathsound "BladeBeam/death"
+	+ripper
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 
+		
+		Spawn2:
+			TNT1 A 1 A_SpawnItemEX("Beem_Slash_Particle", 0, 0, 0)
+			TNT1 A 0 A_playsound("Bladebeam/attack", 6, 1.0, 1)
+			loop
+		
+		Death:
+			TNT1 A 0 A_Stopsound(6)
+			stop
+	}
+}
+
+ACTOR Beem_Slash_Particle
+{
+	+FORCEXYBILLBOARD
+	+NOGRAVITY
+	+NOINTERACTION
+//	+ROLLSPRITE
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	Renderstyle "add"
+	Projectile
+	States
+	{
+		Spawn:
+			BEEM F 1 Bright A_FadeOut(0.05)
+			loop
+			
+		Death:
+			TNT1 A 0 
+			stop
+	}
+}
+
+// Eri_rocket_projectile
+
+Actor EriMissileTrail 
+{
+		Renderstyle "Add"
+		Alpha 0.5
+		Scale 0.5
+		+THRUACTORS
+		+NOGRAVITY
+		+NOTIMEFREEZE
+		+FORCEXYBILLBOARD
+		+Clientsideonly
+		Projectile
+	States
+	{
+	Spawn:
+		MTRL HABCDEFG 2 Bright
+		Death:
+			TNT1 A 0 
+			stop
+	}
+}
+
+//OSJC BFG STOOF
+
+actor bfgvisualFLASH : CustomInventory 
+{
+  states
+  {
+  Pickup:
+    TNT1 A 0 A_SetBlend("green", .4,15)
+    stop
+  }
+}
+
+ACTOR osjc_BFGBall : BFGBall
+{
+	Game Doom
+	Radius 13
+	Height 8
+	Speed 12
+	Damage 10
+	Projectile
+	+RIPPER
+	+NOTIMEFREEZE
+	ExplosionDamage 150
+	ExplosionRadius 196
+	-RANDOMIZE
+	+EXTREMEDEATH
+	RenderStyle Add
+	Alpha 0.6
++fullvoldeath
++FOILINVUL
+decal bfglightning
+	DamageType "BFGSplash"
+   DeathSound "weapons/d3bfgx"
+	Obituary "$OB_MPBFG_BOOM"
+	States
+	{
+	Spawn:
+		BFS1 A 1 Bright A_SpawnItem("bfgsmoke",0,0,0,0)
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+		BFS1 A 1 Bright 
+      tnt1 a 0  A_Playsound("weapons/plasfly")
+		BFS1 A 1 Bright A_SpawnItem("bfgsmoke",0,0,0,0)
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+    		BFS1 A 1 Bright A_SpawnItem("BFG_laser_firer",0,0,0,0)
+      tnt1 a 0  A_Playsound("weapons/plasfly")
+		BFS1 B 1 Bright A_SpawnItem("bfgsmoke",0,0,0,0)
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+		BFS1 B 1 Bright 
+      tnt1 a 0  A_Playsound("weapons/plasfly")
+		BFS1 B 1 Bright A_SpawnItem("bfgsmoke",0,0,0,0)
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+	TNT1 A 0 A_CustomMissile("greenplasParticle",  0, 0, random(-120, 120), 2, random(-120, 120))
+        TNT1 A 0 A_CustomMissile("greenplasParticle", 0, 0, random(-120, 120), 2, random(-120, 120))
+  		BFS1 B 1 Bright A_SpawnItem("BFG_laser_firer",0,0,0,0)
+      tnt1 a 0  A_Playsound("weapons/plasfly")
+		Loop
+	Death:
+		tnt1 A 0 A_GiveToTarget("bfgvisualFLASH", 1)
+		tnt1 a 0 A_SpawnItem("shockwaveBFG",0,0,0,0)
+      tnt1 a 0  A_Playsound("weapons/bfgx")
+		TNT1 A 0 A_EXPLODE
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+tnt1 a 0 A_SpawnItem("explosionsplasher",0,10,0,0)
+		BFE1 A 8 Bright A_SpawnItem("BFGZAP",0,0,0,0)
+		BFE1 A 0 A_quake(12,300,0,3000,"NO/SOUND")
+		BFE1 B 8 Bright
+		BFE1 CC 4 Bright A_BFGSpray
+		BFE1 DEF 8 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+
+ACTOR bfgsmoke
+{
+	Game Doom
+	RenderStyle add
+	Alpha 0.4
+	+ NOGRAVITY
+	+DONTSPLASH
+	States
+	{
+	Spawn:
+		GSMK ABC 4 A_FadeOut(0.05)
+	Stop
+	}
+}
+
+
+ACTOR BFGZAP
+{
+	Game Doom
+	Alpha 0.75
+	+ NOGRAVITY
+	+DONTSPLASH
+	+NOTIMEFREEZE
+	States
+	{
+	Spawn:
+		GZAP DCBABCD 6 
+	Stop
+	}
+}
+
+ACTOR osjc_BFGExtra : BFGExtra replaces BFGExtra
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOTIMEFREEZE
+	+EXTREMEDEATH
++FOILINVUL
+	RenderStyle Add
+	scale 0.5
+	Alpha 0.75
+	DamageType "BFGSplash"
+  Obituary "%o just couldn't hide from %k's BFG."
+	States
+	{
+	Spawn:
+		BFE1 ABCDEF 8 Bright
+		Stop
+	}
+}
+
+ACTOR bfg_laser_firer
+{
+  +FRIENDLY
+  +NOBLOCKMAP
+  +nogravity
+  +NOTIMEFREEZE
+  Alpha .75
+  Health 100000000
+  Mass 1000000000
+  Radius 1
+  Height 4
+  Speed 8
+  Monster
+  RenderStyle Translucent
+  PainChance 200
+  +FLOORCLIP
+  Species "Player"
+  translation "16:47=112:127","168:191=112:127"
+  States
+  {
+  Spawn:
+    tnt1 a 1 A_Jumpifcloser(1600, "spawn2")
+    tnt1 a 1 A_Look
+goto missile
+  Spawn2:
+    tnt1 a 1 A_Look
+ loop
+   Pain:
+    Goto See
+  See:
+    tnt1 a 2 
+   Missile:
+    tnt1 a 2 a_FACETARGET
+    tnt1 a 2 A_customRailgun( 100, 0, "none", "green", RGF_SILENT, 1, 40,"Greenlitningzap", 0, 0, 720, 2, 10, 0,"Greenlitningzap")
+ Death:
+    TNT1 A 0 A_DIE
+    TNT1 A -1
+    Stop
+
+  }
+}
+
+ACTOR BFG_laserPuff
+{
+	Game Doom
+	+NOBLOCKMAP
+	+NOTIMEFREEZE
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+alwayspuff
+	RenderStyle Translucent
+	Alpha 0.75
+	Mass 5
+	Scale		.5
+  Obituary "%o was zapped by %k's BFG."
+Damagetype "laser"
+	States
+	{
+	Spawn:
+	tnt1 a 0		
+		Stop
+}
+}
+
+ACTOR bfgSmokeshot
+{
+   Radius 1
+   Height 1
+   PROJECTILE
+   +NOTIMEFREEZE
+   +NOCLIP
+   Scale 0.2
+   vspeed 1
+   Speed 4
+   RENDERSTYLE add
+   ALPHA 0.6
+   +DONTSPLASH
+-randomize
+   States
+   {
+   Spawn:
+      TNT1 A 5
+		BFE1 ABCDEF 4 Bright A_FadeOut(0.1)
+      Stop
+   }
+}
+

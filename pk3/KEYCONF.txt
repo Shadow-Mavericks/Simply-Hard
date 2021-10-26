@@ -1,0 +1,26 @@
+addkeysection "Simply Hard" Simplyhard
+addmenukey "Soul ability" useability
+addmenukey "Flares" Flares
+addmenukey "Ultimateability" Classultimates
+alias useability "pukename Classultimateability"
+alias Flares "pukename Flareability"
+alias Classultimates "pukename ULTIMATEABOOLITY"
+
+
+ClearPlayerClasses
+AddPlayerClass Fiend
+AddPlayerClass Kunai
+AddPlayerClass Gosimer
+AddPlayerClass MaximusPrime
+
+
+WeaponSection "Simply-Hard"
+SetSlot 1 Kunaisability Gosimersability Fiendsability Fists soulreaper ShieldGun UAC-Chainsaw DFFist
+SetSlot 2 DEPistol Kunaisrevolver GosimersHandgun DFPistol
+SetSlot 3 PKShotgun SingleShotgun CombatShotgun SuperShawtgun DFBlaster
+SetSlot 4 Streetsweeper BurstShotgun FiendsMinigun Autogun
+SetSlot 5 LMG Hmachinegun Rawketlawnchair FusionCutter
+SetSlot 6 Cryobow DEGRENADELAUNCHER DEPlasmaRifle MortarGun
+SetSlot 7 Propulsion_Cannon PlasmagunMk2 KunaisKar98 Fiendsrailgun Flameshot STRailgun Channeler Fiend_PlasmaRifle Lightning_Rifle ConcRifle DisruptorRifle
+SetSlot 8 DEBFG9500 Vortexgun NuclearMissileLauncher BFG6900 micro_Devistator AssaultCannon
+//SetSlot 9 Flashlightcentered

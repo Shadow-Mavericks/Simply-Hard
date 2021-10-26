@@ -1,0 +1,559 @@
+[NOTE THIS IS A WIP AND STILL CONSTANTLY BEING UPDATED! IF YOU DON'T SEE YOUR NAME IN HERE Leave me a message
+on ZDOOM FORUMS "Doomfiend" will be my name there "+Fiend kitsune / Fiend Nixdorf" on YouTube! I will update it asap [if i remember~]]
+ALSO
+We appologise in advance if we offended anyone if we've taken stuff with out crediting there is ALOT of borrowed resources that
+are unacounted for and I can't for the life of me find the names of everyone, so I made folders for the sprites / sounds of the wads
+these resources were pulled from.
+
+ACS
+Beeper.BIN - Tribeam
+Stars.o - Tribeam
+Deaths - Tribeam / Fiend
+Invincibility music - Tribeam < base code > / Fiend
+Optional - Kunais Footsteps - [?] Code needs updating
+
+TEXTURES / FLATS
+Doom64 / Portals, Lava, nukage, Blood, Water
+Blueshadow < Doom 64 liquid animations > [Temporarely removed D64 Liquids]
+Fiend
+Strikerman667? < Lava Recolour > [Temporarely removed D64 Liquids]
+
+GRAPHICS
+Sega - Stars
+Ketchup - gore
+Metroid Other M - HUD-Visor
+Fiend - Hud elements [Text / Numeric values, Health bars, keybars, Visor recolors via 'IfHealth' command & Sbarinfo]
+
+
+MODELS
+Ketchup gore < Blood Splat >
+
+SOUNDs
+Gore - Ketchupgore
+BEEP - FIEND < Inspired by metal gear obviously >
+CNNCTSND - LEFT 4 DEAD
+Health / Armour pickups - Feedomplannet
+Mannbox - LegendofZelda series < N64 >
+E-Tank - Metroid Prime series
+Item Respawn - Freedom Planet
+Medkits - Undertale [Toby Fox]
+FHahaha - Flowys laugh [Undertale - Toby Fox]
+Lisa the painful rpg "God's Will"
+Dark Forces/Jedi Knight Series, Battlefront (2005), Star Wars - Disney/LucasFilm/LucasArts
+[More to be added!]
+
+MONSTERS
+Realm 667
+- Suicide Bomber : Tormentor667
+- Critimp : Fiend / Id
+
+SPRITES
+- Doom Sprites : id
+- Demon ecplipse weapons : Erience
+- Ak47 : Warior & Batandy [Reload frames]
+- Quake health : id / fuzzyblaze
+- Medicalbackpack : TheMightyHeracross
+- MEDIPACK : Dreadopp
+- Stimbonus : Infrinex
+- Armour orb : Blueshadow
+- Crit rocket : id / Fiend - Recolour
+- Manncobox : Tiberium Soul
+- Critball : Erience?
+- Lifesphere : ? - Realm667
+- Dark Forces/Jedi Outcast: Disney/LucasFilm/LucasArts
+- Black Whirlwind: Vincent Hubin
+- Gyrojet Blaster & Mark IV Goobgun: Patrick Haslow & Matt Hallaron
+- DL44 Blaster Pistol: David Arandle & knighT (DF-21)
+
+
+MOOSIC
+Invuln  - [Sega]Sonic & Knuckles : Invincibility - Fiend < Remix >
+Invuln0 - [?]Freedomplanet : Invincibility
+Invuln1 - [Nintendo]Super Mario Bros : Starman - Fiend < Remix >
+Invuln2 - [Undertale] Meglovania - TobyFox		[Replaced Earthworm Jim 2's Anything but tangerines]
+Invuln3 - [?]Ninja Gaiden : World 3-1 - Fiend < remix >
+Invuln4 - [Sega]Sonic Generations : Invincibility
+Invuln5 - [Sega]Sonic 2 : Super SOnic - NicoW < Remastered >
+Invuln6 - [Naughty Dog]Crashbandicoot : Invinible aku aku!
+Invuln7 - [Sega]Sonic 3 : Invincibility
+Invuln8 - [?] Kan kan? - Kunai's sugestion	[Up for replacement]
+Invuln9 - [?] ? - Kunai's sugestion		[Up for Replacement]
+
+WEAPONS
+
+-Fiend's Class [Doom Marine equivelent]
+	Pistol - [Demon eclipse] - Erience[?]
+	Golden pistol - [Re-colour] - Kunai
+	Shotgun - [Doom] - ID / Perkistan
+	Supah Shawtgun - [Doom2] ID / Sgt.Shivers
+	Chaingun(AK47) - [Golden souls] - BATANDY
+	Rawketlawnchair - [Demon eclipse] - Erience[?]
+	Golden Rocketlauncher - [Re-Colour] - Kunai
+	Plasmagun - [Demon eclipse] - Erience[?]
+	Golden Plasmagun - [Re-Colour] - Kunai
+	BFG9000 - [Demon Eclipse] - Erience[?]
+	Railgun - [Skulltag] - Carnevil[?]
+
+(Stats)
+Health	100 [||||||||||---------]
+Armour	100 [-------------------]
+Speed	100 [||||||||||---------]
+Luck	N/A [||-----------------] <- Manncobox 'GOOD' loot drop chance [Not yet Implemented!]
+Defence 1.0 [||||||||||XXXXXXXXX] - Damage intake Multiplier [Default Damage]
+Traits:
++Has a weapon for almost Every situation\
++Starts with Security Armour
++Backpack upgrades pistol clipsize
++Golden Pistol removes Reload
++Starts with "Medical backpack!" can spawn health (large and small in groups of 3, or a chance to spawn armor!)
+-Golden pistol lowers spread
+-Lacks Luck [10%] (I.e: 90% more likely to get an Enemy / trap to spawn)
+-Lowest Starting weapon damage [Pistol] 
+
+// The following classes are NOT yet added.
+-Kunai's Class [Scout]
+
+(Stats)
+Health	100 [||||||||||---------]
+Armour	100 [|||||||||||||||||||]
+Speed	120 [||||||||||||-------]
+Luck	N/A [||||||||||||||-----] <- Manncobox 'GOOD' loot drop chance [Not yet Implemented!]
+Defence 0.90 [|||||||xXXXXXXXXXX] - Damage intake Multiplier [Increased Damage]
+Traits:
++100 Armour!
++Speed runner! - Avoid/escape traps with ease [can break maps]
++Luck magnet - Drasticly increased chance of NOT getting a trap to spawn (75%)
++High dps and or range on weapons (i.e: Chaingun is a Minigun, Shotgun uses Slugs for Long range encounters
++Railgun! Armour / enemy peircing weapon! [Gold increases Rate of Fire]
+-High[er] damage intake
+-High ammo consumption / Reload speed with Some weapons
+-Plasma rifle / Golden Plasmarifle
+
+
+-Gosimers' Class [Tank]
+
+
+(Stats)
+Health	125 [||||||||||||O------] - 'o' <- Is placed because of his health is not in an increment of '10'
+Armour	50  [|||||||||----------] -Gosimer: "Power armour is for POOSIES!"
+Speed	90  [|||||||||----------]
+Luck	N/A [|||||--------------] <- Manncobox 'GOOD' loot drop chance [Not yet Implemented!]
+Defence 1.10 [|||||||xXXXXXXXXXX] - Damage intake Multiplier [Lower Damage]
++Bullet sponge - I EAT PAIN
++Increased Maximum healthyness by 25!
++starts with Medbag [Useable item] - Share with those I need! or whore it to your self idc xD
++High damaging weapons
+-Cannot use Double Barrel shotgun
+-1% chance to have a Reload that Fucks with the Player [Pistol] -30 Seconds
+-Fatty - 0.90 Speed might not seem like much. but it will hinder you more than you know.
+-Low luck chance, but higher than Fiends (25%)
+
+
+-Rebel Scum - Max's Class [Storm Trooper/DPS]
+
++Damage, Damage, DAMAGE
++Shields are stong, not as strong as Gosimer's
+-Weapons are all projectile based
+-No shields means enemies WILL hit harder. Can probably take a few more hits than Kunai.
+-Ammo count is pretty low and use is high. Groups of strong enemies may prove nasty
+
+Resources from the Following
+- ZDoom Forums
+- YouTube
+- Realm667
+- ZDoomWiki [Decorate assistance]
+- Max's old ass Dark Forces code for his weapons.
+
+
+
+//Realm667 credits 
+
+//SuicideBomber
+Decorate: Tormentor667
+GLDEFs: Dreadopp, Sandypaper (Brightmaps)
+Sounds: Id Software, Croteam (Serious Sam)
+Sprites: Id Software, Mark Quinn, Anthony Cole
+Sprite Edit: Tormentor667
+Idea Base: Suicide Bomber from Serious Sam
+
+//Flamer zombie
+Submitted: scalliano
+Decorate: scalliano, GreyGhost
+GLDefs: Tormentor667
+Sounds: Eriance (?)
+Sprites: Id Software, Xim, Eriance
+Sprite Edit: scalliano
+Idea Base: Flamethrower from Demon Eclipse
+
+//BFG Zombieman
+
+Submitted: scalliano
+Decorate: scalliano
+Sounds: none
+Sprites: Id Software
+Sprite Edit: ItsNatureToDie, neoworm
+Idea Base: Lack of a decent BFG zombie
+
+//Flashlight
+Submitted: idGamer
+Decorate: Alando1, idGamer
+GLDefs: Alando1
+Sounds: Unreal Tournament
+Sprites: Alando1, osjclatchford, Eriance, id Software, 3D Realms
+Sprite Edit: MagicWazard (angled)
+
+//ssg zombie
+
+Decorate: Rhoq, Aerial
+GLDefs: Dreadopp, MagicWazard (brightmaps)
+Sounds: id Software
+Sprites: The Skulltag Team
+Idea Base: Skulltag's Super Shotgun Zombie
+
+//raingun
+
+Submitted: Ghastly_dragon
+Decorate: The Skulltag Team
+Sprites: The Skulltag Team
+Idea Base: Quake series' Railgun
+
+//Cryobow
+
+ZZrionTheInsect - Base Sprite/Design/Idea, Final Crossbow head Design/Animation, cool "string" frames, being a pretty cool guy.
+		Implementation tweaks that I may not know of, came up with a way to shatter frozen corpses with a freezing weapon.
+
+Bloax - Shading tweaks, firing animation/design (this took some serious thinking), Additional firing animation tweak(, apparently made this thing go out of control)
+		Impact animation, Small implementation modifications. (Why is my list this big?)
+		
+Xaser - Implementation, Palette modifications (see: CryoPal.wad), Smoke (And probably more but Bloax is ignorant yes.)
+		Sound effects.
+		
+Ethril - Coming up with the insane idea that is called a "railgun crossbow", he should be put into a mental institution or somethin-
+		 OH WAIT NO THAT'S COMPLETELY AWESOME YES
+
+//Channeler
+
+Submitted: PillowBlaster
+Decorate: PillowBlaster
+GLDefs: None
+Sounds: Epic Games, Id Software
+Sprites: JoeyTD, Id Software
+
+//Flamethrower
+
+Submitted: MasterOFMorag
+Decorate: Eriance
+GLDefs: Keksdose
+Sprites: Eriance, 3d Realms
+Sounds: Eriance, Raven Software
+
+// Sentrygun
+
+Name: Deployable SentryGun
+Type: Custom Inventory
+Palette: Doom
+Summon: SentryBox, SentryGun
+Duration: infinite (until sentry destroyed)
+Use Type: Inventory
+
+Submitted: Captain Toenail
+Decorate: Captain Toenail
+GLDefs: Captain Toenail
+Sounds: Valve, Id Software
+Sprites: Id Software, 3D Realms, Raven
+Sprite Edit: Captain Toenail
+Idea Base: MW2 Sentry killstreak
+
+//Nuke launcher
+
+Submitted: Xim
+Decorate: Daniel
+Sprites: Daniel, 3D Realms
+Sounds: Epic Megagames (UT)
+
+//aracnorb
+
+Submitted: Yuraofthehairfan
+Decorate: Yuraofthehairfan, MagicWazard
+GLDEFs: Dreadopp, MagicWazard, Graf Zahl
+Sounds: (edits), id Software, 3DRealms (Electro Gun sound), Monolith Producties
+Sprites: id Software, 3DRealms (Electro Gun sprite), Jimmy, Beaublen (Thamuz BFG Projectile), Jimmy91
+Idea Base: Duke Nukem 3D Octabrain, Jimmy91's Aracnorb
+
+//chiller
+
+Submitted: ProjectAngel
+Decorate: ProjectAngel
+GLDefs: ProjectAngel
+Sounds: Raven Software, Id Software, Ghastly_Dragon
+Sprites: Raven Software, Id Software, Ghastly_Dragon
+Sprite Edit: ProjectAngel
+Idea Base: Hexen Reiver
+
+//diabloist
+
+Submitted: Tormentor667
+Decorate: Eriance
+GLDEFs: Ghastly Dragon, Sandypaper (Brightmaps)
+Sounds: Id Software, Raven Software, Rogue Entertainment, Eriance
+Sprites: Id Software, Raven Software
+Sprite Edit: Eriance
+Idea Base: Doom 2 Arch-Vile
+
+//devasatorzombie
+
+Information:
+Name: Devastator Zombie
+Difficulty: Medium
+Connections: Devastator from Demon Eclipse
+Summon: DevastatorZombie
+Melee: None
+Distance: Projectile
+Type: Undead
+
+Credits:
+Submitted: scalliano
+Decorate: scalliano
+Sounds: Eriance (?)
+Sprites: Id Software, Eriance
+Sprite Edit: ItsNatureToDie, neoworm, Captain Toenail, Xim, Ghastly_dragon, scalliano
+Idea Base: Devastator from Demon Eclipse
+
+
+Decorate: Eriance
+GLDefs: Dreadopp, SandyPaper (Brightmaps)
+Sounds: id Software, Eriance
+Sprites: id Software, Raven Software, Wolfendoom
+Sprite Edit: Eriance
+Idea Base: Doom 2 Cyberdemon
+
+Decorate: Vader
+GLDEFs: Dreadopp, Sandypaper (Brightmaps)
+Sounds: Id Software, Blizzard Entertainment, Vader
+Sprites: Vader, Eriance (cannon base)
+
+Submitted: Tormentor667
+Decorate: Nanami, Ghastly_dragon
+GLDEFs: Keksdose, Herculine (Brightmaps)
+Sounds: Id Software
+Sprites: Id Software
+Sprite Edit: Espi, Ebola
+
+Credits:
+Submitted: NovaKiller
+Decorate: NovaKiller
+GLDefs: NovaKiller
+Sounds: Doom ( ID Software ), Hexen ( Raven Software )
+Sprites: Doom ( ID Software )
+Sprite Edit: NovaKiller
+Idea Base: Making a monster that had a bit control over time.
+
+Haedexebus
+Submitted: Ozymandias81
+Decorate: DeVloek, Ozymandias81
+GLDefs: Ozymandias81
+Sounds: 3DRealms, FreeRadical Design, Eriance
+Sprites: yuraofthehairfan, zrrion the insect, Eriance
+Sprite Edit: Ozymandias81
+Idea Base: An hellish simple variant Volacubi-like monster for Doom
+
+ArachnotronMk2
+Decorate: Jimmy, Zdude (minor edits)
+Sounds: None added, uses stock Doom sounds
+GLDefs: Sandypaper (Brightmaps)
+Sprites: id Software
+Sprite Edit: Jimmy
+Idea Base: Upgraded version of the Arachnotron
+
+Autoshootgunguy
+Submitted: scalliano
+Decorate: scalliano, Popsoap
+GLDefs: scalliano
+Sounds: Eriance
+Sprites: Id Software, Ghastly_dragon, Eriance, Xim
+Sprite Edit: scalliano
+Idea Base: Automatic Shotgun from Demon Eclipse & Stronghold
+
+beam Revenant
+Decorate: Captain Ventris
+GLDEFs: Captain Ventris
+Sounds: Id Software
+Sprite Edit: Spectator
+Idea Base: ZDoom Wars required sprites to allow players to tell Rail and Normal Revenants apart.
+
+zombieflyer
+Submitted: Tormentor667, Mancubus
+Decorate: Tormentor667, Mancubus, Bouncy
+GLDEFs: Dreadopp
+Sounds: Id Software, 3DRealms
+Sprites: Id Software, 3DRealms
+Sprite Edit: Tormentor667
+Idea Base: Duke Nukem 3D Pig Cop Flyer
+
+warlordofhell
+Decorate: Tormentor667
+GLDEFs: Dreadopp, Virtue (Brightmaps)
+Sounds: Id Software
+Sprites: Id Software
+Sprite Edit: Tormentor667
+
+Decorate: Tormentor667
+GLDEFs: Dreadopp, Sandypaper (Brightmaps)
+Sounds: Id Software, Raven Software
+Sprites: Id Software
+Sprite Edit: InsanityBringer, Tormentor667
+
+Rocket zamble
+Decorate: Graf Zahl
+GLDEFs: Dreadopp, Sandypaper (Brightmaps)
+Sounds: Id Software
+Sprites: Id Software
+Sprite Edit: The Innocent Crew
+
+//ammo belt
+
+Submitted: Ghastly_dragon
+Decorate: Ghastly_dragon
+Sprites: ID Software
+Sprite Edit: Ghastly_dragon
+Idea Base: Quake 2's Bandolier
+
+//deployable shield
+
+Submitted: David Raven
+Decorate: Captain Toenail, David Raven
+Sounds: Quake 2, Half Life
+Sprites: Doom, Duke3D, Rogue Entertainment
+Sprite Edit: Captain Toenail, scalliano, David Raven
+Idea Base: David Raven
+
+//Scrollofhellfire
+
+Decorate: Ghastly_dragon
+Sprites: Raven Software, Solarsnowfall (Flames)
+Sprite Edit: Captain Toenail, Xaser
+Sounds: Raven Software
+Idea Base: Heretic 2's Firewall spell
+
+//Infernodemon
+
+Submitted: Maelstrom
+Decorate: Maelstrom
+GLDefs: StarScream
+Sounds: Blizzard Entertainment, ID Software, Raven Software.
+Sprites: ID Software, Raven Software, 3D Realms, Nanami, Eriance, Keksdose, Jimmy91(Or is it Jimmy now).
+Sprite Edit: StarScream, Maelstrom
+
+// Rail Cannon
+osjclatchford 
+
+//Female Sergeant
+Submitted: DavidRaven
+Decorate: DavidRaven
+GLDefs: DavidRaven
+Sounds: DavidRaven, Id software
+Sprites: Id Software, the Skulltag Team
+Sprite Edit: DavidRaven, ItsNatureToDie (altdeath)
+Idea Base: DavidRaven
+
+
+//female plasma
+Submitted: DavidRaven
+Decorate: DavidRaven
+GLDefs: DavidRaven
+Sounds: DavidRaven, Id software
+Sprites: Id Software, the Skulltag Team, Tormentor667, Captain Toenail, Ghastly Dragon
+Sprite Edit: DavidRaven, ItsNatureToDie (altdeath)
+Idea Base: DavidRaven
+
+//pyrozombie
+
+Credits:
+Submitted: scalliano
+Decorate: scalliano, Eriance
+Sounds: Eriance, Raven Software, 3d Realms
+GLDEFs: Keksdose
+Sprites: Id Software, Eriance, 3D Realms
+Sprite Edit: ItsNatureToDie, neoworm, Captain Toenail, Xim, Ghastly_dragon, scalliano
+Idea Base: Pyro Cannon from UTnT & Stronghold
+
+//Demolisher
+Decorate: Eriance
+GLDEFs: Ghastly Dragon, SandyPaper (Brightmaps)
+Sounds: Id Software, Midway
+Sprites: Id Software
+Sprite Edit: Eriance
+Idea Base: Doom Spider Mastermind
+
+Submitted: ZZYZX
+Decorate: ZZYZX
+GLDefs: Nope
+Sounds: id software
+Sprites: id software
+Sprite Edit: ZZYZX
+Idea Base: Bijuudama
+
+//Hellsfury
+Decorate: Tormentor667
+GLDEFs: Ghastly Dragon, Keksdose, Sandypaper (Brightmaps)
+Sounds: Id Software
+Sprites: Id Software
+Sprite Edit: Tormentor667, Vader (skull death ani) 
+
+//Anihalator
+Decorate: Eriance
+GLDEFs: Ghastly Dragon, Sandypaper (Brightmaps)
+Sounds: Id Software, Midway
+Sprites: Id Software, Raven Software, Wolfendoom
+Sprite Edit: Eriance
+Idea Base: Doom Cyberdemon
+
+//megaman... erm megamap
+[Credits]
+Submitted: Captain Toenail
+Decorate: Captain Toenail
+GLDefs: None
+Sounds: None
+Sprites: Id Software, Rogue Entertainment
+Sprite Edit: Captain Toenail
+Idea Base: IDDT cheat code (reveals actors on automap)
+
+//Winchester
+
+Submitted: Batandy
+Decorate: Shotgun edit
+Sounds: reload took from FINDSOUNDS.com / firing sound took from Ubisoft's Call of Juarez Bound in Blood
+Sprites: Doom
+Sprite Edit: Sprites made by joining parts of the double barrel shotgun with parts of the normal shotgun. Pickup sprites by That_One_Doom_Mod 
+Idea Base: Western movies
+ACS: No
+
+// Bruiserdemon
+
+Name: Bruiser Demon
+Difficulty: Hard
+Connection: none
+Summon: BruiserDemon
+Melee: Yes
+Distance: Projectile
+Type: Demon
+Brightmaps: Yes
+
+The Bruiser Demon has both dynamic lights and brightmaps on the main monster,
+and unfortunately the dynamic lights tend to cover up the brightmaps. It's up to
+the user to decide whether or not they want to keep both, or remove one effect
+or the other.
+
+
+May God have mercy on whoever tries to update this thing's GLDefs...
+           -Ghastly
+		   Already did it ghastly...
+		   -Fiendzy
+		   
+
+Submitted: Tormentor667
+Decorate: Vader
+GLDEFs: Ghastly Dragon, Keksdose, Sandypaper (Brightmaps)
+Sounds: Id Software, Blizzard
+Sprites: Id Software
+Sprite Edit: Vader

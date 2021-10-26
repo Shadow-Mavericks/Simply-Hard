@@ -1,0 +1,172 @@
+// Acid Demon
+actor N_Demon_Acid : fastdemon 
+{
+//	Scale 1.1
+	Translation "16:47=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Acid")
+		Goto See
+	}
+}
+
+// Void Demon
+actor N_Demon_Void : fastdemon 
+{
+//	Scale 1.1
+	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Void")
+		Goto See
+	}
+}
+
+// Fire Demon
+actor N_Demon_Fire : fastdemon 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Fire")
+		Goto See
+	}
+}
+
+
+// Electric Demon
+actor N_Demon_Electric : fastdemon 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Electric")
+		Goto See
+	}
+}
+
+// Ice Demon
+actor N_Demon_Ice : fastdemon 
+{
+//	Scale 1.1
+	+Noicedeath
+	Translation "16:47=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (4, "demon/melee", "", "Ice")
+		Goto See
+	}
+}
+
+// Metal Demon
+actor N_Demon_HeavyMetal : fastdemon 
+{
+//	Scale 1.1
+  PainChance 0
+	Translation "16:47=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (4, "demon/melee", "", "HeavyMetal")
+		Goto See
+	}
+}
+
+// Acid Demon GHOST
+actor N_Demonghost_Acid : fastSpectre 
+{
+//	Scale 1.1
+	Translation "16:47=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Acid")
+		Goto See
+	}
+}
+
+// Void Demon  GHOST
+actor N_Demonghost_Void : fastSpectre 
+{
+//	Scale 1.1
+	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Void")
+		Goto See
+	}
+}
+
+// Fire Demon  GHOST
+actor N_Demonghost_Fire : fastSpectre 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Fire")
+		Goto See
+	}
+}
+
+
+// Electric Demon  GHOST
+actor N_Demonghost_Electric : fastSpectre 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (8, "demon/melee", "", "Electric")
+		Goto See
+	}
+}
+
+// Ice Demon  GHOST
+actor N_Demonghost_Ice : fastspectre 
+{
+//	Scale 1.1
+	+Noicedeath
+	Translation "16:47=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (4, "demon/melee", "", "Ice")
+		Goto See
+	}
+}
+
+// Metal Demon  GHOST
+actor N_Demonghost_HeavyMetal : fastspectre 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+		Melee:
+		SARG EF 4 A_FaceTarget
+		SARG G 4 A_CustomMeleeAttack (4, "demon/melee", "", "HeavyMetal")
+		Goto See
+	}
+}

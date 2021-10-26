@@ -1,0 +1,273 @@
+pointlight STAR_FLASHA
+{
+    color 1.0 1.0 1.0
+    size 16
+    dontlightself 1
+}
+
+pointlight STAR_FLASHF
+{
+    color 1.0 1.0 1.0
+    size 32
+    dontlightself 1
+}
+
+object Star
+{
+    frame STARA { light STAR_FLASHA }
+    frame STARB { light STAR_FLASHA }
+    frame STARC { light STAR_FLASHA }
+    frame STARD { light STAR_FLASHA }
+    frame STARE { light STAR_FLASHA }
+    frame STARF { light STAR_FLASHF }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+pointlight RING_STAR_FLASHA
+{
+    color 1.0 1.0 0.0
+    size 16
+    dontlightself 1
+}
+
+pointlight RING_STAR_FLASHF
+{
+    color 1.0 1.0 0.0
+    size 32
+    dontlightself 1
+}
+
+object Ring_Star
+{
+    frame STR2A { light RING_STAR_FLASHA }
+    frame STR2B { light RING_STAR_FLASHA }
+    frame STR2C { light RING_STAR_FLASHA }
+    frame STR2D { light RING_STAR_FLASHA }
+    frame STR2E { light RING_STAR_FLASHA }
+    frame STR2F { light RING_STAR_FLASHF }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+pointlight SUPER_STAR_FLASHA
+{
+    color 1.0 1.0 0.5
+    size 16
+    dontlightself 1
+}
+
+pointlight SUPER_STAR_FLASHF
+{
+    color 1.0 1.0 0.5
+    size 32
+    dontlightself 1
+}
+
+object Super_Star
+{
+    frame STR7A { light SUPER_STAR_FLASHA }
+    frame STR7B { light SUPER_STAR_FLASHA }
+    frame STR7C { light SUPER_STAR_FLASHA }
+    frame STR7D { light SUPER_STAR_FLASHA }
+    frame STR7E { light SUPER_STAR_FLASHA }
+    frame STR7F { light SUPER_STAR_FLASHF }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+pointlight HYPER_STAR_GREEN_FLASHA
+{
+    color 0.5 1.0 0.5
+    size 16
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_GREEN_FLASHF
+{
+    color 0.5 1.0 0.5
+    size 32
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_RED_FLASHA
+{
+    color 1.0 0.5 0.5
+    size 16
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_RED_FLASHF
+{
+    color 1.0 0.5 0.5
+    size 32
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_PURPLE_FLASHA
+{
+    color 1.0 0.5 1.0
+    size 16
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_PURPLE_FLASHF
+{
+    color 1.0 0.5 1.0
+    size 32
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_BLUE_FLASHA
+{
+    color 0.5 0.5 1.0
+    size 16
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_BLUE_FLASHF
+{
+    color 0.5 0.5 1.0
+    size 32
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_YELLOW_FLASHA
+{
+    color 1.0 1.0 0.5
+    size 16
+    dontlightself 1
+}
+
+pointlight HYPER_STAR_YELLOW_FLASHF
+{
+    color 1.0 1.0 0.5
+    size 32
+    dontlightself 1
+}
+
+
+object Hyper_Star_Green
+{
+    frame STR3A { light HYPER_STAR_GREEN_FLASHA }
+    frame STR3B { light HYPER_STAR_GREEN_FLASHA }
+    frame STR3C { light HYPER_STAR_GREEN_FLASHA }
+    frame STR3D { light HYPER_STAR_GREEN_FLASHA }
+    frame STR3E { light HYPER_STAR_GREEN_FLASHA }
+    frame STR3F { light HYPER_STAR_GREEN_FLASHF }
+}
+
+object Hyper_Star_Red
+{
+    frame STR4A { light HYPER_STAR_RED_FLASHA }
+    frame STR4B { light HYPER_STAR_RED_FLASHA }
+    frame STR4C { light HYPER_STAR_RED_FLASHA }
+    frame STR4D { light HYPER_STAR_RED_FLASHA }
+    frame STR4E { light HYPER_STAR_RED_FLASHA }
+    frame STR4F { light HYPER_STAR_RED_FLASHF }
+}
+
+object Hyper_Star_Purple
+{
+    frame STR5A { light HYPER_STAR_PURPLE_FLASHA }
+    frame STR5B { light HYPER_STAR_PURPLE_FLASHA }
+    frame STR5C { light HYPER_STAR_PURPLE_FLASHA }
+    frame STR5D { light HYPER_STAR_PURPLE_FLASHA }
+    frame STR5E { light HYPER_STAR_PURPLE_FLASHA }
+    frame STR5F { light HYPER_STAR_PURPLE_FLASHF }
+}
+
+object Hyper_Star_Blue
+{
+    frame STR6A { light HYPER_STAR_BLUE_FLASHA }
+    frame STR6B { light HYPER_STAR_BLUE_FLASHA }
+    frame STR6C { light HYPER_STAR_BLUE_FLASHA }
+    frame STR6D { light HYPER_STAR_BLUE_FLASHA }
+    frame STR6E { light HYPER_STAR_BLUE_FLASHA }
+    frame STR6F { light HYPER_STAR_BLUE_FLASHF }
+}
+
+object Hyper_Star_Yellow
+{
+    frame STR7A { light HYPER_STAR_YELLOW_FLASHA }
+    frame STR7B { light HYPER_STAR_YELLOW_FLASHA }
+    frame STR7C { light HYPER_STAR_YELLOW_FLASHA }
+    frame STR7D { light HYPER_STAR_YELLOW_FLASHA }
+    frame STR7E { light HYPER_STAR_YELLOW_FLASHA }
+    frame STR7F { light HYPER_STAR_YELLOW_FLASHF }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+pulselight SUPER_TRAILA
+{
+    color 1.0 1.0 0.5
+    size 1
+    secondarySize 32
+    interval 6
+}
+
+object Super_Trail
+{
+    frame TNT1A { light SUPER_TRAILA }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+pulselight HYPER_GREEN_TRAILA
+{
+    color 0.5 1.0 0.5
+    size 1
+    secondarySize 64
+    interval 6
+}
+
+pulselight HYPER_RED_TRAILA
+{
+    color 1.0 0.5 0.5
+    size 1
+    secondarySize 64
+    interval 6
+}
+
+
+pulselight HYPER_PURPLE_TRAILA
+{
+    color 1.0 0.5 1.0
+    size 1
+    secondarySize 64
+    interval 6
+}
+
+pulselight HYPER_BLUE_TRAILA
+{
+    color 0.5 0.5 1.0
+    size 1
+    secondarySize 64
+    interval 6
+}
+
+pulselight HYPER_YELLOW_TRAILA
+{
+    color 1.0 1.0 0.5
+    size 1
+    secondarySize 64
+    interval 6
+}
+
+object Hyper_Trail_Green { frame TNT1A { light HYPER_GREEN_TRAILA } }
+object Hyper_Trail_Red { frame TNT1A { light HYPER_RED_TRAILA } }
+object Hyper_Trail_Purple { frame TNT1A { light HYPER_PURPLE_TRAILA } }
+object Hyper_Trail_Blue { frame TNT1A { light HYPER_BLUE_TRAILA } }
+object Hyper_Trail_Yellow { frame TNT1A { light HYPER_YELLOW_TRAILA } }
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,949 @@
+
+Actor PlasmaCoolant : Ammo
+{
+	Inventory.PickupMessage ""
+	Inventory.Amount 1
+	Inventory.MaxAmount 100
+	Ammo.BackpackAmount 0
+	Ammo.BackpackMaxAmount 100
+	Inventory.Icon ""	
+	States
+		{
+		Spawn:
+			TNT1 A -1
+			Stop
+		}
+}
+
+ACTOR Fiend_PlasmaRifle : DoomWeapon
+{
+	Weapon.PreferredSkin "Plasma-Rifle-Marine"
+    Weapon.SelectionOrder 100
+    Weapon.AmmoUse1 1
+    Weapon.AmmoGive1 40
+    Weapon.AmmoType1 "Battery"
+    Weapon.AmmoUse2 1
+    Weapon.AmmoGive2 0
+    Weapon.AmmoType2 "PlasmaCoolant"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.ForbiddenTo "Gosimer"
+	Inventory.RestrictedTo "Fiend"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+    Inventory.PickupMessage "$GOTPLASMA"
+    Tag "$TAG_PLASMARIFLE"
+    
+    States
+    {
+        Ready:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Ready")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 0, "Ready2") // 0 actually means "max amount of item", yeah that makes sense...
+            GUN6 A 0 A_GiveInventory("PlasmaCoolant", 1)
+            GUN6 A 0 A_GunFlash("Flash", GFF_NOEXTCHANGE)
+            GUN6 A 1 A_WeaponReady
+            Loop
+            
+        Ready2:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Ready2")
+            GUN6 A 0 A_GunFlash("Flash", GFF_NOEXTCHANGE)
+            GUN6 A 1 A_WeaponReady
+            Loop
+            
+        Deselect:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Deselect")
+            GUN6 A 0 A_GunFlash("Flash", GFF_NOEXTCHANGE)
+            GUN6 A 1 A_Lower
+            Loop
+        Select:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Select")
+            GUN6 A 0 A_GunFlash("Flash", GFF_NOEXTCHANGE)
+            GUN6 A 1 A_Raise
+            Loop
+        
+		//Altfire - Ability
+		Altfire: 
+			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+			Goto Ready
+			RLGG A 1 Offset ( -26, 70 )
+			RLGG A 1 Offset ( -25, 60 )
+			RLGG A 2 Offset ( -23, 52 )
+			RLGG A 2 Offset ( -20, 47 )
+			RLGG A 3 Offset ( -15, 42 )
+			RLGG A 3 Offset ( -10, 37 )
+			RLGG A 4 Offset ( -5, 34 )
+			RLGG A 4 Offset ( 0, 32 )
+		ALTHOLD:
+			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+			Goto ALTFirestop
+			RLGF A 1 Bright 
+			RLGG B 1 Bright
+			RLGG C 1 Bright
+			RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
+			RLGG D 1 A_Takeinventory("AbilityCharge",2)
+			RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
+			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+			RLGG A 1 A_Refire
+		ALTFirestop:
+			RLGG A 4 Offset ( 0, 32 )
+			RLGG A 4 Offset ( -5, 34 ) 
+			RLGG A 3 Offset ( -10, 37 )
+			RLGG A 3 Offset ( -15, 42 )
+			RLGG A 2 Offset ( -20, 47 )
+			RLGG A 2 Offset ( -23, 52 )
+			RLGG A 1 Offset ( -25, 60 )
+			RLGG A 1 Offset ( -26, 70 )
+			goto Ready
+		
+        Fire:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Fire")
+            GUN6 A 0 A_GunFlash("Fire_Flash", GFF_NOEXTCHANGE)
+            GUN6 A 0 A_TakeInventory("PlasmaCoolant", 2)                    // take 1 coolant
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Fire_Check")    // always jump to Fire_Check if we have at least 1 coolant left
+            Goto Cooldown                                                   // if we have no coolant left, go to cooldown
+            
+        Fire_Check:
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 100, "Fire_100")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 99, "Fire_99")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 98, "Fire_98")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 97, "Fire_97")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 96, "Fire_96")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 95, "Fire_95")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 94, "Fire_94")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 93, "Fire_93")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 92, "Fire_92")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Fire_91")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 90, "Fire_90")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 89, "Fire_89")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 88, "Fire_88")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 87, "Fire_87")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 86, "Fire_86")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 85, "Fire_85")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 84, "Fire_84")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 83, "Fire_83")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 82, "Fire_82")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Fire_81")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 80, "Fire_80")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 79, "Fire_79")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 78, "Fire_78")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 77, "Fire_77")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 76, "Fire_76")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 75, "Fire_75")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 74, "Fire_74")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 73, "Fire_73")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 72, "Fire_72")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Fire_71")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 70, "Fire_70")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 69, "Fire_69")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 68, "Fire_68")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 67, "Fire_67")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 66, "Fire_66")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 65, "Fire_65")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 64, "Fire_64")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 63, "Fire_63")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 62, "Fire_62")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Fire_61")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 60, "Fire_60")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 59, "Fire_59")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 58, "Fire_58")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 57, "Fire_57")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 56, "Fire_56")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 55, "Fire_55")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 54, "Fire_54")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 53, "Fire_53")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 52, "Fire_52")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Fire_51")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 50, "Fire_50")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 49, "Fire_49")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 48, "Fire_48")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 47, "Fire_47")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 46, "Fire_46")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 45, "Fire_45")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 44, "Fire_44")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 43, "Fire_43")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 42, "Fire_42")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Fire_41")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 40, "Fire_40")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 39, "Fire_39")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 38, "Fire_38")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 37, "Fire_37")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 36, "Fire_36")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 35, "Fire_35")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 34, "Fire_34")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 33, "Fire_33")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 32, "Fire_32")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Fire_31")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 30, "Fire_30")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 29, "Fire_29")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 28, "Fire_28")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 27, "Fire_27")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 26, "Fire_26")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 25, "Fire_25")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 24, "Fire_24")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 23, "Fire_23")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 22, "Fire_22")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Fire_21")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 20, "Fire_20")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 19, "Fire_19")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 18, "Fire_18")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 17, "Fire_17")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 16, "Fire_16")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 15, "Fire_15")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 14, "Fire_14")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 13, "Fire_13")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 12, "Fire_12")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Fire_11")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 10, "Fire_10")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 9, "Fire_9")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 8, "Fire_8")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 7, "Fire_7")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 6, "Fire_6")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 5, "Fire_5")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 4, "Fire_4")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 3, "Fire_3")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 2, "Fire_2")
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Fire_1")
+    
+        Fire_1: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_2: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_3: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_4: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_5: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_6: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_7: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_8: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_9: GN6F A 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_10: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_11: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_12: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_13: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_14: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_15: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_16: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_17: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_18: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_19: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_20: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Fire_Refire
+        Fire_21: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb80") Goto Fire_Refire
+        Fire_22: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb79") Goto Fire_Refire
+        Fire_23: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb78") Goto Fire_Refire
+        Fire_24: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb77") Goto Fire_Refire
+        Fire_25: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb76") Goto Fire_Refire
+        Fire_26: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb75") Goto Fire_Refire
+        Fire_27: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb74") Goto Fire_Refire
+        Fire_28: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb73") Goto Fire_Refire
+        Fire_29: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb72") Goto Fire_Refire
+        Fire_30: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb71") Goto Fire_Refire
+        Fire_31: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb70") Goto Fire_Refire
+        Fire_32: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb69") Goto Fire_Refire
+        Fire_33: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb68") Goto Fire_Refire
+        Fire_34: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb67") Goto Fire_Refire
+        Fire_35: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb66") Goto Fire_Refire
+        Fire_36: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb65") Goto Fire_Refire
+        Fire_37: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb64") Goto Fire_Refire
+        Fire_38: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb63") Goto Fire_Refire
+        Fire_39: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb62") Goto Fire_Refire
+        Fire_40: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb61") Goto Fire_Refire
+        Fire_41: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb60") Goto Fire_Refire
+        Fire_42: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb59") Goto Fire_Refire
+        Fire_43: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb58") Goto Fire_Refire
+        Fire_44: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb57") Goto Fire_Refire
+        Fire_45: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb56") Goto Fire_Refire
+        Fire_46: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb55") Goto Fire_Refire
+        Fire_47: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb54") Goto Fire_Refire
+        Fire_48: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb53") Goto Fire_Refire
+        Fire_49: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb52") Goto Fire_Refire
+        Fire_50: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb51") Goto Fire_Refire
+        Fire_51: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb50") Goto Fire_Refire
+        Fire_52: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb49") Goto Fire_Refire
+        Fire_53: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb48") Goto Fire_Refire
+        Fire_54: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb47") Goto Fire_Refire
+        Fire_55: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb46") Goto Fire_Refire
+        Fire_56: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb45") Goto Fire_Refire
+        Fire_57: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb44") Goto Fire_Refire
+        Fire_58: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb43") Goto Fire_Refire
+        Fire_59: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb42") Goto Fire_Refire
+        Fire_60: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb41") Goto Fire_Refire
+        Fire_61: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb40") Goto Fire_Refire
+        Fire_62: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb39") Goto Fire_Refire
+        Fire_63: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb38") Goto Fire_Refire
+        Fire_64: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb37") Goto Fire_Refire
+        Fire_65: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb36") Goto Fire_Refire
+        Fire_66: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb35") Goto Fire_Refire
+        Fire_67: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb34") Goto Fire_Refire
+        Fire_68: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb33") Goto Fire_Refire
+        Fire_69: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb32") Goto Fire_Refire
+        Fire_70: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb31") Goto Fire_Refire
+        Fire_71: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb30") Goto Fire_Refire
+        Fire_72: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb29") Goto Fire_Refire
+        Fire_73: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb28") Goto Fire_Refire
+        Fire_74: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb27") Goto Fire_Refire
+        Fire_75: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb26") Goto Fire_Refire
+        Fire_76: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb25") Goto Fire_Refire
+        Fire_77: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb24") Goto Fire_Refire
+        Fire_78: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb23") Goto Fire_Refire
+        Fire_79: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb22") Goto Fire_Refire
+        Fire_80: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb21") Goto Fire_Refire
+        Fire_81: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb20") Goto Fire_Refire
+        Fire_82: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb19") Goto Fire_Refire
+        Fire_83: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb18") Goto Fire_Refire
+        Fire_84: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb17") Goto Fire_Refire
+        Fire_85: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb16") Goto Fire_Refire
+        Fire_86: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb15") Goto Fire_Refire
+        Fire_87: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb14") Goto Fire_Refire
+        Fire_88: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb13") Goto Fire_Refire
+        Fire_89: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb12") Goto Fire_Refire
+        Fire_90: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb11") Goto Fire_Refire
+        Fire_91: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb10") Goto Fire_Refire
+        Fire_92: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb9") Goto Fire_Refire
+        Fire_93: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb8") Goto Fire_Refire
+        Fire_94: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb7") Goto Fire_Refire
+        Fire_95: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb6") Goto Fire_Refire
+        Fire_96: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb5") Goto Fire_Refire
+        Fire_97: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb4") Goto Fire_Refire
+        Fire_98: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb3") Goto Fire_Refire
+        Fire_99: GN6F A 1    Bright A_FireCustomMissile("PlasmaBlorb2") Goto Fire_Refire
+        Fire_100: GN6F A 1   Bright A_FireCustomMissile("PlasmaBlorb1") Goto Fire_Refire
+        
+        Fire_Refire:
+            GN6F BC 1 A_GunFlash("Fire_Flash", GFF_NOEXTCHANGE)
+            GUN6 A 0 A_ReFire
+            GUN6 A 4 A_GunFlash("Flash", GFF_NOEXTCHANGE)
+            Goto Ready
+        
+        CoolDown:
+			GUN6 A 0 A_Playsound("Weapon/FPLASVENT",Chan_7)
+		CoolDownLoop:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Cooldown")
+            GUN6 A 0 A_GunFlash("Over_Flash", GFF_NOEXTCHANGE)
+            GUN6 A 0 A_JumpIfInventory("PlasmaCoolant", 0, "Ready2")
+            GUN6 A 1 A_GiveInventory("PlasmaCoolant", 1)
+            loop
+            
+        Flash:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Flash")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Flash_10")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Flash_9")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Flash_8")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Flash_7")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Flash_6")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Flash_5")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Flash_4")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Flash_3")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Flash_2")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Flash_1")
+            GN6M A 20
+            stop
+
+        Flash_10: 
+            GN6M A 20
+            stop        
+        Flash_9: 
+            GN6M B 20
+            stop
+        Flash_8: 
+            GN6M C 20
+            stop
+        Flash_7: 
+            GN6M D 20
+            stop
+        Flash_6: 
+            GN6M E 20
+            stop
+        Flash_5: 
+            GN6M F 20
+            stop
+        Flash_4: 
+            GN6M G 20
+            stop
+        Flash_3: 
+            GN6M H 20
+            stop
+        Flash_2: 
+            GN6M I 20
+            stop
+        Flash_1: 
+            GN6M J 20
+            stop
+            
+        Fire_Flash:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Fire_Flash")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Fire_Flash_10")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Fire_Flash_9")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Fire_Flash_8")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Fire_Flash_7")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Fire_Flash_6")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Fire_Flash_5")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Fire_Flash_4")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Fire_Flash_3")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Fire_Flash_2")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Fire_Flash_1")
+            GN6M T 20 
+            stop
+
+        Fire_Flash_10: 
+            GN6M K 20
+            stop        
+        Fire_Flash_9: 
+            GN6M L 20
+            stop
+        Fire_Flash_8: 
+            GN6M M 20
+            stop
+        Fire_Flash_7: 
+            GN6M N 20
+            stop
+        Fire_Flash_6: 
+            GN6M O 20
+            stop
+        Fire_Flash_5: 
+            GN6M P 20
+            stop
+        Fire_Flash_4: 
+            GN6M Q 20
+            stop
+        Fire_Flash_3: 
+            GN6M R 20
+            stop
+        Fire_Flash_2: 
+            GN6M S 20
+            stop
+        Fire_Flash_1: 
+            GN6M T 20
+            stop
+            
+        Over_Flash:
+            GUN6 A 0 A_JumpIfInventory("Tier6UpgradeToken", 1, "Gold_Over_Flash")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Over_Flash_10")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Over_Flash_9")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Over_Flash_8")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Over_Flash_7")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Over_Flash_6")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Over_Flash_5")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Over_Flash_4")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Over_Flash_3")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Over_Flash_2")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Over_Flash_1")
+            GN6O A 20 
+            stop
+
+        Over_Flash_10: 
+            GN6O J 20
+            stop        
+        Over_Flash_9: 
+            GN6O I 20
+            stop
+        Over_Flash_8: 
+            GN6O H 20
+            stop
+        Over_Flash_7: 
+            GN6O G 20
+            stop
+        Over_Flash_6: 
+            GN6O F 20
+            stop
+        Over_Flash_5: 
+            GN6O E 20
+            stop
+        Over_Flash_4: 
+            GN6O D 20
+            stop
+        Over_Flash_3: 
+            GN6O C 20
+            stop
+        Over_Flash_2: 
+            GN6O B 20
+            stop
+        Over_Flash_1: 
+            GN6O A 20
+            stop
+            
+            
+            
+            
+            
+        ///////////////////////////////////////////////////////////////////////
+        // gold version
+        ///////////////////////////////////////////////////////////////////////
+        Gold_Ready:
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 0, "Gold_Ready2") // 0 actually means "max amount of item", yeah that makes sense...
+            GUN6 B 0 A_GiveInventory("PlasmaCoolant", 1)
+            GUN6 B 0 A_GunFlash("Gold_Flash", GFF_NOEXTCHANGE)
+            GUN6 B 1 A_WeaponReady
+            Loop
+            
+        Gold_Ready2:
+            GUN6 B 0 A_GunFlash("Gold_Flash", GFF_NOEXTCHANGE)
+            GUN6 B 1 A_WeaponReady
+            Loop
+            
+        Gold_Deselect:
+            GUN6 B 0 A_GunFlash("Gold_Flash", GFF_NOEXTCHANGE)
+            GUN6 B 1 A_Lower
+            Loop
+        Gold_Select:
+            GUN6 b 0 A_GunFlash("Gold_Flash", GFF_NOEXTCHANGE)
+            GUN6 b 1 A_Raise
+            Loop
+            
+        Gold_Fire:
+            GUN6 b 0 A_GunFlash("Gold_Fire_Flash", GFF_NOEXTCHANGE)
+            GUN6 b 0 A_TakeInventory("PlasmaCoolant", 1)                    // take 1 coolant
+            GUN6 b 0 A_JumpIfInventory("PlasmaCoolant", 1, "Gold_Fire_Check")    // always jump to Fire_Check if we have at least 1 coolant left
+            Goto Cooldown                                                   // if we have no coolant left, go to cooldown
+            
+        Gold_Fire_Check:
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 100,"Gold_Fire_100")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 99, "Gold_Fire_99")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 98, "Gold_Fire_98")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 97, "Gold_Fire_97")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 96, "Gold_Fire_96")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 95, "Gold_Fire_95")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 94, "Gold_Fire_94")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 93, "Gold_Fire_93")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 92, "Gold_Fire_92")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 91, "Gold_Fire_91")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 90, "Gold_Fire_90")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 89, "Gold_Fire_89")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 88, "Gold_Fire_88")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 87, "Gold_Fire_87")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 86, "Gold_Fire_86")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 85, "Gold_Fire_85")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 84, "Gold_Fire_84")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 83, "Gold_Fire_83")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 82, "Gold_Fire_82")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 81, "Gold_Fire_81")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 80, "Gold_Fire_80")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 79, "Gold_Fire_79")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 78, "Gold_Fire_78")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 77, "Gold_Fire_77")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 76, "Gold_Fire_76")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 75, "Gold_Fire_75")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 74, "Gold_Fire_74")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 73, "Gold_Fire_73")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 72, "Gold_Fire_72")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 71, "Gold_Fire_71")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 70, "Gold_Fire_70")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 69, "Gold_Fire_69")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 68, "Gold_Fire_68")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 67, "Gold_Fire_67")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 66, "Gold_Fire_66")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 65, "Gold_Fire_65")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 64, "Gold_Fire_64")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 63, "Gold_Fire_63")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 62, "Gold_Fire_62")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 61, "Gold_Fire_61")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 60, "Gold_Fire_60")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 59, "Gold_Fire_59")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 58, "Gold_Fire_58")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 57, "Gold_Fire_57")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 56, "Gold_Fire_56")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 55, "Gold_Fire_55")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 54, "Gold_Fire_54")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 53, "Gold_Fire_53")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 52, "Gold_Fire_52")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 51, "Gold_Fire_51")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 50, "Gold_Fire_50")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 49, "Gold_Fire_49")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 48, "Gold_Fire_48")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 47, "Gold_Fire_47")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 46, "Gold_Fire_46")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 45, "Gold_Fire_45")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 44, "Gold_Fire_44")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 43, "Gold_Fire_43")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 42, "Gold_Fire_42")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 41, "Gold_Fire_41")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 40, "Gold_Fire_40")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 39, "Gold_Fire_39")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 38, "Gold_Fire_38")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 37, "Gold_Fire_37")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 36, "Gold_Fire_36")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 35, "Gold_Fire_35")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 34, "Gold_Fire_34")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 33, "Gold_Fire_33")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 32, "Gold_Fire_32")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 31, "Gold_Fire_31")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 30, "Gold_Fire_30")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 29, "Gold_Fire_29")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 28, "Gold_Fire_28")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 27, "Gold_Fire_27")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 26, "Gold_Fire_26")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 25, "Gold_Fire_25")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 24, "Gold_Fire_24")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 23, "Gold_Fire_23")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 22, "Gold_Fire_22")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 21, "Gold_Fire_21")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 20, "Gold_Fire_20")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 19, "Gold_Fire_19")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 18, "Gold_Fire_18")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 17, "Gold_Fire_17")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 16, "Gold_Fire_16")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 15, "Gold_Fire_15")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 14, "Gold_Fire_14")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 13, "Gold_Fire_13")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 12, "Gold_Fire_12")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 11, "Gold_Fire_11")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 10, "Gold_Fire_10")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 9, "Gold_Fire_9")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 8, "Gold_Fire_8")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 7, "Gold_Fire_7")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 6, "Gold_Fire_6")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 5, "Gold_Fire_5")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 4, "Gold_Fire_4")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 3, "Gold_Fire_3")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 2, "Gold_Fire_2")
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 1, "Gold_Fire_1")
+    
+        Gold_Fire_1: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_2: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_3: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_4: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_5: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_6: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_7: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_8: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_9: GN6F D 1     Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_10: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_11: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_12: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_13: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_14: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_15: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_16: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_17: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_18: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_19: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_20: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb81") Goto Gold_Fire_Refire
+        Gold_Fire_21: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb80") Goto Gold_Fire_Refire
+        Gold_Fire_22: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb79") Goto Gold_Fire_Refire
+        Gold_Fire_23: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb78") Goto Gold_Fire_Refire
+        Gold_Fire_24: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb77") Goto Gold_Fire_Refire
+        Gold_Fire_25: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb76") Goto Gold_Fire_Refire
+        Gold_Fire_26: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb75") Goto Gold_Fire_Refire
+        Gold_Fire_27: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb74") Goto Gold_Fire_Refire
+        Gold_Fire_28: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb73") Goto Gold_Fire_Refire
+        Gold_Fire_29: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb72") Goto Gold_Fire_Refire
+        Gold_Fire_30: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb71") Goto Gold_Fire_Refire
+        Gold_Fire_31: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb70") Goto Gold_Fire_Refire
+        Gold_Fire_32: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb69") Goto Gold_Fire_Refire
+        Gold_Fire_33: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb68") Goto Gold_Fire_Refire
+        Gold_Fire_34: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb67") Goto Gold_Fire_Refire
+        Gold_Fire_35: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb66") Goto Gold_Fire_Refire
+        Gold_Fire_36: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb65") Goto Gold_Fire_Refire
+        Gold_Fire_37: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb64") Goto Gold_Fire_Refire
+        Gold_Fire_38: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb63") Goto Gold_Fire_Refire
+        Gold_Fire_39: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb62") Goto Gold_Fire_Refire
+        Gold_Fire_40: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb61") Goto Gold_Fire_Refire
+        Gold_Fire_41: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb60") Goto Gold_Fire_Refire
+        Gold_Fire_42: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb59") Goto Gold_Fire_Refire
+        Gold_Fire_43: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb58") Goto Gold_Fire_Refire
+        Gold_Fire_44: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb57") Goto Gold_Fire_Refire
+        Gold_Fire_45: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb56") Goto Gold_Fire_Refire
+        Gold_Fire_46: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb55") Goto Gold_Fire_Refire
+        Gold_Fire_47: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb54") Goto Gold_Fire_Refire
+        Gold_Fire_48: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb53") Goto Gold_Fire_Refire
+        Gold_Fire_49: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb52") Goto Gold_Fire_Refire
+        Gold_Fire_50: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb51") Goto Gold_Fire_Refire
+        Gold_Fire_51: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb50") Goto Gold_Fire_Refire
+        Gold_Fire_52: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb49") Goto Gold_Fire_Refire
+        Gold_Fire_53: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb48") Goto Gold_Fire_Refire
+        Gold_Fire_54: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb47") Goto Gold_Fire_Refire
+        Gold_Fire_55: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb46") Goto Gold_Fire_Refire
+        Gold_Fire_56: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb45") Goto Gold_Fire_Refire
+        Gold_Fire_57: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb44") Goto Gold_Fire_Refire
+        Gold_Fire_58: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb43") Goto Gold_Fire_Refire
+        Gold_Fire_59: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb42") Goto Gold_Fire_Refire
+        Gold_Fire_60: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb41") Goto Gold_Fire_Refire
+        Gold_Fire_61: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb40") Goto Gold_Fire_Refire
+        Gold_Fire_62: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb39") Goto Gold_Fire_Refire
+        Gold_Fire_63: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb38") Goto Gold_Fire_Refire
+        Gold_Fire_64: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb37") Goto Gold_Fire_Refire
+        Gold_Fire_65: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb36") Goto Gold_Fire_Refire
+        Gold_Fire_66: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb35") Goto Gold_Fire_Refire
+        Gold_Fire_67: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb34") Goto Gold_Fire_Refire
+        Gold_Fire_68: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb33") Goto Gold_Fire_Refire
+        Gold_Fire_69: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb32") Goto Gold_Fire_Refire
+        Gold_Fire_70: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb31") Goto Gold_Fire_Refire
+        Gold_Fire_71: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb30") Goto Gold_Fire_Refire
+        Gold_Fire_72: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb29") Goto Gold_Fire_Refire
+        Gold_Fire_73: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb28") Goto Gold_Fire_Refire
+        Gold_Fire_74: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb27") Goto Gold_Fire_Refire
+        Gold_Fire_75: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb26") Goto Gold_Fire_Refire
+        Gold_Fire_76: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb25") Goto Gold_Fire_Refire
+        Gold_Fire_77: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb24") Goto Gold_Fire_Refire
+        Gold_Fire_78: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb23") Goto Gold_Fire_Refire
+        Gold_Fire_79: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb22") Goto Gold_Fire_Refire
+        Gold_Fire_80: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb21") Goto Gold_Fire_Refire
+        Gold_Fire_81: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb20") Goto Gold_Fire_Refire
+        Gold_Fire_82: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb19") Goto Gold_Fire_Refire
+        Gold_Fire_83: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb18") Goto Gold_Fire_Refire
+        Gold_Fire_84: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb17") Goto Gold_Fire_Refire
+        Gold_Fire_85: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb16") Goto Gold_Fire_Refire
+        Gold_Fire_86: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb15") Goto Gold_Fire_Refire
+        Gold_Fire_87: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb14") Goto Gold_Fire_Refire
+        Gold_Fire_88: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb13") Goto Gold_Fire_Refire
+        Gold_Fire_89: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb12") Goto Gold_Fire_Refire
+        Gold_Fire_90: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb11") Goto Gold_Fire_Refire
+        Gold_Fire_91: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb10") Goto Gold_Fire_Refire
+        Gold_Fire_92: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb9") Goto Gold_Fire_Refire
+        Gold_Fire_93: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb8") Goto Gold_Fire_Refire
+        Gold_Fire_94: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb7") Goto Gold_Fire_Refire
+        Gold_Fire_95: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb6") Goto Gold_Fire_Refire
+        Gold_Fire_96: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb5") Goto Gold_Fire_Refire
+        Gold_Fire_97: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb4") Goto Gold_Fire_Refire
+        Gold_Fire_98: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb3") Goto Gold_Fire_Refire
+        Gold_Fire_99: GN6F D 1    Bright A_FireCustomMissile("PlasmaBlorb2") Goto Gold_Fire_Refire
+        Gold_Fire_100: GN6F D 1   Bright A_FireCustomMissile("PlasmaBlorb1") Goto Gold_Fire_Refire
+        
+        Gold_Fire_Refire:
+            GN6F EF 1 A_GunFlash("Gold_Fire_Flash", GFF_NOEXTCHANGE)
+            GUN6 B 0 A_ReFire
+            GUN6 B 21 A_GunFlash("Gold_Flash", GFF_NOEXTCHANGE)
+            Goto Ready
+        
+        Gold_CoolDown:
+			GUN6 A 0 A_Playsound("Weapon/FPLASVENT",Chan_7)
+		GoldCoolDownLoop:
+            GUN6 B 0 A_GunFlash("Gold_Over_Flash", GFF_NOEXTCHANGE)
+            GUN6 B 0 A_JumpIfInventory("PlasmaCoolant", 0, "Gold_Ready2")
+            GUN6 B 1 A_GiveInventory("PlasmaCoolant", 1)
+            loop
+            
+        Gold_Flash:
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Gold_Flash_10")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Gold_Flash_9")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Gold_Flash_8")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Gold_Flash_7")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Gold_Flash_6")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Gold_Flash_5")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Gold_Flash_4")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Gold_Flash_3")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Gold_Flash_2")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Gold_Flash_1")
+            GN6M A 20
+            stop
+
+        Gold_Flash_10: 
+            GN6M A 20
+            stop        
+        Gold_Flash_9: 
+            GN6M B 20
+            stop
+        Gold_Flash_8: 
+            GN6M C 20
+            stop
+        Gold_Flash_7: 
+            GN6M D 20
+            stop
+        Gold_Flash_6: 
+            GN6M E 20
+            stop
+        Gold_Flash_5: 
+            GN6M F 20
+            stop
+        Gold_Flash_4: 
+            GN6M G 20
+            stop
+        Gold_Flash_3: 
+            GN6M H 20
+            stop
+        Gold_Flash_2: 
+            GN6M I 20
+            stop
+        Gold_Flash_1: 
+            GN6M J 20
+            stop
+            
+        Gold_Fire_Flash:
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Gold_Fire_Flash_10")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Gold_Fire_Flash_9")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Gold_Fire_Flash_8")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Gold_Fire_Flash_7")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Gold_Fire_Flash_6")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Gold_Fire_Flash_5")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Gold_Fire_Flash_4")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Gold_Fire_Flash_3")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Gold_Fire_Flash_2")
+            GN6M A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Gold_Fire_Flash_1")
+            GN6M T 20 
+            stop
+
+        Gold_Fire_Flash_10: 
+            GN6M K 20
+            stop        
+        Gold_Fire_Flash_9: 
+            GN6M L 20
+            stop
+        Gold_Fire_Flash_8: 
+            GN6M M 20
+            stop
+        Gold_Fire_Flash_7: 
+            GN6M N 20
+            stop
+        Gold_Fire_Flash_6: 
+            GN6M O 20
+            stop
+        Gold_Fire_Flash_5: 
+            GN6M P 20
+            stop
+        Gold_Fire_Flash_4: 
+            GN6M Q 20
+            stop
+        Gold_Fire_Flash_3: 
+            GN6M R 20
+            stop
+        Gold_Fire_Flash_2: 
+            GN6M S 20
+            stop
+        Gold_Fire_Flash_1: 
+            GN6M T 20
+            stop
+            
+        Gold_Over_Flash:
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 91, "Gold_Over_Flash_10")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 81, "Gold_Over_Flash_9")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 71, "Gold_Over_Flash_8")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 61, "Gold_Over_Flash_7")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 51, "Gold_Over_Flash_6")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 41, "Gold_Over_Flash_5")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 31, "Gold_Over_Flash_4")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 21, "Gold_Over_Flash_3")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 11, "Gold_Over_Flash_2")
+            GN6O A 0 A_JumpIfInventory("PlasmaCoolant", 1, "Gold_Over_Flash_1")
+            GN6O A 20 
+            stop
+
+        Gold_Over_Flash_10: 
+            GN6O J 20
+            stop        
+        Gold_Over_Flash_9: 
+            GN6O I 20
+            stop
+        Gold_Over_Flash_8: 
+            GN6O H 20
+            stop
+        Gold_Over_Flash_7: 
+            GN6O G 20
+            stop
+        Gold_Over_Flash_6: 
+            GN6O F 20
+            stop
+        Gold_Over_Flash_5: 
+            GN6O E 20
+            stop
+        Gold_Over_Flash_4: 
+            GN6O D 20
+            stop
+        Gold_Over_Flash_3: 
+            GN6O C 20
+            stop
+        Gold_Over_Flash_2: 
+            GN6O B 20
+            stop
+        Gold_Over_Flash_1: 
+            GN6O A 20
+            stop
+
+        Spawn:
+            PLAS A -1
+            Stop
+            
+    }
+}
+
+ACTOR PlasmaBlorb : PlasmaBall 
+{
+		+NOTIMEFREEZE
+	States
+	{
+        Spawn:
+            PLAS A 4 Bright
+			PLAS B 4 Bright
+            Loop
+        Death:
+            PLSE ABCDE 4 Bright
+            Stop
+	}
+}
+
+ACTOR PlasmaBlorb1 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,255]" }
+ACTOR PlasmaBlorb2 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,248]" }
+ACTOR PlasmaBlorb3 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,242]" }
+ACTOR PlasmaBlorb4 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,235]" }
+ACTOR PlasmaBlorb5 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,229]" }
+ACTOR PlasmaBlorb6 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,223]" }
+ACTOR PlasmaBlorb7 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,216]" }
+ACTOR PlasmaBlorb8 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,210]" }
+ACTOR PlasmaBlorb9 : PlasmaBlorb  { Damage 2 Translation       "80:111=[255,255,255]:[128,255,203]" }
+ACTOR PlasmaBlorb10 : PlasmaBlorb { Damage 2 Translation      "80:111=[255,255,255]:[128,255,197]" }
+ACTOR PlasmaBlorb11 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,191]" }
+ACTOR PlasmaBlorb12 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,184]" }
+ACTOR PlasmaBlorb13 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,178]" }
+ACTOR PlasmaBlorb14 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,171]" }
+ACTOR PlasmaBlorb15 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,165]" }
+ACTOR PlasmaBlorb16 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,159]" }
+ACTOR PlasmaBlorb17 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,152]" }
+ACTOR PlasmaBlorb18 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,146]" }
+ACTOR PlasmaBlorb19 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,136]" }
+ACTOR PlasmaBlorb20 : PlasmaBlorb { Damage 3 Translation      "80:111=[255,255,255]:[128,255,133]" }
+ACTOR PlasmaBlorb21 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[128,255,128]" }
+ACTOR PlasmaBlorb22 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[133,255,128]" }
+ACTOR PlasmaBlorb23 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[136,255,128]" }
+ACTOR PlasmaBlorb24 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[146,255,128]" }
+ACTOR PlasmaBlorb25 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[152,255,128]" }
+ACTOR PlasmaBlorb26 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[159,255,128]" }
+ACTOR PlasmaBlorb27 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[165,255,128]" }
+ACTOR PlasmaBlorb28 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[171,255,128]" }
+ACTOR PlasmaBlorb29 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[178,255,128]" }
+ACTOR PlasmaBlorb30 : PlasmaBlorb { Damage 4 Translation      "80:111=[255,255,255]:[184,255,128]" }
+ACTOR PlasmaBlorb31 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[191,255,128]" }
+ACTOR PlasmaBlorb32 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[197,255,128]" }
+ACTOR PlasmaBlorb33 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[203,255,128]" }
+ACTOR PlasmaBlorb34 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[210,255,128]" }
+ACTOR PlasmaBlorb35 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[216,255,128]" }
+ACTOR PlasmaBlorb36 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[223,255,128]" }
+ACTOR PlasmaBlorb37 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[229,255,128]" }
+ACTOR PlasmaBlorb38 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[235,255,128]" }
+ACTOR PlasmaBlorb39 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[242,255,128]" }
+ACTOR PlasmaBlorb40 : PlasmaBlorb { Damage 5 Translation      "80:111=[255,255,255]:[248,255,128]" }
+ACTOR PlasmaBlorb41 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,248,128]" }
+ACTOR PlasmaBlorb42 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,242,121]" }
+ACTOR PlasmaBlorb43 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,235,115]" }
+ACTOR PlasmaBlorb44 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,229,108]" }
+ACTOR PlasmaBlorb45 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,223,102]" }
+ACTOR PlasmaBlorb46 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,216,96]" }
+ACTOR PlasmaBlorb47 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,210,86]" }
+ACTOR PlasmaBlorb48 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,203,83]" }
+ACTOR PlasmaBlorb49 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,197,76]" }
+ACTOR PlasmaBlorb50 : PlasmaBlorb { Damage 6 Translation      "80:111=[255,255,255]:[255,191,70]" }
+ACTOR PlasmaBlorb51 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,184,64]" }
+ACTOR PlasmaBlorb52 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,178,57]" }
+ACTOR PlasmaBlorb53 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,171,51]" }
+ACTOR PlasmaBlorb54 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,165,44]" }
+ACTOR PlasmaBlorb55 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,159,38]" }
+ACTOR PlasmaBlorb56 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,152,32]" }
+ACTOR PlasmaBlorb57 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,146,25]" }
+ACTOR PlasmaBlorb58 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,136,19]" }
+ACTOR PlasmaBlorb59 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,133,12]" }
+ACTOR PlasmaBlorb60 : PlasmaBlorb { Damage 7 Translation      "80:111=[255,255,255]:[255,128,6]" }
+ACTOR PlasmaBlorb61 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,128,0]" }
+ACTOR PlasmaBlorb62 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,121,0]" }
+ACTOR PlasmaBlorb63 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,115,0]" }
+ACTOR PlasmaBlorb64 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,108,0]" }
+ACTOR PlasmaBlorb65 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,102,0]" }
+ACTOR PlasmaBlorb66 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,96,0]" }
+ACTOR PlasmaBlorb67 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,86,0]" }
+ACTOR PlasmaBlorb68 : PlasmaBlorb { Damage 8 Translation      "80:111=[255,255,255]:[255,83,0]" }
+ACTOR PlasmaBlorb69 : PlasmaBlorb { Damage 9 Translation      "80:111=[255,255,255]:[255,76,0]" }
+ACTOR PlasmaBlorb70 : PlasmaBlorb { Damage 9 Translation      "80:111=[255,255,255]:[255,70,0]" }
+ACTOR PlasmaBlorb71 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,64,0]" }
+ACTOR PlasmaBlorb72 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,57,0]" }
+ACTOR PlasmaBlorb73 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,51,0]" }
+ACTOR PlasmaBlorb74 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,44,0]" }
+ACTOR PlasmaBlorb75 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,38,0]" }
+ACTOR PlasmaBlorb76 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,32,0]" }
+ACTOR PlasmaBlorb77 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,25,0]" }
+ACTOR PlasmaBlorb78 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,19,0]" }
+ACTOR PlasmaBlorb79 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,12,0]" }
+ACTOR PlasmaBlorb80 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,6,0]" }
+ACTOR PlasmaBlorb81 : PlasmaBlorb { Damage 10 Translation      "80:111=[255,255,255]:[255,0,0]" }

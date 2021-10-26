@@ -1,0 +1,147 @@
+// Code from Legend Doom yholl? 
+// This decorate code is No longer needed as I made a more efficient work around, I'll keep it here for those that need it heh
+/*ACTOR Deplasmarifle : Doomweapon
+{
+	Game Doom
+	Scale 0.8
+	SpawnID 30
+	Weapon.PreferredSkin "Plasma-Rifle-Marine"
+	Weapon.SelectionOrder 1
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 0
+	Weapon.Ammogive1 80
+	Weapon.AmmoType1 "Battery"
+         Weapon.BobSpeed 1.5
+	 Weapon.BobRangeX .5
+	 Weapon.BobStyle "InverseSmooth"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.ForbiddenTo "Gosimer"
+        Inventory.Restrictedto "Fiend"
+        //+WEAPON.NOAUTOAIM
+	Inventory.Respawntics"4200"
+        Inventory.PickupSound "weapon/plasmaget"
+	Inventory.PickupMessage "$GOTPLASMA"
+	States
+  {
+  Ready:
+    TNT1 A 0 A_GunFlash ("FlashRareAmmo", GFF_NOEXTCHANGE)
+    RPLS A 1 A_WeaponReady
+    Goto Ready
+  Deselect:
+    TNT1 AA 0 A_Lower
+    RPLS A 1 A_Lower
+    Loop
+  Select:
+    TNT1 AA 0 A_Raise
+    RPLS A 1 A_Raise
+    Loop
+  GoldFire:
+    NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+    DPGG A 0 A_FireCustomMissile("Fiendsplasma",0,1,0,0)
+    DPGG A 0 A_Jump(128,"Fireanimation2")
+    Goto Fireanimation1
+  Fire:
+    NULL A 0 A_jumpifinventory("Tier6upgradetoken",1,"Goldfire")
+    NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+    DPGG A 0 A_FireCustomMissile("kewlplasma",0,1,0,0)
+    DPGG A 0 A_Jump(128,"Fireanimation2")
+    Fireanimation1:
+    RPLS D 1 Bright
+    RPLS E 1 Bright 
+    TNT1 A 0 A_GunFlash ("FlashRareAmmo", GFF_NOEXTCHANGE)
+    RPLS A 1
+    TNT1 A 0 A_Refire
+    Goto FireEnd
+    Fireanimation2:
+    RPLS B 1 Bright
+    RPLS C 1 Bright 
+    TNT1 A 0 A_GunFlash ("FlashRareAmmo", GFF_NOEXTCHANGE)
+    RPLS A 1
+    TNT1 A 0 A_Refire
+    Goto FireEnd
+    FireEnd:
+    TNT1 A 0 A_PlaySound("plasmarifle/cooldown", CHAN_WEAPON, 1, 0, 1.5)
+	TNT1 A 0 A_ReFire
+    Goto Ready
+	Spawn:
+		DEPG A -1
+		Stop
+		
+		*/
+
+//==============================================================================
+//								Idle ammo counter
+/*  FlashRareAmmo:
+	TNT1 A 0 A_JumpIfInventory("Backpack",1,"FlashAmmoRare1")
+    Goto FlashAmmoRare0
+	
+  FlashAmmoRare0:
+	TNT1 A 0 A_JumpIfInventory("battery",0,"FlashAmmoRare0A")
+	TNT1 A 0 A_JumpIfInventory("battery",251,"FlashAmmoRare0B")
+	TNT1 A 0 A_JumpIfInventory("battery",201,"FlashAmmoRare0C")
+	TNT1 A 0 A_JumpIfInventory("battery",151,"FlashAmmoRare0D")
+	TNT1 A 0 A_JumpIfInventory("battery",101,"FlashAmmoRare0E")
+	TNT1 A 0 A_JumpIfInventory("battery",51,"FlashAmmoRare0F")
+	TNT1 A 0 A_JumpIfInventory("battery",1,"FlashAmmoRare0G")
+	Goto FlashAmmoRare0H
+  FlashAmmoRare0A:
+    RPL1 A 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0B:
+    RPL1 B 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0C:
+    RPL1 C 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0D:
+    RPL1 D 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0E:
+    RPL1 E 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0F:
+    RPL1 F 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0G:
+    RPL1 G 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare0H:
+    RPL1 H 2 Bright A_Light0
+    Goto LightDone
+	
+  FlashAmmoRare1:
+	TNT1 A 0 A_JumpIfInventory("Battery",0,"FlashAmmoRare1A")
+	TNT1 A 0 A_JumpIfInventory("Battery",501,"FlashAmmoRare1B")
+	TNT1 A 0 A_JumpIfInventory("Battery",401,"FlashAmmoRare1C")
+	TNT1 A 0 A_JumpIfInventory("Battery",301,"FlashAmmoRare1D")
+	TNT1 A 0 A_JumpIfInventory("Battery",201,"FlashAmmoRare1E")
+	TNT1 A 0 A_JumpIfInventory("Battery",101,"FlashAmmoRare1F")
+	TNT1 A 0 A_JumpIfInventory("Battery",1,"FlashAmmoRare1G")
+	Goto FlashAmmoRare1H
+  FlashAmmoRare1A:
+    RPL1 A 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1B:
+    RPL1 B 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1C:
+    RPL1 C 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1D:
+    RPL1 D 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1E:
+    RPL1 E 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1F:
+    RPL1 F 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1G:
+    RPL1 G 2 Bright A_Light0
+    Goto LightDone
+  FlashAmmoRare1H:
+    RPL1 H 2 Bright A_Light0
+    Goto LightDone
+	}
+}
+*/	

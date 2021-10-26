@@ -1,0 +1,241 @@
+//////////////////////////////////////////////////////////////////
+// Monsters
+//////////////////////////////////////////////////////////////////
+actor Monster_Base
+{
+	Monster
+	+WINDTHRUST
+	+NEVERRESPAWN
+	+QUICKTORETALIATE
+	+STANDSTILL
+	+NOINFIGHTING
+	+FLOORCLIP
+}
+
+//////////////////////////////////////////////////////////////////
+// Projectiles
+//////////////////////////////////////////////////////////////////
+/*actor Projectile_Base
+{
+	Projectile
+	-NOTELEPORT			// lets make things different
+	+SEEKERMISSILE		// lets get this out of the way
+	+FORCERADIUSDMG
+	+SPAWNSOUNDSOURCE
+	+DONTSEEKINVISIBLE
+	+THRUGHOST
+	+NOBOSSRIP
+	+RANDOMIZE
+}*/
+
+//////////////////////////////////////////////////////////////////
+// Particles
+//////////////////////////////////////////////////////////////////
+actor Particle_Base
+{
+	+NOGRAVITY
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+}
+
+
+//////////////////////////////////////////////////////////////////
+// Debuffs / Elemental Damge factors
+//////////////////////////////////////////////////////////////////
+actor Debuff_Weak : PowerProtection
+{
+	powerup.duration -3
+	damagefactor "Normal", 1.5
+	damagefactor "Fire", 1.5
+	damagefactor "FireExtreme", 2.0
+	damagefactor "Electric", 1.5
+	damagefactor "ElectricExtreme", 2.0
+	damagefactor "Ice", 1.5
+	damagefactor "IceExtreme", 2.0
+	damagefactor "Acid", 2.0
+	damagefactor "AcidExtreme", 4.0
+	damagefactor "Metal", 1.5
+	damagefactor "MetalExtreme", 2.0
+	damagefactor "Void", 1.5
+	damagefactor "VoidExtreme", 2.0
+}
+
+//////////////////////////////////////////////////////////////////
+// Debuff timers
+//////////////////////////////////////////////////////////////////
+//actor PowerupTimer_Perm  : PowerupItem_Base 		{ powerup.duration -999999 	}
+//actor PowerupTimer_5	 : PowerupItem_Base 		{ powerup.duration -5 		}
+//actor PowerupTimer_3	 : PowerupItem_Base 		{ powerup.duration -3		}
+//actor PowerupTimer_1	 : PowerupItem_Base 		{ powerup.duration -1 		}
+
+//////////////////////////////////////////////////////////////////
+// Powerup Base for debuff stuff
+//////////////////////////////////////////////////////////////////
+actor PowerupItem_Base : PowerupGiver
+{
+	inventory.usesound "pickups/slowmo"
+	inventory.maxamount 1
+	+COUNTITEM
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+}
+
+
+actor Debuff_Blind 		: PowerDamage
+{
+ damagefactor "Normal", 1
+ powerup.duration -5
+}
+
+//actor Debuff_Weak 	: PowerDamage 		{ damagefactor "Normal", 1}
+//actor Debuff_Magic 		: PowerDamage 		{ damagefactor "Normal", 1 } // dummy powerup
+actor Debuff_Burn 		: PowerSpeed 		
+{ 
+Speed 1.3
+powerup.duration -5
+}
+
+actor Debuff_Confuse 	: PowerSpeed 		
+{ 
+Speed -1.0 
+powerup.duration -5
+}
+
+actor Debuff_Frozen 	: PowerSpeed 		
+{ 
+Speed 0.3 
+powerup.duration -5
+}
+
+actor Debuff_HeavyMetal : PowerSpeed		
+{ 
+Speed 0.8 
+powerup.duration -5
+}
+
+//////////////////////////////////////////////////////////////////
+// Debuff item definitions
+//////////////////////////////////////////////////////////////////
+actor DebuffItem_Weak 		: PowerupGiver
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_Weak"
+	}
+	
+actor DebuffItem_Confuse	: PowerupGiver	
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_Confuse"	
+	}
+actor DebuffItem_Burn 		: PowerupGiver
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_Burn"
+	}
+actor DebuffItem_Blind 		: PowerupGiver
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_Blind"
+	}
+actor DebuffItem_Freeze		: PowerupGiver	
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_Frozen"
+	}
+	
+actor DebuffItem_HeavyMetal : PowerupGiver			
+	{
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	-INVENTORY.KEEPDEPLETED
+	powerup.type "Debuff_HeavyMetal"
+	}
+
+//////////////////////////////////////////////////////////////////
+// Lightning element particle effects
+//////////////////////////////////////////////////////////////////
+
+ACTOR Particle_Lightning_Base : Particle_Base
+{
+	RenderStyle Add
+	States
+	{
+		Spawn:
+			LITN A 0
+			LITN A 0 A_Jump(256, "A", "B", "C", "D", "E", "F", "G")
+
+		A:
+			LITN A 1 bright
+			stop
+			
+		B:
+			LITN B 1 bright
+			stop
+
+		C:
+			LITN C 1 bright
+			stop
+
+		D:
+			LITN D 1 bright
+			stop
+
+		E:
+			LITN E 1 bright
+			stop
+
+		F:
+			LITN F 1 bright
+			stop
+
+		G:
+			LITN G 1 bright
+			stop
+		
+	}
+}
+ACTOR Particle_Lightning1 : Particle_Lightning_Base { Scale 0.1 }
+ACTOR Particle_Lightning2 : Particle_Lightning_Base { Scale 0.2 }
+ACTOR Particle_Lightning3 : Particle_Lightning_Base { Scale 0.3 }
+ACTOR Particle_Lightning4 : Particle_Lightning_Base { Scale 0.4 }
+ACTOR Particle_Lightning5 : Particle_Lightning_Base { Scale 0.5 }
+ACTOR Particle_Lightning6 : Particle_Lightning_Base { Scale 0.6 }
+ACTOR Particle_Lightning7 : Particle_Lightning_Base { Scale 0.7 }
+ACTOR Particle_Lightning8 : Particle_Lightning_Base { Scale 0.8 }
+ACTOR Particle_Lightning9 : Particle_Lightning_Base { Scale 0.9 }
+ACTOR Particle_Lightning10 : Particle_Lightning_Base { Scale 1.0 }
+ACTOR Particle_Lightning11 : Particle_Lightning_Base { Scale 1.1 }
+ACTOR Particle_Lightning12 : Particle_Lightning_Base { Scale 1.2 }
+ACTOR Particle_Lightning13 : Particle_Lightning_Base { Scale 1.3 }
+ACTOR Particle_Lightning14 : Particle_Lightning_Base { Scale 1.4 }
+ACTOR Particle_Lightning15 : Particle_Lightning_Base { Scale 1.5 }
+ACTOR Particle_Lightning16 : Particle_Lightning_Base { Scale 1.6 }
+ACTOR Particle_Lightning17 : Particle_Lightning_Base { Scale 1.7 }
+ACTOR Particle_Lightning18 : Particle_Lightning_Base { Scale 1.8 }
+ACTOR Particle_Lightning19 : Particle_Lightning_Base { Scale 1.9 }
+ACTOR Particle_Lightning20 : Particle_Lightning_Base { Scale 2.0 }

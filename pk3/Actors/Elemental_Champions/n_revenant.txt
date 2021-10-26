@@ -1,0 +1,272 @@
+ACTOR N_Revenant_Base : Monster_Base 
+{
+  Health 300
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 10
+  PainChance 0
+  MeleeThreshold 196
+  +MISSILEMORE
+  SeeSound "skeleton/sight"
+  PainSound "skeleton/pain"
+  DeathSound "skeleton/death"
+  ActiveSound "skeleton/active"
+  MeleeSound "skeleton/melee"
+  HitObituary "$OB_UNDEADHIT" // "%o was punched by a revenant."
+  Obituary "$OB_UNDEAD" // "%o couldn't evade a revenant's fireball."
+  States
+  {
+  
+  	Spawn:
+		SKEL A 0
+		
+  Spawn2:
+    SKEL AB 10 A_Look
+    Loop
+  See:
+    SKEL AABBCCDDEEFF 2 A_Chase
+    Loop
+  Melee:
+    SKEL G 1 A_FaceTarget
+    SKEL G 6 A_SkelWhoosh
+    SKEL H 6 A_FaceTarget
+    SKEL I 6 A_SkelFist
+    Goto See
+  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 Bright A_FaceTarget
+    SKEL K 10 A_SkelMissile
+    SKEL K 10 A_FaceTarget
+    Goto See
+  Pain:
+    SKEL L 5
+    SKEL L 5 A_Pain
+    Goto See
+  Death:
+    SKEL LM 7
+    SKEL N 7 A_Scream
+    SKEL O 7 A_NoBlocking
+    SKEL P 7
+    SKEL Q -1
+    Stop
+  Raise:
+    SKEL Q 5
+    SKEL PONML 5
+    Goto See
+  }
+}
+
+
+
+
+ACTOR RevenantTracer_Base : Projectile_Base
+{
+  Radius 11
+  Height 8
+  Speed 10
+  Damage 10
+  Projectile
+  +SEEKERMISSILE
+  +RANDOMIZE
+  SeeSound "skeleton/attack"
+  DeathSound "skeleton/tracex"
+  States
+  {
+  Spawn:
+    FATB AB 2 Bright A_Tracer
+    Loop
+  Death:
+    FBXP A 8 Bright
+    FBXP B 6 Bright
+    FBXP C 4 Bright
+    Stop
+  }
+}
+
+
+
+/////////////////////////
+// Acid Revenant
+/////////////////////////
+ACTOR RevenantTracer_Acid : RevenantTracer_Base 
+{
+	DamageType "Acid"
+	Translation "16:47=[128, 255, 128]:[32, 64, 32]", "48:79=[128, 255, 128]:[32, 64, 32]", "80:111=[128, 255, 128]:[32, 64, 32]", "128:143=[128, 255, 128]:[32, 64, 32]", "144:151=[128, 255, 128]:[32, 64, 32]", "152:159=[128, 255, 128]:[32, 64, 32]", "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[32, 64, 32]", "232:235=[128, 255, 128]:[32, 64, 32]", "236:239=[128, 255, 128]:[32, 64, 32]"                                                                                          
+}
+
+ACTOR N_Revenant_Acid : hardrevenant 
+{
+//	Scale 1.1
+	Translation "16:47=[128, 255, 128]:[32, 64, 32]", "168:191=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Acid",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Acid",50,0,0)
+    Goto See
+	}
+}
+
+
+/////////////////////////
+// Void Revenant
+/////////////////////////
+ACTOR N_Revenant_Void : hardrevenant 
+{
+//	Scale 1.1
+	Translation  "16:47=[192, 128, 255]:[32, 0, 64]", "168:191=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Void",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Void",50,0,0)
+    Goto See
+	}
+}
+
+
+ACTOR RevenantTracer_Void : RevenantTracer_Base 
+{
+	Translation "16:47=[128, 0, 200]:[32, 0, 64]", "48:79=[128, 0, 200]:[32, 0, 64]", "80:111=[128, 0, 200]:[32, 0, 64]", "128:143=[128, 0, 200]:[32, 0, 64]", "144:151=[128, 0, 200]:[32, 0, 64]", "152:159=[128, 0, 200]:[32, 0, 64]", "168:191=[128, 0, 200]:[32, 0, 64]", "208:223=[128, 0, 200]:[32, 0, 64]", "232:235=[128, 0, 200]:[32, 0, 64]", "236:239=[128, 0, 200]:[32, 0, 64]"                                                                                          
+	DamageType "Void"
+	}
+
+/////////////////////////
+// Fire Revenant
+/////////////////////////
+ACTOR N_Revenant_Fire : hardrevenant 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 128, 0]:[64, 32, 0]", "168:191=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Fire",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Fire",50,0,0)
+    Goto See
+	}
+}
+
+ACTOR RevenantTracer_Fire : RevenantTracer_Base
+{
+	DamageType "Fire"                                          
+}
+
+/////////////////////////
+// Electric Revenant
+/////////////////////////
+ACTOR N_Revenant_Electric : hardrevenant 
+{
+//	Scale 1.1
+	Translation "16:47=[255, 255, 96]:[64, 64, 32]", "168:191=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Electric",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Electric",50,0,0)
+    Goto See
+	}
+}
+
+
+ACTOR RevenantTracer_Electric : RevenantTracer_Base 30084
+{
+	Translation "16:47=[256, 256, 128]:[128, 128, 0]", "48:79=[256, 256, 128]:[128, 128, 0]", "80:111=[256, 256, 128]:[128, 128, 0]", "128:143=[256, 256, 128]:[128, 128, 0]", "144:151=[256, 256, 128]:[128, 128, 0]", "152:159=[256, 256, 128]:[128, 128, 0]", "168:191=[256, 2560, 128]:[128, 128, 0]", "208:223=[256, 256, 128]:[128, 128, 0]", "232:235=[256, 256, 128]:[128, 128, 0]", "236:239=[256, 256, 128]:[128, 128, 0]"                                                                                          
+	DamageType "Electric"
+	States
+	{
+	Spawn:
+    FATB AB 1 Bright A_Tracer
+	FATB AB 1 Bright A_SpawnItemEx("Particle_Lightning5")
+    Loop
+  Death:
+    FBXP A 8 Bright A_SpawnItemEx("Particle_Lightning5") 
+    FBXP B 6 Bright A_SpawnItemEx("Particle_Lightning5")
+    FBXP C 4 Bright A_SpawnItemEx("Particle_Lightning5")
+	TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+    Stop
+  }
+}
+
+
+/////////////////////////
+// Ice Revenant
+/////////////////////////
+ACTOR N_Revenant_Ice : hardrevenant 
+{
+//	Scale 1.1
+	+Noicedeath
+	Translation "16:47=[128, 192, 255]:[32, 48, 64]", "168:191=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Ice",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Ice",50,0,0)
+    Goto See
+	}
+}
+
+
+ACTOR RevenantTracer_Ice : RevenantTracer_Base 
+{
+	DamageType "Ice"
+	Translation "16:47=[128, 192 , 255]:[32, 48, 64]", "48:79=[128, 192 , 255]:[32, 48, 64]", "80:111=[128, 192 , 255]:[32, 48, 64]", "128:143=[128, 192 , 255]:[32, 48, 64]", "144:151=[128, 192 , 255]:[32, 48, 64]", "152:159=[128, 192 , 255]:[32, 48, 64]", "168:191=[128, 192 , 255]:[32, 48, 64]", "208:223=[128, 192 , 255]:[32, 48, 64]", "232:235=[128, 192 , 255]:[32, 48, 64]", "236:239=[128, 192 , 255]:[32, 48, 64]"                                                                                          
+}
+
+
+/////////////////////////
+// Metal Revenant
+/////////////////////////
+ACTOR N_Revenant_HeavyMetal : hardrevenant 
+{
+//	Scale 1.1
+  PainChance 0
+	Translation "16:47=[255, 255, 255]:[0, 0, 0]", "168:191=[255, 255, 255]:[0, 0, 0]"
+		States
+	{
+	  Missile:
+    SKEL J 0 Bright A_FaceTarget
+    SKEL J 10 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Metal",50,0,0)
+	SKEL J 6 A_FaceTarget
+    SKEL K 6 Bright A_CustomMissile("RevenantTracer_Metal",50,0,0)
+    Goto See
+	}
+}
+
+ACTOR RevenantTracer_Metal : RevenantTracer_Base 
+{
+	DamageType "Heavymetal"
+	Translation "16:47=[255, 255, 255]:[0, 0, 0]", "48:79=[255, 255, 255]:[0, 0, 0]", "80:111=[255, 255, 255]:[0, 0, 0]", "128:143=[255, 255, 255]:[0, 0, 0]", "144:151=[255, 255, 255]:[0, 0, 0]", "152:159=[255, 255, 255]:[0, 0, 0]", "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "232:235=[255, 255, 255]:[0, 0, 0]", "236:239=[255, 255, 255]:[0, 0, 0]"  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,506 @@
+ACTOR PlasmagunMK2 : DoomWeapon
+{
+  Weapon.SelectionOrder 2
+  Weapon.AmmoUse1 1
+  Weapon.Ammouse2 0
+  Weapon.AmmoGive1 40
+  Weapon.AmmoType1 "Battery"
+  Weapon.Ammotype2 "Coolant"
+  Inventory.ForbiddenTo "Gosimer"
+  Inventory.ForbiddenTo "Kunai"
+  Inventory.RestrictedTo "Fiend"
+  Weapon.BobSpeed 1.5
+  weapon.BobRangeX .5
+  Weapon.Bobstyle "Alpha"
+  Inventory.PickupMessage "$GOTPLASMA"
+  Tag "$TAG_PLASMARIFLE"
+  States
+  {
+  Ready:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldReady")
+    GUN7 A 1 A_WeaponReady
+    GUN7 A 0 A_Playsound("Weapon/FPRIDLE", chan_weapon)
+    GUN7 A 48 A_WeaponReady
+    GUN7 A 0 A_giveinventory("Coolant",10)
+    Loop
+  Deselect:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldDeselect")
+    TNT1 AA 0 A_Lower
+    GUN7 A 1 A_Lower
+    Goto Deselect+2
+  Select:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldSelect")
+    TNT1 AA 0 A_Raise
+    GUN7 A 1 A_Raise
+    Goto Select+2
+  Fire:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldFire")
+    GUN7 A 0 A_Jumpifinventory("Coolant",1,1)
+    goto Cooldownstart
+    GUN7 A 0 A_Takeinventory("Coolant",1)
+    GUN7 A 0 A_Takeinventory("Battery",1)
+    GUN7 A 1 A_FireCustomMissile(Fiendsplasma, random(-2, 2), 0, 0, 0, true)
+    GUN7 B 1 Bright A_Playsound("weapon/FPlasfire",Chan_5)
+    GUN7 C 2
+    GUN7 A 0 A_Refire
+    Goto Ready
+  ALTFIRE:
+  CooldownStart:
+    GUN7 A 0 A_JUMPIFINVENTORY("Coolant",100,"Ready")
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldCooldownStart")
+    GUN7 A 1 A_Playsound("Weapon/FPLASVENT",Chan_6)
+    GUN7 C 1
+    GUN7 D 1 
+    GUN7 E 2
+    GUN7 F 3
+    GUN7 G 4 A_Playsound("Weapon/FPRCOOL",Chan_weapon)
+    GUN7 H 5 
+  CooldownLOOP:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldCooldownloop")
+    GUN7 A 0 A_JUMPIFINVENTORY("Coolant",100,"CooldownEND")
+    GUN7 H 1 A_Giveinventory("Coolant",1)
+    LOOP
+  CooldownEND:
+    Gun7 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"GoldCooldownEND")
+    GUN7 H 5 A_Playsound("Weapon/FPREND",Chan_Weapon)
+    GUN7 G 4
+    GUN7 F 3
+    GUN7 E 2
+    GUN7 D 1
+    GUN7 C 1
+    GUN7 A 1 A_weaponready
+    Goto Ready
+  GoldReady:
+    GUN7 J 1 A_WeaponReady
+    GUN7 J 0 A_Playsound("Weapon/FPRIDLE")
+    GUN7 J 48 A_WeaponReady
+    GUN7 J 0 A_giveinventory("Coolant",10)
+    Loop
+  GoldDeselect:
+    TNT1 AA 0 A_Lower
+    GUN7 J 1 A_Lower
+    Goto Golddeselect+1
+  GoldSelect:
+    TNT1 AA 0 A_Raise
+    GUN7 J 1 A_Raise
+    Goto Goldselect+1
+  GoldFire:
+    GUN7 J 0 A_Jumpifinventory("Coolant",1,1)
+    goto Cooldownstart
+    GUN7 J 0 A_Takeinventory("Coolant",1)
+    GUN7 J 0 A_Takeinventory("Battery",1)
+    GUN7 J 1 A_FireCustomMissile(Fiendsplasma2, random(-2, 2), 0, 0, 0, true)
+    GUN7 K 1 Bright A_Playsound("weapon/FPlasfire",Chan_5)
+    GUN7 L 2
+    GUN7 J 0 A_Refire
+    Goto Ready
+  GoldCooldownStart:
+    GUN7 J 0 A_JUMPIFINVENTORY("Coolant",100,"Ready")
+    GUN7 J 1 A_Playsound("Weapon/FPLASVENT",Chan_6)
+    GUN7 L 1
+    GUN7 M 1 
+    GUN7 N 2
+    GUN7 O 3
+    GUN7 P 4 A_Playsound("Weapon/FPRCOOL",Chan_weapon)
+    GUN7 Q 5 
+  GoldCooldownLOOP:
+    GUN7 Q 0 A_JUMPIFINVENTORY("Coolant",100,"CooldownEND")
+    GUN7 Q 1 A_Giveinventory("Coolant",1)
+    LOOP
+  GoldCooldownEND:
+    GUN7 Q 5 A_Playsound("Weapon/FPREND",Chan_Weapon)
+    GUN7 P 4
+    GUN7 O 3
+    GUN7 M 2
+    GUN7 N 1
+    GUN7 L 1
+    GUN7 J 1 A_weaponready
+    Goto Ready
+  Flash:
+    TNT1 A 1 Bright A_Light1
+	TNT1 A 0 A_Light0
+    Goto LightDone
+    TNT1 A 1 Bright A_Light1
+	TNT1 A 0 A_Light0
+    Goto LightDone
+  Spawn:
+    GUN7 I -1
+    Stop
+  }
+}
+
+ACTOR DEPlasmaRifle : DoomWeapon //Weapon From erience
+{
+	Game Doom
+	Scale 0.8
+	SpawnID 30
+	Weapon.PreferredSkin "Plasma-Rifle-Marine"
+	Weapon.SelectionOrder 1
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 0
+	Weapon.Ammogive1 40
+	Weapon.AmmoType1 "Battery"
+  Weapon.BobSpeed 1.5
+  Weapon.BobRangeX .5
+  Weapon.BobStyle "InverseSmooth"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.ForbiddenTo "Gosimer"
+        Inventory.Restrictedto "Fiend"
+        //+WEAPON.NOAUTOAIM
+	Inventory.Respawntics"4200"
+        Inventory.PickupSound "weapon/plasmaget"
+	Inventory.PickupMessage "$GOTPLASMA"
+	States
+	{
+	Ready:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG A 0 A_Jumpifinventory("Battery",700,"ReadyFull")
+		DPGG A 0 A_Jumpifinventory("Battery",600,"ReadySilver")
+		DPGG A 0 A_Jumpifinventory("Battery",500,"ReadyBlue")
+		DPGG A 0 A_Jumpifinventory("Battery",400,"readyGreen")
+		DPGG A 0 A_Jumpifinventory("Battery",300,"ReadyYellow")
+		DPGG A 0 A_Jumpifinventory("Battery",200,"ReadyOrange")
+		DPGG A 0 A_Jumpifinventory("Battery",100,"ReadyRed")
+	ReadyDead:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG A 1 A_WeaponReady
+	Goto Ready
+	ReadyRed:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG A 15 A_WeaponReady
+		DPGG B 15 A_WeaponReady
+	Goto Ready
+	Readyorange:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG C 1 A_WeaponReady
+	Goto Ready
+	Readyyellow:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG D 1 A_WeaponReady
+	Goto Ready
+	ReadyGreen:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG E 1 A_WeaponReady
+	Goto Ready
+	ReadyBlue:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG F 1 A_WeaponReady
+	Goto Ready
+	ReadySilver:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG G 1 A_WeaponReady
+	Goto Ready
+	ReadyFull:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldReady")
+		DPGG H 1 A_WeaponReady
+	Goto Ready
+	Deselect:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldDeselect")
+		DPGG A 1 A_Lower
+		Loop
+	Select:
+		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldSelect")
+		DPGG A 1 A_Raise
+		Loop
+	Altfire: 
+	RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+	Goto Ready
+    RLGG A 1 Offset ( -26, 70 )
+	RLGG A 1 Offset ( -25, 60 )
+	RLGG A 2 Offset ( -23, 52 )
+	RLGG A 2 Offset ( -20, 47 )
+	RLGG A 3 Offset ( -15, 42 )
+	RLGG A 3 Offset ( -10, 37 )
+	RLGG A 4 Offset ( -5, 34 )
+	RLGG A 4 Offset ( 0, 32 )
+	ALTHOLD:
+	RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+	Goto ALTFirestop
+    RLGF A 1 Bright 
+	RLGG B 1 Bright
+	RLGG C 1 Bright
+    RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
+	RLGG D 1 A_Takeinventory("AbilityCharge",2)
+	RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
+	RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+	RLGG A 1 A_Refire
+  ALTFirestop:
+ 	RLGG A 4 Offset ( 0, 32 )
+ 	RLGG A 4 Offset ( -5, 34 ) 
+  	RLGG A 3 Offset ( -10, 37 )
+  	RLGG A 3 Offset ( -15, 42 )
+	RLGG A 2 Offset ( -20, 47 )
+	RLGG A 2 Offset ( -23, 52 )
+	RLGG A 1 Offset ( -25, 60 )
+    RLGG A 1 Offset ( -26, 70 )
+	goto Ready
+	Fire:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldFire")
+		NULL A 0 A_WeaponReady( WRF_NOBOB )
+		DPGG A 0 A_Jump(128,"Fire2")
+	Fire1:
+		DPGF AB 1 A_WeaponReady //(WRF_NOFIRE | WRF_NOBOB )
+		NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+		DPGG A 0 A_FireCustomMissile(Kewlplasma, random(-3, 3), random(-3, 3), 0, true)
+		Goto FireEnd
+	Fire2:
+		DPGF CD 1 A_WeaponReady //(WRF_NOFIRE | WRF_NOBOB )
+		NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+		DPGG A 0 A_FireCustomMissile(Kewlplasma, random(-3, 3), random(-3, 3), 0, true)
+	FireEnd:
+		DPGG A 0 A_Jumpifinventory("Battery",700,"FireFull")
+		DPGG A 0 A_Jumpifinventory("Battery",600,"FireSilver")
+		DPGG A 0 A_Jumpifinventory("Battery",500,"FireBlue")
+		DPGG A 0 A_Jumpifinventory("Battery",400,"FireGreen")
+		DPGG A 0 A_Jumpifinventory("Battery",300,"FireYellow")
+		DPGG A 0 A_Jumpifinventory("Battery",200,"FireOrange")
+		DPGG A 0 A_Jumpifinventory("Battery",100,"FireRed")
+	//	DPGG A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG A 2 A_ReFire
+		Goto Ready
+	FireRed:
+		DPGG B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG B 2 A_Refire
+		Goto Ready
+	Fireorange:
+		DPGG C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG C 2 A_Refire
+		Goto Ready
+	Fireyellow:
+		DPGG D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG D 2 A_Refire
+		Goto Ready
+	FireGreen:
+		DPGG E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG E 2 A_Refire
+		Goto Ready
+	FireBlue:
+		DPGG F 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG F 2 A_Refire
+		Goto Ready
+	FireSilver:
+		DPGG G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG G 2 A_Refire
+		Goto Ready
+	FireFull:
+		DPGG H 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		DPGG H 2 A_Refire
+		Goto Ready
+	Flash:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldFlash")
+		DPGG A 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+		DPGG B 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+	GoldReady:
+		DGGG A 0 A_Jumpifinventory("Battery",700,"GReadyFull")
+		DGGG A 0 A_Jumpifinventory("Battery",600,"GReadySilver")
+		DGGG A 0 A_Jumpifinventory("Battery",500,"GReadyBlue")
+		DGGG A 0 A_Jumpifinventory("Battery",400,"GReadyGreen")
+		DGGG A 0 A_Jumpifinventory("Battery",300,"GReadyYellow")
+		DGGG A 0 A_Jumpifinventory("Battery",200,"GReadyOrange")
+		DGGG A 0 A_Jumpifinventory("Battery",100,"GReadyRed")
+	GReadyDead:
+		DGGG A 1 A_WeaponReady
+		Goto GoldReady
+	GReadyRed:
+		DGGG A 15 A_WeaponReady
+		DGGG B 15 A_WeaponReady
+		Goto GoldReady
+	GReadyorange:
+		DGGG C 1 A_WeaponReady
+		Goto GoldReady
+	GReadyyellow:
+		DGGG D 1 A_WeaponReady
+		Goto GoldReady
+	GReadyGreen:
+		DGGG E 1 A_WeaponReady
+		Goto GoldReady
+	GReadyBlue:
+		DGGG F 1 A_WeaponReady
+		Goto GoldReady
+	GReadySilver:
+		DGGG G 1 A_WeaponReady
+		Goto GoldReady
+	GReadyfull:
+		DGGG H 1 A_WeaponReady
+		Goto GoldReady
+	GoldDeselect:
+		DGGG A 1 A_Lower
+		Loop
+	GoldSelect:
+		TNT1 A 0 A_giveinventory("Tier6upgradetoken", 1)
+		DGGG A 1 A_Raise
+		Loop
+	GoldFire:
+		NULL A 0 
+		DGGG D 0 A_Jump(128,"GoldFire2")
+	GoldFire1:
+		DPGF EF 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+		DGGG D 0 Bright A_FireCustomMissile(Kewlplasma2, random(-3, 3), random(-3, 3), 0, true)
+		Goto GoldFireEnd
+	GoldFire2:
+		DPGF GH 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB )
+		NULL A 0 A_Playsoundex("weapons/plasma/fire","Weapon")
+		DGGG D 0 Bright A_FireCustomMissile(Kewlplasma2, random(-3, 3), random(-3, 3), 0, true)
+	GoldFireEnd:
+		DGGG A 0 A_Jumpifinventory("Battery",700,"GFireFull")
+		DGGG A 0 A_Jumpifinventory("Battery",600,"GFireSilver")
+		DGGG A 0 A_Jumpifinventory("Battery",500,"GFireBlue")
+		DGGG A 0 A_Jumpifinventory("Battery",400,"GFireGreen")
+		DGGG A 0 A_Jumpifinventory("Battery",300,"GFireYellow")
+		DGGG A 0 A_Jumpifinventory("Battery",200,"GFireOrange")
+		DGGG A 0 A_Jumpifinventory("Battery",100,"GFireRed")
+		DGGG A 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG A 2 A_ReFire
+		Goto GoldReady
+	GFireRed:
+		DGGG B 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG B 2 A_Refire
+		Goto GoldReady
+	GFireorange:
+		DGGG C 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG C 2 A_Refire
+		Goto GoldReady
+	GFireyellow:
+		DGGG D 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG D 2 A_Refire
+		Goto GoldReady
+	GFireGreen:
+		DGGG E 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG E 2 A_Refire
+		Goto GoldReady
+	GFireBlue:
+		DGGG F 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG F 2 A_Refire
+		Goto GoldReady
+	GFireSilver:
+		DGGG G 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG G 2 A_Refire
+		Goto GoldReady
+	GFireFull:
+		DGGG H 1 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB)
+		DGGG H 2 A_Refire
+		Goto GoldReady
+	GoldFlash:
+		DGGG A 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+		DGGG B 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto lightDone
+	Spawn:
+		DEPG A -1
+		Stop
+	}
+}
+
+ACTOR PlasmaRifle : DoomWeapon
+{
+	Weapon.SelectionOrder 100
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 40
+	Weapon.AmmoType "Cell"
+	Inventory.PickupMessage "$GOTPLASMA"
+	Tag "$TAG_PLASMARIFLE"
+	States
+	{
+	//|||||||||||||||||||||||||||||||||||||||||||||COOLANT DISPLAY ON IDLE|||||||||||||||||||||||||||||||||||||||||||||||||||
+	Ready:
+		DPGG A 0 A_JUMPIFINVENTORY("Tier6upgradetoken", 1 "Goldready")
+		DPGG A 1 A_WeaponReady
+		DPGG A 0 A_Jumpifinventory("Coolant",140,"ReadyFull")
+		DPGG A 0 A_Jumpifinventory("Coolant",120,"ReadySilver")
+		DPGG A 0 A_Jumpifinventory("Coolant",100,"ReadyBlue")
+		DPGG A 0 A_Jumpifinventory("Coolant",80,"ReadyGreen")
+		DPGG A 0 A_Jumpifinventory("Coolant",60,"Readyyellow")
+		DPGG A 0 A_Jumpifinventory("Coolant",40,"Readyorange")
+		DPGG A 0 A_Jumpifinventory("Coolant",20,"ReadyRed")
+	ReadyDead:
+		DPGG A 1 A_WeaponReady
+		Goto Ready
+	ReadyRed:
+		DPGG A 7 A_WeaponReady
+		DPGG B 7 A_WeaponReady
+		Goto Ready
+	Readyorange:
+		DPGG C 1 A_WeaponReady
+		Goto Ready
+	Readyyellow:
+		DPGG D 1 A_WeaponReady
+		Goto Ready
+	ReadyGreen:
+		DPGG E 1 A_WeaponReady
+		Goto Ready
+	ReadyBlue:
+		DPGG F 1 A_WeaponReady
+		Goto Ready
+	ReadySilver:
+		DPGG G 1 A_WeaponReady
+		Goto Ready
+	ReadyFull:
+		DPGG H 1 A_WeaponReady
+		Goto Ready
+	//||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||SELECT-DESELECT & FIRE STATES|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+	Deselect:
+		DPGG A 1 A_Lower
+		Loop
+	Select:
+		DPGG A 1 A_Raise
+		Loop
+	Fire:
+		DPGG A 3 A_FirePlasma
+		DPGG B 20 A_ReFire
+		Goto Ready
+	Flash:
+		DPGG A 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldFlash")
+		DPGG A 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+		DPGG B 1 A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||GOLD VERSION|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+	GoldReady:
+		DGGG A 1 A_WeaponReady
+		DGGG A 0 A_Jumpifinventory("Coolant",140,"ReadyFull")
+		DGGG A 0 A_Jumpifinventory("Coolant",120,"ReadySilver")
+		DGGG A 0 A_Jumpifinventory("Coolant",100,"ReadyBlue")
+		DGGG A 0 A_Jumpifinventory("Coolant",80,"ReadyGreen")
+		DGGG A 0 A_Jumpifinventory("Coolant",60,"Readyyellow")
+		DGGG A 0 A_Jumpifinventory("Coolant",40,"Readyorange")
+		DGGG A 0 A_Jumpifinventory("Coolant",20,"ReadyRed")
+		GReadyDead:
+		DGGG A 1 A_WeaponReady
+		Goto GoldReady
+	GReadyRed:
+		DGGG A 7 A_WeaponReady
+		DGGG B 7 A_WeaponReady
+		Goto GoldReady
+	GReadyorange:
+		DGGG C 1 A_WeaponReady
+		Goto GoldReady
+	GReadyyellow:
+		DGGG D 1 A_WeaponReady
+		Goto GoldReady
+	GReadyGreen:
+		DGGG E 1 A_WeaponReady
+		Goto GoldReady
+	GReadyBlue:
+		DGGG F 1 A_WeaponReady
+		Goto GoldReady
+	GReadySilver:
+		DGGG G 1 A_WeaponReady
+		Goto GoldReady
+	GReadyfull:
+		DGGG H 1 A_WeaponReady
+		Goto GoldReady
+		
+	Spawn:
+		DEPG A -1
+		Stop
+	}
+}

@@ -1,0 +1,1018 @@
+//Blackholegenerator
+Fader PleaseDontGoAway
+{
+	DecayStart	9.0
+	DecayTime	3.0
+}
+
+Decal BigScorch2
+{
+	Pic SCORCH1
+	Shade "00 00 00"
+	X-Scale 0.85
+	Y-Scale 0.85
+}
+
+Decal BHoleDecal
+{
+	Pic Twirl
+	Shade "20 05 40"
+	FullBright
+	Animator PleaseDontGoAway
+	LowerDecal BigScorch2
+	X-Scale 0.75
+	Y-Scale 0.75
+}
+
+//Railarachnotron
+
+Decal Nuffinkhere
+{
+	Pic Blank
+	Shade "00 00 00"
+	X-Scale 0.1
+	Y-Scale 0.1
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal RedRailScorchLower1
+{
+	Pic CBALSCR1
+	Shade "00 00 00"
+	X-Scale 0.1
+	Y-Scale 0.1
+	RandomFlipX
+	RandomFlipY
+}
+
+Decal RedRailScorchLower2
+{
+	Pic CBALSCR2
+	Shade "00 00 00"
+	X-scale 0.1
+	Y-scale 0.1
+	RandomFlipX
+	RandomFlipY
+}
+
+DecalGroup RedRailScorchLower
+{
+	RedRailScorchLower1 1
+	RedRailScorchLower2 1
+}
+
+
+
+Decal RedRailScorch1
+{
+	Pic CBALSCR1
+	Shade "56 00 00"
+	FullBright
+	X-Scale 0.2
+	Y-Scale 0.2
+	Animator GoAway
+	LowerDecal RedRailScorchLower
+}
+
+Decal RedRailScorch2
+{
+	Pic CBALSCR2
+	Shade "56 00 00"
+	FullBright
+	X-Scale 0.2
+	Y-Scale 0.2
+	Animator GoAway
+	LowerDecal RedRailScorchLower
+}
+
+DecalGroup RedRailScorch
+{
+	RedRailScorch1 1
+	RedRailScorch2 1
+}
+
+decal GreenBrutalBloodSmear1
+{
+	pic BSMEAR1
+	x-scale 0.425
+	y-scale 0.425
+	shade "00 52 00"
+	randomflipx
+	animator BloodSmearer
+}
+
+decal GreenBrutalBloodSmear2
+{
+	pic BSMEAR1
+	x-scale 0.425
+	y-scale 0.425
+	shade "00 52 00"
+	randomflipx
+	animator BloodSmearer
+}
+
+decalgroup GreenBrutalBloodSmear
+{
+	GreenBrutalBloodSmear1	1
+	GreenBrutalBloodSmear2	1
+}
+
+//Ketchup Gore
+
+/// +++++++++++++++++////
+/// Blood Base
+/// +++++++++++++++++////
+decal GreenBloodSplat001
+{
+pic BSPLAT001
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat002
+{
+pic BSPLAT002
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat003
+{
+pic BSPLAT003
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat004
+{
+pic BSPLAT004
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat005
+{
+pic BSPLAT005
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat006
+{
+pic BSPLAT006
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat007
+{
+pic BSPLAT007
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat008
+{
+pic BSPLAT008
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat009
+{
+pic BSPLAT009
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal GreenBloodSplat010
+{
+pic BSPLAT010
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decalgroup GreenBloodSplat
+{
+GreenBloodSplat001 6
+GreenBloodSplat002 6
+GreenBloodSplat003 6
+GreenBloodSplat004 6
+GreenBloodSplat005 6
+GreenBloodSplat006 6
+GreenBloodSplat007 6
+GreenBloodSplat008 6
+GreenBloodSplat009 6 
+GreenBloodSplat010 6
+}
+
+/// +++++++++++++++++////
+/// Red Blood
+/// +++++++++++++++++////
+
+decal GreenBrutalBloodSplat01
+{
+pic BSPLAT001
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat02
+{
+pic BSPLAT002
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat03
+{
+pic BSPLAT003
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat04
+{
+pic BSPLAT004
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat05
+{
+pic BSPLAT005
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat06
+{
+pic BSPLAT006
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+
+decal GreenBrutalBloodSplat07
+{
+pic BSPLAT007
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat08
+{
+pic BSPLAT008
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat09
+{
+pic BSPLAT009
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSplat10
+{
+pic BSPLAT010
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decalgroup GreenBrutalBloodSplat
+{
+GreenBrutalBloodSplat01 6
+GreenBrutalBloodSplat02 6
+GreenBrutalBloodSplat03 6
+GreenBrutalBloodSplat04 6
+GreenBrutalBloodSplat05 6
+GreenBrutalBloodSplat06 6
+GreenBrutalBloodSplat07 6
+GreenBrutalBloodSplat08 6
+GreenBrutalBloodSplat09 6
+GreenBrutalBloodSplat10 6
+}
+
+
+
+
+decal GreenBrutalBloodSuper01
+{
+pic BLUDSPT1
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSuper02
+{
+pic BLUDSPT1
+shade "00 52 00"
+x-scale 1
+y-scale 1
+randomflipx
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSuper03
+{
+pic BLUDSPT3
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+decal GreenBrutalBloodSuper04
+{
+pic BLUDSPT5
+shade "00 52 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal GreenBrutalBloodSmear
+}
+
+
+decalgroup GreenBrutalBloodSuper
+{
+GreenBrutalBloodSuper01 6
+GreenBrutalBloodSuper02 6
+GreenBrutalBloodSuper03 6
+GreenBrutalBloodSuper04 6
+}
+
+stretcher BloodBrutalStretcher
+{
+GoalX 1.0
+GoalY 3.5
+StretchStart 0
+StretchTime 9
+}
+
+slider BloodBrutalSlider
+{
+DistY -26
+SlideStart 0
+SlideTime 9
+}
+
+combiner BloodBrutalSmearer
+{
+	BloodBrutalStretcher
+	BloodBrutalSlider
+}
+
+decal BrutalBloodSmear1
+{
+	pic BSMEAR1
+	x-scale 0.425
+	y-scale 0.425
+	shade "52 00 00"
+	randomflipx
+	animator BrutalBloodSmearer
+}
+
+decal BrutalBloodSmear2
+{
+	pic BSMEAR1
+	x-scale 0.425
+	y-scale 0.425
+	shade "52 00 00"
+	randomflipx
+	animator BrutalBloodSmearer
+}
+
+decalgroup BrutalBloodSmear
+{
+	BrutalBloodSmear1	1
+	BrutalBloodSmear2	1
+}
+
+
+
+
+/// +++++++++++++++++////
+/// Red Blood
+/// +++++++++++++++++////
+
+decal BrutalBloodSplat01
+{
+pic BSPLAT001
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat02
+{
+pic BSPLAT002
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat03
+{
+pic BSPLAT003
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat04
+{
+pic BSPLAT004
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat05
+{
+pic BSPLAT005
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat06
+{
+pic BSPLAT006
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+
+decal BrutalBloodSplat07
+{
+pic BSPLAT007
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat08
+{
+pic BSPLAT008
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat09
+{
+pic BSPLAT009
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSplat10
+{
+pic BSPLAT010
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+
+
+
+
+
+decal BrutalBloodSuper01
+{
+pic BLUDSPT1
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSuper02
+{
+pic BLUDSPT1
+shade "52 00 00"
+x-scale 1
+y-scale 1
+randomflipx
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSuper03
+{
+pic BLUDSPT3
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+decal BrutalBloodSuper04
+{
+pic BLUDSPT5
+shade "52 00 00"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+lowerdecal BrutalBloodSmear
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// +++++++++++++++++////
+/// Blue Blood
+/// +++++++++++++++++////
+
+
+decal BlueBloodSplat01
+{
+//lowerdecal BloodSplat02
+pic BSPLAT01
+shade "00 00 48"
+x-scale 0.2
+y-scale 0.2
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSplat02
+{
+//lowerdecal BloodSplat01
+pic BSPLAT02
+shade "00 00 48"
+x-scale 0.15
+y-scale 0.15
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSplat03
+{
+//lowerdecal BloodSplat04
+pic BSPLAT03
+shade "00 00 48"
+x-scale 0.2
+y-scale 0.2
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSplat04
+{
+//lowerdecal BloodSplat03
+pic BSPLAT04
+shade "00 00 48"
+x-scale 0.15
+y-scale 0.15
+randomflipx
+randomflipy
+}
+
+decalgroup BlueBloodSplat
+{
+BlueBloodSplat01 6
+BlueBloodSplat02 6
+BlueBloodSplat03 6
+BlueBloodSplat04 6
+}
+
+
+
+
+
+
+decal BlueBloodSuper01
+{
+//lowerdecal BloodSplat02
+pic BSPLAT01
+shade "00 00 48"
+x-scale 0.4
+y-scale 0.4
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSuper02
+{
+//lowerdecal BloodSplat01
+pic BSPLAT02
+shade "00 00 48"
+x-scale 0.75
+y-scale 0.75
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSuper03
+{
+//lowerdecal BloodSplat04
+pic BSPLAT03
+shade "00 00 48"
+x-scale 0.3
+y-scale 0.3
+randomflipx
+randomflipy
+}
+
+decal BlueBloodSuper04
+{
+//lowerdecal BloodSplat03
+pic BSPLAT04
+shade "00 00 48"
+x-scale 0.4
+y-scale 0.4
+randomflipx
+randomflipy
+}
+
+decalgroup BlueBloodSuper
+{
+BlueBloodSuper01 6
+BlueBloodSuper02 6
+BlueBloodSuper03 6
+BlueBloodSuper04 6
+}
+
+
+
+
+
+
+
+
+decal Crack1
+{
+	pic BFGLITE1
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+}
+
+decal Crack2
+{
+	pic BFGLITE2
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+}
+
+decalgroup Crack
+{
+	Crack1	1
+	Crack2	1
+}
+
+decal GiantScorch
+{
+	pic SCORCH1
+	shade "00 00 00"
+	x-scale 5.75
+	y-scale 5.75
+	randomflipx
+	randomflipy
+}
+
+decal SkullScorch1 
+{ 
+   pic PLASMA1 
+   shade "00 00 00" 
+   x-scale 0.6 
+   y-scale 0.6 
+   randomflipx 
+   randomflipy 
+} 
+
+decal SkullScorch2 
+{ 
+   pic PLASMA2 
+   shade "00 00 00" 
+   x-scale 0.6 
+   y-scale 0.6 
+   randomflipx 
+   randomflipy 
+} 
+
+decalgroup SkullScorch 
+{ 
+   SkullScorch1   1 
+   SkullScorch2   1 
+} 
+
+/// +++++++++++++++++////
+/// +++++++++++++++++////
+/// BLOOD DECALS
+/// +++++++++++++++++////
+/// +++++++++++++++++////
+
+/// +++++++++++++++++////
+/// Blood Animators
+/// +++++++++++++++++////
+
+
+slider BSlide1
+{
+DistY -26
+SlideStart 0
+SlideTime 9
+}
+
+stretcher BrutalBStretch1
+{
+GoalX 1.0
+GoalY 3.5
+StretchStart 0
+StretchTime 9
+}
+
+slider BSlide2
+{
+DistY -20
+SlideStart 0
+SlideTime 12
+}
+
+stretcher BrutalBStretch2
+{
+GoalX 1.0
+GoalY 3.2
+StretchStart 0
+StretchTime 12
+}
+
+combiner BrutalBloodSlide1
+{
+BSlide1
+BrutalBStretch1
+}
+
+combiner BrutalBloodSlide2
+{
+BSlide2
+BrutalBStretch2
+}
+
+decalgroup BloodSplat
+{
+BrutalBloodSuper01 6
+BrutalBloodSuper02 6
+BrutalBloodSuper03 6
+BrutalBloodSuper04 6
+}
+
+decalgroup BrutalBloodSplat
+{
+BrutalBloodSuper01 6
+BrutalBloodSuper02 6
+BrutalBloodSuper03 6
+BrutalBloodSuper04 6
+}
+
+
+
+decalgroup BrutalBloodSuper
+{
+BrutalBloodSuper01 6
+BrutalBloodSuper02 6
+BrutalBloodSuper03 6
+BrutalBloodSuper04 6
+}
+
+decal DevScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decal LiteScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	x-scale 0.50
+        y-scale 0.50
+}
+
+decal LiteScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+        x-scale 0.50
+        y-scale 0.50
+}
+
+decal BFGLightning3
+{
+	pic BFGLITE1
+	shade "00 ff 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decal BFGLightning4
+{
+	pic BFGLITE2
+	shade "00 ff 00"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decalgroup DEBFGLightning
+{
+	BFGLightning3	1
+	BFGLightning4	1
+}
+
+Generator DevastatorBall                DevScorch
+Generator DevastatorBall2               DoomImpScorch
+Generator LiteShot                      LiteScorch
+
+
+decal PoeBallScorch
+{
+	pic POBLE0
+	add 1.0
+	fullbright
+	animator GoAway2
+	lowerdecal BigScorch
+}
+Generator PoeBall PoeBallScorch
+Generator PoeTracer PoeBallScorch
+
+
+generator CrackodemonBall CacoScorch
+generator Blusoul CacoScorch
+
+
+decal RocketImpScorch
+{
+	pic SCORCH2
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal FreezeBlastMelt
+{
+	pic BSMEAR1
+	x-scale 1.1
+	y-scale 1.1
+	shade "DD DD FF"
+	randomflipx
+	animator BloodSmearer
+}
+
+decal FreezeBlastMelt
+{
+	pic BSMEAR1
+	x-scale 1.1
+	y-scale 1.1
+	shade "DD DD FF"
+	randomflipx
+	animator BloodSmearer
+}

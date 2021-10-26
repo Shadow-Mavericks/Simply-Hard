@@ -1,0 +1,121 @@
+/*Actor Speedorspawner Replaces Arachnotron
+{
+  +NOSECTOR
+  +NOGRAVITY
+  +BOSSDEATH
+  +SHOOTABLE
+  +ISMONSTER
+  +NORADIUSDMG
+  +NOINTERACTION
+  +NOBLOCKMAP
+  HEALTH 0x7FFFFFFF 
+  Radius 0
+  Height 0
+  Mass 0x7FFFFFFF 
+  States
+  {
+  Spawn:
+    TNT1 A 1 
+    TNT1 A 0 A_Jump(56, "Spidermk2spawn")
+    TNT1 A 0 A_Jump(56, "RailspiderSpawn")
+	TNT1 A 0 A_Jump(56, "ArachnocubusSpawn")
+  NormalSpawn:
+    TNT1 A 0 A_SpawnItemEx("Hardarachnotron", 0, 0, 0, 0, 0, 0, 0, 272)
+    Goto Nothing 
+  RailspiderSpawn:
+    TNT1 A 0 A_SpawnItemEx("RailArachnotron", 0, 0, 0, 0, 0, 0, 0, 272)
+    Goto Nothing
+  Spidermk2spawn:
+    TNT1 A 0 A_SpawnItemEx("Arachnotronmk2", 0, 0, 0, 0, 0, 0, 0, 272)
+    Goto Nothing
+  ArachnocubusSpawn:
+    TNT1 A 0 A_SpawnItemEx("Arachnocubus", 0, 0, 0, 0, 0, 0, 0, 272)
+    Goto Nothing
+  Nothing:
+    TNT1 A 1
+    Loop
+  Death:
+    TNT1 A 0 A_BossDeath 
+    Stop
+  }
+}
+*/
+
+Actor Speedorspawner : Randomspawner Replaces Arachnotron
+{
+	Dropitem "Hardarachnotron"	255 10
+	Dropitem "Railarachnotron"	255 2
+	Dropitem "Arachnotronmk2"	255 1
+}
+actor FatsoSpawner : RandomSpawner replaces Fatso
+{
+	DropItem "Hardfatso"				255 10
+	DropItem "Haedexebus"				255 2
+	DropItem "N_Mancubus_Acid"			255 1
+	DropItem "N_Mancubus_Fire"			255 1
+	DropItem "Cryocubus"			    255 1
+	DropItem "N_Mancubus_Electric"		255 1		
+	DropItem "N_Mancubus_Heavymetal"	255 1	
+	DropItem "N_Mancubus_Void"			255 1
+	DropItem "Arachnocubus"				255 1
+	DropItem "FlyingFatso"				255 1
+}
+
+actor BaronSpawner : RandomSpawner replaces Baronofhell
+{
+	DropItem "Hardbaron"			255 10
+	DropItem "Warlordofhell"		255 3
+	DropItem "Cyberbaron"			255 1
+	DropItem "N_Baron_Acid"			255 1
+	DropItem "N_Baron_Void"			255 1
+	DropItem "N_Baron_ice"			255 1
+	DropItem "N_Baron_Fire"			255 1
+	DropItem "N_Baron_Electric"		255 1
+	DropItem "N_Baron_HeavyMetal"	255 1
+	DropItem "Belphegorclone"		255 1
+//	DropItem "LordOfHeresy"			255 1
+//	DropItem "ProfaneOne"			255 1
+}
+
+// SWARM SPAWNS
+
+
+/*Actor Fakedemoncorpse : Randomspawner replaces DeadDemon
+{
+	Dropitem "SwarmBody2"		128 1
+	DropItem "Swarm"			64 1
+	Dropitem "Metroidswarm"		64 1
+	Dropitem "Metroidswarm2"	64 1
+}
+
+Actor Fakeimpcorpse : Randomspawner replaces DeadDoomimp
+{
+	Dropitem "SwarmBody3"		128 1
+	DropItem "Swarm"			64 1
+	Dropitem "Metroidswarm"		64 1
+	Dropitem "Metroidswarm2"	64 1
+}
+
+Actor Fakesgtcorpse : Randomspawner replaces DeadShotgunguy
+{
+	Dropitem "SwarmBody5"		128 1
+	DropItem "Swarm"			64 1
+	Dropitem "Metroidswarm"		64 1
+	Dropitem "Metroidswarm2"	64 1
+}
+
+Actor Fakezamblecorpse : Randomspawner replaces Deadzombieman
+{
+	Dropitem "SwarmBody4"		128 1
+	DropItem "Swarm"			64 1
+	Dropitem "Metroidswarm"		64 1
+	Dropitem "Metroidswarm2"	64 1
+}
+
+Actor Fakemarinecorpse : RandomSpawner replaces DeadMarine  
+{
+	Dropitem "SwarmBody1"		128 1
+	DropItem "Swarm"			64 1
+	Dropitem "Metroidswarm"		64 1
+	Dropitem "Metroidswarm2"	64 1
+}*

@@ -1,0 +1,363 @@
+
+ACTOR MancubusBall_Base : Projectile_Base
+{
+  Radius 6
+  Height 8
+  Speed 20
+  Damage (16)
+  SeeSound "fatso/attack"
+  DeathSound "fatso/shotx"
+  Renderstyle Add
+  Alpha 0.75
+  States
+  {
+  Spawn:
+    MANF AB 4 Bright
+    Loop
+  Death:
+    MISL B 8 Bright
+    MISL C 6 Bright
+    MISL D 4 Bright
+    Stop
+  }
+}
+
+actor MancubusBall_Normal : MancubusBall_Base 
+{ 
+	DamageType "Normal" 
+	States
+	{
+	Spawn:
+    MANF A 1 Bright A_SpawnItemEx("RedFattrail")
+	MANF B 1 Bright A_SpawnItemEx("RedFattrail")
+    Loop
+  Death:
+    FIR7 C 8 Bright
+    FIR7 D 6 Bright
+    FIR7 E 4 Bright
+    Stop
+  }
+}
+
+// Acid Mancubus
+actor MancubusBall_Acid : MancubusBall_Base 
+{ 
+//	Translation "160:167=[128, 255, 128]:[32, 64, 32]", "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[32, 64, 32]", "232:235=[128, 255, 128]:[32, 64, 32]", "16:47=[128, 255, 128]:[32, 64, 32]"
+	DamageType "Acid" 
+	States
+	{
+	Spawn:
+    ACDF A 1 Bright A_SpawnItemEx("GreenFattrail")
+	ACDF B 1 Bright A_SpawnItemEx("GreenFattrail")
+    Loop
+  Death:
+    ACD7 C 8 Bright
+    ACD7 D 6 Bright
+    ACD7 E 4 Bright
+    Stop
+  }
+}
+	
+
+actor N_Mancubus_Acid : HardFatso 
+{
+//	Scale 1.1
+	Translation "48:79=[128, 255, 128]:[32, 64, 32]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_Acid")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_Acid")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_Acid")
+			FATT IG 5
+			Goto See
+	}
+}
+
+// Void Mancubus
+actor MancubusBall_Void : MancubusBall_Base 
+{ 
+//	Translation "160:167=[192, 128, 255]:[32, 0, 64]", "168:191=[192, 128, 255]:[32, 0, 64]", "208:223=[192, 128, 255]:[32, 0, 64]", "232:235=[192, 128, 255]:[32, 0, 64]", "16:47=[192, 128, 255]:[32, 0, 64]"
+	DamageType "Void" 
+	States
+	{
+	Spawn:
+    CNFF A 1 Bright A_SpawnItemEx("PurpleFattrail")
+	CNFF B 1 Bright A_SpawnItemEx("PurpleFattrail")
+    Loop
+  Death:
+    CNF7 C 8 Bright
+    CNF7 D 6 Bright
+    CNF7 E 4 Bright
+    Stop
+  }
+}
+
+actor N_Mancubus_Void : HardFatso 
+{
+//	Scale 1.1
+	Translation "48:79=[192, 128, 255]:[32, 0, 64]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_Void")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_Void")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_Void")
+			FATT IG 5
+			Goto See
+	}
+}
+
+// Fire Mancubus
+actor MancubusBall_Fire : MancubusBall_Base 
+{ 
+	DamageType "Fire" 
+	States
+	{
+	Spawn:
+    FIRF A 1 Bright A_SpawnItemEx("orangeFattrail")
+	FIRF B 1 Bright A_SpawnItemEx("OrangeFattrail")
+    Loop
+  Death:
+    FIR7 C 8 Bright
+    FIR7 D 6 Bright
+    FIR7 E 4 Bright
+    Stop
+  }
+}
+
+actor N_Mancubus_Fire : HardFatso 
+{
+//	Scale 1.1
+	Translation "48:79=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_Fire")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_Fire")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_Fire")
+			FATT IG 5
+			Goto See
+	}
+}
+
+// Electric Mancubus
+actor MancubusBall_Electric : MancubusBall_Base 
+{ 
+//	Translation "160:167=[255, 255, 96]:[64, 64, 32]", "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "232:235=[255, 255, 96]:[64, 64, 32]", "16:47=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]"
+	DamageType "Electric"
+	States
+	{
+		Spawn:
+			SHKF A 1 Bright A_SpawnItemEx("Particle_Lightning8")
+			SHKF A 0 A_SpawnItemEx("Yellowfattrail")
+			SHKF B 1 Bright A_SpawnItemEx("Particle_Lightning8")
+			SHKF A 0 A_SpawnItemEx("Yellowfattrail")
+			Loop
+		Death:
+			SHK7 CCC 3 Bright A_SpawnItemEx("Particle_Lightning8")
+			SHK7 DD 3 Bright A_SpawnItemEx("Particle_Lightning8")
+			SHK7 E 3 Bright A_SpawnItemEx("Particle_Lightning8")
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning8")
+			Stop
+	}
+}
+
+actor N_Mancubus_Electric : HardFatso 30069
+{
+//	Scale 1.1
+	Translation "48:79=[255, 255, 96]:[64, 64, 32]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_Electric")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_Electric")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_Electric")
+			FATT IG 5
+			Goto See
+	}
+}
+
+// Ice Mancubus
+actor MancubusBall_Ice : MancubusBall_Base 
+{ 
+	Damage (8)
+//	Translation "160:167=[128, 192, 255]:[32, 48, 64]", "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "232:235=[128, 192, 255]:[32, 48, 64]", "16:47=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]"
+	DamageType "Ice"
+	States
+	{
+	Spawn:
+    ICEF A 1 Bright A_SpawnItemEx("BlueFattrail")
+	ICEF B 1 Bright A_SpawnItemEx("BlueFattrail")
+    Loop
+  Death:
+    ICE7 C 8 Bright
+    ICE7 D 6 Bright
+    ICE7 E 4 Bright
+    Stop
+  }
+}
+
+actor N_Mancubus_Ice : HardFatso 
+{
+//	Scale 1.1
+	+Noicedeath
+	Translation "48:79=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_Ice")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_Ice")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_Ice")
+			FATT IG 5
+			Goto See
+	}
+}
+
+// Heavy Metal Mancubus
+actor MancubusBall_HeavyMetal : MancubusBall_Base 
+{ 
+//	Translation "160:167=[255, 255, 255]:[0, 0, 0]", "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "232:235=[255, 255, 255]:[0, 0, 0]", "16:47=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]"
+	DamageType "HeavyMetal"
+	States
+	{
+	Spawn:
+    METF A 1 Bright A_SpawnItemEx("WHITEFattrail")
+	METF B 1 Bright A_SpawnItemEx("WHITEFattrail")
+    Loop
+  Death:
+    MET7 C 8 Bright
+    MET7 D 6 Bright
+    MET7 E 4 Bright
+    Stop
+  }
+}
+
+actor N_Mancubus_HeavyMetal : HardFatso 
+{
+	Scale 1.1
+	  PainChance 0
+	Translation "48:79=[255, 255, 255]:[0, 0, 0]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 10 Bright A_FatAttack1("MancubusBall_HeavyMetal")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack2("MancubusBall_HeavyMetal")
+			FATT IG 5
+			FATT H 10 Bright A_FatAttack3("MancubusBall_HeavyMetal")
+			FATT IG 5
+			Goto See
+	}
+}
+
+
+
+// Boss Mancubus
+/*actor MancubusBall_Boss : MancubusBall_Base 
+{ 
+	Damage(1)
+	Speed 60
+	DamageType "FireExtreme"
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			TNT1 A 0 A_Explode(3, 160, 0, 0, 1)
+			TNT1 A 1 Bright A_SpawnItemEx("Particle_Boom1b", frandom(-20.0, 20.0), frandom(-20.0, 20.0), frandom(-20.0, 20.0))
+			Stop
+	}
+}
+actor N_Mancubus_Boss : HardFatso 
+{
+	Radius 192
+	Height 256
+	Scale 4
+	Translation "48:79=[255, 128, 0]:[64, 32, 0]"
+	States
+	{
+		Missile:
+			FATT G 20 A_FatRaise
+			FATT H 0 Bright A_CustomMissile("MancubusBall_Boss", 64, 128)
+			FATT H 10 Bright A_CustomMissile("MancubusBall_Boss", 64, -128)
+			FATT IG 5
+			FATT H 0 Bright A_CustomMissile("MancubusBall_Boss", 64, 128)
+			FATT H 10 Bright A_CustomMissile("MancubusBall_Boss", 64, -128)
+			FATT IG 5
+			FATT H 0 Bright A_CustomMissile("MancubusBall_Boss", 64, 128)
+			FATT H 10 Bright A_CustomMissile("MancubusBall_Boss", 64, -128)
+			FATT IG 5
+			Goto See
+
+	}
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
