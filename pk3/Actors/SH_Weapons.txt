@@ -4739,7 +4739,9 @@ actor DFPistol : Weapon
 
 actor BlastBolt
 {
-    +Notimefreeze
+	+Notimefreeze
+	RenderStyle Add
+	Alpha 1.0
 	PROJECTILE
 	Radius 2
 	Height 2
