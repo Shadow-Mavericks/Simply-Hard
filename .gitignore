@@ -55,7 +55,7 @@ dkms.conf
 *.backup*
 *.bak
 *.qc
-builds/SimplyHard_*.pk3
+builds/Simply-Hard_*.pk3
 *.tmp
 backups/*
 junk
