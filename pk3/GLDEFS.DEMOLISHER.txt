@@ -1,0 +1,173 @@
+BrightMap Sprite DEMOG1
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOG1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOG2G8
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOG2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOG3G7
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOG4G6
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOG5
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOH1
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOH1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOH2H8
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOH2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOH3H7
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOH3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOH4H6
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOH4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOH5
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOH5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOJ0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOJ0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOK0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOK0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOL0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOL0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOM0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOM0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMON0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMON0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOO0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOO0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOP0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOP0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOQ0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOQ0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOR0
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOR0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOT1
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOT1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOT2T8
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOT2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOT3T7
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOT3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOT4T6
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOT5
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOU1
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOU1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOU2U8
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOU2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOU3U7
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOU3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOU4U6
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOU4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DEMOU5
+{
+	Map "brightmaps/Realm667/Monsters/Demolisher/BMDEMOU5.png"
+	DisableFullBright
+}
