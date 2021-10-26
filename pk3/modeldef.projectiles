@@ -1,0 +1,10 @@
+model BlastBolt
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlasterTracer.png"
+	Scale 16.0 2.75 2.75
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
