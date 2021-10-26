@@ -2,7 +2,7 @@
 setlocal
 setlocal EnableDelayedExpansion
 
-SET PATH=%PATH%;%~dp0\Tools
+SET PATH=%PATH%;%~dp0\Tools;%~dp0\Tools\ACC
 set GIT=None
 set WorkingCopyPath=%~dp0
 set REVISIONNUMBER=Unknown
@@ -70,13 +70,18 @@ chgcolor 02
 echo Refresh GIT Revision
 chgcolor 0f
 echoj "4. "
+chgcolor 04
+echo Compile ACS Scripts
+chgcolor 0f
+echoj "5. "
 chgcolor 03
 echo Quit
 chgcolor 07
 
 echo.
-CHOICE /C 1234 /N /M "Choose Option (Number Keys):"
-IF ERRORLEVEL 4 GOTO LEAVE
+CHOICE /C 12345 /N /M "Choose Option (Number Keys):"
+IF ERRORLEVEL 5 GOTO LEAVE
+IF ERRORLEVEL 4 GOTO COMPILEACS
 IF ERRORLEVEL 3 GOTO GITFOUND
 IF ERRORLEVEL 2 GOTO RELEASEBUILD
 IF ERRORLEVEL 1 GOTO DEVBUILD
@@ -101,6 +106,16 @@ move /Y .\pk3\*.bak .\backups >nul 2>&1
 cd pk3
 7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp ..\builds\Simply_Hard_r%REVISIONNUMBER%.pk3 .\
 
+pause
+goto MENU
+
+:COMPILEACS
+cd pk3
+cd ACS
+for %%f in (*.acs) do (
+	echo %%~nf
+	acc.exe "%%~nf.acs" "%%~nf.o" >> compile_log.log
+)
 pause
 goto MENU
 
