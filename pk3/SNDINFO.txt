@@ -1181,14 +1181,20 @@ $Musicvolume S4_METAL	 0.5
 monster/whtratt whtratt point 9.9
 monster/HGTO HGTO world 9.9
 
+// Cryobow
 Weapon/Cryobow/Charge	BowChrgd
+Weapon/Cryobow/Charged	BowCharg
+weapons/cryobowfire     DSBOWFIR
+weapons/cryobowshot     DSBOWSHT
+weapons/cryobowreload   DSBOWREL
+weapons/cryobowhit      DSBOWHIT
+weapons/cryobowflyby    DSBOWFLY
 
+// Super Baron
 superbaron/scream dssbsit
 superbaron/pain dssbpain
 superbaron/death dssbdth
 superbaron/act dssbact
-
-Weapon/Cryobow/Charged	BowCharg
 
 Segway/Go	DSSEGGO
 $Random BOOSTER/DEATH { bostdth1 bostdth2 }
