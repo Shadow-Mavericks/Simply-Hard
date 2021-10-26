@@ -7,44 +7,43 @@
 int p_stuff2[64][2];
 script "SV_PlayerItemWatch" open
 {
-    int ptid = 0;
-    while(1)
-    {
-        for(int p = 0; p < playercount(); p++)
-        {
-            ptid = p+1337;
-           
-            //////////////////////////////////////////////
-            // Heavy Metal Effect
-            //////////////////////////////////////////////
-            // does a player have the heavy metal effect?
-            if(CheckActorInventory(ptid, "Debuff_HeavyMetal") && p_stuff2[p][1] == false)
-            {
-                p_stuff2[p][1] = true;
-                SetActorProperty (ptid, APROP_Gravity, 3.0);
-               
-            }
-            else if(!CheckActorInventory(ptid, "Debuff_HeavyMetal") && p_stuff2[p][1] == true)
-            {
-                p_stuff2[p][1] = false;
-                SetActorProperty(ptid, APROP_Gravity, 1.0);
-            }
-           
-           
-            //////////////////////////////////////////////
-            // Damage Over Time
-            //////////////////////////////////////////////
-            // does a player have the burn debuff?
-            if(CheckActorInventory(ptid, "Debuff_Burn"))
-            {
-                p_stuff2[p][0]++;
-                if(p_stuff2[p][0] >= 17)
-                {
-                    Thing_Damage2(ptid, random(2, 4), "Burn");
-                    p_stuff2[p][0] = 0;
-                }
-            }  
-        }
-        delay(1);
-    }
+	int ptid = 0;
+	while(1)
+	{
+		for(int p = 0; p < playercount(); p++)
+		{
+			ptid = p+1337;
+			
+			//////////////////////////////////////////////
+			// Heavy Metal Effect
+			//////////////////////////////////////////////
+			// does a player have the heavy metal effect?
+			if(CheckActorInventory(ptid, "Debuff_HeavyMetal") && p_stuff2[p][1] == false)
+			{
+				p_stuff2[p][1] = true;
+				SetActorProperty (ptid, APROP_Gravity, 3.0);
+			}
+			else if(!CheckActorInventory(ptid, "Debuff_HeavyMetal") && p_stuff2[p][1] == true)
+			{
+				p_stuff2[p][1] = false;
+				SetActorProperty(ptid, APROP_Gravity, 1.0);
+			}
+			
+			
+			//////////////////////////////////////////////
+			// Damage Over Time
+			//////////////////////////////////////////////
+			// does a player have the burn debuff?
+			if(CheckActorInventory(ptid, "Debuff_Burn"))
+			{
+				p_stuff2[p][0]++;
+				if(p_stuff2[p][0] >= 17)
+				{
+					Thing_Damage2(ptid, random(2, 4), "Burn");
+					p_stuff2[p][0] = 0;
+				}
+			}
+		}
+		delay(1);
+	}
 }

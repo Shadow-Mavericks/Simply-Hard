@@ -37,10 +37,10 @@ script "Playerjoinbackpack" ENTER
 
 Script "Forcefirstupgrade" (Void)
 {
-ACS_NamedExecute("Playerbackpackupgrade", 0);
-Delay(1);
-ACS_NamedExecute("Playerbackpackupgrade", 0);
-Print(s: "Backpack upgrade! Level 1 / 10!" );
+	ACS_NamedExecute("Playerbackpackupgrade", 0);
+	Delay(1);
+	ACS_NamedExecute("Playerbackpackupgrade", 0);
+	Print(s: "Backpack upgrade! Level 1 / 10!" );
 }
 
 /*script "Playerlosesgear" RESPAWN
