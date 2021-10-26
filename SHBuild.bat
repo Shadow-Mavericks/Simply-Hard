@@ -104,7 +104,7 @@ del .\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
-7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp ..\builds\Simply_Hard_r%REVISIONNUMBER%.pk3 .\
+7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp ..\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 .\
 
 pause
 goto MENU
