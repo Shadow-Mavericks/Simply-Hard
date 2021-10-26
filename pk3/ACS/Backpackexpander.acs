@@ -1,0 +1,49 @@
+#Library "Backpackexpander"
+#Include "Zcommon.acs"
+
+bool playerbackpack[64] = { FALSE };
+
+script "Playerbackpackupgrade" (void)
+{
+	if (playerbackpack[PlayerNumber()])
+	{
+		if (GetAmmoCapacity("Battery") < 800)
+		{
+		//	SetAmmoCapacity("Clip", GetAmmoCapacity("Clip") + 100);
+			SetAmmoCapacity("Shotgunclip", GetAmmoCapacity("Shotgunclip") + 1);
+			SetAmmoCapacity("Scatterclip", GetAmmoCapacity("Scatterclip") + 10);
+			SetAmmoCapacity("Pistolclip", GetAmmoCapacity("Pistolclip") + 2);
+			SetAmmoCapacity("PeastolClip", GetAmmoCapacity("PeastolClip") + 25);
+			SetAmmoCapacity("Shellz", GetAmmoCapacity("Shellz") + 10);
+			SetAmmoCapacity("SuperShellz", GetAmmoCapacity("SuperShellz") + 10);
+			SetAmmoCapacity("AK_MAG", GetAmmoCapacity("AK_MAG") + 50);
+			SetAmmoCapacity("RoketAmmo", GetAmmoCapacity("RoketAmmo") + 10);
+			SetAmmoCapacity("Battery", GetAmmoCapacity("Battery") + 50);
+			SetAmmoCapacity("BFGCHARGE", GetAmmoCapacity("BFGCHARGE") + 1);
+			SetAmmoCapacity("Lightningammo", GetAmmoCapacity("Lightningammo") +10);
+			SetAmmoCapacity("Railslugs", GetAmmoCapacity("Railslugs") + 5);
+			Giveinventory("Ammoexpansioncheck",	1);
+		}
+	}
+	else
+		playerbackpack[PlayerNumber()] = TRUE;
+}
+
+script "Playerjoinbackpack" ENTER
+{
+	if (GetAmmoCapacity("Battery") > 300)
+		playerbackpack[PlayerNumber()] = TRUE;
+}
+
+Script "Forcefirstupgrade" (Void)
+{
+ACS_NamedExecute("Playerbackpackupgrade", 0);
+Delay(1);
+ACS_NamedExecute("Playerbackpackupgrade", 0);
+Print(s: "Backpack upgrade! Level 1 / 10!" );
+}
+
+/*script "Playerlosesgear" RESPAWN
+{
+	playerbackpack[PlayerNumber()] = FALSE;
+}*/

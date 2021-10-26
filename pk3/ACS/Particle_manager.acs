@@ -1,0 +1,78 @@
+#Library "Particle_manager"
+#include "zcommon.acs"
+ 
+/////////////////////////////////////////////////
+// Player Particle Management
+/////////////////////////////////////////////////
+int p_stuff[64][2];
+ 
+script "CL_PlayerParticles" open clientside
+{
+    int ptid = 0;
+ 
+    // inf loop oh noes!
+    while(1)
+    {
+ 
+        // go through each player number
+        for(int p = 0; p < playercount(); p++)
+        {
+            // get tid of current player
+            ptid = p+1337;
+       
+            /////////////////////////////////////////////
+            // Invulnerable Star Effect
+            /////////////////////////////////////////////
+            if(CheckActorInventory(ptid, "PowerInvulnerable"))
+            {
+                Spawn("Particle_Star", getactorx(ptid) + random(-32.0, 32.0), getactory(ptid) + random(-32.0, 32.0), getactorz(ptid) + random(5.0, 55.0), 0, 0);
+            }
+           
+            /////////////////////////////////////////////
+            // Blinded Lightning Bolt Effect
+            /////////////////////////////////////////////
+            if(CheckActorInventory(ptid, "Debuff_Blind"))
+            {
+                if(p_stuff[p][0] >= 3)
+                {
+                    Spawn("Particle_Lightning7", getactorx(ptid), getactory(ptid), getactorz(ptid) + 30.0, 0, 0);
+                    p_stuff[p][0] = 0;
+                }
+                p_stuff[p][0]++;
+            }
+           
+            /////////////////////////////////////////////
+            // Ring Sparkle Effect
+            /////////////////////////////////////////////
+            if(CheckActorInventory(ptid, "Powerup_Rings"))
+            {
+                Spawn("Particle_RingStar", getactorx(ptid) + random(-32.0, 32.0), getactory(ptid) + random(-32.0, 32.0), getactorz(ptid) + random(5.0, 55.0), 0, 0);
+            }      
+ 
+           
+            /////////////////////////////////////////////
+            // Underwater Bubbles
+            /////////////////////////////////////////////
+            if( CheckActorInventory(ptid, "Debuff_UnderWater") ||
+                CheckActorInventory(ptid, "Debuff_UnderAcid") ||
+                CheckActorInventory(ptid, "Debuff_UnderLava") ||
+                CheckActorInventory(ptid, "Debuff_UnderIce") ||
+                CheckActorInventory(ptid, "Debuff_UnderVoid") ||
+                CheckActorInventory(ptid, "Debuff_UnderElectric"))
+            {
+               
+                if(p_stuff[p][1] >= 35*3)
+                {
+                    for(int i = 0; i < 10; i++)
+                    {
+                        Spawn("Particle_Bubble", getactorx(ptid)+random(-4.0, 4.0), getactory(ptid)+random(-4.0, 4.0), getactorz(ptid)+random(35.0, 44.0), 0, 0);
+                        delay(1);
+                    }
+                    p_stuff[p][1] = 0;
+                }
+               p_stuff[p][1]++;
+            }
+        }
+        delay(1);
+    }
+}

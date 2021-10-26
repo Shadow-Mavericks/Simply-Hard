@@ -1,0 +1,210 @@
+#library "DIVSHADW"
+#include "zcommon.acs"
+
+//----------------------------------------------//
+
+int DP_AnglesGeneric[5] = {0.00, 0.18, 0.39, 0.58, 0.80};
+
+function int Abs(int i)
+{
+	if (i < 0) return -i;
+	return i;
+}
+
+function void DrawPentagramPart(int fx, int fy, int fz, int size, int alpha, int ang1, int ang2)
+{
+    // size = 64.0 ?
+    int x1 = fx + size * cos(ang1);
+    int y1 = fy + size * sin(ang1);
+    int x2 = fx + size * cos(ang2);
+    int y2 = fy + size * sin(ang2);
+    int len = VectorLength(x2-x1, y2-y1);
+    int dx = FixedDiv(x2-x1, len);
+    int dy = FixedDiv(y2-y1, len);
+    int cnt = len>>16;
+    for (int i = 0; i < cnt; i+=2)
+    {
+		// this is the color of BFG
+		int r1 = 0x13;
+		int g1 = 0x23;
+		int b1 = 0x0b;
+		int r2 = 0x77;
+		int g2 = 0xff;
+		int b2 = 0x6f;
+		int dstmax = cnt/2;
+		int dstc = Abs(dstmax-i);
+		int rdstc = dstmax-dstc;
+		int r = r1*dstc/dstmax+r2*rdstc/dstmax;
+		int g = g1*dstc/dstmax+g2*rdstc/dstmax;
+		int b = b1*dstc/dstmax+b2*rdstc/dstmax;
+		int partsize = 5;
+		// this script is CLIENTSIDE. means we can do this.
+	    // I wonder what happens if you have vid_renderer at improper values in ZDoom...
+		// well, anyway, this is because particles arent displayed the same way in software and OpenGL.
+		if (!GetCVar("vid_renderer"))
+			partsize = 10;
+        SpawnParticle((r<<16)|(g<<8)|b, true, 1, partsize, x1+i*dx, y1+i*dy, fz, 0, 0, 0, 0, 0, 0, alpha*rdstc/(dstmax/2), 0);
+    }
+}
+
+function void DrawPentagram(int fx, int fy, int fz, int size, int alpha, int angle)
+{
+    DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[0]+angle, DP_AnglesGeneric[2]+angle);
+    DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[2]+angle, DP_AnglesGeneric[4]+angle);
+    DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[4]+angle, DP_AnglesGeneric[1]+angle);
+    DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[1]+angle, DP_AnglesGeneric[3]+angle);
+    DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[3]+angle, DP_AnglesGeneric[0]+angle);
+}
+
+script "DivineShadow::Pentagram" (int cX, int cY, int cZ) CLIENTSIDE
+{
+	int i;
+	int size = 256;
+	int alpha = 255;
+	int pentaangle = 0;
+	int duration = 35*3;
+
+	for (i = 0; i < duration; i++)
+    {
+		if (GetActorProperty(0, APROP_Health) <= 0)
+			break;
+			
+		size = 256;
+		if (i < 35) size = i*256/35;
+		alpha = 255;
+		if (i < 35) alpha = i*255/35;
+		pentaangle = GetActorAngle(0)+i*1.0/duration;
+		DrawPentagram(cX, cY, cZ+2.0, size, alpha, pentaangle);
+
+		Delay(1);
+	}
+	
+	// update 22.07.2016: decay pentagram slowly
+	for (i = alpha; i > 0; i -= 16)
+	{
+		DrawPentagram(cX, cY, cZ+2.0, size, i, pentaangle);
+		Delay(1);
+	}
+}
+
+// this script manages the circle attack
+// former 440
+script "DivineShadow::Circle" (void)
+{
+    int cX = GetActorX(0);
+    int cY = GetActorY(0);
+    int cZ = GetActorZ(0);
+	
+	ACS_NamedExecuteAlways("DivineShadow::Pentagram", 0, cX, cY, cZ); // not WithResult because it needs to be clientside for Zan
+	
+	// first, display the "warning"
+    ActivatorSound("weapons/bfgf", 127);
+    
+	int i;
+	int size = 256;
+	int duration = 35*3;
+    for (i = 0; i < duration; i++)
+    {
+		if (GetActorProperty(0, APROP_Health) <= 0)
+			break;
+	
+        SetActorState(0, "MissileLoop", true);
+        SetActorVelocity(0, 0, 0, 0, false, true);
+        SetActorPosition(0, cX, cY, cZ, false);
+        
+		size = 256;
+		if (i < 35) size = i*256/35;
+		
+        if (i >= 35 && i < 70)
+        {
+            int rndI = random(0,4);
+            for (int j = 0; j < rndI; j++)
+            {
+                //DivineShadowAtkSmall = actor
+                //1) pick random angle
+                //2) pick random distance
+                int angle = random(0.0, 1.0);
+                int dist = random(48, size);
+                
+                int tX = cX + cos(angle) * dist;
+                int tY = cY + sin(angle) * dist;
+                int tZ = cZ;
+                
+				int oldtag = ActivatorTID();
+				int tmptid1 = UniqueTID();
+                Thing_ChangeTID(0, tmptid1);
+				int tmptid2 = UniqueTID();
+                SpawnForced("DivineShadowAtkSmall", tX, tY, tZ, tmptid2, angle);
+                SetActivator(tmptid2);
+                SetPointer(AAPTR_TARGET, tmptid1, 0, 0);
+                SetActivator(tmptid1);
+                Thing_ChangeTID(0, oldtag);
+                ACS_NamedExecuteWithResult("DivineShadow::CircleWorker", tmptid2, angle, 0, 0);
+                //printbold(s:"SPAWNING @ ", f:tX, s:",", f:tY, s:",", f:tZ);
+            }
+        }
+
+        Delay(1);
+    }
+    
+	// update 25.01.2016: actor should go to death if dead
+	if (GetActorProperty(0, APROP_Health) <= 0)
+		SetActorState(0, "Death", true);
+	else SetActorState(0, "See", true);
+}
+
+// this script manages individual projectiles for circle attack
+// former 441
+script "DivineShadow::CircleWorker" (int tmptid, int angle)
+{
+	// tmptid = unique. don't bother changing it because projectiles shouldnt have a tid anyway.
+    SetActivator(tmptid);
+    int aZ = GetActorZ(0);
+
+    for (int i = 0; i < 35; i++)
+    {
+        // die if parent actor dies (target)
+        SetActivator(0, AAPTR_TARGET);
+        bool badhealth = (GetActorProperty(0, APROP_Health) <= 0);
+        SetActivator(tmptid);
+        if (badhealth)
+        {
+            SetActorState(0, "Death", true);
+            terminate;
+        }
+        aZ += 1.0;
+        SetActorPosition(0, GetActorX(0), GetActorY(0), aZ, false);
+        Delay(1);
+    }
+    
+    // then launch
+    ThrustThing(angle>>8, 20, false, 0);
+}
+
+// this script holds the vile projectile for a while [c]
+// former 450
+script "DivineShadow::HoldBall" (void)
+{
+    int vX = GetActorVelX(0);
+    int vY = GetActorVelY(0);
+    int vZ = GetActorVelZ(0);
+
+    SetActorVelocity(0, 0, 0, 0, false, true);
+    Delay(35);
+    SetActorVelocity(0, vX, vY, vZ, false, true);
+}
+
+// former 451
+script "DivineShadow::HoldVile" (void)
+{
+	int cX = GetActorX(0);
+	int cY = GetActorY(0);
+	int cZ = GetActorZ(0);
+	
+	for (int i = 0; i < 35; i++)
+	{
+        SetActorVelocity(0, 0, 0, 0, false, true);
+        SetActorPosition(0, cX, cY, cZ, false);
+		Delay(1);
+	}
+}

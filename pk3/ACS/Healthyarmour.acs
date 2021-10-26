@@ -1,0 +1,83 @@
+#Library "Healthyarmour"
+#include "zcommon.acs"
+
+#define ALARM_TIMER 0
+#define ALARM_VOLUME 1
+
+int playeralarms[64][2];
+
+script "CL_MedicalMonitor" enter clientside
+{
+	Thing_ChangeTID(0, 1337+playerNumber());
+	if(playerNumber() != consolePlayerNumber())	{ terminate; }
+	
+	
+	int counter = 100;
+	int hp;
+	int hp_p;
+	int id;
+	
+	// green to yellow
+	for(int r = 0; r < 250; r+=5)
+	{
+		createTranslation(counter, 112:127=[r, 250, 0]:[0, 0, 0]);
+		counter--;
+	}
+	
+	// yellow to red
+	for(int g = 250; g > 0; g-=5)
+	{
+		createTranslation(counter, 112:127=[250, g, 0]:[0, 0, 0]);
+		counter--;
+	}
+	
+	while(1)
+	{
+		for(int i = 0; i < playerCount(); i++)
+		{
+			id = i+1337;
+			hp = getActorProperty(id, APROP_Health);
+			
+			// armor color
+			if(hp != hp_p)
+			{
+				if(hp >= 100)
+				{ 
+					Thing_SetTranslation(id, 100);
+				}
+				else
+				{
+					Thing_SetTranslation(id, hp);
+				}
+				playeralarms[i][ALARM_VOLUME] = 1.0;
+			}
+			
+			// low health alarm
+			if(hp < 35)
+			{
+				if(playeralarms[i][ALARM_VOLUME] > 0.5)
+				{
+					playeralarms[i][ALARM_VOLUME]-=0.005;
+				}
+				playeralarms[i][ALARM_TIMER]++;
+				if(playeralarms[i][ALARM_TIMER] == 35*2)
+				{
+					 PlayActorSound (id, SOUND_Bounce, CHAN_BODY, playeralarms[i][ALARM_VOLUME], false, 1.0); 
+					 playeralarms[i][ALARM_TIMER] = 0;
+				}
+			}
+		}
+		hp_p = hp;
+		delay(1);
+	}
+}
+
+script "CL_Respawn" respawn clientside
+{
+	Thing_ChangeTID(0, 1337+playerNumber());
+}
+
+script "CL_Death" death clientside
+{
+	Thing_ChangeTID(0, 0);
+}

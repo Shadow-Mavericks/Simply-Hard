@@ -1,0 +1,20 @@
+#Library "PlayerIDs"
+
+#include "zcommon.acs"
+
+Script "PlayerIDJoin" Enter
+{
+Thing_ChangeTID(0, 1337+playerNumber());
+}
+
+
+
+Script "PlayerIDRespawn" Respawn
+{
+Thing_ChangeTID(0, 1337+playerNumber());
+}
+
+Script "PlayerIDDeath" Death
+{
+Thing_ChangeTID(0, 0);
+}

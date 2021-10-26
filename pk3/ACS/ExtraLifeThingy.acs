@@ -1,0 +1,30 @@
+#library "ExtraLifeThingy"
+#include "zcommon.acs"
+ 
+script "SV_ExtraLifeThingy" Enter
+{
+    while(1)
+    {
+        if(CheckInventory("ExtraLifeThingy") < 1)
+        {
+             SetPlayerProperty(0, 0, PROP_BUDDHA);
+        }
+        else
+        {
+             SetPlayerProperty(0, 1, PROP_BUDDHA);
+             if(GetActorProperty(0, APROP_Health) == 1)
+             {
+				GiveInventory("Res_proteciton", 1);
+                GiveInventory("HealthBonus", 99);
+                TakeInventory("ExtraLifeThingy", 1);
+				Ambientsound("oneman/usedup", 127);
+             }
+        }
+        delay(1);
+    }
+}
+
+Script "oneman" (void)
+{
+	Activatorsound("oneman", 127);
+}

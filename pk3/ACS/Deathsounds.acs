@@ -1,0 +1,7 @@
+#library "Deathsounds"
+#include "zcommon.acs"
+
+Script "sv_deathsounds" Death
+{
+ AmbientSound("DED", 127);
+}

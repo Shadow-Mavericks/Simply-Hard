@@ -1,0 +1,146 @@
+#library "oneman"
+#include "zcommon.acs"
+
+// serverside extra life give
+
+//Old manncobox scripts Not yet moved to named version; Blame old zandronum builds for breaking named scripts!
+
+Script "sv_manncofail" (Void)
+{
+Ambientsound("Mannco/Fail",127);
+}
+
+Script "sv_highnoon" (Void)
+{
+Ambientsound("MCRee/Highnoon",127);
+}
+
+Script "sv_manncosnakbar" (Void)
+{
+Ambientsound("Mannco/Snackbar",127);
+Delay(35);
+Ambientsound("Mannco/Nuke",127);
+}
+
+Script "sv_manncowinrar" (Void)
+{
+Ambientsound("Mannco/Winrar",127);
+}
+
+Script "sv_bestunusednightmare" (Void)
+{
+Ambientsound("Mannco/Timeimp",127);
+}
+
+Script "sv_s76autoaim" (Void)
+{
+Ambientsound("Soldier/Autoaim",127);
+}
+
+Script "SV_yourbestnightmare" (Void)
+{
+Ambientsound("Mannco/Nightmare",127);
+}
+
+Script "UsedJoy" (void)
+{
+LocalSetMusic("Joy_use");
+Delay(1575);
+GiveInventory("Joywithdrawl", 1);
+LocalSetMusic("Joywthdl");
+Delay(1575);
+LocalSetMusic("*");
+}
+
+/*script unused damage tick (int t, int i, int d)
+{
+    int count = 0;
+    int count2 = 0;
+    while(count2 <= t)
+    {
+        if(count >= i)
+        {
+            Thing_Damage2(0, d, "Joy");
+            count2++;
+            count = 0;
+        }
+        count++;
+        delay(1);
+    }
+}*/
+
+script "KUNAIKANKAN" (void)
+{
+Ambientsound("Kunaikankan",127);
+Ambientsound("Kunaikankan",127);
+Ambientsound("Kunaikankan",127);
+}
+
+Script "gosimerkankan" (Void)
+{
+Ambientsound("Burpkankan",127);
+Ambientsound("Burpkankan",127);
+Ambientsound("Burpkankan",127);
+}
+
+script "SV_ArmorDing" enter
+{
+    bool dinged = false;
+    int armor_cur = 0;
+    int armor_prev = 0;
+   
+    while(1)
+    {
+        armor_cur = CheckInventory("Armor");
+   
+        if(dinged == false)
+        {
+            if(armor_cur != armor_prev)
+            {
+                if(armor_cur == 0)
+                {
+                    dinged = true;
+                    PlaySound(ActivatorTID(), "Shield/break");
+                }
+            }
+        }
+        else
+        {
+            if(armor_cur != armor_prev)
+            {
+                if(armor_cur > 0)
+                {
+                    dinged = false;
+                }
+            }
+        }
+       
+        armor_prev = armor_cur;
+        delay(1);
+    }
+}
+
+Script "SV_SKELYDRIVER" (Void)
+{
+Setmusic("D_mycar");
+}
+
+Script "SV_SKELYDRIVER2" (Void)
+{
+Setmusic("D_DEJAVU");
+}
+
+script "SV_RESETMOOSIC" (void)
+{
+Setmusic("*");
+}
+
+Script "SV_Hordeimp" (Void)
+{
+Ambientsound("Manco/IDKFA",127);
+}
+
+Script "SV_Chex" (Void)
+{
+Ambientsound("Chex/Boss",127);
+}
