@@ -1,3 +1,5 @@
+// This file is for defining projectile models
+
 model BlastBolt
 {
 	Path "models/Projectiles"
