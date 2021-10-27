@@ -285,7 +285,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		DrawString SmallFont, Gold, "Ammo:", 40, -30;
 		drawnumber 3, SmallFont, Gold, ammo1, 64, -30;
 		drawKeyBar 6, Horizontal, 12, 2, -40;
-		Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
+		Drawimage "UlTBARM", -96, -46;   // <- This bit right here Tribeam!
 		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
 		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
 		
