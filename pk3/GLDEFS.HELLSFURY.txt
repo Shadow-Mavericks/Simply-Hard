@@ -1,0 +1,475 @@
+Pointlight HellsFuryBall1
+{
+Color 0.8 0.0 0.00
+Size 48
+}
+
+Pointlight HellsFuryBall2
+{
+Color 1.0 0.0 0.00
+Size 64
+}
+
+Pointlight HellsFuryBall3
+{
+Color 0.8 0.0 0.00
+Size 56
+}
+
+Pointlight HellsFuryBall4
+{
+Color 0.4 0.0 0.00
+Size 32
+}
+
+
+Object HellsFuryBall
+{
+Frame HFBBA { Light HellsFuryBall1 }
+Frame HFBBB { Light HellsFuryBall1 }
+Frame HFBBC { Light HellsFuryBall2 }
+Frame HFBBD { Light HellsFuryBall3 }
+Frame HFBBE { Light HellsFuryBall4 }
+}
+
+
+//Brightmaps
+
+
+BrightMap Sprite HFRYA1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYA1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYA2A8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYA2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYA3A7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYA3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYA4A6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYA4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYA5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYA5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYB1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYB1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYB2B8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYB2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYB3B7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYB3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYB4B6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYB4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYB5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYB5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYC1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYC1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYC2C8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYC2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYC3C7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYC3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYC4C6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYC4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYC5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYC5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYD1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYD1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYD2D8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYD2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYD3D7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYD3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYD4D6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYD4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYD5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYD5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYE8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYE8.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYF8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYF8.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYG8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYG8.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYH8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYH8.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYI0
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYI0.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYJ0
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYJ0.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYK0
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYK0.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYL0
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYL0.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYM0
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYM0.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYP8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYP8.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ1
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ1.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ2
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ2.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ3
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ3.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ4
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ4.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ5
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ5.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ6
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ6.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ7
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ7.png"
+DisableFullBright
+}
+
+BrightMap Sprite HFRYQ8
+{
+Map "brightmaps/Realm667/Monsters/Hellsfury/BMHFRYQ8.png"
+DisableFullBright
+}
