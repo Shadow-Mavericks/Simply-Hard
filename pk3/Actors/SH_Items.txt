@@ -727,7 +727,7 @@ ACTOR DEMONENERGYRED : Custominventory
 	}
 }
 
-ACTOR DEMONENERGYGOLD : Custominventory
+ACTOR DEMON_ENERGY_BASE : Custominventory
 {
 	Game Doom
 	SpawnID 69
@@ -735,10 +735,15 @@ ACTOR DEMONENERGYGOLD : Custominventory
 	Height 16
 	scale 0.5
 	RenderStyle Add
-	Inventory.PickupMessage "Picked up demon energy"
+	Alpha 1.0
 	Inventory.PickupSound ""
 	+INVENTORY.QUIET
-	Inventory.RespawnTics "99999999"
+	+INVENTORY.NEVERRESPAWN
+}
+
+ACTOR DEMONENERGYGOLD : DEMON_ENERGY_BASE
+{
+	Inventory.PickupMessage "Picked up demon energy"
 	States
 	{
 	Spawn:
@@ -770,18 +775,10 @@ ACTOR DEMONENERGYGOLD : Custominventory
 	}
 }
 
-ACTOR DEMONENERGYGREEN : Custominventory
+ACTOR DEMONENERGYGREEN : DEMON_ENERGY_BASE
 {
-	Game Doom
-	SpawnID 69
-	Radius 20
-	Height 16
-	scale 0.5
-	RenderStyle Add
 	Inventory.PickupMessage "Picked up demon energy"
 	Inventory.PickupSound ""
-	+INVENTORY.QUIET
-	Inventory.RespawnTics "99999999"
 	States
 	{
 	Spawn:
@@ -813,18 +810,9 @@ ACTOR DEMONENERGYGREEN : Custominventory
 	}
 }
 
-ACTOR DEMONENERGYBLUE : Custominventory
+ACTOR DEMONENERGYBLUE : DEMON_ENERGY_BASE
 {
-	Game Doom
-	SpawnID 69
-	Radius 20
-	Height 16
-	scale 0.5
-	RenderStyle Add
 	Inventory.PickupMessage "Picked up demon energy"
-	Inventory.PickupSound ""
-	+INVENTORY.QUIET
-	Inventory.RespawnTics "99999999"
 	States
 	{
 	Spawn:
