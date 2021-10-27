@@ -1,0 +1,20 @@
+map SH01 "Hunted?"
+next SH02
+music Haunt1
+sky1 Rsky3 0.3
+nojump
+nocrouch
+
+map SH02 "Tribute Of Blood"
+next SH03
+music DIB_01
+sky1 Rsky3 0.0
+nojump
+nocrouch
+
+map SH03 "Unnamed Map?"
+next SH01
+music D_SCRAY
+sky1 Rsky3 0.0
+nojump
+nocrouch
