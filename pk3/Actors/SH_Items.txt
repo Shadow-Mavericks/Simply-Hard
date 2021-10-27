@@ -693,7 +693,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 	scale 0.5
 	RenderStyle Add
 	Alpha 1.0
-	Speed 10
+	Speed 20
 	Inventory.PickupSound ""
 	Inventory.PickupMessage "Picked up demon energy"
 	+INVENTORY.QUIET
