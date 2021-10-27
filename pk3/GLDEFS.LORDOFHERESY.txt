@@ -1,0 +1,323 @@
+BrightMap Sprite LOHSA1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSA1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSA2A8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSA2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSA3A7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSA3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSA4A6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSA4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSA5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSA5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSB1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSB1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSB2B8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSB2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSB3B7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSB3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSB4B6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSB4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSB5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSB5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSC1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSC1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSC2C8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSC2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSC3C7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSC3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSC4C6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSC4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSC5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSC5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSD1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSD1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSD2D8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSD2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSD3D7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSD3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSD4D6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSD4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSD5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSD5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE2
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE3
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE4
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSE8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSE8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF2
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF3
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF4
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSF8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSF8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG2
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG3
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG4
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSG8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSG8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH1
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH2
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH3
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH4
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH5
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH6
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH7
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSH8
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSH8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSI0
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSI0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite LOHSJ0
+{
+	Map "brightmaps/Realm667/Monsters/LordOfHeresy/BMLOHSJ0.png"
+	DisableFullBright
+}
