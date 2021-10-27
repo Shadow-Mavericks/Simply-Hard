@@ -33,7 +33,7 @@ Script "ULTIMATEABOOLITY" (Void) Net
 		SetActorState(0, "Fiendultimate");
 		takeinventory("UltimateAbilitycharge", 1000);
 	}
-else
+	else
 	{
 		Print(s:"Souls of your colour charge your ultimate ability!");
 	}

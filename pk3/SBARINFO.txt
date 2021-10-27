@@ -9,34 +9,36 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 {
 	playerclass Fiendzy
 	{
-	//Hud Overlay
-	drawimage "CMHUD1", 0, 0;
-    drawimage "FHUDICON", 4, 5;
-    //health / armor barsz
-    DrawBar "HPB100A", "HPBNULL1", health (100), horizontal, 74, 20;
-	DrawBar "SHLDF100", "FSHLD1NL", Armor (100), Horizontal, 68, 27;
-    DrawBar "HPB200A", "HPBNULL2", health (200), horizontal, 11, 20;
-	DrawBar "SHLDF200", "FSHLD2NL", Armor (200), Horizontal, 5, 27;
-	//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
-	
-	//health zdoom style
-    DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
+		//Hud Overlay
+		drawimage "CMHUD1", 0, 0;
+		drawimage "FHUDICON", 4, 5;
+		//health / armor barsz
+		DrawBar "HPB100A", "HPBNULL1", health (100), horizontal, 74, 20;
+		DrawBar "SHLDF100", "FSHLD1NL", Armor (100), Horizontal, 68, 27;
+		DrawBar "HPB200A", "HPBNULL2", health (200), horizontal, 11, 20;
+		DrawBar "SHLDF200", "FSHLD2NL", Armor (200), Horizontal, 5, 27;
+		//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
+		
+		//health zdoom style
+		DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
 
-    //armor zdoom style
-    Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
+		//armor zdoom style
+		Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
 
-    //ammo
-    drawnumber 3, INDEXFONT, untranslated, ammo1, 176, 18;
-    drawKeyBar 6, Horizontal, 8, 34, 6;
-	
-	Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
-	DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-	DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		//ammo
+		drawnumber 3, INDEXFONT, untranslated, ammo1, 176, 18;
+		drawKeyBar 6, Horizontal, 8, 34, 6;
+		
+		Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
+		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		
 		InInventory "UltimateAbilitycharge", 1000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
-	drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+		
+		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 		InInventory ExtraLifeThingy, 1 
 		{
 			drawimage "REZTANK1", 0, 0;
@@ -49,154 +51,160 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		{
 			Drawimage "REZTANK3", 0, 0;
 		}
-	//AMMO XP BAR - Sorry for the hacky method, I Got lazy and figured this was the easiest way lol -Fiendzy
-	
-	Drawimage	 "AMXPBR00",	0,	-20;
-	InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
-	
 		
-    usesammo
-    {
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	    usesammo Not
-    {
-        inventorybarnotvisible
-        {
-             drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	
-	    UsesSecondaryAmmo
-    {
-		drawimage "CMHUD1B", 0, 0;
-		drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
+		//AMMO XP BAR - Sorry for the hacky method, I Got lazy and figured this was the easiest way lol -Fiendzy
+		
+		Drawimage	 "AMXPBR00",	0,	-20;
+		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
+		
+			
+		usesammo
+		{
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+			usesammo Not
+		{
+			inventorybarnotvisible
+			{
+				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+		
+			UsesSecondaryAmmo
+		{
+			drawimage "CMHUD1B", 0, 0;
+			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
 	}
-playerclass Bulk_Bogan
-	{
-	//Hud Overlay
-	DrawBar "SHLDK200", "SHLDK0", Armor (400), Horizontal, 62, 33;
-	drawimage "CMHUD2", 0, 0;
-	drawimage "KHUDICON", 4, 8;
-    //health / armor barsz
-    DrawBar "KHPB100A", "KHPNULL", health (100), horizontal, 76, 20;
-	//DrawBar "HPB200A", "HPBNULL2", health (200), horizontal, 11, 20;
 	
-	//health zdoom style
-    DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
+	playerclass Bulk_Bogan
+	{
+		//Hud Overlay
+		DrawBar "SHLDK200", "SHLDK0", Armor (400), Horizontal, 62, 33;
+		drawimage "CMHUD2", 0, 0;
+		drawimage "KHUDICON", 4, 8;
+		//health / armor barsz
+		DrawBar "KHPB100A", "KHPNULL", health (100), horizontal, 76, 20;
+		//DrawBar "HPB200A", "HPBNULL2", health (200), horizontal, 11, 20;
+		
+		//health zdoom style
+		DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
 
-    //armor zdoom style
-    Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
+		//armor zdoom style
+		Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
 
-    //ammo
-    drawnumber 3, INDEXFONT, untranslated, ammo1, 177, 18;
-    drawKeyBar 6, Horizontal, 8, 34, 6;
-	Drawimage "UlTBARK", -96, -46;   // <- This bit right here Tribeam!
-	DrawBar "DENGKBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-	DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		//ammo
+		drawnumber 3, INDEXFONT, untranslated, ammo1, 177, 18;
+		drawKeyBar 6, Horizontal, 8, 34, 6;
+		Drawimage "UlTBARK", -96, -46;   // <- This bit right here Tribeam!
+		DrawBar "DENGKBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+		
 		InInventory "UltimateAbilitycharge", 1000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
-	InInventory ExtraLifeThingy, 1 
-	{
-	Drawimage "oneman_i", -30, 5;
-	}
-	InInventory ExtraLifeThingy, 2 
-	{
-	Drawimage "oneman_i", -55, 5;
-	}
-	InInventory ExtraLifeThingy, 3 
-	{
-	Drawimage "oneman_i", -80, 5;
-	}
-	//AMMO XP BAR - Sorry for the hacky method, I have no idea how to do it otherwise! -Fiend
-	
-	Drawimage	 "AMXPBR00",	0,	-20;
-	InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
-	
 		
-    usesammo
-    {
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	    usesammo Not
-    {
-        inventorybarnotvisible
-        {
-             drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	
-	    UsesSecondaryAmmo
-    {
-		drawimage "CMHUD2B", 0, 0;
-		drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
+		InInventory ExtraLifeThingy, 1 
+		{
+			Drawimage "oneman_i", -30, 5;
+		}
+		InInventory ExtraLifeThingy, 2 
+		{
+			Drawimage "oneman_i", -55, 5;
+		}
+		InInventory ExtraLifeThingy, 3 
+		{
+			Drawimage "oneman_i", -80, 5;
+		}
+		//AMMO XP BAR - Sorry for the hacky method, I have no idea how to do it otherwise! -Fiend
+		
+		Drawimage	 "AMXPBR00",	0,	-20;
+		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
+		
+			
+		usesammo
+		{
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+			usesammo Not
+		{
+			inventorybarnotvisible
+			{
+				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+		
+			UsesSecondaryAmmo
+		{
+			drawimage "CMHUD2B", 0, 0;
+			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
 	}
-playerclass Dookienookie
+	
+	playerclass Dookienookie
 	{
-	//Hud Overlay
-	drawimage "CMHUD3", 0, 0;
-	drawimage "D3DCOINA", 6, 10;
-    //health / armor barsz
-    DrawBar "GHPB100A", "HPBNULL1", health (150), horizontal, 74, 20;
-	DrawBar "SHLDF100", "FSHLD1NL", Armor (50), Horizontal, 68, 27;
-    DrawBar "HPB200A", "HPBNULL2", health (300), horizontal, 11, 20;
-	DrawBar "SHLDF200", "FSHLD2NL", Armor (100), Horizontal, 5, 27;
-	
-	//health zdoom style
-    DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
+		//Hud Overlay
+		drawimage "CMHUD3", 0, 0;
+		drawimage "D3DCOINA", 6, 10;
+		//health / armor barsz
+		DrawBar "GHPB100A", "HPBNULL1", health (150), horizontal, 74, 20;
+		DrawBar "SHLDF100", "FSHLD1NL", Armor (50), Horizontal, 68, 27;
+		DrawBar "HPB200A", "HPBNULL2", health (300), horizontal, 11, 20;
+		DrawBar "SHLDF200", "FSHLD2NL", Armor (100), Horizontal, 5, 27;
+		
+		//health zdoom style
+		DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
 
-    //armor zdoom style
-    Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
+		//armor zdoom style
+		Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
 
-    //ammo
-    drawnumber 3, INDEXFONT, untranslated, ammo1, 177, 18;
-    drawKeyBar 6, Horizontal, 8, 34, 6;
-	
-	Drawimage "UlTBARG", -96, -46;   // <- This bit right here Tribeam!
-	DrawBar "DENGGBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-	DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		//ammo
+		drawnumber 3, INDEXFONT, untranslated, ammo1, 177, 18;
+		drawKeyBar 6, Horizontal, 8, 34, 6;
+		
+		Drawimage "UlTBARG", -96, -46;   // <- This bit right here Tribeam!
+		DrawBar "DENGGBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+		
 		InInventory "UltimateAbilitycharge", 1000
 		{
 			Drawimage "ULTRDY", -73, -6;
@@ -213,76 +221,81 @@ playerclass Dookienookie
 		{
 			Drawimage "REZTANK3", 0, 0;
 		}
-	
-	//AMMO XP BAR - Sorry for the hacky method, I have no idea how to do it otherwise! -Fiend
-	
-	Drawimage	 "AMXPBR00",	0,	-20;
-	InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
-	InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
-	
 		
-    usesammo
-    {
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	    usesammo Not
-    {
-        inventorybarnotvisible
-        {
-             drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	
-	    UsesSecondaryAmmo
-    {
-		drawimage "CMHUD3B", 0, 0;
-		drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-}
-playerclass Rebel_Scum
-{
-	drawimage "CMHUD4", 0, -22;
-//    drawimage "FHUDICON", 4, 5;
-    //health / armor barsz
-    DrawBar "STKHP100", "STKHP000", health (200), horizontal, 12, -17;
-	DrawBar "SHLDM100", "STKSNULL", Armor (150), Horizontal, 12, -17;
-	//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
-	
-	//health zdoom style
-    DrawNumber 3, INDEXFONT, Red, Health, 96, -18;
+		//AMMO XP BAR - Sorry for the hacky method, I have no idea how to do it otherwise! -Fiend
+		
+		Drawimage	 "AMXPBR00",	0,	-20;
+		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
+		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
+		
+			
+		usesammo
+		{
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+			usesammo Not
+		{
+			inventorybarnotvisible
+			{
+				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+		
+			UsesSecondaryAmmo
+		{
+			drawimage "CMHUD3B", 0, 0;
+			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+	}
+	playerclass Rebel_Scum
+	{
+		drawimage "CMHUD4", 0, -22;
+		
+		//drawimage "FHUDICON", 4, 5;
+		//health / armor barsz
+		
+		DrawBar "STKHP100", "STKHP000", health (200), horizontal, 12, -17;
+		DrawBar "SHLDM100", "STKSNULL", Armor (150), Horizontal, 12, -17;
+		//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
+		
+		//health zdoom style
+		DrawNumber 3, INDEXFONT, Red, Health, 96, -18;
 
-    //armor zdoom style
-    Drawnumber 3, INDEXFONT, Green, Armor, 96, -7;
+		//armor zdoom style
+		Drawnumber 3, INDEXFONT, Green, Armor, 96, -7;
 
-    //ammo
-	DrawString SmallFont, Gold, "Ammo:", 40, -30;
-    drawnumber 3, SmallFont, Gold, ammo1, 64, -30;
-    drawKeyBar 6, Horizontal, 12, 2, -40;
-	Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
-	DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-	DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
-		InInventory "UltimateAbilitycharge", 500
+		//ammo
+		DrawString SmallFont, Gold, "Ammo:", 40, -30;
+		drawnumber 3, SmallFont, Gold, ammo1, 64, -30;
+		drawKeyBar 6, Horizontal, 12, 2, -40;
+		Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
+		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		
+		InInventory "UltimateAbilitycharge", 1000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
-	drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+			
+		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+			
 		InInventory ExtraLifeThingy, 1 
 		{
 			drawimage "CMAX1MAN", 115, -10;
@@ -295,44 +308,46 @@ playerclass Rebel_Scum
 		{
 			Drawimage "CMAX1MAN", 137, -10;
 		}
-	Drawimage	 "AMXPBR00",	0,	-60;
-	InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-60;	}
-	InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-60;	}
 		
-    usesammo
-    {
-        inventorybarnotvisible
-        {
-            drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	    usesammo Not
-    {
-        inventorybarnotvisible
-        {
-             drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-        }
-    }
-	
-	    UsesSecondaryAmmo
-    {
-		DrawString SmallFont, Gold, "/", 74, -30;
-		drawnumber 3, SmallFont, Gold, ammo2, 99, -30;
-    }
-}
-}
-statusbar inventory // Standard bar overlay (ZDoom Addition)
-	{
-    drawinventorybar Doom, 7, INDEXFONT, 0, 0;
+		Drawimage	 "AMXPBR00",	0,	-60;
+		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-60;	}
+		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-60;	}
+			
+		usesammo
+		{
+			inventorybarnotvisible
+			{
+				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+		
+		usesammo Not
+		{
+			inventorybarnotvisible
+			{
+				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+			}
+		}
+		
+		UsesSecondaryAmmo
+		{
+			DrawString SmallFont, Gold, "/", 74, -30;
+			drawnumber 3, SmallFont, Gold, ammo2, 99, -30;
+		}
 	}
+}
+
+statusbar inventory // Standard bar overlay (ZDoom Addition)
+{
+	drawinventorybar Doom, 7, INDEXFONT, 0, 0;
 }
