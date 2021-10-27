@@ -544,143 +544,143 @@ ACTOR Legendary-Armor : BasicArmorPickup
 
 Actor Kunaisabilityfilter : CustomInventory 
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  States
-  {
-  Spawn:
-    ARM1 A 6
-    ARM1 B 7 Bright
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 7 A_PLAYSOUND("Jim/Taunt5",Chan_7)
-    EUAB A 0 Bright A_RadiusGive("GosimersBlueArmorBonus", 320, RGF_PLAYERS, 20)
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
-    TNT1 A 0 A_Giveinventory("GreenarmorKunai")
-    Stop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	States
+	{
+		Spawn:
+			ARM1 A 6
+			ARM1 B 7 Bright
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 7 A_PLAYSOUND("Jim/Taunt5",Chan_7)
+			EUAB A 0 Bright A_RadiusGive("GosimersBlueArmorBonus", 320, RGF_PLAYERS, 20)
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
+			TNT1 A 0 A_Giveinventory("GreenarmorKunai")
+			Stop
+	}
 }
 
 ACTOR DEMONENERGY
 {
-  Game Doom
-  SpawnID 69
-  Radius 20
-  Height 16
-  RenderStyle Add
-  scale 0.5
-  States
-  {
-  Spawn:
-    UENF A 1 Bright
-	UENM B 1 Bright
-	UENK C 1 Bright
-	UENG D 1 Bright
-	UENF E 1 Bright
-	UENM F 1 Bright
-	UENK G 1 Bright
-	UENG H 1 Bright
-	UENF I 1 Bright
-	UENM J 1 Bright
-	UENK A 1 Bright
-	UENG B 1 Bright
-	UENF C 1 Bright
-	UENM D 1 Bright
-	UENK E 1 Bright
-	UENG F 1 Bright
-	UENF G 1 Bright
-	UENM H 1 Bright
-	UENK I 1 Bright
-	UENG J 1 Bright
-	UENF A 1 Bright
-	UENM B 1 Bright
-	UENK C 1 Bright
-	UENG D 1 Bright
-	UENF E 1 Bright
-	UENM F 1 Bright
-	UENK G 1 Bright
-	UENG H 1 Bright
-	UENF I 1 Bright
-	UENM J 1 Bright
-	UENK A 1 Bright
-	UENG B 1 Bright
-	UENF C 1 Bright
-	UENM D 1 Bright
-	UENK E 1 Bright
-	UENG F 1 Bright
-	UENF G 1 Bright
-	UENM H 1 Bright
-	UENK I 1 Bright
-	UENG J 1 Bright
-	UENF A 1 Bright
-	UENM B 1 Bright
-	UENK C 1 Bright
-	UENG D 1 Bright
-	UENF E 1 Bright
-	UENM F 1 Bright
-	UENK G 1 Bright
-	UENG H 1 Bright
-	UENF I 1 Bright
-	UENM J 1 Bright
-	UENK A 1 Bright
-	UENG B 1 Bright
-	UENF C 1 Bright
-	UENM D 1 Bright
-	UENK E 1 Bright
-	UENG F 1 Bright
-	UENF G 1 Bright
-	UENM H 1 Bright
-	UENK I 1 Bright
-	UENG J 1 Bright
-	UENF A 1 Bright
-	UENM B 1 Bright
-	UENK C 1 Bright
-	UENG D 1 Bright
-	UENF E 1 Bright
-	UENM F 1 Bright
-	UENK G 1 Bright
-	UENG H 1 Bright
-	UENF I 1 Bright
-	UENM J 1 Bright
-	UENK A 1 Bright
-	UENG B 1 Bright
-	UENF C 1 Bright
-	UENM D 1 Bright
-	UENK E 1 Bright
-	UENG F 1 Bright
-	UENF G 1 Bright
-	UENM H 1 Bright
-	UENK I 1 Bright
-	UENG J 1 Bright
-	RNG:
-		UENF A 0 A_Jump(256, "Green", "Blue", "Gold", "Red")
-		Stop
-	Green:
-		TNT1 A 1 A_SpawnItemEx ("DemonenergyGreen", 0, 0, 1, 0, 0, 0, 0, 1)
-		Stop
-	Gold:
-		TNT1 A 1 A_SpawnItemEx ("DemonenergyGold", 0, 0, 1, 0, 0, 0, 0, 1)
-		Stop
-	Red:
-		TNT1 A 1 A_SpawnItemEx ("DemonenergyRED", 0, 0, 1, 0, 0, 0, 0, 1)
-		Stop
-	Blue:
-		TNT1 A 1 A_SpawnItemEx ("DemonenergyBlue", 0, 0, 1, 0, 0, 0, 0, 1)
-		Stop
+	Game Doom
+	SpawnID 69
+	Radius 20
+	Height 16
+	RenderStyle Add
+	scale 0.5
+	States
+	{
+		Spawn:
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENF E 1 Bright
+			UENM F 1 Bright
+			UENK G 1 Bright
+			UENG H 1 Bright
+			UENF I 1 Bright
+			UENM J 1 Bright
+			UENK A 1 Bright
+			UENG B 1 Bright
+			UENF C 1 Bright
+			UENM D 1 Bright
+			UENK E 1 Bright
+			UENG F 1 Bright
+			UENF G 1 Bright
+			UENM H 1 Bright
+			UENK I 1 Bright
+			UENG J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENF E 1 Bright
+			UENM F 1 Bright
+			UENK G 1 Bright
+			UENG H 1 Bright
+			UENF I 1 Bright
+			UENM J 1 Bright
+			UENK A 1 Bright
+			UENG B 1 Bright
+			UENF C 1 Bright
+			UENM D 1 Bright
+			UENK E 1 Bright
+			UENG F 1 Bright
+			UENF G 1 Bright
+			UENM H 1 Bright
+			UENK I 1 Bright
+			UENG J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENF E 1 Bright
+			UENM F 1 Bright
+			UENK G 1 Bright
+			UENG H 1 Bright
+			UENF I 1 Bright
+			UENM J 1 Bright
+			UENK A 1 Bright
+			UENG B 1 Bright
+			UENF C 1 Bright
+			UENM D 1 Bright
+			UENK E 1 Bright
+			UENG F 1 Bright
+			UENF G 1 Bright
+			UENM H 1 Bright
+			UENK I 1 Bright
+			UENG J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENF E 1 Bright
+			UENM F 1 Bright
+			UENK G 1 Bright
+			UENG H 1 Bright
+			UENF I 1 Bright
+			UENM J 1 Bright
+			UENK A 1 Bright
+			UENG B 1 Bright
+			UENF C 1 Bright
+			UENM D 1 Bright
+			UENK E 1 Bright
+			UENG F 1 Bright
+			UENF G 1 Bright
+			UENM H 1 Bright
+			UENK I 1 Bright
+			UENG J 1 Bright
+		RNG:
+			UENF A 0 A_Jump(256, "Green", "Blue", "Gold", "Red")
+			Stop
+		Green:
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyGreen", 0, 0, 1, 0, 0, 0, 0, 1)
+			Stop
+		Gold:
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyGold", 0, 0, 1, 0, 0, 0, 0, 1)
+			Stop
+		Red:
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyRED", 0, 0, 1, 0, 0, 0, 0, 1)
+			Stop
+		Blue:
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyBlue", 0, 0, 1, 0, 0, 0, 0, 1)
+			Stop
 	}
 }
 
