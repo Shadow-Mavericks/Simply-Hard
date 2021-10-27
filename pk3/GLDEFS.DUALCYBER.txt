@@ -1,0 +1,229 @@
+//Brightmaps
+
+BrightMap Sprite ANNIA1C1
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA1.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIA2C8
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA2.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIA3C7
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA3.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIA4C6
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA4.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIA7C3
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA7.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIA8C2
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIA8.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB1D1
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB1.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB2D8
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB2.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB3D7
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB3.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB5D5
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB5.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB7D3
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB7.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIB8D2
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIB8.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIE1
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIE1.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIE2E8
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIE2.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIE3E7
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIE3.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIF1
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIF1.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIF2F8
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIF2.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIF3F7
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIF3.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIF4F6
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIF4.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIF5
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIF5.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIG1
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIG1.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIG2G8
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIG2.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIH0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIH0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNII0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNII0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIJ0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIJ0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIK0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIK0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIL0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIL0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIM0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIM0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIN0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIN0.png"
+DisableFullBright
+}
+
+BrightMap Sprite ANNIO0
+{
+Map "brightmaps/Realm667/Monsters/DualCyber/BMANNIO0.png"
+DisableFullBright
+}
+
+// Dynamic Lights
+
+Pointlight AnnihilatorRocket1
+{
+Color 1.0 0.7 0.0
+Size 56
+}
+
+Flickerlight AnnihilatorRocket2
+{
+Color 1.0 0.7 0.0
+Size 64
+SecondarySize 72
+Chance 0.3
+}
+
+Flickerlight AnnihilatorRocket3
+{
+Color 0.5 0.1 0.0
+Size 80
+SecondarySize 88
+Chance 0.3
+}
+
+Flickerlight AnnihilatorRocket4
+{
+Color 0.3 0.0 0.0
+Size 96
+SecondarySize 104
+Chance 0.3
+}
+
+Object Rocket2
+{
+Frame MISLA { Light AnnihilatorRocket1 }
+Frame MISLB { Light AnnihilatorRocket2 }
+Frame MISLC { Light AnnihilatorRocket3 }
+Frame MISLD { Light AnnihilatorRocket4 }
+}
+
+Object HomRocket1
+{
+Frame HMISA { Light AnnihilatorRocket1 }
+Frame BAL3C { Light AnnihilatorRocket2 }
+Frame BAL3D { Light AnnihilatorRocket3 }
+Frame BAL3E { Light AnnihilatorRocket4 }
+}
