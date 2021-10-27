@@ -1,0 +1,44 @@
+//SSG ZOmbie
+
+PointLight SSGZombieAttack
+{
+	Color 1.0 0.8 0.2
+	Size 30
+}
+
+Object SSGZombie
+{
+	Frame GPOSF { Light SSGZombieAttack }
+}
+
+//brightmaps
+
+BrightMap Sprite GPOSF1
+{
+	Map "brightmaps/Realm667/Monsters/ssgzombie/BMGPOSF1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite GPOSF2F8
+{
+	Map "brightmaps/Realm667/Monsters/ssgzombie/BMGPOSF2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite GPOSF3F7
+{
+	Map "brightmaps/Realm667/Monsters/ssgzombie/BMGPOSF3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite GPOSF4F6
+{
+	Map "brightmaps/Realm667/Monsters/ssgzombie/BMGPOSF4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite GPOSF5
+{
+	Map "brightmaps/Realm667/Monsters/ssgzombie/BMGPOSF5.png"
+	DisableFullBright
+}
