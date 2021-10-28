@@ -667,7 +667,7 @@ ACTOR DEMONENERGY
 			UENK I 1 Bright
 			UENG J 1 Bright
 		RNG:
-			UENF A 0 A_Jump(256, "Green", "Blue", "Gold", "Red")
+			"####" "#" 0 A_Jump(256, "Green", "Blue", "Gold", "Red")
 			Stop
 		Green:
 			TNT1 A 1 A_SpawnItemEx ("DemonenergyGreen", 0, 0, 1, 0, 0, 0, 0, 1)
@@ -698,6 +698,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 	Inventory.PickupMessage "Picked up demon energy"
 	+INVENTORY.QUIET
 	+INVENTORY.NEVERRESPAWN
+	+FORCEXYBILLBOARD
 	States
 	{
 		// States shared via inheritance. "####" makes it use the last sprite called by the actor.
@@ -708,7 +709,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0) 
 			goto SuccLoop
 		SuccLoop:
-			"####" ABCDEFGHIJ 1 Bright A_SeekerMissile(11.25, 22.50, SMF_LOOK | SMF_PRECISE, 256, 10)
+			"####" ABCDEFGHIJ 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
 			loop
 	}
 }
@@ -722,8 +723,8 @@ ACTOR DEMONENERGYRED : DEMON_ENERGY_BASE
 			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
 			Loop
 		CheckWho:
-			"####" A 0 A_JumpIfInTargetInventory("KunaiToken", 1, "Succ") 
-			"####" A 0 A_ClearTarget
+			"####" "#" 0 A_JumpIfInTargetInventory("KunaiToken", 1, "Succ") 
+			"####" "#" 0 A_ClearTarget
 			goto Spawn
 		pickup:
 			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
@@ -760,8 +761,8 @@ ACTOR DEMONENERGYGOLD : DEMON_ENERGY_BASE
 		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
 		Loop
 	CheckWho:
-		"####" A 0 A_JumpIfInTargetInventory("GosimerToken", 1, "Succ") 
-		"####" A 0 A_ClearTarget
+		"####" "#" 0 A_JumpIfInTargetInventory("GosimerToken", 1, "Succ") 
+		"####" "#" 0 A_ClearTarget
 		goto Spawn
 	pickup:
 		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
@@ -798,8 +799,8 @@ ACTOR DEMONENERGYGREEN : DEMON_ENERGY_BASE
 		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
 		Loop
 	CheckWho:
-		"####" A 0 A_JumpIfInTargetInventory("FiendToken", 1, "Succ") 
-		"####" A 0 A_ClearTarget
+		"####" "#" 0 A_JumpIfInTargetInventory("FiendToken", 1, "Succ") 
+		"####" "#" 0 A_ClearTarget
 		goto Spawn
 	pickup:
 		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
@@ -836,8 +837,8 @@ ACTOR DEMONENERGYBLUE : DEMON_ENERGY_BASE
 		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
 		Loop
 	CheckWho:
-		"####" A 0 A_JumpIfInTargetInventory("MaxToken", 1, "Succ") 
-		"####" A 0 A_ClearTarget
+		"####" "#" 0 A_JumpIfInTargetInventory("MaxToken", 1, "Succ") 
+		"####" "#" 0 A_ClearTarget
 		goto Spawn
 	pickup:
 		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
