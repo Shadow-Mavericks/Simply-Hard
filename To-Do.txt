@@ -1,0 +1,7 @@
+Reduce pull velocity of Black Hole Imps.
+Reduce duration of control inversion of Void enemies
+Refresh supply of starting inventory at beginning of map if ran out.
+Turn ultimate bar into a timer when you're under the influence of an ultimate ability powerup.
+Convert switches lump to ANIMDEFS.
+Rename skies in map pack to something new so they do not replace skies of other wads.
+Convert all monster sprites to paletted PNG.
