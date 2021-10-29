@@ -277,7 +277,7 @@ Ice:
 actor EnemySentryGun
 {
   obituary "%o was ventilated by an auto-sentry."
-  health 120
+  health 110
   radius 20
   height 56
   mass 100000
