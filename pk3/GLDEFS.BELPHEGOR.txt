@@ -1,0 +1,374 @@
+Pointlight BelphegorBall1
+{
+Color 0.0 0.6 0.0
+Size 48
+}
+
+Pointlight BelphegorBall2
+{
+Color 0.0 1.0 0.0
+Size 64
+}
+
+Pointlight BelphegorBall3
+{
+Color 0.0 0.5 0.0
+Size 56
+}
+
+Pointlight BelphegorBall4
+{
+Color 0.0 0.3 0.0
+Size 32
+}
+
+Object BelphegorBall
+{
+Frame BAL7A { Light BelphegorBall1 }
+Frame BAL7B { Light BelphegorBall1 }
+Frame BAL7C { Light BelphegorBall2 }
+Frame BAL7D { Light BelphegorBall3 }
+Frame BAL7E { Light BelphegorBall4 }
+}
+
+BrightMap Sprite BOS3A1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3A1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3A2A8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3A2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3A3A7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3A3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3A4A6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3A4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3A5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3A5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3b1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3B1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3B2B8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3B2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3B3B7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3B3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3B4B6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3B4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3B5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3B5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3C1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3C1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3C2C8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3C2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3C3C7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3C3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3C4C6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3C4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3C5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3C5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3D1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3D1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3D2D8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3D2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3D3D7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3D3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3D4D6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3D4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3D5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3D5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E2
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E3
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E4
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E6.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E7.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3E8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3E8.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F2
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F3
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F4
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F6.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F7.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3F8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3F8.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G2
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G3
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G4
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G6.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G7.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3G8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3G8.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H1
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H1.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H2
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H2.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H3
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H3.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H4
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H4.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H5
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H5.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H6
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H6.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H7
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H7.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3H8
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3H8.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3I0
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3I0.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3J0
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3J0.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3K0
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3K0.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3L0
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3L0.png"
+DisableFullBright
+}
+
+BrightMap Sprite BOS3M0
+{
+Map "brightmaps/Realm667/Monsters/Belphegor/BMBOS3M0.png"
+DisableFullBright
+}
