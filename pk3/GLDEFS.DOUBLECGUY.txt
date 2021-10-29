@@ -1,0 +1,111 @@
+FlickerLight2 DoubleChaingunGuy
+{
+	color 1.0 0.8 0.2
+	size 48
+	secondarySize 56
+	interval 1
+	offset 0 40 0
+}
+
+Object ChaingunGuy2
+{
+	Frame DPOSE { Light DoubleChaingunGuy }
+	Frame DPOSF { Light DoubleChaingunGuy }
+}
+
+
+BrightMap Sprite DPOSE1
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE2
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE3
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE4
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE5
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE6
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE7
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSE8
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF1
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF2
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF3
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF4
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF5
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF6
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF7
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DPOSF8
+{
+    Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSF8.png"
+	DisableFullBright
+}

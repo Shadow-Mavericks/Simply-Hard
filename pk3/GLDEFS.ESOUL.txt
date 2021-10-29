@@ -1,0 +1,338 @@
+//Brightmaps
+
+
+BrightMap Sprite ETHSA1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSA1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSA8A2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSA8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSA7A3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSA6A4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSA5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSB1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSB1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSB8B2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSB8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSB7B3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSB6B4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSB5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSC1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSC1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSC8C2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSC8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSC7C3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSC6C4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSC5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSD1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD8D2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSD8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD7D3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD6D4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSE1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSE1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSE8E2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSE8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD7D3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD6D4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSD5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSF1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSF1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSF8F2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSF8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSF7F3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSF6F4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSG1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSG1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSG6G4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSG7G3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSG7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSG8G2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSG8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSH0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSH0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSI0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSI0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSJ0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSJ0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSK0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSK0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSL0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSL0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSM0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSM0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSN0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSO0
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSP1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSP1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSP5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSP6P4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSP6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSP7P3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSP7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSP8P2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSP8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSQ1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSQ1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSQ5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSQ6Q4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSQ6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSQ7Q3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSQ7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSQ8Q2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSQ8.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSR1
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSR1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSR5
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMBLACK.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSR6R4
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSR6.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSR7R3
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSR7.png"
+	DisableFullBright
+}
+
+BrightMap Sprite ETHSR8R2
+{
+	Map "brightmaps/Realm667/Monsters/Esoul/BMETHSR8.png"
+	DisableFullBright
+}
