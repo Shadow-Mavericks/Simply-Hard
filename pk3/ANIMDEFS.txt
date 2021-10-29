@@ -1,3 +1,5 @@
+switch ADEL_Z50 off sound switches/normbutn pic ADEL_Z51 tics 0
+switch ADEL_Z51 on sound switches/normbutn pic ADEL_Z50 tics 0
 
 Texture CTEL
 pic CTEL1 tics 2
