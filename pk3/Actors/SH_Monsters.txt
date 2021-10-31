@@ -3417,7 +3417,7 @@ ACTOR whiterabbit
 	MONSTER
 	Health 1000 
 	PainChance 224
-	Speed 10
+	Speed 12
 	Radius 12 
 	Height 12 
 	Mass 20
@@ -3425,12 +3425,14 @@ ACTOR whiterabbit
 	BloodColor "red"
 	seesound "monster/HGTO"
 	MaxTargetRange 256
+	MinMissileChance 192 
 	Damage 250
 	+NOBLOCKMONST
 	+QUICKTORETALIATE
 	+NEVERFAST
 	+LOWGRAVITY
 	+FLOORCLIP
+	+SLIDESONWALLS
 	//+FOILINVUL
 	+BOSS
 	Dropitem "Allupgradetokens" 128
