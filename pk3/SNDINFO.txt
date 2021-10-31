@@ -1009,7 +1009,8 @@ $limit ForceBarrier/Hit	0
 
 //Duke 3D modded assult cannon sound - Kunai Kitsune
 
-Weapon/D3DAsscannon	D3DASGUN
+Weapon/D3DAsscannon			D3DASGUN
+Weapon/D3DAsscannon_Crit	D3DASCRT
 
 //Fiends New shotgun
 

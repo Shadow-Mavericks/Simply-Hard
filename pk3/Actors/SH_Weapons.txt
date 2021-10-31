@@ -3202,7 +3202,7 @@ ACTOR CombatShotgun : Doomweapon
 			Goto Ready
 		GoldCritfire:
 			SUN1 A 0 A_giveinventory("scatterclip",5) 
-			SUN2 A 0 A_FireBullets (7, 5, 10, 19, "GosimersExplosivepuff")
+			SUN2 A 0 A_FireBullets (7, 5, 10, 11, "GosimersExplosivepuff")
 			SUN2 A 0 A_GunFlash
 			SUN2 H 2 A_PlaySound("Weapon/Quadshotgunfire", CHAN_WEAPON)
 			SUN2 A 2 
@@ -3290,76 +3290,145 @@ ACTOR HMachinegun : Doomweapon
    Tag "$TAG_CHAINGUN"
    States
    {
-   Ready:
-	 D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldReady")
-	 D3DG A 1 A_WeaponReady
-	 D3DG A 15 A_WeaponReady
-	 D3DG A 0 A_giveinventory("scatterclip",1) 
-	 Loop
-   Deselect:
-	 D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldDeselect")
-	 D3DG A 1 A_Lower
-	 Loop
-   Select:
-	 D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldSelect")
-	 D3DG A 1 A_Raise
-	 Loop
-   Fire:
-	D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldFire")
-	D3DF ABC 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
-	D3DF DEF 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
-	D3DF GHI 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
-	D3DG A 0 A_giveinventory("scatterclip",1) 
-	D3DG A 0 A_ReFire
-	Goto Ready
-   GoldReady:
-	 D3GG A 1 A_WeaponReady
-	 D3GG A 15 A_WeaponReady
-	 D3GG A 0 A_giveinventory("scatterclip",1) 
-	 Loop
-   GoldDeselect:
-	 D3GG A 1 A_Lower
-	 Loop
-   GoldSelect:
-   TNT1 A 0 A_giveinventory("Tier4upgradetoken", 1)
-	 D3GG A 1 A_Raise
-	 Loop
-   GoldFire:
-	 D3GF ABC 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 13, "Bulletpuff")
-	 D3GF DEF 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 13, "Bulletpuff")
-	 D3GF GHI 1 Bright
-	NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-	MNGF A 0 Bright A_FireBullets(6, 6, -1, 13, "Bulletpuff")
-	 D3DG A 0 A_giveinventory("scatterclip",1) 
-	 D3GG A 0 A_ReFire
-	 Goto Ready
-   Flash:
-	 TNT1 A 1 Bright A_Light1
-	 TNT1 A 0 A_Light0
-	 Goto LightDone
-	 TNT1 A 1 Bright A_Light1
-	 TNT1 A 0 A_Light0
-	 Goto LightDone
-   Spawn:
-	 DEGT A -1
-	 Stop
-   }
+	Ready:
+		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldReady")
+		D3DG A 1 A_WeaponReady
+		D3DG A 15 A_WeaponReady
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		Loop
+	Deselect:
+		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldDeselect")
+		D3DG A 1 A_Lower
+		Loop
+	Select:
+		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldSelect")
+		D3DG A 1 A_Raise
+		Loop
+	Fire:
+		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldFire")
+		D3DF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(3, 3, -1, 7, "Bulletpuff")
+		D3DF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(3, 3, -1, 7, "Bulletpuff")
+		D3DF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(3, 3, -1, 7, "Bulletpuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3DG A 0 A_ReFire("Hold")
+		Goto Ready
+	Hold:
+		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldHold")
+		D3DF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
+		D3DF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
+		D3DF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3DG A 0 A_ReFire("Hold")
+		Goto Ready
+	GoldReady:
+		D3GG A 1 A_WeaponReady
+		D3GG A 15 A_WeaponReady
+		D3GG A 0 A_giveinventory("scatterclip",1) 
+		Loop
+	GoldDeselect:
+		D3GG A 1 A_Lower
+		Loop
+	GoldSelect:
+		TNT1 A 0 A_giveinventory("Tier4upgradetoken", 1)
+		D3GG A 1 A_Raise
+		Loop
+	GoldFire:
+		D3GF A 0 A_Jump(32, "GoldFire_Crit")
+		D3GF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "Bulletpuff")
+		D3GF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "Bulletpuff")
+		D3GF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "Bulletpuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3GG A 0 A_ReFire("GoldHold")
+		Goto Ready
+	GoldFire_Crit:
+		D3GF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "GosimersExplosivepuff")
+		D3GF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "GosimersExplosivepuff")
+		D3GF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "GosimersExplosivepuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3GG A 0 A_ReFire("GoldHold_NoCrit")
+		Goto Ready
+	GoldHold:
+		D3GF A 0 A_Jump(16, "GoldHold_Crit")
+		goto GoldHold_NoCrit
+	GoldHold_NoCrit:
+		D3GF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "Bulletpuff")
+		D3GF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "Bulletpuff")
+		D3GF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "Bulletpuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3GG A 0 A_ReFire("GoldHold")
+		Goto Ready
+	GoldHold_Crit:
+		D3GF ABC 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "GosimersExplosivepuff")
+		D3GF DEF 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_AUTO)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "GosimersExplosivepuff")
+		D3GF GHI 1 Bright
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_AUTO)
+		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "GosimersExplosivepuff")
+		D3DG A 0 A_giveinventory("scatterclip",1) 
+		D3GG A 0 A_ReFire("GoldHold")
+		Goto Ready
+	Flash:
+		TNT1 A 1 Bright A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+		TNT1 A 1 Bright A_Light1
+		TNT1 A 0 A_Light0
+		Goto LightDone
+	Spawn:
+		DEGT A -1
+		Stop
+	}
 }
 
 
@@ -4335,26 +4404,25 @@ Actor Armourportal
 
 ACTOR GosimersExplosivepuff
 {
-  +NOBLOCKMAP
-  +NOGRAVITY
-  +ALLOWPARTICLES
-  +RANDOMIZE
-  +PUFFONACTORS
-  RenderStyle ADD
-  Alpha 0.5
-  Scale 0.25
-  Mass 5
-  States
-  {
-  Spawn:
-	PUFF A 1 Bright
-	PUFF B 1
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	RenderStyle ADD
+	Alpha 0.5
+	Scale 0.25
+	Mass 5
+	States
+	{
+	Spawn:
+		PUFF A 1 Bright
+		PUFF B 1
 	// Intentional fall-through
-  Melee:
-		GXPL ABCDEFGH 1 Bright
-		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
-		Stop
- xdeath:
+	xdeath:
+	Melee:
+		GXPL A 0 A_Explode(8, 32, 0, false, 32)
 		GXPL ABCDEFGH 1 Bright
 		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
 		Stop
