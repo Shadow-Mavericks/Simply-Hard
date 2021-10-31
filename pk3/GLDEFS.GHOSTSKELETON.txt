@@ -1,0 +1,200 @@
+flickerlight2 GhostFire
+{
+    color 1.0 0.8 0.2
+    size 56
+    secondarySize 64
+    interval 1
+    offset 0 40 0
+}
+
+object GhostSkeleton 
+{
+    frame GSKLJ { light GhostFire }
+}
+
+flickerlight GhostBlind_FX1
+{
+    color 0.8 1.0 0.2
+    size 80
+    secondarySize 88
+    chance 0.3
+}
+flickerlight GhostBlind_FX2
+{
+    color 0.8 1.0 0.3
+    size 104
+    secondarySize 112
+    chance 0.3
+}
+flickerlight GhostBlind_FX3
+{
+    color 0.9 1.0 0.5
+    size 120
+    secondarySize 128
+    chance 0.3
+}
+flickerlight GhostBlind_FX4
+{
+    color 0.7 0.7 0.2
+    size 56
+    secondarySize 64
+    chance 0.3
+}
+flickerlight GhostBlind_FX5
+{
+    color 0.3 0.3 0.1
+    size 48
+    secondarySize 56
+    chance 0.3
+}
+object SkeletonBlind
+{
+    frame BLNDA { light GhostBlind_FX1 }
+    frame BLNDB { light GhostBlind_FX2 }
+    frame BLNDC { light GhostBlind_FX3 }
+    frame BLNDD { light GhostBlind_FX1 }
+    frame BLNDE { light GhostBlind_FX4 }
+    frame BLNDF { light GhostBlind_FX5 }
+}
+//BRIGHTMAPS
+BrightMap Sprite GSKLA1D1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLA1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLA2D8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLA2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLA8D2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLA8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLB1E1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLB1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLB2E8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLB2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLB8E2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLB8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLC1F1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLC1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLC2F8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLC2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLC8F2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLC8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLG1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLG1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLG2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLG2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLG8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLG8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLH1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLH1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLH2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLH2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLH8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLH8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLI1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLI1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ1.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ3
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ3.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ4
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ4.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ5
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ5.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ6
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ6.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ7
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ7.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLJ8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLJ8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLK1
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLK1.png"
+DisableFullBright
+}
+
+BrightMap Sprite GSKLK2
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLK2.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLK8
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLK8.png"
+DisableFullBright
+}
+BrightMap Sprite GSKLL7
+{
+Map "brightmaps/Realm667/Monsters/GhostSkeleton/BMGSKLL7.png"
+DisableFullBright
+}

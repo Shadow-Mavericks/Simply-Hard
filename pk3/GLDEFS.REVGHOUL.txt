@@ -1,0 +1,286 @@
+flickerlight2 GhoulFire
+
+{
+    color 0.3 1.0 0.4
+    size 56
+    secondarySize 64
+    interval 1
+    offset 0 40 0
+}
+object RevGhoul
+{
+	frame GHULG { light GhoulFire }
+	frame GHULH { light GhoulFire }
+	frame GHULI { light GhoulFire }
+    frame GHULJ { light GhoulFire }
+}
+//projectile is borrowed from the one used by the Brown Chaos Serpent
+pointlight GasTrail
+{
+    color 0.0 1.0 0.0
+    size 48
+}
+flickerlight GhoulBall_X1
+{
+    color 0.0 1.0 0.0
+    size 64
+    secondarySize 72
+    chance 0.5
+}
+flickerlight GhoulBall_X2
+{
+    color 0.0 0.8 0.0
+    size 72
+    secondarySize 80
+    chance 0.5
+}
+flickerlight GhoulBall_X3
+{
+    color 0.0 0.5 0.0
+    size 88
+    secondarySize 96
+    chance 0.5
+}
+flickerlight GhoulBall_X4
+{
+    color 0.0 0.2 0.0
+    size 96
+    secondarySize 104
+    chance 0.5
+}
+pointlight G_TRACER
+{
+    color 0.2 1.0 0.1
+    size 48
+}
+object GasTrail
+{
+    frame GHBLA { light GasTrail }
+    frame GHBLB { light GasTrail }
+    frame GHBLC { light GasTrail }
+    frame GHBLD { light GasTrail }
+    frame GHBLE { light GasTrail }
+    frame GHBLF { light GasTrail }
+}
+ Object GhoulMissile
+ {
+	frame GASBA { light G_TRACER }
+	frame GASBB { light G_TRACER }
+	frame GASBC { light G_TRACER }
+    frame GASXA { light GhoulBall_X1 }
+    frame GASXB { light GhoulBall_X2 }
+    frame GASXC { light GhoulBall_X2 }
+    frame GASXD { light GhoulBall_X3 }
+    frame GASXE { light GhoulBall_X4 }
+    frame GASXF { light GhoulBall_X4 }
+}
+pointlight GhoulCloud1
+{
+    color 0.0 0.4 0.0
+    size 48
+}
+pointlight GhoulCloud2
+{
+    color 0.0 0.6 0.0
+    size 56
+}
+pointlight GhoulCloud3
+{
+    color 0.0 0.7 0.0
+    size 64
+}
+pointlight GhoulCloud4
+{
+    color 0.0 0.6 0.0
+    size 56
+}
+pointlight GhoulCloud5
+{
+    color 0.0 0.7 0.0
+    size 64
+}
+pointlight GhoulCloud6
+{
+    color 0.0 0.6 0.0
+    size 56
+}
+object GhoulCloud
+{
+	frame GHCLD { light GhoulCloud1 }
+	frame GHCLE { light GhoulCloud2 }
+	frame GHCLF { light GhoulCloud3 }
+	frame GHCLG { light GhoulCloud4 }
+	frame GHCLH { light GhoulCloud5 }
+	frame GHCLI { light GhoulCloud6 }
+}
+object GhoulDeathCloud
+{
+	frame GHCLD { light GhoulCloud1 }
+	frame GHCLE { light GhoulCloud2 }
+	frame GHCLF { light GhoulCloud3 }
+	frame GHCLG { light GhoulCloud4 }
+	frame GHCLH { light GhoulCloud5 }
+	frame GHCLI { light GhoulCloud6 }
+}
+//BRIGHTMAPS
+BrightMap Sprite GHULG1
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG1.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG2
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG2.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG3
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG3.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG4
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG4.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG5
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG5.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG6
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG6.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG7
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG7.png"
+DisableFullBright
+}
+BrightMap Sprite GHULG8
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG8.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH1
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH1.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH2
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH2.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH3
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH3.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH4
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH4.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH5
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH5.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH6
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH6.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH7
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH7.png"
+DisableFullBright
+}
+BrightMap Sprite GHULH8
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH8.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI1
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI1.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI2
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI2.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI3
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI3.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI4
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI4.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI5
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI5.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI6
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI6.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI7
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI7.png"
+DisableFullBright
+}
+BrightMap Sprite GHULI8
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI8.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ1
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ1.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ2
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ2.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ3
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ3.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ4
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ4.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ5
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ5.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ6
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ6.png"
+DisableFullBright
+}
+
+BrightMap Sprite GHULJ7
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ7.png"
+DisableFullBright
+}
+BrightMap Sprite GHULJ8
+{
+Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ8.png"
+DisableFullBright
+}
