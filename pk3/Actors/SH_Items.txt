@@ -709,7 +709,26 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0) 
 			goto SuccLoop
 		SuccLoop:
-			"####" ABCDEFGHIJ 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" D 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" E 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" F 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" G 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" H 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" I 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" J 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
 			loop
 	}
 }
