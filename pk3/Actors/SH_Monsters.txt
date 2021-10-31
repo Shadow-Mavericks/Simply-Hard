@@ -3492,7 +3492,7 @@ ACTOR whiterabbit
 {
 	MONSTER
 	Health 1000 
-	PainChance 256
+	PainChance 224
 	Speed 10
 	Radius 12 
 	Height 12 
@@ -3507,7 +3507,7 @@ ACTOR whiterabbit
 	+NEVERFAST
 	+LOWGRAVITY
 	+FLOORCLIP
-	+FOILINVUL
+	//+FOILINVUL
 	+BOSS
 	Dropitem "Allupgradetokens" 128
 	Dropitem "extralifethingy" 127
