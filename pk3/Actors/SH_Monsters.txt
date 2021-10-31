@@ -3020,33 +3020,31 @@ ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there
 
 ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
-
-    	Health 2500
-    	Radius 16
-    	Height 56
-    	Speed 8
+	Health 2500
+	Radius 16
+	Height 56
+	Speed 8
 	Mass 0x7FFFFFFF
-    	PainChance 160
-        Monster
-	 +NOBLOCKMONST
- 	 +BOSS
-	 +MISSILEMORE
- 	 +FLOORCLIP
-	 +NORADIUSDMG
-	 +DONTMORPH
- 	 +BOSSDEATH
-//	 +DONTTHRUST
+	PainChance 160
+	Monster
+	+NOBLOCKMONST
+	+BOSS
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	//+DONTTHRUST
 	Translation "112:127=176:191"
-  +DONTHURTSPECIES
-  +NOINFIGHTING
-        Seesound "zandronum/connect"
-    	AttackSound " "
+	+DONTHURTSPECIES
+	+NOINFIGHTING
+	Seesound "zandronum/connect"
+	AttackSound " "
 	PainSound "CIMPDTH2"
-	Dropitem "InfernoDemon"
-    	Obituary "%o was given a bad time by Kunai?"
-    	MeleeDamage 25
-    	States
-    	{
+	Obituary "%o was given a bad time by Kunai?"
+	MeleeDamage 25
+	States
+	{
     	Spawn:
 			PLAY AB 5 A_Look
 			Loop
@@ -3062,251 +3060,178 @@ ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there a
         	PLAY E 4 A_MeleeAttack
         	PLAY A 9
 			Goto See
-	Missile:
-        	PLAY E 5 A_FaceTarget
-        	PLAY E 0 A_Jump (96, "Chaingunattack")
-        	PLAY E 0 A_Jump (96, "Rocketattack")
-        	PLAY E 0 A_Jump (96, "Plasmaattack")
-        	PLAY E 0 A_Jump (96, "Railattack")
-        	PLAY E 0 A_Jump (96, "bfgattack")
-        SSGATTACK:
-        	PLAY E 6 A_PlaySound ("SSHTGN")
-        	PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
-        	PLAY E 6 A_PlaySound ("SSHTGN")
-        	PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
-		PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
-		Goto SSGATTACK
-	Chaingunattack:
-        	PLAY F 1 A_CPosAttack
-        	PLAY E 2 A_Playsound("weapon/LMGGIRE")
-		PLAY E 0 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
-	goto chaingunattack
-	Rocketattack:
-		PLAY F 6 A_CustomMissile ("GoldCryoShot", 32, 0, 0)
-		PLAY E 20 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
-	goto Rocketattack
-        Plasmaattack:
-        	PLAY E 0 A_PlaySound ("Channeler/Fire")
-        	PLAY F 2 A_CustomMissile ("ChannelerBeam", 32, 0, 0)
-		PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
-	goto plasmaattack
-	Railattack:
-		PLAY F 5 A_FaceTarget
+		Missile:
+			PLAY E 5 A_FaceTarget
+			PLAY E 0 A_Jump (96, "Chaingunattack", "Rocketattack", "Plasmaattack", "Railattack", "bfgattack")
+			goto SSGATTACK
+		SSGATTACK:
+			PLAY E 6 A_PlaySound ("SSHTGN")
+			PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+			PLAY E 6 A_PlaySound ("SSHTGN")
+			PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+			PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
+			Goto SSGATTACK
+		Chaingunattack:
+			PLAY F 1 A_CPosAttack
+			PLAY E 2 A_Playsound("weapon/LMGGIRE")
+			PLAY E 0 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
+			goto chaingunattack
+		Rocketattack:
+			PLAY F 6 A_CustomMissile ("GoldCryoShot", 32, 0, 0)
+			PLAY E 20 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
+			goto Rocketattack
+		Plasmaattack:
+			PLAY E 0 A_PlaySound ("Channeler/Fire")
+			PLAY F 2 A_CustomMissile ("ChannelerBeam", 32, 0, 0)
+			PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
+			goto plasmaattack
+		Railattack:
+			PLAY F 5 A_FaceTarget
         	PLAY F 10 A_MonsterRail
         	PLAY E 40
-		Goto See
-	Bfgattack:
-        	PLAY E 30 A_PlaySound ("DMC/Charge")
-		PLAY E 0 A_PlaySound ("DMC/Fire")
-        	PLAY F 10 A_CustomMissile ("DMBALL", 32, 0, 0)
-        	PLAY E 20
-        	PLAY E 5
+			Goto See
+		Bfgattack:
+			PLAY E 30 A_PlaySound ("DMC/Charge")
+			PLAY E 0 A_PlaySound ("DMC/Fire")
+			PLAY F 10 A_CustomMissile ("DMBALL", 32, 0, 0)
+			PLAY E 20
+			PLAY E 5
 			Goto See
     	Death:
-		KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 0, 0, 0, 0, 0, 128, SXF_CLIENTSIDE)
-		KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 24, 0, 0, 0, 0, 128, SXF_CLIENTSIDE)
-		KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 48, 0, 0, 0, 0, 128, SXF_CLIENTSIDE)
-        	PLAY A 125
-		KUNI I 0 A_Playsound("Kunai/Transform1", Chan_7)
-		KUNI I 0 A_Playsound("Kunai/Transform1", Chan_6)
-		KUNI I 0 A_Playsound("Kunai/Transform1", Chan_5)
-		PLAY A 10
-        	KUNI ABCDEFGH 13 
-		KUNI I 170 
-		KUNI I 13
-		KUNI I 13
-		KUNI I 13
-		KUNI I 13
-		KUNI I 13
-		KUNI I 13
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 11
-		KUNI I 9
-		KUNI J 9
-		KUNI K 9
-		KUNI L 9
-		KUNI M 9
-		KUNI N 9
-		KUNI O 9
-		KUNI P 9
-		KUNI I 9
-		KUNI J 9
-		KUNI K 9
-		KUNI L 9
-		KUNI M 9
-		KUNI N 9
-		KUNI O 9
-		KUNI P 9
-		KUNI I 7
-		KUNI J 7
-		KUNI K 7
-		KUNI L 7
-		KUNI M 7
-		KUNI N 7 
-		KUNI O 7
-		KUNI P 7
-		KUNI I 5
-		KUNI J 5
-		KUNI K 5
-		KUNI L 5
-		KUNI M 5
-		KUNI N 5
-		KUNI O 5
- 		KUNI P 5
-		KUNI I 3
-		KUNI J 3
-		KUNI K 3
-		KUNI L 3
-		KUNI M 3
-		KUNI N 3
-		KUNI O 3
- 		KUNI P 3
-		KUNI I 3
-		KUNI J 3
-		KUNI K 3
-		KUNI L 3
-		KUNI M 3
-		KUNI N 3
-		KUNI O 3
- 		KUNI P 3
-		KUNI I 3
-		KUNI J 2
-		KUNI K 2
-		KUNI L 2
-		KUNI M 2
-		KUNI N 2
-		KUNI O 2
- 		KUNI P 2
-		KUNI I 2
-		KUNI J 2
-		KUNI K 2
-		KUNI L 2
-		KUNI M 2
-		KUNI N 2
-		KUNI O 2
-	Death2:
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI P 0 A_Jump(160, "despawn2")
-                Despawn:
-		KUNI I 0 A_Playsound("Kunai/Transform2", Chan_7)
-		KUNI I 0 A_Playsound("Kunai/Transform2", Chan_6)
-		KUNI I 0 A_Playsound("Kunai/Transform2", Chan_5)
-		KUNI A 0 A_SpawnItemEx ("Takoget", 0, 0, 12, 0, 0, -10, 0, 1)
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(1.0)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		Stop
+			KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
+			KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 24, 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
+			KUNI A 0 A_SpawnItemEx ("FirewallSpawner", 0, 0, 48, 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
+			PLAY A 125
+			KUNI I 0 A_Playsound("Kunai/Transform1", Chan_7)
+			KUNI I 0 A_Playsound("Kunai/Transform1", Chan_6)
+			KUNI I 0 A_Playsound("Kunai/Transform1", Chan_5)
+			PLAY A 10
+			KUNI ABCDEFGH 13 
+			KUNI I 347
+			KUNI IJKLMNOPIJKLMNOP 9
+			KUNI IJKLMNOP 7
+			KUNI IJKLMNOP 5
+			KUNI IJKLMNOPIJKLMNOPI 3
+			KUNI JKLMNOPIJKLMNO 2
+		Death2:
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI P 0 A_Jump(128, "Despawn2")
+			goto Despawn
+			
+		Despawn:
+			KUNI I 0 A_Playsound("Kunai/Transform2", Chan_7)
+			KUNI I 0 A_Playsound("Kunai/Transform2", Chan_6)
+			KUNI I 0 A_Playsound("Kunai/Transform2", Chan_5)
+			KUNI A 0 A_Noblocking
+			KUNI A 0 A_SpawnItemEx ("Takoget", 0, 0, 12, 0, 0, -10, 0, 1)
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(1.0)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			Stop
 		Despawn2:
-		KUNI A 0 A_Noblocking
-		KUNI I 1 A_FadeOut(0.1)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-		KUNI I 1 A_FadeOut(1.0)
-		KUNI J 1 
-		KUNI K 1
-		KUNI L 1
-		KUNI M 1
-		KUNI N 1
-		KUNI O 1
- 		KUNI P 1
-
-		Stop
+			KUNI A 0 A_Noblocking
+			KUNI A 0 A_SpawnItemEx("InfernoDemon", 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			KUNI I 1 A_FadeOut(0.1)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			KUNI I 1 A_FadeOut(1.0)
+			KUNI J 1 
+			KUNI K 1
+			KUNI L 1
+			KUNI M 1
+			KUNI N 1
+			KUNI O 1
+			KUNI P 1
+			Stop
     	}
 }
 
