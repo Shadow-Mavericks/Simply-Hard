@@ -18,7 +18,7 @@ ACTOR N_Archvile_Base : Monster_Base
   ActiveSound "vile/active"
   MeleeSound "vile/stop"
   Obituary "$OB_VILE"
-  Dropitem "ExtraLifeThingy " 10
+  Dropitem "ExtraLifeThingy" 10
   Dropitem "Activebox1" 5
   States
   {

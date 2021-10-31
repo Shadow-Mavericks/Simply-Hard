@@ -1267,7 +1267,7 @@ Actor Diabloist : Archvile
   PainSound "Monster/diapai" 
   DeathSound "Monster/diadth" 
   ActiveSound "Monster/diaact" 
-  Dropitem "ExtraLifeThingy " 10
+  Dropitem "ExtraLifeThingy" 10
   Dropitem "Activebox4" 5
   States 
   { 
@@ -2046,7 +2046,7 @@ SeeSound "monster/termsit"
 PainSound "monster/termpin" 
 DeathSound "monster/termdth"
 ActiveSound "Terminator/termact"
-Dropitem" ExtraLifeThingy  " 50
+Dropitem "ExtraLifeThingy" 50
 Dropitem "Bossbox" 25
 States 
    { 
@@ -11076,7 +11076,7 @@ ACTOR SuperFlyingImp
   PAINSOUND "imp/pain"
   DEATHSOUND "imp/death"
   ACTIVESOUND "imp/active"
-  Dropitem "ExtraLifeThingy " 5
+  Dropitem "ExtraLifeThingy" 5
   Dropitem "Activebox" 1
   MONSTER
   +Float
@@ -11234,7 +11234,7 @@ ACTOR RocketImp //20128
   ActiveSound "Rocketimp/Idle"
   Dropitem "Activebox1 " 5
   Dropitem "Activebox4 " 1
-  Dropitem "Extralifethingy " 5
+  Dropitem "Extralifethingy" 5
   Dropitem "Rocketammo"
   Dropitem "Rocketlauncher" 72
   Obituary "%o was blown apart by a Robo Rocket Imp"
