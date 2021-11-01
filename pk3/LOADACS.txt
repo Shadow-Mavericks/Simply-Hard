@@ -8,3 +8,4 @@ DIVSHADW
 Classabilities
 oneman
 Deathsounds
+KILL_CODE

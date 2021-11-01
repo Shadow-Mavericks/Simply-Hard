@@ -6,3 +6,5 @@ Convert switches lump to ANIMDEFS.
 Rename skies in map pack to something new so they do not replace skies of other wads.
 Convert all monster sprites to paletted PNG.
 Give the white rabbit attack and idle sounds. Sound sources: https://www.youtube.com/watch?v=Kn10Jf1x24Q https://www.youtube.com/watch?v=VXATKE6ZEkI
+
+Add truecolor gradients to elemental variants.

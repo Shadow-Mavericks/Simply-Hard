@@ -1,0 +1,1 @@
+local noarchive bool sh_debug = false;
