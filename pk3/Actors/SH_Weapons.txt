@@ -3953,65 +3953,59 @@ DamageType Mightyboot
 Actor KunaisKar98 : Doomweapon
 {
 Weapon.PreferredSkin "Carbine-Marine"
-   Game Doom
-   scale 1
-   SpawnID 28
-   Weapon.SelectionOrder 3
-   Weapon.SlotNumber 7
-   Weapon.Slotpriority 1
+	Game Doom
+	scale 1
+	SpawnID 28
+	Weapon.SelectionOrder 3
+	Weapon.SlotNumber 7
+	Weapon.Slotpriority 1
 	Inventory.Forbiddento "Maximusprime"
-   Inventory.ForbiddenTo "Gosimer"
-   Inventory.ForbiddenTo "Fiend"
-   Inventory.RestrictedTo "Kunai"
-   Weapon.AmmoUse1 1
-   Weapon.AmmoGive1 5
-   Weapon.AmmoType1 "Railslugs"
-   Weapon.AmmoUse2 1
-   Weapon.AmmoGive2 5
-   Weapon.AmmoType2 "Railclip"
-   Inventory.Respawntics"4200"
+	Inventory.ForbiddenTo "Gosimer"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.RestrictedTo "Kunai"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 5
+	Weapon.AmmoType1 "Railslugs"
+	Inventory.Respawntics"4200"
    //+WEAPON.NOAUTOAIM
-		Weapon.BobSpeed 1.5
+	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
-   Inventory.PickupSound"weapon/RAILGET"
-   Inventory.PickupMessage "You got the kar98!"
-   Obituary "%o Got picked off by %k's Kar98"
- 
+	Inventory.PickupSound"weapon/RAILGET"
+	Inventory.PickupMessage "You got the kar98!"
+	Obituary "%o Got picked off by %k's Kar98"
 	 States
-	 {
-	   Select:
-		 KARG A 1 A_Raise
-		 Loop
-		 
-	   Deselect:
-		 KARG A 1 A_Lower
-		 Loop
-		 
-	   Ready:
-	 //NULL A 0 A_JumpIfInventory("Reload",0,"Reload")
-		 KARG A 1 A_WeaponReady (WRF_ALLOWRELOAD)
-		 loop
-		 
-	   Fire:
-	 NULL A 0 A_JumpIfInventory("Railclip",1,1)
-	 Goto Dryfire
-		 KARG A 2 A_GunFlash
-	 KARG A 0 A_PlaySoundEx("weapon/K98FIRE","Weapon")
-		 KARF A 1 Bright A_FireBullets(0.5, 0.5, 1, 200)
-	 KARF A 0 A_TakeInventory("Railclip",1)
-	 KARF B 1 Bright
-	 KARG A 0 A_PlaySoundEx("weapon/K98Boltback","SoundSlot5")
-		 KARG B 3
-		 KARG C 4 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-	 KARG A 0 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
-		 KARG D 5
-	 KARG C 4
-	 KARG B 3
-		 KARG A 2
-	 KARG A 5 A_Refire
-		 Goto Ready
-		 
+	{
+	Select:
+		KARG A 1 A_Raise
+		Loop 
+	Deselect:
+		KARG A 1 A_Lower
+		Loop
+	Ready:
+		KARG A 1 A_WeaponReady (WRF_ALLOWRELOAD)
+		loop
+	Fire:
+		KARG A 2 A_GunFlash
+		KARG A 0 A_PlaySoundEx("weapon/K98FIRE","Weapon")
+		KARF A 1 Bright A_FireBullets(0.5, 0.5, 1, 100)
+		KARF B 1 Bright
+		KARG A 1 
+		KARG B 2
+		KARG C 3 A_PlaySoundEx("weapon/K98Boltback","SoundSlot5")
+		KARG D 4
+		KARG E 3
+		KARG F 3
+		KARG G 2 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+		KARG H 7 
+		KARG I 2 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
+		KARG J 3
+		KARG K 3
+		KARG L 4
+		KARG M 3
+		KARG A 2
+		KARG A 1 A_Refire
+		Goto Ready 
 	   Flash:
 		TNT1 A 1 A_LIGHT1
 		TNT1 A 1 A_LIGHT2
