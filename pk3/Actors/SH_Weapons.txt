@@ -4000,9 +4000,8 @@ Weapon.PreferredSkin "Carbine-Marine"
 		KARG H 7 
 		KARG I 2 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
 		KARG J 3
-		KARG K 3
-		KARG L 4
-		KARG M 3
+		KARG K 4
+		KARG L 3
 		KARG A 2
 		KARG A 1 A_Refire
 		Goto Ready 
