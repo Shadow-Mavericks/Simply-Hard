@@ -2417,36 +2417,35 @@ actor CyberRocketbarrage : Rocket
 
 actor Dejavuskelebob : Segwayzombie
 {
-  obituary "%o Took the Initial D!"
-  health 8000
-  radius 32
-  height 56
-  mass 100
-  speed 1
-  Scale 0.25
-  painchance 100
-  meleedamage 2
-  meleerange 42
-  +Noicedeath
-  Dropitem "Activebox1" 1
-  +noicedeath
-  MONSTER
-  +FLOORCLIP
-  +STRIFEDAMAGE
-  +SOLID
-  +NOBLOOD
-  +DONTRIP
-  +QUICKTORETALIATE
-  +NOBLOCKMONST
-  Dropitem "Papyrus"
-  Dropitem "Energy-tank"
-  states
-  {
-  Spawn:
-    DJVZ A 10 A_Look
-    DJVZ A 0 A_Stop
-    DJVZ A 0 A_StopSoundEx ("SoundSlot7")
-    loop
+	obituary "%o Took the Initial D!"
+	health 8000
+	radius 32
+	height 56
+	mass 100
+	speed 1
+	Scale 0.25
+	painchance 100
+	meleedamage 2
+	meleerange 42
+	Dropitem "Activebox1" 1
+	MONSTER
+	+NOICEDEATH
+	+FLOORCLIP
+	+STRIFEDAMAGE
+	+SOLID
+	+NOBLOOD
+	+DONTRIP
+	+QUICKTORETALIATE
+	+NOBLOCKMONST
+	Dropitem "Papyrus"
+	Dropitem "Energy-tank"
+	states
+	{
+		Spawn:
+			DJVZ A 10 A_Look
+			DJVZ A 0 A_Stop
+			DJVZ A 0 A_StopSoundEx ("SoundSlot7")
+			loop
   See:
     DJVZ A 1 A_Chase
     DJVZ A 0 A_Recoil (-2)

@@ -1,1 +1,1 @@
-local noarchive bool sh_debug = false;
+local bool sh_debug = false;

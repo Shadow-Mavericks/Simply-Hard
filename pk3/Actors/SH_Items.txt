@@ -579,7 +579,7 @@ ACTOR DEMONENERGY
 {
 	Game Doom
 	SpawnID 69
-	Radius 20
+	Radius 8
 	Height 16
 	RenderStyle Add
 	Alpha 1.0
@@ -589,6 +589,7 @@ ACTOR DEMONENERGY
 	+SLIDESONWALLS
 	+NOBLOCKMAP
 	+FORCEXYBILLBOARD
+	+NOBLOCKMONST
 	States
 	{
 		Spawn:
@@ -694,7 +695,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 {
 	Game Doom
 	SpawnID 69
-	Radius 20
+	Radius 8
 	Height 16
 	scale 0.5
 	RenderStyle Add
