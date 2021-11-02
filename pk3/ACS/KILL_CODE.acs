@@ -25,7 +25,7 @@ script "ON_KILL" KILL
 		VOrbSpeed = 6.0;
 	
 	// Base Multiplier * Health / (Health + Speed of Deminishing Return)
-	int NumOrbs = 100 * Health / (Health + 1500); // Calculate number of Orbs.
+	int NumOrbs = 75 * Health / (Health + 1500); // Calculate number of Orbs.
 	
 	// Certain flags add a bonus.
 	if(CheckFlag(0, "MISSILEMORE"))			NumOrbs += 1;
@@ -36,7 +36,7 @@ script "ON_KILL" KILL
 	if(CheckFlag(0, "STEALTH"))				NumOrbs += 2;
 	if(CheckFlag(0, "ALWAYSFAST"))			NumOrbs += 2;
 	if(CheckFlag(0, "NORADIUSDMG"))			NumOrbs += 2;
-	if(CheckFlag(0, "BOSS"))				NumOrbs += 24; // Bosses get more orbs.
+	if(CheckFlag(0, "BOSS"))				NumOrbs += 16; // Bosses get more orbs.
 		
 	if(Damage >= 250) // Super high damage enemies (like the white rabbit) double orbs.
 		NumOrbs *= 2;
