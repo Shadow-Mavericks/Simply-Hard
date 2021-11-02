@@ -1,0 +1,5 @@
+KagoAttack1 KAGO1
+KagoAttack2 KAGO2
+KagoAttack3 KAGO3
+
+$random KagoAttack	{ KagoAttack1 KagoAttack2 KagoAttack3 }
