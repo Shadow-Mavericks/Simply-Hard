@@ -2579,6 +2579,7 @@ ACTOR Kago : SwarmFly
 	Scale 1.0
 	BloodColor "Green"
 	Species "Kago"
+	ActiveSound "KagoIdle"
 	-SOLID
 	+FLOAT
 	+NOGRAVITY
