@@ -2582,7 +2582,7 @@ ACTOR Kago : SwarmFly
 	Speed 1
 	Monster
 	Damage 1
-    Scale 1.0
+	Scale 1.0
 	BloodColor "Green"
 	+FLOAT
 	+NOGRAVITY
@@ -2591,27 +2591,31 @@ ACTOR Kago : SwarmFly
 	+DONTHURTSPECIES
 	States
 	{
-    Spawn:
-	  KAGO FGH 1 A_Look
-	  Goto See
-	See:
-	  KAGO FGHFGHFGHFGHFGH 1 A_Chase
-	  Goto see
-	Melee:
-	Missile:
-      KAGO FG 1 A_Facetarget
-	  KAGO H 8 A_Skullattack
-	  KAGO FGH 8 A_Facetarget
-	Goto see
-	Death:
-	  DTHX A 0 BRIGHT A_setscale(0.25)
-      DTHX A 0 BRIGHT A_Scream
-	  DTHX A 1 BRIGHT A_Die
-      DTHX B 1 BRIGHT 
-      DTHX C 1 BRIGHT 
-      DTHX D 1 BRIGHT 
-      DTHX E 1 BRIGHT 
-	Stop
+		Spawn:
+			KAGO FGH 1 A_Look
+			Goto See
+		See:
+			KAGO FGH 1 A_Wander
+			KAGO FGH 1 A_Chase
+			KAGO FGH 1 A_Wander
+			KAGO FGH 1 A_Chase
+			KAGO FGH 1 A_Chase
+			Goto see
+		Melee:
+		Missile:
+			KAGO FG 1 A_Facetarget
+			KAGO H 8 A_Skullattack
+			KAGO FGH 8 A_Facetarget
+			Goto see
+		Death:
+			DTHX A 0 BRIGHT A_setscale(0.25)
+			DTHX A 0 BRIGHT A_ScreamAndUnblock
+			DTHX A 1 BRIGHT
+			DTHX B 1 BRIGHT 
+			DTHX C 1 BRIGHT 
+			DTHX D 1 BRIGHT 
+			DTHX E 1 BRIGHT 
+			Stop
 	}
 }
 /*
