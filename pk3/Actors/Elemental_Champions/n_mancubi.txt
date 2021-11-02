@@ -80,7 +80,7 @@ actor N_Mancubus_Acid : HardFatso
 // Void Mancubus
 actor MancubusBall_Void : MancubusBall_Base 
 { 
-//	Translation "160:167=[192, 128, 255]:[32, 0, 64]", "168:191=[192, 128, 255]:[32, 0, 64]", "208:223=[192, 128, 255]:[32, 0, 64]", "232:235=[192, 128, 255]:[32, 0, 64]", "16:47=[192, 128, 255]:[32, 0, 64]"
+//	Translation "160:167=[192, 128, 255]:[16, 0, 32]", "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "232:235=[192, 128, 255]:[16, 0, 32]", "16:47=[192, 128, 255]:[16, 0, 32]"
 	DamageType "Void" 
 	States
 	{
@@ -99,7 +99,7 @@ actor MancubusBall_Void : MancubusBall_Base
 actor N_Mancubus_Void : HardFatso 
 {
 //	Scale 1.1
-	Translation "48:79=[192, 128, 255]:[32, 0, 64]"
+	Translation "48:79=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 		Missile:

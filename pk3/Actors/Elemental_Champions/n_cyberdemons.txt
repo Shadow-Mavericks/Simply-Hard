@@ -147,7 +147,7 @@ ACTOR N_Cyberdemon_Void : N_Cyberdemon_Base
 //	Scale 1.1
 +Dontrip
   PainChance 30
-	Translation "48:79=[192, 128, 255]:[32, 0, 64]", "144:151=[192, 128, 255]:[32, 0, 64]"
+	Translation "48:79=[192, 128, 255]:[16, 0, 32]", "144:151=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 	  Missile:

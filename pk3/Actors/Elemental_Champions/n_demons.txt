@@ -16,7 +16,7 @@ actor N_Demon_Acid : fastdemon
 actor N_Demon_Void : fastdemon 
 {
 //	Scale 1.1
-	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	Translation "16:47=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 		Melee:
@@ -103,7 +103,7 @@ actor N_Demonghost_Acid : fastSpectre
 actor N_Demonghost_Void : fastSpectre 
 {
 //	Scale 1.1
-	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	Translation "16:47=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 		Melee:

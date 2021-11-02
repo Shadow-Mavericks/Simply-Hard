@@ -125,7 +125,7 @@ actor N_Baron_Acid : N_Baron_Base
 // Void Baron
 actor BaronBall_Void : BaronBall_Base 
 { 
-//	Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+//	Translation "112:127=[192, 128, 255]:[16, 0, 32]"
 	DamageType "Void"
 	  States
   {
@@ -142,7 +142,7 @@ actor BaronBall_Void : BaronBall_Base
 actor N_Baron_Void : N_Baron_Base 30055
 {
 //	Scale 1.1
-	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	Translation "16:47=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 		Melee:
