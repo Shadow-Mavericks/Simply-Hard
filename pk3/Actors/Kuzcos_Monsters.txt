@@ -2524,54 +2524,48 @@ actor papyrusBoom
 
 ACTOR Kagohive
 {
-  Health 400
-  Radius 32
-  Height 32
-  Speed 0
-  Scale 1.5
-  PainChance 255
-  Meleethreshold 384
-  Monster
-  +FLOORCLIP
-  +SOLID
-  -NOGRAVITY
-  -FLOAT
-  +Missilemore
-  +Missileevenmore
-  SeeSound ""
-  PainSound ""
-  DeathSound ""
-  ActiveSound ""
-  States
-  {
-  Spawn:
-    KAGO ABCDE 5 A_Look
-    goto see
-  See:
-    KAGO ABCDE 5 Bright
-    goto See
-  Melee:
-  Missile:
-    KAGO A 0 Bright A_FaceTarget
-	KAGO A 5 Bright A_CustomMissile("Kago",32,48,0,0,210)
-    KAGO BCDE 5 Bright
-    Goto See
-  Pain:
-	KAGO A 0 Bright A_FaceTarget
-	KAGO A 5 Bright A_CustomMissile("Kago",32,48,0,0,210)
-    KAGO BCDE 5 Bright
-    Goto See
-  Death:
-    KAGO AAAAAAAAAA 0 Bright A_CustomMissile("Kago",32,48,0,0,210)
-    DTHX A 0 BRIGHT A_setscale(2.0)
-    DTHX A 0 BRIGHT A_Scream
-	DTHX A 1 BRIGHT A_Die
-    DTHX B 1 BRIGHT 
-    DTHX C 1 BRIGHT 
-    DTHX D 1 BRIGHT 
-    DTHX E 1 BRIGHT 
-    Stop
-  }
+	Health 400
+	Radius 20
+	Height 48
+	Mass 0x7FFFFFFF
+	Speed 0
+	Scale 1.5
+	PainChance 256
+	Meleethreshold 384
+	Species "Kago"
+	Monster
+	+FLOORCLIP
+	+SOLID
+	+THRUSPECIES
+	+MISSILEMORE
+	+MISSILEEVENMORE
+	+QUICKTORETALIATE
+	//+DONTTHRUST // Not in Zandronum yet. Fucking lame.
+	SeeSound ""
+	PainSound ""
+	DeathSound ""
+	ActiveSound ""
+	States
+	{
+		Spawn:
+			KAGO ABCDE 5 A_LookEx(LOF_NOJUMP | LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0, 0, 0, 360)
+			loop
+		Pain:
+			KAGO A 0 Bright A_FaceTarget
+			KAGO A 5 Bright A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0.0, 1.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
+			KAGO BCDE 5 Bright
+			Goto Spawn
+		Death:
+			KAGO AAAAAAAAAA 0 Bright A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
+			DTHX A 0 BRIGHT A_setscale(2.0)
+			DTHX A 0 BRIGHT A_Scream
+			DTHX A 1 BRIGHT A_Die
+			DTHX B 1 BRIGHT 
+			DTHX C 1 BRIGHT 
+			DTHX D 1 BRIGHT 
+			DTHX E 1 BRIGHT 
+			Stop
+	}
 }
 
 ACTOR Kago : SwarmFly
@@ -2579,16 +2573,19 @@ ACTOR Kago : SwarmFly
 	Health 5
 	Radius 10
 	Height 10
-	Speed 1
+	Speed 2
 	Monster
 	Damage 1
 	Scale 1.0
 	BloodColor "Green"
+	Species "Kago"
+	-SOLID
 	+FLOAT
 	+NOGRAVITY
 	+LOOKALLAROUND
 	+THRUSPECIES
 	+DONTHURTSPECIES
+	+NOBLOCKMONST
 	States
 	{
 		Spawn:
