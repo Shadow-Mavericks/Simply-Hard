@@ -2606,6 +2606,7 @@ ACTOR Kago : SwarmFly
 			KAGO FGH 8 A_Facetarget
 			Goto see
 		Death:
+			DTHX A 0 A_PlaySound("KagoDie", CHAN_AUTO)
 			DTHX A 0 BRIGHT A_setscale(0.25)
 			DTHX A 0 BRIGHT A_ScreamAndUnblock
 			DTHX A 1 BRIGHT
