@@ -1,1 +1,2 @@
+server bool sh_orbs_logarithmic = false;
 local bool sh_debug = false;
