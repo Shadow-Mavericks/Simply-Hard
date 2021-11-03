@@ -3964,7 +3964,7 @@ DamageType Mightyboot
 
 Actor KunaisKar98 : Doomweapon
 {
-Weapon.PreferredSkin "Carbine-Marine"
+	Weapon.PreferredSkin "Carbine-Marine"
 	Game Doom
 	scale 1
 	SpawnID 28
@@ -3979,95 +3979,54 @@ Weapon.PreferredSkin "Carbine-Marine"
 	Weapon.AmmoGive1 5
 	Weapon.AmmoType1 "Railslugs"
 	Inventory.Respawntics"4200"
-   //+WEAPON.NOAUTOAIM
+	//+WEAPON.NOAUTOAIM
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
 	Inventory.PickupSound"weapon/RAILGET"
 	Inventory.PickupMessage "You got the kar98!"
 	Obituary "%o Got picked off by %k's Kar98"
-	 States
+	States
 	{
-	Select:
-		KARG A 1 A_Raise
-		Loop 
-	Deselect:
-		KARG A 1 A_Lower
-		Loop
-	Ready:
-		KARG A 1 A_WeaponReady (WRF_ALLOWRELOAD)
-		loop
-	Fire:
-		KARG A 2 A_GunFlash
-		KARG A 0 A_PlaySoundEx("weapon/K98FIRE","Weapon")
-		KARF A 1 Bright A_FireBullets(0.5, 0.5, 1, 100)
-		KARF B 1 Bright
-		KARG A 1 
-		KARG B 2
-		KARG C 3 A_PlaySoundEx("weapon/K98Boltback","SoundSlot5")
-		KARG D 4
-		KARG E 3
-		KARG F 3
-		KARG G 2 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
-		KARG H 5 
-		KARG I 2 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
-		KARG J 3
-		KARG K 4
-		KARG L 3
-		KARG A 2
-		KARG A 1 A_Refire
-		Goto Ready 
-	   Flash:
-		TNT1 A 1 A_LIGHT1
-		TNT1 A 1 A_LIGHT2
-		TNT1 A 0 A_Light0
-		 Stop
-	   Reload:
-	 NULL A 0 A_JumpIfInventory("Railclip",0,"Noreload")
-	 Goto Reloadstart
-	   Reloadstart:
-		 KARG A 5
-	 KARG A 0 A_PlaySoundEx("weapon/K98Boltback","SoundSlot5")
-	 KARG B 6
-	 KARG C 7
-	 KARG D 8
-	 KARR A 3
-	 KARR E 4
-	 KARR F 5
-		 goto ReloadLoop
- 
-	   ReloadLoop:
-	 KARR F 5
-	 KARR B 5 A_GiveInventory("Railclip", 1)
-		 KARR C 5 A_PlaySoundEx("weapon/K98load","SoundSlot5")
-		 KARR D 4 
-		 TNT1 A 0 A_JumpIfInventory("Railclip", 0, "ReloadEnd")
-	 TNT1 A 0 A_Refire
-		 Goto Reloadloop
- 
-	   ReloadEnd:
-	 KARR F 5
-	 KARR E 4
-	 KARR A 3 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
-	 KARG D 7
-	 KARG C 6
-	 KARG B 5
-		 Goto Ready
- 
-	   NoReload:
-		 KARG A 0
-		 Goto Ready
-
-	DryFire:
-		NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-		KARG A 2 A_WeaponReady(WRF_NOFIRE)
-		Goto Reloadstart
- 
-	   Spawn:
-		 K98G A -1
-		 Stop
-	 }
- }
+		Select:
+			KARG A 1 A_Raise
+			Loop 
+		Deselect:
+			KARG A 1 A_Lower
+			Loop
+		Ready:
+			KARG A 1 A_WeaponReady
+			loop
+		Fire:
+			KARG A 2 A_GunFlash
+			KARG A 0 A_PlaySoundEx("weapon/K98FIRE","Weapon")
+			KARF A 1 Bright A_FireBullets(0.5, 0.5, 1, 100)
+			KARF B 1 Bright
+			KARG A 1 
+			KARG B 2
+			KARG C 3 A_PlaySoundEx("weapon/K98Boltback","SoundSlot5")
+			KARG D 4
+			KARG E 3
+			KARG F 3
+			KARG G 2 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1) 
+			KARG H 5 
+			KARG I 2 A_PlaySoundEx("weapon/K98Boltforward","SoundSlot6")
+			KARG J 3
+			KARG K 4
+			KARG L 3
+			KARG A 2
+			KARG A 1 A_Refire
+			Goto Ready 
+		Flash:
+			TNT1 A 1 A_LIGHT1
+			TNT1 A 1 A_LIGHT2
+			TNT1 A 0 A_Light0
+			Stop
+		Spawn:
+			 K98G A -1
+			 Stop
+	}
+}
 
 actor Railclip : Ammo
 {
