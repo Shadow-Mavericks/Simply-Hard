@@ -44,18 +44,6 @@ ACTOR N_Archvile_Base : Monster_Base
     VILE Q 5 A_Pain
     Goto See
 	XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		XMED A 5 
 		TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
 		 TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
@@ -74,16 +62,6 @@ ACTOR N_Archvile_Base : Monster_Base
 		XMED E -1
 		Stop
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		VILE Q 7
 		TNT1 AAA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
 		TNT1 AAAA 0 A_CustomMissile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160))
@@ -96,18 +74,6 @@ ACTOR N_Archvile_Base : Monster_Base
 		Stop
 Ice:
     VILE Q 5 A_GenericFreezeDeath
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     VILE Q 1 A_FreezeDeathChunks
 
     wait
@@ -162,7 +128,7 @@ actor N_Archvile_Acid : N_Archvile_Base
 /////////////////////////
 actor P_ArchvileFire_Void : Particle_Base
 {
-	Translation "160:167=[192, 128, 255]:[32, 0, 64]"
+	Translation "160:167=[192, 128, 255]:[16, 0, 32]"
   States
   {
 		Spawn:
@@ -177,7 +143,7 @@ actor P_ArchvileFire_Void : Particle_Base
 }
 actor N_Archvile_Void : N_Archvile_Base 
 {
-	Translation "48:79=[192, 128, 255]:[32, 0, 64]", "128:143=[192, 128, 255]:[32, 0, 64]", "144:151=[96, 64, 96]:[32, 0, 64]", "236:239=[96, 64, 96]:[32, 0, 64]", "13:15=[96, 64, 96]:[32, 0, 64]", "210:211=[192, 128, 255]:[192, 128, 255]"
+	Translation "48:79=[192, 128, 255]:[16, 0, 32]", "128:143=[192, 128, 255]:[16, 0, 32]", "144:151=[96, 64, 96]:[16, 0, 32]", "236:239=[96, 64, 96]:[16, 0, 32]", "13:15=[96, 64, 96]:[16, 0, 32]", "210:211=[192, 128, 255]:[192, 128, 255]"
   States
   {	
 		Missile:

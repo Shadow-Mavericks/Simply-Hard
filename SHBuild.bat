@@ -112,9 +112,10 @@ goto MENU
 :COMPILEACS
 cd pk3
 cd ACS
+del compile_log.log
 for %%f in (*.acs) do (
 	echo %%~nf
-	acc.exe "%%~nf.acs" "%%~nf.o" >> compile_log.log
+	acc.exe "%%~nf.acs" "%%~nf.o" 1>> compile_log.log 2>&1
 )
 pause
 goto MENU

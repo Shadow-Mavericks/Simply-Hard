@@ -1559,7 +1559,7 @@ ACTOR DEPlasmaRifle : DoomWeapon
 		FPLF B 1
 		FPLF B 0 A_Refire
 		Goto Ready
-		GoldFire:
+	GoldFire:
 		FPLF A 1 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)
 		FPLF B 1
 		FPLF C 1 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)

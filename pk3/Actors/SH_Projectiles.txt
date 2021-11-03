@@ -1025,7 +1025,7 @@ Actor impballtrailPurple
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
-	//Translation "168:191=[192, 128, 255]:[32, 0, 64]", "208:223=[192, 128, 255]:[32, 0, 64]", "231:231=[192, 128, 255]:[32, 0, 64]", "233:233=[192, 128, 255]:[32, 0, 64]"
+	//Translation "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "231:231=[192, 128, 255]:[16, 0, 32]", "233:233=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 	Spawn:
@@ -1230,7 +1230,7 @@ Actor BaronballtrailPurple
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
-	//Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+	//Translation "112:127=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 	Spawn:
@@ -1471,7 +1471,7 @@ Actor Purplefattrail
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
-	//Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+	//Translation "112:127=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 	Spawn:

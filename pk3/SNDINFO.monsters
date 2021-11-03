@@ -1,0 +1,14 @@
+KagoAttack1 KAGO1
+KagoAttack2 KAGO2
+KagoAttack3 KAGO3
+$random KagoAttack { KagoAttack1 KagoAttack2 KagoAttack3 }
+
+KagoDie1 KAGODIE1
+KagoDie2 KAGODIE2
+KagoDie3 KAGODIE3
+$random KagoDie { KagoDie1 KagoDie2 KagoDie3 }
+
+KagoIdle1 KAGOIDL1
+KagoIdle2 KAGOIDL2
+KagoIdle3 KAGOIDL3
+$random KagoIdle { KagoIdle1 KagoIdle2 KagoIdle3 }

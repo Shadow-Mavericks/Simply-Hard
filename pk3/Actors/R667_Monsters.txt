@@ -36,12 +36,6 @@ actor SuicideBomber
     BMBE A 3 A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BMBE M 0 bright A_Explode (75, 384)
     BMBE M 5 bright A_PlaySound ("weapons/rocklx")
 	TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
@@ -61,14 +55,7 @@ actor SuicideBomber
     stop
 	Ice:
     BMBE A 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	    BMBE A 1 A_FreezeDeathchunks
+	BMBE A 1 A_FreezeDeathchunks
     wait
 	Rise:
 	TFOG ABABCD 4 BRIGHT
@@ -154,8 +141,6 @@ ACTOR FlamerZombie
         FLMZ G 3 A_Pain
         Goto See
     Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         FLMZ H 5
         FLMZ I 5 A_Scream
         FLMZ J 5 A_Fall
@@ -163,10 +148,6 @@ ACTOR FlamerZombie
         FLMZ L -1
         Stop
     XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         FLMZ O 5
 	TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
 	TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
@@ -184,14 +165,7 @@ ACTOR FlamerZombie
         Stop
 	Ice:
     FLMZ G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	    FLMZ G 1 A_FreezeDeathchunks
+	FLMZ G 1 A_FreezeDeathchunks
     wait
     Raise:
         FLMZ KJIH 5
@@ -318,12 +292,6 @@ actor BFGGuy
     BFGZ G 3 A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BFGZ H 5
     BFGZ I 5 A_Scream
     BFGZ J 5 A_NoBlocking
@@ -331,14 +299,6 @@ actor BFGGuy
     BFGZ N -1
     stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BFGZ O 5
 	TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
 	TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
@@ -356,14 +316,7 @@ actor BFGGuy
     stop
 	Ice:
     BFGZ G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	    BFGZ G 1 A_FreezeDeathchunks
+	BFGZ G 1 A_FreezeDeathchunks
     wait
   Raise:
     BFGZ NMLKJIH 5
@@ -416,10 +369,6 @@ ACTOR RailArachnotron
 		RSPI I 3 A_Pain
 		Goto See+1
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		RSPI J 20 A_Scream
 		RSPI K 7 A_Fall
 		RSPI LMNO 7
@@ -427,13 +376,6 @@ ACTOR RailArachnotron
 		Stop
 	Ice:
     RSPI I 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RSPI I 1 A_FreezeDeathchunks
     wait
     Raise:
@@ -484,10 +426,6 @@ ACTOR SSGZombie
 		GPOS G 3 A_Pain
 		Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		GPOS H 7
 		GPOS I 7 A_Scream
 		GPOS J 7 A_NoBlocking
@@ -497,10 +435,6 @@ ACTOR SSGZombie
 		GPOS N -1
 		Stop
 	XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		GPOS O 5
 	TNT1 AAAAAA 0 A_CustomMissile ("CeilBloodLauncherLong", 0, 0, random (0, 360), 2, random (50, 130))
 	TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
@@ -518,13 +452,6 @@ ACTOR SSGZombie
 		Stop
 	Ice:
     GPOS G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     GPOS G 1 A_FreezeDeathchunks
     wait
 	Raise:
@@ -571,10 +498,6 @@ actor NamiDarkImp
         DRKI H 2 A_Pain
         Goto See
     Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         DRKI I 8
         DRKI J 8 A_Scream
         DRKI K 6
@@ -582,10 +505,6 @@ actor NamiDarkImp
         DRKI M -1
         Stop
     XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         DRKI N 5
         DRKI O 5 A_XScream
         DRKI P 5
@@ -595,12 +514,6 @@ actor NamiDarkImp
         Stop
 	Ice:
     DRKI H 5 A_GenericFreezeDeath
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DRKI H 1 A_FreezeDeathchunks
     wait
     Raise:
@@ -736,26 +649,6 @@ actor AracnorbQueen
 	ARNQ F 4 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ARNQ G 0 A_ChangeFlag("FLOATBOB",0)
     ARNQ G 9 A_Scream
 	ARNQ G 3 A_Fall
@@ -940,8 +833,6 @@ ACTOR ChainsawZombie
         CHAN G 3 A_Pain 
         Goto See 
     Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         CHAN H 5 
         CHAN I 5 A_Scream 
         CHAN J 5 A_Fall 
@@ -949,10 +840,6 @@ ACTOR ChainsawZombie
         CHAN N -1 
         Stop		
     XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         CHAN O 5
         CHAN P 5 A_XScream
         CHAN Q 5 A_Fall
@@ -961,11 +848,6 @@ ACTOR ChainsawZombie
         Stop
 	Ice:
     CHAN G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CHAN G 1 A_FreezeDeathchunks
     wait
     Raise: 
@@ -1063,10 +945,6 @@ ACTOR Chiller
 		CHIL F 10 A_CustomMissile("IceRipper",32,0,0,0)
 		Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		CHIL H 5 A_ScreamAndUnblock
 		CHIL I 5 A_Gravity
                 CHIL I 0 A_CustomMissile("ChillerFog2",32,0,45,0)
@@ -1350,22 +1228,9 @@ Actor Diabloist : Archvile
     Goto See 
 	Ice:
     D1AB Q 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     D1AB Q 1 A_FreezeDeathchunks
     wait
   Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     D1AB Q 7 
     D1AB R 7 A_Scream 
     D1AB S 7 A_NoBlocking 
@@ -1616,13 +1481,6 @@ actor SegwayZombie
 	Ice:
     ZSEG B 0 A_StopSoundEx ("SoundSlot7")
     ZSEG A 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZSEG A 1 A_FreezeDeathchunks
     wait
   Death:
@@ -1730,12 +1588,6 @@ Actor Cybruiser : BaronOfHell
     BRUS J 2 A_Pain 
     Goto See 
   Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BRUS K 6 Bright A_Scream
     BRUS LMN 6 Bright
     BRUS O 6 Bright A_NoBlocking
@@ -1833,10 +1685,6 @@ ACTOR DevastatorZombie
     DEVZ G 3 A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DEVZ H 5
     DEVZ I 5 A_Scream
     DEVZ J 5 A_NoBlocking
@@ -1844,16 +1692,6 @@ ACTOR DevastatorZombie
     DEVZ N -1
     stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DEVZ O 5
     DEVZ P 5 A_XScream
     DEVZ Q 5 A_NoBlocking
@@ -1862,11 +1700,6 @@ ACTOR DevastatorZombie
     stop
 	Ice:
     DEVZ G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DEVZ G 1 A_FreezeDeathchunks
     wait
   Raise:
@@ -2099,26 +1932,6 @@ States
        TERM K 8 Bright A_CustomMissile("Redstar", 38, -15, 0, 0)
        Goto See   
    Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
        TERM M 6 A_Scream
        TERM N 4 
        TERM OPQ 4 Bright
@@ -3029,19 +2842,6 @@ actor TimeImp
     stop
 	Ice:
     SIMP H 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     SIMP H 1 A_FreezeDeathchunks
     wait
   Death:
@@ -3694,12 +3494,6 @@ States
 	UNMB F 4 A_Pain
 	Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 	TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
 	UNMB G 7 A_SetFloorClip
 	UNMB H 6 A_Scream
@@ -3901,12 +3695,6 @@ actor ArachnotronMK2 : Arachnotron
     BSP2 I 3 A_Pain
     Goto See+1
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BSP2 J 20 A_Scream
     BSP2 K 7 A_NoBlocking
     BSP2 LMNO 7
@@ -3981,10 +3769,6 @@ ACTOR ASGGuy
         ASGZ G 3 A_Pain
         Goto See
     Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         ASGZ H 5
         ASGZ I 5 A_Scream
         ASGZ J 5 A_Fall
@@ -3992,12 +3776,6 @@ ACTOR ASGGuy
         ASGZ N -1
         Stop
     XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         ASGZ O 5
         ASGZ P 5 A_XScream
         ASGZ Q 5 A_Fall
@@ -4006,12 +3784,6 @@ ACTOR ASGGuy
         Stop
 	Ice:
     ASGZ G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ASGZ G 1 A_FreezeDeathchunks
     wait
     Raise:
@@ -4056,10 +3828,6 @@ ACTOR BeamRevenant : HardRevenant
     RASK L 5 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RASK LM 7
     RASK N 7 A_Scream
     RASK O 7 A_NoBlocking
@@ -4068,12 +3836,6 @@ ACTOR BeamRevenant : HardRevenant
     Stop
 	Ice:
     RASK L 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RASK L 1 A_FreezeDeathchunks
     wait
   Raise:
@@ -4431,16 +4193,6 @@ Actor WarlordOfHell 22282
     BOS6 H 5 A_Pain 
     Goto See 
   Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BOS6 I 12 
     BOS6 J 12 A_Scream 
     BOS6 K 12 A_Fall 
@@ -4529,16 +4281,6 @@ ACTOR Cyberbaron : Baronofhell
     CBOS H 2 A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CBOS I 8
     CBOS J 8 A_Scream
     CBOS K 8 bright A_Playsound("world/barrelx")
@@ -4646,26 +4388,6 @@ Actor FusionSpider
     FSPI I 3 A_Pain
     Goto See+1
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     FSPI J 20 A_Scream
     FSPI K 7 A_NoBlocking
     FSPI LMNO 7
@@ -4754,8 +4476,6 @@ ACTOR Rocketzombie
       MPOS H 2 A_Pain 
       Goto See 
    Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
       MPOS I 5 
       MPOS J 5 A_Scream 
       MPOS K 5 
@@ -4763,12 +4483,6 @@ ACTOR Rocketzombie
       MPOS M -1 
       Stop 
    XDeath: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
       MPOS N 5 
       MPOS O 5 A_XScream 
       MPOS P 5 
@@ -4779,12 +4493,6 @@ ACTOR Rocketzombie
 	Ice:
 	MPOS H 0 A_PLAYSOUND("Soldierboy/Die")
     MPOS H 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     MPOS H 1 A_FreezeDeathchunks
     wait
    Raise: 
@@ -4840,10 +4548,6 @@ ACTOR cyberImp
     CIMP H 2 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP I 8
     CIMP J 8 A_Scream
     CIMP K 6
@@ -4851,12 +4555,6 @@ ACTOR cyberImp
     CIMP M -1
     Stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
     CIMP O 5 A_XScream
     CIMP P 5
@@ -4866,12 +4564,6 @@ ACTOR cyberImp
     Stop
 	Ice:
     CIMP H 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP H 1 A_FreezeDeathchunks
     wait
   Raise:
@@ -4922,10 +4614,6 @@ ACTOR DarkcyberImp
     CIMP H 2 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP I 8
     CIMP J 8 A_Scream
     CIMP K 6
@@ -4933,14 +4621,6 @@ ACTOR DarkcyberImp
     CIMP M -1
     Stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
     CIMP O 5 A_XScream
     CIMP P 5
@@ -4950,14 +4630,6 @@ ACTOR DarkcyberImp
     Stop
 	Ice:
     CIMP H 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CIMP H 1 A_FreezeDeathchunks
     wait
   Raise:
@@ -9819,8 +9491,6 @@ ACTOR PyroZombie
     PYRZ G 3 A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     PYRZ H 5
     PYRZ I 5 A_Scream
     PYRZ J 5 A_NoBlocking
@@ -9828,10 +9498,6 @@ ACTOR PyroZombie
     PYRZ N -1
     stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     PYRZ O 5
     PYRZ P 5 A_XScream
     PYRZ Q 5 A_NoBlocking
@@ -10072,16 +9738,6 @@ Actor Demolisher
     DEMO I 3 A_Pain 
     Goto See 
   Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DEMO J 20 Bright A_Scream 
     DEMO K 10 Bright A_NoBlocking 
     DEMO LMNOPQR 10 Bright
@@ -10158,13 +9814,6 @@ actor DivineShadow
 		loop
 		
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-
 		VIL3 R 7 A_Scream
 		VIL3 S 7 A_NoBlocking
 		VIL3 TUWVXY 7
@@ -10300,14 +9949,6 @@ actor DivineShadowAtkLarge : BFGBall
     HFRY H 2 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     HFRY I 8 A_Scream
     HFRY J 0 A_FaceTarget
     HFRY J 0 A_SpawnItemEx("HellsFurySkull", 0, 0, 60, 5, 0, 0, 20, 128)
@@ -10522,12 +10163,6 @@ ACTOR Poe
 		POE1 I 6
 		Goto See2
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		POE1 J 0 A_changeflag (NOGRAVITY,1)
 		POE1 K 8 
 		POE1 L 8 A_Scream
@@ -10799,12 +10434,6 @@ ACTOR FakePoe4 : FakePoe1
       HED9 F 6 
       Goto See 
    Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
       HED9 G 8 A_ChangeFlag(FLOATBOB,0)
       HED9 H 8 A_Scream 
       HED9 IJ 8
@@ -10813,14 +10442,6 @@ ACTOR FakePoe4 : FakePoe1
       Stop
 	Ice:
     HED9 E 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     HED9 E 1 A_FreezeDeathchunks
     wait	  
    Raise: 
@@ -10972,26 +10593,6 @@ States
        ANNI G 10 A_Pain 
        Goto See 
    Death: 
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
        ANNI H 10 Bright
        ANNI I 10 Bright A_Scream 
        ANNI JKL 10 Bright
@@ -11102,13 +10703,6 @@ ACTOR SuperFlyingImp
     FAEM G 2 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     FAEM H 8
     FAEM I 8 A_Scream
     FAEM J 6
@@ -11119,14 +10713,6 @@ ACTOR SuperFlyingImp
     Stop
 	Ice:
     FAEM G 5 A_GenericFreezeDeath
-
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     FAEM G 1 A_FreezeDeathchunks
     wait
   }
@@ -11198,8 +10784,6 @@ ACTOR Terror 3124
       TERR E 3 BRIGHT A_Pain
       Goto See
    Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
       TERR F 0 BRIGHT A_Die
       TERR F 0 BRIGHT A_Explode
       TERR F 6 BRIGHT A_NoGravity
@@ -11337,13 +10921,6 @@ ACTOR RocketImp //20128
     RIMP H 2 A_Pain
     Goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RIMP I 8
     RIMP J 8 A_Scream
     RIMP K 6
@@ -11351,13 +10928,6 @@ ACTOR RocketImp //20128
     RIMP M -1
     Stop
   XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RIMP N 5 A_playsound("Rocketimp/Explode")
 	RIMP O 0 A_custommissile("Rocketarm2",30,-10,270)
 	RIMP O 0 A_custommissile("Rocketarm",30,10,93)
@@ -11369,13 +10939,6 @@ ACTOR RocketImp //20128
     Stop
 	Ice:
     RIMP H 5 A_GenericFreezeDeath
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     RIMP H 1 A_FreezeDeathchunks
     wait
   Raise:
@@ -11709,7 +11272,6 @@ ACTOR BabyCaco : Cacodemon
 		CACB E 6
 		Goto See
 	Death:
-	    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		CACB F 8
 		CACB G 8 A_Scream
 		CACB H 8
@@ -11829,10 +11391,6 @@ ACTOR FreezeRifleGuy
         FRPO G 3 A_Pain
         Goto See
     Death:
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		FRPO H 5
         FRPO I 5 A_Scream
         FRPO J 5 A_Fall
@@ -11840,10 +11398,6 @@ ACTOR FreezeRifleGuy
         FRPO L -1
         Stop
     XDeath:
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         FRPO O 5
         FRPO P 5 A_XScream
         FRPO Q 5 A_Fall
@@ -11851,10 +11405,6 @@ ACTOR FreezeRifleGuy
         FRPO V -1
         Stop
     Burn:
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 	   BURN A 5 BRIGHT
        BURN B 5 BRIGHT A_Pain
        BURN C 5 BRIGHT
@@ -12013,7 +11563,6 @@ actor Rictus
     RICT BB 0 A_SpawnItemEx (RictusFire, random(1,-1), random(1,-1), random(1,-1), 2, 0, random(1,-1) , random(90,270), 160, 0)
     goto See
   Death:
-    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     TNT1 A 1 A_ScreamAndUnblock
     TNT1 AAAAA 0 A_SpawnItemEx (RictusFire, random(1,-1), random(1,-1), random(1,-1), 6, 0, random(1,-1) , random(0,360), 128, 0)
     stop
@@ -12157,7 +11706,6 @@ States
        SKLL C 3 A_Pain 
        Goto See 
    Death: 
-	   TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
        SKLL D 6 
        SKLL E 6 A_Scream 
        SKLL F 6 
@@ -12300,7 +11848,6 @@ actor PsychicSoul
     PSUL C 3 bright A_Pain
     goto See
   Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     PSUL D 6 bright
     PSUL E 6 bright A_Scream
     PSUL F 6 bright
@@ -12394,12 +11941,6 @@ actor Phantasm
     PHNT E 3 BRIGHT A_Pain
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     PHNT F 6 BRIGHT
     PHNT F 6 BRIGHT A_Scream
 	PHNT FFFFFFFFFFFF 3 BRIGHT A_SpawnItemEx("PhantasmPuff", random(-15,15), random(-15,15), random(12, 24), 0, 0, 1)
@@ -12502,16 +12043,6 @@ ACTOR GhostSkeleton : Revenant
 	GSKL L 5 A_Pain
 	Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 	GSKL LM 7
 	GSKL N 7 A_ScreamandUnblock
 	GSKL O 7
@@ -12665,11 +12196,6 @@ ACTOR RevGhoul : Revenant //11460
     GHUL L 5 A_Pain
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     GHUL LM 7
     GHUL N 7 A_Scream
 	TNT1 A 0 A_SpawnItemEX("GhoulDeathCloud",0,0,32,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -12706,11 +12232,6 @@ ACTOR GhoulMissile : RevenantTracer
 	TNT1 A 0 A_SpawnItemEx("GhoulDrip",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,64)
 	Loop
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     GASX ABC 1 BRIGHT
 	TNT1 A 0 A_SpawnItemEx("GhoulCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SpawnItemEx("GhoulDrip",Random(-56,56),Random(-48,48),Random(-48,48),0,0,0,0,SXF_NOCHECKPOSITION,128)
@@ -12859,16 +12380,6 @@ ACTOR Maludemon
     MALU F 6
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     MALU G 8
     MALU H 8 A_Scream
     MALU IJ 8
@@ -13000,16 +12511,6 @@ ACTOR Arachnocubus
 	FTBS S 5 Bright A_SpidReFire	
 	Goto Arachno+2     
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     NULL A 0 A_SpawnItemEX("MancubusArm", 0, 30, 30, random(-4, 4), random(10, 4), random(-1, 8))
 	FTBS I 8 A_Scream
     FTBS J 7 A_NoBlocking
@@ -13104,16 +12605,6 @@ actor Squire : BaronOfHell
     BOS6 O -1
     stop
     XDeath:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BOS6 P 8
     BOS6 Q 8 A_XScream
     BOS6 R 8
@@ -13283,26 +12774,6 @@ ACTOR DarkInquisitor : Inquisitor
 		TNT1 A 0 A_JumpIfInventory("FlightToken", 1, "Fly")
         Goto See
     Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 	ROB4 A 0 A_TakeInventory("FlightToken", 1)
 	ROB4 A 0 A_ChangeFlag ("FLOAT", 0)
 	ROB4 A 0 A_ChangeFlag ("NOGRAVITY", 0)
@@ -13945,16 +13416,6 @@ ACTOR BelphegorClone
       BOS3 H 2 A_Pain 
       Goto See 
    Death: 
-   TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
       BOS3 I 8 
       BOS3 J 8 A_Scream 
       BOS3 K 8 
@@ -14029,11 +13490,6 @@ Actor DoubleChaingunGuy
     DPOS G 3 A_Pain
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DPOS H 5
     DPOS I 5 A_Scream
     DPOS J 5 A_NoBlocking
@@ -14041,11 +13497,6 @@ Actor DoubleChaingunGuy
     DPOS N -1
     Stop
   XDeath:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     DPOS O 5
     DPOS P 5 A_XScream
     DPOS Q 5 A_NoBlocking
@@ -14111,11 +13562,6 @@ ACTOR ESoul // replaces Zombieman
     ETHS G 3 bright A_Pain
     goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ETHS F 3 bright
     ETHS H 3 bright A_ScreamAndUnblock
     ETHS IJKLMNO 3 bright
@@ -14220,11 +13666,6 @@ Actor ForgottenOne
     FRGO E 3 Bright A_Pain
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     FRGO E 0 A_ChangeFlag("FloatBob", 0)
     FRGO E 0 A_Stop
     FRGO EF 4 Bright
@@ -14291,16 +13732,6 @@ ACTOR LordofHeresy
         LOHS H 5 A_Pain 
         Goto See 
     Death:
-TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))	
         LOHS I 8 
         LOHS J 8 A_Scream 
         LOHS K 8 A_Fall 
@@ -14362,11 +13793,6 @@ ACTOR Phantom
     PHAN H 2 A_Pain
     Goto See
   Death:
-  TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     PHAN I 8
     PHAN J 8 A_Scream
     PHAN K 8
@@ -14653,16 +14079,6 @@ ACTOR ProfaneOne : BaronOfHell
                 BOSX HH 10
                 Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		BOSX I  8 A_Scream
 		BOSX J  8 A_PlaySound("profane/die")
 		BOSX K  8
@@ -14793,16 +14209,6 @@ ACTOR FlyingFatso : Fatso
 		FFAT J 3 A_Pain
 		Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
 		FFAT K 6 A_SetFloorClip
 		FFAT L 6 A_Scream
@@ -14869,16 +14275,6 @@ ACTOR FFPlasma : FlyingFatso
 		FFAB J 3 A_Pain
 		Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
 		FFAB K 6 A_SetFloorClip
 		FFAB L 6 A_Scream
@@ -14955,16 +14351,6 @@ ACTOR FFSlime : FlyingFatso
 		FFAG J 3 A_Pain
 		Goto See
 	Death:
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
 		FFAG K 6 A_SetFloorClip
 		FFAG L 6 A_Scream
@@ -15156,16 +14542,6 @@ ACTOR Bormereth
         BORM H 2 A_UnSetInvulnerable
         Goto See
 /*    Death:
-TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         BORM I 5
         BORM J 5 A_Scream
         BORM K 5 A_NoBlocking
@@ -15498,16 +14874,6 @@ ACTOR ChainmailEttin
 	CETN G 4 A_CustomMissile(EttinMaceProjectile, 40, 0, 0, CMF_OFFSETPITCH, 10)
 	Goto See
   Death:
-    	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     CETN IJ 4
     CETN K 4 A_Scream
     CETN L 4 A_NoBlocking
@@ -15516,16 +14882,6 @@ ACTOR ChainmailEttin
     CETN Q -1
     Stop
   XDeath:
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))	
     CETN R 4
     CETN S 4 A_NoBlocking
     CETN T 4 A_SpawnItemEx("EttinMace", 0, 0, 8.5, random[DropMace](-128, 127)*0.03125,
@@ -15627,11 +14983,6 @@ actor Vulgar : DoomImp 30127
     VULG H 2 A_Pain
     goto See
   Death:
-    	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     VULG I 8
     VULG J 8 A_Scream
     VULG KL 6
@@ -15639,11 +14990,6 @@ actor Vulgar : DoomImp 30127
     VULG N -1
     stop
   XDeath:
-    	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     VULG O 5
     VULG P 5 A_XScream
     VULG Q 5
@@ -15743,7 +15089,6 @@ ACTOR ZombieFodder
     ZFOD H 4 A_Pain
     Goto See
   Death:
-    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZFOD I 7
     ZFOD J 7 A_Scream
     ZFOD K 5 A_NoBlocking
@@ -15751,7 +15096,6 @@ ACTOR ZombieFodder
     ZFOD M -1
     Stop
   XDeath:
-    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZFOD N 5
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
@@ -15780,7 +15124,6 @@ ACTOR QuakeFodder : ZombieFodder
     ZFOD G 1 A_CustomMissile("ZombFlesh",32,0,0,0,-30)
     Goto See
   Death:
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZFOD I 0 A_UnsetSolid
 	ZFOD I 0 A_UnsetShootable
     ZFOD I 7
@@ -15797,7 +15140,6 @@ ACTOR QuakeFodder : ZombieFodder
 	ZFOD I 0 A_SpawnItemEx("QuakeFodder",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_NOCHECKPOSITION)
     Stop
   XDeath:
-    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZFOD N 5
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
@@ -16026,16 +15368,6 @@ ACTOR BlackHoleImp
 		DKSI E 2 A_Pain
 		Goto See
 	Death:
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 		TNT1 A 0 A_ChangeFlag(FLOAT, 1)
 		TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
 		TNT1 A 0 A_ChangeFlag(NOGRAVITY, 1)
@@ -16374,16 +15706,6 @@ ACTOR Uberchain
 			UCHH A 2 A_Pain
 			Goto See
 		Death:
-			TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 			TNT1 A 0 A_Jump(130, "OtherDeath")
 			TNT1 A 0 A_Playsound("UCHAIN/Death")
 			UCD1 A 6 A_NoBlocking
@@ -16391,32 +15713,12 @@ ACTOR Uberchain
 			UCD1 F -1
 			Stop
 		OtherDeath:
-			TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 			TNT1 A 0 A_Playsound("UCHAIN/Death")
 			UCD3 A 6 A_NoBlocking
 			UCD3 BCDEFG 6
 			UCD3 G -1
 			Stop
 		XDeath:
-			TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
 			TNT1 A 0 A_XScream
 			UCD2 A 6 A_NoBlocking
 			UCD2 BCDEF 6
@@ -16533,16 +15835,6 @@ Actor ImpWarlord // Simply Hard ActiveBox version
         TNT1 A 0 A_UnSetReflectiveInvulnerable
 	Goto See
     Death:
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-		TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
         TNT1 A 0 A_FaceTarget
         TNT1 A 0 A_SpawnItemEx("WarlordMace", 0, 0, 32, 4, 0, 0, -90, 128)
         WARL R 8 A_SpawnItemEx("WarlordShield", 0, 0, 32, 5, 0, 0, 90, 128)
@@ -16601,16 +15893,6 @@ ACTOR MeleeRevenant
     ZKEL L 5 A_Pain
     Goto See
   Death:
-    TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     ZKEL LM 7
     ZKEL N 7 A_Scream
     ZKEL O 7 A_NoBlocking

@@ -1,0 +1,59 @@
+#Library "KILL_CODE"
+#include "zcommon.acs"
+
+script "ON_KILL" KILL
+{
+	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
+	{
+		terminate;
+	}
+	
+	// Get some properties of our monster.
+	str Class = GetActorClass(0);
+	int Health = GetActorProperty(0, APROP_SpawnHealth);
+	int Height = GetActorProperty(0, APROP_Height);
+	int Damage = GetActorProperty(0, APROP_Damage);
+	
+	// Base velocities for Orbs
+	int HOrbSpeed = GetActorProperty(0, APROP_Radius) / 4;
+	int VOrbSpeed = Height/6;
+	
+	if(HOrbSpeed < 6.0)
+		HOrbSpeed = 6.0;
+		
+	if(VOrbSpeed < 6.0)
+		VOrbSpeed = 6.0;
+	
+	// Base Multiplier * Health / (Health + Speed of Deminishing Return)
+	int NumOrbs = 75 * Health / (Health + 1500); // Calculate number of Orbs.
+	
+	// Certain flags add a bonus.
+	if(CheckFlag(0, "MISSILEMORE"))			NumOrbs += 1;
+	if(CheckFlag(0, "MISSILEEVENMORE"))		NumOrbs += 1;
+	if(CheckFlag(0, "SPECTRAL"))			NumOrbs += 1;
+	if(CheckFlag(0, "DONTRIP"))				NumOrbs += 1;
+	if(CheckFlag(0, "NOICEDEATH"))			NumOrbs += 1;
+	if(CheckFlag(0, "STEALTH"))				NumOrbs += 2;
+	if(CheckFlag(0, "ALWAYSFAST"))			NumOrbs += 2;
+	if(CheckFlag(0, "NORADIUSDMG"))			NumOrbs += 2;
+	if(CheckFlag(0, "BOSS"))				NumOrbs += 16; // Bosses get more orbs.
+		
+	if(Damage >= 250) // Super high damage enemies (like the white rabbit) double orbs.
+		NumOrbs *= 2;
+		
+	if(NumOrbs <= 0) // Everything is worth at least one orb.
+		NumOrbs = 1;
+	
+	for(int i = 0; i < NumOrbs; i++)
+	{
+		int TID = UniqueTID (0, 0);
+		SpawnForced("DEMONENERGY", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), TID, random(0, 255));
+		SetActorVelocity(TID, random(-HOrbSpeed, HOrbSpeed), random(-HOrbSpeed, HOrbSpeed), random(2.0, VOrbSpeed), false, false);
+		Thing_ChangeTID(TID, 0);
+	}
+	
+	SetActivatorToTarget(0); // Set activator to the one who killed this monster.
+	
+	if(GetCVar("sh_debug"))
+		log(s:"DEBUG: ", n:0, s:" killed ", s:Class, s:" [", d:Health, s:"] ", s:"Orbs: ", d:NumOrbs);
+}

@@ -40,18 +40,6 @@ ACTOR N_Baron_Base : Monster_Base
     BOSS H 2 A_Pain
     Goto See
   Death:
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BOSS I 8
     BOSS J 8 A_Scream
     BOSS K 8
@@ -61,19 +49,6 @@ ACTOR N_Baron_Base : Monster_Base
     Stop
 Ice:
     BOSS H 5 A_GenericFreezeDeath
-
-  	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
-	TNT1 A 0 a_spawnitemex("Demonenergy", 0, 0, 0, frandom(-6.0, 6.0), frandom(-6.0, 6.0), frandom(6.0, 10.0))
     BOSS H 1 A_FreezeDeathChunks  
 	wait
   Raise:
@@ -150,7 +125,7 @@ actor N_Baron_Acid : N_Baron_Base
 // Void Baron
 actor BaronBall_Void : BaronBall_Base 
 { 
-//	Translation "112:127=[192, 128, 255]:[32, 0, 64]"
+//	Translation "112:127=[192, 128, 255]:[16, 0, 32]"
 	DamageType "Void"
 	  States
   {
@@ -167,7 +142,7 @@ actor BaronBall_Void : BaronBall_Base
 actor N_Baron_Void : N_Baron_Base 30055
 {
 //	Scale 1.1
-	Translation "16:47=[192, 128, 255]:[32, 0, 64]"
+	Translation "16:47=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
 		Melee:
