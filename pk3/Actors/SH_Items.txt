@@ -592,6 +592,7 @@ ACTOR DEMONENERGY
 	+NOBLOCKMONST
 	+THRUACTORS
 	+DONTGIB
+	+NOTIMEFREEZE
 	States
 	{
 		Spawn:
@@ -710,6 +711,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 	+INVENTORY.NEVERRESPAWN
 	+FORCEXYBILLBOARD
 	+SEEINVISIBLE
+	+NOTIMEFREEZE
 	States
 	{
 		// States shared via inheritance. "####" makes it use the last sprite called by the actor.
