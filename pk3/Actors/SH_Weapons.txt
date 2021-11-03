@@ -2947,74 +2947,74 @@ Weapon.SlotNumber 5
 
 ACTOR streetsweeper : DoomWeapon 8467
 {
-Weapon.PreferredSkin "SSG-Marine"
-   Game Doom
-   SpawnID 28
-   Weapon.SelectionOrder 1
-   Weapon.AmmoUse 1
-   Weapon.AmmoGive 20
-   Weapon.AmmoType "SuperShellz"
-   Weapon.SlotNumber 3
-   Weapon.slotpriority 2
+	Weapon.PreferredSkin "SSG-Marine"
+	Game Doom
+	SpawnID 28
+	Weapon.SelectionOrder 1
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 20
+	Weapon.AmmoType "SuperShellz"
+	Weapon.SlotNumber 3
+	Weapon.slotpriority 2
 	Inventory.Forbiddento "Maximusprime"
-   Inventory.ForbiddenTo "Gosimer"
-   Inventory.ForbiddenTo "Fiend"
-   Inventory.RestrictedTo "Kunai"
-   Inventory.Respawntics"4200"
-   +WEAPON.NOAUTOAIM
-		Weapon.BobSpeed 1.5
+	Inventory.ForbiddenTo "Gosimer"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.RestrictedTo "Kunai"
+	Inventory.Respawntics"4200"
+	+WEAPON.NOAUTOAIM
+	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
-   Inventory.PickupSound "weapon/streetsweeperget"
-   Inventory.PickupMessage "You got the street sweaper! time to rock"
-   Obituary "%o was decimated by %k's Street sweeper"
-   States
-   {
-   Ready:
-	 NLCG A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldReady")
-	 NLCG A 1 A_WeaponReady
-	 Loop
-   GoldReady:
-	 NLCG E 1 A_WeaponReady
-	 Loop
-   Deselect:
-	 NLCG A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldDeselect")
-	 NLCG A 1 A_Lower
-	 Loop
-   GoldDeselect:
-	 NLCG E 1 A_Lower
-	 Loop
-   Select:
-	 NLCG A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldSelect")
-	 NLCG A 1 A_Raise
-	 Loop
-   GoldSelect:
-	TNT1 A 0 A_giveinventory("Tier3upgradetoken", 1)
-	NLCG E 1 A_Raise
-	 Loop
-   Fire:
-	 NLCG A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldFire")
-	 NLCG A 1 A_PlaySound("6shotgn", CHAN_WEAPON)
-	 NLCF A 2 BRIGHT A_FireBullets(4.5, 4.5, 10, 4.75, "BulletPuff")
-	 NLCG A 0 A_FireCustomMissile("SingleShotgunCasingSpawner", 0, 0, 0, 1)
-	 NLCG B 3
-	 NLCG c 3 
-	 NLCG D 3
-	 NLCG A 2 A_ReFire
-	 Goto Ready
-   GOLDFIRE:
-	 NLCG E 0 A_PlaySound("6shotgn", CHAN_WEAPON)
-	 NLCF B 1 BRIGHT A_FireBullets(10, 10, 10, 4.75, "BulletPuff")
-	 NLCG E 0 A_FireCustomMissile("SingleShotgunCasingSpawner", 0, 0, 0, 1)
-	 NLCG F 1
-	 NLCG G 1 
-	 NLCG H 1
-	 NLCG E 1 A_ReFire
-	 Goto Ready
-   Spawn:
-	 NLCG I -1
-	 Stop
-   }
+	Inventory.PickupSound "weapon/streetsweeperget"
+	Inventory.PickupMessage "You got the street sweaper! time to rock"
+	Obituary "%o was decimated by %k's Street sweeper"
+	States
+	{
+	Ready:
+		NLCG A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldReady")
+		STSW A 1 A_WeaponReady
+		Loop
+	GoldReady:
+		NLCG E 1 A_WeaponReady
+		Loop
+	Deselect:
+		STSW A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldDeselect")
+		STSW A 1 A_Lower
+		Loop
+	GoldDeselect:
+		NLCG E 1 A_Lower
+		Loop
+	Select:
+		STSW A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldSelect")
+		NLCG A 1 A_Raise
+		Loop
+	GoldSelect:
+		TNT1 A 0 A_giveinventory("Tier3upgradetoken", 1)
+		NLCG E 1 A_Raise
+		Loop
+	Fire:
+		STSW A 0 A_Jumpifinventory("Tier3upgradetoken", 1 ,"GoldFire")
+		STSW A 1 A_PlaySound("6shotgn", CHAN_WEAPON)
+		STSW A 1 BRIGHT A_FireBullets(4.5, 4.5, 10, 4.75, "BulletPuff")
+		STSW A 0 A_FireCustomMissile("SingleShotgunCasingSpawner", 0, 0, 0, 1)
+		STSW B 2
+		STSW c 3 
+		STSW D 3
+		STSW A 2 A_ReFire
+		Goto Ready
+	GOLDFIRE:
+		NLCG E 0 A_PlaySound("6shotgn", CHAN_WEAPON)
+		NLCF B 1 BRIGHT A_FireBullets(10, 10, 10, 4.75, "BulletPuff")
+		NLCG E 0 A_FireCustomMissile("SingleShotgunCasingSpawner", 0, 0, 0, 1)
+		NLCG F 1
+		NLCG G 1 
+		NLCG H 1
+		NLCG E 1 A_ReFire
+		Goto Ready
+	Spawn:
+		NLCG I -1
+		Stop
+	}
 }
 
 Actor LMG : Doomweapon
