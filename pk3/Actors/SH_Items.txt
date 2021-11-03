@@ -707,6 +707,7 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 	+INVENTORY.QUIET
 	+INVENTORY.NEVERRESPAWN
 	+FORCEXYBILLBOARD
+	+SEEINVISIBLE
 	States
 	{
 		// States shared via inheritance. "####" makes it use the last sprite called by the actor.
