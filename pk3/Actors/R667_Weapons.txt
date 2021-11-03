@@ -630,29 +630,32 @@ Actor BurstShotgun : DoomWeapon
 		GoldFire:
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			TNT1 A 0 A_Jump(64, "GoldFire_Crit")
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "BulletPuff")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			GTBE GF 2 BRIGHT
-			TNT1 A 0 A_playsound("SSHTGN",Chan_7)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_6)
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "BulletPuff")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			GTBE GF 2 BRIGHT
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "BulletPuff")
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
 			GTBE GF 2 BRIGHT
 			goto GoldReloading
 		GoldFire_Crit:
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
+			TNT1 A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "GosimersExplosivePuff")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			GTBE GF 2 BRIGHT
-			TNT1 A 0 A_playsound("SSHTGN",Chan_7)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_6)
+			TNT1 A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "GosimersExplosivePuff")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			GTBE GF 2 BRIGHT
 			TNT1 A 0 A_FireBullets(6, 6, 10, 6.5, "GosimersExplosivePuff")
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
+			TNT1 A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
 			GTBE GF 2 BRIGHT
 			goto GoldReloading
 		GoldReloading:
@@ -696,14 +699,15 @@ Actor BurstShotgun : DoomWeapon
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			TNT1 A 0 A_Jump(72, "GoldALTFire_Crit")
 			TNT1 A 0 A_FireBullets(3, 3, 10, 6, "BulletPuff")
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
 			GTBE GF 2 BRIGHT
 			GTBE A 4
 			goto GoldALTReloading
 		GoldALTFire_Crit:
 			TNT1 A 0 A_Jumpifnoammo("Ready")
 			TNT1 A 0 A_FireBullets(3, 3, 10, 6, "GosimersExplosivePuff")
-			TNT1 A 0 A_playsound("SSHTGN",Chan_6)
+			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
+			TNT1 A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
 			GTBE GF 2 BRIGHT
 			GTBE A 4
 			goto GoldALTReloading
