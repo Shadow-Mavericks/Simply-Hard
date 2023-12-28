@@ -1,1 +1,18 @@
 GenericCrit CRIT
+
+// Kunai's Weapons
+PDWFire1 KTOMGFR1
+PDWFire2 KTOMGFR2
+$random PDWFire { PDWFire1 PDWFire2 }
+
+SSWFire1 sswfir01
+SSWFire2 sswfir02
+$random SSWFire { SSWFire1 SSWFire2 }
+// ------
+
+// Gosimer's Weapons
+//Duke Shotgun
+GShotgunFire	SHOTGUN7
+GShotgunCock1	SHOTGNC1
+GShotgunCock2	SHOTGNC2
+// ------

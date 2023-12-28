@@ -137,11 +137,6 @@ PlasmaPuff/Death DSD3PS1
 Weapon/windup	Windup
 Weapon/Winddn	Winddn
 Weapon/GMGFIRE	GMGfire
-//Duke Shotgun
-Weapon/Gshotgunfire1	COMBFIR1
-Weapon/Gshotgunfire2	COMBFIR2
-Weapon/GShotguncock1	SHOTCCK1
-Weapon/Gshotguncock2	SHOTCCK2
 weapon/Quickkick	QKICK
 $random Weapon/GShotgunfire{ Weapon/GShotgunfire1 Weapon/Gshotgunfire2 }
 
@@ -286,7 +281,6 @@ DBOPEN DBOPEN
 RLAWNCH RLAWNCH
 9kbfg 9kbfg
 
-6shotgn 6shotgn
 dsrailf dsrailf
 dsrailr dsrailr
 LMGGET LMGGET
@@ -1056,8 +1050,6 @@ World/Rocketexplosion2	Kabewm02
 World/Rocketexplosion3	Kabewm03
 World/Rocketexplosion4	Kabewm04
 World/Rocketexplosion5	Kabewm05
-
-Weapon/Tommygunfire	KTOMGFIR
 
 TIME2STAHPKAY?	Tme2stap
 
@@ -2050,3 +2042,10 @@ Max/fisthit		DFPUNCH
 Max/Zoom		DFZOOM
 $playersound	MaximusPrime	male	*land		DFLAND
 $playersound 	MaximusPrime male	*jump		DFJUMP
+
+//Kunai helltech shotgun
+Kunaishotgun_FIRE1	KHTS_FR1
+Kunaishotgun_FIRE2	KHTS_FR2
+Kunaishotgun_Pump	KHTS_RL
+
+$random Kunaishotgun_FIRE { Kunaishotgun_FIRE1 Kunaishotgun_FIRE2 }

@@ -13,12 +13,11 @@ ACTOR Fiend : DoomPlayer
   Player.ColorRange 112, 127
   Player.DisplayName "Fiendzy"
   Player.CrouchSprite "PLYC"
-  Player.StartItem "DEpistol"
+  Player.StartItem "Renettim9"
   Player.StartItem "Fists"
   Player.StartItem "Shellz", 6
   Player.StartItem "Shotgunclip", 6
   Player.StartItem "peastolClip", 50
-  Player.StartItem "Pistolclip", 12
   Player.StartItem "Fiendtoken"
   Player.StartItem "MEDBAG"
   Player.startItem "Coolant", 100
@@ -345,7 +344,7 @@ ACTOR Gosimer : DoomPlayer
   Player.DamageScreenColor Yellow, 1
   DamageFactor 0.75
   DamageFactor "Marines", 0.25
-  DamageFactor "PlayerDynamite", 0.25
+  DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
   Player.JumpZ 8
   Player.AirCapacity 0.5
   States
