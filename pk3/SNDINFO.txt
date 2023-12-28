@@ -1286,8 +1286,6 @@ Mannco/Kartrace		BAWXGOGO
 
 Under/death Monndth1
 
-Monster/Evildead Evildead
-
 Droid/see		DROIDALT
 Droid/Active	DROIDROM
 Droid/Charge	DROIDCHG
