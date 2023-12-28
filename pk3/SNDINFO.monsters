@@ -12,3 +12,35 @@ KagoIdle1 KAGOIDL1
 KagoIdle2 KAGOIDL2
 KagoIdle3 KAGOIDL3
 $random KagoIdle { KagoIdle1 KagoIdle2 KagoIdle3 }
+
+//Rocket imp sounds
+
+Rocketimp/xdie RKIMPD
+Rocketimp/Explode RIEXPL
+Rocketimp/Fire RIFIRE
+
+//see sounds
+
+Rocketimp/See1 dscis01
+Rocketimp/See2 dscis02
+Rocketimp/See3 dscis03
+Rocketimp/See4 dscis04
+Rocketimp/See5 dscis05
+Rocketimp/See6 dscis06
+
+
+$random Rocketimp/See {Rocketimp/See1 Rocketimp/See2 Rocketimp/See3 Rocketimp/See4 Rocketimp/See5 Rocketimp/See06}
+
+
+//Idle
+
+Rocketimp/idle1 dsciid01
+Rocketimp/idle2 dsciid02
+Rocketimp/idle3 dsciid03
+Rocketimp/idle4 dsciid04
+Rocketimp/idle5 dsciid05
+Rocketimp/idle6 dsciid06
+Rocketimp/idle7 dsciid07
+Rocketimp/idle8 dsciid08
+
+$random Rocketimp/Idle {Rocketimp/idle01 Rocketimp/idle02 Rocketimp/idle03 Rocketimp/idle04 Rocketimp/idle05 Rocketimp/idle06 Rocketimp/idle07 Rocketimp/idle08}
