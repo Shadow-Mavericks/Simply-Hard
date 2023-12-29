@@ -1798,7 +1798,7 @@ ACTOR BFGCHARGE : Ammo
 }
 
 
-/*ACTOR DEBFG9500 : DoomWeapon  //Sprites by Erience.
+/*ACTOR DEBFG9500 : DoomWeapon  //Sprites from Shivers
 {
 	Game Doom
 	Scale 0.8
@@ -1808,14 +1808,14 @@ ACTOR BFGCHARGE : Ammo
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 2
 	Weapon.AmmoType "bfgcharge"
-  Weapon.BobSpeed 1.5
-  Weapon.BobRangeX .5
-  Weapon.BobStyle "InverseSmooth"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
 	Inventory.Respawntics"10500"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.RestrictedTo "Fiend"
-		Inventory.PickupSound "weapon/bfgget"
+	Inventory.PickupSound "weapon/bfgget"
 	Weapon.PreferredSkin "BFG-Marine"
 	Inventory.PickupMessage "$GOTBFG9000"
 	States
@@ -1833,37 +1833,37 @@ ACTOR BFGCHARGE : Ammo
 		DBFG A 1 A_Raise
 		Loop
 	Altfire: 
-	RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
-	Goto Ready
-	RLGG A 1 Offset ( -26, 70 )
-	RLGG A 1 Offset ( -25, 60 )
-	RLGG A 2 Offset ( -23, 52 )
-	RLGG A 2 Offset ( -20, 47 )
-	RLGG A 3 Offset ( -15, 42 )
-	RLGG A 3 Offset ( -10, 37 )
-	RLGG A 4 Offset ( -5, 34 )
-	RLGG A 4 Offset ( 0, 32 )
+		RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+		Goto Ready
+		RLGG A 1 Offset ( -26, 70 )
+		RLGG A 1 Offset ( -25, 60 )
+		RLGG A 2 Offset ( -23, 52 )
+		RLGG A 2 Offset ( -20, 47 )
+		RLGG A 3 Offset ( -15, 42 )
+		RLGG A 3 Offset ( -10, 37 )
+		RLGG A 4 Offset ( -5, 34 )
+		RLGG A 4 Offset ( 0, 32 )
 	ALTHOLD:
-	RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
-	Goto ALTFirestop
-	RLGF A 1 Bright 
-	RLGG B 1 Bright
-	RLGG C 1 Bright
-	RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
-	RLGG D 1 A_Takeinventory("AbilityCharge",2)
-	RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-	RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
-	RLGG A 1 A_Refire
-  ALTFirestop:
-	RLGG A 4 Offset ( 0, 32 )
-	RLGG A 4 Offset ( -5, 34 ) 
-	RLGG A 3 Offset ( -10, 37 )
-	RLGG A 3 Offset ( -15, 42 )
-	RLGG A 2 Offset ( -20, 47 )
-	RLGG A 2 Offset ( -23, 52 )
-	RLGG A 1 Offset ( -25, 60 )
-	RLGG A 1 Offset ( -26, 70 )
-	goto Ready
+		RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+		Goto ALTFirestop
+		RLGF A 1 Bright 
+		RLGG B 1 Bright
+		RLGG C 1 Bright
+		RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
+		RLGG D 1 A_Takeinventory("AbilityCharge",2)
+		RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
+		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+		RLGG A 1 A_Refire
+	ALTFirestop:
+		RLGG A 4 Offset ( 0, 32 )
+		RLGG A 4 Offset ( -5, 34 ) 
+		RLGG A 3 Offset ( -10, 37 )
+		RLGG A 3 Offset ( -15, 42 )
+		RLGG A 2 Offset ( -20, 47 )
+		RLGG A 2 Offset ( -23, 52 )
+		RLGG A 1 Offset ( -25, 60 )
+		RLGG A 1 Offset ( -26, 70 )
+		goto Ready
 		
 	Fire:
 		DBFG A 0 A_Jumpifinventory("Tier7upgradetoken",1,"Goldfire")
@@ -1878,7 +1878,6 @@ ACTOR BFGCHARGE : Ammo
 		Goto Ready
 
 //GOLD FIRE
-
 	GOLDReady:
 		GBFG A 1 A_WeaponReady
 		Loop
@@ -1890,23 +1889,11 @@ ACTOR BFGCHARGE : Ammo
 		GBFG A 1 A_Raise
 		Loop
 	Goldfire:
-		GBFG B 0 A_Jump(128, "Critshot")
 		GBFG B 10 A_PlaySound("9kbfg", chan_weapon)
 		GBFC ABCDE 2 Bright
 		GBFC F 2 Bright A_GunFlash
 		GBFC GHIJ 2 Bright
 		GBFF A 2 Bright A_FireCustomMissile("REDkewlbfg",0,1,0,0)
-		GBFF B 2 Bright 
-		GBFG CDA 2 Bright
-		GBFG A 20 A_ReFire
-		Goto GoldReady
-	Critshot:
-		GBFG B 10 A_PlaySound("9kbfg", chan_weapon)
-		GBFC ABCDE 2 Bright
-		GBFC F 2 Bright A_GunFlash
-		GBFC GHIJ 2 Bright
-		GBFC J 0 A_PlaySound("Weapon/Critshot", Chan_7)
-		GBFF A 2 Bright A_FireCustomMissile("Critkewlbfg",0,1,0,0)
 		GBFF B 2 Bright 
 		GBFG CDA 2 Bright
 		GBFG A 20 A_ReFire
@@ -1947,38 +1934,52 @@ Weapon.SlotNumber 7
   Obituary "%o was vapourized by %k's bfg blast"
   States
   {
-  Spawn:
-	BFUG A -1
-	Stop
-  Select:
-	TNT1 A 0
-	TNT1 A 0 A_StopSound(CHAN_WEAPON)
-	BFKN A 0 A_Raise
-	BFKN A 1 A_Raise
-	Loop
-  Deselect:
-	TNT1 A 0
-	TNT1 A 0 A_StopSound(CHAN_WEAPON)
-	BFKN A 0 A_Lower
-	BFKN A 1 A_Lower
-	Loop
-  Ready:
-	BFKN A 0
-	BFKN AAQQRRQQ 1 A_WeaponReady
-	Loop
-  Fire:
-	BFKN A 0
-//	BFKN A 0 Bright A_Quake(1, 30, 0, 345, "none")
-//	BFKN A 0 A_PlaySound("9kbfg", CHAN_7, 0.35, 0)
-	BFKN A 0 A_PlaySound("BFG/Fire", CHAN_WEAPON, 1.0, 0)
-	BFKN AAABBBCCDDEEFFGGHHIIJJ 1 Bright
-	BFKN K 0 A_SetBlend("Green", 0.35, 18)
-//	BFKN K 0 A_Quake(6, 15, 0, 450, "none")
-	BFKN K 0 A_FireCustomMissile("kewlbfg", 0, 1)
-	BFKN KLM 2 Bright
-//	BFKN K 0 A_Quake(1, 20, 0, 450, "none")
-	BFKN NOPQR 2 Bright
-	BFKN R 2 A_Refire
+	Spawn:
+		BFUG A -1
+		Stop
+	Select:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)
+		BFKN A 0 A_Raise
+		BFKN A 1 A_Raise
+		Loop
+	Deselect:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound(CHAN_WEAPON)
+		BFKN A 0 A_Lower
+		BFKN A 1 A_Lower
+		Loop
+	Ready:
+		BFKN A 0
+		BFKN AAQQRRQQ 1 A_WeaponReady
+		Loop
+	Fire:
+		BFKN A 0 A_JumpIfInventory("Tier7upgradetoken",1,"Goldfire")
+//		BFKN A 0 Bright A_Quake(1, 30, 0, 345, "none")
+//		BFKN A 0 A_PlaySound("9kbfg", CHAN_7, 0.35, 0)
+		BFKN A 0 A_PlaySound("BFG/Fire", CHAN_WEAPON, 1.0, 0)
+		BFKN AAABBBCCDDEEFFGGHHIIJJ 1 Bright
+		BFKN K 0 A_SetBlend("Green", 0.35, 18)
+//		BFKN K 0 A_Quake(6, 15, 0, 450, "none")
+		BFKN K 0 A_FireCustomMissile("kewlbfg", 0, 1)
+		BFKN KLM 2 Bright
+//		BFKN K 0 A_Quake(1, 20, 0, 450, "none")
+		BFKN NOPQR 2 Bright
+		BFKN R 2 A_Refire
+		Goto Ready
+	GoldFire:
+		BFKN A 0
+//		BFKN A 0 Bright A_Quake(1, 30, 0, 345, "none")
+//		BFKN A 0 A_PlaySound("9kbfg", CHAN_7, 0.35, 0)
+		BFKN A 0 A_PlaySound("BFG/Fire", CHAN_WEAPON, 1.0, 0)
+		BFKN AAABBBCCDDEEFFGGHHIIJJ 1 Bright
+		BFKN K 0 A_SetBlend("Green", 0.35, 18)
+//		BFKN K 0 A_Quake(6, 15, 0, 450, "none")
+		BFKN K 0 A_FireCustomMissile("REDKEWLBFG", 0, 1)
+		BFKN KLM 2 Bright
+//		BFKN K 0 A_Quake(1, 20, 0, 450, "none")
+		BFKN NOPQR 2 Bright
+		BFKN R 2 A_Refire
 	Goto Ready
   }
 }
@@ -2031,46 +2032,91 @@ ACTOR Lightning_Rifle: DoomWeapon
 		THUN D 1
 		THUN E 1 
 	Firehold:
+		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldFirehold")
 		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	jiggleRando:
+		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldjiggleRando")
 		THUN F 0 A_JUMP(50, "jiggle1")
 		THUN F 0 A_JUMP(50, "jiggle2")
 		THUN F 0 A_JUMP(50, "jiggle3")
 		THUN F 0 A_JUMP(50, "Jiggle4")
 		THUN F 0 A_JUMP(50, "Jiggle5")
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	
 	Jiggle1:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(1,33)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle2:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-1,33)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle3:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle4:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle5:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,33)  A_RailAttack(20, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+		
+	goldFirehold:
+		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	goldjiggleRando:
+		THUN F 0 A_JUMP(50, "goldjiggle1")
+		THUN F 0 A_JUMP(50, "goldjiggle2")
+		THUN F 0 A_JUMP(50, "goldjiggle3")
+		THUN F 0 A_JUMP(50, "goldJiggle4")
+		THUN F 0 A_JUMP(50, "goldJiggle5")
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	
+	goldJiggle1:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle2:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle3:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle4:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle5:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	Fireend:
 		NULL A 0 A_Stopsound(6)
@@ -2098,16 +2144,16 @@ ACTOR micro_Devistator : DoomWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 60
 	Weapon.AmmoType "Lightningammo"
-		 Weapon.BobSpeed 1.5
+	Weapon.BobSpeed 1.5
 	 Weapon.BobRangeX .5
 	 Weapon.BobStyle "Smooth"
-		+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOAIM
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.Respawntics"4200"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.RestrictedTo "Gosimer"
-		Inventory.PickupSound "Weapon/devistatorget"
+	Inventory.PickupSound "Weapon/devistatorget"
 	Weapon.PreferredSkin "BFG-Marine"
 	+WEAPON.NOAUTOFIRE
 	Inventory.PickupMessage "Devastator"
@@ -2124,12 +2170,24 @@ ACTOR micro_Devistator : DoomWeapon
 		DASS A 1 A_Raise
 		Loop
 	Fire:
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"Goldfire")
 		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
 		DASS B 1 A_GunFlash
 		DASS C 1
 		DASS D 2 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
 		DASS E 2 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
 		DASS F 2 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS C 1
+		DASS B 1
+		DASS A 1 A_Refire
+		Goto Ready
+	goldfire:
+		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		DASS B 1 A_GunFlash
+		DASS C 1
+		DASS D 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS E 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS F 1 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
 		DASS C 1
 		DASS B 1
 		DASS A 1 A_Refire
