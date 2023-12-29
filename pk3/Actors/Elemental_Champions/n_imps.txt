@@ -3,7 +3,7 @@ actor ImpBall_Base : DoomImpBall1
 { 
 	Radius 6
 	Height 8
-	Speed 10
+	Speed 12
 	Alpha 0.75
 	Damage (18)
 	Renderstyle add
@@ -35,13 +35,13 @@ actor N_Imp_Acid : Hardimp
 	States
 	{
 		Melee:
-		  TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Acid")
+		  TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Acid")
 			Goto See
 			
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile("ImpBall_Acid") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile("ImpBall_Acid") 
 			Goto See
 			
 	}
@@ -71,12 +71,12 @@ actor N_Imp_Void : Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Void")
+		    TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Void")
 			Goto See
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile ("ImpBall_Void") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile ("ImpBall_Void") 
 			Goto See
 	}
 }
@@ -104,12 +104,12 @@ actor N_Imp_Fire : Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Fire")
+		    TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Fire")
 			Goto See
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile ("ImpBall_Fire") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile ("ImpBall_Fire") 
 			Goto See
 	}
 }
@@ -143,12 +143,12 @@ actor N_Imp_Electric : Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (8, "imp/melee", "", "Electric")
+		    TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Electric")
 			Goto See
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile ("ImpBall_Electric") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile ("ImpBall_Electric") 
 			Goto See
 	}
 }
@@ -179,12 +179,12 @@ actor N_Imp_Ice: Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (2, "imp/melee", "", "Ice")
+		    TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (2, "imp/melee", "", "Ice")
 			Goto See
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile ("ImpBall_Ice") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile ("ImpBall_Ice") 
 			Goto See
 	}
 }
@@ -215,12 +215,12 @@ actor N_Imp_HeavyMetal: Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMeleeAttack (2, "imp/melee", "", "HeavyMetal")
+		    TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMeleeAttack (2, "imp/melee", "", "HeavyMetal")
 			Goto See
 		Missile:
-			TROO EF 8 A_FaceTarget
-			TROO G 6 A_CustomMissile ("ImpBall_Metal") 
+			TROO EF 5 A_FaceTarget
+			TROO G 4 A_CustomMissile ("ImpBall_Metal") 
 			Goto See
 	}
 }

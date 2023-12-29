@@ -28,12 +28,10 @@ ACTOR N_Baron_Base : Monster_Base
     Loop
   Melee:
   Missile:
-    BOSS EF 8 A_FaceTarget
-    BOSS G 8 A_BruisAttack
-	BOSS EF 8 A_FaceTarget
-    BOSS G 8 A_BruisAttack
-	BOSS EF 8 A_FaceTarget
-    BOSS G 8 A_BruisAttack
+    BOSS EF 6 A_FaceTarget
+	BOSS G 0 A_CustomMissile ("BaronBall_Base", 48, 0, 0)
+	BOSS G 0 A_CustomMissile ("BaronBall_Base", 48, 0, random(-7, 7))
+	BOSS G 6 A_CustomMissile ("BaronBall_Base", 48, 0, random(-7, 7))
     Goto See
   Pain:
     BOSS H 2
@@ -108,15 +106,15 @@ actor N_Baron_Acid : N_Baron_Base
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Acid")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "Acid")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
 			Goto See
 			
 	}
@@ -146,15 +144,15 @@ actor N_Baron_Void : N_Baron_Base 30055
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Void")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "Void")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
 			Goto See
 			
 	}
@@ -186,15 +184,15 @@ actor N_Baron_Fire : N_Baron_Base
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Fire")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "Fire")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
 			Goto See
 	}
 }
@@ -230,15 +228,15 @@ actor N_Baron_Electric : N_Baron_Base
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Electric")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "Electric")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
 			Goto See
 	}
 }
@@ -269,15 +267,15 @@ actor N_Baron_Ice : N_Baron_Base
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "Ice")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "Ice")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
 			Goto See
 	}
 }
@@ -309,15 +307,15 @@ actor N_Baron_HeavyMetal : N_Baron_Base
 	States
 	{
 		Melee:
-			BOSS EF 8 A_FaceTarget
-			BOSS G 8 A_CustomMeleeAttack (15, "baron/melee", "", "HeavyMetal")
+			BOSS EF 4 A_FaceTarget
+			BOSS G 4 A_CustomMeleeAttack (15, "baron/melee", "", "HeavyMetal")
 			Goto See
 		Missile:
-			BOSS EF 8 A_FaceTarget
+			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, 0)
 			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
-			BOSS G 8 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
+			BOSS G 6 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
 			Goto See
 	}
 }
