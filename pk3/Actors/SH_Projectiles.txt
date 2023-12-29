@@ -702,7 +702,7 @@ ACTOR RedBaronBall
 {
   Radius 6
   Height 16
-  Speed 15
+  Speed 16
   FastSpeed 20
   Damage 8
 	RenderStyle Add
@@ -728,7 +728,7 @@ ACTOR GreenBaronBall
 {
   Radius 6
   Height 16
-  Speed 15
+  Speed 16
   FastSpeed 20
   Damage 8
 	RenderStyle Add
@@ -755,7 +755,7 @@ ACTOR DoomImpBall1
 {
   Radius 6
   Height 8
-  Speed 10
+  Speed 15
   FastSpeed 20
   Damage 3
   Projectile
@@ -3367,7 +3367,7 @@ Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
 	Scale 0.3
 	Speed 60
 	+NOTIMEFREEZE
-	Damage (Random(25,40))
+	Damage (Random(20,40))
 	//MissileType "PlasmaVapor"
 	States
 	{
@@ -4270,8 +4270,8 @@ actor DarkSeeker
 {
     Radius 8
     Height 6
-    Speed 8
-    Damage 5
+    Speed 10
+    Damage 10
     +SEEKERMISSILE
     PROJECTILE
     RENDERSTYLE ADD
@@ -4299,9 +4299,9 @@ ACTOR Meatballprojectile : Cacodemonball replaces cacodemonball
 {
   Radius 6
   Height 8
-  Speed 10
+  Speed 12
   FastSpeed 20
-  Damage 7
+  Damage 8
   Projectile
   +RANDOMIZE
   RenderStyle Add
