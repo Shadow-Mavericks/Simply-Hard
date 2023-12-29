@@ -5,7 +5,7 @@ ACTOR NOOBZombieMan
   Health 20
   Radius 20
   Height 56
-  Speed 8
+  Speed 10
   PainChance 200
   Monster
   +FLOORCLIP
@@ -26,9 +26,9 @@ ACTOR NOOBZombieMan
     POSS AABBCCDD 4 A_Chase
     Loop
   Missile:
-    POSS E 12 A_FaceTarget
-    POSS F 8 A_PosAttack
-    POSS E 8
+    POSS E 8 A_FaceTarget
+    POSS F 4 A_PosAttack
+    POSS E 4
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
@@ -104,12 +104,12 @@ ACTOR averageZombieMan
     POSS AABBCCDD 4 A_Chase
     Loop
   Missile:
-    POSS E 12 A_FaceTarget
-    POSS F 6 A_PosAttack
+    POSS E 8 A_FaceTarget
+    POSS F 4 A_PosAttack
     POSS E 2
-    POSS F 6 A_PosAttack
+    POSS F 4 A_PosAttack
     POSS E 2
-    POSS F 6 A_PosAttack
+    POSS F 4 A_PosAttack
     POSS E 2
     Goto See
   Pain.Mightyboot:
@@ -187,13 +187,13 @@ ACTOR TryhardZombieMan
     POSS AABBCCDD 4 A_Chase
     Loop
   Missile:
-    POSS E 12 A_FaceTarget
+    POSS E 8 A_FaceTarget
     POSS F 4 A_PosAttack
     POSS E 2
     POSS F 4 A_PosAttack
     POSS E 2
     POSS F 4 A_PosAttack
-    POSS E 12
+    POSS E 8
     POSS F 4 A_PosAttack
     POSS E 2
     POSS F 4 A_PosAttack
@@ -329,12 +329,12 @@ ACTOR Hardimp
     Loop
   Melee:
   Missile:
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)     
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)     
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
@@ -395,7 +395,7 @@ ACTOR Critimp
   Radius 20
   Height 56
   Mass 100
-  Speed 8
+  Speed 12
   PainChance 200
   Monster
    PainChance "Mightyboot", 255
@@ -411,25 +411,25 @@ ACTOR Critimp
   States
   {
   Spawn:
-    TROO AB 10 A_Look
+    TROO AB 6 A_Look
     Loop
   See:
-    TROO AABBCCDD 3 A_Chase
+    TROO AABBCCDD 2 A_Chase
     Loop
   Melee:
   Missile:
     TROO A 0 A_Jump(60, "Critattack")
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)
-    TROO EF 8 A_FaceTarget
-    TROO G 6 A_CustomMissile ("Doomimpball1",38,0,0)   
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+    TROO EF 6 A_FaceTarget
+    TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)   
     Goto See
   Critattack:
-    TROO E 12 A_FaceTarget
-    TROO F 8 A_FaceTarget
-    TROO G 4 A_CustomMissile ("CRITimpball",38,0,0)
+    TROO E 6 A_FaceTarget
+    TROO F 4 A_FaceTarget
+    TROO G 2 A_CustomMissile ("CRITimpball",38,0,0)
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
@@ -773,12 +773,12 @@ ACTOR Hardcaco
     HEAD A 3 A_Chase
     Loop
   Missile:
-    HEAD BC 5 A_FaceTarget
-    HEAD D 5 Bright A_HeadAttack
-    HEAD BC 5 A_FaceTarget
-    HEAD D 5 Bright A_HeadAttack
-    HEAD BC 5 A_FaceTarget
-    HEAD D 5 Bright A_HeadAttack
+    HEAD BC 4 A_FaceTarget
+    HEAD D 4 Bright A_HeadAttack
+    HEAD BC 4 A_FaceTarget
+    HEAD D 4 Bright A_HeadAttack
+    HEAD BC 4 A_FaceTarget
+    HEAD D 4 Bright A_HeadAttack
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
@@ -861,7 +861,7 @@ ACTOR hardshootgunguy
     SPOS AABBCCDD 3 A_Chase
     Loop
   Missile:
-    SPOS E 12 A_FaceTarget
+    SPOS E 8 A_FaceTarget
     SPOS F 5 Bright A_SPosAttackUseAtkSound
     SPOS E 10
     Goto See
@@ -947,7 +947,7 @@ ACTOR hardshootgunguy1
     SPOS AABBCCDD 3 A_Chase
     Loop
   Missile:
-    SPOS E 12 A_FaceTarget
+    SPOS E 8 A_FaceTarget
     SPOS F 5 Bright A_SPosAttackUseAtkSound
     SPOS E 20 A_FaceTarget
     SPOS F 5 Bright A_SPosAttackUseAtkSound
@@ -1035,7 +1035,7 @@ ACTOR hardshootgunguy2
     SPOS AABBCCDD 3 A_Chase
     Loop
   Missile:
-    SPOS E 12 A_FaceTarget
+    SPOS E 8 A_FaceTarget
     SPOS F 5 Bright A_SPosAttackUseAtkSound
     SPOS E 20 A_FaceTarget
     SPOS F 5 Bright A_SPosAttackUseAtkSound
@@ -1099,7 +1099,7 @@ ACTOR Hardsoul
 {
   Game Doom
   SpawnID 110
-  Health 100
+  Health 70
   Radius 16
   Height 56
   Mass 50
@@ -1124,13 +1124,13 @@ ACTOR Hardsoul
   States
   {
   Spawn:
-    SKUL AB 10 Bright A_Look
+    SKUL AB 4 Bright A_Look
     Loop
   See:
-    SKUL AB 6 Bright A_Chase
+    SKUL AB 4 Bright A_Chase
     Loop
   Missile:
-    SKUL C 10 Bright A_FaceTarget
+    SKUL C 4 Bright A_FaceTarget
     SKUL D 4 Bright A_SkullAttack
     SKUL CD 4 Bright
     Goto Missile
@@ -1189,7 +1189,7 @@ ACTOR Hardchaingunguy
     CPOS AABBCCDD 3 A_Chase
     Loop
   Missile:
-    CPOS E 12 A_FaceTarget
+    CPOS E 8 A_FaceTarget
     CPOS FE 3 Bright A_CPosAttack
     CPOS F 1 A_CPosRefire
     Goto Missile+1
@@ -1439,12 +1439,12 @@ ACTOR HardHellKnight : BaronOfHell
     Loop
   Melee:
   Missile:
-    BOS2 EF 5 A_FaceTarget
-    BOS2 G 5 A_CustomMissile ("Greenbaronball",35,0,0)
-    BOS2 EF 5 A_FaceTarget
-    BOS2 G 5 A_CustomMissile ("Greenbaronball",35,0,0)
-    BOS2 EF 5 A_FaceTarget
-    BOS2 G 5 A_CustomMissile ("Greenbaronball",35,0,0)
+    BOS2 EF 4 A_FaceTarget
+    BOS2 G 4 A_CustomMissile ("Greenbaronball",35,0,0)
+    BOS2 EF 4 A_FaceTarget
+    BOS2 G 4 A_CustomMissile ("Greenbaronball",35,0,0)
+    BOS2 EF 4 A_FaceTarget
+    BOS2 G 4 A_CustomMissile ("Greenbaronball",35,0,0)
     Goto See
   Pain:
     BOS2 H 2
@@ -1500,12 +1500,10 @@ ACTOR HardBaron : Baronofhell replaces Baronofhell
     Loop
   Melee:
   Missile:
-    BOSS EF 4 A_FaceTarget
-    BOSS G 4 A_CustomMissile ("RedBaronball",35,0,0)
-    BOSS EF 4 A_FaceTarget
-    BOSS G 4 A_CustomMissile ("RedBaronball",35,0,0)
-    BOSS EF 4 A_FaceTarget
-    BOSS G 4 A_CustomMissile ("Redbaronball",35,0,0)
+    BOSS EF 6 A_FaceTarget
+	BOSS G 0 A_CustomMissile ("Redbaronball", 48, 0, 0)
+	BOSS G 0 A_CustomMissile ("Redbaronball", 48, 0, random(-7, 7))
+	BOSS G 6 A_CustomMissile ("Redbaronball", 48, 0, random(-7, 7))
     Goto See
   Pain:
     BOSS H 2
@@ -1551,10 +1549,10 @@ ACTOR HardArachnotron
   States
   {
   Spawn:
-    BSPI AB 10 A_Look
+    BSPI AB 6 A_Look
     Loop
   See:
-    BSPI A 20
+    BSPI A 10
     BSPI A 3 A_BabyMetal
     BSPI ABBCC 3 A_Chase
     BSPI D 3 A_BabyMetal
@@ -1562,7 +1560,7 @@ ACTOR HardArachnotron
     Goto See+1
   Missile:
     BSPI A 20 Bright A_FaceTarget
-    BSPI G 2 Bright A_CustomMissile ("Kewlplasma",20,0,0)
+    BSPI G 2 Bright A_CustomMissile ("Fiendzys_PlasmaBall",20,0,0)
     BSPI H 2 Bright A_Playsound("weapons/plasma/fire")
     BSPI H 2 Bright A_SpidRefire
     Goto Missile+1
@@ -1691,8 +1689,8 @@ ACTOR HardSpiderboss
     Loop
   Missile:
     SPID A 20 Bright A_FaceTarget
-    SPID G 3 Bright A_SPosAttackUseAtkSound
-    SPID H 3 Bright A_SPosAttackUseAtkSound
+    SPID G 2 Bright A_SPosAttackUseAtkSound
+    SPID H 2 Bright A_SPosAttackUseAtkSound
     SPID H 1 Bright A_SpidRefire
     Goto Missile+1
   Pain:
@@ -1737,15 +1735,15 @@ ACTOR HardPainisElemental
     Loop
   Melee:
   Mayray:
-    PAIN D 5 A_FaceTarget
-    PAIN E 5 A_FaceTarget
-    PAIN F 4 A_MELEEATTACK
+    PAIN D 4 A_FaceTarget
+    PAIN E 4 A_FaceTarget
+    PAIN F 3 A_MELEEATTACK
     PAIN F 1
     Goto See
   Missile:
-    PAIN D 5 A_FaceTarget
-    PAIN E 5 A_FaceTarget
-    PAIN F 4 Bright A_FaceTarget
+    PAIN D 4 A_FaceTarget
+    PAIN E 4 A_FaceTarget
+    PAIN F 3 Bright A_FaceTarget
     PAIN F 1 Bright A_PainAttack
     Goto See
   Pain.Mightyboot:
@@ -2391,7 +2389,7 @@ ACTOR Corrupt_Fiend // Code is borrowed/Edited from Super Sonic Doom, if there a
 			Goto See
 		Plasmaattack:
 			PLAY E 0 A_PlaySound ("weapons/plasma/fire")
-			PLAY F 2 A_CustomMissile ("Kewlplasma", 32, 0, 0)
+			PLAY F 2 A_CustomMissile ("Fiendzys_PlasmaBall", 32, 0, 0)
 			PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
 			Goto Plasmaattack
 		Railattack:
@@ -2480,11 +2478,11 @@ ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there
         	PLAY E 0 A_Jump (96, "bfgattack")
         SSGATTACK:
         	PLAY E 0 A_PlaySound ("SSHTGN")
-        	PLAY F 14 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+        	PLAY F 14 A_CustomBulletAttack (11, 11, 7, 5, "BulletPuff")
         	PLAY E 0 A_PlaySound ("SSHTGN")
-        	PLAY F 14 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+        	PLAY F 14 A_CustomBulletAttack (11, 11, 7, 5, "BulletPuff")
         	PLAY E 0 A_PlaySound ("SSHTGN")
-        	PLAY F 14 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+        	PLAY F 14 A_CustomBulletAttack (11, 11, 7, 5, "BulletPuff")
         	PLAY E 14 A_PlaySound ("PulseShotgun/Pump")
         	PLAY E 13 A_PlaySound ("PulseShotgun/Pump")
         	PLAY E 11 A_PlaySound ("PulseShotgun/Pump")
@@ -2495,8 +2493,12 @@ ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there
 		PLAY E 0 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
 	Goto Chaingunattack 
 	Rocketattack:
-		PLAY F 6 A_CustomMissile ("Nadez", 32, 0, 0)
-        	PLAY E 1 A_playsound("Weapon/nadefire")
+		PLAY F 3 A_CustomMissile ("Devistator_shell", 32, 0, 0)
+        PLAY E 1 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		PLAY F 3 A_CustomMissile ("Devistator_shell", 32, 0, 0)
+        PLAY E 1 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		PLAY F 3 A_CustomMissile ("Devistator_shell", 32, 0, 0)
+        PLAY E 1 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
 		Goto See
 	Plasmaattack:
 		PLAY E 0 A_JumpIfCloser(360, "Confirmattack")
@@ -2584,9 +2586,9 @@ ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there a
 			goto SSGATTACK
 		SSGATTACK:
 			PLAY E 6 A_PlaySound ("SSHTGN")
-			PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+			PLAY F 4 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
 			PLAY E 6 A_PlaySound ("SSHTGN")
-			PLAY F 6 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
+			PLAY F 4 A_CustomBulletAttack (11, 11, 5, 5, "BulletPuff")
 			PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
 			Goto SSGATTACK
 		Chaingunattack:
@@ -2611,7 +2613,7 @@ ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there a
 		Bfgattack:
 			PLAY E 30 A_PlaySound ("DMC/Charge")
 			PLAY E 0 A_PlaySound ("DMC/Fire")
-			PLAY F 10 A_CustomMissile ("DMBALL", 32, 0, 0)
+			PLAY F 10 A_CustomMissile ("DMBALLTRAP", 32, 0, 0)
 			PLAY E 20
 			PLAY E 5
 			Goto See
@@ -2755,7 +2757,7 @@ ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there a
 
 ACTOR FemaleSergeant
 {
-  health 60
+  health 20
   mass 90
   speed 10
   Radius 19
@@ -2779,9 +2781,9 @@ ACTOR FemaleSergeant
       CZOW AABBCCDD 4 A_Chase 
       Loop 
    Missile: 
-      CZOW E 5 A_FaceTarget 
-      CZOW F 5 Bright A_PosAttack 
-      CZOW E 5 A_CPosRefire 
+      CZOW E 2 A_FaceTarget 
+      CZOW F 2 Bright A_PosAttack 
+      CZOW E 2 A_CPosRefire 
       Goto Missile+1 
    Pain: 
       CZOW G 3 
@@ -2829,7 +2831,7 @@ ACTOR FemalePlasma
     activesound "fem/active"
     Obituary "%o got burned by a plasma female zombie!"
     DropItem Cell
-    MissileType PlasmaBall
+    MissileType Fiendzys_PlasmaBall
     States
     {
     Spawn:
@@ -2840,19 +2842,19 @@ ACTOR FemalePlasma
         Loop
     Missile:
         PZOW E 10 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
-        PZOW E 5 A_FaceTarget
-        PZOW F 5 A_MissileAttack
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
+        PZOW E 3 A_FaceTarget
+        PZOW F 3 A_MissileAttack
         Goto See
     Pain:
         PZOW G 3
@@ -2939,10 +2941,10 @@ ACTOR whiterabbit
 		WHTR A 5 A_look
 		loop
 	See:
-		WHTR AAA 1 A_Wander
-		WHTR BBB 1 A_Chase
-		WHTR CCC 1 A_Wander
-		WHTR DDD 1 A_Chase
+		WHTR AA 1 A_Wander
+		WHTR BB 1 A_Chase
+		WHTR CC 1 A_Wander
+		WHTR DD 1 A_Chase
 		loop
 	Missile:
 		WHTR A 3 A_Facetarget
