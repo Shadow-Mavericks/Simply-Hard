@@ -30,8 +30,8 @@ ACTOR N_Baron_Base : Monster_Base
   Missile:
     BOSS EF 6 A_FaceTarget
 	BOSS G 0 A_CustomMissile ("BaronBall_Base", 48, 0, 0)
-	BOSS G 0 A_CustomMissile ("BaronBall_Base", 48, 0, random(-7, 7))
-	BOSS G 6 A_CustomMissile ("BaronBall_Base", 48, 0, random(-7, 7))
+	BOSS G 0 A_CustomMissile ("BaronBall_Base", 48, 0, random(-7, 0))
+	BOSS G 6 A_CustomMissile ("BaronBall_Base", 48, 0, random(0, 7))
     Goto See
   Pain:
     BOSS H 2
@@ -113,8 +113,8 @@ actor N_Baron_Acid : N_Baron_Base
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Acid", 48, 0, random(-7, 0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Acid", 48, 0, random(0, 7))
 			Goto See
 			
 	}
@@ -151,8 +151,8 @@ actor N_Baron_Void : N_Baron_Base 30055
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Void", 48, 0, random(-7,0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Void", 48, 0, random(0, 7))
 			Goto See
 			
 	}
@@ -191,8 +191,8 @@ actor N_Baron_Fire : N_Baron_Base
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Fire", 48, 0, random(-7, 0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Fire", 48, 0, random(0, 7))
 			Goto See
 	}
 }
@@ -235,8 +235,8 @@ actor N_Baron_Electric : N_Baron_Base
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Electric", 48, 0, random(-7, 0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Electric", 48, 0, random(0, 7))
 			Goto See
 	}
 }
@@ -274,8 +274,8 @@ actor N_Baron_Ice : N_Baron_Base
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Ice", 48, 0, random(-7, 0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Ice", 48, 0, random(0, 7))
 			Goto See
 	}
 }
@@ -314,8 +314,8 @@ actor N_Baron_HeavyMetal : N_Baron_Base
 			BOSS EF 6 A_FaceTarget
 			BOSS G 0 A_FaceTarget
 			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, 0)
-			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
-			BOSS G 6 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 7))
+			BOSS G 0 A_CustomMissile ("BaronBall_Metal", 48, 0, random(-7, 0))
+			BOSS G 6 A_CustomMissile ("BaronBall_Metal", 48, 0, random(0, 7))
 			Goto See
 	}
 }
