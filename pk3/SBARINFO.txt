@@ -31,9 +31,9 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		
 		Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
 		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
 		
-		InInventory "UltimateAbilitycharge", 2000
+		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
@@ -119,7 +119,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 		
-		InInventory "UltimateAbilitycharge", 2000
+		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
@@ -202,10 +202,10 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		
 		Drawimage "UlTBARG", -96, -46;   // <- This bit right here Tribeam!
 		DrawBar "DENGGBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 		
-		InInventory "UltimateAbilitycharge", 2000
+		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
@@ -287,9 +287,9 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		drawKeyBar 6, Horizontal, 12, 2, -40;
 		Drawimage "UlTBARM", -96, -46;   // <- This bit right here Tribeam!
 		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
+		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
 		
-		InInventory "UltimateAbilitycharge", 1000
+		InInventory "UltimateAbilityCharge", 1000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}

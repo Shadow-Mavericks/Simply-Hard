@@ -1,24 +1,23 @@
 #Library "Classabilities"
 #Include "Zcommon.acs"
 
-Script "Classultimateability" (Void) Net
+Script "ClassAbility" (Void) NET
 {
-	if(Checkinventory("Abilitycharge") >= 250)
+	if(Checkinventory("Abilitycharge") >= 500)
 	{
-			SetActorState(0, "Ability");
-			takeinventory("Abilitycharge", 250);
+		SetActorState(0, "Ability");
+		takeinventory("Abilitycharge", 500);
 	}
-		
 }
 
-Script "Flareability" (Void) Net
+Script "FlareAbility" (Void) Net
 {
 	if(Checkinventory("Abilitycharge") >= 10)
 	{
 		SetActorState(0, "FlareAbility");
 		takeinventory("Abilitycharge", 10);
 	}
-else
+	else
 	{
 		Print(s:"10 SOULS needed for flares!");
 	}
@@ -26,12 +25,12 @@ else
 
 Script "ULTIMATEABOOLITY" (Void) Net
 {
-	if(Checkinventory("UltimateAbilitycharge") >= 999)
+	if(Checkinventory("UltimateAbilityCharge") >= 2000)
 	{
 		ambientsound("Fiends/Ultimate",127);
 		Delay(35);
 		SetActorState(0, "Fiendultimate");
-		takeinventory("UltimateAbilitycharge", 1000);
+		takeinventory("UltimateAbilityCharge", 2000);
 	}
 	else
 	{

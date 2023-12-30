@@ -650,10 +650,11 @@ Actor Abilitycharge : Ammo
 	+INVENTORY.IGNORESKILL
 	Inventory.MaxAmount 1000
 }
-Actor UltimateAbilitycharge : Ammo //Currently Unused.
+
+Actor UltimateAbilityCharge : Ammo
 {
 	+inventory.Ignoreskill
-	Inventory.MaxAmount 1000
+	Inventory.MaxAmount 2000
 }
 
 ACTOR PeastolClip : Ammo replaces Clip

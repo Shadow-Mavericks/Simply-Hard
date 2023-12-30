@@ -2,8 +2,8 @@ addkeysection "Simply Hard" Simplyhard
 addmenukey "Soul ability" useability
 addmenukey "Flares" Flares
 addmenukey "Ultimateability" Classultimates
-alias useability "pukename Classultimateability"
-alias Flares "pukename Flareability"
+alias useability "pukename ClassAbility"
+alias Flares "pukename FlareAbility"
 alias Classultimates "pukename ULTIMATEABOOLITY"
 
 
