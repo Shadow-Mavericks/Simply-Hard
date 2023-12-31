@@ -15,21 +15,35 @@ script "LIFEUSED" RESPAWN
 		terminate;
 	
 	if(current_lives == 1)
-	{
 		print(s:"You have ", d:current_lives, s:" life remaining!");
-	}
 	else
-	{
 		print(s:"You have ", d:current_lives, s:" lives remaining!");
-	}
 	
 	Ambientsound("oneman/usedup", 127);
 	GiveInventory("Res_protection", 1);
 	
-	// Hack to update lives on HUD.
+	// Hack to update lives on HUD and carry extras over to next level.
 	TakeInventory("LifeTrackerHack", 9999);
 	if(current_lives > 0)
 		GiveInventory("LifeTrackerHack", current_lives);
+}
+
+script "CARRYLIVES" ENTER // Carries lives over to the next level.
+{
+	int pNum = PlayerNumber();
+	int max_lives = GetCVar("sv_maxlives");
+	int current_lives = CheckInventory("LifeTrackerHack");
+	
+	if(current_lives > max_lives)
+	{
+		SetPlayerLivesLeft(pNum, current_lives);
+	}
+	else
+	{
+		current_lives = GetPlayerLivesLeft(pNum);
+		TakeInventory("LifeTrackerHack", 9999);
+		GiveInventory("LifeTrackerHack", current_lives);
+	}
 }
 
 script "ADDLIFE" (void)
@@ -43,17 +57,16 @@ script "ADDLIFE" (void)
 		terminate;
 	}
 
-	current_lives += 1; // 1 UP!
-
+	current_lives++; // 1 UP!
 	SetPlayerLivesLeft(pNum, current_lives);
+	// Hack to update lives on HUD and carry extras over to next level.
+	TakeInventory("LifeTrackerHack", 9999);
+	GiveInventory("LifeTrackerHack", current_lives);
 
 	if(current_lives == 1)
 		print(s:"You now have ", d:current_lives, s:" extra life!");
 	else
 		print(s:"You now have ", d:current_lives, s:" extra lives!");
 
-	// Hack to update lives on HUD.
-	TakeInventory("LifeTrackerHack", 9999);
-	GiveInventory("LifeTrackerHack", current_lives);
 	SetResultValue(1);
 }
