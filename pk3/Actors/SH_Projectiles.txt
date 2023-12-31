@@ -1816,7 +1816,6 @@ Actor LightninggunBlast
 	+NOGRAVITY
 	+NOINTERACTION
 	+CLIENTSIDEONLY
-	  +Nointeraction
 	+NOTIMEFREEZE
 	RenderStyle Add
 	Alpha 0.75

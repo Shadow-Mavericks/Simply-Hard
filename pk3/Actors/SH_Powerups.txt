@@ -90,7 +90,7 @@ ACTOR Res_protection : PowerupGiver
 	+INVENTORY.BIGPOWERUP
 	+DONTGIB
 	Inventory.MaxAmount 0
-	Powerup.Duration 105
+	Powerup.Duration 175
 	Powerup.Type "Invulnerable"
 	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
 	States

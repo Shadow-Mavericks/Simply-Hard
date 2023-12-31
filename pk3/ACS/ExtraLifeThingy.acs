@@ -1,10 +1,9 @@
 #library "ExtraLifeThingy"
 #include "zcommon.acs"
 
-Script "oneman" (void)
-{
-	Activatorsound("oneman", 127);
-}
+// Stuff pertaining to the lives system. Written by StrikerTheHedgefox.
+
+int timeOfDeath[64];
 
 script "LIFEUSED" RESPAWN
 {
@@ -44,6 +43,8 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 		TakeInventory("LifeTrackerHack", 9999);
 		GiveInventory("LifeTrackerHack", current_lives);
 	}
+	
+	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 }
 
 script "ADDLIFE" (void)

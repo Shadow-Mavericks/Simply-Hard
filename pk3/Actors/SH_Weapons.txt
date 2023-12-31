@@ -1987,7 +1987,25 @@ Weapon.SlotNumber 7
 
 actor LightningPuff : BulletPuff
 {
+	+PUFFONACTORS
+	+ALWAYSPUFF
 	+FORCEPAIN
+	+BLOODLESSIMPACT
+	+FORCEXYBILLBOARD
+	+NOINTERACTION
+	+NOTIMEFREEZE
+	+NOBLOOD
+	-BLOODSPLATTER
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.25
+	VSpeed 0
+	States
+	{
+		Spawn:
+			TBAL A 1 Bright A_FadeOut(0.05)
+			loop
+	}
 }
 
 ACTOR Lightning_Rifle: DoomWeapon
@@ -2010,7 +2028,7 @@ ACTOR Lightning_Rifle: DoomWeapon
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.RestrictedTo "Gosimer"
-		Inventory.PickupSound "Weapon/devistatorget"
+	Inventory.PickupSound "Weapon/devistatorget"
 	Weapon.PreferredSkin "Plasma-Marine"
 	+WEAPON.NOAUTOFIRE
 	Inventory.PickupMessage "Lightning Gun"
@@ -2122,7 +2140,7 @@ ACTOR Lightning_Rifle: DoomWeapon
 		NULL A 0 A_PlaySound("Weapon/Litning_STOP", chan_weapon)
 		THUN E 1
 		THUN D 1
-			Goto Ready
+		Goto Ready
 	 Flash:
 		TNT1 A 1 Bright A_Light1
 		Goto LightDone
@@ -4222,156 +4240,6 @@ actor Railclip : Ammo
 	}
 }
 */
-ACTOR Fiendsability : Weapon
-{
-  Weapon.PreferredSkin "Fist-Marine"
-  Game Doom
-  SpawnID 32
-  Weapon.SelectionOrder 7
-  Inventory.PickupMessage ""
-  Weapon.SlotNumber 9
-  Tag "Medic supply portal"
-Inventory.PickupSound ""
-	Weapon.AmmoUse1 300
-	Weapon.AmmoGive1 0
-	Weapon.AmmoType1 "AbilityCharge"
-//	Weapon.AmmoUse2 500
-//	Weapon.AmmoGive2 0
-//	Weapon.AmmoType2 "UltimateAbilityCharge"
-			Weapon.BobSpeed 1.5
-	Weapon.BobRangeX .5
-//	Weapon.BobStyle "Smooth"
-		   +WEAPON.NOAUTOAIM
-	Inventory.Respawntics"4200"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.RestrictedTo "Fiend"
-  States
-  {
-  Ready:
-	ECAB A 1 A_WeaponReady
-	Loop
-  Deselect:
-	ECAB A 1 A_Lower
-	Loop
-  Select:
-	ECAB A 1 A_Raise
-	Loop
-  Fire:
-	ECAB A 0 A_Jumpifinventory("Abilitycharge", 300, 1)
-	Goto Ready
-	ECAB A 0 A_takeinventory("Abilitycharge",300)
-	ECAB A 0 A_Giveinventory("Health", 50)
-	ECAB A 3 A_FireCustomMissile("medicalportal",0,0,0,0,0)
-	TNT1 A 6
-	ECAB A 1 A_ReFire
-	Goto Ready
-  Spawn:
-	EUAB A -1
-	Stop
-  }
-}
-
-ACTOR Gosimersability : Weapon
-{
-  Weapon.PreferredSkin "Fist-Marine"
-  Game Doom
-  SpawnID 32
-  Weapon.SelectionOrder 7
-  Inventory.PickupMessage ""
-  Weapon.SlotNumber 9
-  Tag "Ammobag supply portal"
-  Inventory.PickupSound ""
-	Weapon.AmmoUse1 250
-	Weapon.AmmoGive1 0
-	Weapon.AmmoType1 "AbilityCharge"
-//	Weapon.AmmoUse2 500
-//	Weapon.AmmoGive2 0
-//	Weapon.AmmoType2 "UltimateAbilityCharge"
-			Weapon.BobSpeed 1.5
-	Weapon.BobRangeX .5
-	Weapon.BobStyle "Smooth"
-		   +WEAPON.NOAUTOAIM
-	Inventory.Respawntics"4200"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.RestrictedTo "Gosimer"
-  States
-  {
-  Ready:
-	ECAG A 1 A_WeaponReady
-	Loop
-  Deselect:
-	ECAG A 1 A_Lower
-	Loop
-  Select:
-	ECAG A 1 A_Raise
-	Loop
-  Fire:
-	ECAG A 0 A_Jumpifinventory("Abilitycharge", 250, 1)
-	Goto Ready
-	ECAG A 0 A_takeinventory("Abilitycharge",250)
-	ECAG A 0 A_Giveinventory("Gosimersbackpack")
-	ECAG A 6 A_FireCustomMissile("ammobagportal",0,0,0,0,0)
-	TNT1 A 6
-	ECAG A 1 A_ReFire
-	Goto Ready
-  Spawn:
-	EUAG A -1
-	Stop
-  }
-}
-
-
-ACTOR Kunaisability : Weapon
-{
-  Weapon.PreferredSkin "Fist-Marine"
-  Game Doom
-  SpawnID 32
-  Weapon.SelectionOrder 7
-  Inventory.PickupMessage ""
-  Tag "Armour supply portal"
-Inventory.PickupSound ""
-Weapon.SlotNumber 9
-	Weapon.AmmoUse1 500
-	Weapon.AmmoGive1 0
-	Weapon.AmmoType1 "AbilityCharge"
-//	Weapon.AmmoUse2 500
-//	Weapon.AmmoGive2 0
-//	Weapon.AmmoType2 "UltimateAbilityCharge"
-			Weapon.BobSpeed 1.5
-	Weapon.BobRangeX .5
-	Weapon.BobStyle "Smooth"
-		   +WEAPON.NOAUTOAIM
-	Inventory.Respawntics"4200"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.RestrictedTo "Kunai"
-  States
-  {
-  Ready:
-	ECAB A 1 A_WeaponReady
-	Loop
-  Deselect:
-	ECAB A 1 A_Lower
-	Loop
-  Select:
-	ECAB A 1 A_Raise
-	Loop
-  Fire:
-	ECAB A 0 A_Jumpifinventory("Abilitycharge", 500, 1)
-	Goto Ready
-	ECAB A 0 A_takeinventory("Abilitycharge",500)
-	ECAB A 6 A_FireCustomMissile("armourportal",0,0,0,0,0)
-	TNT1 A 6
-	ECAB A 1 A_ReFire
-	Goto Ready
-  Spawn:
-	EUAB A -1
-	Stop
-  }
-}
-
 
 Actor medicalportal
 {
