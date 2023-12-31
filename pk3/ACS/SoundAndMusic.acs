@@ -1,7 +1,5 @@
-#library "oneman"
+#library "SoundAndMusic"
 #include "zcommon.acs"
-
-// serverside extra life give
 
 //Old manncobox scripts Not yet moved to named version; Blame old zandronum builds for breaking named scripts!
 

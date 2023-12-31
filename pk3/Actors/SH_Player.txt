@@ -23,7 +23,6 @@ ACTOR Fiend : DoomPlayer
 	Player.startItem "Coolant", 100
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
-	Player.startItem "extralifethingy", 1
 	player.startItem "Backpackcheck", 1
 	Player.DamageScreenColor Green, 1
 	Player.RunHealth 25
@@ -180,7 +179,6 @@ ACTOR Kunai : DoomPlayer
   Player.StartItem "Kunaitoken"
   Player.StartItem "KunaiGastersummon", 2
   Player.StartItem "SentryBox"
-  Player.startItem "extralifethingy", 1
   player.startItem "Backpackcheck", 1
   Player.DamageScreenColor Red, 1.0
   BounceSound "PlayerHP/AlarmKunai"
@@ -337,7 +335,6 @@ ACTOR Gosimer : DoomPlayer
 	Player.StartItem "Flashlightcentered"
 	Player.StartItem "Gosimersbackpack", 1
 	Player.StartItem "DeployableShield", 1
-	Player.startItem "extralifethingy", 1
 	player.startItem "Backpackcheck", 1
 	BounceSound "PlayerHP/AlarmGosimer"
 	Player.DamageScreenColor Yellow, 1
@@ -489,7 +486,6 @@ actor MaximusPrime : DoomPlayer
 	Player.StartItem "peastolClip" 50
 	Player.StartItem "MaxToken"
 	Player.Startitem "BackpackCheck"
-	Player.StartItem "ExtraLifeThingy"
 	Player.Startitem "GreenArmorMax"
 	BounceSound "PlayerHP/AlarmMax"
 	Player.JumpZ 10

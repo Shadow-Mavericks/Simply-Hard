@@ -83,22 +83,22 @@ ACTOR KankanInvulnerabilitySphere : PowerupGiver
   }
 }
 
-ACTOR Res_proteciton : PowerupGiver
+ACTOR Res_protection : PowerupGiver
 {
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.BIGPOWERUP
-  +DONTGIB
-  Inventory.MaxAmount 0
-  Powerup.Duration 105
-  Powerup.Type "Invulnerable"
-  Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
-  States
-  {
-  Spawn:
-    STAR ABCDEF 1 Bright
-    Loop
-  }
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	+DONTGIB
+	Inventory.MaxAmount 0
+	Powerup.Duration 105
+	Powerup.Type "Invulnerable"
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	States
+	{
+		Spawn:
+			STAR ABCDEF 1 Bright
+			Loop
+	}
 }
 
 ACTOR Godsphere : PowerupGiver
@@ -192,24 +192,22 @@ ACTOR Fake_Pickup2 : FakeInventory
 
 ACTOR ONEMAN : Custominventory // <- Depreciated code, (Extra life thingy is what you want instead)
 {
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-    +DONTGIB
-  Inventory.MaxAmount 0
-        states
-        {
-                Spawn:
-                TNT1 A 0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+DONTGIB
+	Inventory.MaxAmount 0
+	states
+	{
+		Spawn:
+			ONEM A 1 BRIGHT
+			loop
 
-                Spawn2:
-		ONEM A 1 BRIGHT
-    		loop
 		Pickup:
-		TNT1 A 0 A_giveinventory("Megasphere1")
-		TNT1 A 0 A_giveinventory("Energy-Tank")
-        TNT1 A 0 ACS_NamedExecuteWithResult("oneman")
-		Stop
-        }
+			TNT1 A 0 A_giveinventory("Megasphere1")
+			TNT1 A 0 A_giveinventory("Energy-Tank")
+			TNT1 A 0 ACS_NamedExecuteWithResult("oneman")
+			Stop
+	}
 }
 
 ACTOR GOATFREESKANKAN : Custominventory

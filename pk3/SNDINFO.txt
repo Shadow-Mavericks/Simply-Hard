@@ -709,6 +709,9 @@ DSZAPHT1	DSZAPHT1
 DSZAPHT2	DSZAPHT2
 DSZAPHT3	DSZAPHT3
 
+$random ForceBarrier/Hit	{ DSZAPHT1 DSZAPHT2 DSZAPHT3 }
+$limit ForceBarrier/Hit	0
+
 $RANDOM Heavyweapond00d/Die { Heavyweapond00d/Die1 Heavyweapond00d/Die2 }
 $RANDOM Heavyweapond00d/See { Heavyweapond00d/See1 Heavyweapond00d/See2 }
 
@@ -737,9 +740,6 @@ Soldierboy/DIE2		RCKTDIE2
 Soldierboy/DIE3		RCKTDIE3
 
 Soldierboy/Fire		RCKTFIRE
-
-$random ForceBarrier/Hit	{ DSZAPHT1 DSZAPHT2 DSZAPHT3 }
-$limit ForceBarrier/Hit	0
 
 //Dispenser tracks
 Dispenser/Tune1		medspe1
@@ -986,20 +986,6 @@ Duke/Vitamin4		Dukzerk4
 Duke/Soulsphere1	Duksoul1
 Duke/Soulsphere2	Duksoul2
 Duke/Soulsphere3	Duksoul3
-
-//shieldgun
-
-ForceBarrier/On		DSFRCON
-ForceBarrier/Off	DSFRCOFF
-ForceBarrier/Loop	DSFRCLOP
-
-DSZAPHT1	DSZAPHT1
-DSZAPHT2	DSZAPHT2
-DSZAPHT3	DSZAPHT3
-
-
-$random ForceBarrier/Hit	{ DSZAPHT1 DSZAPHT2 DSZAPHT3 }
-$limit ForceBarrier/Hit	0
 
 //Duke 3D modded assult cannon sound - Kunai Kitsune
 

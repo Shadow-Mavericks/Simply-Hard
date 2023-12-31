@@ -1,30 +1,59 @@
 #library "ExtraLifeThingy"
 #include "zcommon.acs"
- 
-script "SV_ExtraLifeThingy" Enter
-{
-    while(1)
-    {
-        if(CheckInventory("ExtraLifeThingy") < 1)
-        {
-             SetPlayerProperty(0, 0, PROP_BUDDHA);
-        }
-        else
-        {
-             SetPlayerProperty(0, 1, PROP_BUDDHA);
-             if(GetActorProperty(0, APROP_Health) == 1)
-             {
-				GiveInventory("Res_proteciton", 1);
-                GiveInventory("HealthBonus", 99);
-                TakeInventory("ExtraLifeThingy", 1);
-				Ambientsound("oneman/usedup", 127);
-             }
-        }
-        delay(1);
-    }
-}
 
 Script "oneman" (void)
 {
 	Activatorsound("oneman", 127);
+}
+
+script "LIFEUSED" RESPAWN
+{
+	int pNum = PlayerNumber();
+	int current_lives = GetPlayerLivesLeft(pNum);
+	
+	if(!GetCVar("survival") && !GetCVar("cooperative"))
+		terminate;
+	
+	if(current_lives == 1)
+	{
+		print(s:"You have ", d:current_lives, s:" life remaining!");
+	}
+	else
+	{
+		print(s:"You have ", d:current_lives, s:" lives remaining!");
+	}
+	
+	Ambientsound("oneman/usedup", 127);
+	GiveInventory("Res_protection", 1);
+	
+	// Hack to update lives on HUD.
+	TakeInventory("LifeTrackerHack", 9999);
+	if(current_lives > 0)
+		GiveInventory("LifeTrackerHack", current_lives);
+}
+
+script "ADDLIFE" (void)
+{
+	int pNum = PlayerNumber();
+	int current_lives = GetPlayerLivesLeft(pNum);
+	
+	if(current_lives >= 3)
+	{
+		SetResultValue(0);
+		terminate;
+	}
+
+	current_lives += 1; // 1 UP!
+
+	SetPlayerLivesLeft(pNum, current_lives);
+
+	if(current_lives == 1)
+		print(s:"You now have ", d:current_lives, s:" extra life!");
+	else
+		print(s:"You now have ", d:current_lives, s:" extra lives!");
+
+	// Hack to update lives on HUD.
+	TakeInventory("LifeTrackerHack", 9999);
+	GiveInventory("LifeTrackerHack", current_lives);
+	SetResultValue(1);
 }

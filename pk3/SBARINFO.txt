@@ -39,15 +39,15 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		}
 		
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
-		InInventory ExtraLifeThingy, 1 
+		InInventory LifeTrackerHack, 1 
 		{
 			drawimage "REZTANK1", 0, 0;
 		}
-		InInventory ExtraLifeThingy, 2 
+		InInventory LifeTrackerHack, 2 
 		{
 			Drawimage "REZTANK2", 0, 0;
 		}
-		InInventory ExtraLifeThingy, 3 
+		InInventory LifeTrackerHack, 3 
 		{
 			Drawimage "REZTANK3", 0, 0;
 		}
@@ -124,15 +124,15 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 			Drawimage "ULTRDY", -73, -6;
 		}
 		
-		InInventory ExtraLifeThingy, 1 
+		InInventory LifeTrackerHack, 1 
 		{
 			Drawimage "oneman_i", -30, 5;
 		}
-		InInventory ExtraLifeThingy, 2 
+		InInventory LifeTrackerHack, 2 
 		{
 			Drawimage "oneman_i", -55, 5;
 		}
-		InInventory ExtraLifeThingy, 3 
+		InInventory LifeTrackerHack, 3 
 		{
 			Drawimage "oneman_i", -80, 5;
 		}
@@ -209,15 +209,15 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
-		InInventory ExtraLifeThingy, 1 
+		InInventory LifeTrackerHack, 1 
 		{
 			drawimage "REZTANK1", 0, 0;
 		}
-		InInventory ExtraLifeThingy, 2 
+		InInventory LifeTrackerHack, 2 
 		{
 			Drawimage "REZTANK2", 0, 0;
 		}
-		InInventory ExtraLifeThingy, 3 
+		InInventory LifeTrackerHack, 3 
 		{
 			Drawimage "REZTANK3", 0, 0;
 		}
@@ -296,15 +296,15 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 			
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 			
-		InInventory ExtraLifeThingy, 1 
+		InInventory LifeTrackerHack, 1 
 		{
 			drawimage "CMAX1MAN", 115, -10;
 		}
-		InInventory ExtraLifeThingy, 2 
+		InInventory LifeTrackerHack, 2 
 		{
 			Drawimage "CMAX1MAN", 126, -10;
 		}
-		InInventory ExtraLifeThingy, 3 
+		InInventory LifeTrackerHack, 3 
 		{
 			Drawimage "CMAX1MAN", 137, -10;
 		}
