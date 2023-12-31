@@ -362,7 +362,7 @@ ACTOR RenettiM9 : doomweapon
 			RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
 			RLGG D 1 A_Takeinventory("AbilityCharge",2)
 			RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
 			RLGG A 1 A_Refire
 		ALTFirestop:
 			RLGG A 4 Offset ( 0, 32 )
@@ -1367,7 +1367,7 @@ ACTOR Rawketlawnchair : DoomWeapon //Zdoom spriting carnival
 	RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
 	RLGG D 1 A_Takeinventory("AbilityCharge",2)
 	RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-	RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+	RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
 	RLGG A 1 A_Refire
   ALTFirestop:
 	RLGG A 4 Offset ( 0, 32 )
@@ -1853,7 +1853,7 @@ ACTOR BFGCHARGE : Ammo
 		RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
 		RLGG D 1 A_Takeinventory("AbilityCharge",2)
 		RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
 		RLGG A 1 A_Refire
 	ALTFirestop:
 		RLGG A 4 Offset ( 0, 32 )
@@ -1984,6 +1984,12 @@ Weapon.SlotNumber 7
 	Goto Ready
   }
 }
+
+actor LightningPuff : BulletPuff
+{
+	+FORCEPAIN
+}
+
 ACTOR Lightning_Rifle: DoomWeapon
 {
 	Game Doom
@@ -1997,8 +2003,8 @@ ACTOR Lightning_Rifle: DoomWeapon
 	Weapon.AmmoGive 40
 	Weapon.AmmoType "Battery"
 	Weapon.BobSpeed 1.5
-	 Weapon.BobRangeX .5
-	 Weapon.BobStyle "Smooth"
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "Smooth"
 		//+WEAPON.NOAUTOAIM
 	Inventory.Respawntics"4200"
 	Inventory.ForbiddenTo "Kunai"
@@ -2036,87 +2042,79 @@ ACTOR Lightning_Rifle: DoomWeapon
 		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldFirehold")
 		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	jiggleRando:
 		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldjiggleRando")
-		THUN F 0 A_JUMP(50, "jiggle1")
-		THUN F 0 A_JUMP(50, "jiggle2")
-		THUN F 0 A_JUMP(50, "jiggle3")
-		THUN F 0 A_JUMP(50, "Jiggle4")
-		THUN F 0 A_JUMP(50, "Jiggle5")
+		THUN F 0 A_JUMP(250, "jiggle1", "jiggle2", "jiggle3", "jiggle4", "jiggle5")
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 
 	Jiggle1:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle2:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle3:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle4:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	Jiggle5:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 
 	goldFirehold:
 		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("JiggleRando")
 		Goto Fireend
 	goldjiggleRando:
-		THUN F 0 A_JUMP(50, "goldjiggle1")
-		THUN F 0 A_JUMP(50, "goldjiggle2")
-		THUN F 0 A_JUMP(50, "goldjiggle3")
-		THUN F 0 A_JUMP(50, "goldJiggle4")
-		THUN F 0 A_JUMP(50, "goldJiggle5")
+		THUN F 0 A_JUMP(250, "goldjiggle1", "goldjiggle2", "goldjiggle3", "goldjiggle4", "goldjiggle5")
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(0,32) A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 
 	goldJiggle1:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	goldJiggle2:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(-1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	goldJiggle3:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	goldJiggle4:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	goldJiggle5:
 		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(0,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
 		THUN F 1 A_REFIRE ("goldJiggleRando")
 		Goto Fireend
 	Fireend:
@@ -3929,7 +3927,7 @@ GoldReady:
 	Altlaser:
 	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"goldAltlaser")
 	GUN1 H 0 A_stopsound(6)
-	GUN1 B 0 A_RailAttack(40, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 15, 1.0, 4.0, "LightRailBlast")
+	GUN1 B 0 A_RailAttack(40, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 15, 1.0, 4.0, "LightRailBlast")
 	GUN1 B 0 A_takeinventory("scatterclip",5)
 	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
 	GUN1 B 2  A_weaponready
@@ -3956,7 +3954,7 @@ GoldReady:
 	GUN1 Q 1 A_REFIRE
 	goldAltlaser:
 	GUN1 Q 0 A_stopsound(6)
-	GUN1 B 0 A_RailAttack(80, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 15, 1.0, 4.0, "REDLightRailBlast")
+	GUN1 B 0 A_RailAttack(80, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 15, 1.0, 4.0, "REDLightRailBlast")
 	GUN1 B 0 A_takeinventory("scatterclip",5)
 	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
 	GUN1 R 2 A_weaponready
@@ -4161,7 +4159,7 @@ actor Railclip : Ammo
 		GRAI G 1 Bright A_PlaySound("Weapon/PropulsionFire", chan_Weapon)
 		GRAI ABCDE 2 BRIGHT
 		GRAI F 2 A_GunFlash
-		GRAI F 0 A_RailAttack(500, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 35, 1.0, 4.0, "Devistaterblast")
+		GRAI F 0 A_RailAttack(500, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 1.0, 4.0, "Devistaterblast")
 		GRAI F 20 A_WeaponReady(WRF_NOFIRE|WRF_NOBOB)
 		GRAI H 2 Bright A_WeaponReady(WRF_NOFIRE|WRF_NOBOB)
 		GRAI I 2 Bright A_WeaponReady(WRF_NOFIRE|WRF_NOBOB)
@@ -4187,7 +4185,7 @@ actor Railclip : Ammo
 		GRAI G 1 Bright A_PlaySound("Weapon/PropulsionFire", chan_Weapon)
 		GRAI ABCDE 2 BRIGHT
 		GRAI F 2 A_GunFlash
-		GRAI F 0 A_RailAttack(500, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 35, 1.0, 4.0, "Devistaterblast")
+		GRAI F 0 A_RailAttack(500, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 1.0, 4.0, "Devistaterblast")
 		GRAI F 20 A_WeaponReady(WRF_NOFIRE|WRF_NOBOB)
 		GRAI H 2 Bright A_WeaponReady(WRF_NOFIRE|WRF_NOBOB)
 		GRAI F 15 A_playsound("Weapon/PropulsionCHARGE", Chan_7)
@@ -4519,9 +4517,9 @@ ACTOR FiendsRailgun : DoomWeapon
 		FRGB A 1
 		FRGF E 2
 		FRGF J 2
-		//FRGF J 0 A_RailAttack(500, 0, 1, "", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, 1, "Bulletbuff", 0, 0, 0, 35, 2.0, 4.0, "Greenlitningzap")
-		FRGF J 0 A_RailAttack(250, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 35, 2.0, 4.0, "healgunblast")
-		//FRGF J 0 A_RailAttack(0, 0, 0, "FF FF FF", "", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING , 0, "Bulletbuff", 0, 0, 0, 35, 2.0, 4.0, "Bluerailcoil")
+		//FRGF J 0 A_RailAttack(500, 0, 1, "", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, 1, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "Greenlitningzap")
+		FRGF J 0 A_RailAttack(250, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "healgunblast")
+		//FRGF J 0 A_RailAttack(0, 0, 0, "FF FF FF", "", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING , 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "Bluerailcoil")
 		FRGF J 0 A_PlaySound("Weapon/PropulsionFire", chan_Weapon)
 		FRGB G 1
 		FRGG G 1
@@ -4614,7 +4612,7 @@ ACTOR FiendsRailgun : DoomWeapon
 		RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
 		RLGG D 1 A_Takeinventory("AbilityCharge",2)
 		RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
 		RLGG A 1 A_Refire
 	ALTFirestop:
 		RLGG A 4 Offset ( 0, 32 )
@@ -4670,7 +4668,7 @@ Actor Propulsion_Cannon : doomweapon
 	GSNP A 1 A_Raise
 	Loop
   Fire:
-	GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+	GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
 	GSNF A 0 A_playsound("Weapon/Sniperrail_Fire",Chan_Weapon)
 	GSNF B 1 BRIGHT
 //	GSNP B 1 A_playsound("Weapon/SniperRecharge", Chan_7)
@@ -5650,7 +5648,7 @@ actor DisruptorRifle : DoomWeapon
   DRIF A 1 A_WeaponReady
   Loop
   Fire:
-  DRIF A 1 A_RailAttack(300, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "Bulletbuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+  DRIF A 1 A_RailAttack(300, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
   TNT1 A 0 A_PlaySound("Max/Disrupt", CHAN_WEAPON)
   DRIF B 1 bright A_GunFlash
   DRIF C 1

@@ -82,7 +82,7 @@ ACTOR Fiend_PlasmaRifle : DoomWeapon
 			RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
 			RLGG D 1 A_Takeinventory("AbilityCharge",2)
 			RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "Bulletbuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
+			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
 			RLGG A 1 A_Refire
 		ALTFirestop:
 			RLGG A 4 Offset ( 0, 32 )
