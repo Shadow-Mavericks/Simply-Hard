@@ -7,6 +7,7 @@
 #include "actors/SH_Projectiles.txt"
 #include "actors/SH_RNG-Spawns.txt"
 #include "actors/SH_Weapons.txt"
+#include "actors/SH_Gosimer_weapons.txt"
 #include "actors/SH_RNG-Boss_spawns.txt"
 #include "actors/SH_Kunai_SFX.txt"
 #include "actors/SH_MannCoBoxes.txt"

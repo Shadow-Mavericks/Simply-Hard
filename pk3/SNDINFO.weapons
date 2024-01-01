@@ -16,3 +16,8 @@ GShotgunFire	SHOTGUN7
 GShotgunCock1	SHOTGNC1
 GShotgunCock2	SHOTGNC2
 // ------
+
+//Boom Toob → Grenade Launcher
+Gosimer/GrenadeL_POOT	GNTGPOOT
+Gosimer/GrenadeL_open	GNTGOPEN		
+Gosimer/GrenadeL_Close	GNTGCLS
