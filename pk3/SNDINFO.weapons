@@ -15,4 +15,14 @@ $random SSWFire { SSWFire1 SSWFire2 }
 GShotgunFire	SHOTGUN7
 GShotgunCock1	SHOTGNC1
 GShotgunCock2	SHOTGNC2
+
+// Pistol
+GPistolFire01 GPFIRE01
+GPistolFire02 GPFIRE02
+GPistolFire03 GPFIRE03
+$random GPistolFire { GPistolFire01 GPistolFire02 GPistolFire03 }
+GPistolMagOut GPMAGOUT
+GPistolMagIn GPMAGIN
+
+GPistolFireGold GPGOLDF
 // ------
