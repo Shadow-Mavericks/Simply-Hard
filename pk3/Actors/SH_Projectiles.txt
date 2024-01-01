@@ -3130,232 +3130,69 @@ ACTOR REDChannelerTrail
 
 //Quake 2 Grenade  //CodeBase from HFC2X
 
-actor Nades
-{
-	Radius 6
-	Height 7
-	Speed 20
-	Damage 0
-	Projectile
-	Mass 300
-	BounceFactor 0.6
-	WallBounceFactor 0.7
-	-NOGRAVITY
-        Gravity 0.5
-		+NOTIMEFREEZE
-	+DEHEXPLOSION
-	+FORCEXYBILLBOARD
-	+FORCERADIUSDMG
-	ReactionTime 127
-	BounceType Doom
-	+MBFBOUNCER
-	BounceSound "Weapon/nadebounce"
-	DeathSound "Weapon/Nadeboom"
-	Obituary "$OB_GRENS"
-	States
-	{
-	Spawn:
-		SGRN A 1 A_CountDown
-		TNT1 A 0 A_JumpIf (velz == 0, "OnFloor")
-		Loop
-	OnFloor:
-		TNT1 A 0 A_Stop
-		TNT1 A 0 A_ChangeFlag (GRENADETRAIL, 0)
-		TNT1 A 0 A_ChangeFlag (NOBLOCKMAP, 0)
-		Goto Resting
-	Resting:
-		SGRN A 1 A_CountDown
-		Wait
-	Death:
-		TNT1 A 0 A_Explode(200,165)
-  		MISL B 8 Bright A_Scream
-   		MISL C 6 Bright
-   		MISL D 4 Bright
-		Stop
-	}
-}
-
-actor CRITNades
-{
-	Radius 6
-	Height 7
-	Speed 20
-	Damage 0
-	Projectile
-	Mass 300
-	BounceFactor 0.6
-	WallBounceFactor 0.7
-	-NOGRAVITY
-        Gravity 0.75
-	+DEHEXPLOSION
-	+NOTIMEFREEZE
-	+FORCEXYBILLBOARD
-	+FORCERADIUSDMG
-	ReactionTime 127
-	BounceType Doom
-	+MBFBOUNCER
-	BounceSound "Weapon/nadebounce"
-	Obituary "$OB_GRENS"
-	States
-	{
-	Spawn:
-		SGRN A 1 A_CountDown
-		TNT1 A 0 A_JumpIf (velz == 0, "OnFloor")
-		Loop
-	OnFloor:
-		TNT1 A 0 A_Stop
-		TNT1 A 0 A_ChangeFlag (GRENADETRAIL, 0)
-		TNT1 A 0 A_ChangeFlag (NOBLOCKMAP, 0)
-		Goto Resting
-	Resting:
-		SGRN A 1 A_CountDown
-		Wait
-	Death:
-		TNT1 A 0 A_Explode(300,200)
-    	CRCK B 8 Bright A_Playsound("Weapon/nadeboom",Chan_auto)
-   		CRCK C 6 Bright
-   		CRCK D 4 Bright
-		Stop
-	}
-}
-
 Actor Nadez
 {
-  Radius 8
-  Height 8
-  Speed 40
-  Damage 20
-  Gravity 0.5
-  Projectile
-  -NoGravity
-  +NOTIMEFREEZE
-  +DoomBounce
-  +DehExplosion
-  +GrenadeTrail
-  +ExplodeOnDeath
-  seeSound "Weapon/nadebounce"
-  DeathSound "Weapon/Nadeboom"
-  DamageType Fire
-  States
-  {
-  Spawn:
-    SGRN A 0 Bright
-    SGRN A 0 Bright A_StopSound
-    SGRN A 0 Bright
-    SGRN A 1 Bright 
-    Goto Spawn+3
-  Death:
-    MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
-    MISL B 8 Bright A_Explode(128, 192)
-    MISL C 6 Bright
-    MISL D 4 Bright
-    stop
-  }
+	Radius 8
+	Height 8
+	Speed 40
+	Damage 20
+	DamageType Fire
+	Gravity 0.5
+	
+	BounceType Doom
+	BounceSound "Weapon/nadebounce"
+	
+	Projectile
+	-NOGRAVITY
+	+NOTIMEFREEZE
+	+DEHEXPLOSION
+	+GRENADETRAIL
+	+EXPLODEONDEATH
+	States
+	{
+		Spawn:
+			SGRN A 1 Bright 
+			loop
+		Death:
+			MISL B 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
+			MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
+			MISL B 0 Bright A_Explode(128, 192)
+			MISL BBBBCCCDD 1 Bright A_SetScale(scalex+0.25, scaley+0.25)
+			stop
+	}
 }
 
-Actor Critnadez
+Actor ALTNadez : Nadez
 {
- Radius 8
-  Height 8
-  Speed 40
-  Damage 40
-  Gravity 0.5
-  Projectile
-  -NoGravity
-  +NOTIMEFREEZE
-  +DoomBounce
-  +DehExplosion
-  +GrenadeTrail
-  +ExplodeOnDeath
-  seeSound "Weapon/nadebounce"
-  DeathSound "Weapon/Nadeboom"
-  DamageType Fire
-  States
-  {
-  Spawn:
-    SGRN A 0 Bright
-    SGRN A 0 Bright A_StopSound
-    SGRN A 0 Bright A_PlaySound("Weapons/GrenLF")
-    SGRN A 1 Bright 
-    Goto Spawn+3
-  Death:
-    CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
-    CRCK B 8 Bright A_Explode(128, 192)
-    CRCK B 0 A_Explode
-    CRCK C 6 Bright
-    CRCK D 4 Bright
-    stop
-  }
+	Speed 40
+	Damage 40
+	BounceType None
 }
 
-Actor ALTNadez
+Actor Critnadez : Nadez
 {
-  Radius 8
-  Height 8
-  Speed 40
-  Damage 40
-  Gravity 0.5
-  Projectile
-  +NOTIMEFREEZE
-  -NoGravity
-  +DehExplosion
-  +GrenadeTrail
-  +ExplodeOnDeath
-  seeSound "Weapon/nadebounce"
-  DeathSound "Weapon/Nadeboom"
-  DamageType Fire
-  States
-  {
-  Spawn:
-    SGRN A 0 Bright
-    SGRN A 0 Bright A_StopSound
-    SGRN A 0 Bright
-    SGRN A 1 Bright 
-    Goto Spawn+3
-  Death:
-    MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
-    MISL B 8 Bright A_Explode(128, 192)
-    MISL C 6 Bright
-    MISL D 4 Bright
-    stop
-  }
+	Damage 40
+	SeeSound "Weapons/GrenLF"
+	States
+	{
+		Spawn:
+			SGRN A 1 Bright 
+			loop
+		Death:
+			CRCK B 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
+			CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
+			CRCK B 0 Bright A_Explode(192, 192)
+			CRCK BBBBCCCDD 1 Bright A_SetScale(scalex+0.25, scaley+0.25)
+			stop
+	}
 }
 
-Actor ALTCritnadez
+Actor ALTCritnadez : Critnadez
 {
-  Radius 8
-  Height 8
-  Speed 40
-  Damage 60
-  Gravity 0.5
-  Projectile
-  +NOTIMEFREEZE
-  -NoGravity
-  +DehExplosion
-  +GrenadeTrail
-  +ExplodeOnDeath
-  SeeSound "Weapon/nadebounce"
-  DeathSound "Weapon/Nadeboom"
-  DamageType Fire
-  States
-  {
-  Spawn:
-    SGRN A 0 Bright
-    SGRN A 0 Bright A_StopSound
-    SGRN A 0 Bright A_PlaySound("Weapons/GrenLF")
-    SGRN A 1 Bright 
-    Goto Spawn+3
-  Death:
-    CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
-    CRCK B 8 Bright A_Explode(128, 192)
-    CRCK B 0 A_Explode
-    CRCK C 6 Bright
-    CRCK D 4 Bright
-    stop
-  }
+	Speed 40
+	Damage 60
+	BounceType None
 }
-
-
 
 Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
 {
