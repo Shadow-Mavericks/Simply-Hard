@@ -1,0 +1,572 @@
+ACTOR GosimersExplosivepuff
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	RenderStyle ADD
+	Alpha 0.75
+	Scale 0.25
+	Mass 5
+	States
+	{
+	Spawn:
+		PUFF A 1 Bright
+		PUFF B 1
+	// Intentional fall-through
+	xdeath:
+	Melee:
+		GXPL A 0 A_Explode(8, 32, 0, false, 32)
+		GXPL ABCDEFGH 1 Bright
+		GXPL IJKLLM 1 Bright A_FadeOut(0.1)
+		Stop
+	}
+}
+
+
+ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did gold frames
+{
+	Weapon.PreferredSkin "Grenade-Marine"
+	Weapon.SelectionOrder 2500
+	Weapon.SlotNumber 6
+	Weapon.AmmoType1 "Roketammo"
+	Weapon.AmmoUse1 1
+	Weapon.Ammogive1 10
+	Weapon.AmmoType2 "Roketammo"
+	Weapon.AmmoUse2 1
+	Weapon.Ammogive2 10
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.Bobstyle	"Smooth"
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NOAUTOAIM
+	Inventory.ForbiddenTo	"Fiend"
+	Inventory.ForbiddenTo	"Kunai"
+	Inventory.RestrictedTo	"Gosimer"
+	Inventory.Forbiddento	"Maximusprime"
+	Inventory.PickupMessage "You got the Boom shoot"
+	Inventory.PickupSound	"Weapon/Nadeget"
+	States
+	{
+	Ready:
+		TNT1 A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldready")
+		GNTR A 1 A_WeaponReady
+		Loop
+	Deselect:
+		TNT1 A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Golddeselect")
+		GNTR A 1 A_Lower
+		Loop
+	Select:
+		TNT1 A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldselect")
+		GNTR A 1 A_Raise
+		Loop
+	Fire:	//Bounce Grenade
+		GNTR A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldfire")
+		GNTR A 1 A_Gunflash
+		GNTR B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
+		GNTR B 0 A_FireCustomMissile("Nadez",0,1,0,0,0,7)
+		GNTR CDE 1 Bright
+		GNTR FA 2
+		GNTR A 0 A_Jumpifnoammo("Ready")
+		GNTR GHI 3 //FRAME G Reload start
+		GNTR I 5 A_Playsound ("Gosimer/GrenadeL_open",Chan_Weapon)
+		GNTR JKL 3 //FRAME L Break open
+		GNTR M 4 A_Playsound ("Gosimer/GrenadeL_Close",Chan_6) //This Sound has "Insertshell" and "close" sfx baked in!
+		GNTR NOP 4 
+		GNTR QR 3
+		GNTR ST 3 //FRAME T CLOSE Barrel
+		GNTR U 5
+		GNTR VX 3
+		Goto Ready
+	Altfire: //Contact grenades
+		GNTR A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldaltfire")
+		GNTR A 1 A_Gunflash
+		GNTR B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
+		GNTR B 0 A_FireCustomMissile("ALTNadez",0,1,0,0,0,7)
+		GNTR CDE 1 Bright
+		GNTR FA 2
+		GNTR A 0 A_Jumpifnoammo("Ready")
+		GNTR GHI 3 //Reload start
+		GNTR I 5 A_Playsound ("Gosimer/GrenadeL_open",Chan_Weapon)
+		GNTR JKL 3 //FRAME L Break open
+		GNTR M 4 A_Playsound ("Gosimer/GrenadeL_Close",Chan_6) //This Sound has "Insertshell" and "close" sfx baked in!
+		GNTR NOP 4 //FRAME N Insert Shell
+		GNTR QR 3
+		GNTR ST 3 //FRAME T CLOSE Barrel
+		GNTR U 5
+		GNTR VX 3
+		Goto Ready
+	Goldready:
+		GNTG A 1 A_WeaponReady 
+		Loop
+	GoldDeselect:
+		GNTG A 1 A_Lower
+		Loop
+	GoldSelect:
+		GNTG A 1 A_Raise
+		Loop
+	Goldfire:
+		GNTG A 1
+		GNTG A 0 A_Gunflash
+		GNTG B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon) 
+		GNTR B 0 A_FireCustomMissile("CritNadez",0,1,0,0,0,7)
+		GNTG CDE 1 Bright
+		GNTG FA 2
+		GNTR A 0 A_Jumpifnoammo("Ready")
+		GNTG GHI 3 //Reload start
+		GNTG I 5 A_Playsound ("Gosimer/GrenadeL_open",Chan_Weapon)
+		GNTG JKL 3 //FRAME L Break open
+		GNTG M 4 A_Playsound ("Gosimer/GrenadeL_Close",Chan_6)
+		GNTG NOP 4 //FRAME N Insert Shell
+		GNTG QR 3
+		GNTG ST 3 //FRAME T CLOSE Barrel
+		GNTG U 5
+		GNTG VX 3
+		Goto Ready
+	GoldAltfire:
+		GNTG A 1
+		GNTG A 0 A_Gunflash
+		GNTG B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon) 
+		GNTR B 0 A_FireCustomMissile("ALTCritNadez",0,1,0,0,0,7)
+		GNTG CDE 1 Bright
+		GNTG FA 2
+		GNTG A 0 A_Jumpifnoammo("Ready")
+		GNTG GHI 3 //Reload start
+		GNTG I 5 A_Playsound ("Gosimer/GrenadeL_open",Chan_Weapon)
+		GNTG JKL 3 //FRAME L Break open
+		GNTG M 4 A_Playsound ("Gosimer/GrenadeL_Close",Chan_6)
+		GNTG NOP 4 //FRAME N Insert Shell
+		GNTG QR 3
+		GNTG ST 3 //FRAME T CLOSE Barrel
+		GNTG U 5
+		GNTG VX 3
+		Goto Ready
+	Flash:
+		TNT1 A 1 A_Light1
+		TNT1 A 1 A_light2
+		TNT1 A 2 A_light1
+		Goto LightDone
+	Spawn:
+		GNTR Z -1
+		Stop
+	}
+}
+
+Actor DookiClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 12
+	ammo.Backpackmaxamount 12
+}
+
+ACTOR GosimersHandgun : Weapon
+{
+	Tag "Pistol"
+	Inventory.Forbiddento "Maximusprime"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.RestrictedTo "Gosimer"
+	Inventory.Pickupmessage "Pistol."
+	Obituary "%o killed %k"
+
+	Weapon.PreferredSkin "Pistol-Marine"
+	Weapon.AmmoType1 "DookiClip"
+	Weapon.AmmoType2 "peastolClip"
+	Weapon.AmmoGive1 32
+	Weapon.AmmoGive2 48
+	Weapon.AmmoUse1 1
+	Weapon.SlotNumber 2
+	Weapon.SelectionOrder 4
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "Smooth"
+
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.AMMO_OPTIONAL
+	States
+	{
+		Ready:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldReady")
+			GDPI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+			loop
+		GoldReady:
+			GDPG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+			loop
+		Deselect:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldDeselect")
+			GDPI A 1 A_Lower
+			Loop
+		Golddeselect:
+			GDPG A 1 A_Lower
+			Loop
+		Select:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldSelect")
+			GDPI A 1 A_Raise
+			Loop
+		GoldSelect:
+			GDPG A 1 A_Raise
+			Loop
+
+		Fire:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"StartGoldFire")
+			goto StartFire
+			
+		StartFire:
+			GDPI B 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			goto DoFire
+		StartGoldFire:
+			GDPG B 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			goto DoGoldFire
+		
+		DoFire:
+			"####" B 0 A_Playsound("GPistolFire", CHAN_WEAPON)
+			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			goto FireEnd
+		DoGoldFire:
+			"####" B 0 A_Playsound("GPistolFireGold", CHAN_WEAPON)
+			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "GosimersExplosivePuff", FBF_USEAMMO | FBF_NORANDOM)
+			goto FireEnd
+	
+		FireEnd:
+			"####" B 0 A_GunFlash
+			"####" B 1 Bright
+			"####" C 1 Bright
+			"####" DEF 1
+			"####" A 1
+			"####" A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			"####" A 0 A_Refire
+			goto Ready
+
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready
+
+		Reload:
+			GDPI A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			goto Ready
+		CheckReload:
+			GDPI A 0 A_JumpIfInventory("DookiClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			GPRE A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
+			GPRE A 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadEjectGold")
+			goto ReloadEject
+		
+		ReloadEjectGold:
+			GGRE A 0
+		ReloadEject:
+			"####" ABC 2
+			"####" DEFGHIJK 1
+			"####" C 6
+			GPRI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadInsertGold")
+			goto ReloadInsert
+
+		ReloadInsertGold:
+			GGRI A 0
+		ReloadInsert:
+			"####" A 0 A_Playsound("GPistolMagIn", CHAN_AUTO)
+			"####" ABCDEFGHIJKLMNOPQ 1
+			goto ReloadLoop
+
+		ReloadLoop:
+			"####" A 0 A_TakeInventory("peastolClip", 1)
+			"####" A 0 A_GiveInventory("DookiClip", 1)
+			"####" A 0 A_JumpIfInventory("DookiClip", 0, "ReloadEnd1")
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "ReloadLoop")
+			goto ReloadEnd1
+
+		ReloadEnd1:
+			"####" RSTUVWX 1
+			GPRE C 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadEnd2Gold")
+			goto ReloadEnd2
+		
+		ReloadEnd2Gold:
+			GGRE A 0
+		ReloadEnd2:
+			"####" CBA 2
+			"####" A 0 A_Refire
+			goto Ready
+		Flash:
+			TNT1 A 1 A_Light2
+			TNT1 A 1 A_Light1
+			TNT1 A 1 A_Light0
+			stop
+		Spawn:
+			PIST A -1
+			Stop
+	}
+}
+
+actor LightningPuff : BulletPuff
+{
+	+PUFFONACTORS
+	+ALWAYSPUFF
+	+FORCEPAIN
+	+BLOODLESSIMPACT
+	+FORCEXYBILLBOARD
+	+NOINTERACTION
+	+NOTIMEFREEZE
+	+NOBLOOD
+	-BLOODSPLATTER
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.25
+	VSpeed 0
+	States
+	{
+		Spawn:
+			TBAL A 1 Bright A_FadeOut(0.05)
+			loop
+	}
+}
+
+ACTOR Lightning_Rifle: DoomWeapon
+{
+	Game Doom
+	Scale 0.8
+	Height 20
+	SpawnID 31
+	Weapon.SelectionOrder 7
+	Weapon.SlotNumber 7
+	Inventory.Forbiddento "Maximusprime"
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 40
+	Weapon.AmmoType "Battery"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "Smooth"
+		//+WEAPON.NOAUTOAIM
+	Inventory.Respawntics"4200"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.RestrictedTo "Gosimer"
+	Inventory.PickupSound "Weapon/devistatorget"
+	Weapon.PreferredSkin "Plasma-Marine"
+	+WEAPON.NOAUTOFIRE
+	Inventory.PickupMessage "Lightning Gun"
+	Tag "Lightning Gun"
+	States
+	{
+	Ready:
+		THUN C 0 A_Stopsound(6)
+	Ready2:
+		THUN A 0 A_playsound("Weapon/litning_IDLE", 6, 1.0, 1)
+		THUN A 1 A_WeaponReady
+		THUN C 1 A_WeaponReady
+		THUN B 1 A_WeaponReady
+		THUN C 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_Stopsound(6)
+		THUN C 1 A_Lower
+		Goto Deselect+1
+	Select:
+		NULL A 0 A_Stopsound(6)
+		THUN C 1 A_Raise
+		Goto Select+1
+	Fire:
+		NULL A 0 A_PlaySound("Weapon/Litning_START",Chan_weapon)
+		THUN D 1
+		THUN E 1
+	Firehold:
+		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldFirehold")
+		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	jiggleRando:
+		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldjiggleRando")
+		THUN F 0 A_JUMP(250, "jiggle1", "jiggle2", "jiggle3", "jiggle4", "jiggle5")
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+
+	Jiggle1:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	Jiggle2:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-1,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	Jiggle3:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	Jiggle4:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	Jiggle5:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,33)  A_RailAttack(5, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+
+	goldFirehold:
+		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("JiggleRando")
+		Goto Fireend
+	goldjiggleRando:
+		THUN F 0 A_JUMP(250, "goldjiggle1", "goldjiggle2", "goldjiggle3", "goldjiggle4", "goldjiggle5")
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,32) A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+
+	goldJiggle1:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle2:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-1,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle3:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle4:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(-2,34)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	goldJiggle5:
+		THUN F 0 A_GUNFLASH
+		THUN F 1 Offset(0,33)  A_RailAttack(10, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 A_REFIRE ("goldJiggleRando")
+		Goto Fireend
+	Fireend:
+		NULL A 0 A_Stopsound(6)
+		NULL A 0 A_PlaySound("Weapon/Litning_STOP", chan_weapon)
+		THUN E 1
+		THUN D 1
+		Goto Ready
+	 Flash:
+		TNT1 A 1 Bright A_Light1
+		Goto LightDone
+	 Spawn:
+		PLAS A -1
+		Stop
+	}
+}
+
+ACTOR Devistator_shell
+{
+	scale 0.25
+	Radius 11
+	Height 8
+	Speed 20
+	Damage 6
+	Projectile
+	+SEEKERMISSILE
+	+SCREENSEEKER
+	//SeeSound "weapon/D3DDEVSPAWN"
+	DeathSound "weapons/D3DDEVBOOM"
+	Obituary "%O caught %K's devistator shell" // "%o rode %k's rocket."
+	States
+	{
+		Spawn:
+			RPGX AAAAAA 1 bright
+			goto Fly
+		Fly:
+			RPGX A 0 A_playsound("weapon/D3DDEVFLY",6, 1.0, 1)
+			RPGX A 0 A_Weave(3, 3, frandom[speen](0.0, 1.0), frandom[speen](0.0, 1.0))
+			RPGX A 1 Bright A_SeekerMissile(3,3,SMF_LOOK,50,5)
+			Loop
+		Death:
+			MISL B 8 Bright A_Explode(50, 128)
+			MISL C 6 Bright A_stopsound(6)
+			MISL D 4 Bright
+			Stop
+	}
+}
+
+ACTOR micro_Devistator : DoomWeapon
+{
+	Game Doom
+	Scale 0.8
+	Height 20
+	SpawnID 31
+	Weapon.SelectionOrder 8
+	Weapon.slotnumber 8
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 60
+	Weapon.AmmoType "Lightningammo"
+	Weapon.BobSpeed 1.5
+	 Weapon.BobRangeX .5
+	 Weapon.BobStyle "Smooth"
+	+WEAPON.NOAUTOAIM
+	Inventory.Forbiddento "Maximusprime"
+	Inventory.Respawntics"4200"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.RestrictedTo "Gosimer"
+	Inventory.PickupSound "Weapon/devistatorget"
+	Weapon.PreferredSkin "BFG-Marine"
+	+WEAPON.NOAUTOFIRE
+	Inventory.PickupMessage "Devastator"
+	Tag "Devastator"
+	States
+	{
+	Ready:
+		DASS A 1 A_WeaponReady
+		Loop
+	Deselect:
+		DASS A 1 A_Lower
+		Loop
+	Select:
+		DASS A 1 A_Raise
+		Loop
+	Fire:
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"Goldfire")
+		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		DASS B 1 A_GunFlash
+		DASS C 1
+		DASS D 2 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS E 2 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS F 2 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS C 1
+		DASS B 1
+		DASS A 1 A_Refire
+		Goto Ready
+	goldfire:
+		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		DASS B 1 A_GunFlash
+		DASS C 1
+		DASS D 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS E 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS F 1 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DASS C 1
+		DASS B 1
+		DASS A 1 A_Refire
+		Goto Ready
+	Flash:
+		TNT1 A 2 Bright
+		TNT1 A 2 Bright A_Light1
+		TNT1 A 2 Bright A_Light2
+		TNT1 A 2 Bright A_Light1
+		Goto LightDone
+	Spawn:
+		LAUN A -1
+		Stop
+	}
+}
