@@ -98,8 +98,8 @@ function void PrintDamage(int damage)
 	int z = GetActorZ(0) + height + Random(-10.0, 5.0);
 	
 	int ceilingZ = GetActorCeilingZ(0);
-	if(z+8.0 >= ceilingZ)
-		z = (ceilingZ-8.0) + Random(-10.0, 0.0);
+	if(z+10.0 >= ceilingZ)
+		z = (ceilingZ-10.0) + Random(-10.0, 0.0);
 	
 	int SelectedColor = Random(0, 6);
 	int TranslationNumber = Random(6000, 6500);

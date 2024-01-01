@@ -2019,37 +2019,6 @@ Actor bfgdrop : CustomInventory replaces Bfg9000
   }
 }
 
-ACTOR Devistator_shell
-{
-  scale 0.5
-  Radius 11
-  Height 8
-  Speed 20
-  Damage 4
-  Projectile
-  +SEEKERMISSILE
-  +SCREENSEEKER
-  SeeSound "weapon/D3DDEVSPAWN"
-  DeathSound "weapon/D3DDEVBOOM"
-  Obituary "%O caught %K's devistator shell" // "%o rode %k's rocket."
-  States
-  {
-	Spawn:
-			MISL AAAAAA 1 bright
-			goto Fly
-	Fly:
-		GLGF A 0 A_playsound("weapon/D3DDEVFLY", 6, 1.0, 1)
-			MISL A 1 Bright A_SeekerMissile(2,3,SMF_LOOK)
-			Loop
-	Death:
-			MISL B 8 Bright A_Explode (35, 64)
-		MISL C 6 Bright
-		MISL D 4 Bright
-		Stop
-	}
-}
-
-
 //Kunais Class Weapons
 
 ACTOR Kunaisrevolver : weapon //Weapon base from Golden souls
