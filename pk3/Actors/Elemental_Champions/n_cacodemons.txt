@@ -32,9 +32,9 @@ ACTOR N_Cacodemon_Base : Monster_Base
     HEAD BC 4 A_FaceTarget
     HEAD D 4 Bright A_CustomMissile("CacodemonBall_Base", 32)
     HEAD BC 4 A_FaceTarget
-    HEAD D 4 Bright A_CustomMissile("CacodemonBall_Base", 32, 0, random(-7, 7))
+    HEAD D 4 Bright A_CustomMissile("CacodemonBall_Base", 32, 0, random(-35, 35))
     HEAD BC 4 A_FaceTarget
-    HEAD D 4 Bright A_CustomMissile("CacodemonBall_Base", 32, 0, random(-7, 7))
+    HEAD D 4 Bright A_CustomMissile("CacodemonBall_Base", 32, 0, random(-35, 35))
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
@@ -132,9 +132,9 @@ actor N_Cacodemon_Acid : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Acid", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Acid", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Acid", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Acid", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Acid", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
@@ -155,9 +155,9 @@ actor N_Cacodemon_Void : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Void", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Void", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Void", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Void", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Void", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
@@ -178,9 +178,9 @@ actor N_Cacodemon_Fire : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Fire", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Fire", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Fire", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Fire", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Fire", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
@@ -213,9 +213,9 @@ actor N_Cacodemon_Electric : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Electric", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Electric", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Electric", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Electric", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Electric", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
@@ -238,9 +238,9 @@ actor N_Cacodemon_Ice : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Ice", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Ice", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Ice", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Ice", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_Ice", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
@@ -262,9 +262,9 @@ actor N_Cacodemon_HeavyMetal : N_Cacodemon_Base
 			HEAD BC 4 A_FaceTarget
 			HEAD D 4 Bright A_CustomMissile ("CacodemonBall_HeavyMetal", 32)
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_HeavyMetal", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_HeavyMetal", 32, 0, random(-35, 35))
 			HEAD BC 4 A_FaceTarget
-			HEAD D 4 Bright A_CustomMissile("CacodemonBall_HeavyMetal", 32, 0, random(-7, 7))
+			HEAD D 4 Bright A_CustomMissile("CacodemonBall_HeavyMetal", 32, 0, random(-35, 35))
 			Goto See
 	}
 }
