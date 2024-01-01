@@ -330,7 +330,7 @@ ACTOR Gosimer : DoomPlayer
 	Player.StartItem "Shellz", 8
 	Player.StartItem "peastolClip", 250
 	Player.StartItem "Pistolclip", 32
-	Player.StartItem "ScatterClip",25
+	Player.StartItem "DookiClip", 12
 	Player.StartItem "GosimerToken"
 	Player.StartItem "Flashlightcentered"
 	Player.StartItem "Gosimersbackpack", 1

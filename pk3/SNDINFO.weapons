@@ -25,4 +25,9 @@ GPistolMagOut GPMAGOUT
 GPistolMagIn GPMAGIN
 
 GPistolFireGold GPGOLDF
+
+//Boom Toob → Grenade Launcher
+Gosimer/GrenadeL_POOT	GNTGPOOT
+Gosimer/GrenadeL_open	GNTGOPEN
+Gosimer/GrenadeL_Close	GNTGCLS
 // ------

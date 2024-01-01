@@ -20,7 +20,7 @@ SetSlot 2 Renettim9 Kunaisrevolver GosimersHandgun DFPistol
 SetSlot 3 D3shotgun Helltechshotgun CombatShotgun SuperShawtgun DFBlaster
 SetSlot 4 Streetsweeper BurstShotgun D3Machinegun Autogun
 SetSlot 5 PDW Hmachinegun Rawketlawnchair FusionCutter
-SetSlot 6 Cryobow DEGRENADELAUNCHER DEPlasmaRifle MortarGun
+SetSlot 6 Cryobow BoomToob DEPlasmaRifle MortarGun
 SetSlot 7 Propulsion_Cannon PlasmagunMk2 KunaisKar98 Fiendsrailgun Flameshot STRailgun Channeler Fiend_PlasmaRifle Lightning_Rifle ConcRifle DisruptorRifle
 SetSlot 8 DEBFG9500 Vortexgun NuclearMissileLauncher BFG6900 micro_Devistator AssaultCannon
 //SetSlot 9 Flashlightcentered

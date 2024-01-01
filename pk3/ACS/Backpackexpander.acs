@@ -11,7 +11,7 @@ script "Playerbackpackupgrade" (void)
 		{
 		//	SetAmmoCapacity("Clip", GetAmmoCapacity("Clip") + 100);
 			SetAmmoCapacity("Shotgunclip", GetAmmoCapacity("Shotgunclip") + 1);
-			SetAmmoCapacity("Scatterclip", GetAmmoCapacity("Scatterclip") + 10);
+			SetAmmoCapacity("DookiClip", GetAmmoCapacity("DookiClip") + 2);
 			SetAmmoCapacity("Pistolclip", GetAmmoCapacity("Pistolclip") + 2);
 			SetAmmoCapacity("PeastolClip", GetAmmoCapacity("PeastolClip") + 25);
 			SetAmmoCapacity("Shellz", GetAmmoCapacity("Shellz") + 10);

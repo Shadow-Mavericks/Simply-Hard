@@ -24,7 +24,6 @@ ACTOR Fists : fist replaces Fist
 	Ready:
 		PUNG A 1 A_WeaponReady
 		PUNG A 10 A_Weaponready
-		GUN1 A 0 A_giveinventory("scatterclip",1)
 		Loop
 	Deselect:
 		PUNG A 1 A_Lower
@@ -33,7 +32,7 @@ ACTOR Fists : fist replaces Fist
 		PUNG A 1 A_Raise
 		Loop
 	Fire:
-		PUNG B 2 A_giveinventory("scatterclip",5)
+		PUNG B 2
 		PUNG C 3 A_Punch
 		PUNG D 4
 		PUNG C 3
@@ -223,7 +222,6 @@ ACTOR UAC-Chainsaw : Weapon
 		Ready:
 			SAWG CD 4 A_WeaponReady
 			SAWG CD 4 A_WeaponReady
-			GUN1 A 0 A_giveinventory("scatterclip",1)
 			Loop
 		Deselect:
 			SAWG C 0 A_Playsound("Chainsaw/shutoff",Chan_weapon)
@@ -3252,7 +3250,6 @@ ACTOR CombatShotgun : Doomweapon
 			GUN2 A 0 A_Jumpifinventory("Tier2upgradetoken",1,"Goldready")
 			GUN2 A 1 A_WeaponReady
 			GUN2 A 10 A_WeaponReady
-			GUN1 A 0 A_giveinventory("scatterclip",1)
 			Loop
 		Deselect:
 			GUN2 A 0 A_Jumpifinventory("Tier2upgradetoken",1,"Golddeselect")
@@ -3264,7 +3261,6 @@ ACTOR CombatShotgun : Doomweapon
 			Loop
 		Fire:
 			GUN2 A 0 A_Jumpifinventory("Tier2upgradetoken",1,"Goldfire")
-			GUN1 A 0 A_giveinventory("scatterclip",5)
 			GUN2 A 0 Bright A_FireBullets(7, 5, 10, 6.5, "Bulletpuff")
 			GUN2 A 0 A_GunFlash
 			GUN2 H 2 A_PlaySound("GShotgunFire", CHAN_WEAPON)
@@ -3283,7 +3279,6 @@ ACTOR CombatShotgun : Doomweapon
 		GoldReady:
 			SUN2 A 1 A_WeaponReady
 			SUN2 A 10 A_WeaponReady
-			SUN1 A 0 A_giveinventory("scatterclip",1)
 			Loop
 		GoldDeselect:
 			TNT1 A 0 A_giveinventory("Tier2upgradetoken", 1)
@@ -3294,7 +3289,6 @@ ACTOR CombatShotgun : Doomweapon
 			Loop
 		GoldFire:
 			SUN1 A 0 A_jump( 48 , "Goldcritfire")
-			SUN1 A 0 A_giveinventory("scatterclip",5)
 			SUN2 A 0 A_FireBullets (7, 5, 10, 6.5)
 			SUN2 A 0 A_GunFlash
 			SUN2 H 2 A_PlaySound("GShotgunFire", CHAN_WEAPON)
@@ -3311,7 +3305,6 @@ ACTOR CombatShotgun : Doomweapon
 			SUN2 A 0 A_ReFire
 			Goto Ready
 		GoldCritfire:
-			SUN1 A 0 A_giveinventory("scatterclip",5)
 			SUN2 A 0 A_FireBullets (7, 5, 10, 11, "GosimersExplosivepuff")
 			SUN2 A 0 A_GunFlash
 			SUN2 H 2 A_PlaySound("Weapon/Quadshotgunfire", CHAN_WEAPON)
@@ -3330,7 +3323,6 @@ ACTOR CombatShotgun : Doomweapon
 		AltFire:
 
 			GUN1 A 0 A_jumpifinventory("Tier2upgradetoken",1,"Goldkick")
-			GUN1 A 0 A_giveinventory("scatterclip",5)
 			GUNK A 2
 			GUNK B 2 A_playsound("Weapon/Quickkick",Chan_weapon)
 			TNT1 A 0 A_JumpIfInventory("PowerStrength", 1, "Berserked")
@@ -3348,7 +3340,6 @@ ACTOR CombatShotgun : Doomweapon
 			GUN2 A 5
 			goto Ready
 		Goldkick:
-			SUN1 A 0 A_giveinventory("scatterclip",5)
 			SUNK A 2
 			SUNK B 2 A_playsound("Weapon/Quickkick",Chan_weapon)
 			TNT1 A 0 A_JumpIfInventory("PowerStrength", 1, "GoldBerserked")
@@ -3404,7 +3395,6 @@ ACTOR HMachinegun : Doomweapon
 		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldReady")
 		D3DG A 1 A_WeaponReady
 		D3DG A 15 A_WeaponReady
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		Loop
 	Deselect:
 		D3DG A 0 A_Jumpifinventory("Tier4upgradetoken",1,"GoldDeselect")
@@ -3428,7 +3418,6 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
 		MNGF A 0 Bright A_FireBullets(3, 3, -1, 7, "Bulletpuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	Hold:
@@ -3445,13 +3434,11 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
 		MNGF A 0 Bright A_FireBullets(6, 6, -1, 7, "Bulletpuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	GoldReady:
 		D3GG A 1 A_WeaponReady
 		D3GG A 15 A_WeaponReady
-		D3GG A 0 A_giveinventory("scatterclip",1)
 		Loop
 	GoldDeselect:
 		D3GG A 1 A_Lower
@@ -3474,7 +3461,6 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
 		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "Bulletpuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3GG A 0 A_ReFire("GoldHold")
 		Goto Ready
 	GoldFire_Crit:
@@ -3490,7 +3476,6 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
 		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 13, "GosimersExplosivepuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3GG A 0 A_ReFire("GoldHold_NoCrit")
 		Goto Ready
 	GoldHold:
@@ -3509,7 +3494,6 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
 		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "Bulletpuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3GG A 0 A_ReFire("GoldHold")
 		Goto Ready
 	GoldHold_Crit:
@@ -3525,7 +3509,6 @@ ACTOR HMachinegun : Doomweapon
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_AUTO)
 		MNGF A 0 Bright A_FireBullets(5, 5, -1, 13, "GosimersExplosivepuff")
-		D3DG A 0 A_giveinventory("scatterclip",1)
 		D3GG A 0 A_ReFire("GoldHold")
 		Goto Ready
 	Flash:
@@ -3572,7 +3555,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	  TNT1 A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldready")
 	  GRLG A 1 A_WeaponReady
 	  GRLG A 10 A_WeaponReady
-	  GUN1 A 0 A_giveinventory("scatterclip",1)
 	  Loop
    Deselect:
 	  TNT1 A 0 A_Jumpifinventory("Tier5upgradetoken",1,"GoldDeselect")
@@ -3585,7 +3567,6 @@ Inventory.PickupSound "Weapon/Nadeget"
    GoldReady:
 	  GRNL A 1 A_WeaponReady
 	  GRNL A 10 A_WeaponReady
-	  GUN1 A 0 A_giveinventory("scatterclip",1)
 	  Loop
    GoldDeselect:
 	  GRNL A 1 A_Lower
@@ -3595,7 +3576,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	  GRNL A 1 A_Raise
 	  Loop
    Fire:
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  GLRG A 0 A_JUMPIFINVENTORY("Tier5upgradetoken",1,"Goldfire")
 	  GRLG A 1 A_GunFlash
 	  NULL A 0 A_Playsound("Weapon/nadefire",Chan_weapon)
@@ -3606,7 +3586,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	  GRLG A 0 A_Refire
 	  Goto Ready
    Goldfire:
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  NULL A 0 A_Jump(50,"GoldFire2")
 	  GRNL A 1 A_GunFlash
 	  NULL A 0 A_Playsound("Weapon/nadefire",Chan_weapon)
@@ -3617,7 +3596,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	  GRNL A 0 A_Refire
 	  Goto Ready
   Goldfire2:
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  GRNL A 1 A_GunFlash
 	  NULL A 0 A_JumpIfNoAmmo("Ready")
 	  NULL A 0 A_GiveInventory("Rocketammo", 2)
@@ -3642,7 +3620,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	ALTFire:
 	  GUN1 A 0 A_JUMPIFINVENTORY("Roketammo", 1, 1)
 	  Goto Ready
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  GLRG A 0 A_JUMPIFINVENTORY("Tier5upgradetoken",1,"ALTGoldfire")
 	  GRLG A 1 A_GunFlash
 	  NULL A 0 A_Playsound("Weapon/nadefire",Chan_weapon)
@@ -3655,7 +3632,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	ALTGoldfire:
 	  GUN1 A 0 A_Jumpifinventory("Roketammo", 1, 1)
 	  Goto Ready
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  NULL A 0 A_Jump(50,"ALTGoldFire2")
 	  GRNL A 1 A_GunFlash
 	  NULL A 0 A_Playsound("Weapon/nadefire",Chan_weapon)
@@ -3668,7 +3644,6 @@ Inventory.PickupSound "Weapon/Nadeget"
 	  Goto Ready
 	ALTGoldfire2:
 	  NULL A 0 A_JumpIfNoAmmo("Ready")
-	  GUN1 A 0 A_giveinventory("scatterclip",5)
 	  GRNL A 1 A_GunFlash
 	  NULL A 0 A_GiveInventory("Rocketammo",2)
 	  NULL A 0 A_Playsound("Weapon/nadefire",Chan_weapon)
@@ -3833,230 +3808,159 @@ ACTOR PlasmagunMK2 : DoomWeapon
   }
 }
 
+Actor DookiClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 12
+	ammo.Backpackmaxamount 12
+}
+
 ACTOR GosimersHandgun : Weapon
 {
 	Tag "Pistol"
-	 Weapon.PreferredSkin "Pistol-Marine"
-	Weapon.AmmoType "Scatterclip"
-	Weapon.AmmoGive 24
-	Weapon.AmmoUse1 1
-	Weapon.SlotNumber 2
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.RestrictedTo "Gosimer"
-	Weapon.SelectionOrder 4
-	Obituary "%o killed %k"
 	Inventory.Pickupmessage "Pistol."
+	Obituary "%o killed %k"
+
+	Weapon.PreferredSkin "Pistol-Marine"
+	Weapon.AmmoType1 "DookiClip"
+	Weapon.AmmoType2 "peastolClip"
+	Weapon.AmmoGive1 32
+	Weapon.AmmoGive2 48
+	Weapon.AmmoUse1 1
+	Weapon.SlotNumber 2
+	Weapon.SelectionOrder 4
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
+
 	+WEAPON.NOAUTOAIM
 	+WEAPON.NOAUTOFIRE
+	+WEAPON.AMMO_OPTIONAL
 	States
 	{
+		Ready:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldReady")
+			GDPI A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+			loop
+		GoldReady:
+			GDPG A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+			loop
+		Deselect:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldDeselect")
+			GDPI A 1 A_Lower
+			Loop
+		Golddeselect:
+			GDPG A 1 A_Lower
+			Loop
+		Select:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldSelect")
+			GDPI A 1 A_Raise
+			Loop
+		GoldSelect:
+			GDPG A 1 A_Raise
+			Loop
 
-  Ready:
-	GUN1 H 0 A_stopsound(6)
-	GUN1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"Goldready")
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",21,4)
-	GUN1 A 1 A_WeaponReady
-	GUN1 A 15 A_WeaponReady
-	GUN1 A 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 E 0 A_Jumpifinventory("Scatterclip",41,4)
-	GUN1 E 1 A_WeaponReady
-	GUN1 E 15 A_WeaponReady
-	GUN1 E 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 F 0 A_Jumpifinventory("Scatterclip",61,4)
-	GUN1 F 1 A_WeaponReady
-	GUN1 F 15 A_WeaponReady
-	GUN1 F 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 G 0 A_Jumpifinventory("Scatterclip",81,4)
-	GUN1 G 1 A_WeaponReady
-	GUN1 G 15 A_WeaponReady
-	GUN1 G 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 H 1 A_WeaponReady
-	GUN1 H 15 A_WeaponReady
-	GUN1 H 0 A_giveinventory("scatterclip",1)
-	goto Ready
-GoldReady:
-	GUN1 H 0 A_stopsound(6)
-	GUN1 J 0 A_Jumpifinventory("Scatterclip",21,4)
-	GUN1 J 1 A_WeaponReady
-	GUN1 J 15 A_WeaponReady
-	GUN1 J 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 N 0 A_Jumpifinventory("Scatterclip",41,4)
-	GUN1 N 1 A_WeaponReady
-	GUN1 N 15 A_WeaponReady
-	GUN1 N 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 O 0 A_Jumpifinventory("Scatterclip",61,4)
-	GUN1 O 1 A_WeaponReady
-	GUN1 O 15 A_WeaponReady
-	GUN1 O 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 P 0 A_Jumpifinventory("Scatterclip",81,4)
-	GUN1 P 1 A_WeaponReady
-	GUN1 P 15 A_WeaponReady
-	GUN1 P 0 A_giveinventory("scatterclip",1)
-	goto Ready
-	GUN1 Q 1 A_WeaponReady
-	GUN1 Q 15 A_WeaponReady
-	GUN1 Q 0 A_giveinventory("scatterclip",1)
-	goto Ready
-  Deselect:
-	GUN1 H 0 A_stopsound(6)
-	GUN1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldDeselect")
-	GUN1 A 1 A_Lower
-	Loop
-  Golddeselect:
-	GUN1 J 1 A_Lower
-	Loop
-  Select:
-	GUN1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"Goldselect")
-	GUN1 A 1 A_Raise
-	Loop
-  Goldselect:
-	GUN1 H 0 A_stopsound(6)
-	TNT1 A 0 A_giveinventory("Tier1upgradetoken", 1)
-	Gun1 J 1 A_Raise
-	Loop
-  Altfire:
-	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldALTFire")
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",5,1)
-	Goto Ready
-	GUN1 A 5 Bright A_playsound("ScatterPistol/Charge", chan_Weapon)
-	GUN1 A 5 Bright
-	GUN1 E 5 Bright
-	GUN1 F 5 Bright
-	GUN1 G 5 Bright
-	GUN1 H 5 Bright
-	GUN1 H 0 Bright
-	Althold:
-	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldALThold")
-	GUN1 H 1 Bright
-	GUN1 H 0 Bright A_Playsound("ScatterPistol/Loop", 6, 1.0, 1)
-	GUN1 H 1 A_REFIRE
-	Altlaser:
-	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"goldAltlaser")
-	GUN1 H 0 A_stopsound(6)
-	GUN1 B 0 A_RailAttack(40, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 15, 1.0, 4.0, "LightRailBlast")
-	GUN1 B 0 A_takeinventory("scatterclip",5)
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 B 2  A_weaponready
-	GUN1 C 1 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 C 1 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 D 2 A_weaponready
-	GUN1 C 2 A_weaponready
-	GUN1 A 2 A_weaponready
-	GUN1 H 0 A_stopsound(6)
-	Goto Ready
-  GOLDALTFIRE:
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",5,1)
-	Goto Ready
-	GUN1 J 5 Bright A_playsound("ScatterPistol/Charge", chan_Weapon)
-	GUN1 J 5 Bright
-	GUN1 N 5 Bright
-	GUN1 O 5 Bright
-	GUN1 P 5 Bright
-	GUN1 Q 5 Bright
-	GUN1 H 0 Bright
-	goldAlthold:
-	GUN1 Q 1 Bright
-	GUN1 Q 0 Bright A_Playsound("ScatterPistol/Loop", 6, 1.0, 1)
-	GUN1 Q 1 A_REFIRE
-	goldAltlaser:
-	GUN1 Q 0 A_stopsound(6)
-	GUN1 B 0 A_RailAttack(80, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 15, 1.0, 4.0, "REDLightRailBlast")
-	GUN1 B 0 A_takeinventory("scatterclip",5)
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 R 2 A_weaponready
-	GUN1 L 1 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 L 1 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 M 2 A_weaponready
-	GUN1 L 2 A_weaponready
-	GUN1 J 2 A_weaponready
-	GUN1 H 0 A_stopsound(6)
-	Goto Ready
-  Fire:
-	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldFire")
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",1,1)
-	Goto Ready
-	GUN1 B 0 A_Jump(20,"CritFire")
-	GUN1 B 0 A_FireCustomMissile("ScatterPShot", random(-2,2), 1, 0, 0, random(-2,2), 0)
-	GUN1 B 0
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 B 2
-	GUN1 C 2 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 CD 2
-	GUN1 C 2
-	GUN1 A 2
-	GUN1 A 5 A_ReFire
-	Goto Ready
-  CritFire:
-	Gun1 A 0 A_Jumpifinventory("Tier1upgradetoken",1,"GoldFire2")
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",1,1)
-	Goto Ready
-	GUN1 B 0 A_FireCustomMissile("CritScatterPShot", random(-2,2), 1, 0, 0, random(-2,2), 0)
-	GUN1 B 0 A_Playsound("Weapon/Critshot",Chan_auto)
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 I 2
-	GUN1 C 2 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 CD 2
-	GUN1 C 2
-	GUN1 A 2
-	GUN1 A 5 A_ReFire
-	Goto Ready
-  GoldFire:
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",1,1)
-	Goto Ready
-	GUN1 B 0 A_Jump(25,"GoldFire2")
-	GUN1 B 0 A_FireCustomMissile("ScatterPShot", random(-4,4), 1, 0, 0, random(-4,4), 0)
-	GUN1 B 0
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 K 2 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 L 2 A_Weaponready
-	GUN1 M 3 A_Weaponready
-	GUN1 L 2 A_Weaponready
-	GUN1 J 4 A_Weaponready
-	GUN1 J 4 A_Weaponready
-	Goto Ready
-  GoldFire2:
-	GUN1 A 0 A_Jumpifinventory("Scatterclip",1,1)
-	Goto Ready
-	GUN1 R 0 A_FireCustomMissile("CritScatterPShot", random(-4,4), 1, 0, 0, random(-4,4), 0)
-	GUN1 B 0 A_Playsound("Weapon/Critshot",Chan_auto)
-	GUN1 B 0 A_PlaySound("weapon/Gpistol", CHAN_WEAPON)
-	GUN1 R 2 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-	GUN1 L 2 A_Weaponready
-	GUN1 LM 3 A_Weaponready
-	GUN1 L 2 A_Weaponready
-	GUN1 J 4 A_Weaponready
-	GUN1 J 4 A_Weaponready
-	Goto Ready
-  Spawn:
-	PIST A -1
-	Stop
-  }
+		Fire:
+			GDPI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"StartGoldFire")
+			goto StartFire
+			
+		StartFire:
+			GDPI B 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			goto DoFire
+		StartGoldFire:
+			GDPG B 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			goto DoGoldFire
+		
+		DoFire:
+			"####" B 0 A_Playsound("GPistolFire", CHAN_WEAPON)
+			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			goto FireEnd
+		DoGoldFire:
+			"####" B 0 A_Playsound("GPistolFireGold", CHAN_WEAPON)
+			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "GosimersExplosivePuff", FBF_USEAMMO | FBF_NORANDOM)
+			goto FireEnd
+	
+		FireEnd:
+			"####" B 0 A_GunFlash
+			"####" B 1 Bright
+			"####" C 1 Bright
+			"####" DEF 1
+			"####" A 1
+			"####" A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			"####" A 0 A_Refire
+			goto Ready
+
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready
+
+		Reload:
+			GDPI A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			goto Ready
+		CheckReload:
+			GDPI A 0 A_JumpIfInventory("DookiClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			GPRE A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
+			GPRE A 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadEjectGold")
+			goto ReloadEject
+		
+		ReloadEjectGold:
+			GGRE A 0
+		ReloadEject:
+			"####" ABC 2
+			"####" DEFGHIJK 1
+			"####" C 6
+			GPRI A 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadInsertGold")
+			goto ReloadInsert
+
+		ReloadInsertGold:
+			GGRI A 0
+		ReloadInsert:
+			"####" A 0 A_Playsound("GPistolMagIn", CHAN_AUTO)
+			"####" ABCDEFGHIJKLMNOPQ 1
+			goto ReloadLoop
+
+		ReloadLoop:
+			"####" A 0 A_TakeInventory("peastolClip", 1)
+			"####" A 0 A_GiveInventory("DookiClip", 1)
+			"####" A 0 A_JumpIfInventory("DookiClip", 0, "ReloadEnd1")
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "ReloadLoop")
+			goto ReloadEnd1
+
+		ReloadEnd1:
+			"####" RSTUVWX 1
+			GPRE C 0 A_Jumpifinventory("Tier1upgradetoken",1,"ReloadEnd2Gold")
+			goto ReloadEnd2
+		
+		ReloadEnd2Gold:
+			GGRE A 0
+		ReloadEnd2:
+			"####" CBA 2
+			"####" A 0 A_Refire
+			goto Ready
+		Flash:
+			TNT1 A 1 A_Light2
+			TNT1 A 1 A_Light1
+			TNT1 A 1 A_Light0
+			stop
+		Spawn:
+			PIST A -1
+			Stop
+	}
 }
-
-Actor ScatterClip : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	Inventory.MaxAmount 50
-	ammo.Backpackmaxamount 100
-}
-
-
 // Mighty boot thing.
 ACTOR Shotgunmayray : Bulletpuff
 {
-DamageType Mightyboot
+	DamageType Mightyboot
 }
 
 Actor KunaisKar98 : Doomweapon
@@ -4323,7 +4227,7 @@ ACTOR GosimersExplosivepuff
 	+PUFFONACTORS
 	+PUFFGETSOWNER
 	RenderStyle ADD
-	Alpha 0.5
+	Alpha 0.75
 	Scale 0.25
 	Mass 5
 	States
