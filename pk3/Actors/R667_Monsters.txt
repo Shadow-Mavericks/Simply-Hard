@@ -337,6 +337,7 @@ ACTOR RailArachnotron
 	Monster
 	+FLOORCLIP
 	+Bossdeath
+	+NEVERFAST
         Dropitem "Railgundrop" 128
 	Dropitem "Activebox1" 1
 	SeeSound "baby/sight"
@@ -360,8 +361,9 @@ ACTOR RailArachnotron
 	Missile:
 		RSPI A 0 A_PlaySound ("baby/chargerailgun")
 		RSPI A 16 A_FaceTarget
-		RSPI G 16 A_FaceTarget
-		RSPI H 4 A_CustomRailgun (30, 0, AA0000, FF0000, 0, 1)
+		RSPI G 8 A_FaceTarget
+		RSPI G 8
+		RSPI H 4 A_CustomRailgun (30, 0, BB0000, FF0000, RGF_FULLBRIGHT, 0)
 		RSPI G 8
 		Goto See+1
 	Pain:
