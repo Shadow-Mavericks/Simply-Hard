@@ -616,15 +616,15 @@ ACTOR HMachinegun : Doomweapon
 		D3DF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 3, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 3, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 3, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	Hold:
@@ -632,15 +632,15 @@ ACTOR HMachinegun : Doomweapon
 		D3DF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 6, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 6, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 6, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	GoldReady:
@@ -658,30 +658,30 @@ ACTOR HMachinegun : Doomweapon
 		D3GF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(2.5, 2, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(2.5, 2, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(2.5, 2.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(2.5, 2, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GG A 0 A_ReFire("GoldFire")
 		Goto Ready
 	GoldHold:
 		D3GF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(5, 5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(5, 3.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_AUTO)
-		MNGF A 0 Bright A_FireBullets(5, 5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(5, 3.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon_Crit", CHAN_AUTO)
-		MNGF A 0 Bright A_FireBullets(5, 5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(5, 3.5, -1, 9+Random(0,9), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3GG A 0 A_ReFire("GoldHold")
 		Goto Ready
 	Flash:
