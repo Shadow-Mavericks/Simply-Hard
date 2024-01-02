@@ -3763,10 +3763,10 @@ actor DFBlaster : Weapon
 			Loop
 		Fire:
 			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldFire")
-			BLRF A 3
 			BLRF A 0 A_GunFlash
 			BLRF A 0 A_PlaySound ("Max/E-11")
 			BLRF B 3 bright A_FireCustomMissile("RifBlast", random(-2,2),1,4,0,0,random(-2,2))
+			BLRF A 2
 			BLRF A 2 A_ReFire
 			Goto Ready
 		Altfire:
@@ -3790,11 +3790,11 @@ actor DFBlaster : Weapon
 			Wait
 		GoldFire:
 			TNT1 A 0 A_JumpIfInventory("ScopeZoom", 1, "GoldFireZoom")
-			EE11 A 3
 			EE11 A 0 A_GunFlash
 			EE11 A 0 A_PlaySound ("Max/GE-11N")
 			EE11 B 2 bright A_FireCustomMissile("GoldShot", random(-1.25,1.25),1,6,0,0,random(-1.25,1.25))
-			EE11 A 3 A_ReFire
+			EE11 A 2
+			EE11 A 2 A_ReFire
 			Goto Ready
 		GoldAltfire:
 			TNT1 A 0 A_JumpifInventory ("ScopeZoom", 1, "ZoomOut")
