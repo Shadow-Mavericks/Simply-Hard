@@ -25,7 +25,7 @@ ACTOR Fiend : DoomPlayer
 	Player.startItem "Dispenser", 1
 	player.startItem "Backpackcheck", 1
 	Player.DamageScreenColor Green, 1
-	Player.RunHealth 25
+	//Player.RunHealth 25
 	BounceSound "PlayerHP/Alarmfiend"
 	Player.JumpZ 9
 	Player.AirCapacity 1.5
