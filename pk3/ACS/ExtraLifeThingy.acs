@@ -5,6 +5,7 @@
 
 global int 1:lives_at_end[];
 int timeOfDeath[64];
+bool justRevived;
 
 script "RESETTIMEOFDEATH" OPEN
 {
@@ -32,11 +33,15 @@ script "LIFEUSED" RESPAWN
 	if(!GetCVar("survival") && !GetCVar("cooperative"))
 		terminate;
 	
-	if(current_lives == 1)
-		print(s:"You have ", d:current_lives, s:" life remaining!");
-	else
-		print(s:"You have ", d:current_lives, s:" lives remaining!");
+	if(!justRevived)
+	{
+		if(current_lives == 1)
+			print(s:"You have ", d:current_lives, s:" life remaining!");
+		else
+			print(s:"You have ", d:current_lives, s:" lives remaining!");
+	}
 	
+	justRevived = false;
 	Ambientsound("oneman/usedup", 127);
 	GiveInventory("Res_protection", 1);
 	
@@ -132,6 +137,7 @@ script "REVIVEPLAYER" (void) NET
 	
 	if(dead_longest != -1)
 	{
+		justRevived = true;
 		SetDeadSpectator(dead_longest, 0);
 		SetPlayerLivesLeft(dead_longest, 0);
 
