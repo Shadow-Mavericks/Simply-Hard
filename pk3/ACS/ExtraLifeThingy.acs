@@ -7,31 +7,29 @@ global int 1:lives_at_end[];
 int timeOfDeath[64];
 bool justRevived;
 
-script "RESETTIMEOFDEATH" OPEN
+function void update_lives(int lives)
 {
-	for(int i = 0; i < 64; i++)
-		timeOfDeath[i] = 0x7FFFFFFF;
-}
-
-script "RECORDDEATHTIME" DEATH
-{
-	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
-		terminate;
-
 	int pNum = PlayerNumber();
-	timeOfDeath[pNum] = Timer();
+	
+	if(lives >= 0)
+		SetPlayerLivesLeft(pNum, lives);
+
+	// Hack to make sure lives are tracked on HUD correctly.
+	int current_lives = GetPlayerLivesLeft(pNum);
+	TakeInventory("LifeTrackerHack", 9999);
+	if(current_lives > 0)
+		GiveInventory("LifeTrackerHack", current_lives);
 }
 
 script "LIFEUSED" RESPAWN
 {
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
 		terminate;
-
-	int pNum = PlayerNumber();
-	int current_lives = GetPlayerLivesLeft(pNum);
-	
 	if(!GetCVar("survival") && !GetCVar("cooperative"))
 		terminate;
+		
+	int pNum = PlayerNumber();
+	int current_lives = GetPlayerLivesLeft(pNum);
 	
 	if(!justRevived)
 	{
@@ -45,10 +43,7 @@ script "LIFEUSED" RESPAWN
 	Ambientsound("oneman/usedup", 127);
 	GiveInventory("Res_protection", 1);
 	
-	// Hack to update lives on HUD and carry extras over to next level.
-	TakeInventory("LifeTrackerHack", 9999);
-	if(current_lives > 0)
-		GiveInventory("LifeTrackerHack", current_lives);
+	update_lives(-1);
 }
 
 script "STORELIVES" UNLOADING
@@ -72,11 +67,8 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 	timeOfDeath[pNum] = 0x7FFFFFFF;
 	
 	if(lives_at_end[pNum] > current_lives)
-		SetPlayerLivesLeft(pNum, lives_at_end[pNum]);
-		
-	current_lives = GetPlayerLivesLeft(pNum); // Get again, just in case.
-	TakeInventory("LifeTrackerHack", 9999);
-	GiveInventory("LifeTrackerHack", current_lives);
+		update_lives(lives_at_end[pNum]);
+
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 }
 
@@ -97,10 +89,7 @@ script "ADDLIFE" (void)
 */
 
 	current_lives++; // 1 UP!
-	SetPlayerLivesLeft(pNum, current_lives);
-	// Hack to update lives on HUD and carry extras over to next level.
-	TakeInventory("LifeTrackerHack", 9999);
-	GiveInventory("LifeTrackerHack", current_lives);
+	update_lives(current_lives);
 
 	if(current_lives == 1)
 		print(s:"You now have ", d:current_lives, s:" extra life!");
@@ -108,6 +97,21 @@ script "ADDLIFE" (void)
 		print(s:"You now have ", d:current_lives, s:" extra lives!");
 
 	SetResultValue(1);
+}
+
+script "RESETTIMEOFDEATH" OPEN // Resets time of death on level open.
+{
+	for(int i = 0; i < 64; i++)
+		timeOfDeath[i] = 0x7FFFFFFF;
+}
+
+script "RECORDDEATHTIME" DEATH // Records time of death to choose revive order.
+{
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
+	int pNum = PlayerNumber();
+	timeOfDeath[pNum] = Timer();
 }
 
 script "REVIVEPLAYER" (void) NET
@@ -143,7 +147,7 @@ script "REVIVEPLAYER" (void) NET
 
 		PrintBold(n:dead_longest+1, s:" was revived by ", n:0);
 		current_lives--;
-		SetPlayerLivesLeft(pNum, current_lives);
+		update_lives(current_lives);
 	}
 	else
 	{
