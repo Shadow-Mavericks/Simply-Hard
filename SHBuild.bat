@@ -112,10 +112,15 @@ goto MENU
 :COMPILEACS
 cd pk3
 cd ACS
-del compile_log.log
+del *.err
 for %%f in (*.acs) do (
 	echo %%~nf
-	acc.exe "%%~nf.acs" "%%~nf.o" 1>> compile_log.log 2>&1
+	acc.exe "%%~nf.acs" "%%~nf.o" 1>nul 2>%%~nf.err
+	if ERRORLEVEL 1 (
+		type %%~nf.err
+	) else (
+		del %%~nf.err
+	)
 )
 pause
 goto MENU
