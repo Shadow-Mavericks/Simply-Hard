@@ -532,16 +532,28 @@ ACTOR micro_Devistator : DoomWeapon
 	States
 	{
 	Ready:
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"GoldReady")
 		DASS A 1 A_WeaponReady
-		Loop
+		loop
+	GoldReady:
+		DAGS A 1 A_WeaponReady
+		loop
 	Deselect:
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"GoldDeselect")
 		DASS A 1 A_Lower
 		Loop
+	GoldDeselect:
+		DAGS A 1 A_Lower
+		loop
 	Select:
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"GoldSelect")
 		DASS A 1 A_Raise
 		Loop
+	GoldSelect:
+		DAGS A 1 A_Raise
+		loop
 	Fire:
-		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"Goldfire")
+		DASS A 0 A_JumpIfInventory("Tier7upgradetoken",1,"GoldFire")
 		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
 		DASS B 1 A_GunFlash
 		DASS C 1
@@ -552,17 +564,17 @@ ACTOR micro_Devistator : DoomWeapon
 		DASS B 1
 		DASS A 1 A_Refire
 		Goto Ready
-	goldfire:
-		DASS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
-		DASS B 1 A_GunFlash
-		DASS C 1
-		DASS D 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
-		DASS E 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
-		DASS F 1 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
-		DASS C 1
-		DASS B 1
-		DASS A 1 A_Refire
-		Goto Ready
+	GoldFire:
+		DAGS A 0 A_Playsound("weapon/D3DDEVSPAWN",chan_weapon)
+		DAGS B 1 A_GunFlash
+		DAGS C 1
+		DAGS D 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DAGS E 1 A_Firecustommissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DAGS F 1 A_FireCustomMissile("Devistator_shell",frandom(-3.0, 3.0),1,0,0,0,frandom(-2.0, 2.0))
+		DAGS C 1
+		DAGS B 1
+		DAGS A 1 A_Refire("GoldFire")
+		Goto GoldReady
 	Flash:
 		TNT1 A 2 Bright
 		TNT1 A 2 Bright A_Light1
