@@ -3,6 +3,7 @@
 
 // Stuff pertaining to the lives system. Written by StrikerTheHedgefox.
 
+global int 1:lives_at_end[];
 int timeOfDeath[64];
 
 script "LIFEUSED" RESPAWN
@@ -27,23 +28,24 @@ script "LIFEUSED" RESPAWN
 		GiveInventory("LifeTrackerHack", current_lives);
 }
 
+script "STORELIVES" UNLOADING
+{
+	for(int i = 0; i < 64; i++)
+		lives_at_end[i] = GetPlayerLivesLeft(i)+1;
+}
+
 script "CARRYLIVES" ENTER // Carries lives over to the next level.
 {
 	int pNum = PlayerNumber();
 	int max_lives = GetCVar("sv_maxlives");
-	int current_lives = CheckInventory("LifeTrackerHack");
+	int current_lives = lives_at_end[pNum];
 	
 	if(current_lives > max_lives)
-	{
 		SetPlayerLivesLeft(pNum, current_lives);
-	}
-	else
-	{
-		current_lives = GetPlayerLivesLeft(pNum);
-		TakeInventory("LifeTrackerHack", 9999);
-		GiveInventory("LifeTrackerHack", current_lives);
-	}
-	
+		
+	current_lives = GetPlayerLivesLeft(pNum);
+	TakeInventory("LifeTrackerHack", 9999);
+	GiveInventory("LifeTrackerHack", current_lives);
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 }
 
@@ -51,12 +53,14 @@ script "ADDLIFE" (void)
 {
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
-	
+
+/*
 	if(current_lives >= 3)
 	{
 		SetResultValue(0);
 		terminate;
 	}
+*/
 
 	current_lives++; // 1 UP!
 	SetPlayerLivesLeft(pNum, current_lives);

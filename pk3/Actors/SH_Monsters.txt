@@ -2143,6 +2143,7 @@ ACTOR GasterBlaster
 	+NOblooddecals
 	+MISSILEEVENMORE
 	+NOBLOCKMONST
+	+NEVERFAST
 	SeeSound "Gaster/sight"
 	PainSound "Gaster/pain"
 	DeathSound "Gaster/death"
@@ -2210,6 +2211,7 @@ ACTOR KunaisGasterBlaster
 	+NOblooddecals
 	+FRIENDLY
 	+MISSILEEVENMORE
+	+NEVERFAST
 	SeeSound "Gaster/sight"
 	PainSound "Gaster/pain"
 	DeathSound "Gaster/death"

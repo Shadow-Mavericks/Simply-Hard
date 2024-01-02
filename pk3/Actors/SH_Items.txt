@@ -1253,19 +1253,16 @@ ACTOR BuffedStimpack : Health
 }
 
 //Sentry gun!
-
-actor SentryGun
+actor MiniSentryGun
 {
-	obituary "%o was ventilated by an auto-sentry."
+	obituary "%o was ventilated by an mini-sentry."
 	health 500
 	radius 20
-	height 56
-	mass 100000
+	height 32
+	mass 10000
 	speed 0
 	MaxTargetRange 6000
 	attacksound "sentry/attack"
-	Dropitem "AK_MAG"
-	Dropitem "Chaingun"
 	MONSTER
 	ReactionTime 1
 	+NOBLOCKMONST
@@ -1278,31 +1275,31 @@ actor SentryGun
 	+LOOKALLAROUND
 	+NEVERRESPAWN
 	+STANDSTILL
+	+NEVERFAST
 	states
 	{
 	Spawn:
-		SENT AAAAAAAAAAAAAAAA  3 A_Look
-		SENT A 0 A_PlaySound ("Sentry/Active")
+		SEMT AAAAAAAAAAAAAAAA  3 A_Look
+		SEMT A 0 A_PlaySound ("Sentry/Active")
 		loop
 	See:
-		SENT AAAAAAAAAAAAAAAA 3 A_Chase
-		SENT A 0 A_PlaySound ("Sentry/Active")
+		SEMT AAAAAAAAAAAAAAAA 3 A_Chase
+		SEMT A 0 A_PlaySound ("Sentry/Active")
 		loop
 	Missile:
-		SENT A 0 A_PlaySound ("Sentry/See")
-		SENT A 8 A_FaceTarget
+		SEMT A 0 A_PlaySound ("Sentry/See")
+		SEMT A 8 A_FaceTarget
 		//NULL A 0 A_CustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-		SENT B 1 bright A_CPosAttack
-		SENT B 0 bright A_CPosAttack
-		SENT A 1 A_CposRefire
+		SEMT B 1 bright A_CPosAttack
+		SEMT A 1 A_CposRefire
 		goto Missile+2
 	Death:
-		SENT C 0 A_NoBlocking
-		SENT C 1 A_PlaySoundEx ("Sentry/KunaiDED", "SoundSlot5")
-		SENT C 0 A_SpawnItem ("SentryBoom", 0, 48)
-		SENT C 0 A_SpawnItem ("Chaingun", 0, 48)
-		SENT C 0 A_SpawnItem ("AK_MAG", 0, 48)
-		SENT C 1
+		SEMT C 0 A_NoBlocking
+		SEMT C 1 A_PlaySoundEx ("Sentry/KunaiDED", "SoundSlot5")
+		SEMT C 0 A_SpawnItem ("SentryBoom", 0, 24)
+		SEMT C 0 A_DropItem("Chaingun", 1, 256)
+		SEMT C 0 A_DropItem("AK_MAG", 1, 256)	
+		SEMT C 1
 	FadeOut:
 		SENT C 2 A_FadeOut (0.1)
 		loop
@@ -1337,7 +1334,7 @@ ACTOR SentryBox : CustomInventory 12369
     SENB A -1
     Stop
   Use:
-    TNT1 A 1 A_SpawnItemEx ("SentryGun", 56, 0, 8, 0, 0, 0, 0, 1)
+    TNT1 A 1 A_SpawnItemEx ("MiniSentryGun", 56, 0, 8, 0, 0, 0, 0, 1)
     Stop
   }
 }
@@ -2101,13 +2098,13 @@ actor ExtraLifeThingy : CustomInventory
 	{
 		Spawn:
 			ONEM A -1 Bright
-			stop
+			loop
 		Pickup:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ADDLIFE", 0) == 0, "Failure")
-			TNT1 A 1 A_RailWait
+			TNT1 A 0 A_RailWait
 			stop
 		Failure:
-			TNT1 A 1
+			TNT1 A 0
 			fail
 	}
 }
@@ -2123,6 +2120,7 @@ actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
 	+INVENTORY.HUBPOWER
 	+INVENTORY.PERSISTENTPOWER
 	+INVENTORY.NEVERRESPAWN
+	-INVENTORY.INTERHUBSTRIP
 	States
 	{
 		Spawn:
