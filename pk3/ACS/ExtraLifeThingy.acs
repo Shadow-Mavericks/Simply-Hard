@@ -135,7 +135,7 @@ script "REVIVEPLAYER" (void) NET
 		SetDeadSpectator(dead_longest, 0);
 		SetPlayerLivesLeft(dead_longest, 0);
 
-		PrintBold(n:dead_longest, s:" was revived by ", n:pNum);
+		PrintBold(n:dead_longest+1, s:" was revived by ", n:0);
 		current_lives--;
 		SetPlayerLivesLeft(pNum, current_lives);
 	}
