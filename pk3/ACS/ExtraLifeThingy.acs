@@ -8,6 +8,9 @@ int timeOfDeath[64];
 
 script "LIFEUSED" RESPAWN
 {
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
 	
@@ -30,12 +33,18 @@ script "LIFEUSED" RESPAWN
 
 script "STORELIVES" UNLOADING
 {
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
 	for(int i = 0; i < 64; i++)
 		lives_at_end[i] = GetPlayerLivesLeft(i)+1;
 }
 
 script "CARRYLIVES" ENTER // Carries lives over to the next level.
 {
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
 	int pNum = PlayerNumber();
 	int max_lives = GetCVar("sv_maxlives");
 	int current_lives = lives_at_end[pNum];
@@ -51,6 +60,9 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 
 script "ADDLIFE" (void)
 {
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
 
