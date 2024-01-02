@@ -6,6 +6,21 @@
 global int 1:lives_at_end[];
 int timeOfDeath[64];
 
+script "RESETTIMEOFDEATH" OPEN
+{
+	for(int i = 0; i < 64; i++)
+		timeOfDeath[i] = 0x7FFFFFFF;
+}
+
+script "RECORDDEATHTIME" DEATH
+{
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
+	int pNum = PlayerNumber();
+	timeOfDeath[pNum] = Timer();
+}
+
 script "LIFEUSED" RESPAWN
 {
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
@@ -37,7 +52,9 @@ script "STORELIVES" UNLOADING
 		terminate;
 
 	for(int i = 0; i < 64; i++)
-		lives_at_end[i] = GetPlayerLivesLeft(i)+1;
+	{
+		lives_at_end[i] = GetPlayerLivesLeft(i);
+	}
 }
 
 script "CARRYLIVES" ENTER // Carries lives over to the next level.
@@ -46,13 +63,13 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 		terminate;
 
 	int pNum = PlayerNumber();
-	int max_lives = GetCVar("sv_maxlives");
-	int current_lives = lives_at_end[pNum];
+	int current_lives = GetPlayerLivesLeft(pNum);
+	timeOfDeath[pNum] = 0x7FFFFFFF;
 	
-	if(current_lives > max_lives)
-		SetPlayerLivesLeft(pNum, current_lives);
+	if(lives_at_end[pNum] > current_lives)
+		SetPlayerLivesLeft(pNum, lives_at_end[pNum]);
 		
-	current_lives = GetPlayerLivesLeft(pNum);
+	current_lives = GetPlayerLivesLeft(pNum); // Get again, just in case.
 	TakeInventory("LifeTrackerHack", 9999);
 	GiveInventory("LifeTrackerHack", current_lives);
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
@@ -86,4 +103,39 @@ script "ADDLIFE" (void)
 		print(s:"You now have ", d:current_lives, s:" extra lives!");
 
 	SetResultValue(1);
+}
+
+script "REVIVEPLAYER" (void) NET
+{
+	int pNum = PlayerNumber();
+	int dead_longest = -1;
+	int longest_time = 0x7FFFFFFF;
+	
+	int current_lives = GetPlayerLivesLeft(pNum);
+	if(current_lives <= 0)
+	{
+		Print(s:"No extra lives to spare for revive!");
+	}
+	
+	for(int i = 0; i < 64; i++)
+	{
+		if(PlayerIsSpectator(i) == 2)
+		{
+			if(timeOfDeath[i] < longest_time)
+				dead_longest = i;
+		}
+	}
+	
+	if(dead_longest != -1)
+	{
+		SetDeadSpectator(dead_longest, 0);
+		SetPlayerLivesLeft(dead_longest, 0);
+		PrintBold(n:dead_longest, s:" was revived by ", n:pNum);
+		current_lives--;
+		SetPlayerLivesLeft(pNum, current_lives);
+	}
+	else
+	{
+		Print(s:"Couldn't find anyone to revive!");
+	}
 }

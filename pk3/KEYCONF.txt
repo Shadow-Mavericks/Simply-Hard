@@ -1,11 +1,14 @@
 addkeysection "Simply Hard" Simplyhard
-addmenukey "Soul ability" useability
+addmenukey "Soul Ability" useability
 addmenukey "Flares" Flares
-addmenukey "Ultimateability" Classultimates
+addmenukey "Ultimate Ability" Classultimates
+addmenukey "Revive Player" RevivePlayer
 alias useability "pukename ClassAbility"
 alias Flares "pukename FlareAbility"
 alias Classultimates "pukename ULTIMATEABOOLITY"
+alias RevivePlayer "pukename REVIVEPLAYER"
 
+defaultbind l "RevivePlayer"
 
 ClearPlayerClasses
 AddPlayerClass Fiend
