@@ -3629,10 +3629,10 @@ actor DFPistol : Weapon
 	Inventory.PickupMessage "Bryar Pistol"
 	weapon.BobStyle "InverseSmooth"
 	+AMMO_OPTIONAL
-  Weapon.SlotNumber 2
-  weapon.BobRangeX 1
-  weapon.BobRangeY 1
-  weapon.bobspeed 1
+	Weapon.SlotNumber 2
+	weapon.BobRangeX 1
+	weapon.BobRangeY 1
+	weapon.bobspeed 1
 	states
 	{
 	Ready:
@@ -3700,6 +3700,7 @@ actor DFPistol : Weapon
 actor BlastBolt
 {
 	+Notimefreeze
+	+FORCEPAIN
 	RenderStyle Add
 	Alpha 1.0
 	PROJECTILE
@@ -3831,6 +3832,7 @@ actor DFBlaster : Weapon
 actor RifBlast : BlastBolt
 {
 	Damage 8
+	-FORCEPAIN
 }
 
 actor GoldShot : BlastBolt
