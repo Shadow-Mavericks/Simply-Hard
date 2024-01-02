@@ -107,6 +107,9 @@ script "ADDLIFE" (void)
 
 script "REVIVEPLAYER" (void) NET
 {
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
 	int pNum = PlayerNumber();
 	int dead_longest = -1;
 	int longest_time = 0x7FFFFFFF;
@@ -115,6 +118,7 @@ script "REVIVEPLAYER" (void) NET
 	if(current_lives <= 0)
 	{
 		Print(s:"No extra lives to spare for revive!");
+		terminate;
 	}
 	
 	for(int i = 0; i < 64; i++)
@@ -130,6 +134,7 @@ script "REVIVEPLAYER" (void) NET
 	{
 		SetDeadSpectator(dead_longest, 0);
 		SetPlayerLivesLeft(dead_longest, 0);
+
 		PrintBold(n:dead_longest, s:" was revived by ", n:pNum);
 		current_lives--;
 		SetPlayerLivesLeft(pNum, current_lives);
