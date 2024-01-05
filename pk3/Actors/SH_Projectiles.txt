@@ -4,7 +4,7 @@ Actor Fiendzys_PlasmaBall : Plasmaball
 	Radius 13
 	Height 8
 	Speed 40
- 	Damage 10 (1,4)
+ 	Damage (10*(Random(1,4)))
 	Projectile
 	+RANDOMIZE
 	Alpha 1
