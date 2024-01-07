@@ -3256,7 +3256,7 @@ Actor KunaisKar98 : Doomweapon
 	Weapon.AmmoGive1 5
 	Weapon.AmmoType1 "Railslugs"
 	Inventory.Respawntics"4200"
-	//+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOAIM
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
@@ -3324,7 +3324,7 @@ actor Railclip : Ammo
 		 Weapon.BobSpeed 1.5
 	 Weapon.BobRangeX .5
 	 Weapon.BobStyle "Smooth"
-		+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOAIM
 	Inventory.Respawntics"4200"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Fiend"
