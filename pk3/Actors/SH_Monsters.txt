@@ -1272,8 +1272,6 @@ ACTOR HARDCyberdemon
   ActiveSound "cyber/active"
   Obituary "$OB_CYBORG"
   Dropitem "Minibossbox" 50
-  Dropitem "extralifethingy" 127
-  
   States
   {
   Spawn:
@@ -1655,60 +1653,59 @@ Ice:
 
 ACTOR HardSpiderboss
 {
-  Health 3000
-  Radius 128
-  Height 100
-  Mass 1000
-  Speed 12
-  PainChance 40
-  Monster
-  MinMissileChance 160
-    +Dontrip
-  +BOSS
-  +MISSILEMORE
-  +FLOORCLIP
-  +NORADIUSDMG
-  +DONTMORPH
-  +BOSSDEATH
-  SeeSound "spider/sight"
-  AttackSound "spider/attack"
-  PainSound "spider/pain"
-  DeathSound "spider/death"
-  ActiveSound "spider/active"
-  Obituary "$OB_SPIDER"
-  Dropitem "activebox4" 25
-  Dropitem "extralifethingy" 127
-  States
-  {
-  Spawn:
-    SPID AB 10 A_Look
-    Loop
-  See:
-    SPID A 3 A_Metal
-    SPID ABB 3 A_Chase
-    SPID C 3 A_Metal
-    SPID CDD 3 A_Chase
-    SPID E 3 A_Metal
-    SPID EFF 3 A_Chase
-    Loop
-  Missile:
-    SPID A 20 Bright A_FaceTarget
-    SPID G 2 Bright A_SPosAttackUseAtkSound
-    SPID H 2 Bright A_SPosAttackUseAtkSound
-    SPID H 1 Bright A_SpidRefire
-    Goto Missile+1
-  Pain:
-    SPID I 3
-    SPID I 3 A_Pain
-    Goto See
-  Death:
-    SPID J 20 A_Scream
-    SPID K 10 A_NoBlocking
-    SPID LMNOPQR 10
-    SPID S 30
-    SPID S -1 A_BossDeath
-    Stop
-  }
+	Health 3000
+	Radius 128
+	Height 100
+	Mass 1000
+	Speed 12
+	PainChance 40
+	Monster
+	MinMissileChance 160
+		+Dontrip
+	+BOSS
+	+MISSILEMORE
+	+FLOORCLIP
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	SeeSound "spider/sight"
+	AttackSound "spider/attack"
+	PainSound "spider/pain"
+	DeathSound "spider/death"
+	ActiveSound "spider/active"
+	Obituary "$OB_SPIDER"
+	Dropitem "activebox4" 25
+	States
+	{
+		Spawn:
+			SPID AB 10 A_Look
+			Loop
+		See:
+			SPID A 3 A_Metal
+			SPID ABB 3 A_Chase
+			SPID C 3 A_Metal
+			SPID CDD 3 A_Chase
+			SPID E 3 A_Metal
+			SPID EFF 3 A_Chase
+			Loop
+		Missile:
+			SPID A 20 Bright A_FaceTarget
+			SPID G 2 Bright A_SPosAttackUseAtkSound
+			SPID H 2 Bright A_SPosAttackUseAtkSound
+			SPID H 1 Bright A_SpidRefire
+			Goto Missile+1
+		Pain:
+			SPID I 3
+			SPID I 3 A_Pain
+			Goto See
+		Death:
+			SPID J 20 A_Scream
+			SPID K 10 A_NoBlocking
+			SPID LMNOPQR 10
+			SPID S 30
+			SPID S -1 A_BossDeath
+			Stop
+	}
 }
 
 ACTOR HardPainisElemental

@@ -52,6 +52,24 @@ script "ON_KILL" KILL
 		
 	if(NumOrbs <= 0) // Everything is worth at least one orb.
 		NumOrbs = 1;
+
+	bool doLifeSpawn = false;
+	int lifeChance = Random(0, 100);
+	if(Health >= 5000)
+		doLifeSpawn = true;
+	else if(Health >= 4000 && lifeChance <= 75)
+		doLifeSpawn = true;
+	else if(Health >= 3000 && lifeChance <= 50)
+		doLifeSpawn = true;
+	else if(Health >= 2500 && lifeChance <= 10)
+		doLifeSpawn = true;
+	else if(Health >= 1000 && lifeChance <= 2)
+		doLifeSpawn = true;
+	else if(Health >= 500 && lifeChance < 1)
+		doLifeSpawn = true;
+	
+	if(doLifeSpawn)
+		SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), 0, random(0, 255));
 	
 	for(int i = 0; i < NumOrbs; i++)
 	{

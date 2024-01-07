@@ -15,7 +15,6 @@ ACTOR N_Cacodemon_Base : Monster_Base
   ActiveSound "caco/active"
   Obituary "$OB_CACO"
   HitObituary "$OB_CACOHIT"
-  Dropitem "ExtraLifeThingy" 1
   Dropitem "Activebox1" 1
   States
   {

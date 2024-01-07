@@ -13,7 +13,6 @@ ACTOR N_Baron_Base : Monster_Base
   ActiveSound "baron/active"
   Obituary "$OB_BARON"
   HitObituary "$OB_BARONHIT"
-  Dropitem "ExtraLifeThingy" 1
   Dropitem "Activebox1" 1
   States
   {

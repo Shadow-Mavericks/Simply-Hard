@@ -2334,7 +2334,6 @@ SeeSound "cyber/sight"
 PainSound "cybermind/pain"
 DeathSound "spider/death"
 ActiveSound "cyber/active" 
-Dropitem "extralifethingy" 127
 States 
    {    
    Spawn: 

@@ -121,7 +121,7 @@ script "REVIVEPLAYER" (void) NET
 
 	int pNum = PlayerNumber();
 	int dead_longest = -1;
-	int longest_time = 0x7FFFFFFF;
+	int earliest_death_time = 0x7FFFFFFF;
 	
 	int current_lives = GetPlayerLivesLeft(pNum);
 	if(current_lives <= 0)
@@ -134,8 +134,11 @@ script "REVIVEPLAYER" (void) NET
 	{
 		if(PlayerIsSpectator(i) == 2)
 		{
-			if(timeOfDeath[i] < longest_time)
+			if(timeOfDeath[i] < earliest_death_time)
+			{
+				earliest_death_time = timeOfDeath[i];
 				dead_longest = i;
+			}
 		}
 	}
 	
