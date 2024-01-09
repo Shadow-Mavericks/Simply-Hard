@@ -188,14 +188,6 @@ actor Hyper_Follower
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-actor Particle_Base
-{
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-}
-
 actor Star : Particle_Base
 {
     

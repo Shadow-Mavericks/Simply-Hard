@@ -1,6 +1,11 @@
+#include "actors/SH_BaseActors.txt"
+
 #include "actors/Elemental_Champions/n_base_objects.txt"
+
 #include "actors/SH_Items.txt"
+
 #include "actors/p_star.txt"
+
 #include "actors/SH_Monsters.txt"
 #include "actors/SH_Player.txt"
 #include "actors/SH_Powerups.txt"
@@ -11,16 +16,21 @@
 #include "actors/SH_RNG-Boss_spawns.txt"
 #include "actors/SH_Kunai_SFX.txt"
 #include "actors/SH_MannCoBoxes.txt"
+
 #include "actors/gore/Decorate_Fluids.txt"
 #include "actors/gore/Decorate_Greenfluids.txt"
 #include "actors/gore/Decorate_GreenMeat.txt"
 #include "actors/gore/Decorate_Meat.txt"
 #include "actors/gore/Decorate_Supergore.txt"
+
 #include "actors/R667_Monsters.txt"
 #include "actors/R667_Weapons.txt"
-#include "actors/ST_Drops.txt"
 #include "actors/R667_SFX_Spawners.txt"
+
+#include "actors/ST_Drops.txt"
+
 #include "actors/Kuzcos_Monsters.txt"
+
 #include "actors/Elemental_Champions/n_archviles.txt"
 #include "actors/Elemental_Champions/n_barons.txt"
 #include "actors/Elemental_Champions/n_cyberdemons.txt"
@@ -29,5 +39,7 @@
 #include "actors/Elemental_Champions/n_imps.txt"
 #include "actors/Elemental_Champions/n_mancubi.txt"
 #include "actors/Elemental_Champions/n_revenant.txt"
+
 #include "actors/Proto_Plasma.txt"
+
 #include "actors/damagedigits.txt"
