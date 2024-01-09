@@ -137,7 +137,7 @@ Actor meatballspawner : Randomspawner Replaces cacodemon
 	Dropitem "N_Cacodemon_Heavymetal"		255 5
 	Dropitem "CCCDroid"						255 4
 	Dropitem "Maludemon"					255 5
-	Dropitem "Duke3d_Protectordrone"		255 4
+	Dropitem "Duke3D_SentryDrone"			255 4
 }
 
 Actor Lostspawner : Randomspawner Replaces Painelemental
