@@ -308,187 +308,187 @@ Actor Activebox2 //Decorate by Fiend Kitsune
 
 Actor Activebox3 //Decorate by Fiend Kitsune
 {
-	Radius 1
-	Height 1
-	scale 0.5
-	+DONTGIB
-	States
-	{
-		Spawn:
-			MANN A 30
-			MANN A 0 A_PlaySound("Manncobox/Series")
-			MANN ABCD 50
-			MANN DD 25
-			goto RNGSPAWN
-		RNGSPAWN:
-			MANN D 0
-			MANN D 0 A_Jump(254, 2)
-			MANN A 1
-			goto bombingrun
-			MANN D 0 A_Jump(254, 2)
-			MANN A 1 A_playsound("WAAAAAAH", Chan_Auto)
-			goto Despawn
-			MANN D 0 A_Jump(254, 2)
-			MANN A 1 A_SpawnItemEx ("Manncobfgtrap", 0, 0, 12, 0, 0, -10, 180, 1)
-			goto Despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("Super_invuln", 0, 0, 12, 0, 0, 0, 0, 1)
-			goto Despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("ExtraLifeThingy", 0, 0, 12, 0, 0, 0, 0, 1) 
-			goto Despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("Gastersummon", 0, 0, 28, 0, 0, -10, 0, 1)
-			goto Despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, 1)
-			goto despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, 1)
-			goto despawn
-			MANN D 0 A_Jump(255, 2)
-			MANN A 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, 1)
-			goto despawn
-			MANN D 0
-			goto RNGSPAWN
-		Bombingrun:
-			MANN A 1 A_playsoundEX("FHAHAHA", 2)
-			MANN ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABA 2 BRIGHT
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN A 60
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN A 60
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
-			MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
-			MANN A 0 A_alertmonsters(512)
-			GOTO DESPAWN
-		Despawn:
-			MANN A 1 A_FADEOUT(0.005)
-			loop
-	}
+  Radius 1
+  Height 1
+    +DONTGIB
+  scale 0.5
+  States
+  {
+  Spawn:
+    MANN A 30
+    MANN A 0 A_PlaySound("Manncobox/Series")
+    MANN ABCD 50
+    MANN DD 25
+  goto RNGSPAWN
+  RNGSPAWN:
+    MANN D 0
+    MANN D 0 A_Jump(254, 2)
+    MANN A 1
+   goto bombingrun
+    MANN D 0 A_Jump(254, 2)
+    MANN A 1 A_playsound("WAAAAAAH", Chan_Auto)
+   goto Despawn
+    MANN D 0 A_Jump(254, 2)
+    MANN A 1 A_SpawnItemEx ("Manncobfgtrap", 0, 0, 12, 0, 0, -10, 180, 1)
+   goto Despawn
+   MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("Super_invuln", 0, 0, 12, 0, 0, 0, 0, 1)
+   goto Despawn
+   MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("ExtraLifeThingy", 0, 0, 12, 0, 0, 0, 0, 1) 
+   goto Despawn
+    MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("Gastersummon", 0, 0, 28, 0, 0, -10, 0, 1)
+   goto Despawn
+    MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, 1)
+   goto despawn
+    MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, 1)
+   goto despawn
+    MANN D 0 A_Jump(255, 2)
+    MANN A 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, 1)
+   goto despawn
+    MANN D 0
+   goto RNGSPAWN
+  Bombingrun:
+  MANN A 1 A_playsoundEX("FHAHAHA", 2)
+  MANN ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABA 2 BRIGHT
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
+  MANN A 0 A_alertmonsters(512)
+  MANN A 60
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
+  MANN A 0 A_alertmonsters(512)
+  MANN A 60
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, 48, 1, 0, 0, 0, 45, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 0, -48, 1, 0, 0, 0, 90, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", 48, 0, 1, 0, 0, 0, 135, 1)
+  MANN D 1 A_SpawnItemEx ("suicidebomber", -48, 0, 1, 0, 0, 0, 180, 1)
+  MANN A 0 A_alertmonsters(512)
+  GOTO DESPAWN
+  Despawn:
+  Mann A 1 A_FADEOUT(0.005)
+  loop
+  }
 }
 
 Actor Activebox4 //Decorate by Fiend Kitsune
 {
-	Radius 1
-	Height 1
-	scale 0.5
-	+DONTGIB
-	States
-	{
-		Spawn:
-			MANN A 30
-			MANN A 0 A_PlaySound("Manncobox/Series4",Chan_Voice)
-			MANN ABCD 50
-			MANN D 1
-			goto RNGSPAWN
-		RNGSPAWN:
-			MANN D 1
-			MANN D 0 A_Jump(254, 2)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_manncofail")
-			goto Despawn
-			MANN D 0 A_Jump(253, 3)
-			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_bestunusednightmare")
-			goto Timespawn
-			MANN D 0 A_Jump(254, 2)
-			MANN D 1 A_SpawnItemEx ("DMBalltrap", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 0 A_Jump(255, 4)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_manncosnakbar")
-			MANN D 35 A_SpawnitemEx ("NuclearMissileLauncher", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("NuclearMissileShot", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 0 A_Jump(255, 5)
-			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
-			MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 160
-			goto Despawn
-			MANN D 0 A_Jump(255, 5)
-			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
-			MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 160
-			goto despawn
-			MANN D 1 A_SpawnItemEx("Slimemeteorite", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 160
-			goto despawn
-		Bluebox:
-			MANN D 160
-			MANB A 6 A_playsoundEX("mannco/Blueimp", 2)
-			MANB B 6 
-			MANB CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDC 6 
-			MANB B 6 A_SpawnItemEx ("Allupgradetokens", 0, 0, 12, 0, 0, 0, 0, 1)
-			MANB A 6 
-			GOTO DESPAWN
-		Despawn:
-			Mann A 1 A_FADEOUT(0.005)
-			loop
-		Timespawn:
-			MANN D 35
-			MANN D 0 A_JUMP(83,1)
-			Goto Rocketimpspawns
-			MANN D 0 A_JUMP(83,1)
-			Goto Minizombiehordespawn
-			MANB AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 6
-			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN A 60
-			Goto Despawn
-		Rocketimpspawns:
-			MANB AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 6
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN A 60
-			Goto Despawn
-		Minizombiehordespawn:
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 60 A_alertmonsters(512)
-			goto Despawn
+  Radius 1
+  Height 1
+    +DONTGIB
+  scale 0.5
+  States
+  {
+  Spawn:
+   MANN A 30
+   MANN A 0 A_PlaySound("Manncobox/Series4",Chan_Voice)
+   MANN ABCD 50
+   MANN D 1
+  goto RNGSPAWN
+  RNGSPAWN:
+   MANN D 1
+   MANN D 0 A_Jump(254, 2)
+   MANN D 1 ACS_NamedExecuteWithResult("sv_manncofail")
+   goto Despawn
+   MANN D 0 A_Jump(253, 3)
+   MANN D 0 A_playsound("Gaster/pain",Chan_voice)
+   MANN D 1 ACS_NamedExecuteWithResult("sv_bestunusednightmare")
+   goto Timespawn
+   MANN D 0 A_Jump(254, 2)
+   MANN D 1 A_SpawnItemEx ("DMBalltrap", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   goto Despawn
+   MANN D 0 A_Jump(255, 4)
+   MANN D 1 ACS_NamedExecuteWithResult("sv_manncosnakbar")
+   MANN D 35 A_SpawnitemEx ("NuclearMissileLauncher", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   MANN D 1 A_SpawnItemEx ("NuclearMissileShot", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   goto Despawn
+   MANN D 0 A_Jump(255, 5)
+   MANN D 0 A_playsound("Gaster/pain",Chan_voice)
+   MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
+   MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   MANN D 160
+   goto Despawn
+   MANN D 0 A_Jump(255, 5)
+   MANN D 0 A_playsound("Gaster/pain",Chan_voice)
+   MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
+   MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   MANN D 160
+   goto despawn
+   MANN D 1 A_SpawnItemEx("Slimemeteorite", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+   MANN D 160
+   goto despawn
+  Bluebox:
+  MANN D 160
+  MANB A 6 A_playsoundEX("mannco/Blueimp", 2)
+  MANB B 6 
+  MANB CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDC 6 
+  MANB B 6 A_SpawnItemEx ("Allupgradetokens", 0, 0, 12, 0, 0, 0, 0, 1)
+  MANB A 6 
+  GOTO DESPAWN
+  Despawn:
+  Mann A 1 A_FADEOUT(0.005)
+  loop
+  Timespawn:
+  MANN D 35
+  MANN D 0 A_JUMP(83,1)
+  Goto Rocketimpspawns
+  MANN D 0 A_JUMP(83,1)
+  Goto Minizombiehordespawn
+  MANB AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 6
+  MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN A 0 A_alertmonsters(512)
+  MANN A 60
+Goto Despawn
+	Rocketimpspawns:
+  MANB AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 6
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, 48, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 0, -48, 1, 0, 0, 0, 90, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", 48, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Rocketimp", -48, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 1)
+  MANN A 0 A_alertmonsters(512)
+  MANN A 60
+  Goto Despawn
+	Minizombiehordespawn:
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 60 A_alertmonsters(512)
+		goto Despawn
 	}
 }
 
@@ -499,36 +499,37 @@ Actor Bossbox //Decorate by Fiendzy
 	scale 1.5
 	States
 	{
-		Spawn:
-			MANN A 1
-		Corruptedspawn:
-			MANN D 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
-			MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
-			goto RNGSpawn
-		RNGSpawn:
-			MANN D 1 A_Jump(256, "Bruisers", "CorruptFiend", "CorruptGosimer", "TrioSpawn", "Kartrape", "Dejavuspawn", "Zombiehordespawn", "ImpWarlordhordespawn", "Flemoidboss")
-			goto Despawn
-		Bruisers:
-			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		CorruptFiend:
-			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		CorruptGosimer:
-			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		CorruptKunai:
-			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			
-		Triospawn:
-			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN DCBA 10
-			Goto Despawn
+	Spawn:
+		MANN A 1
+	Corruptedspawn:
+		MANN D 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
+		MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
+		goto RNGSpawn
+	RNGSpawn:
+		MANN D 1 A_Jump(256, "Bruisers", "CorruptFiend", "CorruptGosimer", "TrioSpawn", "Kartrape", "Dejavuspawn", "Zombiehordespawn", "ImpWarlordhordespawn")
+		goto Despawn
+	Bruisers:
+		MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		goto Despawn
+	CorruptFiend:
+		MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		goto Despawn
+	CorruptGosimer:
+		MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		goto Despawn
+	CorruptKunai:
+		MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		goto Despawn
+		
+	Triospawn:
+		MANN D 1 ACS_NamedExecuteWithResult("SV_Chex") //FF7 Jenova piece - moved from Chex payout as its broken -Fiend
+		MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 0 A_alertmonsters(512)
+		MANN DCBA 10
+		Goto Despawn
 		
 		Dejavuspawn:
 			MANN D 1 A_Jump(256,"Track1","Track2")
@@ -543,200 +544,226 @@ Actor Bossbox //Decorate by Fiendzy
 			MANN D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
 		
-		Kartrape:
-			LAKI ABCDEFGHIJKL 5 
-			LAKI M 0 A_PlaySound ("Lakitu/go")
-			LAKI MNO 38
-			LAKI P 37
-			LAKI P 0 A_SpawnItemEx ("Booster", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Bowser", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("CaptainFalcon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Crashbandicock", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("DunkyKung", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("HyperMetalSonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Knux", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Koopa", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Linkin", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Luigi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Mario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Megaman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Motobug", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Pacman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Peach", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Robotnik", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Snake", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Sonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Tails", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Toad", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("VariaSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Wario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Yoshi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("ZeroSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_alertmonsters(512)
-			Goto Despawn
-			
-		Zombiehordespawn:
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			goto Despawn
-		ImpWarlordhordespawn:
-			MANN D 1 ACS_NamedExecuteWithResult("SV_Hordeimp")
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			goto Despawn
-		Flemoidboss:
-			MANN D 1 ACS_NamedExecuteWithResult("SV_Chex")
-			MANN D 1 A_Jump(128, "Flembomination")
-			MANN D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			goto Despawn
-		Flembomination:
-			MANN D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			goto Despawn
-		Despawn:
-			MANN DCBA 10
-		Despawnloop:
-			MANN A 1 A_FADEOUT(0.005)
-			loop
+	Kartrape:
+		LAKI A 5 
+		LAKI B 5
+		LAKI C 5
+		LAKI D 5
+		LAKI E 5
+		LAKI F 5
+		LAKI G 5
+		LAKI H 5
+		LAKI I 5
+		LAKI J 5
+		LAKI K 5
+		LAKI L 5 
+		LAKI M 0 A_PlaySound ("Lakitu/go")
+		LAKI M 38
+		LAKI N 38
+		LAKI O 38
+		LAKI P 37
+		LAKI P 0 A_SpawnItemEx ("Booster", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Bowser", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("CaptainFalcon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Crashbandicock", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("DunkyKung", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("HyperMetalSonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Knux", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Koopa", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Linkin", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Luigi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Mario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Megaman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Motobug", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Pacman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Peach", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Robotnik", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Snake", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Sonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Tails", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Toad", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("VariaSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Wario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("Yoshi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_SpawnItemEx ("ZeroSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		LAKI P 0 A_alertmonsters(512)
+		Goto Despawn
+		
+	Zombiehordespawn:
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 0 A_alertmonsters(512)
+		goto Despawn
+	ImpWarlordhordespawn:
+		MANN D 1 ACS_NamedExecuteWithResult("SV_Hordeimp")
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 0 A_alertmonsters(512)
+		goto Despawn
+/*	Flemoidboss:
+		MANN D 1 A_Jump(128, "Flembomination")
+		MANN D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 0 A_alertmonsters(512)
+		goto Despawn
+	Flembomination:
+		MANN D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MANN A 0 A_alertmonsters(512)
+		goto Despawn
+*/
+	Despawn:
+		MANN DCBA 10
+	Despawnloop:
+		Mann A 1 A_FADEOUT(0.005)
+		loop
 	}
 }
 
 Actor MiniBossbox //Decorate by Fiendzy
 {
-	Height 18
-	scale 1.5
-	Radius 10
-	States
-	{
-		Spawn:
-			MANN A 1
-		Corruptedspawn:
-			MANN A 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
-			MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
-		RNGSpawn:
-			MANN D 1 A_Jump(255, 2)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 1 A_Jump(255, 3)
-			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 1 A_Jump(255, 2)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 1 A_Jump(255, 2)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-			MANN D 1 A_Jump(255, 2)
-			MANN D 1 
-			goto Triospawn
-			MANN D 0  A_Jump(255,2)
-			MANN D 1
-			Goto Kartrape
-			MANN D 0  A_Jump(255,2)
-			MANN D 1
-			Goto Zombiehordespawn
-			MANN D 0  A_JUMP(255,2)
-			MANN D 1
-			Goto Dejavuspawn
-			Mann D 0 A_Jump(255,2)
-			MANN D 1
-			Goto Ettinhordespawn
-			MANN D 0
-			Goto RNGSpawn
-		Triospawn:
-			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			MANN DCBA 10
-			Goto Despawn
-		Dejavuspawn:
-			MANN D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER")
-			MANN D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Kartrape:
-			LAKI ABCDEFGHIJKL 5 
-			LAKI M 0 A_PlaySound ("Lakitu/go")
-			LAKI MNO 38
-			LAKI P 37
-			LAKI P 0 A_SpawnItemEx ("Booster", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Bowser", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("CaptainFalcon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Crashbandicock", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("DunkyKung", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("HyperMetalSonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Knux", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Koopa", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Linkin", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Luigi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Mario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Megaman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Motobug", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Pacman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Peach", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Robotnik", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Snake", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Sonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Tails", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Toad", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("VariaSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Wario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("Yoshi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 0 A_SpawnItemEx ("ZeroSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
-			LAKI P 1 A_Alertmonsters(128,0)
-			goto DESPAWN
-		Aquamagusspawn:
-			MANN D 1 A_SpawnItemEx ("Aqua-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Atramagusspawn:
-			MANN D 1 A_SpawnItemEx ("Atra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		flammamagusspawn:
-			MANN D 1 A_SpawnItemEx ("Flamma-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		fulgurmagusspawn:
-			MANN D 1 A_SpawnItemEx ("Fulgur-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		lamiamagusspawn:
-			MANN D 1 A_SpawnItemEx ("Lamia-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		pertempusmagusspawn:
-			MANN D 1 A_SpawnItemEx ("PerTempus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		terramagusspawn:
-			MANN D 1 A_SpawnItemEx ("Terra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		ventusmagusspawn:
-			MANN D 1 A_SpawnItemEx ("Ventus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Zombiehordespawn:
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN A 0 A_alertmonsters(512)
-			goto Despawn
-		Ettinhordespawn:
-			MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("Chainmailettin1", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN DCBA 10
-			goto Despawn
-		Despawn:
-			MANN DCBA 10
-		Despawnloop:
-			MANN A 1 A_FADEOUT(0.005)
-			loop
-	}
+  Radius 10
+  Height 18
+  scale 1.5
+  States
+  {
+  Spawn:
+   MANN A 1
+  Corruptedspawn:
+  MANN A 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
+  MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
+  RNGSpawn:
+  MANN D 1 A_Jump(255, 2)
+  MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  goto Despawn
+  MANN D 1 A_Jump(255, 3)
+  MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  goto Despawn
+  MANN D 1 A_Jump(255, 2)
+  MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  goto Despawn
+  MANN D 1 A_Jump(255, 2)
+  MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  goto Despawn
+  MANN D 1 A_Jump(255, 2)
+  MANN D 1 
+  goto Triospawn
+  MANN D 0  A_Jump(255,2)
+  MANN D 1
+  Goto Kartrape
+  MANN D 0  A_Jump(255,2)
+  MANN D 1
+  Goto Zombiehordespawn
+  MANN D 0  A_JUMP(255,2)
+  MANN D 1
+  Goto Dejavuspawn
+  Mann D 0 A_Jump(255,2)
+  MANN D 1
+  Goto Ettinhordespawn
+  MANN D 0
+  Goto RNGSpawn
+  Triospawn:
+  MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  MANN A 0 A_alertmonsters(512)
+  MANN DCBA 10
+  Goto Despawn
+  Dejavuspawn:
+  MANN D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER")
+  MANN D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+  goto Despawn
+  	Kartrape:
+	LAKI A 5 
+	LAKI B 5
+	LAKI C 5
+	LAKI D 5
+	LAKI E 5
+	LAKI F 5
+	LAKI G 5
+	LAKI H 5
+	LAKI I 5
+	LAKI J 5
+	LAKI K 5
+	LAKI L 5 
+    LAKI M 0 A_PlaySound ("Lakitu/go")
+	LAKI M 38
+    LAKI N 38
+    LAKI O 38
+	LAKI P 37
+	LAKI P 0 A_SpawnItemEx ("Booster", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Bowser", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("CaptainFalcon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Crashbandicock", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("DunkyKung", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("HyperMetalSonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Knux", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Koopa", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Linkin", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Luigi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Mario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Megaman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Motobug", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Pacman", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Peach", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Robotnik", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Snake", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Sonic", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Tails", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Toad", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("VariaSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Wario", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("Yoshi", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 0 A_SpawnItemEx ("ZeroSuitSamus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+	LAKI P 1 A_Alertmonsters(128,0)
+	goto DESPAWN
+	Aquamagusspawn:
+	MANN D 1 A_SpawnItemEx ("Aqua-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	Atramagusspawn:
+	MANN D 1 A_SpawnItemEx ("Atra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	flammamagusspawn:
+	MANN D 1 A_SpawnItemEx ("Flamma-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	fulgurmagusspawn:
+	MANN D 1 A_SpawnItemEx ("Fulgur-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	lamiamagusspawn:
+	MANN D 1 A_SpawnItemEx ("Lamia-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	pertempusmagusspawn:
+	MANN D 1 A_SpawnItemEx ("PerTempus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	terramagusspawn:
+	MANN D 1 A_SpawnItemEx ("Terra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	ventusmagusspawn:
+	MANN D 1 A_SpawnItemEx ("Ventus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+	goto Despawn
+	Zombiehordespawn:
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN A 0 A_alertmonsters(512)
+		goto Despawn
+	Ettinhordespawn:
+	MANN DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("Chainmailettin1", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
+	MANN DCBA 10
+	goto Despawn
+  Despawn:
+  MANN DCBA 10
+  Despawnloop:
+  Mann A 1 A_FADEOUT(0.005)
+  loop
+  }
 }

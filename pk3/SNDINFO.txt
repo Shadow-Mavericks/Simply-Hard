@@ -61,6 +61,9 @@ Shellcasing3	Scase3
 chainguncasing1	50cal1	
 chainguncasing2	50cal2
 
+$volume chainguncasing1 0.5
+$volume chainguncasing2 0.5
+
 
 ////Channeler
 Channeler/Up dschanup
@@ -1108,20 +1111,20 @@ $Musicvolume D_DEJAVU	 0.5
 $Musicvolume D_MYCAR	 0.5
 
 //Invincibility
-$Musicvolume SM_SUPER	 0.5
-$Musicvolume CB1_MASK	 0.5
-$Musicvolume E1_BUTTV	 0.5
+$Musicvolume SM_SUPER	 0.75
+$Musicvolume CB1_MASK	 0.75
+$Musicvolume E1_BUTTV	 0.75
 $Musicvolume E2_TANGE	 0.5
-$Musicvolume S&K_STAR	 0.5
-$Musicvolume S3_STAR	 0.5
-$Musicvolume S3_SUPER	 0.5
-$Musicvolume SMG_STAR	 0.5
-$Musicvolume UT_ASGOR	 0.5
+$Musicvolume S&K_STAR	 0.75
+$Musicvolume S3_STAR	 0.75
+$Musicvolume S3_SUPER	 0.75
+$Musicvolume SMG_STAR	 0.75
+$Musicvolume UT_ASGOR	 0.75
 $Musicvolume UT_BTIME	 0.5
 $Musicvolume UT_DANCE	 0.5
 
 //Ultimate Ability theme(s)
-$Musicvolume S4_METAL	 0.5
+$Musicvolume S4_METAL	 0.75
 
 //Totally harmless little bunneh ain't it? BUT HEY, WE WARNED YOU!
 
