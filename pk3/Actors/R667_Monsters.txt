@@ -338,7 +338,7 @@ ACTOR RailArachnotron
 	+FLOORCLIP
 	+Bossdeath
 	+NEVERFAST
-        Dropitem "Railgundrop" 128
+    Dropitem "Railgundrop" 128
 	Dropitem "Activebox1" 1
 	SeeSound "baby/sight"
 	PainSound "baby/pain"
@@ -360,9 +360,9 @@ ACTOR RailArachnotron
 		Goto See+1
 	Missile:
 		RSPI A 0 A_PlaySound ("baby/chargerailgun")
-		RSPI A 16 A_FaceTarget
-		RSPI G 8 A_FaceTarget
-		RSPI G 8
+		RSPI AAAA 4 A_FaceTarget(0, 0)
+		RSPI GGGG 4 A_FaceTarget(0, 0)
+		RSPI G 4
 		RSPI H 4 A_CustomRailgun (30, 0, BB0000, FF0000, RGF_FULLBRIGHT, 0)
 		RSPI G 8
 		Goto See+1
@@ -377,10 +377,10 @@ ACTOR RailArachnotron
 		RSPI P -1 A_bossdeath
 		Stop
 	Ice:
-    RSPI I 5 A_GenericFreezeDeath
-    RSPI I 1 A_FreezeDeathchunks
-    wait
-    Raise:
+		RSPI I 5 A_GenericFreezeDeath
+		RSPI I 1 A_FreezeDeathchunks
+		wait
+	Raise:
 		RSPI P 5
 		RSPI ONMLKJ 5
 		Goto See+1

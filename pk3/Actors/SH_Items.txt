@@ -2086,6 +2086,8 @@ actor RedBShieldSpawner2
 
 actor ExtraLifeThingy : CustomInventory
 {
+	Radius 20
+	Height 56
 	Inventory.Amount 1
 	Inventory.MaxAmount 9999
 	Inventory.InterHubAmount 9999

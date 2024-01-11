@@ -658,7 +658,7 @@ Actor Gastersummon : CustomInventory // Sprites from Kunai / Good time sans
 	Inventory.MaxAmount 3
 	Inventory.InterHubAmount 3
 	Inventory.Icon "GASTSMN"
-	Tag "Gaster Blaster Summon"
+	Tag "Super Gaster Blaster Summon"
 	Inventory.PickupSound "Gaster/pain"
 	Inventory.Usesound"Gaster/Teleport"
 	Inventory.PickupMessage "You picked up a Gaster Blaster Summon! (Use with extreme caution!)"
@@ -683,7 +683,7 @@ Actor KunaiGastersummon : CustomInventory // Sprites from Kunai / Good time sans
 	Inventory.MaxAmount 3
 	Inventory.InterHubAmount 3
 	Inventory.Icon "GASTSMN"
-	Tag "Super Gaster Blaster Summon"
+	Tag "Gaster Blaster Summon"
 	Inventory.PickupSound "Gaster/pain"
 	Inventory.Usesound"Gaster/Teleport"
 	Inventory.PickupMessage "You picked up a Super Gaster Blaster Summon! (Use with extreme caution!)"
