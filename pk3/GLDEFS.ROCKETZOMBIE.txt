@@ -1,0 +1,40 @@
+Pointlight RocketGuyAttack
+{
+	Color 1.0 0.8 0.0
+	Size 32
+}
+
+Object RocketZombie
+{
+	Frame MPOSF { Light RocketGuyAttack }
+}
+
+BrightMap Sprite MPOSF1
+{
+Map "brightmaps/Realm667/Monsters/Rocketzombie/BMMPOSF1.png"
+DisableFullBright
+}
+
+BrightMap Sprite MPOSF2F8
+{
+Map "brightmaps/Realm667/Monsters/Rocketzombie/BMMPOSF2.png"
+DisableFullBright
+}
+
+BrightMap Sprite MPOSF3F7
+{
+Map "brightmaps/Realm667/Monsters/Rocketzombie/BMMPOSF3.png"
+DisableFullBright
+}
+
+BrightMap Sprite MPOSF4F6
+{
+Map "brightmaps/Realm667/Monsters/Rocketzombie/BMMPOSF4.png"
+DisableFullBright
+}
+
+BrightMap Sprite MPOSF5
+{
+Map "brightmaps/Realm667/Monsters/Rocketzombie/BMMPOSF5.png"
+DisableFullBright
+}

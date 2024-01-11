@@ -381,15 +381,6 @@ Sounds: Id Software
 Sprite Edit: Spectator
 Idea Base: ZDoom Wars required sprites to allow players to tell Rail and Normal Revenants apart.
 
-zombieflyer
-Submitted: Tormentor667, Mancubus
-Decorate: Tormentor667, Mancubus, Bouncy
-GLDEFs: Dreadopp
-Sounds: Id Software, 3DRealms
-Sprites: Id Software, 3DRealms
-Sprite Edit: Tormentor667
-Idea Base: Duke Nukem 3D Pig Cop Flyer
-
 warlordofhell
 Decorate: Tormentor667
 GLDEFs: Dreadopp, Virtue (Brightmaps)

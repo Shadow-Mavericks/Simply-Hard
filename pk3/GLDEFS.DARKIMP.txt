@@ -1,0 +1,179 @@
+BrightMap Sprite DRKIA1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIA1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIA2A8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIA2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIA3A7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIA3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIB1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIB1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIB2B8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIB2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIB3B7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIB3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIC1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIC1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIC2C8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIC2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIC3C7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIC3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKID1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKID1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKID2D8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKID2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKID3D7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKID3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIE1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIE1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIE2E8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIE2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIE3E7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIE3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIE4E6
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIE4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIE5
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIE5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIF1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIF1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIF2F8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIF2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIF3F7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIF3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIF4F6
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIF4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIF5
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIF5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIG1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIG1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIG2G8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIG2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIG3G7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIG3.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIG4G6
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIG4.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIG5
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIG5.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIH1
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIH1.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIH2H8
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIH2.png"
+	DisableFullBright
+}
+
+BrightMap Sprite DRKIH3H7
+{
+	map "brightmaps/Realm667/Monsters/Darkimp/BMDRKIH3.png"
+	DisableFullBright
+}
