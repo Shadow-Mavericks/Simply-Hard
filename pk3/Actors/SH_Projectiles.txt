@@ -3144,7 +3144,6 @@ Actor Nadez
 	Projectile
 	-NOGRAVITY
 	+NOTIMEFREEZE
-	+DEHEXPLOSION
 	+GRENADETRAIL
 	+EXPLODEONDEATH
 	States
@@ -3153,10 +3152,12 @@ Actor Nadez
 			SGRN A 1 Bright 
 			loop
 		Death:
-			MISL B 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
-			MISL B 0 Bright A_ChangeFlag("NoGravity", 1)
-			MISL B 0 Bright A_Explode(128, 192)
-			MISL BBBBCCCDD 1 Bright A_SetScale(scalex+0.25, scaley+0.25)
+			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
+			DEXP A 0 Bright A_SetScale(0.1, 0.1)
+			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
+			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
+			DEXP A 0 Bright A_Explode(128, 192)
+			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}
 }
@@ -3178,10 +3179,12 @@ Actor Critnadez : Nadez
 			SGRN A 1 Bright 
 			loop
 		Death:
-			CRCK B 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
-			CRCK B 0 Bright A_ChangeFlag("NoGravity", 1)
-			CRCK B 0 Bright A_Explode(192, 192)
-			CRCK BBBBCCCDD 1 Bright A_SetScale(scalex+0.25, scaley+0.25)
+			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
+			DEXP A 0 Bright A_SetScale(0.2, 0.2)
+			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
+			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
+			DEXP A 0 Bright A_Explode(192, 192)
+			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}
 }
@@ -4272,7 +4275,7 @@ ACTOR osjc_BFGExtra : BFGExtra replaces BFGExtra
 	scale 0.5
 	Alpha 0.75
 	DamageType "BFGSplash"
-  Obituary "%o just couldn't hide from %k's BFG."
+	Obituary "%o just couldn't hide from %k's BFG."
 	States
 	{
 	Spawn:

@@ -948,51 +948,51 @@ ACTOR NuclearMissileShot
       NKE1 A 1 Bright A_Explode
       NKE1 A 1 Bright A_Explode
       NKE1 A 0 Bright A_CustomMissile("NukeExplosionGenerator",12,-1,315,2)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,8)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,23)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,38)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,53)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,68)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,83)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,98)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,113)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,128)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,143)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,158)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,173)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,187)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,202)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,217)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,232)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,247)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,262)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,277)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,292)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,307)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,322)
-      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,337)
-      NKE1 A 11 Bright A_CustomMissile("NukeWall",0,0,352)
-      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,1,45,2)
-      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,1,135,2)
-      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,-1,225,2)
-      NKE1 B 16 Bright A_CustomMissile("NukeExplosionGenerator",32,-1,315,2)
-      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,1,0,2)
-      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,1,90,2)
-      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,-1,180,2)
-      NKE1 C 16 Bright A_CustomMissile("NukeExplosionGenerator",25,-1,270,2)
-      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,1,45,2)
-      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,1,135,2)
-      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,-1,225,2)
-      NKE1 D 16 Bright A_CustomMissile("NukeExplosionGenerator",12,-1,315,2)
-      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,1,0,2)
-      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,1,90,2)
-      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,-1,180,2)
-      NKE1 E 16 Bright A_CustomMissile("NukeExplosionGenerator",4,-1,270,2)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,8, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,23, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,38, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,53, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,68, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,83, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,98, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,113, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,128, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,143, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,158, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,173, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,187, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,202, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,217, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,232, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,247, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,262, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,277, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,292, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,307, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,322, CMF_TRACKOWNER)
+      NKE1 A 0 Bright A_CustomMissile("NukeWall",0,0,337, CMF_TRACKOWNER)
+      NKE1 A 11 Bright A_CustomMissile("NukeWall",0,0,352, CMF_TRACKOWNER)
+      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,1,45, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,1,135, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 B 0 A_CustomMissile("NukeExplosionGenerator",32,-1,225, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 B 16 Bright A_CustomMissile("NukeExplosionGenerator",32,-1,315, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,1,0, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,1,90, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 C 0 A_CustomMissile("NukeExplosionGenerator",25,-1,180, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 C 16 Bright A_CustomMissile("NukeExplosionGenerator",25,-1,270, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,1,45, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,1,135, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 D 0 A_CustomMissile("NukeExplosionGenerator",12,-1,225, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 D 16 Bright A_CustomMissile("NukeExplosionGenerator",12,-1,315, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,1,0, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,1,90, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 E 0 A_CustomMissile("NukeExplosionGenerator",4,-1,180, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 E 16 Bright A_CustomMissile("NukeExplosionGenerator",4,-1,270, CMF_AIMDIRECTION | CMF_TRACKOWNER)
       NKE1 F 16 Bright
-      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,1,45,2)
-      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,1,135,2)
-      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,-1,225,2)
-      NKE1 G 16 Bright A_CustomMissile("NukeExplosionGenerator",1,-1,315,2)
+      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,1,45, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,1,135, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 G 0 A_CustomMissile("NukeExplosionGenerator",1,-1,225, CMF_AIMDIRECTION | CMF_TRACKOWNER)
+      NKE1 G 16 Bright A_CustomMissile("NukeExplosionGenerator",1,-1,315, CMF_AIMDIRECTION | CMF_TRACKOWNER)
       NKE1 HIJKLMNOPQ 16 Bright
       NKE1 RSTU 20 Bright
       Stop
@@ -1013,6 +1013,7 @@ ACTOR NukeExplosionGenerator
    +BLOODLESSIMPACT
    +NOTELEPORT
    +THRUGHOST
+   +FORCERADIUSDMG
    Scale 0.9
    ExplosionDamage 112
    ExplosionRadius 112
@@ -1023,11 +1024,11 @@ ACTOR NukeExplosionGenerator
    {
    Spawn:
       ROKE AAA 1
-      ROKE A 1 A_CustomMissile("DispersionRocketExplosion1",0,0,0,2)
+      ROKE A 1 A_CustomMissile("DispersionRocketExplosion1",0,0,0, CMF_AIMDIRECTION | CMF_TRACKOWNER)
       ROKE AAA 1
-      ROKE A 1 A_CustomMissile("DispersionRocketExplosion2",12,0,0,2)
+      ROKE A 1 A_CustomMissile("DispersionRocketExplosion2",12,0,0, CMF_AIMDIRECTION | CMF_TRACKOWNER)
       ROKE AAA 1
-      ROKE A 1 A_CustomMissile("DispersionRocketExplosion3",32,0,0,2)
+      ROKE A 1 A_CustomMissile("DispersionRocketExplosion3",32,0,0, CMF_AIMDIRECTION | CMF_TRACKOWNER)
       Stop
    Death:
       ROKE A 0 A_SetTranslucent(0.7,1)
@@ -1057,6 +1058,7 @@ ACTOR NukeWall
    +FLOORHUGGER
    +FIREDAMAGE
    +THRUGHOST
+   +FORCERADIUSDMG
    Renderstyle Translucent
    Alpha 0.8
    ExplosionDamage 96
@@ -1067,9 +1069,9 @@ ACTOR NukeWall
    {
    Spawn:
       FLWS ABC 2 Bright 
-      FLWS D 2 Bright A_CustomMissile("NukeFire",0,0,0)
+      FLWS D 2 Bright A_CustomMissile("NukeFire",0,0,0, CMF_TRACKOWNER)
       FLWS EFGHI 2 Bright 
-      FLWS J 2 Bright A_CustomMissile("NukeFire",0,0,0)
+      FLWS J 2 Bright A_CustomMissile("NukeFire",0,0,0, CMF_TRACKOWNER)
       FLWS KLMNOABCDEFGHIJ 2 Bright
       Goto Spawn+10
    Death:
@@ -1094,6 +1096,7 @@ ACTOR NukeFire
    +NOTARGET
    +FIREDAMAGE
    +THRUGHOST
+   +FORCERADIUSDMG
    Renderstyle Add
    Alpha 0.6
    ExplosionDamage 64

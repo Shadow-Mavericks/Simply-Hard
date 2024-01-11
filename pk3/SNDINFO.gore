@@ -1,6 +1,5 @@
-bullethit1 bulithit
+bullethit1 bulitht1
 bullethit2 bulitht2
 bullethit3 bulitht3
 bullethit4 bulitht4
-bullethit5 bulitht5
-$random hitsound { bullethit1 bullethit2 bullethit3 bullethit4 bullethit5 }
+$random hitsound { bullethit1 bullethit2 bullethit3 bullethit4 }
