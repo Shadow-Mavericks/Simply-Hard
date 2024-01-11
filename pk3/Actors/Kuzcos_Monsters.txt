@@ -2000,36 +2000,36 @@ actor CCCDroid
 
 Actor redlaser
 {
- Projectile
- Damage 5
- Height 5
- Radius 10
- Speed 25
- RenderStyle add
- Damagetype Fire
- DeathSound "weapons/plasmax"
- Decal "Pulse"
- +FLOAT
- +NOGRAVITY
- +BLOODLESSIMPACT
- +FORCEPAIN
- +thruactors
- +RIPPER
- States
- {
- Spawn:
- CCDL A 1 BRIGHT
- LOOP
- Death:
- LSXP A 2 BRIGHT A_EXPLODE(5,32)
- LSXP B 2 BRIGHT
- LSXP C 2 BRIGHT
- LSXP D 2 BRIGHT
- LSXP E 2 BRIGHT
- LSXP F 2 BRIGHT
- LSXP G 2 BRIGHT
- Stop
- }
+	Projectile
+	Damage 5
+	Height 5
+	Radius 10
+	Speed 25
+	RenderStyle add
+	Damagetype Fire
+	DeathSound "weapons/plasmax"
+	Decal "Pulse"
+	+FLOAT
+	+NOGRAVITY
+	+BLOODLESSIMPACT
+	+FORCEPAIN
+	+thruactors
+	+RIPPER
+	States
+	{
+		Spawn:
+			CCDL A 1 BRIGHT
+			LOOP
+		Death:
+			LSXP A 2 BRIGHT A_EXPLODE(5,32)
+			LSXP B 2 BRIGHT
+			LSXP C 2 BRIGHT
+			LSXP D 2 BRIGHT
+			LSXP E 2 BRIGHT
+			LSXP F 2 BRIGHT
+			LSXP G 2 BRIGHT
+			Stop
+	}
 }
 
 ACTOR Mastersphere
