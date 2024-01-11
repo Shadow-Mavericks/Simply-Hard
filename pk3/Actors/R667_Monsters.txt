@@ -9479,7 +9479,7 @@ Actor Demolisher
    }
 }
 
-actor DivineShadow
+actor DivineShadow : SH_BaseMonster
 {
 	//$Category Monsters
 	//$Sprite VIL2G1
@@ -9496,7 +9496,6 @@ actor DivineShadow
 	DamageFactor BFGSplash, 0.5
 
 	Species "DivineShadow"
-	Monster
 
 	//RenderStyle Add
 	//Alpha 0.5
@@ -9512,7 +9511,6 @@ actor DivineShadow
 	MeleeSound "vile/stop"
 
 	Obituary "%o was disintegrated by a Divine Shadow."
-	var int user_extralife_chance;
 
 	States
 	{
@@ -10395,7 +10393,7 @@ ACTOR HomRocket1
    }
 }
 
-ACTOR SuperFlyingImp
+ACTOR SuperFlyingImp : SH_BaseMonster
 {
 	OBITUARY "%o was blasted by a super flying imp."
 	HITOBITUARY "%o was slashed by a super flying imp."
@@ -10412,11 +10410,8 @@ ACTOR SuperFlyingImp
 	ACTIVESOUND "imp/active"
 	Dropitem "Activebox" 1
 
-	var int user_extralife_chance;
-
-	MONSTER
-	+Float
-	+NoGravity
+	+FLOAT
+	+NOGRAVITY
 	states
 	{
 		Spawn:
@@ -10537,7 +10532,7 @@ ACTOR Terror 3124
 
 //Rocket imp stuff
 
-ACTOR RocketImp //20128
+ACTOR RocketImp : SH_BaseMonster //20128
 {
 	Health 60
 	Radius 20
@@ -10555,8 +10550,6 @@ ACTOR RocketImp //20128
 	Dropitem "Rocketammo"
 	Dropitem "Rocketlauncher" 72
 	Obituary "%o was blown apart by a Robo Rocket Imp"
-
-	var int user_extralife_chance;
 
 	Monster
 	+FLOORCLIP
@@ -10700,14 +10693,14 @@ ACTOR RocketArm
 	+DOOMBOUNCE
 	+DROPOFF
 	+Missile
-      States
+	States
 	{
-	Spawn:
-     IARM ABCD 3
-     Loop
-	Death:
-	 IARM E -1
-	 Loop
+		Spawn:
+			IARM ABCD 3
+			Loop
+		Death:
+			IARM E -1
+		Loop
 	}
 }
 

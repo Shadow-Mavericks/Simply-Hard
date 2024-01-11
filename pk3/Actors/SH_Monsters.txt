@@ -2336,10 +2336,7 @@ ACTOR GasterBlasterFollower
 	}
 }
 
-
-
-
-ACTOR Corrupt_Fiend // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
+ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Fiend"
 	Health 2500
@@ -2358,9 +2355,6 @@ ACTOR Corrupt_Fiend // Code is borrowed/Edited from Super Sonic Doom, if there a
 	Obituary "%o was put down by Fiendzy?"
 	MeleeDamage 25
 
-	var int user_extralife_chance;
-
-	Monster
 	+NOBLOCKMONST
 	+BOSS
 	+MISSILEMORE
@@ -2450,7 +2444,7 @@ ACTOR Corrupt_Fiend // Code is borrowed/Edited from Super Sonic Doom, if there a
 	}
 }
 
-ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
+ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Gosimer"
 	Health 2500
@@ -2471,9 +2465,6 @@ ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there
 	Obituary "%o was sent to the penal zone by Gosimer?"
 	MeleeDamage 25
 
-	var int user_extralife_chance;
-
-	Monster
 	+NOBLOCKMONST
 	+BOSS
 	+MISSILEMORE
@@ -2573,7 +2564,7 @@ ACTOR Corrupt_Gosimer // Code is borrowed/Edited from Super Sonic Doom, if there
 	}
 }
 
-ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
+ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Kunai"
 	Health 2500
@@ -2589,9 +2580,6 @@ ACTOR Corrupt_Kunai // Code is borrowed/Edited from Super Sonic Doom, if there a
 	Obituary "%o was given a bad time by Kunai?"
 	MeleeDamage 25
 
-	var int user_extralife_chance;
-
-	Monster
 	+NOBLOCKMONST
 	+BOSS
 	+MISSILEMORE
@@ -2954,9 +2942,8 @@ ACTOR Doggomeat : Meat2 Replaces meat2
 
 // Kuzcos white rabbit - Holy grail this isnt
 
-ACTOR whiterabbit
+ACTOR whiterabbit : SH_BaseMonster
 {
-	MONSTER
 	Health 1000
 	PainChance 224
 	Speed 12
@@ -2971,8 +2958,6 @@ ACTOR whiterabbit
 	Damage 250
 
 	Dropitem "Allupgradetokens" 128
-
-	var int user_extralife_chance;
 
 	+NOBLOCKMONST
 	+QUICKTORETALIATE
