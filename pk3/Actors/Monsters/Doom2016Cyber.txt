@@ -1,0 +1,1178 @@
+Actor D16Cyberdemon 31050
+{
+	Obituary "%o was blown away by the Cyberdemon."
+	XScale 0.9
+	YScale 0.7
+	Radius 42
+	Height 110
+	Health 8000
+	Mass 9000
+	Species SlayerCyberdemon
+	PainChance 2
+	Speed 16
+	Monster
+	SeeSound "Cybie/Sight"
+	PainSound "Cybie/Pain"
+	DeathSound ""
+	ActiveSound "Cybie/Idle"
+	Dropitem "Minibossbox" 50
+	Dropitem "extralifethingy" 127
+	+BOSS
+	+SOLID
+	+FLOORCLIP
+	+NOINFIGHTING
+	+DONTHARMSPECIES
+	+NORADIUSDMG
+	+DONTMORPH
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			CYBI A 20 A_Look
+			Loop
+
+		See:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+			TNT1 A 0 A_Quake(1,20,0,368,"")
+			CWLK AA 4 A_Chase
+			TNT1 A 0 A_Playsound("Cybie/FootStep",3)
+			CWLK BBCC 4 A_Chase
+			TNT1 A 0 A_Playsound("Cybie/MechStep",4)
+			TNT1 A 0 A_Quake(1,20,0,368,"")
+			CWLK DD 4 A_Chase
+			loop
+
+		// Attacks //
+
+		Missile:
+			TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+			TNT1 A 0 A_JumpIfHealthLower(4000,"HalfHealthAnger")
+			Goto AnyAttack
+
+		HalfHealthAnger:
+			TNT1 A 0 A_ChangeFlag("MISSILEMORE",1)
+			TNT1 A 0 A_ChangeFlag("MISSILEEVENMORE",1)
+			TNT1 A 0 A_JumpIfCloser(384,"CloseAttacks")
+			TNT1 A 0 A_Jump(256,"AngryRockets","JumpAngryRocketRain","FlameBlade","ChargeShot")
+			Goto See
+
+		AnyAttack:
+			TNT1 A 0 A_Jump(256,"FireRockets","JumpRocketRain","FlameBlade","ChargeShot")
+			Goto See
+
+		CloseAttacks:
+			TNT1 A 0 A_Jump(128,"RockWalls")
+			Goto AnyAttack
+
+		// Attack States //
+
+		// Rocket Attacks //
+		FireRockets:
+			TNT1 A 0 A_Jump(256,"RocketAttack1","RocketAttack2","RocketAttack3")
+			CYRK A 1 A_FaceTarget
+			Loop
+
+		RocketAttack1:
+			TNT1 A 0 A_PlaySound ("Cybie/Idle",6,1.0,false)
+			CYRK AAAAA 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK AAA 10 A_FaceTarget
+			Goto See
+
+		RocketAttack2:
+			TNT1 A 0 A_PlaySound ("Cybie/Attack",6,1.0,false)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			Goto See
+
+		RocketAttack3:
+			TNT1 A 0 A_PlaySound ("Cybie/Idle",6,1.0,false)
+			CYRK AAAAA 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK AAA 10 A_FaceTarget
+			Goto See
+
+		// Angry Rockets //
+		AngryRockets:
+			TNT1 A 0 A_Jump(256,"AngryRocketAttack1","AngryRocketAttack2")
+			CYRK A 1 A_FaceTarget
+
+		AngryRocketAttack1:
+			TNT1 A 0 A_PlaySound ("Cybie/Attack",6,1.0,false)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 10 A_FaceTarget
+			Goto See
+
+		AngryRocketAttack2:
+			TNT1 A 0 A_PlaySound ("Cybie/Attack",6,1.0,false)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK A 6 A_FaceTarget
+			CYRK A 0 A_CustomMissile("CyberdemonRocket",80,-36,0)
+			CYRK A 0 BRIGHT A_SpawnItemEx("CyberdemonArmRocketFX",48,-26,80)
+			CYRK AAA 10 A_FaceTarget
+			Goto See
+
+		// Rocket Rain Picker //
+		JumpRocketRain:
+			TNT1 A 0 A_Jump(128,"RocketRain","FireRockets")
+			Goto See
+
+		// Angry Rocket Rain Picker //
+		JumpAngryRocketRain:
+			TNT1 A 0 A_Jump(256,"RocketRain","AngryRockets")
+			Goto See
+
+		RocketRain:
+			TNT1 A 0 A_PlaySound ("Cybie/Idle",6,1.0,false)
+			RKRN AA 10 A_FaceTarget
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			RKRN A 1 A_VileTarget ("RocketRainTracker")
+			RKRN A 3 A_SpawnItemEx("RocketRainUpwardFX", 0,0,128, frandom(5.0,-5.0),frandom(5.0,-5.0),20, 0,SXF_NOCHECKPOSITION)
+			Goto See
+
+		FlameBlade:
+			// Flame Wave Attacks //
+			// First wave, low to the ground //
+			TNT1 A 0 A_PlaySound ("Cybie/Attack",6,1.0,false)
+			CYBF AA 8 A_FaceTarget
+			CYBF B 4 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,0,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,10,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,-10,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,20,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,-20,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,30,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,30,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,-30,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF D 1 Bright A_CustomMissile("FlameWaveProjectile",10,40,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,-40,0,CMF_AIMOFFSET)
+			CYBF D 10 A_FaceTarget
+
+			// Second wave, high above the ground //
+			CYBF D 4 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",100,0,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",100,10,0,CMF_AIMOFFSET)
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",100,-10,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",100,20,0,CMF_AIMOFFSET)
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",100,-20,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",100,30,0,CMF_AIMOFFSET)
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",100,-30,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",100,40,0,CMF_AIMOFFSET)
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",100,-40,0,CMF_AIMOFFSET)
+			CYBF CBA 4 A_FaceTarget
+
+			// Third wave, same as first //
+			CYBF BBC 4 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,0,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,10,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,-10,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,20,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,-20,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,30,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF C 1 Bright A_CustomMissile("FlameWaveProjectile",10,30,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,-30,0,CMF_AIMOFFSET)
+			CYBF C 0 A_FaceTarget
+			CYBF D 1 Bright A_CustomMissile("FlameWaveProjectile",10,40,0,CMF_AIMOFFSET)
+			TNT1 A 0 A_CustomMissile("FlameWaveProjectile",10,-40,0,CMF_AIMOFFSET)
+			CYBF D 4 A_FaceTarget
+			Goto See
+
+		ChargeShot:
+			// Charged shot sequence //
+			CYRK A 0 A_FaceTarget
+			CYRK A 0 A_PlaySound ("Cybie/ChargeStartup",5,1.3,false,ATTN_NONE)
+			CYRK A 0 A_CustomRailgun(0,-33,"None","Orange",RGF_FULLBRIGHT|RGF_SILENT|RGF_CENTERZ,1,1,"Custompuff",0,0,4096,1,0,0,None,31)
+			CYRK A 20 A_FaceTarget
+			CYRK A 0 A_SpawnItemEx("ChargedShotStartup",64,-26,80)
+			CYRK A 0 A_PlaySound ("Cybie/ChargeShotReady",6,1.5,false,ATTN_NONE)
+			CYRK A 10 A_FaceTarget
+			CYRK A 0 A_SpawnItemEx("ChargedShotStartup2",64,-26,80)
+			CYRK AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_CustomRailgun(0,-33,"None","Orange",RGF_FULLBRIGHT|RGF_SILENT|RGF_CENTERZ,1,0,"Custompuff",-2,0,2048,1,0,0,None,31)
+			CYRK A 0 A_PlaySound ("Cybie/ChargeReady",5,2,false,ATTN_NONE)
+			CYRK A 0 A_FaceTarget
+			CYRK A 32 A_FaceTarget
+			CYRK AAAAAAAA 0 A_CustomRailgun(0,-33,"Orange","None",RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE,1,0,"Custompuff",-2,0,4096,64,0,frandom(1.5,3.0),none,31)
+			CYRK A 0 A_SpawnItemEx("CyberdemonArmRocketFX",64,-26,80)
+			CYRK A 0 A_PlaySound ("Cybie/ChargeShot",6,2,false,ATTN_NONE)
+			CYRK A 12 A_CustomRailgun(Random(45,100),-33,"None","Orange",RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE,1,0,"Custompuff",-2,0,4096,1,14,0,"ChargedShot",31)
+			CYRK AA 10 A_FaceTarget
+			Goto See
+
+		RockWalls:
+			RKRN A 0 A_PlaySound ("Cybie/Attack",6,1.0,false,ATTN_NONE)
+			RKRN AAA 10 A_FaceTarget
+			RKRN A 0 A_Quake(4,20,0,368,"")
+			RKRN A 0 A_PlaySound("Cybie/RockWall")
+			RKRN A 0 A_CustomMissile("RockWallSpawner",10,100,0,CMF_AIMOFFSET)
+			RKRN A 0 A_CustomMissile("RockWallSpawner",10,-100,0,CMF_AIMOFFSET)
+			CYBI A 20 A_FaceTarget
+			Goto RockWallAttacks
+
+		RockWallAttacks:
+			TNT1 A 0 A_Jump(256,"RocketAttack3","FlameBlade")
+			Wait
+
+		Pain:
+			CYPN A 10 A_Pain
+			Goto See
+
+		Death:
+			CYPN A 10 A_PlaySound ("Cybie/Pain",5,1.0,false,ATTN_NONE)
+			CYDT BB 10
+			CYDT C 0 A_PlaySound ("Cybie/Idle",6,1.0,false,ATTN_NONE)
+			CYDT CC 15
+			CYDT DD 15
+			CYDT EE 20 A_NoBlocking
+			CYDT F 0 A_PlaySound ("Cybie/Sight",6,1.0,false,ATTN_NONE)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",0,0,0,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniBlood",-20,-20,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",0,0,0,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathBlood",40,-45,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",-20,-20,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathBlood",20,20,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",20,20,110,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniBlood",0,-20,65,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",20,20,0,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathBlood",-20,-20,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",0,0,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathBlood",20,20,55,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathMiniExplosion",0,0,110,0,0,0,0,130)
+			CYDT F 2 A_SpawnItemEx ("CyberdemonDeathBlood",-15,-35,70,0,0,0,0,130)
+			CYDT F 4 A_SpawnItemEx ("CyberdemonDeathExplosion",-20,-20,0,0,0,0,0,130)
+			CYDT F 4 A_SpawnItemEx ("CyberdemonDeathExplosion",20,20,55,0,0,0,0,130)
+			CYDT F 4 A_SpawnItemEx ("CyberdemonDeathExplosion",-20,-20,110,0,0,0,0,130)
+			CYDT G 0 A_SpawnItemEx ("CyberdemonDeathBigBlood",-20,-20,110,0,0,0,0,130)
+			CYDT G 4 A_SpawnItemEx ("CyberdemonDeathExplosion",0,0,0,0,0,0,0,130)
+			CYDT G 4 A_SpawnItemEx ("CyberdemonDeathExplosion",-20,-20,55,0,0,0,0,130)
+			CYDT H 0 A_PlaySound ("Cybie/BigExplosion",6,1.0,false,ATTN_NONE)
+			TNT1 A 0 Radius_Quake (8,100,0,22,0)
+			CYDT H 4 A_SpawnItemEx ("CyberdemonDeathBigExplosion",-20,-20,110,0,0,0,0,130)
+			CYDT H 0 A_SpawnItemEx ("CyberdemonBigBlood",30,0,110,0,0,0,0,130)
+			CYDT H 0 A_SpawnItemEx ("CyberdemonBigBlood",-15,20,110,0,0,0,0,130)
+			TNT1 A 0 A_CustomMissile ("CyberdemonGibHead", 91, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonGibArm1", 56, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonGibArm2", 76, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 80, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 45, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 40, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 30, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 37, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodCloudSpawner", 35, random (45, 105), random (0, 360), 2, random (40, 90))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			TNT1 A 0 A_CustomMissile ("CyberdemonBloodGoreSpawner", 35, random (45, 105), random (0, 360), 2, random (0, 290))
+			CYDT J 1 A_PlaySound ("Cybie/Gore",5,0.6,false,ATTN_NONE)
+			CYDT J 3 A_SpawnItemEx ("CyberdemonDeathBlood",20,20,0,0,0,0,0,130)
+			CYDT J 4 A_SpawnItemEx ("CyberdemonDeathBlood",-15,-35,70,0,0,0,0,130)
+			CYDT K 4 A_SpawnItemEx ("CyberdemonDeathBlood",0,-20,65,0,0,0,0,130)
+			CYDT K 4 A_SpawnItemEx ("CyberdemonDeathBlood",40,30,45,0,0,0,0,130)
+			CYDT L 0 A_BossDeath
+			CYDT L -1
+			stop
+	}
+}
+
+// Actors for FX and Attacks //
+
+// Rocket Actors //
+
+Actor CyberdemonRocket
+{
+	Projectile
+	+EXTREMEDEATH
+	+FORCERADIUSDMG
+	Speed 20
+	FastSpeed 25
+	Radius 6
+	Height 12
+	Damage (15)
+	SeeSound "Cybie/FireRocket"
+	DeathSound "Cybie/RocketExplosion"
+	States
+	{
+		Spawn:
+			MICR A 3 BRIGHT A_SpawnItemEx("CyberdemonRocketTrail",-5,0,0,0,0,0,0,SXF_NOCHECKPOSITION,64)
+			Loop
+		Death:
+			TNT1 A 0 NODELAY A_Explode(64,64,0)
+			TNT1 A 0 A_Quake(2,2,0,512)
+			TNT1 A 0 A_SpawnItemEx("CyberdemonRocketExplosionCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			FX52 ABCDEFGHIJKLMN 1 BRIGHT
+			Stop
+	}
+}
+
+Actor CyberdemonRocketTrail
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	Alpha 0.7
+	Scale 0.7
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_Jump(256, "A", "B")
+		A:
+			X029 ABC 1 BRIGHT
+			X029 DEF 1 BRIGHT A_Fadeout
+			Stop
+		B:
+			X029 FGH 1 BRIGHT
+			X029 IJK 1 BRIGHT A_Fadeout
+			Stop
+	}
+}
+
+Actor CyberdemonRocketExplosionCloud
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	Alpha 0.7
+	Scale 0.7
+	States
+	{
+		Spawn:
+			X112 ABCDE 2 BRIGHT
+			X112 FGH 2 BRIGHT A_Fadeout
+			Stop
+	}
+}
+
+Actor CyberdemonArmRocketFX
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	Alpha 0.8
+	Scale 0.5
+	States
+	{
+		Spawn:
+			X112 ABCDE 2 BRIGHT
+			X112 FGH 2 BRIGHT A_Fadeout
+			Stop
+	}
+}
+
+// Flame Wave Actors //
+
+Actor FlameWaveFX
+{
+	+NOGRAVITY
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	Alpha 0.7
+	Scale 0.30
+	States
+	{
+		Spawn:
+			X056 ABCDEFGHIJKLMNOPWR 1 BRIGHT
+			Stop
+	}
+}
+
+Actor FlameWaveProjectile
+{
+	Projectile
+	RenderStyle None
+	Speed 20
+	FastSpeed 25
+	Radius 6
+	Height 12
+	Damage 1
+	+RIPPER
+	+BLOODLESSIMPACT
+	+PAINLESS
+	SeeSound "Cybie/FlameWave"
+	DeathSound "Cybie/FlameWave"
+	States
+	{
+		Spawn:
+			BAL1 A 1 Bright
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",    random(0,-15),    random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX", -8+random(0,-15), 10+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX", -8+random(0,-15),-10+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-16+random(0,-15), 20+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-16+random(0,-15),-20+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-24+random(0,-15), 30+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-24+random(0,-15),-30+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-26+random(0,-15), 40+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			BAL1 A 0 A_SpawnItemEx("FlameWaveFX",-26+random(0,-15),-40+random(8,-8),0,0,0,frandom(0.1,0.6),0,SXF_NOCHECKPOSITION,128)
+			Loop
+		Death:
+			TNT1 A 10
+			Stop
+	}
+}
+
+// Rocket Rain Actors //
+
+Actor RocketRainUpwardFX
+{
+	Projectile
+	Speed 0
+	Radius 3
+	Height 2
+	+THRUACTORS
+	+SKYEXPLODE
+	Scale 0.8
+	Scale 0.8
+	States
+	{
+		Spawn:
+			TNT1 A 0 ThrustThingZ(0,50,1,0)
+			MICR B 0 NODELAY A_PlaySound("Cybie/RocketRain",5,1.0,false,0.95)
+			MICR B 50 Bright
+			Goto Death
+		Death:
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag(NOINTERACTION,1)
+			TNT1 A 50
+			Stop
+	}
+}
+
+Actor RocketRainTracker
+{
+	+NOINTERACTION
+	RenderStyle None
+	Scale 0.3
+	States
+	{
+		Spawn:
+			TNT1 A 0 NODELAY 
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 5 A_Fire
+		SpawnRain:
+			TNT1 A 10 A_SpawnItemEx("RocketRainSpawner",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
+			Stop
+	}
+}
+
+Actor RocketRainSpawner
+{
+	+NOINTERACTION
+	+SPAWNCEILING
+	RenderStyle None
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1 A_SpawnItemEx("RocketRainLaser",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 30 A_CustomMissile("RocketRainTarget")
+			TNT1 A 10 A_CustomMissile("RocketRainProjectile")
+			Stop
+	}
+}
+
+Actor RocketRainProjectile
+{
+	Projectile
+	Speed 0
+	Radius 3
+	Height 5
+	+SPAWNCEILING
+	+CEILINGHUGGER
+	-NOGRAVITY
+	Gravity 2.5
+	Scale 0.8
+	DeathSound "Cybie/RocketRainExplosion"
+	States
+	{
+		Spawn:
+			MICR C 1 Bright
+			Loop
+		Death:
+			TNT1 A 0 A_Explode(20,64,0)
+			TNT1 A 0 A_Quake(2,2,0,512)
+			TNT1 A 0 A_SpawnItemEx("CyberdemonRocketExplosionCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+			TNT1 A 50 A_ChangeFlag("NOINTERACTION",1)
+			Stop
+	}
+}
+
+Actor RocketRainLaser
+{
+	Radius 2
+	Height 2
+	+NOINTERACTION
+	+BRIGHT
+	-FORCEXYBILLBOARD
+	+FORCEYBILLBOARD
+	RenderStyle Add
+	Scale 0
+	States
+	{
+		Spawn:
+			CLZR AAAAA 1 A_SetScale(ScaleX+0.1,ScaleY+0.75)
+			TNT1 A 0 A_Warp(AAPTR_DEFAULT,0,0,0,0,WARPF_TOFLOOR|WARPF_STOP|WARPF_NOCHECKPOSITION)
+			CLZR A 20
+			CLZR A 5 A_Fadeout
+			Wait
+	}
+}
+
+Actor RocketRainTarget
+{
+	Radius 2
+	Height 2
+	+NOINTERACTION
+	+BRIGHT
+	+FORCEXYBILLBOARD
+	+FLOORHUGGER
+	RenderStyle Add
+	Translation "0:255=%[0,0,0]:[2.0,0.0,0.2]"
+	XScale 0.7
+	YScale 0.15
+	States
+	{
+		Spawn:
+			X060 A 30 Bright
+			X060 A 2 Bright A_FadeOut(0.05)
+			Wait
+	}
+}
+
+// Charged Shot Actors //
+
+Actor ChargedShotStartup
+{
+	Renderstyle ADD
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[2.0,1.3,0.3]"
+	Scale 0.0
+	Alpha 0.6
+	ReactionTime 60
+	States
+	{
+		Spawn:
+			X060 A 1 Bright A_SetScale(scalex+0.01)
+			X060 A 0 A_Warp(AAPTR_TARGET,64,-26,80,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			X060 A 0 A_CountDown
+			loop
+		Death:
+			X060 AAAAA 1 A_SetScale(scalex/2)
+			Stop
+	}
+}
+
+Actor ChargedShotStartup2
+{
+	Renderstyle ADD
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Translation "0:255=%[0,0,0]:[2.0,1.3,0.3]"
+	Scale 0.0
+	Alpha 0.6
+	ReactionTime 60
+	States
+	{
+	Spawn:
+		X072 A 1 BRIGHT A_SetScale(scalex+0.01)
+		X072 A 0 A_Warp(AAPTR_TARGET,64,-26,80,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		X072 A 0 A_CountDown
+		loop
+	Death:
+		X072 AAAAA 1 BRIGHT A_SetScale(scalex/2)
+		Stop
+	}
+}
+
+Actor ChargedShot
+{
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Scale 0.55
+	States
+	{
+		Spawn:
+			X025 B 8 BRIGHT 
+			X025 B 1 BRIGHT A_FadeOut(0.06)
+			Stop
+	}
+}
+
+Actor Custompuff
+{
+	+NOINTERACTION
+	+BLOODLESSIMPACT
+	Projectile
+	States
+	{
+		Spawn:
+			TNT1 A 4
+			Stop
+	}
+}
+
+// RockWall Actors //
+
+Actor RockWallSpawner
+{
+	Projectile
+	Speed 80
+	Radius 3
+	Height 3
+	+FloorHugger
+	+THRUACTORS
+	RenderStyle None
+	States
+	{
+		Spawn:
+			TNT1 AAAAAAAAAA 1 A_SpawnItemEx("RockWall",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Stop
+		Death:
+			TNT1 A 1 A_SpawnItemEx("RockWall",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Stop
+	}
+}
+
+Actor RockWall
+{
+	Radius 25
+	Height 90
+	+Solid
+	Xscale 1.3
+	Yscale 1.4
+	Alpha 0.0
+	States
+	{
+		Spawn:
+			RKBL A 0 NODELAY A_Jump(128,"T2")
+			Goto PlayOff
+		T2:
+			RKBS A 0 A_SetScale(1.3,1.9)
+			Goto PlayOff
+		PlayOff:
+			"####" "#####" 1 A_FadeIn(0.2)
+			"####" "#" 100
+			"####" "#" 0 A_ChangeFlag("Solid",0)
+			"####" "#" 1 A_FadeOut
+			Wait
+	}
+}
+
+// Death Actors //
+
+Actor CyberdemonDeathMiniExplosion
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	SeeSound "Cybie/RocketExplosion"
+	Alpha 0.5
+	Scale 0.5
+	States
+	{
+		Spawn:
+		X112 ABCDE 2 BRIGHT
+		X112 FGH 2 BRIGHT A_Fadeout
+		Stop
+	}
+}
+
+Actor CyberdemonDeathExplosion
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	SeeSound "Cybie/RocketExplosion"
+	Alpha 0.5
+	Scale 0.5
+	States
+	{
+		Spawn:
+			X003 ABCDEFGHIJ 2 BRIGHT
+			X003 KLMNOPQRSTUVWXYZ 2 BRIGHT A_Fadeout
+			Stop
+	}
+}
+
+
+Actor CyberdemonDeathBigExplosion
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	Renderstyle ADD
+	SeeSound "Cybie/BigExplosion"
+	Alpha 0.7
+	Scale 1.9
+	States
+	{
+		Spawn:
+			X003 ABCDEFGHIJ 2 BRIGHT
+			X003 KLMNOPQRSTUVWXYZ 2 BRIGHT A_Fadeout
+			Stop
+	}
+}
+
+Actor CyberdemonGibHead
+{
+	+MISSILE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+FLOORCLIP
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+THRUACTORS
+	Gravity 0.8
+	Speed 20
+	Radius 6
+	Height 12
+	Scale 0.7
+	States
+	{
+		Spawn:
+			GIBB ABCDEFGH 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 ThrustThingZ(0,50,0,1)
+			Goto Rotate
+		Rotate:
+			GIBB A 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB B 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB C 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB D 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB E 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB F 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB G 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBB H 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			Loop
+		Rest:
+			GIBB A 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			GIBB A -1
+			Stop
+	}
+}
+
+Actor CyberdemonGibArm1
+{
+	+MISSILE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+FLOORCLIP
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+THRUACTORS
+	Gravity 0.8
+	Speed 20
+	Radius 6
+	Height 12
+	Scale 0.7
+	States
+	{
+		Spawn:
+			GIBA ABCDEFGH 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 ThrustThingZ(0,50,0,1)
+			Goto Rotate
+		Rotate:
+			GIBA A 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA B 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA C 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA D 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA E 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA F 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA G 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBA H 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			Loop
+		Rest:
+			GIBA H 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			GIBA H -1
+			Stop
+	}
+}
+
+Actor CyberdemonGibArm2
+{
+	+MISSILE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+FLOORCLIP
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+THRUACTORS
+	Gravity 0.8
+	Speed 20
+	Radius 6
+	Height 12
+	Scale 0.7
+	States
+	{
+		Spawn:
+			GIBC ABCDEFGH 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0 ThrustThingZ(0,50,0,1)
+			Goto Rotate
+		Rotate:
+			GIBC A 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC B 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC C 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC D 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC E 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC F 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC G 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			GIBC H 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_CheckFloor ("Rest")
+			Loop
+		Rest:
+			GIBC A 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			GIBC A -1
+			Stop
+	}
+}
+
+Actor CyberdemonDeathMiniBlood
+{
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	-NOGRAVITY
+	Renderstyle ADD
+	Scale 0.5
+	Gravity 0.4
+	States
+	{
+		Spawn:
+			TNT1 A 0 NODELAY A_Jump(256,"Blood1","Blood2","Blood3")
+		Blood1:
+			X057 ABCDEFGHIJK 1
+			X057 LMNOPQRS 1 A_Fadeout
+			Stop
+		Blood2:
+			X058 ABCDEFGHIJ 1
+			X058 KLMNOPQR 1 A_Fadeout
+			Stop
+		Blood3:
+			X059 ABCDEFG 1
+			X059 HIJKLM 1 A_Fadeout
+			Stop
+	}
+}
+
+Actor CyberdemonDeathBlood
+{
+	+MISSILE
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	-NOGRAVITY
+	Renderstyle ADD
+	Scale 0.8
+	Gravity 0.4
+	States
+	{
+		Spawn:
+			TNT1 A 0 NODELAY A_Jump(256,"Blood1","Blood2","Blood3")
+		Blood1:
+			X057 ABCDEFGHIJK 1
+			X057 LMNOPQRS 1 A_Fadeout
+			Stop
+		Blood2:
+			X058 ABCDEFGHIJ 1
+			X058 KLMNOPQR 1 A_Fadeout
+			Stop
+		Blood3:
+			X059 ABCDEFG 1
+			X059 HIJKLM 1 A_Fadeout
+			Stop
+	}
+}
+Actor CyberdemonBigBlood
+{
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	Scale 0.65
+	States
+	{
+		Spawn:
+			TNT1 A 0 NODELAY A_Jump(256,"Blood1","Blood2","Blood3","Blood4")
+		Blood1:
+			X050 A 2
+			X050 BBBBBBBBBBBBBBBBBBBB 2 A_Fadeout
+			Stop
+		Blood2:
+			X050 C 2
+			X050 DDDDDDDDDDDDDDDDDDDD 2 A_Fadeout
+			Stop
+		Blood3:
+			X050 E 2
+			X050 FFFFFFFFFFFFFFFFFFFF 2 A_Fadeout
+			Stop
+		Blood4:
+			X050 G 2
+			X050 HHHHHHHHHHHHHHHHHHHH 2 A_Fadeout
+			Stop
+	}
+}
+
+Actor CyberdemonBloodCloudSpawner
+{
+	+MISSILE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+FLOORCLIP
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+THRUACTORS
+	Gravity 0.8
+	Speed 20
+	Radius 6
+	Height 12
+	Scale 0.7
+	States
+	{
+		Spawn:
+			TNT1 AAAAAAAA 5 A_SpawnItemEx("CyberdemonBigBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0
+			Stop
+	}
+}
+
+Actor CyberdemonBloodGoreSpawner
+{
+	+MISSILE
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+FLOORCLIP
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+MOVEWITHSECTOR
+	+THRUACTORS
+	Gravity 0.8
+	Speed 20
+	Radius 6
+	Height 12
+	Scale 0.7
+	States
+	{
+		Spawn:
+			TNT1 AAAAAAAA 5 A_SpawnItemEx("CyberdemonDeathBlood",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION)
+			Loop
+		Death:
+			TNT1 A 0
+			Stop
+	}
+}
