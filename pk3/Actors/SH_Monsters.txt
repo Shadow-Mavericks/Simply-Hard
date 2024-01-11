@@ -2370,7 +2370,7 @@ ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 	States
 	{
 		Spawn:
-			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", 100)
+			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", 200)
 			goto SpawnLoop
 		SpawnLoop:
 			PLAY AB 5 A_Look
@@ -2480,7 +2480,7 @@ ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Son
 	States
 	{
 		Spawn:
-			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", 100)
+			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", 200)
 			goto SpawnLoop
 		SpawnLoop:
 			PLAY AB 5 A_Look
@@ -2972,7 +2972,7 @@ ACTOR whiterabbit : SH_BaseMonster
 	states
 	{
 		Spawn:
-			WHTR A 0 NoDelay A_SetUserVar("user_extralife_chance", 100)
+			WHTR A 0 NoDelay A_SetUserVar("user_extralife_chance", 200)
 			goto SpawnLoop
 		SpawnLoop:
 			WHTR A 5 A_look

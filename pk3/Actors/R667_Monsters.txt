@@ -9340,7 +9340,7 @@ actor DivineShadow : SH_BaseMonster
 	States
 	{
 	Spawn:
-		VIL1 A 0 NoDelay A_SetUserVar("user_extralife_chance", 50)
+		VIL1 A 0 NoDelay A_SetUserVar("user_extralife_chance", 75)
 		goto SpawnLoop
 	SpawnLoop:
 		VIL1 AB 10 A_Look

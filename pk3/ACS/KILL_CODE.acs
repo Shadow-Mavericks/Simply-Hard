@@ -56,7 +56,7 @@ script "ON_KILL" KILL
 	if(GetUserVariable(0, "user_extralife_chance") != -1) // -1 = No spawn
 	{
 		bool doLifeSpawn = false;
-		int lifeChance = Random(0, 100);
+		int lifeChance = Random(0, 200);
 		if(GetUserVariable(0, "user_extralife_chance") > 0)
 		{
 			if(lifeChance <= GetUserVariable(0, "user_extralife_chance"))
@@ -64,13 +64,15 @@ script "ON_KILL" KILL
 		}
 		else
 		{
-			if(Health >= 5000)
+			if(Health >= 6000)
 				doLifeSpawn = true;
-			else if(Health >= 4000 && lifeChance <= 75)
+			else if(Health >= 5000 && lifeChance <= 150)
 				doLifeSpawn = true;
-			else if(Health >= 3000 && lifeChance <= 50)
+			else if(Health >= 4000 && lifeChance <= 125)
 				doLifeSpawn = true;
-			else if(Health >= 2500 && lifeChance <= 10)
+			else if(Health >= 3000 && lifeChance <= 100)
+				doLifeSpawn = true;
+			else if(Health >= 2500 && lifeChance <= 20)
 				doLifeSpawn = true;
 			else if(Health >= 1000 && lifeChance <= 2)
 				doLifeSpawn = true;
@@ -242,7 +244,7 @@ function void PrintDamage(int damage)
 function void hit_marker(bool doSound)
 {
 	if(doSound)
-		LocalAmbientSound("hitsound", 127);
+		LocalAmbientSound("hitsound", 96);
 	
 	//PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
 	
