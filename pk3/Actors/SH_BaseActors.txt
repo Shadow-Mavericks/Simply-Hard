@@ -14,7 +14,9 @@ actor Particle_Base
 //////////////////////////////////////////////////////////////////
 actor SH_BaseMonster
 {
-	Monster
-
+	//$Category Monsters
+	
+	MONSTER
+	
 	var int user_extralife_chance;
 }

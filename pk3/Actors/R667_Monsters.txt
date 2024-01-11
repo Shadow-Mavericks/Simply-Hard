@@ -10763,98 +10763,97 @@ ACTOR ImpRocket
   }
 }
 
-Actor BruiserDemon
+Actor BruiserDemon : SH_BaseMonster
 {
-  //$Category Monsters
-  Health 5000
-  Radius 24
-  Height 64
-  Mass 2000
-  Speed 15
-  PainChance 10
-  Monster
-  +Boss
-  +FloorClip
-  +LookAllAround
-  +MissileEvenMore
-  +NoRadiusDmg
-  MissileType BruiserBall
-  SeeSound "superbaron/scream"
-  PainSound "superbaron/pain"
-  DeathSound "superbaron/death"
-  ActiveSound "superbaron/act"
-  MeleeSound "baron/melee"
-  Obituary "%o was slaughtered by a Bruiserdemon."
-  HitObituary "%o was cremated by a Bruiserdemon."
-  MeleeDamage 35
-  Dropitem "Activebox4"
-  Scale 1.25
-  States
-  {
-  Spawn:
-    BBUS AB 10 Bright A_Look
-    Loop
-  See:
-    BBUS AABBCCDD 3 Bright A_Chase
-    Loop
-  Melee:
-    BBUS E 4 Bright A_FaceTarget
-    BBUS F 4 Bright A_FaceTarget
-    BBUS G 4 Bright A_ComboAttack
-    Goto See
-  Missile:
-    BBUS E 0 Bright A_Jump(144, 8)
-    BBUS EF 3 Bright A_FaceTarget
-    BBUS G 3 Bright A_MissileAttack
-    BBUS G 0 Bright A_Jump(96, 1)
-    Goto See
-    BBUS HI 3 Bright A_FaceTarget
-    BBUS J 3 Bright A_MissileAttack
-    Goto See
-    BBUS E 0 Bright A_Jump(96, 20)
-    BBUS E 6 Bright A_FaceTarget
-    BBUS F 3 Bright A_FaceTarget
-    BBUS F 2 Bright A_Custommissile("BruiserBall2",56,0,-40,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-30,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-20,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-10,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,0,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,10,0)
-    BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,20,0)
-    BBUS G 0 Bright A_Jump(96, 1)
-    Goto See
-    BBUS H 6 Bright A_FaceTarget
-    BBUS I 4 Bright A_FaceTarget
-    BBUS I 2 Bright A_Custommissile("BruiserBall2",56,0,40,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,30,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,20,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,10,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,0,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,-10,0)
-    BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,-20,0)
-    Goto See
-    BBUS KL 6 Bright A_FaceTarget
-    BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-15,0)
-	BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-10,0)
-	BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-5,0)
-    BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,0,0)
-	BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,5,0)
-	BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,10,0)
-    BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,15,0)
-    Goto See
-  Pain:
-    BBUS N 5 Bright A_Pain
-     Goto See
-  Death:
-    BBUD A 6 Bright A_Scream
-    BBUD BCD 4 Bright
-    BBUD EFG 4 Bright
-    BBUD H 4 Bright A_Fall
-    BBUD IJKLMNOP 4 Bright
-    BBUD QRSTUV 4
-    BBUD W -1
-    Stop
-  }
+	//$Category Monsters
+	Health 5000
+	Radius 24
+	Height 64
+	Mass 2000
+	Speed 15
+	PainChance 10
+	+Boss
+	+FloorClip
+	+LookAllAround
+	+MissileEvenMore
+	+NoRadiusDmg
+	MissileType BruiserBall
+	SeeSound "superbaron/scream"
+	PainSound "superbaron/pain"
+	DeathSound "superbaron/death"
+	ActiveSound "superbaron/act"
+	MeleeSound "baron/melee"
+	Obituary "%o was slaughtered by a Bruiserdemon."
+	HitObituary "%o was cremated by a Bruiserdemon."
+	MeleeDamage 35
+	Dropitem "Activebox4"
+	Scale 1.25
+	States
+	{
+		Spawn:
+			BBUS AB 10 Bright A_Look
+			Loop
+		See:
+			BBUS AABBCCDD 3 Bright A_Chase
+			Loop
+		Melee:
+			BBUS E 4 Bright A_FaceTarget
+			BBUS F 4 Bright A_FaceTarget
+			BBUS G 4 Bright A_ComboAttack
+			Goto See
+		Missile:
+			BBUS E 0 Bright A_Jump(144, 8)
+			BBUS EF 3 Bright A_FaceTarget
+			BBUS G 3 Bright A_MissileAttack
+			BBUS G 0 Bright A_Jump(96, 1)
+			Goto See
+			BBUS HI 3 Bright A_FaceTarget
+			BBUS J 3 Bright A_MissileAttack
+			Goto See
+			BBUS E 0 Bright A_Jump(96, 20)
+			BBUS E 6 Bright A_FaceTarget
+			BBUS F 3 Bright A_FaceTarget
+			BBUS F 2 Bright A_Custommissile("BruiserBall2",56,0,-40,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-30,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-20,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,-10,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,0,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,10,0)
+			BBUS G 1 Bright A_Custommissile("BruiserBall2",56,0,20,0)
+			BBUS G 0 Bright A_Jump(96, 1)
+			Goto See
+			BBUS H 6 Bright A_FaceTarget
+			BBUS I 4 Bright A_FaceTarget
+			BBUS I 2 Bright A_Custommissile("BruiserBall2",56,0,40,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,30,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,20,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,10,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,0,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,-10,0)
+			BBUS J 1 Bright A_Custommissile("BruiserBall2",56,0,-20,0)
+			Goto See
+			BBUS KL 6 Bright A_FaceTarget
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-15,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-10,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,-5,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,0,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,5,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,10,0)
+			BBUS M 2 Bright A_Custommissile("BruiserFireSpawner",16,0,15,0)
+			Goto See
+		Pain:
+			BBUS N 5 Bright A_Pain
+			Goto See
+		Death:
+			BBUD A 6 Bright A_Scream
+			BBUD BCD 4 Bright
+			BBUD EFG 4 Bright
+			BBUD H 4 Bright A_Fall
+			BBUD IJKLMNOP 4 Bright
+			BBUD QRSTUV 4
+			BBUD W -1
+			Stop
+	}
 }
 
 Actor BruiserBall
