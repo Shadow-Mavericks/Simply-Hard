@@ -242,7 +242,9 @@ function void PrintDamage(int damage)
 function void hit_marker(bool doSound)
 {
 	if(doSound)
-		PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
+		LocalAmbientSound("hitsound", 127);
+	
+	//PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
 	
 	SetHudSize(1024, 768, 0);
 	SetFont("HITMARK");
