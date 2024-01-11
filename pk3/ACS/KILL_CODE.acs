@@ -6,9 +6,7 @@
 script "ON_KILL" KILL
 {
 	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
-	{
 		terminate;
-	}
 
 	// Get some properties of our monster.
 	str Class = GetActorClass(0);
@@ -134,6 +132,9 @@ function int GetDigit(int Num, int Digit)
 
 function void PrintDamage(int damage)
 {
+	if(damage > 9999)
+		damage = 9999;
+
 	int Digit1 = GetDigit(damage, 0);
 	int Digit2 = GetDigit(damage, 1);
 	int Digit3 = GetDigit(damage, 2);
@@ -238,6 +239,17 @@ function void PrintDamage(int damage)
 	SetActorVelocity(NumberID, 0, 0, 0.25, 0, 0);
 }
 
+function void hit_marker(bool doSound)
+{
+	if(doSound)
+		PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
+	
+	SetHudSize(1024, 768, 0);
+	SetFont("HITMARK");
+	HudMessage(s:"A";
+	HUDMSG_FADEOUT, 6969, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
+}
+
 // [JM] These defs are missing from ACC for some buttfuckin' reason.
 #define GAMEEVENT_PLAYERFRAGS			0
 #define GAMEEVENT_MEDALS				1
@@ -261,10 +273,17 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
 	{
 		int isMonster = CheckFlag(0, "ISMONSTER");
+		int canBleed = !CheckFlag(0, "NOBLOOD");
 		bool doNumbers = false;
 
 		if (isMonster)
 			doNumbers = true;
+			
+		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+		{
+			if(PlayerNumber() != -1 && isMonster)
+				hit_marker(canBleed);
+		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_TARGET) && doNumbers)
 		{
