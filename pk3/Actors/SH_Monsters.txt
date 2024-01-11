@@ -1103,65 +1103,64 @@ Ice:
 
 ACTOR Hardsoul
 {
-  Game Doom
-  SpawnID 110
-  Health 60
-  Radius 16
-  Height 56
-  Mass 50
-  Speed 8
-  Damage 3
-  PainChance 256
-  Monster
-  +NOBlood
-  +NOblooddecals
-  +FLOAT
-  +NOGRAVITY
-  +MISSILEMORE
-  +DONTFALL
-   PainChance "Mightyboot", 255
-  +NOICEDEATH
-  AttackSound "skull/melee"
-  PainSound "skull/pain"
-  DeathSound "skull/death"
-  ActiveSound "skull/active"
-  RenderStyle SoulTrans
-  Obituary "$OB_SKULL" // "%o was spooked by a lost soul."
-  States
-  {
-  Spawn:
-    SKUL AB 4 Bright A_Look
-    Loop
-  See:
-    SKUL AB 4 Bright A_Chase
-    Loop
-  Missile:
-    SKUL C 4 Bright A_FaceTarget
-    SKUL D 4 Bright A_SkullAttack
-    SKUL CD 4 Bright
-    Goto Missile
-  Pain.Mightyboot:
-	TNT1 A 0 A_Facetarget
-	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
-	Goto See
-  Pain:
-    SKUL E 3 Bright
-    SKUL E 3 Bright A_Pain
-    Goto See
-  Death:
-    SKUL F 6 Bright
-    SKUL G 6 Bright A_Scream
-    SKUL H 6 Bright
-    SKUL I 6 Bright A_NoBlocking
-    SKUL J 6
-    SKUL K 6
-    StoP
-Ice:
-    SKUL E 5 A_GenericFreezeDeath
-    SKUL E 1 A_FreezeDeathChunks
-
-    wait
-  }
+	Game Doom
+	SpawnID 110
+	Health 60
+	Radius 16
+	Height 56
+	Mass 50
+	Speed 8
+	Damage 3
+	PainChance 256
+	Monster
+	PainChance "Mightyboot", 255
+	AttackSound "skull/melee"
+	PainSound "skull/pain"
+	DeathSound "skull/death"
+	ActiveSound "skull/active"
+	RenderStyle SoulTrans
+	Obituary "$OB_SKULL" // "%o was spooked by a lost soul."
+	+NOBlood
+	+NOblooddecals
+	+FLOAT
+	+NOGRAVITY
+	+DONTFALL
+	+NOICEDEATH
+	-MISSILEMORE
+	States
+	{
+		Spawn:
+			SKUL AB 4 Bright A_Look
+			Loop
+		See:
+			SKUL AB 4 Bright A_Chase
+			Loop
+		Missile:
+			SKUL C 4 Bright A_FaceTarget
+			SKUL D 4 Bright A_SkullAttack
+			SKUL CD 4 Bright
+			Goto Missile
+		Pain.Mightyboot:
+			TNT1 A 0 A_Facetarget
+			TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
+			Goto See
+		Pain:
+			SKUL E 3 Bright
+			SKUL E 3 Bright A_Pain
+			Goto See
+		Death:
+			SKUL F 6 Bright
+			SKUL G 6 Bright A_Scream
+			SKUL H 6 Bright
+			SKUL I 6 Bright A_NoBlocking
+			SKUL J 6
+			SKUL K 6
+			Stop
+		Ice:
+			SKUL E 5 A_GenericFreezeDeath
+			SKUL E 1 A_FreezeDeathChunks
+			wait
+	}
 }
 ACTOR Hardchaingunguy
 {
