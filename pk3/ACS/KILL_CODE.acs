@@ -276,17 +276,27 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
 	{
-		int isMonster = CheckFlag(0, "ISMONSTER");
-		int canBleed = !CheckFlag(0, "NOBLOOD");
+		bool isMonster = CheckFlag(0, "ISMONSTER");
+		bool canBleed = !CheckFlag(0, "NOBLOOD");
 		bool doNumbers = false;
 
 		if (isMonster)
 			doNumbers = true;
-			
+
 		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 		{
-			if(PlayerNumber() != -1 && isMonster)
-				hit_marker(canBleed);
+			if(PlayerNumber() != -1)
+			{
+				if(isMonster)
+					hit_marker(canBleed);
+				
+				// Gosimer's Berserk Buff
+				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
+				{
+					arg1 += 1;
+					SetResultValue(arg1);
+				}
+			}
 		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_TARGET) && doNumbers)
