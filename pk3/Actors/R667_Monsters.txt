@@ -67,7 +67,6 @@ actor SuicideBomber
 //Flamer zombie + Projectiles
 ACTOR FlamerZombie
 {
-
     Health 30
     Radius 20
     Height 56
@@ -11227,24 +11226,24 @@ scale 0.75
 
 ACTOR PoisonSoul
 {
-Health 100
-Radius 16
-Height 56
-Mass 50
-Speed 6
-Damage 4
-RENDERSTYLE SoulTrans
-PAINCHANCE 255
-MONSTER
-+NOGRAVITY
-+FLOAT
-+dontfall
-AttackSound "skull/melee"
-PainSound "skull/pain"
-DeathSound "skull/death"
-ActiveSound "skull/active"
-Missiletype TorturedSoulPoison
-States
+	Health 100
+	Radius 16
+	Height 56
+	Mass 50
+	Speed 6
+	Damage 4
+	RENDERSTYLE SoulTrans
+	PAINCHANCE 255
+	MONSTER
+	+NOGRAVITY
+	+FLOAT
+	+dontfall
+	AttackSound "skull/melee"
+	PainSound "skull/pain"
+	DeathSound "skull/death"
+	ActiveSound "skull/active"
+	Missiletype TorturedSoulPoison
+	States
    {
    Spawn:
        SKLL A 10 A_Look
@@ -11322,99 +11321,100 @@ actor PoisonSoulPoison2
         Stop
     }
 }
+
 actor PsychicSoul
 {
-  obituary "%o was given an aneurysm by a psychic soul."
-  health 100
-  radius 16
-  height 56
-  mass 50
-  speed 8
-  damage 4
-  painchance 256
-  painsound "psychic/pain"
-  deathsound "skull/death"
-  activesound "psychic/idle"
-  MONSTER
-  +FLOAT
-  +NOGRAVITY
-  +NOICEDEATH
-  +MISSILEMORE
-  +DONTFALL
-  +NOBLOOD
-  states
-  {
-  Spawn:
-    PSUL A 10 bright A_Look
-    loop
-  See:
-    PSUL A 6 bright A_Chase
-    PSUL A 0 A_Jump(16,1)
-    goto see
-    PSUL A 0 A_UnSetshootable
-    PSUL A 1 A_PlaySound("psychic/tele")
-    PSUL A 1 A_SetTranslucent(0.90)
-    PSUL A 1 A_SetTranslucent(0.80)
-    PSUL A 1 A_SetTranslucent(0.70)
-    PSUL A 1 A_SetTranslucent(0.60)
-    PSUL A 1 A_SetTranslucent(0.50)
-    PSUL A 1 A_SetTranslucent(0.40)
-    PSUL A 1 A_SetTranslucent(0.30)
-    PSUL A 1 A_SetTranslucent(0.20)
-    PSUL A 1 A_SetTranslucent(0.10)
-    NULL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
-    NULL A 0 A_Jump(128,25)
-    NULL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0,0,1,1)
-    PSUL A 1 A_PlaySound("psychic/tele")
-    PSUL A 1 A_SetTranslucent(0.10)
-    PSUL A 1 A_SetTranslucent(0.20)
-    PSUL A 1 A_SetTranslucent(0.30)
-    PSUL A 1 A_SetTranslucent(0.40)
-    PSUL A 1 A_SetTranslucent(0.50)
-    PSUL A 1 A_SetTranslucent(0.60)
-    PSUL A 1 A_SetTranslucent(0.70)
-    PSUL A 1 A_SetTranslucent(0.80)
-    PSUL A 1 A_SetTranslucent(0.90)
-    PSUL A 1 A_SetTranslucent(1.0)
-    PSUL A 0 A_SetShootable
-    goto See
-  Missile:
-    PSUL B 0 A_Jump(64,6)
-    PSUL B 1 A_PlaySound("psychic/attack")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 10 bright A_SpawnItem("PsychicRing",0,0,0)
-    PSUL B 4 bright A_CustomMissile("NullProjectile",16,0,0,0)
-    PSUL B 4 bright
-    goto see
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 5 bright A_SkullAttack
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 5 bright A_SkullAttack
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 5 bright A_SkullAttack
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 5 bright A_SkullAttack
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    PSUL B 1 bright A_FaceTarget
-    PSUL B 5 bright A_SkullAttack
-    PSUL B 1 bright A_PlaySound("psychic/charge")
-    goto see
-  Pain:
-    PSUL C 3 bright
-    PSUL C 3 bright A_Pain
-    goto See
-  Death:
-    PSUL D 6 bright
-    PSUL E 6 bright A_Scream
-    PSUL F 6 bright
-    PSUL G 6 bright A_NoBlocking
-    PSUL H 6
-    stop
-  }
+	obituary "%o was given an aneurysm by a psychic soul."
+	health 100
+	radius 16
+	height 56
+	mass 50
+	speed 8
+	damage 4
+	painchance 256
+	painsound "psychic/pain"
+	deathsound "skull/death"
+	activesound "psychic/idle"
+	MONSTER
+	+FLOAT
+	+NOGRAVITY
+	+NOICEDEATH
+	+MISSILEMORE
+	+DONTFALL
+	+NOBLOOD
+	states
+	{
+		Spawn:
+			PSUL A 10 bright A_Look
+			loop
+		See:
+			PSUL A 6 bright A_Chase
+			PSUL A 0 A_Jump(16,1)
+			goto see
+			PSUL A 0 A_UnSetshootable
+			PSUL A 1 A_PlaySound("psychic/tele")
+			PSUL A 1 A_SetTranslucent(0.90)
+			PSUL A 1 A_SetTranslucent(0.80)
+			PSUL A 1 A_SetTranslucent(0.70)
+			PSUL A 1 A_SetTranslucent(0.60)
+			PSUL A 1 A_SetTranslucent(0.50)
+			PSUL A 1 A_SetTranslucent(0.40)
+			PSUL A 1 A_SetTranslucent(0.30)
+			PSUL A 1 A_SetTranslucent(0.20)
+			PSUL A 1 A_SetTranslucent(0.10)
+			NULL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+			NULL A 0 A_Jump(128,25)
+			NULL AAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0,0,1,1)
+			PSUL A 1 A_PlaySound("psychic/tele")
+			PSUL A 1 A_SetTranslucent(0.10)
+			PSUL A 1 A_SetTranslucent(0.20)
+			PSUL A 1 A_SetTranslucent(0.30)
+			PSUL A 1 A_SetTranslucent(0.40)
+			PSUL A 1 A_SetTranslucent(0.50)
+			PSUL A 1 A_SetTranslucent(0.60)
+			PSUL A 1 A_SetTranslucent(0.70)
+			PSUL A 1 A_SetTranslucent(0.80)
+			PSUL A 1 A_SetTranslucent(0.90)
+			PSUL A 1 A_SetTranslucent(1.0)
+			PSUL A 0 A_SetShootable
+			goto See
+		Missile:
+			PSUL B 0 A_Jump(64,6)
+			PSUL B 1 A_PlaySound("psychic/attack")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 10 bright A_SpawnItem("PsychicRing",0,0,0)
+			PSUL B 4 bright A_CustomMissile("NullProjectile",16,0,0,0)
+			PSUL B 4 bright
+			goto see
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 5 bright A_SkullAttack
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 5 bright A_SkullAttack
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 5 bright A_SkullAttack
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 5 bright A_SkullAttack
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			PSUL B 1 bright A_FaceTarget
+			PSUL B 5 bright A_SkullAttack
+			PSUL B 1 bright A_PlaySound("psychic/charge")
+			goto see
+		Pain:
+			PSUL C 3 bright
+			PSUL C 3 bright A_Pain
+			goto See
+		Death:
+			PSUL D 6 bright
+			PSUL E 6 bright A_Scream
+			PSUL F 6 bright
+			PSUL G 6 bright A_NoBlocking
+			PSUL H 6
+			stop
+	}
 }
 
 actor PsychicRing
@@ -15640,133 +15640,4 @@ ACTOR Bulletbus
     FOFO QPONMLK 5
     Goto See
   }
-}
-
-ACTOR Zyberdemon
-{
-  Health 4000
-  Radius 40
-  Height 110
-  Mass 1000
-  Speed 16
-  PainChance 20
-  Monster
-  MinMissileChance 160
-  +BOSS
-  +MISSILEMORE
-  +FLOORCLIP
-  +NORADIUSDMG
-  +DONTMORPH
-  +BOSSDEATH
-  SeeSound "cyber/sight"
-  PainSound "cyber/pain"
-  DeathSound "cyber/death"
-  ActiveSound "cyber/active"
-  Obituary "$OB_CYBORG"
-  States
-  {
-  Spawn:
-    ZYBR AB 10 A_Look
-    Loop
-  See:
-    ZYBR A 3 A_Hoof
-    ZYBR ABBCC 3 A_Chase
-    ZYBR D 3 A_Metal
-    ZYBR D 3 A_Chase
-    Loop
-  Missile:
-    ZYBR A 0 A_Jump(128,"Missile2")
-    ZYBR A 6 A_FaceTarget
-	ZYBR E 1 A_PlaySound("Weapon/Mikro")
-    ZYBR F 1 BRIGHT A_CustomMissile("Microrocket",50,-27, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
-	ZYBR E 1 A_SpawnItemEx("Smoke",20,10,32,1,0,1,0,0,0,0)
-	ZYBR F 1 BRIGHT A_CustomMissile("Microrocket",50,-27, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
-    ZYBR A 0 A_MonsterRefire(85,"CoolDown")
-	Goto Missile+2
-	Missile2:
-	CYBR E 12 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket",50,-27, random(-12, 12))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket",50,-27, random(-12, 12))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket",50,-27, random(-12, 12))
-	goto see
-  CoolDown:
-	ZYBR E 10
-	TNT1 A 0 A_PlaySound("UCHAIN/Winddown")
-	ZYBR E 10
-	TNT1 A 0 A_PlaySound("UCHAIN/Steam")
-	ZYBR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_SpawnItemEx("Smoke",40,-27,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-	Goto See
-  Pain:
-    ZYBR G 10 A_Pain
-    Goto See
-  Death:
-    ZYBR H 10
-    ZYBR I 10 A_Scream
-    ZYBR JKL 10
-    ZYBR M 10 A_NoBlocking
-    ZYBR NO 10
-    ZYBR P 30
-    ZYBR P -1 A_BossDeath
-    Stop
-  }
-}
-
-ACTOR Microrocket
-{
-   Health 10
-   Damage 1
-   Speed 20 //20
-   //FastSpeed 80
-   Height 12
-   Radius 16
-   DeathSound "Weapon/Mikrodeath"
-   Scale 0.75
-   Obituary "%o was hit by a micro rocket"
-   Projectile
-   -WINDTHRUST
-   +NOLIFTDROP
-   +TELESTOMP
-   +CANBLAST
-   +NOFEAR
-   +DONTMORPH
-   -DONTSQUASH
-   -NOTELEOTHER
-   -NOTELEFRAG
-   +FLOORCLIP
-   +RANDOMIZE
-   +BLOODSPLATTER
-   +FORCERADIUSDMG
-   -ALWAYSFAST
-   +SHOOTABLE
-   +Seekermissile
-   States
-   {
-      Spawn:
-         MINR A 0 A_Weave (1,1,frandom(-5.6,5.6),frandom(-5.6,5.6))
-         MINR A 0 A_SetAngle (frandom(-5.6,5.6)+angle)
-         MINR A 0 A_SetPitch (frandom(-5.6,5.6),SPF_FORCECLAMP)
-		 MINR A 0 A_SeekerMissile(30,45,0,0,0)
-         MINR A 1 Bright A_ChangeVelocity (0,frandom(-1.0,1.0),frandom(-1.0,1.0),CVF_RELATIVE)
-         MINR B 0 A_Weave (1,1,frandom(-5.6,5.6),frandom(-5.6,5.6))
-         MINR A 0 A_SetAngle (frandom(-5.6,5.6)+angle)
-         MINR B 0 A_SetPitch (frandom(-5.6,5.6),SPF_FORCECLAMP)
-         MINR B 1 Bright A_ChangeVelocity (0,frandom(-1.0,1.0),frandom(-1.0,1.0),CVF_RELATIVE)
-         MINR A 0 A_Weave (1,1,frandom(-5.6,5.6),frandom(-5.6,5.6))
-         MINR A 0 A_SetAngle (frandom(-5.6,5.6)+angle)
-         MINR A 0 A_SetPitch (frandom(-5.6,5.6),SPF_FORCECLAMP)
-         MINR A 1 Bright A_ChangeVelocity (0,frandom(-1.0,1.0),frandom(-1.0,1.0),CVF_RELATIVE)
-         MINR B 0 A_Weave (1,1,frandom(-5.6,5.6),frandom(-5.6,5.6))
-         MINR A 0 A_SetAngle (frandom(-5.6,5.6)+angle)
-         MINR B 0 A_SetPitch (frandom(-5.6,5.6),SPF_FORCECLAMP)
-         MINR B 1 Bright A_ChangeVelocity (0,frandom(-1.0,1.0),frandom(-1.0,1.0),CVF_RELATIVE)
-         Loop
-      Death:
-         MISL B 1 bright A_SpawnItemEx("Smoke",20,10,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-         MISL B 7 bright A_Explode (32,32,1,1,0,0,0)
-         MISL C 6 bright
-         MISL D 4 bright
-         Stop
-   }
 }
