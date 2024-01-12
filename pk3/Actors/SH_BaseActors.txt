@@ -4,9 +4,14 @@
 actor Particle_Base
 {
 	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
 	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+NOCLIP
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+DROPOFF
+	+NOTELEPORT
+	+NOTIMEFREEZE
 }
 
 //////////////////////////////////////////////////////////////////

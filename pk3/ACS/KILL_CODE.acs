@@ -244,7 +244,7 @@ function void PrintDamage(int damage)
 function void hit_marker(bool doSound)
 {
 	if(doSound)
-		LocalAmbientSound("hitsound", 96);
+		LocalAmbientSound("hitsound", 64);
 	
 	//PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
 	

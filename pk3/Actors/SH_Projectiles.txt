@@ -854,11 +854,8 @@ ACTOR CRITImpBall
   }
 }
 
-Actor impballtrail
+Actor impballtrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -887,11 +884,8 @@ Actor impballtrail
 	}
 }
 
-Actor impballtrailGreen
+Actor impballtrailGreen : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -921,11 +915,8 @@ Actor impballtrailGreen
 	}
 }
 
-Actor impballtrailRed
+Actor impballtrailRed : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -955,11 +946,8 @@ Actor impballtrailRed
 	}
 }
 
-Actor impballtrailYellow
+Actor impballtrailYellow : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -989,11 +977,8 @@ Actor impballtrailYellow
 	}
 }
 
-Actor impballtrailPurple
+Actor impballtrailPurple : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -1025,11 +1010,8 @@ Actor impballtrailPurple
 
 
 
-Actor  impballtrailBlue
+Actor  impballtrailBlue : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -1059,11 +1041,8 @@ Actor  impballtrailBlue
 	}
 }
 
-Actor  IMPballtrailWhite
+Actor  IMPballtrailWhite : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 0.8
@@ -1093,11 +1072,8 @@ Actor  IMPballtrailWhite
 	}
 }
 
-Actor BaronballtrailRed
+Actor BaronballtrailRed : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
@@ -1127,11 +1103,8 @@ Actor BaronballtrailRed
 	}
 }
 
-Actor BaronballtrailGreen
+Actor BaronballtrailGreen : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1160,11 +1133,8 @@ Actor BaronballtrailGreen
 	}
 }
 
-Actor BaronballtrailYellow
+Actor BaronballtrailYellow : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1194,11 +1164,8 @@ Actor BaronballtrailYellow
 	}
 }
 
-Actor BaronballtrailPurple
+Actor BaronballtrailPurple : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1230,11 +1197,8 @@ Actor BaronballtrailPurple
 
 
 
-Actor  BaronballtrailBlue
+Actor  BaronballtrailBlue : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1264,11 +1228,8 @@ Actor  BaronballtrailBlue
 	}
 }
 
-Actor  BaronballtrailWhite
+Actor  BaronballtrailWhite : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1300,11 +1261,8 @@ Actor  BaronballtrailWhite
 
 //fATTY TRAILS
 
-Actor Redfattrail
+Actor Redfattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
@@ -1334,11 +1292,8 @@ Actor Redfattrail
 	}
 }
 
-Actor Orangefattrail
+Actor Orangefattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	//Translation "112:127=[255, 128, 0]:[64, 32, 0]"
@@ -1368,11 +1323,8 @@ Actor Orangefattrail
 	}
 }
 
-Actor Greenfattrail
+Actor Greenfattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1401,11 +1353,8 @@ Actor Greenfattrail
 	}
 }
 
-Actor Yellowfattrail
+Actor Yellowfattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1435,11 +1384,8 @@ Actor Yellowfattrail
 	}
 }
 
-Actor Purplefattrail
+Actor Purplefattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1471,11 +1417,8 @@ Actor Purplefattrail
 
 
 
-Actor  Bluefattrail
+Actor  Bluefattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1505,11 +1448,8 @@ Actor  Bluefattrail
 	}
 }
 
-Actor  Whitefattrail
+Actor  Whitefattrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.5
 	SCALE 1
@@ -1539,11 +1479,8 @@ Actor  Whitefattrail
 	}
 }
 
-Actor critballtrail
+Actor critballtrail : Particle_Base
 {
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	projectile
 	RenderStyle Add
 	Alpha 0.2
 	SCALE 1
@@ -1742,19 +1679,14 @@ ACTOR GasterLaser
 	}
 }
 
-ACTOR Droidlaser
+ACTOR Droidlaser : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	  +Nointeraction
 	RenderStyle Add
 	Scale 0.7
 	States
 	{
 		Spawn:
-			DLRL A 16 Bright			
+			DLRL A 16 Bright
 		End:
 			TNT1 A 0
 			stop
@@ -1787,14 +1719,8 @@ ACTOR Devistaterblast
 	}
 }
 
-Actor LightRailBlast
+Actor LightRailBlast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	  +Nointeraction
-	+NOTIMEFREEZE
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.15
@@ -1809,13 +1735,8 @@ Actor LightRailBlast
 	}
 }
 
-Actor LightninggunBlast
+Actor LightninggunBlast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.1
@@ -1831,14 +1752,8 @@ Actor LightninggunBlast
 }
 
 
-Actor Healgunblast
+Actor Healgunblast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	  +Nointeraction
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.05
@@ -1849,45 +1764,37 @@ Actor Healgunblast
 		Spawn2:
 			TBAL B 1 Bright
 			TBAL D 1 Bright
-			TBAL C 1 Bright			
+			TBAL C 1 Bright
 		Death:
 			TBAL ABCD 1 A_FadeOut(0.01)
 			Loop
 	}
 }
 
-Actor REDLightRailBlast
+Actor REDLightRailBlast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.05
 	States
 	{
 		Spawn:
-			TBAL C 1 Bright	
+			TBAL C 1 Bright
 		End:
 			TBAL C 1 Bright A_FadeOut(0.05)
 			Loop
 	}
 }
 
-Actor REDLightninggunBlast
+Actor REDLightninggunBlast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.05
 	States
 	{
 		Spawn:
-			TBAL C 1 Bright	
+			TBAL C 1 Bright
 		End:
 			TBAL C 1 Bright
 			Stop
@@ -3167,12 +3074,18 @@ Actor ALTNadez : Nadez
 	Speed 40
 	Damage 40
 	BounceType None
+	-DOOMBOUNCE
+	-BOUNCEONACTORS
+	-BOUNCEONFLOORS
+	-BOUNCEONWALLS
 }
 
 Actor Critnadez : Nadez
 {
 	Damage 40
 	SeeSound "Weapons/GrenLF"
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
 	States
 	{
 		Spawn:
@@ -3194,6 +3107,10 @@ Actor ALTCritnadez : Critnadez
 	Speed 40
 	Damage 60
 	BounceType None
+	-DOOMBOUNCE
+	-BOUNCEONACTORS
+	-BOUNCEONFLOORS
+	-BOUNCEONWALLS
 }
 
 Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune

@@ -6,9 +6,10 @@ ACTOR GosimersExplosivepuff
 	+RANDOMIZE
 	+PUFFONACTORS
 	+PUFFGETSOWNER
+	+FORCERADIUSDMG
 	RenderStyle ADD
 	Alpha 1.0
-	Scale 0.25
+	Scale 0.3
 	Mass 5
 	States
 	{
@@ -17,7 +18,7 @@ ACTOR GosimersExplosivepuff
 		TNT1 A 0
 	xdeath:
 	Melee:
-		D6EX A 0 NoDelay A_Explode(8, 32, 0, false, 32)
+		D6EX A 0 NoDelay A_Explode(5, 48, 0, false, 32)
 		D6EX ABCDEFGHIJKLMNOPQ 1 Bright
 		Stop
 	}
@@ -483,7 +484,7 @@ ACTOR Devistator_shell
 	+SCREENSEEKER
 	+FORCERADIUSDMG
 	//SeeSound "weapon/D3DDEVSPAWN"
-	DeathSound "weapons/D3DDEVBOOM"
+	DeathSound "weapon/D3DDEVBOOM"
 	Obituary "%O caught %K's devistator shell" // "%o rode %k's rocket."
 	States
 	{
