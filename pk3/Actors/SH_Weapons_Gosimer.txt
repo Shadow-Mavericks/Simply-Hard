@@ -18,7 +18,7 @@ ACTOR GosimersExplosivepuff
 		TNT1 A 0
 	xdeath:
 	Melee:
-		D6EX A 0 NoDelay A_Explode(5, 48, 0, false, 32)
+		D6EX A 0 NoDelay A_Explode(5, 56, 0, false, 32)
 		D6EX ABCDEFGHIJKLMNOPQ 1 Bright
 		Stop
 	}
