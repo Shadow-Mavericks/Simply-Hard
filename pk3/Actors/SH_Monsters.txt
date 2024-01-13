@@ -1443,6 +1443,12 @@ ACTOR HardHellKnight : BaronOfHell
     Loop
   Melee:
   Missile:
+	BOS2 E 1 A_Jump(255,"Singleshot", "Trippleshot")
+	Singleshot:
+	BOS2 EF 4 A_FaceTarget
+    BOS2 G 4 A_CustomMissile ("Greenbaronball",35,0,0)
+    Goto See
+	Trippleshot:
     BOS2 EF 4 A_FaceTarget
     BOS2 G 4 A_CustomMissile ("Greenbaronball",35,0,0)
     BOS2 EF 4 A_FaceTarget
