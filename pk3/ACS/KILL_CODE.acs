@@ -241,17 +241,30 @@ function void PrintDamage(int damage)
 	SetActorVelocity(NumberID, 0, 0, 0.25, 0, 0);
 }
 
-function void hit_marker(bool doSound)
+#define HIT_OTHER 0
+#define HIT_FLESH 1
+
+function void hit_marker(int soundType, bool friendly)
 {
-	if(doSound)
-		LocalAmbientSound("hitsound", 64);
-	
-	//PlaySound(0, "hitsound", CHAN_AUTO, 0.75, 0, ATTN_NONE, true);
+	if(friendly)
+		LocalAmbientSound("hitsound_friend", 64);
+	else
+	{
+		if(soundType == HIT_FLESH)
+			LocalAmbientSound("hitsound_bloody", 64);
+	}
 	
 	SetHudSize(1024, 768, 0);
-	SetFont("HITMARK");
+	int id = 6969;
+	if(!friendly)
+		SetFont("HITMARK");
+	else
+	{
+		id = 6970;
+		SetFont("HITFREN");
+	}
 	HudMessage(s:"A";
-	HUDMSG_FADEOUT, 6969, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
+	HUDMSG_FADEOUT, id, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
 }
 
 // [JM] These defs are missing from ACC for some buttfuckin' reason.
@@ -276,19 +289,27 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
 	{
-		bool isMonster = CheckFlag(0, "ISMONSTER");
-		bool canBleed = !CheckFlag(0, "NOBLOOD");
+		int victimPlayerNum = PlayerNumber();
+		bool victimIsMonster = CheckFlag(0, "ISMONSTER");
+		bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
+		bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
+		
 		bool doNumbers = false;
+		bool doTeamDamageScale = false;
 
-		if (isMonster)
+		if (victimIsMonster)
 			doNumbers = true;
 
 		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 		{
-			if(PlayerNumber() != -1)
+			int attackerPlayerNum = PlayerNumber();
+			bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
+			bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
+			
+			if(attackerPlayerNum != -1) // Source is player
 			{
-				if(isMonster)
-					hit_marker(canBleed);
+				if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
+					hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 				
 				// Gosimer's Berserk Buff
 				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
@@ -296,18 +317,37 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					arg1 += 1;
 					SetResultValue(arg1);
 				}
+				
+				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
+					doTeamDamageScale = true;
+			}
+			else if(attackerIsMonster) // Source is a monster.
+			{
+				if(attackerIsFriendly && victimPlayerNum != -1) // Friendly monster hitting player.
+					doTeamDamageScale = true;
+			}
+			
+			if(doTeamDamageScale)
+			{
+				int teamDamage = GetCvar("teamdamage");
+				int fixedDamage = arg1 << 16;
+				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
+				SetResultValue(arg1);
 			}
 		}
 
-		if(SetActivator(0, AAPTR_DAMAGE_TARGET) && doNumbers)
+		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 		{
-			GiveInventory("DamageTallyHack", arg1);
-			delay(1);
-			int damage = CheckInventory("DamageTallyHack");
-			if(damage > 0)
+			if(doNumbers)
 			{
-				PrintDamage(damage);
-				TakeInventory("DamageTallyHack", 9999);
+				GiveInventory("DamageTallyHack", arg1);
+				delay(1);
+				int damage = CheckInventory("DamageTallyHack");
+				if(damage > 0)
+				{
+					PrintDamage(damage);
+					TakeInventory("DamageTallyHack", 9999);
+				}
 			}
 		}
 	}
