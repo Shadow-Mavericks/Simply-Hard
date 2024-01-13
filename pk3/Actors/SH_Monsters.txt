@@ -2201,75 +2201,6 @@ ACTOR GasterBlaster
 	}
 }
 
-ACTOR KunaisGasterBlaster
-{
-	Tag "Friendly Gaster Blaster"
-	Health 500
-	Radius 32
-	Height 32
-	Mass 400
-	Speed 16
-	PainChance 50
-	Monster
-	+FLOAT
-	+NOBLOCKMONST
-	+NOGRAVITY
-	+NOBLOOD
-	+NOBLOODDECALS
-	+FRIENDLY
-	+MISSILEEVENMORE
-	+NEVERFAST
-	+QUICKTORETALIATE
-	+NOINFIGHTING
-	SeeSound "Gaster/sight"
-	PainSound "Gaster/pain"
-	DeathSound "Gaster/death"
-	ActiveSound "Gaster/active"
-	Obituary "%o Got Dunked on by a GasterBlaster"
-	HitObituary "%o Got Dunked on by a GasterBlaster"
-	States
-	{
-		Spawn:
-			FSTH A 10 Bright A_Look
-			Loop
-		See:
-			FSTH A 3 Bright A_Chase
-			Loop
-		Missile:
-			FSTH A 1 Bright A_playsound("Gaster/Attack")
-			FSTH B 30 Bright A_FaceTarget
-			FSTH C 0 Bright A_Quake(2, 40, 0, 1024, "")
-			FSTH C 0 Bright A_PlaySound("GASTER/BLAST", CHAN_AUTO)
-			FSTH C 1 Bright A_playsound("GASTER/BLAST")
-			FSTH C 1 Bright A_CustomRailgun(400, 0, "00 00 FF", "ff ff ff", RGF_SILENT, 1, 0, "BulletPuff", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
-			FSTH C 0 Bright A_AlertMonsters
-			Goto See
-		Pain:
-			FSTH B 3 Bright
-			FSTH B 3 Bright A_Pain
-			FSTH B 6 Bright
-			Goto See
-		Death:
-			GDIE A 1 BRIGHT A_playsound("Gaster/Death")
-			GDIE A 5 Bright A_Scream
-			GDIE B 5 Bright
-			GDIE C 5 Bright
-			GDIE D 5 Bright
-			GDIE E 5 Bright
-			GDIE F 5 Bright
-			GDIE G 5 Bright
-			GDIE H 5 Bright
-			GDIE I 5 Bright A_NoBlocking
-			GDIE J 5 Bright A_SetFloorClip
-			NULL A -1
-			Stop
-		Ice:
-			GSTH B 5 A_GenericFreezeDeath
-			GSTH B 1 A_FreezeDeathChunks
-			wait
-	}
-}
-
 ACTOR GasterBlasterFollower
 {
 	Tag "Friendly Super Gaster Blaster"
@@ -2289,6 +2220,8 @@ ACTOR GasterBlasterFollower
 	+MISSILEEVENMORE
 	+QUICKTORETALIATE
 	+NOINFIGHTING
+	+NOTAUTOAIMED
+	-COUNTKILL
 	SeeSound "Gaster/sight"
 	PainSound "Gaster/pain"
 	DeathSound "Gaster/death"
@@ -2336,6 +2269,12 @@ ACTOR GasterBlasterFollower
 			GSTH B 1 A_FreezeDeathChunks
 			wait
 	}
+}
+
+ACTOR KunaisGasterBlaster : GasterBlasterFollower
+{
+	Tag "Friendly Gaster Blaster"
+	Health 500
 }
 
 ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
@@ -2746,7 +2685,7 @@ ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 			KUNI I 0 A_Playsound("Kunai/Transform2", Chan_6)
 			KUNI I 0 A_Playsound("Kunai/Transform2", Chan_5)
 			KUNI A 0 A_Noblocking
-			KUNI A 0 A_SpawnItemEx ("Takoget", 0, 0, 12, 0, 0, -10, 0, 1)
+			KUNI A 0 A_SpawnItemEx ("Takoget", 0, 0, 12, 0, 0, -10, 0, SXF_TRANSFERTRANSLATION | SXF_NOCHECKPOSITION)
 			KUNI I 1 A_FadeOut(0.1)
 			KUNI J 1
 			KUNI K 1
@@ -2766,7 +2705,7 @@ ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 			Stop
 		Despawn2:
 			KUNI A 0 A_Noblocking
-			KUNI A 0 A_SpawnItemEx("InfernoDemon", 0, 0, 0, 0, 0, 0, 0, 0, 0)
+			KUNI A 0 A_SpawnItemEx("InfernoDemon", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TELEFRAG, 0)
 			KUNI I 1 A_FadeOut(0.1)
 			KUNI J 1
 			KUNI K 1
