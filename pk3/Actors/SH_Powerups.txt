@@ -473,7 +473,7 @@ Actor Portalpoint : Inventory
 
 //---------------------------------<MEGASPHERE
 
-ACTOR Megasphere1 : Custominventory
+ACTOR Megasphere1 : Custominventory //Gosimer and kunais version (300 max hp)
 {
   Game Doom
   SpawnID 132
@@ -497,7 +497,7 @@ ACTOR Megasphere1 : Custominventory
   }
 }
 
-ACTOR Megasphere2 : Custominventory
+ACTOR Megasphere2 : Custominventory //Fiends version (max 200 hp)
 {
   Game Doom
   SpawnID 132
@@ -553,7 +553,7 @@ Actor MegasphereFilter: Custominventory Replaces Megasphere
     }
 }
 
-ACTOR Soulsphere2 : Health
+ACTOR Soulsphere2 : Health //capped fiends max supercharge to 200 due to self sustain
 {
   +COUNTITEM
   +INVENTORY.QUIET
@@ -561,7 +561,7 @@ ACTOR Soulsphere2 : Health
   +INVENTORY.AUTOACTIVATE
   +INVENTORY.ALWAYSPICKUP
   Inventory.Amount 100
-  Inventory.MaxAmount 300
+  Inventory.MaxAmount 200
   Inventory.RespawnTics "99999999"
   RenderStyle Add
   Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
@@ -576,7 +576,7 @@ ACTOR Soulsphere2 : Health
   }
 }
 
-ACTOR Soulsphere3 : Health
+ACTOR Soulsphere3 : Health //Kunai + gosimer use this soulsphere for the 300hp version
 {
   +COUNTITEM
   +INVENTORY.QUIET
@@ -599,7 +599,7 @@ ACTOR Soulsphere3 : Health
   }
 }
 
-ACTOR Soulsphere4 : Health //Silent soulsphere
+ACTOR Soulsphere4 : Health //Silent soulsphere  // mainly used for powerups and abilities?
 {
   +COUNTITEM
   +INVENTORY.QUIET
@@ -620,7 +620,7 @@ ACTOR Soulsphere4 : Health //Silent soulsphere
   }
 }
 
-Actor Soulsphere1 : Custominventory Replaces Soulsphere
+Actor Soulsphere1 : Custominventory Replaces Soulsphere  //Soulsphere class distribution check
 {
 	Radius 20
 	Height 16

@@ -90,7 +90,7 @@ Actor Manncobox4 : CustomInventory // Sprites from Tiberium soul, Decorate by Fi
 	}
 }
 
-Actor Activebox1 //Decorate by Fiend Kitsune
+Actor Activebox1 //Decorate by Fiendzy & strikerthehedgefox
 {
 	Radius 1
 	Height 1
@@ -230,7 +230,7 @@ Actor Activebox1 //Decorate by Fiend Kitsune
 	}
 }
 
-Actor Activebox2 //Decorate by Fiend Kitsune
+Actor Activebox2 //Decorate by Fiendzy
 {
 	Radius 1
 	Height 1
@@ -246,36 +246,38 @@ Actor Activebox2 //Decorate by Fiend Kitsune
 			goto RNGSPAWN
 		RNGSPAWN:
 			MANN D 0
-			MANN D 0 A_Jump(255, 2)
+			MANN D 0 A_Jump(255, "suicidebomber", "DED49", "lisafinger", "pistolupgrade", "shotgunupgrade", "SSGUpgrade", "Chaingunupgrade", "Rocketupgrade", "plasmaupgrade", "Bombingrun")
+			MANN D-1
+			Stop
+			
+		suicidebomber:
 			MANN A 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		DED49:
 			MANN A 1 A_playsound("DED49")
 			goto Despawn
-			MANN D 0 A_Jump(255, 3)
+		lisafinger:
 			MANN A 0 A_Playsound("Mannco/Fuckyou")
 			MANN A 1 A_SpawnItemEx ("BigolFuckyou", 0, 0, 1, 0, 0, 0, 0, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		pistolupgrade:
 			MANN A 1 A_SpawnItemEx ("Tier1upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1) 
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		shotgunupgrade:
 			MANN A 1 A_SpawnItemEx ("Tier2upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1) 
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		SSGUpgrade:
 			MANN A 1 A_SpawnItemEx ("Tier3upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0 A_Jump(255, 2)
+		Chaingunupgrade:
 			MANN A 1 A_SpawnItemEx ("Tier4upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0 A_Jump(255, 2)
+		Rocketupgrade:
 			MANN A 1 A_SpawnItemEx ("Tier5upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0 A_Jump(255, 2)
+		plasmaupgrade:
 			MANN A 1 A_SpawnItemEx ("Tier6upgradetoken", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0
-			goto RNGSPAWN
 		Bombingrun:
 			MANN A 1 A_playsoundEX("FHAHAHA", 2)
 			MANN ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABA 2 BRIGHT
@@ -306,7 +308,7 @@ Actor Activebox2 //Decorate by Fiend Kitsune
 	}
 }
 
-Actor Activebox3 //Decorate by Fiend Kitsune
+Actor Activebox3 //Decorate by Fiendzy
 {
 	Radius 1
 	Height 1
@@ -322,35 +324,33 @@ Actor Activebox3 //Decorate by Fiend Kitsune
 			goto RNGSPAWN
 		RNGSPAWN:
 			MANN D 0
-			MANN D 0 A_Jump(254, 2)
+			MANN D 0 A_Jump(254, "SCREAM", "BFGTRAP", "INVULN", "ONEMAN", "GASTERSPAWN", "Soultank", "SENTREH", "diaperchangingstation", "BombingRun")
 			MANN A 1
 			goto bombingrun
-			MANN D 0 A_Jump(254, 2)
+		SCREAM:
 			MANN A 1 A_playsound("WAAAAAAH", Chan_Auto)
 			goto Despawn
-			MANN D 0 A_Jump(254, 2)
+		BFGTRAP:
 			MANN A 1 A_SpawnItemEx ("Manncobfgtrap", 0, 0, 12, 0, 0, -10, 180, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		INVULN:
 			MANN A 1 A_SpawnItemEx ("Super_invuln", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		ONEMAN:
 			MANN A 1 A_SpawnItemEx ("ExtraLifeThingy", 0, 0, 12, 0, 0, 0, 0, 1) 
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		GASTERSPAWN:
 			MANN A 1 A_SpawnItemEx ("Gastersummon", 0, 0, 28, 0, 0, -10, 0, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 2)
+		Soultank:
 			MANN A 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0 A_Jump(255, 2)
+		SENTREH:
 			MANN A 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0 A_Jump(255, 2)
+		diaperchangingstation:
 			MANN A 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, 1)
 			goto despawn
-			MANN D 0
-			goto RNGSPAWN
 		Bombingrun:
 			MANN A 1 A_playsoundEX("FHAHAHA", 2)
 			MANN ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABA 2 BRIGHT
@@ -381,7 +381,7 @@ Actor Activebox3 //Decorate by Fiend Kitsune
 	}
 }
 
-Actor Activebox4 //Decorate by Fiend Kitsune
+Actor Activebox4 //Decorate by Fiendzy
 {
 	Radius 1
 	Height 1
@@ -397,34 +397,29 @@ Actor Activebox4 //Decorate by Fiend Kitsune
 			goto RNGSPAWN
 		RNGSPAWN:
 			MANN D 1
-			MANN D 0 A_Jump(254, 2)
+			MANN D 0 A_Jump(254, "MANNFAIL", "TIME", "SNAKBAR", "BIGSUCC", "WINRAR", "Bluebox")
+		MANNFAIL:
 			MANN D 1 ACS_NamedExecuteWithResult("sv_manncofail")
 			goto Despawn
-			MANN D 0 A_Jump(253, 3)
+		TIME:
 			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
 			MANN D 1 ACS_NamedExecuteWithResult("sv_bestunusednightmare")
 			goto Timespawn
-			MANN D 0 A_Jump(254, 2)
+		BIGSUCC:
 			MANN D 1 A_SpawnItemEx ("DMBalltrap", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 4)
+		SNAKBAR:
 			MANN D 1 ACS_NamedExecuteWithResult("sv_manncosnakbar")
 			MANN D 35 A_SpawnitemEx ("NuclearMissileLauncher", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			MANN D 1 A_SpawnItemEx ("NuclearMissileShot", 0, 0, 12, 0, 0, -20, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 0 A_Jump(255, 5)
+		WINRAR:
 			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
 			MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
 			MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			MANN D 160
 			goto Despawn
-			MANN D 0 A_Jump(255, 5)
-			MANN D 0 A_playsound("Gaster/pain",Chan_voice)
-			MANN D 1 ACS_NamedExecuteWithResult("sv_manncowinrar")
-			MANN D 1 A_SpawnItemEx ("Legendaryarmor", 0, 0, 12, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MANN D 160
-			goto despawn
-			MANN D 1 A_SpawnItemEx("Slimemeteorite", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			MANN D 1 A_SpawnItemEx("Slimemeteorite", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1) //Broken skipped for now
 			MANN D 160
 			goto despawn
 		Bluebox:
@@ -440,10 +435,8 @@ Actor Activebox4 //Decorate by Fiend Kitsune
 			loop
 		Timespawn:
 			MANN D 35
-			MANN D 0 A_JUMP(83,1)
-			Goto Rocketimpspawns
-			MANN D 0 A_JUMP(83,1)
-			Goto Minizombiehordespawn
+			MANN D 0 A_JUMP(255, "Rocketimpspawns", "Minizombiehordespawn", "Bruiserdemon")
+		Bruiserdemon:
 			MANB AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 6
 			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 			MANN A 0 A_alertmonsters(512)
@@ -506,7 +499,7 @@ Actor Bossbox //Decorate by Fiendzy
 			MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
 			goto RNGSpawn
 		RNGSpawn:
-			MANN D 1 A_Jump(256, "Bruisers", "CorruptFiend", "CorruptGosimer", "TrioSpawn", "Kartrape", "Dejavuspawn", "Zombiehordespawn", "ImpWarlordhordespawn")
+			MANN D 1 A_Jump(256, "Bruisers", "CorruptFiend", "CorruptGosimer", "CorruptKunai", "TrioSpawn", "Kartrape", "Dejavuspawn", "Zombiehordespawn", "ImpWarlordhordespawn")
 			goto Despawn
 		Bruisers:
 			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
@@ -521,7 +514,6 @@ Actor Bossbox //Decorate by Fiendzy
 		CorruptKunai:
 			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			
 		Triospawn:
 			MANN D 1 ACS_NamedExecuteWithResult("SV_Chex") //FF7 Jenova piece - moved from Chex payout as its broken -Fiend
 			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
@@ -622,40 +614,23 @@ Actor MiniBossbox //Decorate by Fiendzy
 	{
 		Spawn:
 			MANN A 1
-		Corruptedspawn:
 			MANN A 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
 			MANN AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
 		RNGSpawn:
-			MANN D 1 A_Jump(255, 2)
+			MANN A 1 A_Jump(255, "Fiend", "BRUISERS", "Gosimer", "Kunai", "Triospawn", "Kartrape", "Zombiehordespawn", "Dejavuspawn", "Ettinhordespawn", "Aquamagusspawn", "Atramagusspawn", "flammamagusspawn", "fulgurmagusspawn", "lamiamagusspawn", "pertempusmagusspawn", "terramagusspawn", "ventusmagusspawn")
+		Fiend:
 			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 1 A_Jump(255, 3)
+		BRUISERS:
 			MANN D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			MANN D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 1 A_Jump(255, 2)
+		Gosimer:
 			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 1 A_Jump(255, 2)
+		Kunai:
 			MANN D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-			MANN D 1 A_Jump(255, 2)
-			MANN D 1 
-			goto Triospawn
-			MANN D 0  A_Jump(255,2)
-			MANN D 1
-			Goto Kartrape
-			MANN D 0  A_Jump(255,2)
-			MANN D 1
-			Goto Zombiehordespawn
-			MANN D 0  A_JUMP(255,2)
-			MANN D 1
-			Goto Dejavuspawn
-			Mann D 0 A_Jump(255,2)
-			MANN D 1
-			Goto Ettinhordespawn
-			MANN D 0
-			Goto RNGSpawn
 		Triospawn:
 			MANN D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			MANN D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
@@ -664,7 +639,15 @@ Actor MiniBossbox //Decorate by Fiendzy
 			MANN DCBA 10
 			Goto Despawn
 		Dejavuspawn:
+			MANN D 1 A_Jump(255,"Track1","Track2")
+			goto Raddriver
+		Track1:
 			MANN D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER")
+			goto Raddriver
+		Track2:
+			MANN D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER2")
+			goto Raddriver
+		Raddriver:
 			MANN D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
 		Kartrape:
