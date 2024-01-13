@@ -251,7 +251,7 @@ function void hit_marker(int soundType, bool friendly)
 	else
 	{
 		if(soundType == HIT_FLESH)
-			LocalAmbientSound("hitsound_bloody", 64);
+			LocalAmbientSound("hitsound_flesh", 64);
 	}
 	
 	SetHudSize(1024, 768, 0);

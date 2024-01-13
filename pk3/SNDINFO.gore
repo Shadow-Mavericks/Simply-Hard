@@ -2,6 +2,6 @@ bullethit1 bulitht1
 bullethit2 bulitht2
 bullethit3 bulitht3
 bullethit4 bulitht4
-$random hitsound { bullethit1 bullethit2 bullethit3 bullethit4 }
+$random hitsound_flesh { bullethit1 bullethit2 bullethit3 bullethit4 }
 
 hitsound_friend stahp
