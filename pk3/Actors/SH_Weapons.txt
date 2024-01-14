@@ -4470,10 +4470,10 @@ actor MortarGun : Weapon
 		NULL AA 0 A_Raise
 		loop
 	Fire:
-		MORT B 0 A_PlaySound ("Max/mortarfire")
+		MORT B 0 A_PlaySound ("Max/mortarfire", CHAN_WEAPON)
 		TNT1 A 0 A_FireCustomMissile("Mortarnade", 0, 1, 0)
 		MORT B 8 bright A_GunFlash
-		MORT C 6 A_PlaySound ("Max/mortarload")
+		MORT C 6 A_PlaySound("Max/mortarload", CHAN_AUTO)
 		MORT D 6
 		MORT A 12
 		MORT A 2 A_ReFire
