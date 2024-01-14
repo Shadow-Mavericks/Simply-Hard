@@ -14963,13 +14963,9 @@ actor StarGrabber
 	}
 }
 
-actor StarParticle
+actor StarParticle : Particle_Base
 {
 	scale 0.029
-	+NOGRAVITY
-	+NOBLOCKMAP
-	+NOCLIP
-	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:

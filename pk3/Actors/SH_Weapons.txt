@@ -4439,45 +4439,45 @@ actor Cutshot : Inventory
 
 actor MortarGun : Weapon
 {
-weapon.selectionorder 7
-weapon.AmmoUse 1
-weapon.ammotype "RoketAmmo"
-weapon.ammogive 3
-Weapon.UpSound "Max/WepRaise"
-Inventory.Pickupmessage "Mortar Gun"
+	weapon.selectionorder 7
+	weapon.AmmoUse 1
+	weapon.ammotype "RoketAmmo"
+	weapon.ammogive 3
+	Weapon.UpSound "Max/WepRaise"
+	weapon.kickback 300
+	weapon.BobStyle "InverseSmooth"
+	Weapon.SlotNumber 5
+	weapon.BobRangeX 1
+	weapon.BobRangeY 1
+	weapon.bobspeed 1
+	Inventory.Pickupmessage "Mortar Gun"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.RestrictedTo "MaximusPrime"
-   weapon.kickback 300
-  weapon.BobStyle "InverseSmooth"
-  Weapon.SlotNumber 5
-  weapon.BobRangeX 1
-  weapon.BobRangeY 1
-  weapon.bobspeed 1
-   +NOAUTOAIM
-   States
-   {
-   Ready:
-	  MORT A 1 A_WeaponReady
-	  loop
-   Deselect:
-	  MORT A 1 A_Lower
-	  NULL AA 0 A_Lower
-	  loop
-   Select:
-	  MORT A 1 A_Raise
-	  NULL AA 0 A_Raise
-	  loop
-   Fire:
-	  MORT B 0 A_PlaySound ("Max/mortarfire")
-	  TNT1 A 0 A_FireCustomMissile("Mortarnade",1,1,0)
-	  MORT B 8 bright A_GunFlash
-	  MORT C 6 A_PlaySound ("Max/mortarload")
-	  MORT D 6
-	  MORT A 12
-	  MORT A 2 A_ReFire
-	  Goto Ready
+	+NOAUTOAIM
+	States
+	{
+	Ready:
+		MORT A 1 A_WeaponReady
+		loop
+	Deselect:
+		MORT A 1 A_Lower
+		NULL AA 0 A_Lower
+		loop
+	Select:
+		MORT A 1 A_Raise
+		NULL AA 0 A_Raise
+		loop
+	Fire:
+		MORT B 0 A_PlaySound ("Max/mortarfire")
+		TNT1 A 0 A_FireCustomMissile("Mortarnade", 0, 1, 0)
+		MORT B 8 bright A_GunFlash
+		MORT C 6 A_PlaySound ("Max/mortarload")
+		MORT D 6
+		MORT A 12
+		MORT A 2 A_ReFire
+		Goto Ready
 //	AltFire:
 //	  MORT B 0 A_PlaySound ("Max/mortarfire")
 //	  TNT1 A 0 A_FireCustomMissile("Mortarbouncenade",1,1,0)
@@ -4487,42 +4487,45 @@ Inventory.Pickupmessage "Mortar Gun"
 //	  MORT A 12
 //	  MORT A 2 A_ReFire
 //	  Goto Ready
-   Flash:
-	  TNT1 A 14 BRIGHT A_Light1
-	  stop
-   Spawn:
-   MOGU A -1
-   Stop
+	Flash:
+		TNT1 A 14 BRIGHT A_Light1
+		stop
+	Spawn:
+		MOGU A -1
+	Stop
+	}
 }
-   }
 
 actor Mortarnade
 {
-	+Notimefreeze
-   DeathSound "Max/MedExplo"
-   Obituary "%k's Mortar blew %o away "
-   Radius 12
+	DeathSound "Max/MedExplo"
+	Obituary "%k's Mortar blew %o away "
+	Radius 12
 	Height 8
 	Speed 35
 	Damage 20
 	Gravity 0.7
 	Scale 0.7
-   +NOBLOCKMAP
-   +ACTIVATEPCROSS
-   +ACTIVATEIMPACT
-   +DONTFALL
-   +MISSILE
-   States
-   {
-   Spawn:
-	MORS ABCDEF 4 BRIGHT
-	Loop
-   Death:
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY", TRUE)
-	MOEX A 3 bright A_Explode (20 * random(1, 10), 160, 1)
-	MOEX BCDEFGHIJKLMN 2 bright
-	stop
-  }
+	
+	Projectile
+	-NOGRAVITY
+	+NOTIMEFREEZE
+	
+	States
+	{
+	Spawn:
+		MORS A 0 NoDelay A_ChangeVelocity(0.0, 0.0, 7.0)
+		goto SpawnLoop
+	SpawnLoop:
+		MORS ABCDEF 4 BRIGHT
+		Loop
+	Death:
+		TNT1 A 0 NoDelay A_SetScale(2.0, 2.0)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY", TRUE)
+		MOEX A 3 bright A_Explode (20 * random(1, 10), 160, 1)
+		MOEX BCDEFGHIJKLMN 2 bright
+		stop
+	}
 }
 
 //actor Mortarbouncenade : Mortarnade
@@ -4736,16 +4739,16 @@ weapon.selectionorder 1
   TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldFire")
   ASAU B 0 A_GunFlash
   ASAU B 0 A_PlaySound ("Max/Assault")
-  ASAU B 8 bright A_FireCustomMissile ("PlasShot", 2, 1, 10, 0, 0)
-  ASAU A 2
-  ASAU A 1 A_Refire
+  ASAU B 6 bright A_FireCustomMissile ("PlasShot", 0, 1, 10, 0, 0)
+  ASAU B 1
+  ASAU A 0 A_Refire
   Goto Ready
   AltFire:
   TNT1 A 0 A_Jumpifnoammo("Ready")
   TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldAltFire")
   ASAU C 9 A_GunFlash
   ASAU C 0 A_PlaySound ("Max/Missile")
-  ASAU D 20 bright A_FireCustomMissile ("missshot", 2, 1, 10, 0, 0)
+  ASAU D 20 bright A_FireCustomMissile ("missshot", 0, 1, 10, 0, 0)
   ASAU A 13
   ASAU A 1 A_ReFire
   Goto Ready
@@ -4803,7 +4806,7 @@ actor PlasShot
 	Damage (25 * random(1, 5.5))
 	obituary "%o became another victim to %k's Assault Cannon"
 	DeathSound "Max/MedExplo"
-	scale 0.4
+	scale 0.75
 	States
 	{
 	Spawn:
@@ -4819,19 +4822,19 @@ actor PlasShot
 
 actor GoldPlasShot : PlasShot
 {
-Damage (25 * random(1.5, 6))
-Speed 55
-Scale 0.9
-States
-{
-Spawn:
-	WPLS AB 3 BRIGHT
-	Loop
-Death:
-	TNT1 A 0 A_Explode(9 * random(2, 12), 144, FALSE)
-	WEXP A 0 A_SetTranslucent(1.0, 0)
-	WEXP ABCDEF 3 Bright
-	stop
+	Damage (25 * random(1.5, 6))
+	Speed 55
+	Scale 0.9
+	States
+	{
+	Spawn:
+		WPLS AB 3 BRIGHT
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(9 * random(2, 12), 144, FALSE)
+		WEXP A 0 A_SetTranslucent(1.0, 0)
+		WEXP ABCDEF 3 Bright
+		stop
 	}
 }
 

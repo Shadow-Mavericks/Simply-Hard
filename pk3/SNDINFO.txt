@@ -1021,8 +1021,6 @@ Joy/Pickup	Joyget
 Joy/Used		Joyuse
 Joy/Withdrawl	Joywthdl
 
-Weapon/Quadshotgunfire	QSHOTFIR
-
 FiendsRocket/Reload		FRCKTLD
 
 FiendsRailgun/Fire		FRGSHOT

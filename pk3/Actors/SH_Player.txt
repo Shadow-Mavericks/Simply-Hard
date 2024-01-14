@@ -8,6 +8,7 @@ ACTOR Fiend : DoomPlayer
 	DamageFactor 1.0
 	DamageFactor "Marines", 0
 	DamageFactor "PlayerDynamite", 0.25
+	DamageFactor "PlayerExplosivePuff", 0.0
 	PainChance 255
 	Player.SoundClass "Fiendzy"
 	Player.ColorRange 112, 127
@@ -185,6 +186,7 @@ ACTOR Kunai : DoomPlayer
   DamageFactor 1.25
   DamageFactor "Marines", 0.25
   DamageFactor "PlayerDynamite", 0.25
+  DamageFactor "PlayerExplosivePuff", 0.0
   Player.JumpZ 10
   Player.AirCapacity 1
   States
@@ -341,6 +343,7 @@ ACTOR Gosimer : DoomPlayer
 	DamageFactor 0.75
 	DamageFactor "Marines", 0.25
 	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
+	DamageFactor "PlayerExplosivePuff", 0.0
 	Player.JumpZ 8
 	Player.AirCapacity 0.5
 	States
@@ -478,6 +481,9 @@ actor MaximusPrime : DoomPlayer
 	Mass 100
 	PainChance 255
 	DamageFactor 1
+	DamageFactor "Marines", 0.0
+	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
+	DamageFactor "PlayerExplosivePuff", 0.0
 	Player.DisplayName "Rebel_Scum"
 	Player.CrouchSprite "PLYC"
 	Player.SoundClass "MaximusPrime"

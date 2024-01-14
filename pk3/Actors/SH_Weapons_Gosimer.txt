@@ -7,6 +7,7 @@ ACTOR GosimersExplosivepuff
 	+PUFFONACTORS
 	+PUFFGETSOWNER
 	+FORCERADIUSDMG
+	DamageType "PlayerExplosivePuff"
 	RenderStyle ADD
 	Alpha 1.0
 	Scale 0.3
@@ -18,7 +19,7 @@ ACTOR GosimersExplosivepuff
 		TNT1 A 0
 	xdeath:
 	Melee:
-		D6EX A 0 NoDelay A_Explode(5, 56, 0, false, 32)
+		D6EX A 0 NoDelay A_Explode(5, 48, 0, false, 32)
 		D6EX ABCDEFGHIJKLMNOPQ 1 Bright
 		Stop
 	}
@@ -330,6 +331,12 @@ actor LightningPuff : BulletPuff
 	}
 }
 
+actor LightningPuff_Painless : LightningPuff
+{
+	+PAINLESS
+	-FORCEPAIN
+}
+
 ACTOR Lightning_Rifle: DoomWeapon
 {
 	Game Doom
@@ -374,89 +381,61 @@ ACTOR Lightning_Rifle: DoomWeapon
 		NULL A 0 A_Stopsound(6)
 		THUN C 1 A_Raise
 		Goto Select+1
+
 	Fire:
-		NULL A 0 A_PlaySound("Weapon/Litning_START",Chan_weapon)
+		THUN D 0 A_PlaySound("Weapon/Litning_START",Chan_weapon)
 		THUN D 1
 		THUN E 1
-	Firehold:
-		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldFirehold")
-		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
+		THUN F 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
+		goto FireStart
+		
+	FireStart:
+		THUN F 0 A_JumpIfInventory("Tier6upgradetoken",1,"GoldFireStart")
+		THUN F 0 A_GunFlash
+		THUN F 1 Offset(0, 32) A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff_Painless", 0, 0, 1028, 5, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0, 0) A_REFIRE ("JiggleRando")
 		Goto Fireend
-	jiggleRando:
-		NULL A 0 A_JumpIfInventory("Tier6upgradetoken",1,"goldjiggleRando")
-		THUN F 0 A_JUMP(250, "jiggle1", "jiggle2", "jiggle3", "jiggle4", "jiggle5")
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
+	
+	GoldFireStart:
+		THUN F 0 A_GunFlash
+		THUN F 1 Offset(0, 32) A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(0, 0) A_REFIRE ("JiggleRando")
 		Goto Fireend
-
+	
+	FireHold:
+		THUN F 0 Offset(0, 0) A_JumpIfInventory("Tier6upgradetoken",1,"GoldFirehold")
+		THUN F 0 Offset(0, 0) A_GunFlash
+		THUN F 0 Offset(0, 0) A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
+		THUN F 1 Offset(0, 0)
+		THUN F 1 Offset(0, 0) A_REFIRE ("JiggleRando")
+		goto FireEnd
+		
+	GoldFireHold:
+		THUN F 0 Offset(0, 0) A_GunFlash
+		THUN F 0 Offset(0, 0) A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
+		THUN F 1 Offset(0, 0)
+		THUN F 1 Offset(0, 0) A_REFIRE ("JiggleRando")
+		goto FireEnd
+	
+	JiggleRando:
+		THUN F 0 Offset(0, 0) A_JUMP(250, "jiggle1", "jiggle2", "jiggle3", "jiggle4", "jiggle5")
+		Goto FireHold
 	Jiggle1:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(1,33)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
+		THUN F 0 Offset(1,33)
+		goto FireHold
 	Jiggle2:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-1,33)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
+		THUN F 0 Offset(-1,33)
+		Goto FireHold
 	Jiggle3:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
+		THUN F 0 Offset(-2,34)
+		Goto FireHold
 	Jiggle4:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
+		THUN F 0 Offset(-2,34)
+		Goto FireHold
 	Jiggle5:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,33)  A_RailAttack(6, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "Lightninggunblast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
+		THUN F 0 Offset(0,33)
+		Goto FireHold
 
-	goldFirehold:
-		NULL A 0 A_playsound("Weapon/Litning_LOOP", 6, 1.0, 1)
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 5, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("JiggleRando")
-		Goto Fireend
-	goldjiggleRando:
-		THUN F 0 A_JUMP(250, "goldjiggle1", "goldjiggle2", "goldjiggle3", "goldjiggle4", "goldjiggle5")
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,32) A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
-
-	goldJiggle1:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(1,33)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
-	goldJiggle2:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-1,33)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
-	goldJiggle3:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
-	goldJiggle4:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(-2,34)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
-	goldJiggle5:
-		THUN F 0 A_GUNFLASH
-		THUN F 1 Offset(0,33)  A_RailAttack(12, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "LightningPuff", 0, 0, 1028, 35, 1.0, 4.0, "REDLightninggunBlast")
-		THUN F 1 A_REFIRE ("goldJiggleRando")
-		Goto Fireend
 	Fireend:
 		NULL A 0 A_Stopsound(6)
 		NULL A 0 A_PlaySound("Weapon/Litning_STOP", chan_weapon)
@@ -782,7 +761,7 @@ ACTOR CombatShotgun : Doomweapon
 			SUN2 A 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 			SUN2 AAAAAA 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "GosimersExplosivepuff", FBF_NORANDOM)
 			SUN2 A 0 A_GunFlash
-			SUN2 H 2 A_PlaySound("Weapon/Quadshotgunfire", CHAN_WEAPON)
+			SUN2 H 2 A_PlaySound("GShotgunFireGold", CHAN_WEAPON)
 			SUN2 A 2
 			SUN2 A 3
 			SUN2 G 3

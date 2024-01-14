@@ -12,9 +12,10 @@ $random SSWFire { SSWFire1 SSWFire2 }
 
 // Gosimer's Weapons
 //Duke Shotgun
-GShotgunFire	SHOTGUN7
-GShotgunCock1	SHOTGNC1
-GShotgunCock2	SHOTGNC2
+GShotgunFire		SHOTGUN7
+GShotgunFireGold	SHOTGUN8
+GShotgunCock1		SHOTGNC1
+GShotgunCock2		SHOTGNC2
 
 // Pistol
 GPistolFire01 GPFIRE01
