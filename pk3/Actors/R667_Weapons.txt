@@ -192,7 +192,7 @@ Actor Fiends-Medigun : DoomWeapon
     RLGG A 1 A_Lower
     Goto Deselect+2
   Takeinventory:
-    TNT1 A 0 A_TakeInventory("STRailgun")
+    TNT1 A 0 // A_TakeInventory("STRailgun") // This is an error. What was the intent?
     TNT1 AA 0 A_lower
     RLGG A 1 A_Lower
     Goto Takeinventory+2
