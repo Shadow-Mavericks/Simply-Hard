@@ -250,8 +250,15 @@ function void hit_marker(int soundType, bool friendly)
 		LocalAmbientSound("hitsound_friend", 64);
 	else
 	{
-		if(soundType == HIT_FLESH)
-			LocalAmbientSound("hitsound_flesh", 64);
+		switch(soundType)
+		{
+			case HIT_FLESH:
+				LocalAmbientSound("hitsound_flesh", 64);
+				break;
+			default:
+				LocalAmbientSound("hitsound_generic", 32);
+				break;
+		}
 	}
 	
 	SetHudSize(1024, 768, 0);
