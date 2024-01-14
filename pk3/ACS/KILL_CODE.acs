@@ -296,6 +296,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
 	{
+		// -------------
+		int fixedDamage; // Damage as a fixed-point value. Re-initialized and re-used in multiple places.
+		// -------------
+		
 		int victimPlayerNum = PlayerNumber();
 		bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 		bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
@@ -306,6 +310,29 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 		if (victimIsMonster)
 			doNumbers = true;
+			
+		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+		{
+			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/4) >> 16
+			int falloffAmt = GetUserVariable(0, "user_falloff");
+			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
+			{
+				int falloffRate = GetUserVariable(0, "user_falloffrate");
+				if(falloffRate <= 0)
+					falloffRate = 1;
+					
+				fixedDamage = arg1 << 16;
+				int minDamage = GetUserVariable(0, "user_mindmg");
+				int falloffTics = GetUserVariable(0, "user_fallofftics");
+				
+				arg1 = (fixedDamage - (falloffAmt * (falloffTics/falloffRate))) >> 16;
+				
+				if(arg1 < minDamage)
+					arg1 = minDamage;
+					
+				SetResultValue(arg1);
+			}
+		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 		{
@@ -337,7 +364,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			if(doTeamDamageScale)
 			{
 				int teamDamage = GetCvar("teamdamage");
-				int fixedDamage = arg1 << 16;
+				fixedDamage = arg1 << 16;
 				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
 				SetResultValue(arg1);
 			}

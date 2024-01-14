@@ -6,7 +6,7 @@ ACTOR Fiend : DoomPlayer
 	Height 56
 	Mass 100
 	DamageFactor 1.0
-	DamageFactor "Marines", 0
+	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25
 	DamageFactor "PlayerExplosivePuff", 0.0
 	PainChance 255
@@ -184,7 +184,7 @@ ACTOR Kunai : DoomPlayer
   Player.DamageScreenColor Red, 1.0
   BounceSound "PlayerHP/AlarmKunai"
   DamageFactor 1.25
-  DamageFactor "Marines", 0.25
+  DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
   DamageFactor "PlayerDynamite", 0.25
   DamageFactor "PlayerExplosivePuff", 0.0
   Player.JumpZ 10
@@ -341,7 +341,7 @@ ACTOR Gosimer : DoomPlayer
 	BounceSound "PlayerHP/AlarmGosimer"
 	Player.DamageScreenColor Yellow, 1
 	DamageFactor 0.75
-	DamageFactor "Marines", 0.25
+	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
 	DamageFactor "PlayerExplosivePuff", 0.0
 	Player.JumpZ 8
@@ -481,7 +481,7 @@ actor MaximusPrime : DoomPlayer
 	Mass 100
 	PainChance 255
 	DamageFactor 1
-	DamageFactor "Marines", 0.0
+	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
 	DamageFactor "PlayerExplosivePuff", 0.0
 	Player.DisplayName "Rebel_Scum"
