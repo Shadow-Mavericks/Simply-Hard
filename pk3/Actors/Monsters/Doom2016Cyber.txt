@@ -474,7 +474,7 @@ Actor CyberdemonRocket
 			MICR A 3 BRIGHT A_SpawnItemEx("CyberdemonRocketTrail",-5,0,0,0,0,0,0,SXF_NOCHECKPOSITION,64)
 			Loop
 		Death:
-			TNT1 A 0 NODELAY A_Explode(64,64,0)
+			TNT1 A 0 A_Explode(64,64,0)
 			TNT1 A 0 A_Quake(2,2,0,512)
 			TNT1 A 0 A_SpawnItemEx("CyberdemonRocketExplosionCloud",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 			FX52 ABCDEFGHIJKLMN 1 BRIGHT
@@ -606,8 +606,8 @@ Actor RocketRainUpwardFX
 	States
 	{
 		Spawn:
-			TNT1 A 0 ThrustThingZ(0,50,1,0)
-			MICR B 0 NODELAY A_PlaySound("Cybie/RocketRain",5,1.0,false,0.95)
+			TNT1 A 0 NoDelay ThrustThingZ(0,50,1,0)
+			MICR B 0 A_PlaySound("Cybie/RocketRain",5,1.0,false,0.95)
 			MICR B 50 Bright
 			Goto Death
 		Death:
@@ -626,7 +626,7 @@ Actor RocketRainTracker
 	States
 	{
 		Spawn:
-			TNT1 A 0 NODELAY 
+			TNT1 A 0
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 5 A_Fire
 		SpawnRain:
 			TNT1 A 10 A_SpawnItemEx("RocketRainSpawner",0,0,0, 0,0,0, 0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)

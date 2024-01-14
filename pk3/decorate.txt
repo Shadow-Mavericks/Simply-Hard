@@ -30,7 +30,7 @@
 #include "actors/R667_Weapons.txt"
 #include "actors/R667_SFX_Spawners.txt"
 
-#include "actors/ST_Drops.txt"
+//#include "actors/ST_Drops.txt" // Temp disabled.
 
 #include "actors/Kuzcos_Monsters.txt"
 

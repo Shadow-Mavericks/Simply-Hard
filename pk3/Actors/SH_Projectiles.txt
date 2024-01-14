@@ -3724,48 +3724,6 @@ ACTOR ScatterPShotTrail
     }
 }
 
-
-//AESTHETIC EFFECTS
-
-ACTOR ScatterShotGlow
-{
-   +NOINTERACTION
-   +THRUACTORS
-   RenderStyle Add
-   Alpha 0.4
-   Scale 0.25
-   States
-   {
-   Spawn:
-      TNT1 A 0
-	  SPGL A 1 Bright
-      Stop
-   }
-}
-
-ACTOR ScatterShotGlowSmall : ScatterShotGlow
-{
-   Scale 0.1
-}
-
-ACTOR ScatterPShotTrail
-{
-    Radius 6
-    Height 8
-    Scale 0.06
-    RenderStyle Add
-    Alpha 0.4
-	+NOINTERACTION
-	+THRUACTORS
-    States
-    {
-    Spawn:
-	NDTL A 1 A_FadeOut (0.1)
-	Loop
-    }
-}
-
-
 Actor Flarenadered
 {
   Radius 8

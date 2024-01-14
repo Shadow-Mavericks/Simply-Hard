@@ -313,7 +313,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			
 		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 		{
-			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/4) >> 16
+			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
 			int falloffAmt = GetUserVariable(0, "user_falloff");
 			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
 			{

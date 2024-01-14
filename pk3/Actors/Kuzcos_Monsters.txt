@@ -686,7 +686,7 @@ actor Robotnik : Segwayzombie
   }
 }
 
-actor Snake : Segwayzombie
+actor SolidSnake : Segwayzombie
 {
   +NOICEDEATH
   painchance 100
