@@ -462,6 +462,7 @@ ACTOR Devistator_shell
 	+SEEKERMISSILE
 	+SCREENSEEKER
 	+FORCERADIUSDMG
+	+NOTIMEFREEZE
 	//SeeSound "weapon/D3DDEVSPAWN"
 	DeathSound "weapon/D3DDEVBOOM"
 	Obituary "%O caught %K's devistator shell" // "%o rode %k's rocket."
