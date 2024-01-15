@@ -289,7 +289,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
 		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
 		
-		InInventory "UltimateAbilityCharge", 1000
+		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
 		}
