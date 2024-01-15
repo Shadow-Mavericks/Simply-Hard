@@ -4489,7 +4489,7 @@ ACTOR InfernoDemon
 {
 	Health 8000
 	Speed 16
-	Radius 65
+	Radius 40
 	Height 115
 	Mass 5000
 	Damage 15
@@ -4513,6 +4513,7 @@ ACTOR InfernoDemon
 	+DONTMORPH
 	+NOTARGET
 	+NOICEDEATH
+	+FIXMAPTHINGPOS
 	States
 	{
 	Spawn:
