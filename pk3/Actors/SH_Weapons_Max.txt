@@ -255,10 +255,16 @@ actor AssaultCannonPlasma
 	
 	PROJECTILE
 	+NOTIMEFREEZE
+	+FORCEPAIN
 	
 	States
 	{
 		Spawn:
+			ACSH AB 3 BRIGHT
+			ACSH C 0 BRIGHT A_ChangeFlag("FORCEPAIN", false)
+			ACSH CD 3 BRIGHT
+			goto SpawnLoop
+		SpawnLoop:
 			ACSH ABCD 3 BRIGHT
 			loop
 		Death:
@@ -276,6 +282,10 @@ actor GoldAssaultCannonPlasma : AssaultCannonPlasma
 	States
 	{
 		Spawn:
+			WPLS AB 3 BRIGHT
+			WPLS B 0 BRIGHT A_ChangeFlag("FORCEPAIN", false)
+			goto SpawnLoop
+		SpawnLoop:
 			WPLS AB 3 BRIGHT
 			Loop
 		Death:
@@ -300,6 +310,7 @@ actor AssaultCannonMissile
 	PROJECTILE
 	+NOTIMEFREEZE
 	+FORCERADIUSDMG
+	+FORCEPAIN
 	
 	States
 	{
@@ -308,7 +319,7 @@ actor AssaultCannonMissile
 			loop
 		Death:
 			ACMB A 0 A_SetScale(2.0, 2.0)
-			ACMB A 0 A_Blast(BF_AFFECTBOSSES, 255, 20 * DARKFORCES_RAD_MULT, 10, "BlastEffect", "") // BaseEffect is temporary...
+			ACMB A 0 A_Blast(BF_AFFECTBOSSES, 512, 20 * DARKFORCES_RAD_MULT, 10, "BlastEffect", "") // BaseEffect is temporary...
 			ACMB A 0 A_Explode (70 * DARKFORCES_DMG_MULT, 40 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
 			ACMB ABCDEFHIJKL 3 BRIGHT
 			Stop
@@ -325,8 +336,8 @@ actor GoldAssaultCannonMissile : AssaultCannonMissile
 			Loop
 		Death:
 			ACMB A 0 A_SetScale(2.0, 2.0)
-			ACMB A 0 A_Blast(BF_AFFECTBOSSES, 255, 20 * DARKFORCES_RAD_MULT, 10, "BlastEffect", "") // BaseEffect is temporary...
-			ACMB A 0 A_Explode (80 * DARKFORCES_DMG_MULT, 40 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
+			ACMB A 0 A_Blast(BF_AFFECTBOSSES, 512, 20 * DARKFORCES_RAD_MULT, 10, "BlastEffect", "") // BaseEffect is temporary...
+			ACMB A 0 A_Explode (90 * DARKFORCES_DMG_MULT, 40 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
 			ACMB ABCDEFHIJKL 3 BRIGHT
 			Stop
 	}
@@ -574,7 +585,7 @@ actor AssaultCannon : Weapon
 			BLWH B 2 Bright A_FireCustomMissile ("GoldAssaultCannonPlasma", 0, 1, 10, -0.5, 0)
 			BLWH C 2 Bright
 			BLWH D 2 Bright
-			BLWH A 2
+			BLWH A 1
 			BLWH A 1 A_Refire
 			Goto Ready
 		GoldAltFire:
