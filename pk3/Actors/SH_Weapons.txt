@@ -1083,6 +1083,7 @@ ACTOR ShellZ : Ammo
   Inventory.PickupMessage "Picked up 2 shotgun + SSG Shells"
   Inventory.Amount 2
   Inventory.MaxAmount 50
+  Ammo.BackpackMaxAmount 150
   Inventory.Respawntics"4200"
   Inventory.Icon "SHELA0"
   Inventory.PickupSound "AMMO/SHEL"
@@ -1099,6 +1100,7 @@ ACTOR SuperShellZ : Ammo
   Inventory.PickupMessage "Picked up 10 shotgun + SSG Shells"
   Inventory.Amount 2
   Inventory.MaxAmount 50
+  Ammo.BackpackMaxAmount 150
   Inventory.Respawntics"4200"
   Inventory.Icon "SHELA0"
   Inventory.PickupSound "AMMO/SHEL"
@@ -3783,190 +3785,4 @@ ACTOR FistPuff
 	TNT1 CD 4
 	Stop
   }
-}
-
-actor DFPistol : Weapon
-{
-	obituary "%o couldn't handle %k's blaster pistol"
-	Weapon.SelectionOrder 9
-	Weapon.AmmoUse 1
-	Weapon.AmmoGive 15
-	Weapon.AmmoType "peastolClip"
-	Weapon.UpSound "Max/WepRaise"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.RestrictedTo "MaximusPrime"
-	Decal ""
-	Inventory.PickupMessage "Bryar Pistol"
-	weapon.BobStyle "InverseSmooth"
-	+AMMO_OPTIONAL
-	Weapon.SlotNumber 2
-	weapon.BobRangeX 1
-	weapon.BobRangeY 1
-	weapon.bobspeed 1
-	states
-	{
-	Ready:
-	TNT1 A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldReady")
-	BRYP A 1 A_WeaponReady
-	Loop
-	Deselect:
-	TNT1 A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldDeselect")
-	NULL AA 0 A_Lower
-	BRYP A 1 A_Lower
-	Goto Deselect+2
-	Select:
-	TNT1 A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldSelect")
-	NULL AA 0 A_Raise
-	BRYP A 1 A_Raise
-	Goto Select+2
-	Fire:
-	TNT1 A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldFire")
-	BRYP A 0 A_GunFlash
-	BRYP A 0 A_FireCustomMissile("BlastBolt", 0.25, 0, 5, 0, 0, 0)
-	BRYP A 0 A_PlaySound ("Max/Bryar")
-	BRYP B 6 bright
-	BRYP C 5 bright
-	BRYP A 7
-	BRYP A 0 A_ReFire
-	Goto Ready
-	Flash:
-	TNT1 A 8 bright A_Light1
-	TNT1 A 8 bright A_Light0
-	Goto LightDone
-	GoldSelect:
-	TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-	Goto Select+2
-	NULL AA 0 A_Raise
-	DL44 A 1 A_Raise
-	Loop
-	GoldDeselect:
-	TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-	Goto Deselect+2
-	NULL AA 0 A_Lower
-	DL44 A 1 A_Lower
-	Loop
-	GoldReady:
-	TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-	Goto Ready+1
-	DL44 A 1 A_WeaponReady
-	Wait
-	GoldFire:
-	TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-	Goto Fire+1
-	DL44 A 0 A_GunFlash
-	TNT1 A 0 A_FireCustomMissile("DL44Bolt", 0.25, 1, 5, 0, 0, 0)
-	TNT1 A 0 A_PlaySound ("Max/DL44")
-	DL44 B 4 bright
-	DL44 C 3 bright
-	DL44 A 2
-	DL44 A 0 A_ReFire
-	Goto Ready
-	Spawn:
-	BPIS A -1
-	Stop
-	}
-}
-
-actor DFBlaster : Weapon
-{
-	obituary "%o was blasted away by %k's E-11 rifle"
-	Weapon.SelectionOrder 8
-	Weapon.AmmoUse 1
-	Weapon.AmmoGive 15
-	Weapon.AmmoType "peastolClip"
-	Weapon.UpSound "Max/WepRaise"
-	Inventory.PickupMessage "Blaster Rifle"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.RestrictedTo "MaximusPrime"
-	weapon.BobStyle "InverseSmooth"
-	Weapon.SlotNumber 2
-	weapon.BobRangeX 1
-	weapon.BobRangeY 1
-	weapon.bobspeed 1
-	States
-	{
-		Ready:
-			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldReady")
-			BLRF A 1 A_WeaponReady
-			Loop
-		Deselect:
-			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldDeselect")
-			BLRF A 1 A_Lower
-			NULL AA 0 A_Lower
-			Loop
-		Select:
-			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldSelect")
-			BLRF A 1 A_Raise
-			NULL AA 0 A_Raise
-			Loop
-		Fire:
-			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldFire")
-			BLRF A 0 A_GunFlash
-			BLRF A 0 A_PlaySound ("Max/E-11")
-			BLRF B 3 bright A_FireCustomMissile("RifBlast", random(-2,2),1,4,0,0,random(-2,2))
-			BLRF A 2
-			BLRF A 2 A_ReFire
-			Goto Ready
-		Altfire:
-			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldAltFire")
-			Goto Ready
-		Flash:
-			TNT1 A 3 Bright A_Light1
-			TNT1 A 3 Bright A_Light0
-			Goto LightDone
-		GoldDeselect:
-			NULL AA 0 A_Lower
-			EE11 A 1 A_Lower
-			Loop
-		GoldSelect:
-			NULL AA 0 A_Raise
-			EE11 A 1 A_Raise
-			Loop
-		GoldReady:
-			TNT1 A 0 A_JumpIfInventory("ScopeZoom", 1, "ZoomReady")
-			EE11 A 1 A_WeaponReady
-			Wait
-		GoldFire:
-			TNT1 A 0 A_JumpIfInventory("ScopeZoom", 1, "GoldFireZoom")
-			EE11 A 0 A_GunFlash
-			EE11 A 0 A_PlaySound ("Max/GE-11N")
-			EE11 B 2 bright A_FireCustomMissile("GoldShot", random(-1.25,1.25),1,6,0,0,random(-1.25,1.25))
-			EE11 A 2
-			EE11 A 2 A_ReFire
-			Goto Ready
-		GoldAltfire:
-			TNT1 A 0 A_JumpifInventory ("ScopeZoom", 1, "ZoomOut")
-			EESC A 1 A_PlaySound("Max/Zoom", CHAN_WEAPON)
-			TNT1 A 0 A_GiveInventory("ScopeZoom", 1)
-			EESC A 8 A_ZoomFactor(3)
-			Goto Ready
-		ZoomReady:
-			EESC A 1 A_WeaponReady (WRF_NOBOB|WRF_NOSWITCH|WRF_ALLOWZOOM)
-			Loop
-		GoldFireZoom:
-			TNT1 A 0 A_JumpIfInventory ("peastolClip", 8, "GoldFireZoomDoFire")
-			Goto ZoomOut
-		GoldFireZoomDoFire:
-			EESC A 3
-			TNT1 A 0 A_GunFlash
-			TNT1 A 0 A_PlaySound ("Max/GE-11Z", CHAN_WEAPON)
-			TNT1 A 0 A_FireCustomMissile("GoldShotZoom", 0, 1, 0, 4, 0)
-			TNT1 A 0 A_TakeInventory("peastolClip", 6)
-			EESC A 10
-			TNT1 A 0 A_ReFire
-			Goto Ready
-		ZoomOut:
-			TNT1 A 0 A_TakeInventory("ScopeZoom", 1)
-			TNT1 A 0 A_PlaySound("Max/Zoom", CHAN_WEAPON)
-			EESC A 8 A_ZoomFactor(1)
-			EE11 A 1
-			Goto Ready
-		Spawn:
-			BRIF A -1
-			Stop
-	}
 }
