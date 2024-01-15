@@ -1714,10 +1714,8 @@ ACTOR DevastatorBall
    Radius 12
    Height 8
    Speed 30
-   Damage 256
+   Damage (75)
    PROJECTILE
-   ExplosionRadius 256
-   ExplosionDamage 320
    RENDERSTYLE ADD
    ALPHA 0.90
    Damagetype "Normal"
@@ -1727,16 +1725,16 @@ ACTOR DevastatorBall
    {
    Spawn:
       DBAL AB 4 Bright
-      DBAL A 4 Bright A_Explode (128,128,1)
+      DBAL A 4 Bright A_Explode (64,128,1)
       DBAL A 0 Bright A_Jump (160,3)
       DBAL AAA 0 Bright A_CustomMissile("LiteShot",0,0,Random(0,360))
-      DBAL B 4 Bright A_Explode (128,128,1)
+      DBAL B 4 Bright A_Explode (64,128,1)
       DBAL B 0 Bright A_Jump (160,3)
       DBAL BBB 0 Bright A_CustomMissile("LiteShot",0,0,Random(0,360))
       Goto Spawn+2
    Death:
       DBAL C 5 Bright
-      DBAL D 5 Bright A_Explode
+      DBAL D 5 Bright A_Explode(128, 256, 1)
       DBAL D 0 Bright A_CustomMissile("DevastatorBall2",0,0,18,2)
       DBAL D 0 Bright A_CustomMissile("DevastatorBall2",0,0,36,2)
       DBAL D 0 Bright A_CustomMissile("DevastatorBall2",0,0,54,2)
@@ -1772,8 +1770,6 @@ ACTOR DevastatorBall2
    PROJECTILE
    RENDERSTYLE ADD
    ALPHA 0.90
-   ExplosionRadius 64
-   ExplosionDamage 128
    Damagetype "Normal"
    +THRUGHOST
    SeeSound "weapons/devbal"
@@ -1785,7 +1781,7 @@ ACTOR DevastatorBall2
       Loop
    Death:
       DBA2 C 1 Bright
-      DBA2 C 3 Bright A_Explode
+      DBA2 C 3 Bright A_Explode(128, 64, 1)
       DBA2 DE 4 Bright
       Stop
    }
