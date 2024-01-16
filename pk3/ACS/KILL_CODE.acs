@@ -1,6 +1,27 @@
 #Library "KILL_CODE"
 #include "zcommon.acs"
 
+function bool startsWithVowel(str string)
+{
+	switch (GetChar(string, 0))
+	{
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+		case 'A':
+		case 'E':
+		case 'I':
+		case 'O':
+		case 'U':
+			return true;
+			break;
+	}
+	
+	return false;
+}
+
 // Orb spawning code by StrikerTheHedgefox
 
 script "ON_KILL" KILL
@@ -92,13 +113,29 @@ script "ON_KILL" KILL
 				SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
 				SetActorVelocity(lifeTID, random(-HOrbSpeed/2, HOrbSpeed/2), random(-HOrbSpeed/2, HOrbSpeed/2), random(2.0, VOrbSpeed), false, false);
 
-				HudMessageBold(s:"Two extra lives were dropped by a(n) ", n:0;
-				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				if(startsWithVowel(StrParam(n:0)))
+				{
+					HudMessageBold(s:"Two extra lives were dropped by an ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+				else
+				{
+					HudMessageBold(s:"Two extra lives were dropped by a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
 			}
 			else
 			{
-				HudMessageBold(s:"An extra life was dropped by a(n) ", n:0;
-				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				if(startsWithVowel(StrParam(n:0)))
+				{
+					HudMessageBold(s:"An extra life was dropped by an ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+				else
+				{
+					HudMessageBold(s:"An extra life was dropped by a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
 			}
 		}
 	}
