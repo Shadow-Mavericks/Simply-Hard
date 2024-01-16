@@ -297,7 +297,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
 	{
 		// -------------
-		int fixedDamage; // Damage as a fixed-point value. Re-initialized and re-used in multiple places.
+		int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
+		int yeetAmt;		// Vertical push.
 		// -------------
 		
 		int victimPlayerNum = PlayerNumber();
@@ -332,6 +333,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					
 				SetResultValue(arg1);
 			}
+			
+			if(GetCVar("sh_debug"))
+				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
+			
+			if(CheckActorClass(0, "FistPuff"))
+				yeetAmt = random(arg1 >> 2, arg1);
 		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
@@ -372,6 +379,22 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 		{
+			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST"))
+			{
+				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
+				if(assMass <= 0)
+					assMass = 1;
+				
+				if(assMass > 1)
+				{
+					yeetAmt /= assMass;
+					if(yeetAmt <= 0)
+						yeetAmt = 1; // We always do a little bit of yeeting.
+				}
+				
+				ThrustThingZ(0, yeetAmt, 0, 1);
+			}
+
 			if(doNumbers)
 			{
 				GiveInventory("DamageTallyHack", arg1);
