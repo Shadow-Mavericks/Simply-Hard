@@ -1764,7 +1764,7 @@ ACTOR Battery : AMMO
   Inventory.Amount 20
   Inventory.MaxAmount 300
   Ammo.BackpackAmount 20
-  Ammo.BackpackMaxAmount 600
+  Ammo.BackpackMaxAmount 800
   Inventory.Icon "CELLA0"
   Inventory.Respawntics"4200"
   Inventory.PickupSound "AMMO/BATTERY"
@@ -1926,7 +1926,7 @@ ACTOR BFGCHARGE : Ammo
   Inventory.Amount 2
   Inventory.MaxAmount 10
   Ammo.BackpackAmount 3
-  Ammo.BackpackMaxAmount 15
+  Ammo.BackpackMaxAmount 20
   Inventory.Icon "CELLA0"
   Inventory.Respawntics"8400"
   Inventory.PickupSound "AMMO/BATTERY"
