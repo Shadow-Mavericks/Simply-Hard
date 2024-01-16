@@ -586,6 +586,7 @@ ACTOR DEMONENERGY
 	scale 0.5
 	-SOLID
 	-BLOCKEDBYSOLIDACTORS
+	+DROPOFF
 	+SLIDESONWALLS
 	+NOBLOCKMAP
 	+FORCEXYBILLBOARD
@@ -709,9 +710,13 @@ ACTOR DEMON_ENERGY_BASE : Custominventory
 	Inventory.PickupMessage "Picked up demon energy"
 	+INVENTORY.QUIET
 	+INVENTORY.NEVERRESPAWN
+	+SLIDESONWALLS
 	+FORCEXYBILLBOARD
 	+SEEINVISIBLE
 	+NOTIMEFREEZE
+	+CANBLAST
+	+NOBLOCKMONST
+	+DROPOFF
 	States
 	{
 		// States shared via inheritance. "####" makes it use the last sprite called by the actor.
@@ -2098,6 +2103,9 @@ actor ExtraLifeThingy : CustomInventory
 	+INVENTORY.UNDROPPABLE
 	+INVENTORY.UNTOSSABLE
 	+INVENTORY.NEVERRESPAWN
+	+NOBLOCKMONST
+	+CANBLAST
+	+DROPOFF
 	States
 	{
 		Spawn:
