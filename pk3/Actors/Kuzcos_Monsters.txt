@@ -1,1033 +1,1033 @@
-actor Booster : Segwayzombie
+actor Base_Kart
 {
-  painchance 100
-  +NOICEDEATH
-  Deathsound "Booster/death"
-  obituary "%o was flattened by Booster!"
-  states
-  {
-  Spawn:
-    BOST A 10 A_Look
-    BOST A 0 A_Stop
-    BOST A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    BOST A 0 A_Jump (8, "Coward", "Brave")
-    BOST A 1 A_Chase
-    BOST A 0 A_Recoil (-2)
-    BOST A 0 A_MeleeAttack
-    BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    BOST A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    BOST A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    BOST A 0 A_Pain
-    BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    BOST A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    BOST A 0 A_StopSoundEx ("SoundSlot7")
-    BOST A 0 A_PlaySound ("weapons/rocklx")
-    BOST A 5 A_Scream
-    BOST A 5 A_NoBlocking
-    stop
-  }
+	health 60
+	radius 20
+	height 56
+	mass 100
+	speed 1
+	painchance 100
+	deathsound "grunt/death"
+	meleerange 32
+	meleedamage 1
+	Species "Kart"
+	Dropitem "Activebox1" 1
+	MONSTER
+	+NOICEDEATH
+	+FLOORCLIP
+	+STRIFEDAMAGE
+	+THRUSPECIES
+	+LOOKALLAROUND
+	+SLIDESONWALLS
+	+INVULNERABLE
+	+DROPOFF
 }
 
-actor Bowser : Segwayzombie
+actor Booster : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Bowser/death"
-  obituary "%o was run down by a Boswer!"
-  States
-  {
-Spawn:
-    BWSR A 10 A_Look
-    BWSR A 0 A_Stop
-    BWSR A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    BWSR A 0 A_Jump (8, "Coward", "Brave")
-    BWSR A 1 A_Chase
-    BWSR A 0 A_Recoil (-2)
-    BWSR A 0 A_MeleeAttack
-    BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    BWSR A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    BWSR A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    BWSR A 0 A_Pain
-    BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    BWSR A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    BWSR A 0 A_StopSoundEx ("SoundSlot7")
-    BWSR A 0 A_PlaySound ("weapons/rocklx")
-    BWSR A 5 A_Scream
-    BWSR A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Booster/death"
+	obituary "%o was flattened by Booster!"
+	states
+	{
+		Spawn:
+			BOST A 10
+			BOST A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			BOST A 0 A_Jump (8, "Coward", "Brave")
+			BOST A 1 A_Chase
+			BOST A 0 A_Recoil (-2)
+			BOST A 0 A_MeleeAttack
+			BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			BOST A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			BOST A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			BOST A 0 A_Pain
+			BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			BOST A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			BOST A 0 A_StopSoundEx ("SoundSlot7")
+			BOST A 0 A_PlaySound ("weapons/rocklx")
+			BOST A 5 A_Scream
+			BOST A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor CaptainFalcon : Segwayzombie
+actor Bowser : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  deathsound "cptf/death"
-  obituary "%o was Falcon ran over!"
-  states
-  {
-  Spawn:
-    CPTF A 10 A_Look
-    CPTF A 0 A_Stop
-    CPTF A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    CPTF A 0 A_Jump (8, "Coward", "Brave")
-    CPTF A 1 A_Chase
-    CPTF A 0 A_Recoil (-2)
-    CPTF A 0 A_MeleeAttack
-    CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    CPTF A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    CPTF A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    CPTF A 0 A_Pain
-    CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    CPTF A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    CPTF A 0 A_StopSoundEx ("SoundSlot7")
-    CPTF A 0 A_PlaySound ("weapons/rocklx")
-    CPTF A 5 A_Scream
-    CPTF A 5 A_NoBlocking
-    stop
-  }
-}
-  
-  actor Crashbandicock : Segwayzombie
-{
-  +NOICEDEATH
-  painchance 100
-  deathsound "crash/death"
-  obituary "%o Crashed into a bandicoot!"
-  states
-  {
-  Spawn:
-    CRSH A 10 A_Look
-    CRSH A 0 A_Stop
-    CRSH A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    CRSH A 0 A_Jump (8, "Coward", "Brave")
-    CRSH A 1 A_Chase
-    CRSH A 0 A_Recoil (-2)
-    CRSH A 0 A_MeleeAttack
-    CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    CRSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    CRSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    CRSH A 0 A_Pain
-    CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    CRSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    CRSH A 0 A_StopSoundEx ("SoundSlot7")
-    CRSH A 0 A_PlaySound ("weapons/rocklx")
-    CRSH A 5 A_Scream
-    CRSH A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Bowser/death"
+	obituary "%o was run down by a Boswer!"
+	States
+	{
+		Spawn:
+			BWSR A 10
+			BWSR A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			BWSR A 0 A_Jump (8, "Coward", "Brave")
+			BWSR A 1 A_Chase
+			BWSR A 0 A_Recoil (-2)
+			BWSR A 0 A_MeleeAttack
+			BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			BWSR A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			BWSR A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			BWSR A 0 A_Pain
+			BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			BWSR A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			BWSR A 0 A_StopSoundEx ("SoundSlot7")
+			BWSR A 0 A_PlaySound ("weapons/rocklx")
+			BWSR A 5 A_Scream
+			BWSR A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor DunkyKung : Segwayzombie
+actor CaptainFalcon : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  obituary "%o was Monkeying around!"
-  deathsound "dnky/death"
-  states
-  {
-  Spawn:
-    DNKY A 10 A_Look
-    DNKY A 0 A_Stop
-    DNKY A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    DNKY A 0 A_Jump (8, "Coward", "Brave")
-    DNKY A 1 A_Chase
-    DNKY A 0 A_Recoil (-2)
-    DNKY A 0 A_MeleeAttack
-    DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    DNKY A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    DNKY A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    DNKY A 0 A_Pain
-    DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    DNKY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    DNKY A 0 A_StopSoundEx ("SoundSlot7")
-    DNKY A 0 A_PlaySound ("weapons/rocklx")
-    DNKY A 5 A_Scream
-    DNKY A 5 A_NoBlocking
-    stop
-  }
+	deathsound "cptf/death"
+	obituary "%o was Falcon ran over!"
+	states
+	{
+		Spawn:
+			CPTF A 10
+			CPTF A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			CPTF A 0 A_Jump (8, "Coward", "Brave")
+			CPTF A 1 A_Chase
+			CPTF A 0 A_Recoil (-2)
+			CPTF A 0 A_MeleeAttack
+			CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			CPTF A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			CPTF A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			CPTF A 0 A_Pain
+			CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			CPTF A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			CPTF A 0 A_StopSoundEx ("SoundSlot7")
+			CPTF A 0 A_PlaySound ("weapons/rocklx")
+			CPTF A 5 A_Scream
+			CPTF A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor HyperMetalSonic : Segwayzombie
+actor Crashbandicock : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Metalsonic/death"
-  obituary "%o was Outdone by Metal!"
-  states
-  {
-  Spawn:
-    MSNC A 10 A_Look
-    MSNC A 0 A_Stop
-    MSNC A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    MSNC A 0 A_Jump (8, "Coward", "Brave")
-    MSNC A 1 A_Chase
-    MSNC A 0 A_Recoil (-2)
-    MSNC A 0 A_MeleeAttack
-    MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    MSNC A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    MSNC A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    MSNC A 0 A_Pain
-    MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    MSNC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    MSNC A 0 A_StopSoundEx ("SoundSlot7")
-    MSNC A 0 A_PlaySound ("weapons/rocklx")
-    MSNC A 5 A_Scream
-    MSNC A 5 A_NoBlocking
-    stop
-  }
+	deathsound "crash/death"
+	obituary "%o Crashed into a bandicoot!"
+	states
+	{
+		Spawn:
+			CRSH A 10
+			CRSH A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			CRSH A 0 A_Jump (8, "Coward", "Brave")
+			CRSH A 1 A_Chase
+			CRSH A 0 A_Recoil (-2)
+			CRSH A 0 A_MeleeAttack
+			CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			CRSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			CRSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			CRSH A 0 A_Pain
+			CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			CRSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			CRSH A 0 A_StopSoundEx ("SoundSlot7")
+			CRSH A 0 A_PlaySound ("weapons/rocklx")
+			CRSH A 5 A_Scream
+			CRSH A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Knux : Segwayzombie
+actor DunkyKung : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Sonc/death"
-  obituary "%o was run down by an Echidna!"
-  states
-  {
-  Spawn:
-    KNUK A 10 A_Look
-    KNUK A 0 A_Stop
-    KNUK A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    KNUK A 0 A_Jump (8, "Coward", "Brave")
-    KNUK A 1 A_Chase
-    KNUK A 0 A_Recoil (-2)
-    KNUK A 0 A_MeleeAttack
-    KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    KNUK A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    KNUK A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    KNUK A 0 A_Pain
-    KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    KNUK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    KNUK A 0 A_StopSoundEx ("SoundSlot7")
-    KNUK A 0 A_PlaySound ("weapons/rocklx")
-    KNUK A 5 A_Scream
-    KNUK A 5 A_NoBlocking
-    stop
-  }
+	obituary "%o was Monkeying around!"
+	deathsound "dnky/death"
+	states
+	{
+		Spawn:
+			DNKY A 10
+			DNKY A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			DNKY A 0 A_Jump (8, "Coward", "Brave")
+			DNKY A 1 A_Chase
+			DNKY A 0 A_Recoil (-2)
+			DNKY A 0 A_MeleeAttack
+			DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			DNKY A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			DNKY A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			DNKY A 0 A_Pain
+			DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			DNKY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			DNKY A 0 A_StopSoundEx ("SoundSlot7")
+			DNKY A 0 A_PlaySound ("weapons/rocklx")
+			DNKY A 5 A_Scream
+			DNKY A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Koopa : Segwayzombie
+actor HyperMetalSonic : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  deathsound "Koopa/death"
-  obituary "%o was Flattened by a Koopa Troopa"
-  states
-  {
-  Spawn:
-    KOOP A 10 A_Look
-    KOOP A 0 A_Stop
-    KOOP A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    KOOP A 0 A_Jump (8, "Coward", "Brave")
-    KOOP A 1 A_Chase
-    KOOP A 0 A_Recoil (-2)
-    KOOP A 0 A_MeleeAttack
-    KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    KOOP A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    KOOP A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    KOOP A 0 A_Pain
-    KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    KOOP A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    KOOP A 0 A_StopSoundEx ("SoundSlot7")
-    KOOP A 0 A_PlaySound ("weapons/rocklx")
-    KOOP A 5 A_Scream
-    KOOP A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Metalsonic/death"
+	obituary "%o was Outdone by Metal!"
+	states
+	{
+		Spawn:
+			MSNC A 10
+			MSNC A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			MSNC A 0 A_Jump (8, "Coward", "Brave")
+			MSNC A 1 A_Chase
+			MSNC A 0 A_Recoil (-2)
+			MSNC A 0 A_MeleeAttack
+			MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			MSNC A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			MSNC A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			MSNC A 0 A_Pain
+			MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			MSNC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MSNC A 0 A_StopSoundEx ("SoundSlot7")
+			MSNC A 0 A_PlaySound ("weapons/rocklx")
+			MSNC A 5 A_Scream
+			MSNC A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Linkin : Segwayzombie
+actor Knux : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Link/death"
-  obituary "%o was Defeated by The Hero of Time!"
-  states
-  {
-  Spawn:
-    LINK A 10 A_Look
-    LINK A 0 A_Stop
-    LINK A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    LINK A 0 A_Jump (8, "Coward", "Brave")
-    LINK A 1 A_Chase
-    LINK A 0 A_Recoil (-2)
-    LINK A 0 A_MeleeAttack
-    LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    LINK A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    LINK A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    LINK A 0 A_Pain
-    LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    LINK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    LINK A 0 A_StopSoundEx ("SoundSlot7")
-    LINK A 0 A_PlaySound ("weapons/rocklx")
-    LINK A 5 A_Scream
-    LINK A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Sonc/death"
+	obituary "%o was run down by an Echidna!"
+	states
+	{
+		Spawn:
+			KNUK A 10
+			KNUK A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			KNUK A 0 A_Jump (8, "Coward", "Brave")
+			KNUK A 1 A_Chase
+			KNUK A 0 A_Recoil (-2)
+			KNUK A 0 A_MeleeAttack
+			KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			KNUK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			KNUK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			KNUK A 0 A_Pain
+			KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			KNUK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			KNUK A 0 A_StopSoundEx ("SoundSlot7")
+			KNUK A 0 A_PlaySound ("weapons/rocklx")
+			KNUK A 5 A_Scream
+			KNUK A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Luigi : Segwayzombie
+actor Koopa : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  deathsound "Luigi/death"
-  obituary "%o was run over by Luigi!"
-  states
-  {
-  Spawn:
-    LUIG A 10 A_Look
-    LUIG A 0 A_Stop
-    LUIG A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    LUIG A 0 A_Jump (8, "Coward", "Brave")
-    LUIG A 1 A_Chase
-    LUIG A 0 A_Recoil (-2)
-    LUIG A 0 A_MeleeAttack
-    LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    LUIG A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    LUIG A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    LUIG A 0 A_Pain
-    LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    LUIG A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    LUIG A 0 A_StopSoundEx ("SoundSlot7")
-    LUIG A 0 A_PlaySound ("weapons/rocklx")
-    LUIG A 5 A_Scream
-    LUIG A 5 A_NoBlocking
-    stop
-  }
+	deathsound "Koopa/death"
+	obituary "%o was Flattened by a Koopa Troopa"
+	states
+	{
+		Spawn:
+			KOOP A 10
+			KOOP A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			KOOP A 0 A_Jump (8, "Coward", "Brave")
+			KOOP A 1 A_Chase
+			KOOP A 0 A_Recoil (-2)
+			KOOP A 0 A_MeleeAttack
+			KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			KOOP A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			KOOP A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			KOOP A 0 A_Pain
+			KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			KOOP A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			KOOP A 0 A_StopSoundEx ("SoundSlot7")
+			KOOP A 0 A_PlaySound ("weapons/rocklx")
+			KOOP A 5 A_Scream
+			KOOP A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Mario : Segwayzombie
+actor Linkin : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  deathsound "Mario/death"
-  obituary "%o was Stomped by the Italian Plumber!"
-  states
-  {
-  Spawn:
-    MARI A 10 A_Look
-    MARI A 0 A_Stop
-    MARI A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    MARI A 0 A_Jump (8, "Coward", "Brave")
-    MARI A 1 A_Chase
-    MARI A 0 A_Recoil (-2)
-    MARI A 0 A_MeleeAttack
-    MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    MARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    MARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    MARI A 0 A_Pain
-    MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    MARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    MARI A 0 A_StopSoundEx ("SoundSlot7")
-    MARI A 0 A_PlaySound ("weapons/rocklx")
-    MARI A 5 A_Scream
-    MARI A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Link/death"
+	obituary "%o was Defeated by The Hero of Time!"
+	states
+	{
+		Spawn:
+			LINK A 10
+			LINK A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			LINK A 0 A_Jump (8, "Coward", "Brave")
+			LINK A 1 A_Chase
+			LINK A 0 A_Recoil (-2)
+			LINK A 0 A_MeleeAttack
+			LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			LINK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			LINK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			LINK A 0 A_Pain
+			LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			LINK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			LINK A 0 A_StopSoundEx ("SoundSlot7")
+			LINK A 0 A_PlaySound ("weapons/rocklx")
+			LINK A 5 A_Scream
+			LINK A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Megaman : Segwayzombie
+actor Luigi : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Megaman/death"
-  obituary "%o was Inferior to Megaman!!"
-  states
-  {
-  Spawn:
-    MGMN A 10 A_Look
-    MGMN A 0 A_Stop
-    MGMN A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    MGMN A 0 A_Jump (8, "Coward", "Brave")
-    MGMN A 1 A_Chase
-    MGMN A 0 A_Recoil (-2)
-    MGMN A 0 A_MeleeAttack
-    MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    MGMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    MGMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    MGMN A 0 A_Pain
-    MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    MGMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    MGMN A 0 A_StopSoundEx ("SoundSlot7")
-    MGMN A 0 A_PlaySound ("weapons/rocklx")
-    MGMN A 5 A_Scream
-    MGMN A 5 A_NoBlocking
-    stop
-  }
+	deathsound "Luigi/death"
+	obituary "%o was run over by Luigi!"
+	states
+	{
+		Spawn:
+			LUIG A 10
+			LUIG A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			LUIG A 0 A_Jump (8, "Coward", "Brave")
+			LUIG A 1 A_Chase
+			LUIG A 0 A_Recoil (-2)
+			LUIG A 0 A_MeleeAttack
+			LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			LUIG A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			LUIG A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			LUIG A 0 A_Pain
+			LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			LUIG A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			LUIG A 0 A_StopSoundEx ("SoundSlot7")
+			LUIG A 0 A_PlaySound ("weapons/rocklx")
+			LUIG A 5 A_Scream
+			LUIG A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Motobug : Segwayzombie
+actor Mario : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Motorbug/death"
-  obituary "%o was bulldozed by Motorbug!"
-  states
-  {
-  Spawn:
-    MOTO A 10 A_Look
-    MOTO A 0 A_Stop
-    MOTO A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    MOTO A 0 A_Jump (8, "Coward", "Brave")
-    MOTO A 1 A_Chase
-    MOTO A 0 A_Recoil (-2)
-    MOTO A 0 A_MeleeAttack
-    MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    MOTO A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    MOTO A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    MOTO A 0 A_Pain
-    MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    MOTO A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    MOTO A 0 A_StopSoundEx ("SoundSlot7")
-    MOTO A 0 A_PlaySound ("weapons/rocklx")
-    MOTO A 5 A_Scream
-    MOTO A 5 A_NoBlocking
-    stop
-  }
+	deathsound "Mario/death"
+	obituary "%o was Stomped by the Italian Plumber!"
+	states
+	{
+		Spawn:
+			MARI A 10
+			MARI A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			MARI A 0 A_Jump (8, "Coward", "Brave")
+			MARI A 1 A_Chase
+			MARI A 0 A_Recoil (-2)
+			MARI A 0 A_MeleeAttack
+			MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			MARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			MARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			MARI A 0 A_Pain
+			MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			MARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MARI A 0 A_StopSoundEx ("SoundSlot7")
+			MARI A 0 A_PlaySound ("weapons/rocklx")
+			MARI A 5 A_Scream
+			MARI A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Pacman : Segwayzombie
+actor Megaman : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Pacman/death"
-  obituary "%o was Eaten by Pacman!"
-  states
-  {
-  Spawn:
-    PCMN A 10 A_Look
-    PCMN A 0 A_Stop
-    PCMN A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    PCMN A 0 A_Jump (8, "Coward", "Brave")
-    PCMN A 1 A_Chase
-    PCMN A 0 A_Recoil (-2)
-    PCMN A 0 A_MeleeAttack
-    PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    PCMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    PCMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    PCMN A 0 A_Pain
-    PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    PCMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    PCMN A 0 A_StopSoundEx ("SoundSlot7")
-    PCMN A 0 A_PlaySound ("weapons/rocklx")
-    PCMN A 5 A_Scream
-    PCMN A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Megaman/death"
+	obituary "%o was Inferior to Megaman!!"
+	states
+	{
+		Spawn:
+			MGMN A 10
+			MGMN A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			MGMN A 0 A_Jump (8, "Coward", "Brave")
+			MGMN A 1 A_Chase
+			MGMN A 0 A_Recoil (-2)
+			MGMN A 0 A_MeleeAttack
+			MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			MGMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			MGMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			MGMN A 0 A_Pain
+			MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			MGMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MGMN A 0 A_StopSoundEx ("SoundSlot7")
+			MGMN A 0 A_PlaySound ("weapons/rocklx")
+			MGMN A 5 A_Scream
+			MGMN A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Peach : Segwayzombie
+actor Motobug : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Peach/death"
-  obituary "%o was demolished by the princess!"
-  states
-  {
-  Spawn:
-    PECH A 10 A_Look
-    PECH A 0 A_Stop
-    PECH A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    PECH A 0 A_Jump (8, "Coward", "Brave")
-    PECH A 1 A_Chase
-    PECH A 0 A_Recoil (-2)
-    PECH A 0 A_MeleeAttack
-    PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    PECH A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    PECH A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    PECH A 0 A_Pain
-    PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    PECH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    PECH A 0 A_StopSoundEx ("SoundSlot7")
-    PECH A 0 A_PlaySound ("weapons/rocklx")
-    PECH A 5 A_Scream
-    PECH A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Motorbug/death"
+	obituary "%o was bulldozed by Motorbug!"
+	states
+	{
+		Spawn:
+			MOTO A 10
+			MOTO A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			MOTO A 0 A_Jump (8, "Coward", "Brave")
+			MOTO A 1 A_Chase
+			MOTO A 0 A_Recoil (-2)
+			MOTO A 0 A_MeleeAttack
+			MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			MOTO A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			MOTO A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			MOTO A 0 A_Pain
+			MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			MOTO A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MOTO A 0 A_StopSoundEx ("SoundSlot7")
+			MOTO A 0 A_PlaySound ("weapons/rocklx")
+			MOTO A 5 A_Scream
+			MOTO A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Robotnik : Segwayzombie
+actor Pacman : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Robotnik/death"
-  obituary "%o was annihilated by Dr.Robotnik!"
-  states
-  {
-  Spawn:
-    RBNK A 10 A_Look
-    RBNK A 0 A_Stop
-    RBNK A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    RBNK A 0 A_Jump (8, "Coward", "Brave")
-    RBNK A 1 A_Chase
-    RBNK A 0 A_Recoil (-2)
-    RBNK A 0 A_MeleeAttack
-    RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    RBNK A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    RBNK A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    RBNK A 0 A_Pain
-    RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    RBNK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    RBNK A 0 A_StopSoundEx ("SoundSlot7")
-    RBNK A 0 A_PlaySound ("weapons/rocklx")
-    RBNK A 5 A_Scream
-    RBNK A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Pacman/death"
+	obituary "%o was Eaten by Pacman!"
+	states
+	{
+		Spawn:
+			PCMN A 10
+			PCMN A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			PCMN A 0 A_Jump (8, "Coward", "Brave")
+			PCMN A 1 A_Chase
+			PCMN A 0 A_Recoil (-2)
+			PCMN A 0 A_MeleeAttack
+			PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			PCMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			PCMN A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			PCMN A 0 A_Pain
+			PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			PCMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			PCMN A 0 A_StopSoundEx ("SoundSlot7")
+			PCMN A 0 A_PlaySound ("weapons/rocklx")
+			PCMN A 5 A_Scream
+			PCMN A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor SolidSnake : Segwayzombie
+actor Peach : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Jack/death"
-  obituary "%o was Eliminated by Snake!"
-  states
-  {
-  Spawn:
-    JACK A 10 A_Look
-    JACK A 0 A_Stop
-    JACK A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    JACK A 0 A_Jump (8, "Coward", "Brave")
-    JACK A 1 A_Chase
-    JACK A 0 A_Recoil (-2)
-    JACK A 0 A_MeleeAttack
-    JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    JACK A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    JACK A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    JACK A 0 A_Pain
-    JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    JACK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    JACK A 0 A_StopSoundEx ("SoundSlot7")
-    JACK A 0 A_PlaySound ("weapons/rocklx")
-    JACK A 5 A_Scream
-    JACK A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Peach/death"
+	obituary "%o was demolished by the princess!"
+	states
+	{
+		Spawn:
+			PECH A 10
+			PECH A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			PECH A 0 A_Jump (8, "Coward", "Brave")
+			PECH A 1 A_Chase
+			PECH A 0 A_Recoil (-2)
+			PECH A 0 A_MeleeAttack
+			PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			PECH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			PECH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			PECH A 0 A_Pain
+			PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			PECH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			PECH A 0 A_StopSoundEx ("SoundSlot7")
+			PECH A 0 A_PlaySound ("weapons/rocklx")
+			PECH A 5 A_Scream
+			PECH A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Sonic : Segwayzombie
+actor Robotnik : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Sonc/death"
-  obituary "%o was defeated by Sonic The Hedgehog!"
-  states
-  {
-  Spawn:
-    SONC A 10 A_Look
-    SONC A 0 A_Stop
-    SONC A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    SONC A 0 A_Jump (8, "Coward", "Brave")
-    SONC A 1 A_Chase
-    SONC A 0 A_Recoil (-2)
-    SONC A 0 A_MeleeAttack
-    SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    SONC A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    SONC A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    SONC A 0 A_Pain
-    SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    SONC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    SONC A 0 A_StopSoundEx ("SoundSlot7")
-    SONC A 0 A_PlaySound ("weapons/rocklx")
-    SONC A 5 A_Scream
-    SONC A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Robotnik/death"
+	obituary "%o was annihilated by Dr.Robotnik!"
+	states
+	{
+		Spawn:
+			RBNK A 10
+			RBNK A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			RBNK A 0 A_Jump (8, "Coward", "Brave")
+			RBNK A 1 A_Chase
+			RBNK A 0 A_Recoil (-2)
+			RBNK A 0 A_MeleeAttack
+			RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			RBNK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			RBNK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			RBNK A 0 A_Pain
+			RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			RBNK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			RBNK A 0 A_StopSoundEx ("SoundSlot7")
+			RBNK A 0 A_PlaySound ("weapons/rocklx")
+			RBNK A 5 A_Scream
+			RBNK A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Tails : Segwayzombie
+actor SolidSnake : Base_Kart
 {
-  +NOICEDEATH
-  Deathsound "sonc/death"
-  painchance 100
-  obituary "%o was beaten by a two tailed fox!"
-  states
-  {
-  Spawn:
-    TAIL A 10 A_Look
-    TAIL A 0 A_Stop
-    TAIL A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    TAIL A 0 A_Jump (8, "Coward", "Brave")
-    TAIL A 1 A_Chase
-    TAIL A 0 A_Recoil (-2)
-    TAIL A 0 A_MeleeAttack
-    TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    TAIL A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    TAIL A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    TAIL A 0 A_Pain
-    TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    TAIL A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    TAIL A 0 A_StopSoundEx ("SoundSlot7")
-    TAIL A 0 A_PlaySound ("weapons/rocklx")
-    TAIL A 5 A_Scream
-    TAIL A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Jack/death"
+	obituary "%o was Eliminated by Snake!"
+	states
+	{
+		Spawn:
+			JACK A 10
+			JACK A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			JACK A 0 A_Jump (8, "Coward", "Brave")
+			JACK A 1 A_Chase
+			JACK A 0 A_Recoil (-2)
+			JACK A 0 A_MeleeAttack
+			JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			JACK A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			JACK A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			JACK A 0 A_Pain
+			JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			JACK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			JACK A 0 A_StopSoundEx ("SoundSlot7")
+			JACK A 0 A_PlaySound ("weapons/rocklx")
+			JACK A 5 A_Scream
+			JACK A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Toad : Segwayzombie
+actor Sonic : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Toad/death"
-  obituary "%o was run over by Toad!"
-  states
-  {
-  Spawn:
-    TOAD A 10 A_Look
-    TOAD A 0 A_Stop
-    TOAD A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    TOAD A 0 A_Jump (8, "Coward", "Brave")
-    TOAD A 1 A_Chase
-    TOAD A 0 A_Recoil (-2)
-    TOAD A 0 A_MeleeAttack
-    TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    TOAD A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    TOAD A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    TOAD A 0 A_Pain
-    TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    TOAD A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    TOAD A 0 A_StopSoundEx ("SoundSlot7")
-    TOAD A 0 A_PlaySound ("weapons/rocklx")
-    TOAD A 5 A_Scream
-    TOAD A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Sonc/death"
+	obituary "%o was defeated by Sonic The Hedgehog!"
+	states
+	{
+		Spawn:
+			SONC A 10
+			SONC A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			SONC A 0 A_Jump (8, "Coward", "Brave")
+			SONC A 1 A_Chase
+			SONC A 0 A_Recoil (-2)
+			SONC A 0 A_MeleeAttack
+			SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			SONC A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			SONC A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			SONC A 0 A_Pain
+			SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			SONC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			SONC A 0 A_StopSoundEx ("SoundSlot7")
+			SONC A 0 A_PlaySound ("weapons/rocklx")
+			SONC A 5 A_Scream
+			SONC A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor VariaSuitSamus : Segwayzombie
+actor Tails : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Varidth1"
-  obituary "%o was Crushed By A Galatic Bounty Hunter!"
-  states
-  {
-  Spawn:
-    VARI A 10 A_Look
-    VARI A 0 A_Stop
-    VARI A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    VARI A 0 A_Jump (8, "Coward", "Brave")
-    VARI A 1 A_Chase
-    VARI A 0 A_Recoil (-2)
-    VARI A 0 A_MeleeAttack
-    VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    VARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    VARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    VARI A 0 A_Pain
-    VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    VARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    VARI A 0 A_StopSoundEx ("SoundSlot7")
-    VARI A 0 A_PlaySound ("weapons/rocklx")
-    VARI A 5 A_Scream
-    VARI A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "sonc/death"
+	obituary "%o was beaten by a two tailed fox!"
+	states
+	{
+		Spawn:
+			TAIL A 10
+			TAIL A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			TAIL A 0 A_Jump (8, "Coward", "Brave")
+			TAIL A 1 A_Chase
+			TAIL A 0 A_Recoil (-2)
+			TAIL A 0 A_MeleeAttack
+			TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			TAIL A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			TAIL A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			TAIL A 0 A_Pain
+			TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			TAIL A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			TAIL A 0 A_StopSoundEx ("SoundSlot7")
+			TAIL A 0 A_PlaySound ("weapons/rocklx")
+			TAIL A 5 A_Scream
+			TAIL A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Wario : Segwayzombie
+actor Toad : Base_Kart
 {
-  +NOICEDEATH
-  painchance 100
-  Deathsound "Wario/death"
-  obituary "%o was Crushed by Wario!"
-  states
-  {
-  Spawn:
-    WARI A 10 A_Look
-    WARI A 0 A_Stop
-    WARI A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    WARI A 0 A_Jump (8, "Coward", "Brave")
-    WARI A 1 A_Chase
-    WARI A 0 A_Recoil (-2)
-    WARI A 0 A_MeleeAttack
-    WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    WARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    WARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    WARI A 0 A_Pain
-    WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    WARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    WARI A 0 A_StopSoundEx ("SoundSlot7")
-    WARI A 0 A_PlaySound ("weapons/rocklx")
-    WARI A 5 A_Scream
-    WARI A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Toad/death"
+	obituary "%o was run over by Toad!"
+	states
+	{
+		Spawn:
+			TOAD A 10
+			TOAD A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			TOAD A 0 A_Jump (8, "Coward", "Brave")
+			TOAD A 1 A_Chase
+			TOAD A 0 A_Recoil (-2)
+			TOAD A 0 A_MeleeAttack
+			TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			TOAD A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			TOAD A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			TOAD A 0 A_Pain
+			TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			TOAD A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			TOAD A 0 A_StopSoundEx ("SoundSlot7")
+			TOAD A 0 A_PlaySound ("weapons/rocklx")
+			TOAD A 5 A_Scream
+			TOAD A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor Yoshi : Segwayzombie
+actor VariaSuitSamus : Base_Kart
 {
-  +NOICEDEATH
-  obituary "%o was Killed by Yoshi"
-  painchance 100
-  Deathsound "Yoshi/death"
-  states
-  {
-  Spawn:
-    YOSH A 10 A_Look
-    YOSH A 0 A_Stop
-    YOSH A 0 A_StopSoundEx ("SoundSlot7")
-    TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    YOSH A 0 A_Jump (8, "Coward", "Brave")
-    YOSH A 1 A_Chase
-    YOSH A 0 A_Recoil (-2)
-    YOSH A 0 A_MeleeAttack
-    YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    YOSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    YOSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    YOSH A 0 A_Pain
-    YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    YOSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    YOSH A 0 A_StopSoundEx ("SoundSlot7")
-    YOSH A 0 A_PlaySound ("weapons/rocklx")
-    YOSH A 5 A_Scream
-    YOSH A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Varidth1"
+	obituary "%o was Crushed By A Galatic Bounty Hunter!"
+	states
+	{
+		Spawn:
+			VARI A 10
+			VARI A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			VARI A 0 A_Jump (8, "Coward", "Brave")
+			VARI A 1 A_Chase
+			VARI A 0 A_Recoil (-2)
+			VARI A 0 A_MeleeAttack
+			VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			VARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			VARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			VARI A 0 A_Pain
+			VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			VARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			VARI A 0 A_StopSoundEx ("SoundSlot7")
+			VARI A 0 A_PlaySound ("weapons/rocklx")
+			VARI A 5 A_Scream
+			VARI A 5 A_NoBlocking
+			stop
+	}
 }
 
-actor ZeroSuitSamus : Segwayzombie
+actor Wario : Base_Kart
 {
-  +NOICEDEATH
-  obituary "%o was smashed by Samus"
-  painchance 100
-  Deathsound "Sammy/death"
-  states
-  {
-  Spawn:
-    SAMY A 10 A_Look
-    SAMY A 0 A_Stop
-    SAMY A 0 A_StopSoundEx ("SoundSlot7")
-	TNT1 A 0 A_GiveInventory ("MonsterInvulnerability", 1)
-    Goto See
-  See:
-    SAMY A 0 A_Jump (8, "Coward", "Brave")
-    SAMY A 1 A_Chase
-    SAMY A 0 A_Recoil (-2)
-    SAMY A 0 A_MeleeAttack
-    SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-    SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
-    loop
-  Coward:
-    SAMY A 0 A_ChangeFlag ("FRIGHTENED", 1)
-    goto See
-  Brave:
-    SAMY A 0 A_ChangeFlag ("FRIGHTENED", 0)
-    goto See
-  Pain:
-    SAMY A 0 A_Pain
-    SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-    goto See
-  Death:
-    SAMY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
-    SAMY A 0 A_StopSoundEx ("SoundSlot7")
-    SAMY A 0 A_PlaySound ("weapons/rocklx")
-    SAMY A 5 A_Scream
-    SAMY A 5 A_NoBlocking
-    stop
-  }
+	Deathsound "Wario/death"
+	obituary "%o was Crushed by Wario!"
+	states
+	{
+		Spawn:
+			WARI A 10
+			WARI A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			WARI A 0 A_Jump (8, "Coward", "Brave")
+			WARI A 1 A_Chase
+			WARI A 0 A_Recoil (-2)
+			WARI A 0 A_MeleeAttack
+			WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			WARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			WARI A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			WARI A 0 A_Pain
+			WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			WARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			WARI A 0 A_StopSoundEx ("SoundSlot7")
+			WARI A 0 A_PlaySound ("weapons/rocklx")
+			WARI A 5 A_Scream
+			WARI A 5 A_NoBlocking
+			stop
+	}
+}
+
+actor Yoshi : Base_Kart
+{
+	obituary "%o was Killed by Yoshi"
+	Deathsound "Yoshi/death"
+	states
+	{
+		Spawn:
+			YOSH A 10
+			YOSH A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			YOSH A 0 A_Jump (8, "Coward", "Brave")
+			YOSH A 1 A_Chase
+			YOSH A 0 A_Recoil (-2)
+			YOSH A 0 A_MeleeAttack
+			YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			YOSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			YOSH A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			YOSH A 0 A_Pain
+			YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			YOSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			YOSH A 0 A_StopSoundEx ("SoundSlot7")
+			YOSH A 0 A_PlaySound ("weapons/rocklx")
+			YOSH A 5 A_Scream
+			YOSH A 5 A_NoBlocking
+			stop
+	}
+}
+
+actor ZeroSuitSamus : Base_Kart
+{
+	obituary "%o was smashed by Samus"
+	Deathsound "Sammy/death"
+	states
+	{
+		Spawn:
+			SAMY A 10
+			SAMY A 0 A_StopSoundEx ("SoundSlot7")
+			TNT1 A 0 A_ChangeFlag ("INVULNERABLE", 0)
+			TNT1 A 0 A_ChangeFlag ("THRUSPECIES", 0)
+			TNT1 A 0 A_Look
+			Goto See
+		See:
+			SAMY A 0 A_Jump (8, "Coward", "Brave")
+			SAMY A 1 A_Chase
+			SAMY A 0 A_Recoil (-2)
+			SAMY A 0 A_MeleeAttack
+			SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
+			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			loop
+		Coward:
+			SAMY A 0 A_ChangeFlag ("FRIGHTENED", 1)
+			goto See
+		Brave:
+			SAMY A 0 A_ChangeFlag ("FRIGHTENED", 0)
+			goto See
+		Pain:
+			SAMY A 0 A_Pain
+			SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
+			goto See
+		Death:
+			SAMY A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			SAMY A 0 A_StopSoundEx ("SoundSlot7")
+			SAMY A 0 A_PlaySound ("weapons/rocklx")
+			SAMY A 5 A_Scream
+			SAMY A 5 A_NoBlocking
+			stop
+	}
 }
 
 ACTOR Swarm

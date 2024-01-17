@@ -6369,26 +6369,6 @@ Actor Joyresistance2 : PowerupGiver
   }
 }
 
-ACTOR MonsterInvulnerability : PowerupGiver
-{
-  +NOGRAVITY
-  -COUNTITEM
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.BIGPOWERUP
-  Inventory.MaxAmount 0
-  Powerup.Duration 105
-  Powerup.Type "Invulnerable"
-  Powerup.Color InverseMap
-  Inventory.PickupAnnouncerEntry ""
-  States
-  {
-  Spawn:
-    PINV ABCD 6 Bright
-    Loop
-  }
-}
-
 actor Powerup_Slimed : PowerSpeed
 {
 Speed 0.5

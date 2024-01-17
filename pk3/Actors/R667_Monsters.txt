@@ -1437,7 +1437,6 @@ actor SegwayZombie
   height 56
   mass 100
   speed 1
-  +noicedeath
   painchance 100
   seesound "grunt/sight"
   painsound "grunt/pain"
@@ -1445,11 +1444,10 @@ actor SegwayZombie
   activesound "grunt/active"
   meleedamage 1
   meleerange 32
-    +Noicedeath
   Dropitem "Activebox1" 1
-  +noicedeath
   translation "112:127=[139,134,78]:[0,0,0]"
   MONSTER
+  +NOICEDEATH
   +FLOORCLIP
   +STRIFEDAMAGE
   states
