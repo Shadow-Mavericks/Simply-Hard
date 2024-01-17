@@ -25,3 +25,32 @@ actor SH_BaseMonster
 	
 	var int user_extralife_chance;
 }
+
+//////////////////////////////////////////////////////////////////
+// Portals
+//////////////////////////////////////////////////////////////////
+actor PortalUnit_Base
+{
+	Scale 0.5
+	Radius 8
+	Height 8
+	Speed 10
+	Damage 0
+	Gravity 1
+	Projectile
+	+THRUACTORS
+	+NOTIMEFREEZE
+	-NOGRAVITY
+}
+
+actor PortalPayout_Base
+{
+	Radius 1
+	Height 1
+	Scale 0.5
+	+THRUACTORS
+	+NOBLOOD
+	+INVULNERABLE
+	+DONTGIB
+	+NOTIMEFREEZE
+}
