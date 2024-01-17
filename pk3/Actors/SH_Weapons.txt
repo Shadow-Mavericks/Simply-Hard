@@ -476,13 +476,9 @@ Actor Leftpistolshot : Inventory
 			Stop
 	}
 }
-Actor Tier1upgradetoken : Inventory
+
+Actor Tier1upgradetoken : UpgradeToken_Base
 {
-	Radius 4
-	Height 18
-	scale 0.75
-	+INVENTORY.UNDROPPABLE
-	Inventory.MaxAmount 1
 	Inventory.PickupMessage "You picked up a Pistol Upgrade token! Stats have been added!!!"
 	Inventory.PickupSound "Mannco/PLToken"
 	States
@@ -496,13 +492,8 @@ Actor Tier1upgradetoken : Inventory
 	}
 }
 
-Actor Tier2upgradetoken : Inventory
+Actor Tier2upgradetoken : UpgradeToken_Base
 {
-	Radius 4
-	Height 18
-	scale 0.75
-	+INVENTORY.UNDROPPABLE
-	Inventory.MaxAmount 1
 	Inventory.PickupMessage "You picked up a Shotgun Upgrade token! Stats have been added!!!"
 	Inventory.PickupSound "Mannco/PLToken"
 	States
@@ -516,13 +507,8 @@ Actor Tier2upgradetoken : Inventory
 	}
 }
 
-Actor Tier3upgradetoken : Inventory
+Actor Tier3upgradetoken : UpgradeToken_Base
 {
-	Radius 12
-	Height 18
-	scale 0.75
-	+INVENTORY.UNDROPPABLE
-	Inventory.MaxAmount 1
 	Inventory.PickupMessage "You picked up a Super Shotgun Upgrade token! Stats have been added!!!"
 	Inventory.PickupSound "Mannco/RLToken"
 	States
@@ -536,104 +522,86 @@ Actor Tier3upgradetoken : Inventory
 	}
 }
 
-Actor Tier4upgradetoken : Inventory
+Actor Tier4upgradetoken : UpgradeToken_Base
 {
-  Radius 12
-  Height 18
-  scale 0.75
-+INVENTORY.UNDROPPABLE
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Chaingun / Machinegun Upgrade token! Stats have been added!!!"
-  Inventory.PickupSound "Mannco/RLToken"
-  States
-  {
-  Spawn:
-	GUGT KLMD 3 BRIGHT
-	Loop
-  pickup:
-	TNT1 A 0 A_Giveinventory("shellz",4)
-	Stop
-  }
+	Inventory.PickupMessage "You picked up a Chaingun / Machinegun Upgrade token! Stats have been added!!!"
+	Inventory.PickupSound "Mannco/RLToken"
+	States
+	{
+		Spawn:
+			GUGT KLMD 3 BRIGHT
+			Loop
+		pickup:
+			TNT1 A 0 A_Giveinventory("shellz",4)
+			Stop
+	}
 }
 
-Actor Tier5upgradetoken : Inventory
+Actor Tier5upgradetoken : UpgradeToken_Base
 {
-  Radius 12
-  Height 18
-  scale 0.75
-+INVENTORY.UNDROPPABLE
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Rocket launcher upgrade token! stats increased / added!"
-  Inventory.PickupSound "Mannco/RLToken"
-  States
-  {
-  Spawn:
-	GUGT NOPD 3 Bright
-	loop
-  pickup:
-	TNT1 A 0 A_Giveinventory("RoketAmmo",5)
-	Stop
-  }
+	Inventory.PickupMessage "You picked up a Rocket launcher upgrade token! stats increased / added!"
+	Inventory.PickupSound "Mannco/RLToken"
+	States
+	{
+		Spawn:
+			GUGT NOPD 3 Bright
+			loop
+		pickup:
+			TNT1 A 0 A_Giveinventory("RoketAmmo",5)
+			Stop
+	}
 }
 
 
-Actor Tier6upgradetoken : Inventory
+Actor Tier6upgradetoken : UpgradeToken_Base
 {
-  Radius 12
-  Height 18
-  scale 1
-+INVENTORY.UNDROPPABLE
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Plasmarifle / Flame thrower upgrade token! stats increased / added!"
-  Inventory.PickupSound "Mannco/PRToken"
-  States
-  {
-  Spawn:
-	GUGT QRSD 3 Bright
-	Loop
-  }
+	Inventory.PickupMessage "You picked up a Plasmarifle / Flame thrower upgrade token! stats increased / added!"
+	Inventory.PickupSound "Mannco/PRToken"
+	States
+	{
+		Spawn:
+			GUGT QRSD 3 Bright
+			Loop
+	}
 }
 
-Actor Tier7upgradetoken : Inventory
+Actor Tier7upgradetoken : UpgradeToken_Base
 {
-  Radius 12
-  Height 18
-  scale 1
-+INVENTORY.UNDROPPABLE
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a BFG Upgrade upgrade token! HUGE BUFF'S APPLIED!!!"
-  Inventory.PickupSound "Mannco/PRToken"
-  States
-  {
-  Spawn:
-	GUGT TUVD 3 Bright
-	Loop
-  }
+	Inventory.PickupMessage "You picked up a BFG Upgrade upgrade token! HUGE BUFF'S APPLIED!!!"
+	Inventory.PickupSound "Mannco/PRToken"
+	States
+	{
+		Spawn:
+			GUGT TUVD 3 Bright
+			Loop
+	}
 }
 
 Actor Allupgradetokens : CustomInventory
 {
-  Radius 12
-  Height 18
-  scale 1
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "Holy shit! you got ALL upgrade tokens! YOU ARE UNSTOPPABLE NOW!!!"
-  Inventory.PickupSound "Mannco/Special"
-  States
-  {
-  Spawn:
-	GUGT ABCDEFGDHIJDKLMDNOPDQRSDTUVDWXYD 3 Bright
-	loop
-  pickup:
-	TNT1 A 0 A_Giveinventory("Tier1upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier2upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier3upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier4upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier5upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier6upgradetoken",1)
-	TNT1 A 0 A_Giveinventory("Tier7upgradetoken",1)
-	Stop
-  }
+	Radius 12
+	Height 56
+	scale 1
+	Inventory.MaxAmount 1
+	Inventory.PickupMessage "Holy shit! you got ALL upgrade tokens! YOU ARE UNSTOPPABLE NOW!!!"
+	Inventory.PickupSound "Mannco/Special"
+	+SLIDESONWALLS
+	+CANBLAST
+	States
+	{
+		Spawn:
+			GUGT ABCDEFGDHIJDKLMDNOPDQRSDTUVDWXYD 3 Bright
+			loop
+		pickup:
+			TNT1 A 0 A_Giveinventory("Tier1upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier2upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier3upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier4upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier5upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier6upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier7upgradetoken",1)
+			Stop
+	}
 }
 
 Actor PistolClip : Ammo
