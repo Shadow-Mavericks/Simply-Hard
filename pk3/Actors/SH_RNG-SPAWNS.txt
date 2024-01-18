@@ -77,7 +77,7 @@ Actor Hardrev : Randomspawner replaces Revenant
 Actor Lostpainis : Randomspawner replaces Lostsoul
 {
 	Dropitem "hardsoul"					255 100
-	//Dropitem "Dragoonsoul"			255 25
+	Dropitem "Dragoonsoul"				255 25
 	Dropitem "Babycaco"					255 5
 	Dropitem "Phantasm"					255 5
 	Dropitem "PoisonSoul"				255 5
