@@ -57,7 +57,7 @@ Actor Greenarmorbonus : Custominventory
     Stop
   Maxpickup:
     TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("MaxArmorBonus")
+    TNT1 A 0 A_Giveinventory("SH_MaxArmorBonus")
     Stop
   }
 }
