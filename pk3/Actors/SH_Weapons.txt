@@ -2164,9 +2164,9 @@ Actor bfgdrop : CustomInventory replaces Bfg9000
 
 ACTOR Kunaisrevolver : weapon //Weapon base from Golden souls
 {
-  Weapon.SelectionOrder 7
-  Weapon.PreferredSkin "Pistol-Marine"
-  Weapon.SlotNumber 2
+	Weapon.SelectionOrder 7
+	Weapon.PreferredSkin "Pistol-Marine"
+	Weapon.SlotNumber 2
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
@@ -2691,7 +2691,7 @@ ACTOR CryoBow : Weapon
 	GoldReady:
 		GOWG AAABBBCCCDDDBBB 1 Bright A_WeaponReady
 		Loop
-  Altfire:
+	Altfire:
 		BOWG A 0 A_Jumpifinventory("Roketammo",5,1)
 		Goto Ready
 		BOWG A 0 A_Jumpifinventory("Tier5upgradetoken",1, "GOLDALTFIRE")
@@ -2815,7 +2815,7 @@ ACTOR CryoBow : Weapon
 		GOWG CDB 3 Bright Offset(0,32)
 		GOWG A 0 A_ReFire
 		Goto Ready
-  GoldAltfire:
+	GoldAltfire:
 		GOWG A 0 A_Jumpifinventory("Roketammo",5,1)
 		Goto Ready
 		GOWG A 0 A_JumpifInventory("GosimersAmmoSphere",1,"InfammoBluecharge")
@@ -2855,7 +2855,7 @@ ACTOR CryoBow : Weapon
 		GOWF HI 1 Offset(0,32)
 		GOWG CDB 3 Bright Offset(0,32)
 		Goto Ready
- InfammoChargegold:
+	InfammoChargegold:
 		GOWG A 0 Bright
 		GOWG A 0 Bright A_PlaySound("weapon/Cryobow/Charge",chan_6)
 		GOWG A 7 Bright
@@ -3541,9 +3541,9 @@ ACTOR FiendsRailgun : DoomWeapon
 		RLGG A 1 Offset ( -25, 60 )
 		RLGG A 1 Offset ( -26, 70 )
 		goto Ready
-	  Spawn:
-	RLGN A -1
-	Stop
+	Spawn:
+		RLGN A -1
+		Stop
 	}
 }
 
@@ -3562,7 +3562,6 @@ Actor Propulsion_Cannon : doomweapon
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
-	+WEAPON.NOAUTOAIM
 	Weapon.SlotNumber 7
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.Respawntics"4200"
@@ -3571,39 +3570,40 @@ Actor Propulsion_Cannon : doomweapon
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupSound "Weapon/railget"
 	Weapon.PreferredSkin "BFG-Marine"
-	+WEAPON.NOAUTOFIRE
 	Inventory.PickupMessage "Gosimers propulsion cannon"
-  States
-  {
-  Ready:
-	GSNP A 1 A_WeaponReady
-	Loop
-  Deselect:
-	GSNP A 1 A_Lower
-	Loop
-  Select:
-	GSNP A 1 A_Raise
-	Loop
-  Fire:
-	GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
-	GSNF A 0 A_playsound("Weapon/Sniperrail_Fire",Chan_Weapon)
-	GSNF B 1 BRIGHT
-//	GSNP B 1 A_playsound("Weapon/SniperRecharge", Chan_7)
-	GSNP B 9
-	GSNP A 0 A_Refire
-	Goto Ready
-//  Reloaded:
-//  GSNP B 6
-//  GSNP C 2
-//	GSNP A 6 A_ReFire
-	Goto Ready
-  Flash:
-	TNT1 A 5 bright A_Light1
-	TNT1 A 5 bright A_Light2
-	TNT1 A 0 bright A_Light0
-	Goto LightDone
-  Spawn:
-	GSNP G -1
-	Stop
-  }
+	+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	States
+	{
+		Ready:
+			GSNP A 1 A_WeaponReady
+			Loop
+		Deselect:
+			GSNP A 1 A_Lower
+			Loop
+		Select:
+			GSNP A 1 A_Raise
+			Loop
+		Fire:
+			GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+			GSNF A 0 A_playsound("Weapon/Sniperrail_Fire",Chan_Weapon)
+			GSNF B 1 BRIGHT
+			//GSNP B 1 A_playsound("Weapon/SniperRecharge", Chan_7)
+			GSNP B 9
+			GSNP A 0 A_Refire
+			Goto Ready
+		//Reloaded:
+			//GSNP B 6
+			//GSNP C 2
+			//GSNP A 6 A_ReFire
+			//Goto Ready
+		Flash:
+			TNT1 A 5 bright A_Light1
+			TNT1 A 5 bright A_Light2
+			TNT1 A 0 bright A_Light0
+			Goto LightDone
+		Spawn:
+			GSNP G -1
+			Stop
+	}
 }
