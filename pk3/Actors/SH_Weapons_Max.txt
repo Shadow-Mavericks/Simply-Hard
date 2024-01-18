@@ -652,6 +652,7 @@ actor DisruptorRifle : DoomWeapon
 			TNT1 A 0 A_PlaySound("Max/Disrupt", CHAN_WEAPON)
 			DRIF B 1 bright A_GunFlash
 			DRIF C 1
+			TNT1 A 0 A_JumpIfNoAmmo("Ready")
 			TNT1 A 0 A_PlaySound("Max/DisrCh", 7)
 			DRIF D 1
 			DRIF E 1
