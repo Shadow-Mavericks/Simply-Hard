@@ -1218,6 +1218,7 @@ actor DFFist : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	+WEAPON.NOALERT
 	States
 	{
 		Ready:
