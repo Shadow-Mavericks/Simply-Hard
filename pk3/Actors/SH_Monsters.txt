@@ -1945,19 +1945,13 @@ ACTOR DragoonElemental : HardPainisElemental
 	{
 		Spawn:
 			PAIN ABC 10 A_Look
-			goto see
+			loop
 		See:
 			PAIN ABC 3 A_Chase
 			Loop
 		Missile:
-			PAIN A 0 A_Jump(32,"StealthMissil")
-				PAIN D 5 A_FaceTarget
-			PAIN EF 5 A_PAINATTACK (Dragoonsoul, 32, 0, 6)
-			PAIN A 35
-			Goto See
-			StealthMissil:
 			PAIN D 5 A_FaceTarget
-			PAIN EF 5 A_PAINATTACK (StealthDragoonsoul, 32, 0, 6)
+			PAIN EF 5 A_PAINATTACK (Dragoonsoul, 32, 0, 6)
 			PAIN A 35
 			Goto See
 		Melee:
