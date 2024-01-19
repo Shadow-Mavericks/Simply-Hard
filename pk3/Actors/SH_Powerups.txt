@@ -6231,7 +6231,6 @@ Actor bagspawnerGosimersAmmoSphere : Custominventory
 Actor GosimersAmmoSphere : PowerupGiver
 {
 	Game Doom
-
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.FANCYPICKUPSOUND
@@ -6250,7 +6249,7 @@ Actor GosimersAmmoSphere : PowerupGiver
 
 Actor Chainsawpowerdrop : Randomspawner Replaces Chainsaw
 {
-Dropitem "Joy" 255 5
+	Dropitem "Joy" 255 5
 }
 
 Actor Joy : Custominventory
