@@ -6257,31 +6257,32 @@ Actor Joy : Custominventory
 {
 	Game Doom
 	scale 0.05
-	   +Dontgib
 	Inventory.PickupMessage "Joy... Do you have it in you?"
-  	Inventory.RespawnTics "99999999"
-	+INVENTORY.INVBAR
+	Inventory.RespawnTics "99999999"
 	Inventory.MaxAmount 1
- 	Inventory.InterHubAmount 1
- 	Inventory.Icon "I_FJOY"
+	Inventory.InterHubAmount 1
+	Inventory.Icon "I_FJOY"
 	Inventory.PickupSound "Joy/Pickup"
+	+INVENTORY.INVBAR
+	+DONTGIB
 	States
 	{
-  Spawn:
-    FJOY A 4 BRIGHT
-    Loop
-   use:
-    TNT1 A 0 ACS_NamedExecuteWithResult("UsedJoy",0,0,0,0)
-    TNT1 A 0 A_Giveinventory("Soulsphere4")
-    TNT1 A 0 A_Giveinventory("Soulsphere4")
-    TNT1 A 0 A_Giveinventory("Joyspeed")
-    TNT1 A 0 A_Giveinventory("joyDoubleDamage")
-    TNT1 A 0 A_Giveinventory("Joyresistance")
-    TNT1 A 0 A_Takeinventory("Joy")
-    }
+		Spawn:
+			FJOY A 4 BRIGHT
+			Loop
+		use:
+			TNT1 A 0 ACS_NamedExecuteWithResult("UsedJoy",0,0,0,0)
+			TNT1 A 0 A_Giveinventory("Soulsphere4")
+			TNT1 A 0 A_Giveinventory("Soulsphere4")
+			TNT1 A 0 A_Giveinventory("JoySpeed")
+			TNT1 A 0 A_Giveinventory("JoyDamage")
+			TNT1 A 0 A_Giveinventory("JoyResistance")
+			TNT1 A 0 A_Takeinventory("Joy")
+			stop
+	}
 }
 
-actor Joyspeed : PowerupGiver
+actor JoySpeed : PowerupGiver
 {
 	Game Doom
 	inventory.pickupmessage "Turbocharge!!."
@@ -6299,20 +6300,20 @@ actor Joyspeed : PowerupGiver
 	}
 }
 
-ACTOR joyDoubleDamage : PowerDamage
+ACTOR JoyDoubleDamage : PowerDamage
 {
 	Damagefactor "normal", 2
 }
 
-ACTOR Joydamage : PowerupGiver
+ACTOR JoyDamage : PowerupGiver
 {
 	+COUNTITEM
 	+NOGRAVITY
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
-	Powerup.Type joyDoubleDamage
-	Powerup.Color RedMap
+	Powerup.Type JoyDoubleDamage
+	Powerup.Color None
 	Powerup.Duration -45
 	Inventory.PickupMessage "Double Damage!"
 	States
@@ -6323,12 +6324,12 @@ ACTOR Joydamage : PowerupGiver
 	}
 }
 
-Actor Joydamageresistance : PowerProtection
+Actor JoyDamageResistance : PowerProtection
 {
-Damagefactor "Normal", 0.25
+	Damagefactor "Normal", 0.25
 }
 
-Actor Joyresistance : PowerupGiver
+Actor JoyResistance : PowerupGiver
 {
   +CountItem
   +NoGravity
@@ -6336,7 +6337,7 @@ Actor Joyresistance : PowerupGiver
   +Inventory.AlwaysPickup
   Inventory.MaxAmount 0
   Powerup.Duration -45
-  Powerup.Type Joydamageresistance
+  Powerup.Type JoyDamageResistance
   Inventory.PickupMessage "Guardsphere"
   States
   {
@@ -6346,12 +6347,12 @@ Actor Joyresistance : PowerupGiver
   }
 }
 
-Actor Joywithdrawl : PowerProtection
+Actor JoyWithdrawl : PowerProtection
 {
-Damagefactor "Normal", 2.00
+	Damagefactor "Normal", 2.00
 }
 
-Actor Joyresistance2 : PowerupGiver
+Actor JoyResistance2 : PowerupGiver
 {
   +CountItem
   +NoGravity
@@ -6359,7 +6360,7 @@ Actor Joyresistance2 : PowerupGiver
   +Inventory.AlwaysPickup
   Inventory.MaxAmount 0
   Powerup.Duration -90
-  Powerup.Type Joywithdrawl
+  Powerup.Type JoyWithdrawl
   Inventory.PickupMessage "Guardsphere"
   States
   {
