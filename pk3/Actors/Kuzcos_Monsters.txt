@@ -2575,7 +2575,7 @@ ACTOR Kago : SwarmFly
 	Height 10
 	Speed 2
 	Monster
-	Damage 1
+	Damage (2)
 	Scale 1.0
 	BloodColor "Green"
 	Species "Kago"

@@ -86,8 +86,8 @@ actor BaronBall_Acid : BaronBall_Base
 	  States
   {
   Spawn:
-    ACD7 A 1 Bright A_SpawnItemEx ("BaronballtrailGreen")
-	ACD7 B 1 Bright A_SpawnItemEx ("BaronballtrailGreen")
+    ACD7 A 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	ACD7 B 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     ACD7 CDE 6 Bright
@@ -95,7 +95,11 @@ actor BaronBall_Acid : BaronBall_Base
   }
 }
 
-
+actor BaronBall_Acid_Gravity : BaronBall_Acid
+{
+	-NOGRAVITY
+	+LOWGRAVITY
+}
 
 actor N_Baron_Acid : N_Baron_Base 
 {
@@ -207,10 +211,10 @@ actor BaronBall_Electric : BaronBall_Base
 	States
 	{
 		Spawn:
-			SHK7 A 1 Bright A_SpawnItemEx ("BaronballtrailYellow")
+			SHK7 A 1 Bright A_SpawnItemEx("BaronballtrailYellow")
 			SHK7 A 0 Bright A_SpawnItemEx("Particle_Lightning5")
 			SHK7 B 1 Bright A_SpawnItemEx("Particle_Lightning5")
-			SHK7 B 0 Bright A_SpawnItemEx ("BaronballtrailYellow")
+			SHK7 B 0 Bright A_SpawnItemEx("BaronballtrailYellow")
 			Loop
 		Death:
 			SHK7 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
@@ -249,8 +253,8 @@ actor BaronBall_Ice : BaronBall_Base
 	  States
   {
   Spawn:
-    ICE7 A 1 Bright A_SpawnItemEx ("BaronballtrailBlue")
-    ICE7 A 1 Bright A_SpawnItemEx ("BaronballtrailBlue")
+    ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+    ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     ICE7 CDE 6 Bright
@@ -288,8 +292,8 @@ actor BaronBall_Metal : BaronBall_Base
 	  States
   {
   Spawn:
-    MET7 A 1 Bright A_SpawnItemEx ("BaronballtrailWhite")
-	MET7 A 1 Bright A_SpawnItemEx ("BaronballtrailWhite")
+    MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     MET7 CDE 6 Bright

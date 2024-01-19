@@ -1002,29 +1002,29 @@ ACTOR Legendary-Taco : Health
 
 Actor Takoget : Custominventory
 {
-  Radius 20
-  Height 16
-  +COUNTITEM
-  Scale 0.05
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.RespawnTics "99999999"
- Inventory.PickupMessage "$GOTSUPER" // "taco?! MMMMMMMM... HOW REFRESHING!"
-  States
-  {
-  Spawn:
-    TAKO A 4
-    Loop
-  pickup:
-    TNT1 A 0 A_Jump(160, "Pickup2")
-    TNT1 A 0 A_Playsound("Kunai/death2", Chan_7)
-    TNT1 A 0 A_GIVEINVENTORY("Legendary-Taco")
-    Stop
-  pickup2:
-    TNT1 A 0 A_Playsound("Kunai/death3", Chan_7)
-    TNT1 A 0 A_GIVEINVENTORY("Legendary-Taco")
-    stop
-    }
+	Radius 20
+	Height 16
+	Scale 0.05
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "$GOTSUPER" // "taco?! MMMMMMMM... HOW REFRESHING!"
+	States
+	{
+		Spawn:
+			TAKO A 4
+			Loop
+		pickup:
+			TNT1 A 0 A_Jump(160, "Pickup2")
+			TNT1 A 0 A_Playsound("Kunai/death2", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Legendary-Taco")
+			Stop
+		pickup2:
+			TNT1 A 0 A_Playsound("Kunai/death3", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Legendary-Taco")
+			stop
+	}
 }
 
 
@@ -1035,31 +1035,31 @@ Actor Bluhelffilter : HealthPotion_Base
 	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
 	States
 	{
-	Spawn:
-		BONB ABCDCB 2
-		Loop
-	pickup:
-		TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-		TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-		TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-		TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-		TNT1 A 32
-		TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-		Stop
-	Kunaipickup:
-		TNT1 A 0 A_playsound("HPGET",chan_5)
-		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-		Stop
-	Gosimerpickup:
-		TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-		TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-		Stop
-	Maxpickup:
-		TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-		Stop
+		Spawn:
+			BONB ABCDCB 2
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 32
+			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("HPGET",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
 	}
 }
 
@@ -1151,62 +1151,62 @@ ACTOR BlueHealthpainis : Health
 
 ACTOR Spencerhp : Health
 {
-  Game Doom
-  SpawnID 152
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 1
-  Inventory.MaxAmount 500
-  Inventory.PickupSound ""
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a health bonus. +5"
-  States
-  {
-  Spawn:
-    BONB ABCDCB 2
-    Loop
-  }
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 1
+	Inventory.MaxAmount 500
+	Inventory.PickupSound ""
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Picked up a health bonus. +5"
+	States
+	{
+		Spawn:
+			BONB ABCDCB 2
+			Loop
+	}
 }
 
 ACTOR REDHealthpainis : Health
 {
-  Game Doom
-  SpawnID 152
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 5
-  Inventory.MaxAmount 300
-  Inventory.PickupSound "HPGET"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a health bonus. +5"
-  States
-  {
-  Spawn:
-    BONR ABCDCB 2
-    Loop
-  }
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 5
+	Inventory.MaxAmount 300
+	Inventory.PickupSound "HPGET"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Picked up a health bonus. +5"
+	States
+	{
+		Spawn:
+			BONR ABCDCB 2
+			Loop
+	}
 }
 
 ACTOR GreenHealthpainis : Health
 {
-  Game Doom
-  SpawnID 152
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 5
-  Inventory.MaxAmount 300
-  Inventory.PickupSound "HPGET"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a health bonus. +5"
-  States
-  {
-  Spawn:
-    BONG ABCDCB 2
-    Loop
-  }
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 5
+	Inventory.MaxAmount 300
+	Inventory.PickupSound "HPGET"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Picked up a health bonus. +5"
+	States
+	{
+		Spawn:
+			BONG ABCDCB 2
+			Loop
+	}
 }
 
 ACTOR NerfedMedkit : Health 

@@ -4,7 +4,7 @@ Actor Fiendzys_PlasmaBall : Plasmaball
 	Radius 13
 	Height 8
 	Speed 40
- 	Damage (10*(Random(1,4)))
+	Damage (10*(Random(1,4)))
 	Projectile
 	+RANDOMIZE
 	Alpha 1
@@ -13,7 +13,7 @@ Actor Fiendzys_PlasmaBall : Plasmaball
 	Obituary "$OB_MPPLASMARIFLE" // "%o was melted by %k's plasma gun."
 	States
 	{
- 	Spawn:
+	Spawn:
 		FPBL AB 6 Bright
 		Loop
 	Death:
@@ -94,7 +94,6 @@ ACTOR Rawket : Rocket
     GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
     GXPL ABCDEFGH 1 Bright
     GXPL IJKLLM 1 Bright A_FadeOut(0.1)
-
     Stop
   }
 }
@@ -201,9 +200,8 @@ ACTOR FiendsCRocket : Rocket //Recolor by Fiend Kitsune
     CRCK A 1
     Loop
   Death:
-    CRCK B 8 Bright A_Explode
-    CRCK C 6 Bright
-    CRCK D 4 Bright
+    CRCK B 0 Bright A_Explode
+	CRCK BBBBCCCDD 1 Bright A_SetScale(scalex+0.25, scaley+0.25)
     Stop
   }
 }
@@ -277,10 +275,10 @@ Actor CryoSmoke4 : CryoSmoke3
 { 
 	+CLIENTSIDEONLY
 	+NOTIMEFREEZE
-	  +Nointeraction
-StencilColor "DD DD DD"
-Scale 0.1
-Alpha 0.25
+	+Nointeraction
+	StencilColor "DD DD DD"
+	Scale 0.1
+	Alpha 0.25
 	States {
 	Spawn:
 		TNT1 A 0
@@ -350,18 +348,18 @@ Actor PlasmaVapour
 	Scale 0.1
 	States
 	{
-	Spawn:
-		NULL A 3
-	Loopy:
-		PLAV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
-		loop
+		Spawn:
+			NULL A 3
+		Loopy:
+			PLAV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+			loop
 	}
 }
 
 Actor PlasmaWave
 {
 	+CLIENTSIDEONLY
-	projectile
+	Projectile
 	//+DOOMBOUNCE
 	//+BOUNCEONACTORS
 	RenderStyle Add
@@ -389,10 +387,10 @@ Actor PlasmaExplosion
 	Scale 0.4
 	States
 	{
-	Spawn:
-		PLAX ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 bright
-		PLAZ ABCDEF 1 bright
-		stop
+		Spawn:
+			PLAX ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 bright
+			PLAZ ABCDEF 1 bright
+			stop
 	}
 }
 
@@ -691,9 +689,9 @@ ACTOR BFGZAP
 	+NOTIMEFREEZE
 	States
 	{
-	Spawn:
-		GZAP DCBABABABABABCD 1 Bright A_Fadeout(0.05)
-		Stop
+		Spawn:
+			GZAP DCBABABABABABCD 1 Bright A_Fadeout(0.05)
+			Stop
 	}
 }
 
@@ -752,26 +750,26 @@ ACTOR GreenBaronBall
 
 ACTOR DoomImpBall1
 {
-  Radius 6
-  Height 8
-  Speed 15
-  FastSpeed 20
-  Damage 3
-  Projectile
-  +RANDOMIZE
-  RenderStyle Add
-  Alpha 1
-  SeeSound "imp/attack"
-  DeathSound "imp/shotx"
-  States
-  {
-  Spawn:
-    BAL1 A 1 Bright A_SpawnItemEx ("impballtrail")
-    Loop
-  Death:
-    BAL1 CDE 6 Bright
-    Stop
-  }
+	Radius 6
+	Height 8
+	Speed 15
+	FastSpeed 20
+	Damage 3
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+	States
+	{
+		Spawn:
+			BAL1 A 1 Bright A_SpawnItemEx ("impballtrail")
+			Loop
+		Death:
+			BAL1 CDE 6 Bright
+			Stop
+	}
 }
 
 ACTOR Healgunshot
@@ -1531,28 +1529,28 @@ ACTOR babyball //Small Cacoball
 
 ACTOR dragoonshot : FastProjectile
 {
-  radius 1
-  height 1
-  speed 100
-  damage 3
-  renderstyle Add
-  decal RailScorchLower
-  deathsound "Gaster/Blast"
-  obituary ""
-  PROJECTILE
-  +RANDOMIZE
-  +BLOODSPLATTER
-   +FOILINVUL
-   +DONTREFLECT
-  states
-  {
-  Spawn:
-    TNT1 A 1 bright A_SpawnItemEx("dragoontrail", 0, 0, 0,0,0,0,0,128)
-    loop
-  Death:
-    TNT1 A 2 bright A_SpawnItemEx("dragoonpow", 0, 0, 0,0,0,0,0,128)
-    stop
-  }
+	radius 1
+	height 1
+	speed 100
+	damage 3
+	renderstyle Add
+	decal RailScorchLower
+	deathsound "Gaster/Blast"
+	obituary ""
+	PROJECTILE
+	+RANDOMIZE
+	+BLOODSPLATTER
+	+FOILINVUL
+	+DONTREFLECT
+	states
+	{
+		Spawn:
+			TNT1 A 1 bright A_SpawnItemEx("dragoontrail", 0, 0, 0,0,0,0,0,128)
+			loop
+		Death:
+			TNT1 A 2 bright A_SpawnItemEx("dragoonpow", 0, 0, 0,0,0,0,0,128)
+			stop
+	}
 }
 
 ACTOR dragoonshotfriend : FastProjectile
@@ -1693,14 +1691,8 @@ ACTOR Droidlaser : Particle_Base
 	}
 }
 
-ACTOR Devistaterblast
+ACTOR Devistaterblast : Particle_Base
 {
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	  +Nointeraction
 	RenderStyle Add
 	Alpha 0.75
 	Scale 0.5
@@ -1810,9 +1802,9 @@ Actor Greenlitningzap
 	+RANDOMIZE
 	+alwayspuff
 	+FORCEXYBILLBOARD
-	  +Nointeraction
-	RenderStyle Add
+	+Nointeraction
 	+NOTIMEFREEZE
+	RenderStyle Add
 	Alpha 0.75
 	Scale 0.05
     Obituary "%o was zapped by %k's BFG."
@@ -1822,7 +1814,6 @@ Actor Greenlitningzap
 		Spawn:
 			TBAL B 1 Bright
 			TBAL D 1 Bright
-					
 		Death:
 			TBAL B 1 BRIGHT
 			Stop
@@ -1848,8 +1839,6 @@ Actor Bluerailcoil
 	{
 		Spawn:
 			TBAL A 6 Bright
-			
-					
 		Death:
 			TBAL A 6 BRIGHT
 			Stop
@@ -1881,7 +1870,7 @@ ACTOR CryoShot : FastProjectile
 		BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
 		BSHT A 1 Bright
 		Loop
-	Death:		
+	Death:
 		BXPL A 0 Bright A_StopSound(CHAN_BODY)
 		BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
 		BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
@@ -1957,7 +1946,7 @@ ACTOR GoldCryoShot : FastProjectile
 		GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
 		GSHT A 1 Bright
 		Loop
-	Death:		
+	Death:
 		GXPL A 0 Bright A_StopSound(CHAN_BODY)
 		GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
 		GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
@@ -2496,122 +2485,122 @@ Death:
 
 Actor DMBTrail
 {
-+NOGRAVITY
-+FORCEXYBILLBOARD
-  +Nointeraction
-RenderStyle Translucent
-Alpha 0.70
-Scale 0.7
-States
-{
-Spawn:
-	VORX ABCDEFGH 2 Bright A_FadeOut(0.1)
-	Stop
-}
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	+Nointeraction
+	RenderStyle Translucent
+	Alpha 0.70
+	Scale 0.7
+	States
+	{
+		Spawn:
+			VORX ABCDEFGH 2 Bright A_FadeOut(0.1)
+			Stop
+	}
 }
 
 Actor BlackHole
 {
-Radius 20
-Height 20
-Speed 0
-Projectile
-+NOCLIP
-+NODAMAGETHRUST
-+FORCEXYBILLBOARD
-+FORCERADIUSDMG
-RenderStyle Translucent
-Alpha 0.85
-Scale 1.5
-ReactionTime 30
-Obituary "%o got absorved by the darkness."
-States
-{
-Spawn:
-	TNT1 A 0 A_CountDown
-	TNT1 A 0 A_PlaySoundEx("BHole/Suck","Voice",1)
-	BHOL A 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL B 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL C 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL D 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL E 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL F 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL G 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL H 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	BHOL I 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
-	TNT1 A 0 A_Explode(15,100)
-	Loop
-Death:
-	TNT1 A 0 A_StopSoundEx("Voice")
-	TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
-	TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
-	TNT1 A 0 A_PlaySound("BHole/Explosion")
-	BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
-	BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
-	BHOL C 1 Light("BHOLE_4") A_FadeOut(0.08)
-	BHOL D 1 Light("BHOLE_5") A_FadeOut(0.08)
-	BHOL E 1 Light("BHOLE_6") A_FadeOut(0.08)
-	BHOL F 1 Light("BHOLE_7") A_FadeOut(0.08)
-	BHOL G 1 Light("BHOLE_8") A_FadeOut(0.08)
-	BHOL H 1 Light("BHOLE_9") A_FadeOut(0.08)
-	BHOL I 1 Light("BHOLE_10") A_FadeOut(0.08)
-	Stop
-}
+	Radius 20
+	Height 20
+	Speed 0
+	Projectile
+	+NOCLIP
+	+NODAMAGETHRUST
+	+FORCEXYBILLBOARD
+	+FORCERADIUSDMG
+	RenderStyle Translucent
+	Alpha 0.85
+	Scale 1.5
+	ReactionTime 30
+	Obituary "%o got absorved by the darkness."
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_CountDown
+			TNT1 A 0 A_PlaySoundEx("BHole/Suck","Voice",1)
+			BHOL A 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL B 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL C 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL D 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL E 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL F 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL G 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL H 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			BHOL I 1 Light("BHOLE_1") A_RadiusThrust(-720,720)
+			TNT1 A 0 A_Explode(15,100)
+			Loop
+		Death:
+			TNT1 A 0 A_StopSoundEx("Voice")
+			TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
+			TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
+			TNT1 A 0 A_PlaySound("BHole/Explosion")
+			BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
+			BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
+			BHOL C 1 Light("BHOLE_4") A_FadeOut(0.08)
+			BHOL D 1 Light("BHOLE_5") A_FadeOut(0.08)
+			BHOL E 1 Light("BHOLE_6") A_FadeOut(0.08)
+			BHOL F 1 Light("BHOLE_7") A_FadeOut(0.08)
+			BHOL G 1 Light("BHOLE_8") A_FadeOut(0.08)
+			BHOL H 1 Light("BHOLE_9") A_FadeOut(0.08)
+			BHOL I 1 Light("BHOLE_10") A_FadeOut(0.08)
+			Stop
+	}
 }
 
 
 Actor DMBallTrap
 {
-Radius 13
-Height 8
-Speed 17
-Damage 10
-Projectile
-+RIPPER
-+FORCEXYBILLBOARD
-+NODAMAGETHRUST
-+FORCERADIUSDMG
-Renderstyle Translucent
-Alpha 0.75
-DeathSound "DMBall/Impact"
-Decal BHoleDecal
-States
-{
-Spawn:
-	VOIP ABCDEF 2 Bright A_SpawnItem("DMBTrail",0,0,0)
-	VOIP AA 1 Bright A_RadiusThrust(-220,130)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	VOIP BB 1 Bright A_RadiusThrust(-220,150)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	VOIP CC 1 Bright A_RadiusThrust(-220,150)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	VOIP DD 1 Bright A_RadiusThrust(-220,150)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	VOIP EE 1 Bright A_RadiusThrust(-220,150)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	VOIP FF 1 Bright A_RadiusThrust(-220,150)
-	TNT1 A 0 A_Explode(10,90,0)
-	TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
-	Goto Spawn+6
-Death:
-	TNT1 A 0 A_SpawnItem("NewBlackHoleTrap",0,0,0)
-//	TNT1 A 0 A_SetScale(1.2)
-	VORX ABCDEFGH 2 Bright
-	Stop
-}
+	Radius 13
+	Height 8
+	Speed 17
+	Damage 10
+	Projectile
+	+RIPPER
+	+FORCEXYBILLBOARD
+	+NODAMAGETHRUST
+	+FORCERADIUSDMG
+	Renderstyle Translucent
+	Alpha 0.75
+	DeathSound "DMBall/Impact"
+	Decal BHoleDecal
+	States
+	{
+		Spawn:
+			VOIP ABCDEF 2 Bright A_SpawnItem("DMBTrail",0,0,0)
+			VOIP AA 1 Bright A_RadiusThrust(-220,130)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			VOIP BB 1 Bright A_RadiusThrust(-220,150)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			VOIP CC 1 Bright A_RadiusThrust(-220,150)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			VOIP DD 1 Bright A_RadiusThrust(-220,150)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			VOIP EE 1 Bright A_RadiusThrust(-220,150)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			VOIP FF 1 Bright A_RadiusThrust(-220,150)
+			TNT1 A 0 A_Explode(10,90,0)
+			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			Goto Spawn+6
+		Death:
+			TNT1 A 0 A_SpawnItem("NewBlackHoleTrap",0,0,0)
+		//	TNT1 A 0 A_SetScale(1.2)
+			VORX ABCDEFGH 2 Bright
+			Stop
+	}
 }
 
 Actor BlackHoleTrap
@@ -3531,7 +3520,7 @@ Actor CCCCPAINIS : Plasmaball
   		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
 	Death3:
 		NULL A 0
-	Stop
+		Stop
 	}
 }
 
@@ -3871,7 +3860,6 @@ actor Projectile_Base
 {
 	Projectile
 	+FORCEXYBILLBOARD
-	-NOTELEPORT			// lets make things different
 	+SEEKERMISSILE		// lets get this out of the way
 	+FORCERADIUSDMG
 	+SPAWNSOUNDSOURCE
@@ -3879,8 +3867,9 @@ actor Projectile_Base
 	+THRUGHOST
 	+NOBOSSRIP
 	+MTHRUSPECIES
-	-FORCEPAIN
 	+RANDOMIZE
+	-NOTELEPORT			// lets make things different
+	-FORCEPAIN
 	//$Category Tribeam's particles
 }
 
@@ -4161,44 +4150,43 @@ ACTOR osjc_BFGExtra : BFGExtra replaces BFGExtra
 
 ACTOR bfg_laser_firer
 {
-  +FRIENDLY
-  +NOBLOCKMAP
-  +nogravity
-  +NOTIMEFREEZE
-  Alpha .75
-  Health 100000000
-  Mass 1000000000
-  Radius 1
-  Height 4
-  Speed 8
-  Monster
-  RenderStyle Translucent
-  PainChance 200
-  +FLOORCLIP
-  Species "Player"
-  translation "16:47=112:127","168:191=112:127"
-  States
-  {
-  Spawn:
-    tnt1 a 1 A_Jumpifcloser(1600, "spawn2")
-    tnt1 a 1 A_Look
-goto missile
-  Spawn2:
-    tnt1 a 1 A_Look
- loop
-   Pain:
-    Goto See
-  See:
-    tnt1 a 2 
-   Missile:
-    tnt1 a 2 a_FACETARGET
-    tnt1 a 2 A_customRailgun( 100, 0, "none", "green", RGF_SILENT, 1, 40,"Greenlitningzap", 0, 0, 720, 2, 10, 0,"Greenlitningzap")
- Death:
-    TNT1 A 0 A_DIE
-    TNT1 A -1
-    Stop
-
-  }
+	+FRIENDLY
+	+NOBLOCKMAP
+	+nogravity
+	+NOTIMEFREEZE
+	+FLOORCLIP
+	Alpha .75
+	Health 100000000
+	Mass 1000000000
+	Radius 1
+	Height 4
+	Speed 8
+	Monster
+	RenderStyle Translucent
+	PainChance 200
+	Species "Player"
+	translation "16:47=112:127","168:191=112:127"
+	States
+	{
+		Spawn:
+			tnt1 a 1 A_Jumpifcloser(1600, "spawn2")
+			tnt1 a 1 A_Look
+			goto missile
+		Spawn2:
+			tnt1 a 1 A_Look
+			loop
+		Pain:
+			Goto See
+		See:
+			tnt1 a 2 
+		Missile:
+			tnt1 a 2 a_FACETARGET
+			tnt1 a 2 A_customRailgun( 100, 0, "none", "green", RGF_SILENT, 1, 40,"Greenlitningzap", 0, 0, 720, 2, 10, 0,"Greenlitningzap")
+		Death:
+			TNT1 A 0 A_DIE
+			TNT1 A -1
+			Stop
+	}
 }
 
 ACTOR BFG_laserPuff
@@ -4214,36 +4202,36 @@ ACTOR BFG_laserPuff
 	Alpha 0.75
 	Mass 5
 	Scale		.5
-  Obituary "%o was zapped by %k's BFG."
-Damagetype "laser"
+	Obituary "%o was zapped by %k's BFG."
+	Damagetype "laser"
 	States
 	{
-	Spawn:
-	tnt1 a 0		
-		Stop
-}
+		Spawn:
+			tnt1 a 0
+			Stop
+	}
 }
 
 ACTOR bfgSmokeshot
 {
-   Radius 1
-   Height 1
-   PROJECTILE
-   +NOTIMEFREEZE
-   +NOCLIP
-   Scale 0.2
-   vspeed 1
-   Speed 4
-   RENDERSTYLE add
-   ALPHA 0.6
-   +DONTSPLASH
--randomize
-   States
-   {
-   Spawn:
-      TNT1 A 5
-		BFE1 ABCDEF 4 Bright A_FadeOut(0.1)
-      Stop
-   }
+	Radius 1
+	Height 1
+	Scale 0.2
+	vspeed 1
+	Speed 4
+	RENDERSTYLE add
+	ALPHA 0.6
+	PROJECTILE
+	+NOTIMEFREEZE
+	+NOCLIP
+	+DONTSPLASH
+	-RANDOMIZE
+	States
+	{
+		Spawn:
+			TNT1 A 5
+			BFE1 ABCDEF 4 Bright A_FadeOut(0.1)
+			Stop
+	}
 }
 
