@@ -1950,9 +1950,9 @@ ACTOR DragoonElemental : HardPainisElemental
 			PAIN ABC 3 A_Chase
 			Loop
 		Missile:
-			PAIN D 5 A_FaceTarget
-			PAIN EF 5 A_PAINATTACK (Dragoonsoul, 32, 0, 6)
-			PAIN A 35
+			PAIN D 5 BRIGHT A_FaceTarget
+			PAIN E 0 BRIGHT A_PainAttack("Dragoonsoul", 0, 0, 6)
+			PAIN EF 5 BRIGHT
 			Goto See
 		Melee:
 			PAIN D 5 A_FaceTarget
