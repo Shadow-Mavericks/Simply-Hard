@@ -6289,9 +6289,9 @@ actor JoySpeed : PowerupGiver
 	inventory.maxamount 0
 	powerup.duration -45
 	powerup.type Speed
-	+COUNTITEM
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
+	+COUNTITEM
 	States
 	{
 	Spawn:
@@ -6307,15 +6307,15 @@ ACTOR JoyDoubleDamage : PowerDamage
 
 ACTOR JoyDamage : PowerupGiver
 {
-	+COUNTITEM
-	+NOGRAVITY
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
 	Inventory.MaxAmount 0
 	Powerup.Type JoyDoubleDamage
 	Powerup.Color None
 	Powerup.Duration -45
 	Inventory.PickupMessage "Double Damage!"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+COUNTITEM
+	+NOGRAVITY
 	States
 	{
 	Spawn:
@@ -6331,20 +6331,20 @@ Actor JoyDamageResistance : PowerProtection
 
 Actor JoyResistance : PowerupGiver
 {
-  +CountItem
-  +NoGravity
-  +INVENTORY.AUTOACTIVATE
-  +Inventory.AlwaysPickup
-  Inventory.MaxAmount 0
-  Powerup.Duration -45
-  Powerup.Type JoyDamageResistance
-  Inventory.PickupMessage "Guardsphere"
-  States
-  {
-  Spawn:
-    SOUL ABCD 6 Bright
-    Loop
-  }
+	Inventory.MaxAmount 0
+	Powerup.Duration -45
+	Powerup.Type JoyDamageResistance
+	Inventory.PickupMessage "Guardsphere"
+	+INVENTORY.AUTOACTIVATE
+	+Inventory.AlwaysPickup
+	+CountItem
+	+NoGravity
+	States
+	{
+		Spawn:
+			SOUL ABCD 6 Bright
+			Loop
+	}
 }
 
 Actor JoyWithdrawl : PowerProtection
@@ -6354,29 +6354,29 @@ Actor JoyWithdrawl : PowerProtection
 
 Actor JoyResistance2 : PowerupGiver
 {
-  +CountItem
-  +NoGravity
-  +INVENTORY.AUTOACTIVATE
-  +Inventory.AlwaysPickup
-  Inventory.MaxAmount 0
-  Powerup.Duration -90
-  Powerup.Type JoyWithdrawl
-  Inventory.PickupMessage "Guardsphere"
-  States
-  {
-  Spawn:
-    SOUL ABCD 6 Bright
-    Loop
-  }
+	Inventory.MaxAmount 0
+	Powerup.Duration -90
+	Powerup.Type JoyWithdrawl
+	Inventory.PickupMessage "Guardsphere"
+	+INVENTORY.AUTOACTIVATE
+	+Inventory.AlwaysPickup
+	+CountItem
+	+NoGravity
+	States
+	{
+		Spawn:
+			SOUL ABCD 6 Bright
+			Loop
+	}
 }
 
 actor Powerup_Slimed : PowerSpeed
 {
-Speed 0.5
+	Speed 0.5
 }
 
 actor PowerupItem_Slimed : PowerupGiver
 {
-powerup.duration 15
-powerup.type "Powerup_Slimed"
+	powerup.duration 15
+	powerup.type "Powerup_Slimed"
 }
