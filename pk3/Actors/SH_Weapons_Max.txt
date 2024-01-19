@@ -32,6 +32,9 @@ actor BlastBolt : FastProjectile
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloff, 65536 * DARKFORCES_DMG_MULT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloffrate, 14 >> DARKFORCES_TIC_SHIFT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_mindmg, 1 * DARKFORCES_DMG_MULT)
+			goto SpawnStart
+		SpawnStart:
+			TNT1 A 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			goto SpawnLoop
 		SpawnLoop:
 			BLAS A 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
@@ -53,7 +56,7 @@ actor DL44Bolt : BlastBolt
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloff, 65536 * DARKFORCES_DMG_MULT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloffrate, 14 >> DARKFORCES_TIC_SHIFT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_mindmg, 3 * DARKFORCES_DMG_MULT)
-			goto SpawnLoop
+			goto SpawnStart
 	}
 }
 
@@ -68,7 +71,7 @@ actor RifBlast : BlastBolt
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloff, 52428 * DARKFORCES_DMG_MULT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloffrate, 14 >> DARKFORCES_TIC_SHIFT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_mindmg, 1 * DARKFORCES_DMG_MULT)
-			goto SpawnLoop
+			goto SpawnStart
 	}
 }
 
@@ -82,7 +85,7 @@ actor GoldShot : RifBlast
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloff, 52428 * DARKFORCES_DMG_MULT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloffrate, 14 >> DARKFORCES_TIC_SHIFT)
 			BLAS A 0 BRIGHT A_SetUserVar(user_mindmg, 3 * DARKFORCES_DMG_MULT)
-			goto SpawnLoop
+			goto SpawnStart
 	}
 }
 
@@ -98,7 +101,7 @@ actor GoldShotZoom : RifBlast
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloff, 0)
 			BLAS A 0 BRIGHT A_SetUserVar(user_falloffrate, 0)
 			BLAS A 0 BRIGHT A_SetUserVar(user_mindmg, 0)
-			goto SpawnLoop
+			goto SpawnStart
 	}
 }
 
