@@ -69,3 +69,17 @@ actor UpgradeToken_Base : Inventory
 	+CANBLAST
 	+INVENTORY.UNDROPPABLE
 }
+
+//////////////////////////////////////////////////////////////////
+// Health & Armor
+//////////////////////////////////////////////////////////////////
+actor HealthPotion_Base : Custominventory
+{
+	Radius 20
+	Height 16
+	Inventory.RespawnTics "99999999"
+	Scale 0.75
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+}

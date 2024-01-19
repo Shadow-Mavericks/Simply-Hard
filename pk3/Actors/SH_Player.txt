@@ -301,17 +301,17 @@ ACTOR Kunai : DoomPlayer
 
 Actor Kunaitoken : Inventory
 {
-  Radius 4
-  Height 18
-  scale 1
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Kunai token"
-  States
-  {
-  Spawn:
-    SOUL A -1
-    Stop
-  }
+	Radius 4
+	Height 18
+	scale 1
+	Inventory.MaxAmount 1
+	Inventory.PickupMessage "You picked up a Kunai token"
+	States
+	{
+		Spawn:
+			SOUL A -1
+			Stop
+	}
 }
 
 ACTOR Gosimer : DoomPlayer
@@ -606,15 +606,30 @@ actor MaximusPrime : DoomPlayer
 
 actor MaxToken : Inventory
 {
- Radius 4
-  Height 18
-  scale 1
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Max token"
-  States
-  {
-  Spawn:
-    SOUL A -1
-    Stop
-  }
+	Radius 4
+	Height 18
+	scale 1
+	Inventory.MaxAmount 1
+	Inventory.PickupMessage "You picked up a Max token"
+	States
+	{
+		Spawn:
+			SOUL A -1
+			Stop
+	}
+}
+
+Actor StrikerToken : Inventory
+{
+	Radius 4
+	Height 18
+	scale 1
+	Inventory.MaxAmount 1
+	Inventory.PickupMessage "You have somehow picked up the Hedgefox Token"
+	States
+	{
+		Spawn:
+			SOUL A -1
+			Stop
+	}
 }

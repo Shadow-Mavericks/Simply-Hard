@@ -601,96 +601,99 @@ ACTOR DEMONENERGY
 			UENM B 1 Bright
 			UENK C 1 Bright
 			UENG D 1 Bright
-			UENF E 1 Bright
-			UENM F 1 Bright
-			UENK G 1 Bright
-			UENG H 1 Bright
-			UENF I 1 Bright
-			UENM J 1 Bright
-			UENK A 1 Bright
-			UENG B 1 Bright
-			UENF C 1 Bright
-			UENM D 1 Bright
-			UENK E 1 Bright
-			UENG F 1 Bright
-			UENF G 1 Bright
-			UENM H 1 Bright
-			UENK I 1 Bright
-			UENG J 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
 			UENF A 1 Bright
 			UENM B 1 Bright
 			UENK C 1 Bright
 			UENG D 1 Bright
-			UENF E 1 Bright
-			UENM F 1 Bright
-			UENK G 1 Bright
-			UENG H 1 Bright
-			UENF I 1 Bright
-			UENM J 1 Bright
-			UENK A 1 Bright
-			UENG B 1 Bright
-			UENF C 1 Bright
-			UENM D 1 Bright
-			UENK E 1 Bright
-			UENG F 1 Bright
-			UENF G 1 Bright
-			UENM H 1 Bright
-			UENK I 1 Bright
-			UENG J 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
 			UENF A 1 Bright
 			UENM B 1 Bright
 			UENK C 1 Bright
 			UENG D 1 Bright
-			UENF E 1 Bright
-			UENM F 1 Bright
-			UENK G 1 Bright
-			UENG H 1 Bright
-			UENF I 1 Bright
-			UENM J 1 Bright
-			UENK A 1 Bright
-			UENG B 1 Bright
-			UENF C 1 Bright
-			UENM D 1 Bright
-			UENK E 1 Bright
-			UENG F 1 Bright
-			UENF G 1 Bright
-			UENM H 1 Bright
-			UENK I 1 Bright
-			UENG J 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
 			UENF A 1 Bright
 			UENM B 1 Bright
 			UENK C 1 Bright
 			UENG D 1 Bright
-			UENF E 1 Bright
-			UENM F 1 Bright
-			UENK G 1 Bright
-			UENG H 1 Bright
-			UENF I 1 Bright
-			UENM J 1 Bright
-			UENK A 1 Bright
-			UENG B 1 Bright
-			UENF C 1 Bright
-			UENM D 1 Bright
-			UENK E 1 Bright
-			UENG F 1 Bright
-			UENF G 1 Bright
-			UENM H 1 Bright
-			UENK I 1 Bright
-			UENG J 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
+			UENF A 1 Bright
+			UENM B 1 Bright
+			UENK C 1 Bright
+			UENG D 1 Bright
+			UENS E 1 Bright
+			UENF F 1 Bright
+			UENM G 1 Bright
+			UENK H 1 Bright
+			UENG I 1 Bright
+			UENS J 1 Bright
 		RNG:
-			"####" "#" 0 A_Jump(256, "Green", "Blue", "Gold", "Red")
+			"####" "#" 0 A_Jump(256, "Green", "Blue", "Gold", "Red", "Violet")
 			Stop
 		Green:
-			TNT1 A 1 A_SpawnItemEx ("DemonenergyGreen", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION | SXF_NOCHECKPOSITION, 0)
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyGreen", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			Stop
 		Gold:
-			TNT1 A 1 A_SpawnItemEx ("DemonenergyGold", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION | SXF_NOCHECKPOSITION, 0)
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyGold", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			Stop
 		Red:
-			TNT1 A 1 A_SpawnItemEx ("DemonenergyRED", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION | SXF_NOCHECKPOSITION, 0)
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyRED", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			Stop
 		Blue:
-			TNT1 A 1 A_SpawnItemEx ("DemonenergyBlue", 0, 0, 0, 0, 0, 0, 0, SXF_TRANSFERTRANSLATION | SXF_NOCHECKPOSITION, 0)
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyBlue", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			Stop
+		Violet:
+			TNT1 A 1 A_SpawnItemEx ("DemonenergyViolet", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			Stop
 	}
 }
@@ -771,6 +774,7 @@ ACTOR DEMONENERGYRED : DEMON_ENERGY_BASE
 			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
 			TNT1 A 0 A_Jumpifinventory("GosimerToken", 1,"Gosimerpickup")
 			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_Jumpifinventory("StrikerToken", 1,"Strikerpickup")
 			TNT1 A 0 A_playsound("Fiend/souls",chan_7)
 			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
 			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
@@ -790,6 +794,11 @@ ACTOR DEMONENERGYRED : DEMON_ENERGY_BASE
 			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
 			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilitycharge", 1)
 			stop
+		Strikerpickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
 	}
 }
 
@@ -797,38 +806,44 @@ ACTOR DEMONENERGYGOLD : DEMON_ENERGY_BASE
 {
 	States
 	{
-	Spawn:
-		UENG ABCDEFGHIJ 2 Bright
-		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
-		"####" A 0 A_CountdownArg(0, "Fade")
-		Loop
-	CheckWho:
-		"####" "#" 0 A_JumpIfInTargetInventory("GosimerToken", 1, "Succ") 
-		"####" "#" 0 A_ClearTarget
-		goto Spawn
-	pickup:
-		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
-		TNT1 A 0 A_Jumpifinventory("GosimerToken", 1,"Gosimerpickup")
-		TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-		TNT1 A 0 A_playsound("Fiend/souls",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		Stop
-	Gosimerpickup:
-		TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
-		stop
-	Kunaipickup:
-		TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Maxpickup:
-		TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
+		Spawn:
+			UENG ABCDEFGHIJ 2 Bright
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
+			"####" A 0 A_CountdownArg(0, "Fade")
+			Loop
+		CheckWho:
+			"####" "#" 0 A_JumpIfInTargetInventory("GosimerToken", 1, "Succ") 
+			"####" "#" 0 A_ClearTarget
+			goto Spawn
+		pickup:
+			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_Jumpifinventory("StrikerToken", 1,"Strikerpickup")
+			TNT1 A 0 A_playsound("Fiend/souls",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
+			stop
+		Kunaipickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Strikerpickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
 	}
 }
 
@@ -836,38 +851,44 @@ ACTOR DEMONENERGYGREEN : DEMON_ENERGY_BASE
 {
 	States
 	{
-	Spawn:
-		UENF ABCDEFGHIJ 2 Bright
-		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
-		"####" A 0 A_CountdownArg(0, "Fade")
-		Loop
-	CheckWho:
-		"####" "#" 0 A_JumpIfInTargetInventory("FiendToken", 1, "Succ") 
-		"####" "#" 0 A_ClearTarget
-		goto Spawn
-	pickup:
-		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
-		TNT1 A 0 A_Jumpifinventory("FiendToken", 1,"Fiendpickup")
-		TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-		TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Fiendpickup:
-		TNT1 A 0 A_playsound("Fiend/souls",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
-		stop
-	Kunaipickup:
-		TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Maxpickup:
-		TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
+		Spawn:
+			UENF ABCDEFGHIJ 2 Bright
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
+			"####" A 0 A_CountdownArg(0, "Fade")
+			Loop
+		CheckWho:
+			"####" "#" 0 A_JumpIfInTargetInventory("FiendToken", 1, "Succ") 
+			"####" "#" 0 A_ClearTarget
+			goto Spawn
+		pickup:
+			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("FiendToken", 1,"Fiendpickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_Jumpifinventory("StrikerToken", 1,"Strikerpickup")
+			TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Fiendpickup:
+			TNT1 A 0 A_playsound("Fiend/souls",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
+			stop
+		Kunaipickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Strikerpickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
 	}
 }
 
@@ -875,38 +896,89 @@ ACTOR DEMONENERGYBLUE : DEMON_ENERGY_BASE
 {
 	States
 	{
-	Spawn:
-		UENM ABCDEFGHIJ 2 Bright
-		"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
-		"####" A 0 A_CountdownArg(0, "Fade")
-		Loop
-	CheckWho:
-		"####" "#" 0 A_JumpIfInTargetInventory("MaxToken", 1, "Succ") 
-		"####" "#" 0 A_ClearTarget
-		goto Spawn
-	pickup:
-		TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
-		TNT1 A 0 A_Jumpifinventory("FiendToken", 1,"Fiendpickup")
-		TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-		TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Fiendpickup:
-		TNT1 A 0 A_playsound("Fiend/souls",chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Kunaipickup:
-		TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
-		stop
-	Maxpickup:
-		TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
-		TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
-		TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
-		stop
+		Spawn:
+			UENM ABCDEFGHIJ 2 Bright
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
+			"####" A 0 A_CountdownArg(0, "Fade")
+			Loop
+		CheckWho:
+			"####" "#" 0 A_JumpIfInTargetInventory("MaxToken", 1, "Succ") 
+			"####" "#" 0 A_ClearTarget
+			goto Spawn
+		pickup:
+			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("FiendToken", 1,"Fiendpickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_Jumpifinventory("StrikerToken", 1,"Strikerpickup")
+			TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Fiendpickup:
+			TNT1 A 0 A_playsound("Fiend/souls",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Kunaipickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
+			stop
+		Strikerpickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+	}
+}
+
+ACTOR DEMONENERGYVIOLET : DEMON_ENERGY_BASE
+{
+	States
+	{
+		Spawn:
+			UENS ABCDEFGHIJ 2 Bright
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK, 0.0, 256.0, 256.0, 360.0, "CheckWho")
+			"####" A 0 A_CountdownArg(0, "Fade")
+			Loop
+		CheckWho:
+			"####" "#" 0 A_JumpIfInTargetInventory("StrikerToken", 1, "Succ") 
+			"####" "#" 0 A_ClearTarget
+			goto Spawn
+		pickup:
+			TNT1 A 0 A_Jumpifinventory("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("FiendToken", 1,"Fiendpickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_Jumpifinventory("StrikerToken", 1,"Strikerpickup")
+			TNT1 A 0 A_playsound("Demonenergy/Gosimer",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Fiendpickup:
+			TNT1 A 0 A_playsound("Fiend/souls",chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Kunaipickup:
+			TNT1 A 0 A_Playsound("Demonenergy/kunai", Chan_7)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/DemonEnergy",chan_5)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 1)
+			stop
+		Strikerpickup:
+			TNT1 A 0 A_playsound("Demonenergy/kunai",chan_5)
+			TNT1 A 0 A_GIVEINVENTORY("Abilitycharge", 1)
+			TNT1 A 0 A_GIVEINVENTORY("UltimateAbilityCharge", 2)
+			stop
 	}
 }
 
@@ -958,63 +1030,123 @@ Actor Takoget : Custominventory
 
 //--------------<Health
 
-Actor Bluhelffilter : Custominventory
+Actor Bluhelffilter : HealthPotion_Base
 {
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
-  States
-  {
-  Spawn:
-    BONB ABCDCB 2
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-	TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 32
-    TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("HPGET",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
-  }
+	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
+	States
+	{
+	Spawn:
+		BONB ABCDCB 2
+		Loop
+	pickup:
+		TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+		TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+		TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+		TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
+		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+		TNT1 A 32
+		TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
+		Stop
+	Kunaipickup:
+		TNT1 A 0 A_playsound("HPGET",chan_5)
+		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+		Stop
+	Gosimerpickup:
+		TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
+		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+		TNT1 A 0 A_Playsound("Health/burp",Chan_6)
+		Stop
+	Maxpickup:
+		TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
+		TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+		Stop
+	}
+}
+
+Actor REDhelffilter : HealthPotion_Base
+{
+	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
+	States
+	{
+		Spawn:
+			BONR ABCDCB 2
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 32
+			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("HPGET",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
+	}
+}
+
+Actor GREENhelffilter : HealthPotion_Base
+{
+	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
+	States
+	{
+		Spawn:
+			BONG ABCDCB 2
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 32
+			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("HPGET",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
+			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			Stop
+	}
 }
 
 ACTOR BlueHealthpainis : Health
 {
-  Game Doom
-  SpawnID 152
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 5
-  Inventory.MaxAmount 300
-  Inventory.PickupSound "HPGET"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a health bonus. +5"
-  States
-  {
-  Spawn:
-    BONB ABCDCB 2
-    Loop
-  }
+	Game Doom
+	SpawnID 152
+	+COUNTITEM
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 5
+	Inventory.MaxAmount 300
+	Inventory.PickupSound "HPGET"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Picked up a health bonus. +5"
+	States
+	{
+		Spawn:
+			BONB ABCDCB 2
+			Loop
+	}
 }
 
 ACTOR Spencerhp : Health
@@ -1037,45 +1169,6 @@ ACTOR Spencerhp : Health
   }
 }
 
-Actor REDhelffilter : Custominventory
-{
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
-  States
-  {
-  Spawn:
-    BONR ABCDCB 2
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-	TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 32
-    TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("HPGET",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
-  }
-}
-
 ACTOR REDHealthpainis : Health
 {
   Game Doom
@@ -1093,45 +1186,6 @@ ACTOR REDHealthpainis : Health
   Spawn:
     BONR ABCDCB 2
     Loop
-  }
-}
-
-Actor GREENhelffilter : Custominventory
-{
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.QUIET
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
-  States
-  {
-  Spawn:
-    BONG ABCDCB 2
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-	TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 32
-    TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("HPGET",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-    Stop
   }
 }
 
