@@ -472,7 +472,7 @@ Actor GosimerToken : Inventory
 
 actor MaximusPrime : DoomPlayer
 {
-	Speed 0.75
+	Speed 0.9
 	Gravity 0.75
 	Health 200
 	Player.MaxHealth 200
