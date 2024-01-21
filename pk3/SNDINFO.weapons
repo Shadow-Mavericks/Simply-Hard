@@ -1,17 +1,24 @@
 GenericCrit CRIT
 
+// ---------------
 // Kunai's Weapons
+// ---------------
+
+// PDW
 PDWFire1 KTOMGFR1
 PDWFire2 KTOMGFR2
 $random PDWFire { PDWFire1 PDWFire2 }
 
+// StreetSweeper
 SSWFire1 sswfir01
 SSWFire2 sswfir02
 $random SSWFire { SSWFire1 SSWFire2 }
-// ------
 
+// -----------------
 // Gosimer's Weapons
-//Duke Shotgun
+// -----------------
+
+// Duke Shotgun
 GShotgunFire		SHOTGUN7
 GShotgunFireGold	SHOTGUN8
 GShotgunCock1		SHOTGNC1
@@ -31,4 +38,39 @@ GPistolFireGold GPGOLDF
 Gosimer/GrenadeL_POOT	GNTGPOOT
 Gosimer/GrenadeL_open	GNTGOPEN
 Gosimer/GrenadeL_Close	GNTGCLS
-// ------
+
+// -------------
+// Max's Weapons
+// -------------
+
+$random Max/lsattack	{ Max/LSA Max/LSA1 Max/LSA2 Max/LSA3 Max/LSA4 Max/LSA5 Max/LSA6 Max/LSA7 Max/LSA8 Max/LSA9 }
+$random Max/lshit		{ Max/LSH Max/LSH1 Max/LSH2 Max/LSH3 Max/LSH4 Max/LSH5 Max/LSH6 } 
+$random Max/lshitwall	{ Max/LSHW Max/LSHW1 Max/LSHW2 }
+$random Max/LSHum		{ Max/Hum Max/Hum1 Max/Hum2 Max/Hum3 Max/Hum4 }
+Max/LSA			DSSABRE
+Max/LSA1		DSSABRE1
+Max/LSA2		DSSABRE2
+Max/LSA3		DSSABRE3
+Max/LSA4		DSSABRE4
+Max/LSA5		DSSABRE5
+Max/LSA6		DSSABRE6
+Max/LSA7		DSSABRE7
+Max/LSA8		DSSABRE8
+Max/LSA9		DSSABRE9
+Max/LSH			LSABHIT1
+Max/LSH1		LSABHIT2
+Max/LSH2		LSABHIT3
+Max/LSH3		LSABHIT4
+Max/LSH4		LSABHIT5
+Max/LSH5		LSABHIT6
+Max/LSH6		LSABHIT7
+Max/LSHW		LSABHTW1
+Max/LSHW1		LSABHTW2
+Max/LSHW2		LSABHTW3
+Max/Hum			DSSABHM1
+Max/Hum1		DSSABHM2
+Max/Hum2		DSSABHM3
+Max/Hum3		DSSABHM4
+Max/Hum4		DSSABHM5
+Max/LSSelect	DSSABREU
+Max/LSDeselect	DSSABREO

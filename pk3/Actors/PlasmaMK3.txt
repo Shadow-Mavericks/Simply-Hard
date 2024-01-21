@@ -6,8 +6,6 @@ ACTOR PlasmagunMK2 : DoomWeapon
   Weapon.AmmoGive1 40
   Weapon.AmmoType1 "Battery"
   Weapon.Ammotype2 "Coolant"
-  Inventory.ForbiddenTo "Gosimer"
-  Inventory.ForbiddenTo "Kunai"
   Inventory.RestrictedTo "Fiend"
   Weapon.BobSpeed 1.5
   weapon.BobRangeX .5
@@ -140,15 +138,13 @@ ACTOR DEPlasmaRifle : DoomWeapon //Weapon From erience
 	Weapon.AmmoUse2 0
 	Weapon.Ammogive1 40
 	Weapon.AmmoType1 "Battery"
-  Weapon.BobSpeed 1.5
-  Weapon.BobRangeX .5
-  Weapon.BobStyle "InverseSmooth"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Gosimer"
-        Inventory.Restrictedto "Fiend"
-        //+WEAPON.NOAUTOAIM
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Inventory.Restrictedto "Fiend"
+	//+WEAPON.NOAUTOAIM
 	Inventory.Respawntics"4200"
-        Inventory.PickupSound "weapon/plasmaget"
+	Inventory.PickupSound "weapon/plasmaget"
 	Inventory.PickupMessage "$GOTPLASMA"
 	States
 	{

@@ -11,6 +11,7 @@ Stars.o - Tribeam
 Deaths - Tribeam / Fiend
 Invincibility music - Tribeam < base code > / Fiend
 Optional - Kunais Footsteps - [?] Code needs updating
+KILL_CODE.ACS/O - StrikerTheHedgefox
 
 TEXTURES / FLATS
 Doom64 / Portals, Lava, nukage, Blood, Water
@@ -548,3 +549,17 @@ GLDEFs: Ghastly Dragon, Keksdose, Sandypaper (Brightmaps)
 Sounds: Id Software, Blizzard
 Sprites: Id Software
 Sprite Edit: Vader
+
+// Doom 2016 Cyberdemon
+DOOM 2016 Cybderdemon Sprites by Simply Delicious (Simploo)
+DOOM 2016 Cybderdemon Model used for rendering by ID Software.
+DOOM 2016 Cybderdemon Sounds by ID Software
+DOOM 2016 Cyberdemon Sounds extracted from D4T (Death 4 Told) Credit to DBT and Others who worked on that project.
+General FX and Gore from D4T (Death 4 Told) Credit to DBT and Others who worked on that project.
+DECORATE File inspired by D4T's (Death 4 Told) Cyberdemon DECORATE structure, Credit to DBT and Others who worked on that project.
+
+// Gaster Blaster
+Gaster Blaster by CaptainJ
+
+// Lightsaber
+Sprites By: WARDUST

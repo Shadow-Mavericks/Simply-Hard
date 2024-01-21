@@ -11,14 +11,13 @@ ACTOR Fists : fist replaces Fist
 	Game Doom
 	Weapon.SelectionOrder 9
 	Weapon.slotnumber 1
-	Inventory.ForbiddenTo "Maximusprime"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.ForbiddenTo "Kunai"
+	Inventory.RestrictedTo "Fiend"
 	Weapon.Kickback 100
 	Obituary "$OB_MPFIST"
 	Tag "Fisty cuffs"
 	+WEAPON.WIMPY_WEAPON
 	+WEAPON.MELEEWEAPON
+	+WEAPON.CHEATNOTWEAPON
 	States
 	{
 	Ready:
