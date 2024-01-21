@@ -1279,6 +1279,8 @@ actor SaberPuff_SweetSpot : SaberPuff
 	+FORCEPAIN
 }
 
+const int SABER_DMG = 40;
+
 actor Lightsaber : Weapon
 {
 	weapon.selectionorder 1000
@@ -1309,7 +1311,7 @@ actor Lightsaber : Weapon
 			Loop
 		Ready:
 			SABR A 0 A_Playsound("Max/LSHum", CHAN_7, 1.0, true)
-			goto ReadyLoop // Only want to call the looping sound once.
+			goto ReadyLoop // Only want to call the looping sound once due to randomization.
 		ReadyLoop:
 			SABR AAAABBBB 1 Bright A_WeaponReady
 			Loop
@@ -1319,23 +1321,23 @@ actor Lightsaber : Weapon
 		SwingLeft:
 			SABA A 2 Bright
 			SABA B 2 Bright A_Playsound ("Max/lsattack", CHAN_WEAPON)
-			SABA C 2 Bright A_FireBullets(-16.0, 0.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA D 1 Bright A_FireBullets(0.0, 2.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA E 1 Bright A_FireBullets(8.0, 4.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA F 1 Bright A_FireBullets(16.0, 6.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA G 1 Bright A_FireBullets(32.0, 8.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA H 1 Bright A_FireBullets(40.0, 10.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA C 2 Bright A_FireBullets(-16.0, 0.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA D 1 Bright A_FireBullets(0.0, 2.0, -1, SABER_DMG, "SaberPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA E 1 Bright A_FireBullets(8.0, 4.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA F 1 Bright A_FireBullets(16.0, 6.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA G 1 Bright A_FireBullets(32.0, 8.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA H 1 Bright A_FireBullets(40.0, 10.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
 			TNT1 A 7 Bright
 			Goto Recover
 		SwingRight:
 			SABA I 2 Bright
 			SABA J 2 Bright A_Playsound ("Max/lsattack", CHAN_WEAPON)
-			SABA K 2 Bright A_FireBullets(16.0, 0.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA L 1 Bright A_FireBullets(0.0, 2.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA M 1 Bright A_FireBullets(-8.0, 4.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA N 1 Bright A_FireBullets(-16.0, 6.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA O 1 Bright A_FireBullets(-32.0, 8.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
-			SABA P 1 Bright A_FireBullets(-40.0, 10.0, -1, 15 * DARKFORCES_DMG_MULT, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA K 2 Bright A_FireBullets(16.0, 0.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA L 1 Bright A_FireBullets(0.0, 2.0, -1, SABER_DMG, "SaberPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA M 1 Bright A_FireBullets(-8.0, 4.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA N 1 Bright A_FireBullets(-16.0, 6.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA O 1 Bright A_FireBullets(-32.0, 8.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
+			SABA P 1 Bright A_FireBullets(-40.0, 10.0, -1, SABER_DMG, "SaberPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ, 80.0)
 			TNT1 A 7 Bright
 			Goto Recover
 		Recover:
