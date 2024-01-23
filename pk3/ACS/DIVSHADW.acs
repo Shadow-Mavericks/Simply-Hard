@@ -3,90 +3,6 @@
 
 //----------------------------------------------//
 
-int DP_AnglesGeneric[5] = {0.00, 0.18, 0.39, 0.58, 0.80};
-
-function int Abs(int i)
-{
-	if (i < 0) return -i;
-	return i;
-}
-
-function void DrawPentagramPart(int fx, int fy, int fz, int size, int alpha, int ang1, int ang2)
-{
-	// size = 64.0 ?
-	int x1 = fx + size * cos(ang1);
-	int y1 = fy + size * sin(ang1);
-	int x2 = fx + size * cos(ang2);
-	int y2 = fy + size * sin(ang2);
-	int len = VectorLength(x2-x1, y2-y1);
-	int dx = FixedDiv(x2-x1, len);
-	int dy = FixedDiv(y2-y1, len);
-	int cnt = len>>16;
-	for (int i = 0; i < cnt; i+=2)
-	{
-		// this is the color of BFG
-		int r1 = 0x13;
-		int g1 = 0x23;
-		int b1 = 0x0b;
-		int r2 = 0x77;
-		int g2 = 0xff;
-		int b2 = 0x6f;
-		int dstmax = cnt/2;
-		int dstc = Abs(dstmax-i);
-		int rdstc = dstmax-dstc;
-		int r = r1*dstc/dstmax+r2*rdstc/dstmax;
-		int g = g1*dstc/dstmax+g2*rdstc/dstmax;
-		int b = b1*dstc/dstmax+b2*rdstc/dstmax;
-		int partsize = 5;
-		// this script is CLIENTSIDE. means we can do this.
-		// I wonder what happens if you have vid_renderer at improper values in ZDoom...
-		// well, anyway, this is because particles arent displayed the same way in software and OpenGL.
-		if (!GetCVar("vid_renderer"))
-			partsize = 10;
-		SpawnParticle((r<<16)|(g<<8)|b, true, 1, partsize, x1+i*dx, y1+i*dy, fz, 0, 0, 0, 0, 0, 0, alpha*rdstc/(dstmax/2), 0);
-	}
-}
-
-function void DrawPentagram(int fx, int fy, int fz, int size, int alpha, int angle)
-{
-	DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[0]+angle, DP_AnglesGeneric[2]+angle);
-	DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[2]+angle, DP_AnglesGeneric[4]+angle);
-	DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[4]+angle, DP_AnglesGeneric[1]+angle);
-	DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[1]+angle, DP_AnglesGeneric[3]+angle);
-	DrawPentagramPart(fx, fy, fz, size, alpha, DP_AnglesGeneric[3]+angle, DP_AnglesGeneric[0]+angle);
-}
-
-script "DivineShadow::Pentagram" (int cX, int cY, int cZ) CLIENTSIDE
-{
-	int i;
-	int size = 256;
-	int alpha = 255;
-	int pentaangle = 0;
-	int duration = 35*3;
-
-	for (i = 0; i < duration; i++)
-	{
-		if (GetActorProperty(0, APROP_Health) <= 0)
-			break;
-			
-		size = 256;
-		if (i < 35) size = i*256/35;
-		alpha = 255;
-		if (i < 35) alpha = i*255/35;
-		pentaangle = GetActorAngle(0)+i*1.0/duration;
-		DrawPentagram(cX, cY, cZ+2.0, size, alpha, pentaangle);
-
-		Delay(1);
-	}
-	
-	// update 22.07.2016: decay pentagram slowly
-	for (i = alpha; i > 0; i -= 16)
-	{
-		DrawPentagram(cX, cY, cZ+2.0, size, i, pentaangle);
-		Delay(1);
-	}
-}
-
 // this script manages the circle attack
 // former 440
 script "DivineShadow::Circle" (void)
@@ -95,7 +11,7 @@ script "DivineShadow::Circle" (void)
 	int cY = GetActorY(0);
 	int cZ = GetActorZ(0);
 	
-	ACS_NamedExecuteAlways("DivineShadow::Pentagram", 0, cX, cY, cZ); // not WithResult because it needs to be clientside for Zan
+	//ACS_NamedExecuteAlways("DivineShadow::Pentagram", 0, cX, cY, cZ); // not WithResult because it needs to be clientside for Zan
 	
 	// first, display the "warning"
 	ActivatorSound("weapons/bfgf", 127);
