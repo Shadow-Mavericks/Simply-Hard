@@ -345,23 +345,22 @@ ACTOR Lightning_Rifle: DoomWeapon
 	SpawnID 31
 	Weapon.SelectionOrder 7
 	Weapon.SlotNumber 7
-	Inventory.Forbiddento "Maximusprime"
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 40
 	Weapon.AmmoType "Battery"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
-		//+WEAPON.NOAUTOAIM
+	Weapon.PreferredSkin "Plasma-Marine"
 	Inventory.Respawntics"4200"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Fiend"
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupSound "Weapon/devistatorget"
-	Weapon.PreferredSkin "Plasma-Marine"
-	+WEAPON.NOAUTOFIRE
 	Inventory.PickupMessage "Lightning Gun"
 	Tag "Lightning Gun"
+	//+WEAPON.NOAUTOAIM
+	+WEAPON.NOAUTOFIRE
+	+BLOODLESSIMPACT
+	-BLOODSPLATTER
 	States
 	{
 	Ready:
