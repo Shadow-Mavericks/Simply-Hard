@@ -43,16 +43,16 @@ ACTOR Fists : fist replaces Fist
 ACTOR kankanboot : Weapon
 {
 	Weapon.PreferredSkin "Fist-Marine"
-	Game Doom
 	Weapon.SelectionOrder 8
 	Weapon.Kickback 100
 	Obituary "gave a guy a boot to the head :O"
 	Tag "Fisty cuffs"
-	+WEAPON.WIMPY_WEAPON
-	+WEAPON.MELEEWEAPON
 	Weapon.AmmoUse 0
 	Weapon.AmmoGive 0
 	Weapon.AmmoType "Kancounter"
+	+WEAPON.WIMPY_WEAPON
+	+WEAPON.MELEEWEAPON
+	+WEAPON.CHEATNOTWEAPON // Don't fucking give this to the player outside of kankan mode.
 	States
 	{
 	Ready:

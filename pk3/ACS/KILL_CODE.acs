@@ -345,6 +345,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		
 		bool doNumbers = false;
 		bool doTeamDamageScale = false;
+		bool wasConcussed = false;
 
 		if (victimIsMonster)
 			doNumbers = true;
@@ -371,11 +372,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				SetResultValue(arg1);
 			}
 			
+			wasConcussed = CheckActorClass(0, "ConcussionBlast");
+			if(CheckActorClass(0, "FistPuff") || wasConcussed)
+				yeetAmt = random(arg1 >> 2, arg1);
+			
 			if(GetCVar("sh_debug"))
 				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
-			
-			if(CheckActorClass(0, "FistPuff"))
-				yeetAmt = random(arg1 >> 2, arg1);
 		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
@@ -416,7 +418,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 		{
-			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST"))
+			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST") && !CheckFlag(0, "FLOAT"))
 			{
 				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
 				if(assMass <= 0)
@@ -431,6 +433,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				
 				ThrustThingZ(0, yeetAmt, 0, 1);
 			}
+			
+			if(wasConcussed)
+				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
 
 			if(doNumbers)
 			{

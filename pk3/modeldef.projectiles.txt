@@ -65,3 +65,14 @@ model Bullet
 
 	FrameIndex BULL A 0 0
 }
+
+model ConcussionBlast
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BlueTracer.png"
+	Scale 3.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BULL A 0 0
+}
