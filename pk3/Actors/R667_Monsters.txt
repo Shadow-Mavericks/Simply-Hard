@@ -1723,10 +1723,10 @@ ACTOR DevastatorBall
    {
    Spawn:
       DBAL AB 4 Bright
-      DBAL A 4 Bright A_Explode (64,128,1)
+      DBAL A 4 Bright A_Explode (32,128,1)
       DBAL A 0 Bright A_Jump (160,3)
       DBAL AAA 0 Bright A_CustomMissile("LiteShot",0,0,Random(0,360))
-      DBAL B 4 Bright A_Explode (64,128,1)
+      DBAL B 4 Bright A_Explode (32,128,1)
       DBAL B 0 Bright A_Jump (160,3)
       DBAL BBB 0 Bright A_CustomMissile("LiteShot",0,0,Random(0,360))
       Goto Spawn+2
