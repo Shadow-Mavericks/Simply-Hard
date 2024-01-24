@@ -208,7 +208,7 @@ actor ConcussionBlast : FastProjectile
 	Obituary "%o was unlucky to meet %k's Concussion Rifle"
 	Radius 6
 	Height 6
-	Damage (0)
+	Damage (20 * DARKFORCES_DMG_MULT)
 	Speed 47
 	
 	RenderStyle Add
