@@ -1753,7 +1753,7 @@ ACTOR HardPainisElemental
     PAIN D 4 A_FaceTarget
     PAIN E 4 A_FaceTarget
     PAIN F 3 Bright A_FaceTarget
-    PAIN F 1 Bright A_PainAttack
+    PAIN F 1 Bright A_PainAttack("HardSoul")
     Goto See
   Pain.Mightyboot:
 	TNT1 A 0 A_Facetarget
