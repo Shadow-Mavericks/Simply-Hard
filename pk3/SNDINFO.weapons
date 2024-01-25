@@ -43,6 +43,41 @@ Gosimer/GrenadeL_Close	GNTGCLS
 // Max's Weapons
 // -------------
 
+// Concussion Rifle
+Max/ConcDryFire CONCUSS1
+Max/ConcProj CONCUSS6
+Max/ConcRifle DFCONCU
+
+// Mortar Launcher
+Max/MortarDryFire MORTAR9
+Max/MortarFire MORTAR4
+Max/MortarLoad MORTAR2
+
+// Fusion Cutter
+Max/Fusion  DFFUSION
+Max/FusionDryFire FUSION2
+Max/Goob DFGOOB
+
+// Repeater
+Max/autogun DFREPEAT
+Max/autoloop DFRELOOP
+Max/RepeaterDryFire REP-EMP
+
+Max/GAutogun DFGREP
+Max/GAutoloop DFGREPL
+
+// Assault Cannon
+Max/Assault DFCANNON
+Max/AssaultDryFire PLAS-EMP
+Max/Missile DFMISSIL
+
+// E-11
+Max/E-11 DFBLASTR
+Max/E-11DryFire RIFLOUT
+Max/GE-11N DFGRIFN
+Max/GE-11Z DFGRIFZ
+
+// Lightsaber
 $random Max/lsattack	{ Max/LSA1 Max/LSA2 Max/LSA3 Max/LSA4 Max/LSA5 Max/LSA6 Max/LSA7 Max/LSA8 Max/LSA9 }
 $random Max/lshit		{ Max/LSH1 Max/LSH2 Max/LSH3 Max/LSH4 Max/LSH5 Max/LSH6 Max/LSH7 } 
 $random Max/lshitwall	{ Max/LSHW Max/LSHW1 Max/LSHW2 }

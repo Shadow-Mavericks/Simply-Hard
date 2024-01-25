@@ -1867,27 +1867,16 @@ Weapon/Litning_LOOP	thunloop
 Weapon/Litning_START	thunuse
 
 //Max's sounds
-Max/E-11	DFBLASTR
-Max/GE-11N  DFGRIFN
-Max/GE-11Z  DFGRIFZ
+
 Max/Bryar	DFLBLAST
 Max/DL44 	DFDLBLAS
 Max/LZHIT	DFLHIT
 Max/fist	DFSWING
-Max/autogun DFREPEAT
-Max/autoloop DFRELOOP
-Max/GAutogun DFGREP
-Max/GAutoloop DFGREPL
-Max/fusion  DFFUSION
-Max/Goob DFGOOB
-Max/mortarfire MORTAR4
-Max/mortarload MORTAR2
-Max/ConcRifle DFCONCU
+
 Max/LrgExplo DFLRGEX
 Max/Disrupt DFDISR
 Max/DisrCh  DFDISC
-Max/Assault DFCANNON
-Max/Missile DFMISSIL
+
 Max/Trail DFTRAIL
 Max/MedExplo MEDEXP
 Max/BWPlasma DFWPLAS
@@ -1901,7 +1890,7 @@ Max/ArmorGet	DFARMOR
 Max/fisthit		DFPUNCH
 Max/Zoom		DFZOOM
 $playersound	MaximusPrime	male	*land		DFLAND
-$playersound 	MaximusPrime male	*jump		DFJUMP
+$playersound 	MaximusPrime	male	*jump		DFJUMP
 
 //Kunai helltech shotgun
 Kunaishotgun_FIRE1	KHTS_FR1
