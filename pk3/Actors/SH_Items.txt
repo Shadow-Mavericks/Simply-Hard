@@ -1452,6 +1452,7 @@ actor PShieldPart
 	+NOBLOODDECALS
 	+FLOORCLIP
 	+REFLECTIVE
+	+NOTAUTOAIMED
 	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
 	States
 	{
@@ -1578,52 +1579,53 @@ actor PShieldHit
 
 actor RedAPShieldPart
 {
-  Radius 10
-  Height 16
-  Scale 0.5
-  RenderStyle None
-  Alpha 0.25
-  Bloodtype "RedAPShieldHit"
-  +SHOOTABLE
-  +NOGRAVITY
-  +NOTELEPORT
-  +NODAMAGE
-  +NORADIUSDMG
-  +DONTRIP
-  +NOBLOODDECALS
-  +FLOORCLIP
-  +REFLECTIVE
-  //+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-  States
-  {
-  Spawn:
-    HEXP A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 10
+	Height 16
+	Scale 0.5
+	RenderStyle None
+	Alpha 0.25
+	Bloodtype "RedAPShieldHit"
+	+SHOOTABLE
+	+NOGRAVITY
+	+NOTELEPORT
+	+NODAMAGE
+	+NORADIUSDMG
+	+DONTRIP
+	+NOBLOODDECALS
+	+FLOORCLIP
+	+REFLECTIVE
+	+NOTAUTOAIMED
+	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
+	States
+	{
+		Spawn:
+			HEXP A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor RedAPShieldPartVisual
 {
-  Radius 8
-  Height 8
-  Scale 0.5
-  RenderStyle Add	//Fuzzy looks great in software mode
-  Alpha 0.25
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +FLOORCLIP
-  States
-  {
-  Spawn:
-    HEXP A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 8
+	Height 8
+	Scale 0.5
+	RenderStyle Add	//Fuzzy looks great in software mode
+	Alpha 0.25
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			HEXP A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor RedAPShieldSpawner5up
@@ -1719,31 +1721,32 @@ actor RedAPShieldHit
 
 actor RedBPShieldPart
 {
-  Radius 10
-  Height 16
-  Scale 0.5
-  RenderStyle None
-  Alpha 0.25
-  Bloodtype "RedBPShieldHit"
-  +SHOOTABLE
-  +NOGRAVITY
-  +NOTELEPORT
-  +NODAMAGE
-  +NORADIUSDMG
-  +DONTRIP
-  +NOBLOODDECALS
-  +FLOORCLIP
-  +REFLECTIVE
-  //+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-  States
-  {
-  Spawn:
-    HEXQ A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 10
+	Height 16
+	Scale 0.5
+	RenderStyle None
+	Alpha 0.25
+	Bloodtype "RedBPShieldHit"
+	+SHOOTABLE
+	+NOGRAVITY
+	+NOTELEPORT
+	+NODAMAGE
+	+NORADIUSDMG
+	+DONTRIP
+	+NOBLOODDECALS
+	+FLOORCLIP
+	+REFLECTIVE
+	+NOTAUTOAIMED
+	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
+	States
+	{
+		Spawn:
+			HEXQ A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor RedBPShieldPartVisual
@@ -1769,50 +1772,50 @@ actor RedBPShieldPartVisual
 
 actor RedBPShieldSpawner5up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor RedBPShieldSpawner4up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 8, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 24, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 40, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 56, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 8, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 24, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 40, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 56, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 8, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 24, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 40, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPart", 0, 0, 56, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 8, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 24, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 40, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedBPShieldPartVisual", 0, 0, 56, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor RedBPShieldSpawner3up
@@ -1860,121 +1863,122 @@ actor RedBPShieldHit
 
 actor RedPShieldPart
 {
-  Radius 10
-  Height 16
-  Scale 0.5
-  RenderStyle None
-  Alpha 0.25
-  Bloodtype "RedPShieldHit"
-  +SHOOTABLE
-  +NOGRAVITY
-  +NOTELEPORT
-  +NODAMAGE
-  +NORADIUSDMG
-  +DONTRIP
-  +NOBLOODDECALS
-  +FLOORCLIP
-  +REFLECTIVE
-  //+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-  States
-  {
-  Spawn:
-    HEXR A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 10
+	Height 16
+	Scale 0.5
+	RenderStyle None
+	Alpha 0.25
+	Bloodtype "RedPShieldHit"
+	+SHOOTABLE
+	+NOGRAVITY
+	+NOTELEPORT
+	+NODAMAGE
+	+NORADIUSDMG
+	+DONTRIP
+	+NOBLOODDECALS
+	+FLOORCLIP
+	+REFLECTIVE
+	+NOTAUTOAIMED
+	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
+	States
+	{
+		Spawn:
+			HEXR A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor RedPShieldPartVisual
 {
-  Radius 8
-  Height 8
-  Scale 0.5
-  RenderStyle Add	//Fuzzy looks great in software mode
-  Alpha 0.25
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +FLOORCLIP
-  States
-  {
-  Spawn:
-    HEXR A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 8
+	Height 8
+	Scale 0.5
+	RenderStyle Add	//Fuzzy looks great in software mode
+	Alpha 0.25
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			HEXR A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor RedPShieldSpawner5up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor RedPShieldSpawner4up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 8, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 24, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 40, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 56, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 8, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 24, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 40, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 56, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 8, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 24, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 40, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 56, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 8, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 24, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 40, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 56, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor RedPShieldSpawner3up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("RedPShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor RedPShieldHit
