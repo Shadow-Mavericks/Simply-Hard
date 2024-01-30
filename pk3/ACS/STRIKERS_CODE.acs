@@ -1,4 +1,4 @@
-#Library "KILL_CODE"
+#Library "STRIKERS_CODE"
 #include "zcommon.acs"
 
 function bool startsWithVowel(str string)

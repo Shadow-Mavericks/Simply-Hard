@@ -9,8 +9,9 @@ int playeralarms[64][2];
 script "CL_MedicalMonitor" enter clientside
 {
 	Thing_ChangeTID(0, 1337+playerNumber());
-	if(playerNumber() != consolePlayerNumber())	{ terminate; }
 	
+	if(playerNumber() != consolePlayerNumber())
+		terminate;
 	
 	int counter = 100;
 	int hp;

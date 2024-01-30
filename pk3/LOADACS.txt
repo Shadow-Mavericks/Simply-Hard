@@ -8,4 +8,4 @@ DIVSHADW
 Classabilities
 SoundAndMusic
 Deathsounds
-KILL_CODE
+STRIKERS_CODE
