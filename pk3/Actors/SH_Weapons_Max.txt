@@ -954,8 +954,8 @@ actor Autogun : Weapon
 			NULL AA 0 A_Raise
 			Loop
 		Deselect:
+			NULL A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldDeselect")
-			NULL A 0 A_StopSound(5)
 			AUTO A 1 A_Lower
 			NULL AA 0 A_Lower
 			Loop
@@ -984,12 +984,11 @@ actor Autogun : Weapon
 			AUTO C 2
 			NULL C 0 A_ReFire
 			NULL A 0 A_StopSound(CHAN_WEAPON)
-			NULL A 0 A_ClearReFire
 			Goto Ready
 		AltFire:
 			TNT1 A 0 A_Jumpifnoammo("DryFire")
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldAltFire")
-			AUTO B 0 A_PlaySound ("Max/autogun", 5)
+			AUTO B 0 A_PlaySound ("Max/autogun", CHAN_WEAPON)
 			AUTO B 0 A_FireCustomMissile ("Bullet", -2.0 + frandom(-0.5, 0.5), true, 5,  -6, 0, -1.0 + frandom(-0.5, 0.5))
 			AUTO B 0 A_FireCustomMissile ("Bullet", 2.0 + frandom(-0.5, 0.5), false, 15, -6, 0, -1.0 + frandom(-0.5, 0.5))
 			AUTO B 2 BRIGHT A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), false, 10, 0, 0, 2.25 + frandom(-0.5, 0.5))
@@ -1030,8 +1029,7 @@ actor Autogun : Weapon
 			GYRO B 2 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), true, 10, 0, 0, frandom(-0.5, 0.5))
 			GYRO C 2 Bright
 			GYRO C 0 A_ReFire
-			GYRO A 0 A_StopSound(5)
-			GYRO A 0 A_ClearReFire
+			GYRO A 0 A_StopSound(CHAN_WEAPON)
 			Goto Ready
 		GoldAltFire:
 			GYRO B 0 A_PlaySound ("Max/GAutogun", CHAN_WEAPON)
