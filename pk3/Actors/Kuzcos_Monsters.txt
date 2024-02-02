@@ -1926,6 +1926,7 @@ actor CCCDroid
 	Painsound "Droid/Pain"
 	DamageFactor "MaxExplosion", 1.25
 	DamageFactor "MaxBlasterBolt", 2.0
+	DropItem "Cell", 256
 	var int user_theta;
 	+QUICKTORETALIATE
 	+FLOAT
@@ -1966,38 +1967,12 @@ actor CCCDroid
 			CCCD MNOP 3 A_PAIN
 			Goto see
 		Death:
-			// CCCD A 0 BRIGHT A_playsound("Droid/Death")
+			CDXP A 0 A_ScreamAndUnblock
 			CDXP A 0 A_Stop
 			CDXP A 0 A_NoGravity
-			CDXP A 2 BRIGHT A_explode(2,64)
-			CDXP B 2 BRIGHT A_explode(2,64)
-			CDXP C 2 BRIGHT A_explode(2,64)
-			CDXP D 2 BRIGHT A_explode(2,64)
-			CDXP E 2 BRIGHT A_explode(2,64)
-			CDXP F 2 BRIGHT A_explode(2,64)
-			CDXP G 2 BRIGHT A_explode(2,64)
-			CDXP H 2 BRIGHT A_explode(2,64)
-			CDXP I 2 BRIGHT A_explode(2,64)
-			CDXP J 2 BRIGHT A_explode(2,64)
-			CDXP K 2 BRIGHT A_explode(2,64)
-			CDXP L 2 BRIGHT A_explode(2,64)
-			CDXP M 2 BRIGHT A_explode(2,64)
-			CDXP N 2 BRIGHT A_explode(2,64)
-			CDXP O 2 BRIGHT A_explode(2,64)
-			CDXP P 2 BRIGHT A_explode(2,64)
-			CDXP Q 2 BRIGHT A_explode(2,64)
-			CDXP R 2 BRIGHT A_explode(2,64)
-			CDXP S 2 BRIGHT A_explode(2,64)
-			CDXP T 2 BRIGHT A_explode(2,64)
-			CDXP U 2 BRIGHT
-			CDXP V 2 BRIGHT
-			CDXP W 2 BRIGHT
-			CDXP X 2 BRIGHT
-			CDXP Y 2 BRIGHT
-			CDXP Z 2 BRIGHT
-			CDEX A 2 BRIGHT
-			CDEX B 2 BRIGHT
-			CDEX C 2 BRIGHT
+			CDXP ABCDEFGHIJKLMNOPQRST 2 BRIGHT A_explode(2,64)
+			CDXP UVWXYZ 2 BRIGHT
+			CDXX AB 2 BRIGHT
 			Stop
 	}
 }
