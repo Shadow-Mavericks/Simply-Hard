@@ -511,6 +511,9 @@ actor MaximusPrime : DoomPlayer
 	BounceSound "PlayerHP/AlarmMax"
 	Player.JumpZ 10
 	Player.AirCapacity 3
+
+	var int user_supercharge_useammo;
+
 	States
 	{
 		Spawn:

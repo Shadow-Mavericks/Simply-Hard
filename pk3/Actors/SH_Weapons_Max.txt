@@ -464,7 +464,7 @@ actor MortarGun : Weapon
 		Fire:
 			MORT B 0 A_JumpIfNoAmmo("DryFire")
 			MORT B 0 A_PlaySound ("Max/MortarFire", CHAN_WEAPON)
-			MORT B 0 A_FireCustomMissile("Mortarnade", 0, true, 5)
+			MORT B 0 A_FireCustomMissile("Mortarnade", 0, CallACS("SUPERCHARGE_CHECK"), 5)
 			MORT B 12 bright A_GunFlash
 			MORT C 0 A_PlaySound("Max/MortarLoad", CHAN_AUTO)
 			MORT CDA 4 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
@@ -533,7 +533,7 @@ actor ConcRifle : Weapon
 			CONC B 0 A_JumpIfNoAmmo("DryFire")
 			CONC B 0 A_GunFlash
 			CONC B 0 A_PlaySound ("Max/ConcRifle")
-			CONC B 14 bright A_FireCustomMissile ("ConcussionBlast", 0, true, 5, 0, 0)
+			CONC B 14 bright A_FireCustomMissile ("ConcussionBlast", 0, CallACS("SUPERCHARGE_CHECK"), 5, 0, 0)
 			CONC C 4 bright
 			CONC A 10
 			CONC A 0 A_ReFire
@@ -598,7 +598,7 @@ actor AssaultCannon : Weapon
 			TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldFire")
 			ASAU B 0 A_GunFlash
 			ASAU B 0 A_PlaySound ("Max/Assault", CHAN_WEAPON)
-			ASAU B 6 bright A_FireCustomMissile ("AssaultCannonPlasma", frandom(-0.75, 0.75), true, 10, 0, 0, frandom(-0.75, 0.75))
+			ASAU B 6 bright A_FireCustomMissile ("AssaultCannonPlasma", frandom(-0.75, 0.75), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.75, 0.75))
 			ASAU B 1
 			ASAU A 0 A_Refire
 			Goto Ready
@@ -607,7 +607,7 @@ actor AssaultCannon : Weapon
 			TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldAltFire")
 			ASAU C 6 A_GunFlash
 			ASAU C 0 A_PlaySound ("Max/Missile", CHAN_WEAPON)
-			ASAU D 20 bright A_FireCustomMissile ("AssaultCannonMissile", 0, true, 10, 0, 0)
+			ASAU D 20 bright A_FireCustomMissile ("AssaultCannonMissile", 0, CallACS("SUPERCHARGE_CHECK"), 10, 0, 0)
 			ASAU A 16
 			ASAU A 1 A_ReFire
 			Goto Ready
@@ -635,7 +635,7 @@ actor AssaultCannon : Weapon
 		GoldFire:
 			BLWH B 0 A_GunFlash
 			BLWH B 0 A_PlaySound ("Max/BWPlasma")
-			BLWH B 2 Bright A_FireCustomMissile ("GoldAssaultCannonPlasma", frandom(-0.75, 0.75), true, 10, -0.5, 0, frandom(-0.75, 0.75))
+			BLWH B 2 Bright A_FireCustomMissile ("GoldAssaultCannonPlasma", frandom(-0.75, 0.75), CallACS("SUPERCHARGE_CHECK"), 10, -0.5, 0, frandom(-0.75, 0.75))
 			BLWH C 2 Bright
 			BLWH D 2 Bright
 			BLWH A 1
@@ -646,7 +646,7 @@ actor AssaultCannon : Weapon
 			BLWH F 2 Bright
 			TNT1 C 0 A_PlaySound ("Max/BWMissile", 1)
 			TNT1 C 0 A_PlaySound ("Max/BWRock", 2)
-			BLWH G 2 Bright A_FireCustomMissile ("GoldAssaultCannonMissile", 0, true, 10, 0, 0)
+			BLWH G 2 Bright A_FireCustomMissile ("GoldAssaultCannonMissile", 0, CallACS("SUPERCHARGE_CHECK"), 10, 0, 0)
 			BLWH H 2 Bright
 			BLWH R 29
 			BLWH I 2
@@ -695,7 +695,7 @@ actor DisruptorRifle : DoomWeapon
 			DRIF A 1 A_WeaponReady
 			Loop
 		Fire:
-			DRIF A 1 A_RailAttack(300, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+			DRIF A 1 A_RailAttack(300, 0, CallACS("SUPERCHARGE_CHECK"), "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
 			TNT1 A 0 A_PlaySound("Max/Disrupt", CHAN_WEAPON)
 			DRIF B 1 bright A_GunFlash
 			DRIF C 1
@@ -772,7 +772,7 @@ actor FusionCutter : Weapon
 			FUSI A 0 A_JumpIfInventory("Cutshot", 1, "Fire2")
 			FUSI A 0 A_GunFlash
 			FUSI A 0 A_PlaySound("Max/fusion", CHAN_WEAPON)
-			FUSI B 4 bright A_FireCustomMissile ("CutBlast", 0, 1, -12, 0, 0)
+			FUSI B 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
 			FUSI A 4 A_GiveInventory ("Cutshot", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
@@ -780,7 +780,7 @@ actor FusionCutter : Weapon
 			FUSI A 0 A_JumpIfInventory("Cutshot", 2, "Fire3")
 			FUSI C 0 A_GunFlash
 			FUSI C 0 A_PlaySound("Max/fusion", CHAN_WEAPON)
-			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, 1, -5, -1, 0)
+			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
 			FUSI A 4 A_GiveInventory ("Cutshot", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
@@ -788,7 +788,7 @@ actor FusionCutter : Weapon
 			FUSI A 0 A_JumpIfInventory("Cutshot", 3, "Fire4")
 			FUSI D 0 A_GunFlash
 			FUSI D 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
-			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, 1, 4, -2, 0)
+			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
 			FUSI A 4 A_GiveInventory ("Cutshot", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
@@ -796,7 +796,7 @@ actor FusionCutter : Weapon
 			FUSI A 0 A_JumpIfInventory("Cutshot", 4, "Fire5")
 			FUSI E 0 A_GunFlash
 			FUSI E 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
-			FUSI E 4 bright A_FireCustomMissile ("CutBlast", 0, 1, 12, -3, 0)
+			FUSI E 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 12, -3, 0)
 			FUSI A 4 A_GiveInventory ("Cutshot", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
@@ -804,14 +804,14 @@ actor FusionCutter : Weapon
 			FUSI A 0 A_JumpIfInventory("Cutshot", 5, "Fire6")
 			FUSI D 0 A_GunFlash
 			FUSI D 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
-			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, 1, 4, -2, 0)
+			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
 			FUSI A 4 A_GiveInventory ("Cutshot", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire6:
 			FUSI C 0 A_GunFlash
 			FUSI C 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
-			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, 1, -5, -1, 0)
+			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
 			FUSI A 4 A_TakeInventory ("Cutshot", 5)
 			FUSI A 1 A_ReFire
 			Goto Ready
@@ -823,7 +823,7 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_PlaySound ("Max/fusion", 2)
 			TNT1 A 0 A_PlaySound ("Max/fusion", 3)
 			TNT1 A 0 A_PlaySound ("Max/fusion", 4)
-			FUSI F 0 A_FireCustomMissile ("CutBlast", 4, true, -12, 0, 0)
+			FUSI F 0 A_FireCustomMissile ("CutBlast", 4, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
 			FUSI F 0 A_FireCustomMissile ("CutBlast", 1, false, -5, -1, 0)
 			FUSI F 0 A_FireCustomMissile ("CutBlast", -1, false, 4, -2, 0)
 			FUSI F 0 A_FireCustomMissile ("CutBlast", -4, false, 12, -3, 0)
@@ -854,7 +854,7 @@ actor FusionCutter : Weapon
 			FUS2 A 0 A_JumpIfInventory("Cutshot", 1, "GoldFire2")
 			TNT1 A 0 A_GunFlash
 			TNT1 A 0 A_PlaySound ("Max/Goob")
-			FUS2 B 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, -12, 0, 0)
+			FUS2 B 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
 			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
@@ -862,7 +862,7 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_JumpIfInventory("Cutshot", 2, "GoldFire3")
 			FUS2 C 0 A_GunFlash
 			FUS2 C 0 A_PlaySound ("Max/Goob")
-			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, -5, -1, 0)
+			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
 			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
@@ -870,7 +870,7 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_JumpIfInventory("Cutshot", 3, "GoldFire4")
 			FUS2 D 0 A_GunFlash
 			FUS2 D 0 A_PlaySound ("Max/Goob")
-			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, 4, -2, 0)
+			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
 			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
@@ -878,7 +878,7 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_JumpIfInventory("Cutshot", 4, "GoldFire5")
 			FUS2 E 0 A_GunFlash
 			FUS2 E 0 A_PlaySound ("Max/Goob")
-			FUS2 E 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, 12, -3, 0)
+			FUS2 E 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 12, -3, 0)
 			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
@@ -886,14 +886,14 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_JumpIfInventory("Cutshot", 5, "GoldFire6")
 			FUS2 D 0 A_GunFlash
 			FUS2 D 0 A_PlaySound ("Max/Goob", CHAN_WEAPON)
-			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, 4, -2, 0)
+			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
 			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire6:
 			FUS2 C 0 A_GunFlash
 			FUS2 C 0 A_PlaySound ("Max/Goob")
-			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, 1, -5, -1, 0)
+			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
 			FUS2 A 4 A_TakeInventory ("Cutshot", 5)
 			FUS2 A 1 A_ReFire
 			Goto Ready
@@ -903,7 +903,7 @@ actor FusionCutter : Weapon
 			TNT1 A 0 A_PlaySound ("Max/Goob", 2)
 			TNT1 A 0 A_PlaySound ("Max/Goob", 3)
 			TNT1 A 0 A_PlaySound ("Max/Goob", 4)
-			FUS2 F 0 A_FireCustomMissile ("GoobBlast", 4, true, -12, 0, 0)
+			FUS2 F 0 A_FireCustomMissile ("GoobBlast", 4, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
 			FUS2 F 0 A_FireCustomMissile ("GoobBlast", 1, false, -5, -1, 0)
 			FUS2 F 0 A_FireCustomMissile ("GoobBlast", -1, false, 4, -2, 0)
 			FUS2 F 0 A_FireCustomMissile ("GoobBlast", -4, false, 12, -3, 0)
@@ -970,7 +970,7 @@ actor Autogun : Weapon
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldFire")
 			AUTO B 0 A_GunFlash
 			AUTO B 0 A_PlaySound ("Max/autogun", CHAN_WEAPON)
-			AUTO B 2 A_FireCustomMissile ("Bullet", 0, true, 10, 0, 0)
+			AUTO B 2 A_FireCustomMissile ("Bullet", 0, CallACS("SUPERCHARGE_CHECK"), 10, 0, 0)
 			AUTO C 2
 			AUTO C 0 A_ReFire
 			Goto Ready
@@ -980,7 +980,7 @@ actor Autogun : Weapon
 			NULL A 0 A_GunFlash
 			NULL A 0 A_PlaySound ("Max/autoloop", CHAN_WEAPON, 1, 1)
 			AUTO C 3
-			AUTO B 2 Bright A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), true, 10, 0, 0, frandom(-0.5, 0.5))
+			AUTO B 2 Bright A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			AUTO C 2
 			NULL C 0 A_ReFire
 			NULL A 0 A_StopSound(CHAN_WEAPON)
@@ -989,7 +989,7 @@ actor Autogun : Weapon
 			TNT1 A 0 A_Jumpifnoammo("DryFire")
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldAltFire")
 			AUTO B 0 A_PlaySound ("Max/autogun", CHAN_WEAPON)
-			AUTO B 0 A_FireCustomMissile ("Bullet", -2.0 + frandom(-0.5, 0.5), true, 5,  -6, 0, -1.0 + frandom(-0.5, 0.5))
+			AUTO B 0 A_FireCustomMissile ("Bullet", -2.0 + frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 5,  -6, 0, -1.0 + frandom(-0.5, 0.5))
 			AUTO B 0 A_FireCustomMissile ("Bullet", 2.0 + frandom(-0.5, 0.5), false, 15, -6, 0, -1.0 + frandom(-0.5, 0.5))
 			AUTO B 2 BRIGHT A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), false, 10, 0, 0, 2.25 + frandom(-0.5, 0.5))
 			AUTO C 2
@@ -1018,7 +1018,7 @@ actor Autogun : Weapon
 		GoldFire:
 			GYRO B 0 A_GunFlash
 			GYRO B 0 A_PlaySound ("Max/GAutogun", CHAN_WEAPON)
-			GYRO B 2 bright A_FireCustomMissile ("GoldBullet", 0, true, 10, 0, 0)
+			GYRO B 2 bright A_FireCustomMissile ("GoldBullet", 0, CallACS("SUPERCHARGE_CHECK"), 10, 0, 0)
 			GYRO C 2
 			GYRO C 0 A_ReFire
 			Goto Ready
@@ -1026,14 +1026,14 @@ actor Autogun : Weapon
 			NULL A 0 A_GunFlash
 			NULL A 0 A_PlaySound ("Max/GAutoloop", CHAN_WEAPON, 1, 1)
 			GYRO C 3
-			GYRO B 2 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), true, 10, 0, 0, frandom(-0.5, 0.5))
+			GYRO B 2 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			GYRO C 2 Bright
 			GYRO C 0 A_ReFire
 			GYRO A 0 A_StopSound(CHAN_WEAPON)
 			Goto Ready
 		GoldAltFire:
 			GYRO B 0 A_PlaySound ("Max/GAutogun", CHAN_WEAPON)
-			GYRO B 0 A_FireCustomMissile ("GoldBullet", -2.0 + frandom(-0.5, 0.5), true, 5,  -6, 0, -1.0 + frandom(-0.5, 0.5))
+			GYRO B 0 A_FireCustomMissile ("GoldBullet", -2.0 + frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 5,  -6, 0, -1.0 + frandom(-0.5, 0.5))
 			GYRO B 0 A_FireCustomMissile ("GoldBullet", 2.0 + frandom(-0.5, 0.5), false, 15, -6, 0, -1.0 + frandom(-0.5, 0.5))
 			GYRO B 2 BRIGHT A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), false, 10, 0, 0, 2.25 + frandom(-0.5, 0.5))
 			GYRO C 2
@@ -1118,7 +1118,7 @@ actor DFPistol : Weapon
 			TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
 			Goto Fire+1
 			DL44 A 0 A_GunFlash
-			TNT1 A 0 A_FireCustomMissile("DL44Bolt", 0.25, 1, 5, 0, 0, 0)
+			TNT1 A 0 A_FireCustomMissile("DL44Bolt", 0.25, CallACS("SUPERCHARGE_CHECK"), 5, 0, 0, 0)
 			TNT1 A 0 A_PlaySound ("Max/DL44")
 			DL44 B 4 bright
 			DL44 C 3 bright
@@ -1177,7 +1177,7 @@ actor DFBlaster : Weapon
 			BLRF A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldFire")
 			BLRF A 0 A_GunFlash
 			BLRF A 0 A_PlaySound ("Max/E-11")
-			BLRF B 2 bright A_FireCustomMissile("RifBlast", frandom(-2.0,2.0),1,4,0,0,frandom(-2.0,2.0))
+			BLRF B 2 bright A_FireCustomMissile("RifBlast", frandom(-2.0,2.0), CallACS("SUPERCHARGE_CHECK"), 4, 0, 0,frandom(-2.0,2.0))
 			BLRF A 3
 			BLRF A 2 A_ReFire
 			Goto Ready
@@ -1208,7 +1208,7 @@ actor DFBlaster : Weapon
 			TNT1 A 0 A_JumpIfInventory("ScopeZoom", 1, "GoldFireZoom")
 			EE11 A 0 A_GunFlash
 			EE11 A 0 A_PlaySound ("Max/GE-11N")
-			EE11 B 2 bright A_FireCustomMissile("GoldShot", frandom(-1.25,1.25),1,6,0,0,frandom(-1.25,1.25))
+			EE11 B 2 bright A_FireCustomMissile("GoldShot", frandom(-1.25,1.25), CallACS("SUPERCHARGE_CHECK"), 6, 0, 0,frandom(-1.25,1.25))
 			EE11 A 2
 			EE11 A 2 A_ReFire
 			Goto Ready

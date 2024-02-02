@@ -451,3 +451,160 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		}
 	}
 }
+
+#define AMMO_CLIP		0
+#define AMMO_CLIPBOX	1
+#define AMMO_SHELLS		2
+#define AMMO_SHELLBOX	3
+#define AMMO_ROCKET		4
+#define AMMO_ROCKETBOX	5
+#define AMMO_CELL		6
+#define AMMO_CELLBOX	7
+
+script "AMMO_PICKUP" (int type, int dropped)
+{
+	str ammo1_class = "None";
+	str ammo1_name = "None";
+	int ammo1_amount = 0;
+	
+	str ammo2_class = "None";
+	str ammo2_name = "None";
+	int ammo2_amount = 0;
+	
+	str ammo_pickupsound = "None";
+	
+	switch(type)
+	{
+		case AMMO_CLIP:
+		{
+			ammo1_class = "PeastolClip";
+			ammo1_name = "Pistol Rounds";
+			ammo1_amount = 12;
+			break;
+		}
+		case AMMO_CLIPBOX:
+		{
+			ammo1_class = "AK_MAG";
+			ammo1_name = "MG Rounds";
+			ammo1_amount = 75;
+			break;
+		}
+		case AMMO_SHELLS:
+		{
+			ammo1_class = "Shellz";
+			ammo1_name = "12 Gauge Shells";
+			ammo1_amount = 2;
+			
+			ammo2_class = "Supershellz";
+			ammo2_name = "8 Gauge Shells";
+			ammo2_amount = 2;
+			break;
+		}
+		case AMMO_SHELLBOX:
+		{
+			ammo1_class = "Shellz";
+			ammo1_name = "12 Gauge Shells";
+			ammo1_amount = 10;
+			
+			ammo2_class = "Supershellz";
+			ammo2_name = "8 Gauge Shells";
+			ammo2_amount = 10;
+			break;
+		}
+		case AMMO_ROCKET:
+		{
+			ammo1_class = "Roketammo";
+			ammo1_name = "Rocket";
+			ammo1_amount = 1;
+			break;
+		}
+		case AMMO_ROCKETBOX:
+		{
+			ammo1_class = "Roketammo";
+			ammo1_name = "Rockets";
+			ammo1_amount = 5;
+			break;
+		}
+		case AMMO_CELL:
+		{
+			ammo1_class = "Battery";
+			ammo1_name = "Energy Cells";
+			ammo1_amount = 40;
+			
+			ammo1_class = "RailSLUGS";
+			ammo1_name = "Uranium Slugs";
+			ammo1_amount = 6;
+			break;
+		}
+		case AMMO_CELLBOX:
+		{
+			ammo1_class = "Battery";
+			ammo1_name = "Energy Cells";
+			ammo1_amount = 100;
+			
+			ammo2_class = "BFGCHARGE";
+			ammo2_name = "Argent Energy Charges";
+			ammo2_amount = 2;
+			break;
+		}
+	}
+	
+	bool success = false;
+	int ammofactor = 1;
+	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
+		ammofactor = 2;
+	
+	if(StrIcmp(ammo1_class, "None") != 0 && ammo1_amount > 0)
+	{
+		if(CheckInventory(ammo1_class) < GetAmmoCapacity(ammo1_class))
+		{
+			if((GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class)) < ammo1_amount)
+				ammo1_amount = GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class);
+			
+			GiveInventory(ammo1_class, ammo1_amount);
+			success = true;
+		}
+	}
+	
+	if(StrIcmp(ammo2_class, "None") != 0 && ammo2_amount > 0)
+	{
+		if(CheckInventory(ammo2_class) < GetAmmoCapacity(ammo2_class))
+		{
+			if((GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class)) < ammo2_amount)
+				ammo2_amount = GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class);
+				
+			GiveInventory(ammo2_class, ammo2_amount);
+			success = true;
+		}
+	}
+	
+	if(success)
+	{
+		if(ammo1_amount > 0 && ammo2_amount > 0)
+			log(d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name);
+		else if(ammo1_amount > 0)
+			log(d:ammo1_amount * ammofactor, s:" ", s:ammo1_name);
+		
+		SetResultValue(1);
+	}
+}
+
+script "SUPERCHARGE_CHECK" (void)
+{
+	if(CheckInventory("PowerDoubleFiringSpeed"))
+	{
+		SetUserVariable(0, "user_supercharge_useammo", (GetUserVariable(0, "user_supercharge_useammo")+1) & 1);
+		SetResultValue(GetUserVariable(0, "user_supercharge_useammo"));
+		
+		if(GetCVar("sh_debug"))
+			log(s:"DEBUG: user_supercharge_useammo ", d:GetUserVariable(0, "user_supercharge_useammo"));
+	}
+	else
+		SetResultValue(1);
+}
+
+str playerClassName = "None";
+script "GET_CLASS" ENTER
+{
+	// Unfinished.
+}
