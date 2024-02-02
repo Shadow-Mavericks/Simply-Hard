@@ -2,8 +2,8 @@ Base Doom;
 CompleteBorder true;
 Resolution 320, 200;
 height 0;
-InterpolateHealth true, 1;
-InterpolateArmor true, 1;
+InterpolateHealth true, 4;
+InterpolateArmor true, 4;
 
 statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 {
