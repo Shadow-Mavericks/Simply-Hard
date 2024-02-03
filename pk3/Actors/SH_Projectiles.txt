@@ -1684,10 +1684,8 @@ ACTOR Droidlaser : Particle_Base
 	States
 	{
 		Spawn:
-			DLRL A 16 Bright
-		End:
-			TNT1 A 0
-			stop
+			DLRL A 1 Bright A_Fadeout(0.0625)
+			loop
 	}
 }
 
