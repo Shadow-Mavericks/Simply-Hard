@@ -426,6 +426,46 @@ actor ScopeZoom : Inventory
 	inventory.maxamount 1
 }
 
+ACTOR DF_EnergyUnit : Ammo
+{
+	Inventory.PickupMessage "15 Energy Units"
+	Inventory.Amount 15
+	Inventory.MaxAmount 500
+	Ammo.BackpackAmount 15
+	Ammo.BackpackMaxAmount 700
+	Inventory.Icon "ENGUA0"
+}
+
+ACTOR DF_PowerCell : Ammo
+{
+	Inventory.PickupMessage "10 Power Cells"
+	Inventory.Amount 10
+	Inventory.MaxAmount 500
+	Ammo.BackpackAmount 10
+	Ammo.BackpackMaxAmount 700
+	Inventory.Icon "PCELA0"
+}
+
+ACTOR DF_PlasmaCartridge : Ammo
+{
+	Inventory.PickupMessage "20 Plasma Cartridges"
+	Inventory.Amount 20
+	Inventory.MaxAmount 400
+	Ammo.BackpackAmount 20
+	Ammo.BackpackMaxAmount 600
+	Inventory.Icon "ACAMA0"
+}
+
+ACTOR DF_Missile : Ammo
+{
+	Inventory.PickupMessage "5 Missiles"
+	Inventory.Amount 5
+	Inventory.MaxAmount 20
+	Ammo.BackpackAmount 5
+	Ammo.BackpackMaxAmount 40
+	Inventory.Icon "ACAMB0"
+}
+
 actor MortarGun : Weapon
 {
 	weapon.selectionorder 7
@@ -499,8 +539,8 @@ actor ConcRifle : Weapon
 	obituary "%o was unlucky to meet %k's Concussion Rifle"
 	Weapon.SelectionOrder 4
 	Weapon.AmmoUse 4
-	Weapon.AmmoGive 20
-	Weapon.AmmoType "Battery"
+	Weapon.AmmoGive 100
+	Weapon.AmmoType "DF_PowerCell"
 	Weapon.Kickback 384
 	Weapon.UpSound "Max/WepRaise"
 	Inventory.PickupMessage "Concussion Rifle"
@@ -557,12 +597,12 @@ actor AssaultCannon : Weapon
 {
 	obituary "%o became another victim to %k's Assault Cannon"
 	weapon.selectionorder 1
-	weapon.ammouse 2
+	weapon.ammouse 1
 	weapon.ammouse2 1
-	Weapon.AmmoGive 32
-	Weapon.AmmoGive2 1
-	Weapon.AmmoType "Battery"
-	Weapon.AmmoType2 "BFGCHARGE"
+	Weapon.AmmoGive 40
+	Weapon.AmmoGive2 2
+	Weapon.AmmoType "DF_PlasmaCartridge"
+	Weapon.AmmoType2 "DF_Missile"
 	Weapon.kickback 100
 	Weapon.UpSound "Max/WepRaise"
 	Inventory.PickupMessage "Assault Cannon"
@@ -723,12 +763,11 @@ actor FusionCutter : Weapon
 {
 	obituary "%k demonstrated the power of the fusion cutter tool to %o"
 	Weapon.selectionorder 4
-	Weapon.AmmoUse 1
-	Weapon.AmmoUse2 2
-	Weapon.AmmoGive 8
-	Weapon.AmmoGive2 8
-	Weapon.AmmoType "ShellZ"
-	Weapon.AmmoType2 "SuperShellZ"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 4
+	Weapon.AmmoGive1 30
+	Weapon.AmmoType1 "DF_PowerCell"
+	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"
 	Weapon.kickback 150
 	Weapon.BobStyle "InverseSmooth"
@@ -923,12 +962,11 @@ actor Autogun : Weapon
 	obituary "%o got in the way of %k's repeater rifle"
 	Weapon.SlotNumber 4
 	Weapon.SelectionOrder 5
-	Weapon.AmmoUse 1
-	Weapon.AmmoUse2 1
-	Weapon.AmmoGive 15
-	Weapon.AmmoGive2 3
-	Weapon.AmmoType "AK_Mag"
-	Weapon.AmmoType2 "Shellz"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 3
+	Weapon.AmmoGive1 30
+	Weapon.AmmoType1 "DF_PowerCell"
+	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"
 	Weapon.kickback 100
 	weapon.BobStyle "InverseSmooth"
@@ -1053,7 +1091,7 @@ actor DFPistol : Weapon
 	Weapon.SelectionOrder 9
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 15
-	Weapon.AmmoType "peastolClip"
+	Weapon.AmmoType "DF_EnergyUnit"
 	Weapon.UpSound "Max/WepRaise"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
@@ -1083,10 +1121,17 @@ actor DFPistol : Weapon
 			NULL AA 0 A_Raise
 			BRYP A 1 A_Raise
 			Goto Select+2
+		DryFire:
+			BRYP A 0 A_PlaySound("Max/BryarDryFire", CHAN_WEAPON)
+			BRYP A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldDryFire")
+			BRYP A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+			BRYP A 0 A_Refire
+			goto Ready
 		Fire:
-			TNT1 A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldFire")
+			BRYP A 0 A_JumpIfNoAmmo("DryFire")
+			BRYP A 0 A_JumpIfInventory("Tier1upgradetoken", 1, "GoldFire")
 			BRYP A 0 A_GunFlash
-			BRYP A 0 A_FireCustomMissile("BlastBolt", 0.25, 0, 5, 0, 0, 0)
+			BRYP A 0 A_FireCustomMissile("BlastBolt", 0.25, CallACS("SUPERCHARGE_CHECK"), 5, 0, 0, 0)
 			BRYP A 0 A_PlaySound ("Max/Bryar")
 			BRYP B 4 bright
 			BRYP C 4 bright
@@ -1098,25 +1143,21 @@ actor DFPistol : Weapon
 			TNT1 A 8 bright A_Light0
 			Goto LightDone
 		GoldSelect:
-			TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-			Goto Select+2
-			NULL AA 0 A_Raise
+			DL44 AA 0 A_Raise
 			DL44 A 1 A_Raise
 			Loop
 		GoldDeselect:
-			TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-			Goto Deselect+2
-			NULL AA 0 A_Lower
+			DL44 AA 0 A_Lower
 			DL44 A 1 A_Lower
 			Loop
 		GoldReady:
-			TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-			Goto Ready+1
 			DL44 A 1 A_WeaponReady
-			Wait
+			loop
+		GoldDryFire:
+			DL44 A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+			DL44 A 0 A_Refire
+			goto Ready
 		GoldFire:
-			TNT1 A 0 A_JumpIfInventory("peastolClip", 1, 1)
-			Goto Fire+1
 			DL44 A 0 A_GunFlash
 			TNT1 A 0 A_FireCustomMissile("DL44Bolt", 0.25, CallACS("SUPERCHARGE_CHECK"), 5, 0, 0, 0)
 			TNT1 A 0 A_PlaySound ("Max/DL44")
@@ -1135,9 +1176,9 @@ actor DFBlaster : Weapon
 {
 	obituary "%o was blasted away by %k's E-11 rifle"
 	Weapon.SelectionOrder 8
-	Weapon.AmmoUse 1
+	Weapon.AmmoUse 2
 	Weapon.AmmoGive 15
-	Weapon.AmmoType "peastolClip"
+	Weapon.AmmoType "DF_EnergyUnit"
 	Weapon.UpSound "Max/WepRaise"
 	Inventory.PickupMessage "Blaster Rifle"
 	Inventory.ForbiddenTo "Fiend"

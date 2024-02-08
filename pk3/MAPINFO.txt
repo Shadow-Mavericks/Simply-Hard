@@ -9,6 +9,7 @@ map SH01 "Hunted?"
 	next = "SH02"
 	music = "Haunt1"
 	sky1 = "SH_RSKY2", 0.3
+	//author = "Gosimer"
 	nojump
 	nocrouch
 }
@@ -18,6 +19,7 @@ map SH02 "Tribute Of Blood"
 	next = "SH03"
 	music = "DIB_01"
 	sky1 = "SH_RSKY2", 0.0
+	//author = "Gosimer"
 	nojump
 	nocrouch
 }
@@ -27,6 +29,7 @@ map SH03 "Unnamed Map?"
 	next = "SH01"
 	music = "D_SCRAY"
 	sky1 = "SH_RSKY2", 0.0
+	//author = "Gosimer"
 	nojump
 	nocrouch
 }

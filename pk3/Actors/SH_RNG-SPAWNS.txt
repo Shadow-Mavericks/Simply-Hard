@@ -228,16 +228,6 @@ Actor Armourhelmetspawner : RandomSpawner replaces Armorbonus // same as above b
 
 // Ammo spawns [nessesary!]
 
-Actor Shellboxspawner : Randomspawner replaces Shellbox
-{
-	Dropitem "Shellbawx"	255 1
-}
-
-Actor Roketammospawner : Randomspawner replaces Rocketbox
-{
-	Dropitem "Roketbox"		255 1
-}
-
 Actor Randomezerk : Randomspawner Replaces Berserk
 {
 	Dropitem "Medbag"		255 10

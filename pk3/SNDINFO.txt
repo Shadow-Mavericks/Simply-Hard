@@ -1868,8 +1868,6 @@ Weapon/Litning_START	thunuse
 
 //Max's sounds
 
-Max/Bryar	DFLBLAST
-Max/DL44 	DFDLBLAS
 Max/LZHIT	DFLHIT
 Max/fist	DFSWING
 

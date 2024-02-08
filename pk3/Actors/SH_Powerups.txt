@@ -598,50 +598,6 @@ ACTOR SimplyBackpack : CustomInventory
     AMXP A 1
     loop
   Pickup:
-	BPAK A 0 A_Jumpifinventory("Backpackcheck", 1, "Firstpickup")
-    BPAK A 0 ACS_NamedExecuteWithResult("Playerbackpackupgrade",0,0,0,0)
-	BPAK A 0 A_GIVEINVENTORY("Peastolclip", 50)
-	BPAK A 0 A_GIVEINVENTORY("Shellz", 4)
-	BPAK A 0 A_GIVEINVENTORY("SuperShellz", 4)
-	BPAK A 0 A_GIVEINVENTORY("AK_Mag", 75)
-	BPAK A 0 A_GIVEINVENTORY("Roketammo", 5)
-	BPAK A 0 A_GIVEINVENTORY("Battery", 40)
-	BPAK A 0 A_GIVEINVENTORY("Railslugs", 5)
-	BPAK A 0 A_GIVEINVENTORY("BFGCharge", 1)
-	BPAK A 0 A_GIVEINVENTORY("Lightningammo", 25)
-	Stop
-  Firstpickup:
-	BPAK a 0 A_GIVEINVENTORY("FirstSimplyBackpack", 1)
-    BPAK A 0 ACS_NamedExecuteWithResult("Playerbackpackupgrade",0,0,0,0)
-	BPAK A 0 A_GIVEINVENTORY("Peastolclip", 50)
-	BPAK A 0 A_GIVEINVENTORY("Shellz", 4)
-	BPAK A 0 A_GIVEINVENTORY("SuperShellz", 4)
-	BPAK A 0 A_GIVEINVENTORY("AK_Mag", 75)
-	BPAK A 0 A_GIVEINVENTORY("Roketammo", 5)
-	BPAK A 0 A_GIVEINVENTORY("Battery", 40)
-	BPAK A 0 A_GIVEINVENTORY("Railslugs", 5)
-	BPAK A 0 A_GIVEINVENTORY("BFGCharge", 1)
-	BPAK A 0 A_GIVEINVENTORY("Lightningammo", 25)
-	BPAK A 0 A_TAKEINVENTORY("Backpackcheck", 1)
-	Stop
-  }
-}
-
-ACTOR FirstSimplyBackpack : CustomInventory
-{
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.UNDROPPABLE
-  +Dontgib
-  Inventory.MaxAmount 0
-  Height 26
-  Inventory.PickupMessage "Picked up an ammo expansion!" // "Picked up a backpack full of ammo!"
-  States
-  {
-  Spawn:
-    AMXP A 1
-    loop
-  Pickup:
     BPAK A 0 ACS_NamedExecuteWithResult("Playerbackpackupgrade",0,0,0,0)
 	Stop
   }

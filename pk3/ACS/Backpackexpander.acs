@@ -1,49 +1,49 @@
 #Library "Backpackexpander"
 #Include "Zcommon.acs"
 
-bool playerbackpack[64] = { FALSE };
+//bool playerbackpack[64] = { FALSE };
+bool give_only;
+
+function void AddAmmoCapacity(str class, int amount)
+{
+	if(!give_only)
+		SetAmmoCapacity(class, GetAmmoCapacity(class) + amount);
+
+	GiveInventory(class, amount);
+}
 
 script "Playerbackpackupgrade" (void)
 {
-	if (playerbackpack[PlayerNumber()])
-	{
-		if (GetAmmoCapacity("Battery") < 800)
-		{
-		//	SetAmmoCapacity("Clip", GetAmmoCapacity("Clip") + 100);
-			SetAmmoCapacity("Shotgunclip", GetAmmoCapacity("Shotgunclip") + 1);
-			SetAmmoCapacity("DookiClip", GetAmmoCapacity("DookiClip") + 2);
-			SetAmmoCapacity("Pistolclip", GetAmmoCapacity("Pistolclip") + 2);
-			SetAmmoCapacity("PeastolClip", GetAmmoCapacity("PeastolClip") + 25);
-			SetAmmoCapacity("Shellz", GetAmmoCapacity("Shellz") + 10);
-			SetAmmoCapacity("SuperShellz", GetAmmoCapacity("SuperShellz") + 10);
-			SetAmmoCapacity("AK_MAG", GetAmmoCapacity("AK_MAG") + 50);
-			SetAmmoCapacity("RoketAmmo", GetAmmoCapacity("RoketAmmo") + 10);
-			SetAmmoCapacity("Battery", GetAmmoCapacity("Battery") + 50);
-			SetAmmoCapacity("BFGCHARGE", GetAmmoCapacity("BFGCHARGE") + 1);
-			SetAmmoCapacity("Lightningammo", GetAmmoCapacity("Lightningammo") +10);
-			SetAmmoCapacity("Railslugs", GetAmmoCapacity("Railslugs") + 5);
-			Giveinventory("Ammoexpansioncheck",	1);
-		}
-	}
-	else
-		playerbackpack[PlayerNumber()] = TRUE;
-}
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
 
-script "Playerjoinbackpack" ENTER
-{
-	if (GetAmmoCapacity("Battery") > 300)
-		playerbackpack[PlayerNumber()] = TRUE;
-}
+	give_only = false;
+	if (GetAmmoCapacity("Battery") >= 800)
+		give_only = true;
+		
+	if(!give_only)
+		Giveinventory("Ammoexpansioncheck",	1);
+		
+	// To-Do: Make ammo belt use this function too, but not increase capacity.
 
-Script "Forcefirstupgrade" (Void)
-{
-	ACS_NamedExecute("Playerbackpackupgrade", 0);
-	Delay(1);
-	ACS_NamedExecute("Playerbackpackupgrade", 0);
-	Print(s: "Backpack upgrade! Level 1 / 10!" );
+	//AddAmmoCapacity("Clip", 100);
+	AddAmmoCapacity("Shotgunclip",  1);
+	AddAmmoCapacity("PeastolClip", 25);
+	AddAmmoCapacity("Shellz",      10);
+	AddAmmoCapacity("SuperShellz", 10);
+	AddAmmoCapacity("AK_MAG",      50);
+	AddAmmoCapacity("RoketAmmo",   10);
+	AddAmmoCapacity("Battery",     50);
+	AddAmmoCapacity("BFGCHARGE",    1);
+	AddAmmoCapacity("Railslugs",    5);
+	
+	// Gosimer's Class
+	AddAmmoCapacity("DookiClip",      2);
+	AddAmmoCapacity("DevastatorAmmo", 10);
+	
+	// Max's Class
+	AddAmmoCapacity("DF_EnergyUnit",      20);
+	AddAmmoCapacity("DF_PowerCell",       20);
+	AddAmmoCapacity("DF_PlasmaCartridge", 20);
+	AddAmmoCapacity("DF_Missile",          2);
 }
-
-/*script "Playerlosesgear" RESPAWN
-{
-	playerbackpack[PlayerNumber()] = FALSE;
-}*/

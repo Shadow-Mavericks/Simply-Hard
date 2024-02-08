@@ -73,7 +73,7 @@ actor UpgradeToken_Base : Inventory
 //////////////////////////////////////////////////////////////////
 // Health & Armor
 //////////////////////////////////////////////////////////////////
-actor HealthPotion_Base : Custominventory
+actor HealthPotion_Base : CustomInventory
 {
 	Radius 20
 	Height 16
@@ -82,4 +82,34 @@ actor HealthPotion_Base : Custominventory
 	+COUNTITEM
 	+INVENTORY.QUIET
 	+INVENTORY.ALWAYSPICKUP
+}
+
+actor AmmoGiver_Base : CustomInventory
+{
+	Radius 20
+	Height 16
+	+NOTIMEFREEZE
+	+INVENTORY.QUIET
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_CheckFlag("DROPPED", "Dropped")
+			goto CheckSprite
+
+		Base:
+			UNKN A 35
+			goto CheckSprite
+			
+		Idle:
+			"####" "#" 70
+			goto CheckSprite
+			
+		CheckSprite:
+			"####" "#" 70 ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
+			loop
+			
+		Failure:
+			"####" "#" 0
+			fail
+	}
 }

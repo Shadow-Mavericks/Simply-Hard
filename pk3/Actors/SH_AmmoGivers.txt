@@ -1,0 +1,305 @@
+// Must match values in STRIKERS_CODE.ACS.
+const int AMMO_CLIP			= 0;
+const int AMMO_CLIPBOX		= 1;
+const int AMMO_SHELLS		= 2;
+const int AMMO_SHELLBOX		= 3;
+const int AMMO_ROCKET		= 4;
+const int AMMO_ROCKETBOX	= 5;
+const int AMMO_CELL			= 6;
+const int AMMO_CELLBOX		= 7;
+
+actor ClipGiver : AmmoGiver_Base replaces Clip
+{
+	States
+	{
+		Base:
+			CLIP A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			ENGU A 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CLIP, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("ClipGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor ClipGiver_Dropped : ClipGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CLIP, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
+{
+	States
+	{
+		Base:
+			AKAM A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			ENGU B 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CLIPBOX, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("ClipBoxGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor ClipBoxGiver_Dropped : ClipBoxGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CLIPBOX, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor ShellGiver : AmmoGiver_Base replaces Shell
+{
+	States
+	{
+		Base:
+			SHEL A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			PCEL A 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_SHELLS, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("ShellGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor ShellGiver_Dropped : ShellGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_SHELLS, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
+{
+	States
+	{
+		Base:
+			SBOX A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			PCEL B 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_SHELLBOX, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("ShellBoxGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor ShellBoxGiver_Dropped : ShellBoxGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_SHELLBOX, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
+{
+	States
+	{
+		Base:
+			ROCK A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			MRTA A 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_ROCKET, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("RocketGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor RocketGiver_Dropped : RocketGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_ROCKET, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
+{
+	States
+	{
+		Base:
+			BROK A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			MRTA B 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_ROCKETBOX, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("RocketBoxGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor RocketBoxGiver_Dropped : RocketBoxGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_ROCKETBOX, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor CellGiver : AmmoGiver_Base replaces Cell
+{
+	States
+	{
+		Base:
+			CELL A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			ACAM A 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CELL, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("CellGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor CellGiver_Dropped : CellGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CELL, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}
+
+actor CellBoxGiver : AmmoGiver_Base replaces CellPack
+{
+	States
+	{
+		Base:
+			CELP A 0 A_SetScale(1.0)
+			goto Idle
+		
+		MaximusPrime:
+			ACAM B 0 A_SetScale(0.8)
+			goto Idle
+			
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CELLBOX, false) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+
+		Dropped:
+			TNT1 A 0 A_SpawnItemEx("CellBoxGiver_Dropped", 0, 0, 0, velx, vely, velz, angle, SXF_ABSOLUTEVELOCITY | SXF_ABSOLUTEANGLE, 0)
+			stop
+	}
+}
+
+actor CellBoxGiver_Dropped : CellBoxGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			goto CheckSprite
+		Pickup:
+			"####" "#" 0 A_JumpIf(CallACS("AMMO_PICKUP", AMMO_CELLBOX, true) == 0, "Failure")
+			"####" "#" 0 A_RailWait
+			stop
+	}
+}

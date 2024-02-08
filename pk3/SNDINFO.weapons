@@ -77,6 +77,11 @@ Max/E-11DryFire RIFLOUT
 Max/GE-11N DFGRIFN
 Max/GE-11Z DFGRIFZ
 
+// Bryar Pistol
+Max/Bryar	DFLBLAST
+Max/BryarDryFire PISTOUT1
+Max/DL44 	DFDLBLAS
+
 // Lightsaber
 $random Max/lsattack	{ Max/LSA1 Max/LSA2 Max/LSA3 Max/LSA4 Max/LSA5 Max/LSA6 Max/LSA7 Max/LSA8 Max/LSA9 }
 $random Max/lshit		{ Max/LSH1 Max/LSH2 Max/LSH3 Max/LSH4 Max/LSH5 Max/LSH6 Max/LSH7 } 
