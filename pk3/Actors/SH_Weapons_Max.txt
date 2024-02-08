@@ -599,7 +599,7 @@ actor AssaultCannon : Weapon
 	weapon.selectionorder 1
 	weapon.ammouse 1
 	weapon.ammouse2 1
-	Weapon.AmmoGive 40
+	Weapon.AmmoGive 30
 	Weapon.AmmoGive2 2
 	Weapon.AmmoType "DF_PlasmaCartridge"
 	Weapon.AmmoType2 "DF_Missile"
