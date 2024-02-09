@@ -461,6 +461,13 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 #define AMMO_CELL		6
 #define AMMO_CELLBOX	7
 
+// Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
+// Use with "NamedSendNetworkString".
+script "LOGMESSAGE_HACK" (int msg)
+{
+	log(s:msg);
+}
+
 script "AMMO_PICKUP" (int type, int dropped)
 {
 	SetResultValue(0);
@@ -694,11 +701,15 @@ script "AMMO_PICKUP" (int type, int dropped)
 		{
 			// Adjust ammo given to remainder of capacity, if applicable.
 			// Doing this so I can pass the real amount gained to the pickup message.
-			if((GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class)) < ammo1_amount)
+			if((CheckInventory(ammo1_class) + ammo1_amount) > GetAmmoCapacity(ammo1_class))
 				ammo1_amount = GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class);
 			
 			GiveInventory(ammo1_class, ammo1_amount);
 			success = true;
+		}
+		else
+		{
+			ammo1_amount = 0;
 		}
 	}
 	
@@ -707,11 +718,15 @@ script "AMMO_PICKUP" (int type, int dropped)
 		if(CheckInventory(ammo2_class) < GetAmmoCapacity(ammo2_class))
 		{
 			// Ditto.
-			if((GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class)) < ammo2_amount)
+			if((CheckInventory(ammo2_class) + ammo2_amount) > GetAmmoCapacity(ammo2_class))
 				ammo2_amount = GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class);
 				
 			GiveInventory(ammo2_class, ammo2_amount);
 			success = true;
+		}
+		else
+		{
+			ammo2_amount = 0;
 		}
 	}
 	
@@ -733,11 +748,26 @@ script "AMMO_PICKUP" (int type, int dropped)
 			fade_rgb[1] = 0;
 			fade_rgb[2] = 255;
 		}
-
-		if(ammo1_amount > 0 && ammo2_amount > 0)
-			log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
-		else if(ammo1_amount > 0)
-			log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+		
+		str msg = StrParam(s:textcolor);
+		if(ammo1_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+			if(ammo2_amount > 0)
+				msg = StrParam(s:msg, s:" & ");
+		}
+		
+		if(ammo2_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+		}
+		
+		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
+		
+		//if(ammo1_amount > 0 && ammo2_amount > 0)
+			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+		//else if(ammo1_amount > 0)
+			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
 
 		PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
 		if(StrIcmp(extrasound, "None") != 0)
