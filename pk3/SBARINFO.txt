@@ -1,13 +1,13 @@
 Base Doom;
 CompleteBorder true;
-Resolution 320, 200;
+Resolution 320, 240;
 height 0;
 InterpolateHealth true, 4;
 InterpolateArmor true, 4;
 
-statusbar fullscreen, fullscreenoffsets// ZDoom HUD
+statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 {
-	playerclass Fiendzy
+	playertype "Fiend"
 	{
 		//Hud Overlay
 		drawimage "CMHUD1", 0, 0;
@@ -95,7 +95,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		}
 	}
 	
-	playerclass Bulk_Bogan
+	playertype "Kunai"
 	{
 		//Hud Overlay
 		DrawBar "SHLDK200", "SHLDK0", Armor (400), Horizontal, 62, 33;
@@ -179,7 +179,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 		}
 	}
 	
-	playerclass Dookienookie
+	playertype "Gosimer"
 	{
 		//Hud Overlay
 		drawimage "CMHUD3", 0, 0;
@@ -264,7 +264,7 @@ statusbar fullscreen, fullscreenoffsets// ZDoom HUD
 			}
 		}
 	}
-	playerclass Rebel_Scum
+	playertype "MaximusPrime"
 	{
 		drawimage "CMHUD4", 0, -22;
 		

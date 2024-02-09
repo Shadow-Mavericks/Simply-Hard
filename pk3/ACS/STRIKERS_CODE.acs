@@ -749,6 +749,16 @@ script "AMMO_PICKUP" (int type, int dropped)
 	}
 }
 
+#define WEAPON_CHAINSAW		0
+#define WEAPON_PISTOL		1
+#define WEAPON_SHOTGUN		2
+#define WEAPON_SSG			3
+#define WEAPON_CHAINGUN		4
+#define WEAPON_ROCKET		5
+#define WEAPON_PLASMA		6
+#define WEAPON_BFG			7
+#define WEAPON_RAILGUN		8
+
 str playerClassName = "None";
 function void updateClass(void)
 {

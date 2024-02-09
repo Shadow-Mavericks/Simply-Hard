@@ -226,8 +226,6 @@ Actor Armourhelmetspawner : RandomSpawner replaces Armorbonus // same as above b
 	DropItem "BlueArmorbonus"	255 1
 }
 
-// Ammo spawns [nessesary!]
-
 Actor Randomezerk : Randomspawner Replaces Berserk
 {
 	Dropitem "Medbag"		255 10

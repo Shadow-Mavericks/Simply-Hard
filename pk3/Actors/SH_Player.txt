@@ -173,7 +173,7 @@ ACTOR Kunai : DoomPlayer
 	PainChance 255
 	Player.SoundClass "Marine"
 	Player.ColorRange 112, 127
-	Player.DisplayName "Bulk_Bogan"
+	Player.DisplayName "Bulk Bogan"
 	Player.CrouchSprite "PLYC"
 	Player.StartItem "Kunaisrevolver"
 	Player.StartItem "Soulreaper"
@@ -330,7 +330,7 @@ ACTOR Gosimer : DoomPlayer
 	Player.MaxHealth 150
 	Player.SoundClass "Marine"
 	Player.ColorRange 112, 127
-	Player.DisplayName "Dookienookie"
+	Player.DisplayName "Dookie Nookie"
 	Player.CrouchSprite "PLYC"
 	Player.StartItem "GosimersHandgun"
 	Player.StartItem "UAC-Chainsaw"
@@ -495,7 +495,7 @@ actor MaximusPrime : DoomPlayer
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 
-	Player.DisplayName "Rebel_Scum"
+	Player.DisplayName "Rebel Scum"
 	Player.CrouchSprite "PLYC"
 	Player.SoundClass "MaximusPrime"
 	Player.StartItem "DFPistol"
