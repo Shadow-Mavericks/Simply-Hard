@@ -463,7 +463,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 // Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
 // Use with "NamedSendNetworkString".
-script "LOGMESSAGE_HACK" (int msg)
+script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
 {
 	log(s:msg);
 }
