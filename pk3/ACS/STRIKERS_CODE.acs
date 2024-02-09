@@ -780,7 +780,7 @@ script "GET_CLASS_RESPAWN" RESPAWN CLIENTSIDE
 	updateClass();
 }
 
-script "SET_PICKUP_SPRITE" (void)
+script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 {
 	if(!SetActorState(0, playerClassName, false))
 		SetActorState(0, "Base", false);
