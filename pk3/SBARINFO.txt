@@ -246,7 +246,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
 			}
 		}
-			usesammo Not
+		usesammo Not
 		{
 			inventorybarnotvisible
 			{
@@ -254,7 +254,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 			}
 		}
 		
-			UsesSecondaryAmmo
+		UsesSecondaryAmmo
 		{
 			drawimage "CMHUD3B", 0, 0;
 			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
@@ -266,35 +266,83 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 	}
 	playertype "MaximusPrime"
 	{
-		drawimage "CMHUD4", 0, -22;
+		drawimage "JKHLEFT", 0, -59;
+		drawimage "JKHRIGHT", -61, -59;
+		DrawNumber 3, JKHLTFNT, Untranslated, Health, fillzeros, 28, -24;
+		Drawnumber 3, JKARMFNT, Untranslated, Armor, fillzeros, 38, -16;
+		
+		drawimage "JKHLTH06", 21, -39; // Temporary!
+		
+		DrawKeyBar 6, Vertical, Reverse, 8, 2, -61;
+		
+		InInventory "BasicArmor", 200 { drawimage "JKSHLD11", 12, -49; }
+		else InInventory "BasicArmor", 175 { drawimage "JKSHLD10", 12, -49; }
+		else InInventory "BasicArmor", 150 { drawimage "JKSHLD09", 12, -49; }
+		else InInventory "BasicArmor", 125 { drawimage "JKSHLD08", 12, -49; }
+		else InInventory "BasicArmor", 125 { drawimage "JKSHLD07", 12, -49; }
+		else InInventory "BasicArmor", 100 { drawimage "JKSHLD06", 12, -49; }
+		else InInventory "BasicArmor", 75 { drawimage "JKSHLD05", 12, -49; }
+		else InInventory "BasicArmor", 50 { drawimage "JKSHLD04", 12, -49; }
+		else InInventory "BasicArmor", 25 { drawimage "JKSHLD03", 12, -49; }
+		else InInventory "BasicArmor", 1 { drawimage "JKSHLD02", 12, -49; }
+		else { drawimage "JKSHLD01", 12, -49; }
+		
+		InInventory "AbilityCharge", 1000 { drawimage "JKFRC16", -52, -28; }
+		else InInventory "AbilityCharge", 950 { drawimage "JKFRC15", -52, -28; }
+		else InInventory "AbilityCharge", 900 { drawimage "JKFRC14", -52, -28; }
+		else InInventory "AbilityCharge", 850 { drawimage "JKFRC13", -52, -28; }
+		else InInventory "AbilityCharge", 800 { drawimage "JKFRC12", -52, -28; }
+		else InInventory "AbilityCharge", 750 { drawimage "JKFRC11", -52, -28; }
+		else InInventory "AbilityCharge", 700 { drawimage "JKFRC10", -52, -28; }
+		else InInventory "AbilityCharge", 600 { drawimage "JKFRC09", -52, -28; }
+		else InInventory "AbilityCharge", 500 { drawimage "JKFRC08", -52, -28; }
+		else InInventory "AbilityCharge", 400 { drawimage "JKFRC07", -52, -28; }
+		else InInventory "AbilityCharge", 300 { drawimage "JKFRC06", -52, -28; }
+		else InInventory "AbilityCharge", 200 { drawimage "JKFRC05", -52, -28; }
+		else InInventory "AbilityCharge", 100 { drawimage "JKFRC04", -52, -28; }
+		else InInventory "AbilityCharge", 50 { drawimage "JKFRC03", -52, -28; }
+		else InInventory "AbilityCharge", 1 { drawimage "JKFRC02", -52, -28; }
+		else { drawimage "JKFRC01", -52, -28; }
+		
+		InInventory "UltimateAbilityCharge", 1999 { drawimage "JKBAT07", -51, -59; }
+		else InInventory "UltimateAbilityCharge", 1666 { drawimage "JKBAT06", -51, -59; }
+		else InInventory "UltimateAbilityCharge", 1333 { drawimage "JKBAT05", -51, -59; }
+		else InInventory "UltimateAbilityCharge", 1000 { drawimage "JKBAT04", -51, -59; }
+		else InInventory "UltimateAbilityCharge", 666 { drawimage "JKBAT03", -51, -59; }
+		else InInventory "UltimateAbilityCharge", 333 { drawimage "JKBAT02", -51, -59; }
+		else { drawimage "JKBAT01", -51, -59; }
+		
+		InInventory "UltimateAbilityCharge", 2000 { Drawimage "JKLITE02", -61, -51; }
+		else { Drawimage "JKLITE01", -61, -51; }
+		
+		UsesAmmo
+		{
+			DrawNumber 3, JKAMOFNT, Untranslated, ammo1, fillzeros, -12, -40;
+		}
+		else
+		{
+			DrawString JKAMOFNT, Untranslated, "---", -12, -40, 0;
+		}
+		
+		UsesSecondaryAmmo
+		{
+			DrawNumber 2, JKHLTFNT, Untranslated, ammo2, fillzeros, -25, -49;
+		}
+		
+		//drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+		
+		//drawimage "CMHUD4", 0, -22;
 		
 		//drawimage "FHUDICON", 4, 5;
 		//health / armor barsz
 		
-		DrawBar "STKHP100", "STKHP000", health (200), horizontal, 12, -17;
-		DrawBar "SHLDM100", "STKSNULL", Armor (150), Horizontal, 12, -17;
+		//DrawBar "STKHP100", "STKHP000", health (200), horizontal, 12, -17;
+		//DrawBar "SHLDM100", "STKSNULL", Armor (150), Horizontal, 12, -17;
 		//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
-		
-		//health zdoom style
-		DrawNumber 3, INDEXFONT, Red, Health, 96, -18;
-
-		//armor zdoom style
-		Drawnumber 3, INDEXFONT, Green, Armor, 96, -7;
 
 		//ammo
-		DrawString SmallFont, Gold, "Ammo:", 40, -30;
-		drawnumber 3, SmallFont, Gold, ammo1, 64, -30;
-		drawKeyBar 6, Horizontal, 12, 2, -40;
-		Drawimage "UlTBARM", -96, -46;   // <- This bit right here Tribeam!
-		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
-		
-		InInventory "UltimateAbilityCharge", 2000
-		{
-			Drawimage "ULTRDY", -73, -6;
-		}
-			
-		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
+		//DrawString SmallFont, Gold, "Ammo:", 40, -30;
+		//drawnumber 3, SmallFont, Gold, ammo1, 64, -30;
 			
 		InInventory LifeTrackerHack, 1 
 		{
@@ -309,40 +357,23 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 			Drawimage "CMAX1MAN", 137, -10;
 		}
 		
-		Drawimage	 "AMXPBR00",	0,	-60;
-		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-60;	}
-		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-60;	}
+		Drawimage	 "AMXPBR00",	62,	-20;
+		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	62,	-20;	}
+		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	62,	-20;	}
 			
-		usesammo
+		inventorybarnotvisible
 		{
-			inventorybarnotvisible
-			{
-				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-			}
-		}
-		
-		usesammo Not
-		{
-			inventorybarnotvisible
-			{
-				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-			}
-		}
-		
-		UsesSecondaryAmmo
-		{
-			DrawString SmallFont, Gold, "/", 74, -30;
-			drawnumber 3, SmallFont, Gold, ammo2, 99, -30;
+			drawselectedinventory alwaysshowcounter, center, BIGFONT, -19, -81, -36, -87, untranslated;
 		}
 	}
 }
