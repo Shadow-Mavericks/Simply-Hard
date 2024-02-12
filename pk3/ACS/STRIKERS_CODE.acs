@@ -346,6 +346,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		bool doNumbers = false;
 		bool doTeamDamageScale = false;
 		bool wasConcussed = false;
+		bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
 
 		if (victimIsMonster)
 			doNumbers = true;
@@ -407,7 +408,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					doTeamDamageScale = true;
 			}
 			
-			if(doTeamDamageScale)
+			if(doTeamDamageScale && !wasTelefrag)
 			{
 				int teamDamage = GetCvar("teamdamage");
 				fixedDamage = arg1 << 16;
