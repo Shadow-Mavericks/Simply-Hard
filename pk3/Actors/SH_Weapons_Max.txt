@@ -93,7 +93,7 @@ actor GoldShot : RifBlast
 
 actor GoldShotZoom : RifBlast
 {
-	Damage (20 * DARKFORCES_DMG_MULT)
+	Damage (36 * DARKFORCES_DMG_MULT)
 	Speed 300
 	+FORCEPAIN
 	States
