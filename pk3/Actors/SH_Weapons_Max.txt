@@ -479,6 +479,10 @@ actor MortarGun : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	Inventory.Pickupmessage "Mortar Gun"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
@@ -553,6 +557,10 @@ actor ConcRifle : Weapon
 	Weapon.BobRangeX 1
 	Weapon.BobRangeY 1
 	Weapon.BobSpeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	+WEAPON.NOAUTOFIRE
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.ALT_AMMO_OPTIONAL
@@ -615,6 +623,10 @@ actor AssaultCannon : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 16
+	
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.ALT_AMMO_OPTIONAL
 	states
@@ -721,6 +733,10 @@ actor DisruptorRifle : DoomWeapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	States
 	{
 		Select:
@@ -775,6 +791,10 @@ actor FusionCutter : Weapon
 	Weapon.BobRangeX 1
 	Weapon.BobRangeY 1
 	Weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	Weapon.kickback 1024
 	Inventory.PickupMessage "Fusion Cutter"
 	Inventory.ForbiddenTo "Fiend"
@@ -973,6 +993,10 @@ actor Autogun : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	Inventory.PickupMessage "Autogun"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
@@ -1104,6 +1128,10 @@ actor DFPistol : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	+WEAPON.AMMO_OPTIONAL
 	states
 	{
@@ -1190,6 +1218,10 @@ actor DFBlaster : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	+WEAPON.AMMO_OPTIONAL
 	States
 	{
@@ -1327,6 +1359,10 @@ actor DFFist : Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
 	+WEAPON.NOALERT
 	+WEAPON.CHEATNOTWEAPON
 	States
