@@ -856,29 +856,23 @@ Actor impballtrail : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 1
+	SCALE 0.5
 	States
 	{
 	Spawn:
 		NULL A 3
 	Loopy:
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
 		BAL1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		BAL1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		BAL1 B 1 Bright A_FadeOut(0.025)
+		BAL1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		BAL1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -886,7 +880,7 @@ Actor impballtrailGreen : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 //	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
 	States
 	{
@@ -894,22 +888,16 @@ Actor impballtrailGreen : Particle_Base
 		NULL A 3
 	Loopy:
 		ACD1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		ACD1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ACD1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ACD1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -917,7 +905,7 @@ Actor impballtrailRed : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 //	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
 	States
 	{
@@ -925,22 +913,16 @@ Actor impballtrailRed : Particle_Base
 		NULL A 3
 	Loopy:
 		FIR1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		FIR1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		FIR1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		FIR1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -948,7 +930,7 @@ Actor impballtrailYellow : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 	//Translation "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]", "233:233=[255, 255, 96]:[64, 64, 32]"
 	States
 	{
@@ -956,22 +938,16 @@ Actor impballtrailYellow : Particle_Base
 		NULL A 3
 	Loopy:
 		SHK1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		SHK1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		SHK1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		SHK1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -979,7 +955,7 @@ Actor impballtrailPurple : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 	//Translation "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "231:231=[192, 128, 255]:[16, 0, 32]", "233:233=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
@@ -987,22 +963,16 @@ Actor impballtrailPurple : Particle_Base
 		NULL A 3
 	Loopy:
 		CNF1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		CNF1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		CNF1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		CNF1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -1012,7 +982,7 @@ Actor  impballtrailBlue : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 	//Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
 	States
 	{
@@ -1020,22 +990,16 @@ Actor  impballtrailBlue : Particle_Base
 		NULL A 3
 	Loopy:
 		ICE1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		ICE1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		ICE1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		ICE1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
@@ -1043,7 +1007,7 @@ Actor  IMPballtrailWhite : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
-	SCALE 0.8
+	SCALE 0.5
 	//Translation "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]", "233:233=[255, 255, 255]:[0, 0, 0]"
 	States
 	{
@@ -1051,22 +1015,16 @@ Actor  IMPballtrailWhite : Particle_Base
 		NULL A 3
 	Loopy:
 		MET1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+		
 		MET1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 A 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-		MET1 B 1 Bright A_FadeOut(0.025)
-		TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+		MET1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 		loop
+	Death:
+		TNT1 A 0
+		stop
 	}
 }
 
