@@ -10559,12 +10559,13 @@ ACTOR ImpRocket
 {
   Radius 11
   Height 8
-  Speed 50
+  Speed 40
   Damage 3
   Projectile
   +RANDOMIZE
   +DEHEXPLOSION
   +ROCKETTRAIL
+  +NEVERFAST
   SeeSound "Rocketimp/Fire"
   DeathSound "Rocketimp/Explode"
   Obituary "%o rode %k's rocket."
