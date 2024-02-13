@@ -13,41 +13,12 @@ actor Monster_Base
 }
 
 //////////////////////////////////////////////////////////////////
-// Projectiles
-//////////////////////////////////////////////////////////////////
-/*actor Projectile_Base
-{
-	Projectile
-	-NOTELEPORT			// lets make things different
-	+SEEKERMISSILE		// lets get this out of the way
-	+FORCERADIUSDMG
-	+SPAWNSOUNDSOURCE
-	+DONTSEEKINVISIBLE
-	+THRUGHOST
-	+NOBOSSRIP
-	+RANDOMIZE
-}*/
-
-
-//////////////////////////////////////////////////////////////////
 // Debuffs / Elemental Damge factors
 //////////////////////////////////////////////////////////////////
 actor Debuff_Weak : PowerProtection
 {
 	powerup.duration -3
 	damagefactor "Normal", 1.5
-	damagefactor "Fire", 1.5
-	damagefactor "FireExtreme", 2.0
-	damagefactor "Electric", 1.5
-	damagefactor "ElectricExtreme", 2.0
-	damagefactor "Ice", 1.5
-	damagefactor "IceExtreme", 2.0
-	damagefactor "Acid", 2.0
-	damagefactor "AcidExtreme", 4.0
-	damagefactor "Metal", 1.5
-	damagefactor "MetalExtreme", 2.0
-	damagefactor "Void", 1.5
-	damagefactor "VoidExtreme", 2.0
 }
 
 //////////////////////////////////////////////////////////////////
@@ -84,26 +55,26 @@ actor Debuff_Blind 		: PowerDamage
 //actor Debuff_Magic 		: PowerDamage 		{ damagefactor "Normal", 1 } // dummy powerup
 actor Debuff_Burn 		: PowerSpeed 		
 { 
-Speed 1.3
-powerup.duration -5
+	Speed 1.3
+	powerup.duration -5
 }
 
 actor Debuff_Confuse 	: PowerSpeed 		
 { 
-Speed -1.0 
-powerup.duration -5
+	Speed -1.0 
+	powerup.duration -5
 }
 
 actor Debuff_Frozen 	: PowerSpeed 		
 { 
-Speed 0.3 
-powerup.duration -5
+	Speed 0.5 
+	powerup.duration -5
 }
 
 actor Debuff_HeavyMetal : PowerSpeed		
 { 
-Speed 0.8 
-powerup.duration -5
+	Speed 0.8 
+	powerup.duration -5
 }
 
 //////////////////////////////////////////////////////////////////
