@@ -276,6 +276,8 @@ function void PrintDamage(int damage)
 
 	Thing_SetTranslation(NumberID, TranslationNumber);
 	SetActorVelocity(NumberID, 0, 0, 0.25, 0, 0);
+
+	return;
 }
 
 #define HIT_OTHER 0
@@ -309,9 +311,12 @@ function void hit_marker(int soundType, bool friendly)
 	}
 	HudMessage(s:"A";
 	HUDMSG_FADEOUT, id, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
+	
+	return;
 }
 
 // [JM] These defs are missing from ACC for some buttfuckin' reason.
+/*
 #define GAMEEVENT_PLAYERFRAGS			0
 #define GAMEEVENT_MEDALS				1
 #define GAMEEVENT_CAPTURES				2
@@ -328,6 +333,7 @@ function void hit_marker(int soundType, bool friendly)
 #define GAMEEVENT_DOMINATION_CONTROL	13
 #define GAMEEVENT_DOMINATION_POINT		14
 #define GAMEEVENT_PLAYERLEAVESSERVER	15
+*/
 
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {

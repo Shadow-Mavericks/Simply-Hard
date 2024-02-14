@@ -2,7 +2,7 @@
 setlocal
 setlocal EnableDelayedExpansion
 
-SET PATH=%PATH%;%~dp0\Tools;%~dp0\Tools\ACC
+SET PATH=%PATH%;%~dp0\Tools;%~dp0\Tools\ACC;%~dp0\Tools\GDCC
 set GIT=None
 set WorkingCopyPath=%~dp0
 set REVISIONNUMBER=Unknown
@@ -113,6 +113,7 @@ goto MENU
 cd pk3
 cd ACS
 del *.err
+echo Compiling ACS Scripts...
 for %%f in (*.acs) do (
 	echo %%~nf
 	acc.exe "%%~nf.acs" "%%~nf.o" 1>nul 2>%%~nf.err
@@ -122,6 +123,18 @@ for %%f in (*.acs) do (
 		del %%~nf.err
 	)
 )
+
+echo Compiling ACSX Scripts...
+for %%f in (*.acsx) do (
+	echo %%~nf
+	gdcc-acc.exe "%%~nf.acsx" "%%~nf.o" 1>nul 2>%%~nf.err
+	if ERRORLEVEL 1 (
+		type %%~nf.err
+	) else (
+		del %%~nf.err
+	)
+)
+
 pause
 goto MENU
 
