@@ -4063,6 +4063,7 @@ ACTOR Cyberbaron : Baronofhell
   painsound "cbaron/pain"
   deathsound "cbaron/death"
   activesound "cbaron/active"
+  DropItem "Rocket"
   MONSTER
   +NORADIUSDMG
   +DONTHURTSPECIES
