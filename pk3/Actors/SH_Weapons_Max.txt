@@ -781,7 +781,7 @@ actor FusionCutter : Weapon
 	Weapon.selectionorder 4
 	Weapon.AmmoUse1 1
 	Weapon.AmmoUse2 4
-	Weapon.AmmoGive1 30
+	Weapon.AmmoGive1 50
 	Weapon.AmmoType1 "DF_PowerCell"
 	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"
