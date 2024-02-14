@@ -1,0 +1,23 @@
+Cooperative
+{
+	GameSettings
+	{
+		// Stops the black hole launcher from giving teammates the succ.
+		sv_dontpushallies = true
+	}
+}
+
+Survival
+{
+	GameSettings
+	{
+		// Stops the black hole launcher from giving teammates the succ.
+		sv_dontpushallies = true
+	}
+	
+	LockedGameSettings
+	{
+		// Needed to stop revives from stripping inventory.
+		sv_deadplayerscankeepinventory = true
+	}
+}

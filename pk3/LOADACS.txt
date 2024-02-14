@@ -1,6 +1,6 @@
 PlayerIDs
+PlayerTicker
 Particle_manager
-Playerdebuffs
 healthyarmour
 ExtraLifeThingy
 Backpackexpander

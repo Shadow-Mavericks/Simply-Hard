@@ -71,7 +71,7 @@ actor N_Imp_Void : Hardimp
 	States
 	{
 		Melee:
-		    TROO EF 5 A_FaceTarget
+			TROO EF 5 A_FaceTarget
 			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Void")
 			Goto See
 		Missile:
@@ -86,16 +86,16 @@ actor ImpBall_Fire 	: ImpBall_Base
 {
 	Scale 0.8
 	DamageType "Fire" 
-  States
-  {
-  Spawn:
-    FIR1 A 1 Bright A_SpawnItemEx ("impballtrailRed")
-    FIR1 B 1 Bright A_SpawnItemEx ("impballtrailRed")
-    Loop
-  Death:
-    FIR1 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			FIR1 A 1 Bright A_SpawnItemEx ("impballtrailRed")
+			FIR1 B 1 Bright A_SpawnItemEx ("impballtrailRed")
+			Loop
+		Death:
+			FIR1 CDE 6 Bright
+			Stop
+	}
 }
 actor N_Imp_Fire : Hardimp 
 {
