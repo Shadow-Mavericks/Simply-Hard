@@ -1,0 +1,832 @@
+#Library "STRIKERS_CODE"
+#include "zcommon.acs"
+
+function bool startsWithVowel(str string)
+{
+	switch (GetChar(string, 0))
+	{
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+		case 'A':
+		case 'E':
+		case 'I':
+		case 'O':
+		case 'U':
+			return true;
+			break;
+	}
+	
+	return false;
+}
+
+// Orb spawning code by StrikerTheHedgefox
+
+script "ON_KILL" KILL
+{
+	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
+		terminate;
+
+	// Get some properties of our monster.
+	str Class = GetActorClass(0);
+	int Health = GetActorProperty(0, APROP_SpawnHealth);
+	int Height = GetActorProperty(0, APROP_Height);
+	int Damage = GetActorProperty(0, APROP_Damage);
+
+	// Base velocities for Orbs
+	int HOrbSpeed = GetActorProperty(0, APROP_Radius) / 4;
+	int VOrbSpeed = Height/6;
+
+	if(HOrbSpeed < 6.0)
+		HOrbSpeed = 6.0;
+
+	if(VOrbSpeed < 6.0)
+		VOrbSpeed = 6.0;
+
+	int NumOrbs = 0;
+
+	if(GetCVar("sh_orbs_logarithmic"))
+	{
+		// Base Multiplier * Health / (Health + Speed of Deminishing Return)
+		NumOrbs = 50 * Health / (Health + 1500); // Calculate number of Orbs.
+	}
+	else
+	{
+		NumOrbs = Health/40;
+	}
+
+	// Certain flags add a bonus.
+	if(CheckFlag(0, "MISSILEMORE"))			NumOrbs += 1;
+	if(CheckFlag(0, "MISSILEEVENMORE"))		NumOrbs += 1;
+	if(CheckFlag(0, "SPECTRAL"))			NumOrbs += 1;
+	if(CheckFlag(0, "DONTRIP"))				NumOrbs += 1;
+	if(CheckFlag(0, "NOICEDEATH"))			NumOrbs += 1;
+	if(CheckFlag(0, "STEALTH"))				NumOrbs += 2;
+	if(CheckFlag(0, "ALWAYSFAST"))			NumOrbs += 2;
+	if(CheckFlag(0, "NORADIUSDMG"))			NumOrbs += 2;
+	if(CheckFlag(0, "BOSS"))				NumOrbs += 10; // Bosses get more orbs.
+
+	if(Damage >= 250) // Super high damage enemies (like the white rabbit) double orbs.
+		NumOrbs *= 2;
+
+	if(NumOrbs <= 0) // Everything is worth at least one orb.
+		NumOrbs = 1;
+
+	if(GetUserVariable(0, "user_extralife_chance") != -1) // -1 = No spawn
+	{
+		bool doLifeSpawn = false;
+		int lifeChance = Random(1, 200);
+		if(GetUserVariable(0, "user_extralife_chance") > 0)
+		{
+			if(lifeChance <= GetUserVariable(0, "user_extralife_chance"))
+				doLifeSpawn = true;
+		}
+		else
+		{
+			if(Health >= 6000) // 100%
+				doLifeSpawn = true;
+			else if(Health >= 5000 && lifeChance <= 150) // 75%
+				doLifeSpawn = true;
+			else if(Health >= 4000 && lifeChance <= 100) // 50%
+				doLifeSpawn = true;
+			else if(Health >= 3000 && lifeChance <= 80) // 40%
+				doLifeSpawn = true;
+			else if(Health >= 2500 && lifeChance <= 20) // 10%
+				doLifeSpawn = true;
+			else if(Health >= 1000 && lifeChance <= 2) // 1%
+				doLifeSpawn = true;
+			else if(Health >= 500 && lifeChance <= 1) // 0.5%
+				doLifeSpawn = true;
+		}
+
+		if(doLifeSpawn)
+		{
+			int lifeTID = UniqueTID (0, 0);
+			SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
+			SetActorVelocity(lifeTID, random(-HOrbSpeed/2, HOrbSpeed/2), random(-HOrbSpeed/2, HOrbSpeed/2), random(2.0, VOrbSpeed), false, false);
+
+			if(Health >= 8000) // Spawn another if health pool is massive.
+			{
+				lifeTID = UniqueTID (0, 0);
+				SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
+				SetActorVelocity(lifeTID, random(-HOrbSpeed/2, HOrbSpeed/2), random(-HOrbSpeed/2, HOrbSpeed/2), random(2.0, VOrbSpeed), false, false);
+
+				if(startsWithVowel(StrParam(n:0)))
+				{
+					HudMessageBold(s:"Two extra lives were dropped by an ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+				else
+				{
+					HudMessageBold(s:"Two extra lives were dropped by a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+			}
+			else
+			{
+				if(startsWithVowel(StrParam(n:0)))
+				{
+					HudMessageBold(s:"An extra life was dropped by an ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+				else
+				{
+					HudMessageBold(s:"An extra life was dropped by a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
+				}
+			}
+		}
+	}
+
+	for(int i = 0; i < NumOrbs; i++)
+	{
+		int TID = UniqueTID (0, 0);
+		SpawnForced("DEMONENERGY", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), TID, random(0, 255));
+		SetActorVelocity(TID, random(-HOrbSpeed, HOrbSpeed), random(-HOrbSpeed, HOrbSpeed), random(2.0, VOrbSpeed), false, false);
+		Thing_ChangeTID(TID, 0);
+	}
+
+	SetActivatorToTarget(0); // Set activator to the one who killed this monster.
+
+	if(GetCVar("sh_debug"))
+		log(s:"DEBUG: ", n:0, s:" killed ", s:Class, s:" [", d:Health, s:"] ", s:"Orbs: ", d:NumOrbs);
+}
+
+// Damage Numbers
+// --------------
+// [JM] Ported from SMMP by StrikerTheHedgefox! (Aka. [JM]) Please ask permission if you want to use this!
+function int pow (int x, int n)
+{
+	int y = 1;
+	while (n-- > 0) y *= x;
+	return y;
+}
+
+function int GetDigit(int Num, int Digit)
+{
+	return (Num / pow(10, Digit)) % 10 ;
+}
+
+function void PrintDamage(int damage)
+{
+	if(damage > 9999)
+		damage = 9999;
+
+	int Digit1 = GetDigit(damage, 0);
+	int Digit2 = GetDigit(damage, 1);
+	int Digit3 = GetDigit(damage, 2);
+	int Digit4 = GetDigit(damage, 3);
+
+	int height = GetActorProperty(0, APROP_Height);
+	if(GetActorProperty(0, APROP_Health) <= 0)
+		height *= 4;
+
+	int x = GetActorX(0) + Random(-10.0, 10.0);
+	int y = GetActorY(0) + Random(-10.0, 10.0);
+	int z = GetActorZ(0) + height + Random(-10.0, 5.0);
+
+	int ceilingZ = GetActorCeilingZ(0);
+	if(z+10.0 >= ceilingZ)
+		z = (ceilingZ-10.0) + Random(-10.0, 0.0);
+
+	int SelectedColor = Random(0, 6);
+	int TranslationNumber = Random(6000, 6500);
+
+	switch (SelectedColor)
+	{
+		case 0: // Red
+			CreateTranslation(TranslationNumber, 160:160=[255, 0, 0]:[255, 0, 0]);
+			break;
+		case 1: // Green
+			CreateTranslation(TranslationNumber, 160:160=[0, 255, 0]:[0, 255, 0]);
+			break;
+		case 2: // Blue
+			CreateTranslation(TranslationNumber, 160:160=[0, 0, 255]:[0, 0, 255]);
+			break;
+		case 3: // Yellow
+			CreateTranslation(TranslationNumber, 160:160=[255, 255, 0]:[255, 255, 0]);
+			break;
+		case 4: // Cyan
+			CreateTranslation(TranslationNumber, 160:160=[0, 255, 255]:[0, 255, 255]);
+			break;
+		case 5: // Magenta
+			CreateTranslation(TranslationNumber, 160:160=[255, 0, 255]:[255, 0, 255]);
+			break;
+		case 6: // White
+			CreateTranslation(TranslationNumber, 160:160=[255, 255, 255]:[255, 255, 255]);
+			break;
+	}
+
+	int NumberID = Random(6000, 6500);
+
+	if(Digit1 == 0) { Spawn("Digit1Num0", x, y, z, NumberID, 0); }
+	else if(Digit1 == 1) { Spawn("Digit1Num1", x, y, z, NumberID, 0); }
+	else if(Digit1 == 2) { Spawn("Digit1Num2", x, y, z, NumberID, 0); }
+	else if(Digit1 == 3) { Spawn("Digit1Num3", x, y, z, NumberID, 0); }
+	else if(Digit1 == 4) { Spawn("Digit1Num4", x, y, z, NumberID, 0); }
+	else if(Digit1 == 5) { Spawn("Digit1Num5", x, y, z, NumberID, 0); }
+	else if(Digit1 == 6) { Spawn("Digit1Num6", x, y, z, NumberID, 0); }
+	else if(Digit1 == 7) { Spawn("Digit1Num7", x, y, z, NumberID, 0); }
+	else if(Digit1 == 8) { Spawn("Digit1Num8", x, y, z, NumberID, 0); }
+	else if(Digit1 == 9) { Spawn("Digit1Num9", x, y, z, NumberID, 0); }
+
+	if(damage >= 10)
+	{
+		if(Digit2 == 0) { Spawn("Digit2Num0", x, y, z, NumberID, 0); }
+		else if(Digit2 == 1) { Spawn("Digit2Num1", x, y, z, NumberID, 0); }
+		else if(Digit2 == 2) { Spawn("Digit2Num2", x, y, z, NumberID, 0); }
+		else if(Digit2 == 3) { Spawn("Digit2Num3", x, y, z, NumberID, 0); }
+		else if(Digit2 == 4) { Spawn("Digit2Num4", x, y, z, NumberID, 0); }
+		else if(Digit2 == 5) { Spawn("Digit2Num5", x, y, z, NumberID, 0); }
+		else if(Digit2 == 6) { Spawn("Digit2Num6", x, y, z, NumberID, 0); }
+		else if(Digit2 == 7) { Spawn("Digit2Num7", x, y, z, NumberID, 0); }
+		else if(Digit2 == 8) { Spawn("Digit2Num8", x, y, z, NumberID, 0); }
+		else if(Digit2 == 9) { Spawn("Digit2Num9", x, y, z, NumberID, 0); }
+	}
+
+	if(damage >= 100)
+	{
+		if(Digit3 == 0) { Spawn("Digit3Num0", x, y, z, NumberID, 0); }
+		else if(Digit3 == 1) { Spawn("Digit3Num1", x, y, z, NumberID, 0); }
+		else if(Digit3 == 2) { Spawn("Digit3Num2", x, y, z, NumberID, 0); }
+		else if(Digit3 == 3) { Spawn("Digit3Num3", x, y, z, NumberID, 0); }
+		else if(Digit3 == 4) { Spawn("Digit3Num4", x, y, z, NumberID, 0); }
+		else if(Digit3 == 5) { Spawn("Digit3Num5", x, y, z, NumberID, 0); }
+		else if(Digit3 == 6) { Spawn("Digit3Num6", x, y, z, NumberID, 0); }
+		else if(Digit3 == 7) { Spawn("Digit3Num7", x, y, z, NumberID, 0); }
+		else if(Digit3 == 8) { Spawn("Digit3Num8", x, y, z, NumberID, 0); }
+		else if(Digit3 == 9) { Spawn("Digit3Num9", x, y, z, NumberID, 0); }
+	}
+
+	if(damage >= 1000)
+	{
+		if(Digit4 == 0) { Spawn("Digit4Num0", x, y, z, NumberID, 0); }
+		else if(Digit4 == 1) { Spawn("Digit4Num1", x, y, z, NumberID, 0); }
+		else if(Digit4 == 2) { Spawn("Digit4Num2", x, y, z, NumberID, 0); }
+		else if(Digit4 == 3) { Spawn("Digit4Num3", x, y, z, NumberID, 0); }
+		else if(Digit4 == 4) { Spawn("Digit4Num4", x, y, z, NumberID, 0); }
+		else if(Digit4 == 5) { Spawn("Digit4Num5", x, y, z, NumberID, 0); }
+		else if(Digit4 == 6) { Spawn("Digit4Num6", x, y, z, NumberID, 0); }
+		else if(Digit4 == 7) { Spawn("Digit4Num7", x, y, z, NumberID, 0); }
+		else if(Digit4 == 8) { Spawn("Digit4Num8", x, y, z, NumberID, 0); }
+		else if(Digit4 == 9) { Spawn("Digit4Num9", x, y, z, NumberID, 0); }
+	}
+
+	Thing_SetTranslation(NumberID, TranslationNumber);
+	SetActorVelocity(NumberID, 0, 0, 0.25, 0, 0);
+}
+
+#define HIT_OTHER 0
+#define HIT_FLESH 1
+
+function void hit_marker(int soundType, bool friendly)
+{
+	if(friendly)
+		LocalAmbientSound("hitsound_friend", 64);
+	else
+	{
+		switch(soundType)
+		{
+			case HIT_FLESH:
+				LocalAmbientSound("hitsound_flesh", 64);
+				break;
+			default:
+				LocalAmbientSound("hitsound_generic", 32);
+				break;
+		}
+	}
+	
+	SetHudSize(1024, 768, 0);
+	int id = 6969;
+	if(!friendly)
+		SetFont("HITMARK");
+	else
+	{
+		id = 6970;
+		SetFont("HITFREN");
+	}
+	HudMessage(s:"A";
+	HUDMSG_FADEOUT, id, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
+}
+
+// [JM] These defs are missing from ACC for some buttfuckin' reason.
+#define GAMEEVENT_PLAYERFRAGS			0
+#define GAMEEVENT_MEDALS				1
+#define GAMEEVENT_CAPTURES				2
+#define GAMEEVENT_TOUCHES				3
+#define GAMEEVENT_RETURNS				4
+#define GAMEEVENT_ROUND_STARTS			5
+#define GAMEEVENT_ROUND_ENDS			6
+#define GAMEEVENT_ROUND_ABORTED			7
+#define GAMEEVENT_CHAT					8
+#define GAMEEVENT_PLAYERCONNECT			9
+#define GAMEEVENT_ACTOR_SPAWNED			10
+#define GAMEEVENT_ACTOR_DAMAGED			11
+#define GAMEEVENT_ACTOR_ARMORDAMAGED	12
+#define GAMEEVENT_DOMINATION_CONTROL	13
+#define GAMEEVENT_DOMINATION_POINT		14
+#define GAMEEVENT_PLAYERLEAVESSERVER	15
+
+script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
+{
+	if(type == GAMEEVENT_ACTOR_DAMAGED)
+	{
+		// -------------
+		int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
+		int yeetAmt;		// Vertical push.
+		// -------------
+		
+		int victimPlayerNum = PlayerNumber();
+		bool victimIsMonster = CheckFlag(0, "ISMONSTER");
+		bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
+		bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
+		
+		bool doNumbers = false;
+		bool doTeamDamageScale = false;
+		bool wasConcussed = false;
+		bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
+
+		if (victimIsMonster)
+			doNumbers = true;
+			
+		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+		{
+			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
+			int falloffAmt = GetUserVariable(0, "user_falloff");
+			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
+			{
+				int falloffRate = GetUserVariable(0, "user_falloffrate");
+				if(falloffRate <= 0)
+					falloffRate = 1;
+					
+				fixedDamage = arg1 << 16;
+				int minDamage = GetUserVariable(0, "user_mindmg");
+				int falloffTics = GetUserVariable(0, "user_fallofftics");
+				
+				arg1 = (fixedDamage - (falloffAmt * (falloffTics/falloffRate))) >> 16;
+				
+				if(arg1 < minDamage)
+					arg1 = minDamage;
+					
+				SetResultValue(arg1);
+			}
+			
+			wasConcussed = CheckActorClass(0, "ConcussionBlast");
+			if(CheckActorClass(0, "FistPuff") || wasConcussed)
+				yeetAmt = random(arg1 >> 2, arg1);
+			
+			if(GetCVar("sh_debug"))
+				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
+		}
+
+		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+		{
+			int attackerPlayerNum = PlayerNumber();
+			bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
+			bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
+			
+			if(attackerPlayerNum != -1) // Source is player
+			{
+				if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
+					hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
+				
+				// Gosimer's Berserk Buff
+				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
+				{
+					arg1 += 1;
+					SetResultValue(arg1);
+				}
+				
+				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
+					doTeamDamageScale = true;
+			}
+			else if(attackerIsMonster) // Source is a monster.
+			{
+				if(attackerIsFriendly && victimPlayerNum != -1) // Friendly monster hitting player.
+					doTeamDamageScale = true;
+			}
+			
+			if(doTeamDamageScale && !wasTelefrag)
+			{
+				int teamDamage = GetCvar("teamdamage");
+				fixedDamage = arg1 << 16;
+				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
+				SetResultValue(arg1);
+			}
+		}
+
+		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+		{
+			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST") && !CheckFlag(0, "FLOAT"))
+			{
+				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
+				if(assMass <= 0)
+					assMass = 1;
+				
+				if(assMass > 1)
+				{
+					yeetAmt /= assMass;
+					if(yeetAmt <= 0)
+						yeetAmt = 1; // We always do a little bit of yeeting.
+				}
+				
+				ThrustThingZ(0, yeetAmt, 0, 1);
+			}
+			
+			if(wasConcussed)
+				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+
+			if(doNumbers)
+			{
+				GiveInventory("DamageTallyHack", arg1);
+				delay(1);
+				int damage = CheckInventory("DamageTallyHack");
+				if(damage > 0)
+				{
+					PrintDamage(damage);
+					TakeInventory("DamageTallyHack", 9999);
+				}
+			}
+		}
+	}
+}
+
+#define AMMO_CLIP		0
+#define AMMO_CLIPBOX	1
+#define AMMO_SHELLS		2
+#define AMMO_SHELLBOX	3
+#define AMMO_ROCKET		4
+#define AMMO_ROCKETBOX	5
+#define AMMO_CELL		6
+#define AMMO_CELLBOX	7
+
+// Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
+// Use with "NamedSendNetworkString".
+script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
+{
+	log(s:msg);
+}
+
+script "AMMO_PICKUP" (int type, int dropped)
+{
+	SetResultValue(0);
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
+	str ammo1_class = "None";
+	str ammo1_name = "None";
+	int ammo1_amount = 0;
+	
+	str ammo2_class = "None";
+	str ammo2_name = "None";
+	int ammo2_amount = 0;
+	
+	str pickupsound = "misc/i_pkup";
+	str extrasound = "None";
+	str textcolor = "\cf";
+	
+	bool no_halve_on_drop = false;
+	
+	int fade_rgb[3] = { 255, 192, 0 };
+	
+	// Our ammo types. Determined by a numerical index passed to the script.
+	switch(type)
+	{
+		case AMMO_CLIP:
+		{
+			ammo1_class = "PeastolClip";
+			ammo1_name = "Pistol Round";
+			ammo1_amount = 12;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_EnergyUnit";
+				ammo1_name = "Energy Unit";
+				ammo1_amount = 15;
+			}
+			
+			pickupsound = "AMMO/CLIP";
+			break;
+		}
+		case AMMO_CLIPBOX:
+		{
+			ammo1_class = "AK_MAG";
+			ammo1_name = "MG Round";
+			ammo1_amount = 75;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_EnergyUnit";
+				ammo1_name = "Energy Unit";
+				ammo1_amount = 45;
+			}
+			else if(CheckActorClass(0, "Fiend"))
+			{
+				extrasound = "Jim/taunt10";
+			}
+			
+			pickupsound = "AMMO/CLIP";
+			break;
+		}
+		case AMMO_SHELLS:
+		{
+			ammo1_class = "Shellz";
+			ammo1_name = "SG Shell";
+			ammo1_amount = 2;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_PowerCell";
+				ammo1_name = "Power Cell";
+				ammo1_amount = 10;
+			}
+			else
+			{
+				ammo2_class = "Supershellz";
+				ammo2_name = "SSG Shell";
+				ammo2_amount = 2;
+			}
+			
+			pickupsound = "AMMO/SHEL";
+			break;
+		}
+		case AMMO_SHELLBOX:
+		{
+			ammo1_class = "Shellz";
+			ammo1_name = "SG Shell";
+			ammo1_amount = 10;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_PowerCell";
+				ammo1_name = "Power Cell";
+				ammo1_amount = 30;
+			}
+			else
+			{
+				ammo2_class = "Supershellz";
+				ammo2_name = "SSG Shell";
+				ammo2_amount = 10;
+			}
+			
+			pickupsound = "AMMO/SHELBAWX";
+			break;
+		}
+		case AMMO_ROCKET:
+		{
+			ammo1_class = "Roketammo";
+			ammo1_name = "Rocket";
+			ammo1_amount = 1;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_name = "Mortar Shell";
+			}
+			
+			pickupsound = "AMMO/ROKET";
+			break;
+		}
+		case AMMO_ROCKETBOX:
+		{
+			ammo1_class = "Roketammo";
+			ammo1_name = "Rocket";
+			ammo1_amount = 5;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_name = "Mortar Shell";
+			}
+			
+			pickupsound = "AMMO/ROKETBAWX";
+			break;
+		}
+		case AMMO_CELL:
+		{
+			ammo1_class = "Battery";
+			ammo1_name = "Energy Cell";
+			ammo1_amount = 40;
+			
+			ammo2_class = "RailSLUGS";
+			ammo2_name = "Uranium Slug";
+			ammo2_amount = 6;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_PlasmaCartridge";
+				ammo1_name = "Plasma Cartridge";
+				ammo1_amount = 20;
+				
+				ammo2_name = "Disruptor Cell";
+			}
+			else if(CheckActorClass(0, "Fiend"))
+			{
+				extrasound = "Jim/taunt6";
+			}
+			
+			pickupsound = "AMMO/BATTERY";
+			break;
+		}
+		case AMMO_CELLBOX:
+		{
+			ammo1_class = "Battery";
+			ammo1_name = "Energy Cell";
+			ammo1_amount = 100;
+			
+			ammo2_class = "BFGCHARGE";
+			ammo2_name = "Argent Energy Charge";
+			ammo2_amount = 2;
+			
+			// Todo: Lightning Ammo.
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				no_halve_on_drop = true;
+				ammo1_class = "DF_Missile";
+				ammo1_name = "Missile";
+				ammo1_amount = 5;
+				
+				ammo2_class = "DF_PlasmaCartridge";
+				ammo2_name = "Plasma Cartridge";
+				ammo2_amount = 60;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				ammo2_class = "DevastatorAmmo";
+				ammo2_name = "Devastator Missile";
+				ammo2_amount = 50;
+			}
+			else if(CheckActorClass(0, "Fiend"))
+			{
+				extrasound = "Jim/taunt4";
+			}
+			
+			pickupsound = "AMMO/BATTERYPAK";
+			break;
+		}
+	}
+	
+	if(!no_halve_on_drop)
+	{
+		if(dropped && ammo1_amount > 0)
+		{
+			ammo1_amount /= 2;
+			if(ammo1_amount == 0)
+				ammo1_amount = 1;
+		}
+		
+		if(dropped && ammo2_amount > 0)
+		{
+			ammo2_amount /= 2;
+			if(ammo2_amount == 0)
+				ammo2_amount = 1;
+		}
+	}
+	
+	bool success = false;
+	int ammofactor = 1;
+	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
+		ammofactor = 2;
+	
+	if(StrIcmp(ammo1_class, "None") != 0 && ammo1_amount > 0)
+	{
+		if(CheckInventory(ammo1_class) < GetAmmoCapacity(ammo1_class))
+		{
+			// Adjust ammo given to remainder of capacity, if applicable.
+			// Doing this so I can pass the real amount gained to the pickup message.
+			if((CheckInventory(ammo1_class) + ammo1_amount) > GetAmmoCapacity(ammo1_class))
+				ammo1_amount = GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class);
+			
+			GiveInventory(ammo1_class, ammo1_amount);
+			success = true;
+		}
+		else
+		{
+			ammo1_amount = 0;
+		}
+	}
+	
+	if(StrIcmp(ammo2_class, "None") != 0 && ammo2_amount > 0)
+	{
+		if(CheckInventory(ammo2_class) < GetAmmoCapacity(ammo2_class))
+		{
+			// Ditto.
+			if((CheckInventory(ammo2_class) + ammo2_amount) > GetAmmoCapacity(ammo2_class))
+				ammo2_amount = GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class);
+				
+			GiveInventory(ammo2_class, ammo2_amount);
+			success = true;
+		}
+		else
+		{
+			ammo2_amount = 0;
+		}
+	}
+	
+	if(success)
+	{
+		str suffix1 = "";
+		str suffix2 = "";
+
+		// Add a plural suffix, if applicable.
+		if((ammo1_amount * ammofactor) > 1)
+			suffix1 = "s";
+		if ((ammo2_amount * ammofactor) > 1)
+			suffix2 = "s";
+			
+		if(CheckActorClass(0, "MaximusPrime"))
+		{
+			textcolor = "\ci";
+			fade_rgb[0] = 0;
+			fade_rgb[1] = 0;
+			fade_rgb[2] = 255;
+		}
+		
+		str msg = StrParam(s:textcolor);
+		if(ammo1_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+			if(ammo2_amount > 0)
+				msg = StrParam(s:msg, s:" & ");
+		}
+		
+		if(ammo2_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+		}
+		
+		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
+		
+		//if(ammo1_amount > 0 && ammo2_amount > 0)
+			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+		//else if(ammo1_amount > 0)
+			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+
+		PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
+		if(StrIcmp(extrasound, "None") != 0)
+			PlaySound(0, extrasound, CHAN_6, 1.0, false);
+		
+		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
+
+		SetResultValue(1);
+	}
+}
+
+#define WEAPON_CHAINSAW		0
+#define WEAPON_PISTOL		1
+#define WEAPON_SHOTGUN		2
+#define WEAPON_SSG			3
+#define WEAPON_CHAINGUN		4
+#define WEAPON_ROCKET		5
+#define WEAPON_PLASMA		6
+#define WEAPON_BFG			7
+#define WEAPON_RAILGUN		8
+
+str playerClassName = "None";
+function void updateClass(void)
+{
+	if((ConsolePlayerNumber() == PlayerNumber()) && (ConsolePlayerNumber() != -1))
+	{
+		playerClassName = GetActorClass(0);
+		if(GetCVar("sh_debug"))
+			log(s:"DEBUG: class is ", s:playerClassName);
+	}
+}
+
+script "GET_CLASS" ENTER CLIENTSIDE
+{
+	updateClass();
+}
+
+script "GET_CLASS_RESPAWN" RESPAWN CLIENTSIDE
+{
+	updateClass();
+}
+
+script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
+{
+	if(!SetActorState(0, playerClassName, false))
+		SetActorState(0, "Base", false);
+}
+
+script "SUPERCHARGE_CHECK" (void)
+{
+	if(CheckInventory("PowerDoubleFiringSpeed"))
+	{
+		SetUserVariable(0, "user_supercharge_useammo", (GetUserVariable(0, "user_supercharge_useammo")+1) & 1);
+		SetResultValue(GetUserVariable(0, "user_supercharge_useammo"));
+		
+		if(GetCVar("sh_debug"))
+			log(s:"DEBUG: user_supercharge_useammo ", d:GetUserVariable(0, "user_supercharge_useammo"));
+	}
+	else
+		SetResultValue(1);
+}
