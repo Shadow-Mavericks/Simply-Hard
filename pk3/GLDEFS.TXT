@@ -387,11 +387,6 @@ pointlight FPLAS2
         size 64
 }
 
-pointlight SKATSHOT
-{
-        color 0.1 0.25 1.0
-        size 72
-}
 
 Object ChannelerBeam
 {
@@ -464,11 +459,6 @@ Object FiendsPlasma5
 {
 	frame TBALB { Light FPLAS2 }
 }*/
-
-Object ScatterPShot
-{
-	frame SPPJ { Light SKATSHOT }
-}
 
 Object RedBaronBall
 {

@@ -405,7 +405,7 @@ ACTOR SSGZombie
 	DEATHSOUND "SSGUNER/death"
 	ACTIVESOUND "SSGUNER/idle"
 	OBITUARY "%o was blown open by a Super Shotgunner!"
-	DropItem "Shellz"
+	DropItem "Shell"
 	DropItem "supershotgun"
 	DropItem "Activebox1" 1
 	Decal Bulletchip

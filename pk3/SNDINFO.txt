@@ -31,17 +31,6 @@ Weapon/FlameshotLOOP	FSLOOP1
 Weapon/FlameshotCrit	FSLOOP2
 Weapon/FlameshotEND	FSEND
 
-
-//Scatterpistol
-SPRPSHOT SPRPSHOT
-$Limit SPRPSHOT 0
-
-SPRPIMPT SPRPIMPT
-$Limit SPRPIMPT	0
-
-NDLSHOT NDLSHOT
-$Limit NDLSHOT	0
-
 //Armour
 GARMGET	GARMGET
 
@@ -1376,9 +1365,6 @@ Cybermind/Attack				DSRLAUNC
 
 Bladebeam/attack	BEMSWOSH
 BladeBeam/death		BEEMDIE
-
-ScatterPistol/Charge	SCATCHRG
-ScatterPistol/Loop		SCATLOOP
 
 weapons/diasht dsdiasht point 9.9
 weapons/firex3 dsfirex3 point 9.9
