@@ -1935,6 +1935,7 @@ actor CCCDroid
 	+LOOKALLAROUND
 	+NOBLOOD
 	+DONTHURTSPECIES
+	+MISSILEMORE
 	-FLOORCLIP
 	States
 	{
@@ -1955,24 +1956,38 @@ actor CCCDroid
 		Missile:
 			CCCD A 0 A_playsound("Droid/Charge")
 			CCCD EFGH 2 A_ChangeVelocity(velx * 0.75, vely * 0.75, velz * 0.75, CVF_REPLACE) // Slow to a stop
+			CCCD E 0 A_ChangeFlag("FLOAT", false)
 			CCCD E 2 A_Stop
-			CCCD FGHEFGHEFGHEFGH 2 
-			CCCD IJKL 2 Bright A_Facetarget
-			CCCD A 0 Bright A_Facetarget
+			CCCD FGHEFGHEFGH 2 
+			CCCD IJKL 2 Bright A_Facetarget(0, 0)
+			CCCD A 0 Bright A_Facetarget(0, 0)
 			CCCD A 0 A_playsound("Droid/Attack")
 			//CCCD A 0 A_giveinventory("Ragerune", 1)
 			//CCCD L 5 Bright A_CustomMissile("CCCCPAINIS",36, 0, 0,0,0)
-			TBAL C 0 bright A_SetUserVar("user_theta",-45)
-		Missile2:
-			// CCCD L 0 Bright A_CustomRailgun(5, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 0, "none", 0, 0, 0, 25, 5.0, 1.0, "DroidLaser")
-			CCCD L 1 Bright A_CustomRailgun(15, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, 0.0, "BulletPuff", user_theta, 0, 2048, 25, 5.0, 1.0, "DroidLaser", -8)
+			CCCD L 0 bright A_SetUserVar("user_theta", -45)
+			CCCD L 0 bright A_Jump(128, "RightSweep")
+			goto LeftSweep
+			
+		LeftSweep:
+			//CCCD L 0 Bright A_CustomRailgun(15, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, 0.0, "BulletPuff", -user_theta, 0, 2048, 25, 5.0, 1.0, "DroidLaserTrail", -8)
+			//CCCD L 1 Bright A_CustomRailgun(15, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, 0.0, "BulletPuff", user_theta, 0, 2048, 25, 5.0, 1.0, "DroidLaserTrail", -8)
+			CCCD L 0 Bright A_Facetarget(0.001, 2.0)
+			CCCD L 1 Bright A_CustomMissile ("DroidLaser", 28, 0, angle+user_theta, CMF_AIMDIRECTION | CMF_ABSOLUTEANGLE | CMF_ABSOLUTEPITCH, pitch)
 			CCCD L 0 Bright A_SetUserVar("user_theta",user_theta+2)
-			CCCD L 0 Bright A_JumpIf(user_theta>=45,"Missile2B")
+			CCCD L 0 Bright A_JumpIf(user_theta >= 45,"StopSweep")
 			Loop
-		Missile2B:
-			CCCD L 5 Bright
+		RightSweep:
+			CCCD L 0 Bright A_Facetarget(0.001, 2.0)
+			CCCD L 1 Bright A_CustomMissile ("DroidLaser", 28, 0, angle-user_theta, CMF_AIMDIRECTION | CMF_ABSOLUTEANGLE | CMF_ABSOLUTEPITCH, pitch)
+			CCCD L 0 Bright A_SetUserVar("user_theta",user_theta+2)
+			CCCD L 0 Bright A_JumpIf(user_theta >= 45,"StopSweep")
+			Loop
+			
+		StopSweep:
+			CCCD L 5 Bright A_ChangeFlag("FLOAT", true)
 			goto see
 		Pain:
+			CCCD M 0 A_ChangeFlag("FLOAT", true)
 			CCCD MNOP 3 A_PAIN
 			Goto see
 		Death:
