@@ -1969,6 +1969,7 @@ actor CCCDroid
 			goto LeftSweep
 			
 		LeftSweep:
+			// Commented out because A_CustomRailgun sucks dick and likes to set pitch no matter the flags/aim settings. Needs a new flag.
 			//CCCD L 0 Bright A_CustomRailgun(15, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, 0.0, "BulletPuff", -user_theta, 0, 2048, 25, 5.0, 1.0, "DroidLaserTrail", -8)
 			//CCCD L 1 Bright A_CustomRailgun(15, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE, 0, 0.0, "BulletPuff", user_theta, 0, 2048, 25, 5.0, 1.0, "DroidLaserTrail", -8)
 			CCCD L 0 Bright A_Facetarget(0.001, 2.0)
