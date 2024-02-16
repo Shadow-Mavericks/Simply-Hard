@@ -1839,9 +1839,13 @@ BFGFIRE2 BFGFIRE2
 weapon/D3DDEVSHOT	CATFIRE
 weapon/D3DDEVBOOM 	DKXPLOD
 weapon/D3DDEVSPAWN	DSEXECFI
+weapon/D3DDEVFLY	ROCKFLY
+$limit weapon/D3DDEVSHOT 0
+$limit weapon/D3DDEVBOOM 0
+$limit weapon/D3DDEVSPAWN 0
+$limit weapon/D3DDEVFLY 0
 
 $volume Weapon/Machinegunfire 0.5
-weapon/D3DDEVFLY	ROCKFLY
 
 Weapon/Fiend_SSG_Fire	SSHTGN
 Weapon/Fiend_SSG_Reload	SSHTGNR
