@@ -858,3 +858,34 @@ struct MannCoBoxData_t
 	str state;
 	int weight;
 };
+
+int tier1_good_totalweight;
+MannCoBoxData_t tier1_good[] = {
+	{ "Medical Bag",				"MedBag",		100 },
+	{ "Kan-Kan Powerup",			"KanKan",		25 },
+	{ "Soulsphere",					"SoulSphere",	75 },
+	{ "Invulnerability Powerup",	"Invuln",		35 },
+	{ "Energy Tank", 				"ETank",		25 },
+	{ "Tier 1 Weapon Upgrade",		"T1Upgrade",	65 },
+	{ "Tier 2 Weapon Upgrade",		"T2Upgrade",	60 },
+	{ "Tier 3 Weapon Upgrade",		"T3Upgrade",	50 },
+	{ "Tier 4 Weapon Upgrade",		"T4Upgrade",	40 },
+	{ "Tier 5 Weapon Upgrade",		"T5Upgrade",	30 },
+	{ "Tier 6 Weapon Upgrade",		"T6Upgrade",	20 },
+	{ "Tier 7 Weapon Upgrade",		"T7Upgrade",	10 },
+	{ "Extra Life",					"ExtraLife",	30 },
+	{ "Gaster Blaster",				"Gaster",		25 },
+	{ "Item Bundle",				"Bundle",		20 },
+};
+
+int tier1_bad_totalweight;
+MannCoBoxData_t tier1_bad[] = {
+	{ "Suicide Bomber",			"SuicideBomber",	25 },
+	{ "Rabbit of Caerbannog",	"WhiteRabbit",		10 },
+	{ "You get nothing!",		"YouLose",			50 },
+	{ "DED. Not big surprise.",	"DED",				50 },
+	{ "Fuck you. KTHXBYE.",		"FuckYou",			50 },
+	{ "WAAAAAAH!",				"WAAAAAAH",			50 },
+	{ "BFGTrap",				"BFGTrap",			40 },
+	{ "Bombing Run",			"BombingRun",		10 },
+};
