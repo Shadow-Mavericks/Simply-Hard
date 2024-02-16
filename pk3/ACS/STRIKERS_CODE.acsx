@@ -786,6 +786,10 @@ script "AMMO_PICKUP" (int type, int dropped)
 	}
 }
 
+// ------------------
+// Weapon Pickup Code
+// ------------------
+
 #define WEAPON_CHAINSAW		0
 #define WEAPON_PISTOL		1
 #define WEAPON_SHOTGUN		2
@@ -795,6 +799,12 @@ script "AMMO_PICKUP" (int type, int dropped)
 #define WEAPON_PLASMA		6
 #define WEAPON_BFG			7
 #define WEAPON_RAILGUN		8
+
+// --------------------------------
+
+// --------------------------------
+// Clientside Pickup Transformation
+// --------------------------------
 
 str playerClassName = "None";
 function void updateClass(void)
@@ -823,6 +833,8 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 		SetActorState(0, "Base", false);
 }
 
+// -----------------------------
+
 script "SUPERCHARGE_CHECK" (void)
 {
 	if(CheckInventory("PowerDoubleFiringSpeed"))
@@ -836,3 +848,13 @@ script "SUPERCHARGE_CHECK" (void)
 	else
 		SetResultValue(1);
 }
+
+// ------------
+// MannCo Boxes
+// ------------
+struct MannCoBoxData_t
+{
+	str name;
+	str state;
+	int weight;
+};
