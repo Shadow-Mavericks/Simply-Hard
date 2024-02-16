@@ -39,9 +39,14 @@ Rocketimp/idle8 dsciid08
 
 $random Rocketimp/Idle { Rocketimp/idle01 Rocketimp/idle02 Rocketimp/idle03 Rocketimp/idle04 Rocketimp/idle05 Rocketimp/idle06 Rocketimp/idle07 Rocketimp/idle08 }
 
+// Kamikaze
+KamikazeBeep KAMKBEEP
+KamikazeBoom KAMKBOOM
+$limit KamikazeBeep 0
+$limit KamikazeBoom 0
+
 // Evil Dead
 Monster/Evildead Evildead
-
 
 // ***************
 // DOOM 2016 CYBER
