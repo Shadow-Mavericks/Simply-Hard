@@ -37,7 +37,7 @@ Rocketimp/idle6 dsciid06
 Rocketimp/idle7 dsciid07
 Rocketimp/idle8 dsciid08
 
-$random Rocketimp/Idle {Rocketimp/idle01 Rocketimp/idle02 Rocketimp/idle03 Rocketimp/idle04 Rocketimp/idle05 Rocketimp/idle06 Rocketimp/idle07 Rocketimp/idle08
+$random Rocketimp/Idle { Rocketimp/idle01 Rocketimp/idle02 Rocketimp/idle03 Rocketimp/idle04 Rocketimp/idle05 Rocketimp/idle06 Rocketimp/idle07 Rocketimp/idle08 }
 
 // Evil Dead
 Monster/Evildead Evildead
