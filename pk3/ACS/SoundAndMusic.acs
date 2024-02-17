@@ -1,16 +1,9 @@
 #library "SoundAndMusic"
 #include "zcommon.acs"
 
-//Old manncobox scripts Not yet moved to named version; Blame old zandronum builds for breaking named scripts!
-
 Script "sv_manncofail" (Void)
 {
 	Ambientsound("Mannco/Fail",127);
-}
-
-Script "sv_highnoon" (Void)
-{
-	Ambientsound("MCRee/Highnoon",127);
 }
 
 Script "sv_manncosnakbar" (Void)
@@ -18,6 +11,11 @@ Script "sv_manncosnakbar" (Void)
 	Ambientsound("Mannco/Snackbar",127);
 	Delay(35);
 	Ambientsound("Mannco/Nuke",127);
+}
+
+Script "sv_highnoon" (Void)
+{
+	Ambientsound("MCRee/Highnoon",127);
 }
 
 Script "sv_manncowinrar" (Void)
