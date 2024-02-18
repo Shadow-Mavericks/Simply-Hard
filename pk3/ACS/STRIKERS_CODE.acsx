@@ -857,8 +857,8 @@ script "SUPERCHARGE_CHECK" (void)
 
 #define DELAY_NONE 0
 #define DELAY_LONG 1
-#define DELAY_MEDIUM 2
-#define DELAY_SHORT 3
+#define DELAY_SHORT 2
+#define DELAY_BLUEIMP 3
 
 struct BoxDelay_t
 {
@@ -870,8 +870,8 @@ BoxDelay_t boxDelay[] =
 {
 	{ "None", 0 },
 	{ "DelayLong", 791 },
-	{ "DelayMedium", 172 },
 	{ "DelayShort", 35 },
+	{ "DelayImBlue", 742 },
 };
 
 struct MannCoBoxData_t
@@ -921,6 +921,7 @@ MannCoBoxData_t tier2_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		1,	DELAY_NONE },
 };
 
 int tier3_totalweight[2];
@@ -960,7 +961,7 @@ int tier4_totalweight[2];
 int tier4_numentries[2];
 MannCoBoxData_t tier4_good[] =
 {
-	{ "All The Weapon Upgrades!",	"AllUpgrades",			5,		DELAY_MEDIUM },
+	{ "All The Weapon Upgrades!",	"AllUpgrades",			5,		DELAY_BLUEIMP },
 	{ "Legendary Armor!",			"WINRAR",				10,		DELAY_NONE },
 	{ "An Extra Life!",				"ExtraLife",			30,		DELAY_NONE },
 	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },
