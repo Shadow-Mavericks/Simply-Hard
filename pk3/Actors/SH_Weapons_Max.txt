@@ -717,6 +717,7 @@ actor AssaultCannon : Weapon
 
 actor DisruptorRifle : DoomWeapon
 {
+	Tag "Tenloss DXR-6 Disruptor Rifle"
 	obituary "%o was disintegrated by %k"
 	weapon.selectionorder 4
 	weapon.ammouse 2
@@ -762,7 +763,8 @@ actor DisruptorRifle : DoomWeapon
 			DRIF F 1
 			DRIF E 5
 			DRIF D 1
-			DRIF A 93 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+			DRIF A 77 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+			DRIF A 16 A_WeaponReady(WRF_NOFIRE)
 			DRIF A 0 A_Refire
 			Goto Ready
 		Flash:
