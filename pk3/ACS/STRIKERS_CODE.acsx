@@ -414,7 +414,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					doTeamDamageScale = true;
 			}
 			
-			if(doTeamDamageScale && !wasTelefrag)
+			if(GetCVar("sh_friendly_damagescale") && doTeamDamageScale && !wasTelefrag)
 			{
 				int teamDamage = GetCvar("teamdamage");
 				fixedDamage = arg1 << 16;
@@ -799,6 +799,8 @@ script "AMMO_PICKUP" (int type, int dropped)
 #define WEAPON_PLASMA		6
 #define WEAPON_BFG			7
 #define WEAPON_RAILGUN		8
+
+// Unfinished...
 
 // --------------------------------
 

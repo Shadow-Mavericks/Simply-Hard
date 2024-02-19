@@ -1,2 +1,3 @@
 server bool sh_orbs_logarithmic = false;
+server bool sh_friendly_scaledamage = true;
 local bool sh_debug = false;
