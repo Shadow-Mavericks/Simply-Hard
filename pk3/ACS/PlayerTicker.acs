@@ -10,6 +10,9 @@
 int p_status[64][2];
 script "SV_PLAYERTICKER" OPEN
 {
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
 	SetActivator(-1);
 
 	while(1)

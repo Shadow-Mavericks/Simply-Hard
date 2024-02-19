@@ -611,7 +611,7 @@ Actor Abilitycharge : Ammo
 
 Actor UltimateAbilityCharge : Ammo
 {
-	+inventory.Ignoreskill
+	+INVENTORY.IGNORESKILL
 	Inventory.MaxAmount 2000
 }
 
