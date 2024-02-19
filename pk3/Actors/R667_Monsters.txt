@@ -10118,25 +10118,26 @@ Actor BlusoulTrail
 
 ACTOR Annihilator
 {
-Obituary "The Cyber Annihilator blew %o away with its rockets."
-Health 4000
-Radius 40
-Height 110
-Mass 1000
-Speed 16
-PainChance 10
-MONSTER
-+NOTARGET
-+FLOORCLIP
-+NORADIUSDMG
-+BOSS
-+MISSILEEVENMORE
-SeeSound "monster/annsit"
-PainSound "cyber/pain"
-DeathSound "monster/anndth"
-ActiveSound "cyber/active"
-Dropitem "bossbox" 30
-States
+	Obituary "The Cyber Annihilator blew %o away with its rockets."
+	Health 4000
+	Radius 40
+	Height 110
+	Mass 1000
+	Speed 16
+	PainChance 10
+	MONSTER
+	+NOTARGET
+	+FLOORCLIP
+	+NORADIUSDMG
+	+BOSS
+	+MISSILEEVENMORE
+	SeeSound "monster/annsit"
+	PainSound "cyber/pain"
+	DeathSound "monster/anndth"
+	ActiveSound "cyber/active"
+	DropItem "BossBox", 30
+	DropItem "RocketAmmo"
+	States
    {
    Spawn:
        ANNI AB 10 A_Look
