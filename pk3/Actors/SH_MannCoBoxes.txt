@@ -93,7 +93,7 @@ Actor Manncobox4 : CustomInventory // Sprites from Tiberium soul, Decorate by Fi
 Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 {
 	Radius 1
-	Height 1
+	Height 16
 	scale 0.5
 	
 	var int user_tier;
@@ -117,10 +117,10 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto DoOpen
 		Tier4Sprite:
 			MAN4 A 0
-			goto DoOpen
+			goto Tier4Open
 		Tier5Sprite:
-			MAN5 A 0
-			goto DoOpen
+			MAN5 A 0 A_SetScale(1.5)
+			goto Tier5Open
 			
 		DoOpen:
 			"####" A 30
@@ -130,10 +130,23 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D -1 ACS_NamedExecuteWithResult("MANNCO_PICK", user_tier)
 			stop
 			
+		Tier4Open:
+			"####" A 30
+			"####" A 0 A_PlaySound("Manncobox/Series4",Chan_Voice)
+			"####" ABCD 50
+			"####" D -1 ACS_NamedExecuteWithResult("MANNCO_PICK", user_tier)
+			stop
+			
+		Tier5Open:
+			"####" D 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
+			"####" AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDD 10
+			"####" D -1 ACS_NamedExecuteWithResult("MANNCO_PICK", user_tier)
+			stop
+			
 		// Delays
 		// ------
 		DelayLong: // 791 tics
-			"####" D 0 A_playsound("Gaster/pain",Chan_voice)
+			"####" D 0 A_PlaySound("Gaster/pain", CHAN_VOICE)
 			"####" D 0 ACS_NamedExecuteWithResult("sv_bestunusednightmare")
 			"####" D 35
 			"####" U 168
@@ -144,18 +157,61 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			stop
 		
 		DelayShort: // 35 tics
-			"####" D 0 A_playsound("Gaster/pain",Chan_voice)
+			"####" D 0 A_PlaySound("Gaster/pain", CHAN_VOICE)
 			"####" D 0 ACS_NamedExecuteWithResult("sv_bestunusednightmare")
 			"####" D -1
 			stop
 			
 		DelayImBlue: // 742 tics
 			"####" D 160
-			"####" U 3 A_playsoundEX("mannco/Blueimp", 2)
+			"####" U 3 A_playsoundEX("mannco/Blueimp", CHAN_VOICE)
 			"####" V 3
 			goto ImBlueLoop
 		ImBlueLoop:
 			"####" WX 6
+			loop
+			
+		DelayLaugh: // 214 tics
+			"####" A 1 A_PlaySound("FHAHAHA", CHAN_VOICE)
+			goto LaughLoop
+		LaughLoop:
+			"####" AB 2 BRIGHT
+			loop
+
+		DelayBossLaugh: // 235 Tics
+			MAN5 CBA 2
+			MIM5 ABCDE 2
+			MIM5 F 10
+			MIM5 G 1 A_PlaySound("FHAHAHA", CHAN_VOICE)
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIH 1
+			
+			MIM5 HIJKLMN 1
+			MIM5 MLKJIH 1
+			
+			MIM5 HIJKLMN 1
+			MIM5 MLKJIH 1
+			
+			MIM5 HIJKLMNOPQRSTU 1
+			MIM5 TSRQPONMLKJIHGF 1
+			
+			MAN5 ABC 2
+			MAN5 D -1
 			loop
 			
 		// Good Results
@@ -252,6 +308,29 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 0 A_PlaySound("PeterVomit")
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
+			
+		VomitAll:
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("Nadez", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("BaronBall_Acid_Gravity", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGreen", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGold", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyRed", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyBlue", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyViolet", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Kago", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Clip", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			goto Despawn
 
 		WINRAR:
 			"####" D 0 A_playsound("Gaster/pain",Chan_voice)
@@ -299,9 +378,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" A 1 A_SpawnItemEx ("KunaiGastersummon", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 			
-		BombingRun:
-			"####" A 1 A_playsoundEX("FHAHAHA", 2)
-			"####" ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABABA 2 BRIGHT
+		BombingRun: // DELAY_LAUGH
 			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
 			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
@@ -397,96 +474,31 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" A 60 A_alertmonsters(512)
 			goto Despawn
-			
-		Despawn:
-			"####" A 1 A_FADEOUT(0.005)
-			loop
-	}
-}
-
-Actor ActiveBox2 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 2)
-			goto Super::Spawn
-	}
-}
-
-Actor ActiveBox3 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 3)
-			goto Super::Spawn
-	}
-}
-
-Actor ActiveBox4 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	Radius 1
-	Height 1
-	+DONTGIB
-	scale 0.5
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 4)
-			MAN1 A 0 A_JumpIf(user_tier == 2, "Tier2Sprite")
-			MAN1 A 0 A_JumpIf(user_tier == 3, "Tier3Sprite")
-			MAN1 A 0 A_JumpIf(user_tier == 4, "Tier4Sprite")
-			MAN1 A 0 A_JumpIf(user_tier == 5, "Tier5Sprite")
-			goto DoOpen
-		DoOpen:
-			"####" A 30
-			"####" A 0 A_PlaySound("Manncobox/Series4",Chan_Voice)
-			"####" ABCD 50
-			"####" D -1 ACS_NamedExecuteWithResult("MANNCO_PICK", user_tier)
-			stop
-	}
-}
-
-Actor Bossbox //Decorate by Fiendzy
-{
-	Radius 10
-	Height 18
-	scale 1.5
-	States
-	{
-		Spawn:
-			MAN1 A 1
-		Corruptedspawn:
-			MAN1 D 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
-			MAN1 AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
-			goto RNGSpawn
-		RNGSpawn:
-			MAN1 D 1 A_Jump(256, "Bruisers", "CorruptFiend", "CorruptGosimer", "CorruptKunai", "TrioSpawn", "Kartrape", "Dejavuspawn", "Zombiehordespawn", "ImpWarlordhordespawn")
-			goto Despawn
-		Bruisers:
-			MAN1 D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		
+		// Tier 5
+		BruiserBros:
+			"####" D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
 		CorruptFiend:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
 		CorruptGosimer:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
 		CorruptKunai:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			goto Despawn
-		Triospawn:
-			MAN1 D 1 ACS_NamedExecuteWithResult("SV_Chex") //FF7 Jenova piece - moved from Chex payout as its broken -Fiend
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 A 0 A_alertmonsters(512)
-			MAN1 DCBA 10
+		CorruptTrio: // DELAY_BOSSLAUGH
+			"####" D 1 ACS_NamedExecuteWithResult("SV_Chex") //FF7 Jenova piece - moved from Chex payout as its broken -Fiend
+			"####" D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			"####" A 0 A_alertmonsters(512)
+			"####" DCBA 10
 			Goto Despawn
 			
-		Dejavuspawn:
+		DejaVu:
 			"####" D 1 A_Jump(256,"Track1","Track2")
 			goto Raddriver
 		Track1:
@@ -532,7 +544,7 @@ Actor Bossbox //Decorate by Fiendzy
 			"####" PONMLKJIHGFE 3
 			Goto Despawn
 			
-		Zombiehordespawn:
+		BigZombieHorde: // DELAY_BOSSLAUGH
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
@@ -545,146 +557,83 @@ Actor Bossbox //Decorate by Fiendzy
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("QuakeFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" A 0 A_alertmonsters(512)
 			goto Despawn
-		ImpWarlordhordespawn:
+			
+		ImpWarlordHorde: // DELAY_BOSSLAUGH
 			"####" D 1 ACS_NamedExecuteWithResult("SV_Hordeimp")
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ImpWarlord", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
 			"####" A 0 A_alertmonsters(512)
 			goto Despawn
-/*	Flemoidboss:
-		MAN1 D 1 A_Jump(128, "Flembomination")
-		MAN1 D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-		MAN1 A 0 A_alertmonsters(512)
-		goto Despawn
-	Flembomination:
-		MAN1 D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-		MAN1 A 0 A_alertmonsters(512)
-		goto Despawn
-*/
-		Despawn:
+			
+		EttinHordeSpawn: // DELAY_BOSSLAUGH
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("Chainmailettin1", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
 			"####" DCBA 10
-		Despawnloop:
+			goto Despawn
+			
+		Despawn:
 			"####" A 1 A_FADEOUT(0.005)
 			loop
 	}
 }
 
-Actor MiniBossbox //Decorate by Fiendzy
+Actor ActiveBox2 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
+{
+	States
+	{
+		Spawn:
+			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 2)
+			goto Super::Spawn
+	}
+}
+
+Actor ActiveBox3 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
+{
+	States
+	{
+		Spawn:
+			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 3)
+			goto Super::Spawn
+	}
+}
+
+Actor ActiveBox4 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
+{
+	+DONTGIB
+	scale 0.5
+	States
+	{
+		Spawn:
+			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 4)
+			goto Super::Spawn
+	}
+}
+
+Actor Bossbox : ActiveBox1 //Decorate by Fiendzy
 {
 	Radius 10
-	Height 18
+	Height 32
 	scale 1.5
 	States
 	{
 		Spawn:
-			MAN1 A 1
-			MAN1 A 1 ACS_NamedExecuteWithResult("SV_yourbestnightmare")
-			MAN1 AAAAAAAAAAAAAAAAAAAAAAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDDDDDDDDDDDD 10
-		RNGSpawn:
-			MAN1 A 1 A_Jump(255, "Fiend", "BRUISERS", "Gosimer", "Kunai", "Triospawn", "Kartrape", "Zombiehordespawn", "Dejavuspawn", "Ettinhordespawn", "Aquamagusspawn", "Atramagusspawn", "flammamagusspawn", "fulgurmagusspawn", "lamiamagusspawn", "pertempusmagusspawn", "terramagusspawn", "ventusmagusspawn")
-		Fiend:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0,SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		BRUISERS:
-			MAN1 D 1 A_SpawnItemEx ("Bruiserdemon", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_spawnitemEX ("Bruiserdemon", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Gosimer:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Kunai:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Triospawn:
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			MAN1 A 0 A_alertmonsters(512)
-			MAN1 DCBA 10
-			Goto Despawn
-		Dejavuspawn:
-			MAN1 D 1 A_Jump(255,"Track1","Track2")
-			goto Raddriver
-		Track1:
-			MAN1 D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER")
-			goto Raddriver
-		Track2:
-			MAN1 D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER2")
-			goto Raddriver
-		Raddriver:
-			MAN1 D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Kartrape:
-			LAKI ABCDEFGHIJKL 5 
-			LAKI M 0 A_PlaySound ("Lakitu/go")
-			LAKI MNO 38
-			LAKI P 37
-			LAKI P 2 A_SpawnItemEx ("Booster", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Bowser", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("CaptainFalcon", 	0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Crashbandicock", 	0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("DunkyKung", 		0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("HyperMetalSonic", 	0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Knux", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Koopa", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Linkin", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Luigi", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Mario", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Megaman", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Motobug", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Pacman", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Peach", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Robotnik", 		0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("SolidSnake", 		0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Sonic", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Tails", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Toad", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("VariaSuitSamus", 	0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Wario", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("Yoshi", 			0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 2 A_SpawnItemEx ("ZeroSuitSamus", 	0, 0, frandom(1.0, 56.0), frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(2.0, 16.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 1)
-			LAKI P 1 A_Alertmonsters(128,0)
-			goto DESPAWN
-		Aquamagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Aqua-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Atramagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Atra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		flammamagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Flamma-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		fulgurmagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Fulgur-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		lamiamagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Lamia-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		pertempusmagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("PerTempus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		terramagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Terra-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		ventusmagusspawn:
-			MAN1 D 1 A_SpawnItemEx ("Ventus-magus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			goto Despawn
-		Zombiehordespawn:
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("ZombieFodder", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 A 0 A_alertmonsters(512)
-			goto Despawn
-		Ettinhordespawn:
-			MAN1 DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 A_SpawnItemEx ("Chainmailettin1", 0, 0, 1, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 1)
-			MAN1 DCBA 10
-			goto Despawn
-		Despawn:
-			MAN1 DCBA 10
-		Despawnloop:
-			MAN1 A 1 A_FADEOUT(0.005)
-			loop
+			MAN5 A 0 NoDelay A_SetUserVar("user_tier", 5)
+			goto Super::Spawn
+/*	Flemoidboss:
+		MAN5 D 1 A_Jump(128, "Flembomination")
+		MAN5 D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MAN5 A 0 A_alertmonsters(512)
+		goto Despawn
+	Flembomination:
+		MAN5 D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+		MAN5 A 0 A_alertmonsters(512)
+		goto Despawn
+*/
 	}
+}
+
+Actor MiniBossbox : BossBox //Decorate by Fiendzy
+{
+	Radius 10
+	Height 32
+	scale 1.5
 }

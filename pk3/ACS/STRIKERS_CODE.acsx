@@ -859,6 +859,8 @@ script "SUPERCHARGE_CHECK" (void)
 #define DELAY_LONG 1
 #define DELAY_SHORT 2
 #define DELAY_BLUEIMP 3
+#define DELAY_LAUGH 4
+#define DELAY_BOSSLAUGH 5
 
 struct BoxDelay_t
 {
@@ -872,6 +874,8 @@ BoxDelay_t boxDelay[] =
 	{ "DelayLong", 791 },
 	{ "DelayShort", 35 },
 	{ "DelayImBlue", 742 },
+	{ "DelayLaugh", 214 },
+	{ "DelayBossLaugh", 235 },
 };
 
 struct MannCoBoxData_t
@@ -954,7 +958,7 @@ MannCoBoxData_t tier3_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			50,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
 	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
-	{ "A Bombing Run!",						"BombingRun",		15,	DELAY_NONE },
+	{ "A Bombing Run!",						"BombingRun",		15,	DELAY_LAUGH },
 };
 
 int tier4_totalweight[2];
@@ -984,7 +988,32 @@ MannCoBoxData_t tier4_bad[] =
 	{ "A Horde of Annoying Zombies.",	"MiniZombieHorde",	25,		DELAY_SHORT },
 };
 
+int tier5_totalweight[2];
+int tier5_numentries[2];
+MannCoBoxData_t tier5_good[] =
+{
+	{ "A Medical Bag.",					"MedBag",		50,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",				"KanKan",		4,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",	"Invuln",		3,		DELAY_NONE },
+	{ "An Energy Tank!", 				"ETank",		2,		DELAY_NONE },
+	{ "Legendary Armor!",				"WINRAR",		1,		DELAY_NONE },
+	{ "A Megasphere!",					"MegaSphere",	100,	DELAY_NONE },
+	{ "Barf Bonanza!",					"VomitAll",		50,		DELAY_NONE },
+};
 
+MannCoBoxData_t tier5_bad[] =
+{
+	{ "Bruiser Brothers!",				"BruiserBros",		50,		DELAY_NONE },
+	{ "Corrupt Fiend!",					"CorruptFiend",		50,		DELAY_NONE },
+	{ "Corrupt Gosimer!",				"CorruptGosimer",	50,		DELAY_NONE },
+	{ "Corrupt Kunai!",					"CorruptKunai",		50,		DELAY_NONE },
+	{ "Corrupt Trio!",					"CorruptTrio",		50,		DELAY_BOSSLAUGH },
+	{ "Deja Vu!",						"DejaVu",			50,		DELAY_NONE },
+	{ "Kart Racists!",					"Kartrape",			50,		DELAY_NONE },
+	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	10,		DELAY_BOSSLAUGH },
+	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	10,		DELAY_BOSSLAUGH },
+	{ "A Horde of Ettins!",				"EttinHordeSpawn",	10,		DELAY_BOSSLAUGH },
+};
 
 script "TALLY_WEIGHTS" OPEN
 {
@@ -1034,6 +1063,28 @@ script "TALLY_WEIGHTS" OPEN
 		tier4_totalweight[BAD] += tier4_bad[i].weight;
 	// ------
 	
+	// Tier 4
+	// ------
+	tier4_numentries[GOOD] = sizeof(tier4_good) / sizeof(tier4_good[0]);
+	for(i = 0; i < tier4_numentries[GOOD]; i++)
+		tier4_totalweight[GOOD] += tier4_good[i].weight;
+
+	tier4_numentries[BAD] = sizeof(tier4_bad) / sizeof(tier4_bad[0]);
+	for(i = 0; i < tier4_numentries[BAD]; i++)
+		tier4_totalweight[BAD] += tier4_bad[i].weight;
+	// ------
+	
+	// Tier 5
+	// ------
+	tier5_numentries[GOOD] = sizeof(tier5_good) / sizeof(tier5_good[0]);
+	for(i = 0; i < tier5_numentries[GOOD]; i++)
+		tier5_totalweight[GOOD] += tier5_good[i].weight;
+
+	tier5_numentries[BAD] = sizeof(tier5_bad) / sizeof(tier5_bad[0]);
+	for(i = 0; i < tier5_numentries[BAD]; i++)
+		tier5_totalweight[BAD] += tier5_bad[i].weight;
+	// ------
+	
 	if(GetCVar("sh_debug"))
 	{
 		log(s:"MannCo Box Info");
@@ -1048,6 +1099,9 @@ script "TALLY_WEIGHTS" OPEN
 		
 		log(s:"Tier 4 (GOOD): ", d:tier4_numentries[GOOD], s:" with total weight of ", d:tier4_totalweight[GOOD], s:".");
 		log(s:"Tier 4 (BAD): ", d:tier4_numentries[BAD], s:" with total weight of ", d:tier4_totalweight[BAD], s:".");
+		
+		log(s:"Tier 5 (GOOD): ", d:tier5_numentries[GOOD], s:" with total weight of ", d:tier5_totalweight[GOOD], s:".");
+		log(s:"Tier 5 (BAD): ", d:tier5_numentries[BAD], s:" with total weight of ", d:tier5_totalweight[BAD], s:".");
 	}
 }
 
@@ -1159,6 +1213,33 @@ script "MANNCO_PICK" (int tier)
 					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
 						
 					SetActorState(0, ((!type) ? tier4_good[i].state : tier4_bad[i].state), false);
+					terminate;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+		
+		case 5:
+		{
+			rnd = random(0, tier5_totalweight[type]-1);
+			for(i=0; i < tier5_numentries[type]; i++)
+			{
+				weight = (!type) ? tier5_good[i].weight : tier5_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier5_good[i].delaytype : tier5_bad[i].delaytype;
+					if(delaytype != 0)
+					{
+						SetActorState(0, boxDelay[delaytype].state, false);
+						Delay(boxDelay[delaytype].time);
+					}
+					
+					HudMessageBold(s:((!type) ? tier5_good[i].name : tier5_bad[i].name);
+					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
+						
+					SetActorState(0, ((!type) ? tier5_good[i].state : tier5_bad[i].state), false);
 					terminate;
 				}
 
