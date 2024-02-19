@@ -1063,17 +1063,6 @@ script "TALLY_WEIGHTS" OPEN
 		tier4_totalweight[BAD] += tier4_bad[i].weight;
 	// ------
 	
-	// Tier 4
-	// ------
-	tier4_numentries[GOOD] = sizeof(tier4_good) / sizeof(tier4_good[0]);
-	for(i = 0; i < tier4_numentries[GOOD]; i++)
-		tier4_totalweight[GOOD] += tier4_good[i].weight;
-
-	tier4_numentries[BAD] = sizeof(tier4_bad) / sizeof(tier4_bad[0]);
-	for(i = 0; i < tier4_numentries[BAD]; i++)
-		tier4_totalweight[BAD] += tier4_bad[i].weight;
-	// ------
-	
 	// Tier 5
 	// ------
 	tier5_numentries[GOOD] = sizeof(tier5_good) / sizeof(tier5_good[0]);
