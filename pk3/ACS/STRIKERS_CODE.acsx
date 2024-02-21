@@ -142,9 +142,9 @@ script "ON_KILL" KILL
 	{
 		bool doBoxSpawn = false;
 		int boxRandom = Random(1, 400);
-		int boxChance = Health/30;
+		int boxChance = Health/40;
 		
-		if(CheckFlag(0, "BOSS"))
+		if(CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))
 			boxChance += 10;
 		
 		if (boxChance > 400)
@@ -162,7 +162,7 @@ script "ON_KILL" KILL
 		
 		if(doBoxSpawn)
 		{
-			int tierWeights[5] = { 1, 2, 3, 4, 5 };
+			int tierWeights[5] = { 1, 2, 4, 6, 8 };
 			int maxTier = 1;
 			int totalWeight = 0;
 			
@@ -175,7 +175,7 @@ script "ON_KILL" KILL
 			if(Health >= 4000) // Tier 5
 				maxTier++;
 			
-			if(Health <= 1000 && CheckFlag(0, "BOSS")) // If low health enemy is boss, boost.
+			if(Health <= 1000 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
 				maxTier++;
 			
 			if(maxTier > 5)
@@ -1064,7 +1064,7 @@ int tier5_totalweight[2];
 int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",		50,		DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",		25,		DELAY_NONE },
 	{ "A Kan-Kan Powerup!",				"KanKan",		5,		DELAY_NONE },
 	{ "An Invulnerability Powerup!",	"Invuln",		4,		DELAY_NONE },
 	{ "An Energy Tank!", 				"ETank",		3,		DELAY_NONE },
