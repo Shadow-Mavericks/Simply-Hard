@@ -175,7 +175,7 @@ script "ON_KILL" KILL
 			if(Health >= 4000) // Tier 5
 				maxTier++;
 			
-			if(Health <= 1000 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
+			if(Health < 2500 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
 				maxTier++;
 			
 			if(maxTier > 5)
@@ -972,7 +972,8 @@ MannCoBoxData_t tier1_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
-	{ "A BFG Surprise!",					"BFGTrap",			10,	DELAY_NONE },
+	{ "A Lone Kago.",						"OneKago",			25,	DELAY_NONE },
+	{ "A BFG Surprise!",					"BFGTrap",			15,	DELAY_NONE },
 };
 
 int tier2_totalweight[2];
@@ -1009,12 +1010,12 @@ MannCoBoxData_t tier3_good[] =
 	{ "An Invulnerability Powerup!",	"Invuln",			35,	DELAY_NONE },
 	{ "An Energy Tank!", 				"ETank",			25,	DELAY_NONE },
 	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",		40,	DELAY_NONE },
-	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",		30,	DELAY_NONE },
-	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",		25,	DELAY_NONE },
-	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		20,	DELAY_NONE },
-	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		15,	DELAY_NONE },
-	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		10,	DELAY_NONE },
-	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		8,	DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",		35,	DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",		30,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		25,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		20,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		15,	DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		10,	DELAY_NONE },
 	{ "An Extra Life!",					"ExtraLife",		30,	DELAY_NONE },
 	{ "A Gaster Blaster!",				"Gaster",			25,	DELAY_NONE },
 	{ "An Item Bundle!",				"Bundle",			25,	DELAY_NONE },
@@ -1023,13 +1024,15 @@ MannCoBoxData_t tier3_good[] =
 MannCoBoxData_t tier3_bad[] =
 {
 	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
-	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		10,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		25,	DELAY_NONE },
+	{ "A Lone Kago.",						"OneKago",			30,	DELAY_NONE },
 	{ "You get nothing!",					"YouLose",			50,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				50,	DELAY_NONE },
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			50,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
 	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
-	{ "A Bombing Run!",						"BombingRun",		15,	DELAY_LAUGH },
+	{ "A Bombing Run!",						"BombingRun",		25,	DELAY_LAUGH },
+	{ "A Kago Nest!",						"KagoNest",			10,	DELAY_NONE },
 };
 
 int tier4_totalweight[2];
@@ -1040,6 +1043,7 @@ MannCoBoxData_t tier4_good[] =
 	{ "Legendary Armor!",			"WINRAR",				10,		DELAY_NONE },
 	{ "An Extra Life!",				"ExtraLife",			30,		DELAY_NONE },
 	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },
+	{ "Drugs?!",					"Joy",					50,		DELAY_NONE },
 	{ "A Spew of Health Potions!",	"HealthVomit",			100,	DELAY_NONE },
 	{ "An Upchuck of Orbs!",		"OrbVomit",				100,	DELAY_NONE },
 	{ "A Barf of Bullets!",			"ClipVomit",			75,		DELAY_NONE },
