@@ -110,7 +110,6 @@ ACTOR FlamerZombie
     DeathSound "grunt/death"
     ActiveSound "grunt/active"
     Obituary "%o got fried by a flamer zombie."
-    Dropitem "Activebox1" 1
     Dropitem "Clip"
     Dropitem "Shotgundrop"
     MeleeRange 384
@@ -292,7 +291,6 @@ actor BFGGuy
   painsound "chainguy/pain"
   deathsound "chainguy/death"
   activesound "chainguy/active"
-  Dropitem "Activebox1" 1
   Dropitem "Clip"
   Dropitem "Shotgundrop"
   Dropitem "Chaingundrop"
@@ -368,7 +366,6 @@ ACTOR RailArachnotron
 	+Bossdeath
 	+NEVERFAST
     Dropitem "Railgundrop" 128
-	Dropitem "Activebox1" 1
 	SeeSound "baby/sight"
 	PainSound "baby/pain"
 	DeathSound "baby/death"
@@ -437,7 +434,6 @@ ACTOR SSGZombie
 	OBITUARY "%o was blown open by a Super Shotgunner!"
 	DropItem "Shell"
 	DropItem "supershotgun"
-	DropItem "Activebox1" 1
 	Decal Bulletchip
 	states
 	{
@@ -509,7 +505,6 @@ actor NamiDarkImp
     Obituary "%o was cursed by a dark imp."
     HitObituary "%o was touched by a dark imp."
     MissileType DarkSeeker
-	Dropitem "activebox1" 1
     MeleeDamage 3
     States
     {
@@ -575,8 +570,7 @@ actor AracnorbQueen
   PainSound "queen/pain"
   DeathSound "queen/death"
   MeleeSound "queen/melee"
-    Dropitem "bfg9000" 50
-    Dropitem "bossbox" 25
+  Dropitem "bfg9000" 50
   MeleeDamage 6
   MissileHeight 36
   Obituary "%o suffered psychic trauma from an aracnorb queen's brainwaves."
@@ -829,7 +823,6 @@ ACTOR ChainsawZombie
     PainSound "grunt/pain"
     DeathSound "grunt/death"
     ActiveSound "grunt/active"
-    Dropitem "activebox1" 1
     DropItem Chainsawdrop
     States
     {
@@ -897,105 +890,104 @@ ACTOR Chiller
 	Bloodcolor Black
 	MONSTER
 	+NOGRAVITY
-        +DROPOFF
-        +FLOAT
+	+DROPOFF
+	+FLOAT
 	+FLOORCLIP
-        +MISSILEMORE
-        +NOICEDEATH
-        +GHOST
-	dropitem "activebox4" 5
-        minmissilechance 10
-        Renderstyle Translucent
-        Alpha 0.85
+	+MISSILEMORE
+	+NOICEDEATH
+	+GHOST
+	minmissilechance 10
+	Renderstyle Translucent
+	Alpha 0.85
 	SeeSound "chiller/sight"
 	PainSound "chiller/pain"
 	DeathSound "chiller/death"
 	ActiveSound "chiller/active"
 	HitObituary "The cold touch of the Chiller made %o freeze in fear."
 	Obituary "%o got the cold shoulder."
-        States
+	States
 	{
-        Spawn:
-		CHIL A 9 A_Look
-		CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL B 9 A_Look
-		CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		Loop
-	See:
-		CHIL A 3 bright A_Chase
-    		CHIL A 0 bright A_SpawnItemEx("ChillerTrailA", 0, 0, 0, 0, 0, 0, 0, 128)
+		Spawn:
+			CHIL A 9 A_Look
+			CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL A 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL B 9 A_Look
+			CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL B 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			Loop
+		See:
+			CHIL A 3 bright A_Chase
+			CHIL A 0 bright A_SpawnItemEx("ChillerTrailA", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL A 3 bright A_Chase
-    		CHIL A 0 bright A_SpawnItemEx("ChillerTrailA", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL A 3 bright A_Chase
+			CHIL A 0 bright A_SpawnItemEx("ChillerTrailA", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL B 3 bright A_Chase
-    		CHIL B 0 bright A_SpawnItemEx("ChillerTrailB", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL B 3 bright A_Chase
+			CHIL B 0 bright A_SpawnItemEx("ChillerTrailB", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL B 3 bright A_Chase
-    		CHIL B 0 bright A_SpawnItemEx("ChillerTrailB", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL B 3 bright A_Chase
+			CHIL B 0 bright A_SpawnItemEx("ChillerTrailB", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL C 3 bright A_Chase
-    		CHIL C 0 bright A_SpawnItemEx("ChillerTrailC", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL C 3 bright A_Chase
+			CHIL C 0 bright A_SpawnItemEx("ChillerTrailC", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL C 3 bright A_Chase
-    		CHIL C 0 bright A_SpawnItemEx("ChillerTrailC", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL C 3 bright A_Chase
+			CHIL C 0 bright A_SpawnItemEx("ChillerTrailC", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL D 3 bright A_Chase
-    		CHIL D 0 bright A_SpawnItemEx("ChillerTrailD", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL D 3 bright A_Chase
+			CHIL D 0 bright A_SpawnItemEx("ChillerTrailD", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-    		CHIL D 3 bright A_Chase
-    		CHIL D 0 bright A_SpawnItemEx("ChillerTrailD", 0, 0, 0, 0, 0, 0, 0, 128)
+			CHIL D 3 bright A_Chase
+			CHIL D 0 bright A_SpawnItemEx("ChillerTrailD", 0, 0, 0, 0, 0, 0, 0, 128)
 			CHIL A 0 bright A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		Loop
-	Pain:
-		CHIL G 6
-		CHIL G 6 A_Pain
-		Goto See
-	Melee:
-		CHIL F 1 A_FaceTarget
-		CHIL F 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
-		CHIL F 3 A_CustomMeleeAttack(random(5,30),"chiller/melee","none","ice")
-		Goto See
-	Missile:
-		TNT1 A 0 A_Jump (72,"MissileTri")
-		CHIL E 10 A_FaceTarget
-		CHIL F 0 A_CustomMissile("ChillerFog",32,0,45,0)
-		CHIL F 0 A_CustomMissile("ChillerFog",32,0,315,0)
-		CHIL F 10 A_CustomMissile("IceRipper",32,0,0,0)
-		Goto See
-	MissileTri:
-		CHIL E 10 A_FaceTarget
-		CHIL F 0 A_CustomMissile("ChillerFog",32,0,45,0)
-		CHIL F 0 A_CustomMissile("ChillerFog",32,0,315,0)
-		CHIL F 0 A_CustomMissile("IceRipper",32,0,-6,0)
-		CHIL F 0 A_CustomMissile("IceRipper",32,0,6,0)
-		CHIL F 10 A_CustomMissile("IceRipper",32,0,0,0)
-		Goto See
-	Death:
-		CHIL H 5 A_ScreamAndUnblock
-		CHIL I 5 A_Gravity
-                CHIL I 0 A_CustomMissile("ChillerFog2",32,0,45,0)
-		CHIL I 0 A_CustomMissile("ChillerFog2",32,0,90,0)
-                CHIL I 0 A_CustomMissile("ChillerFog2",32,0,135,0)
-		CHIL I 0 A_CustomMissile("ChillerFog2",32,0,180,0)
-                CHIL I 0 A_CustomMissile("ChillerFog2",32,0,225,0)
-		CHIL I 0 A_CustomMissile("ChillerFog2",32,0,270,0)
-                CHIL I 0 A_CustomMissile("ChillerFog2",32,0,315,0)
-		CHIL I 0 A_CustomMissile("ChillerFog2",32,0,0,0)
-		CHIL JKLM 5 A_FadeOut(0.1)
-		CHIL N 0 A_SetTranslucent(0.01)
-		CHIL N -1
-		Stop
-	Raise:
-		CHIL NMLKJ 5 A_FadeIn(0.1)
-		CHIL I 5 A_NoGravity
-		CHIL H 5 A_SetTranslucent(0.85)
-		Goto See
-}
+			Loop
+		Pain:
+			CHIL G 6
+			CHIL G 6 A_Pain
+			Goto See
+		Melee:
+			CHIL F 1 A_FaceTarget
+			CHIL F 0 A_CustomMissile("ChillerFog",32,0,random(1,359),2,random(-10,20))
+			CHIL F 3 A_CustomMeleeAttack(random(5,30),"chiller/melee","none","ice")
+			Goto See
+		Missile:
+			TNT1 A 0 A_Jump (72,"MissileTri")
+			CHIL E 10 A_FaceTarget
+			CHIL F 0 A_CustomMissile("ChillerFog",32,0,45,0)
+			CHIL F 0 A_CustomMissile("ChillerFog",32,0,315,0)
+			CHIL F 10 A_CustomMissile("IceRipper",32,0,0,0)
+			Goto See
+		MissileTri:
+			CHIL E 10 A_FaceTarget
+			CHIL F 0 A_CustomMissile("ChillerFog",32,0,45,0)
+			CHIL F 0 A_CustomMissile("ChillerFog",32,0,315,0)
+			CHIL F 0 A_CustomMissile("IceRipper",32,0,-6,0)
+			CHIL F 0 A_CustomMissile("IceRipper",32,0,6,0)
+			CHIL F 10 A_CustomMissile("IceRipper",32,0,0,0)
+			Goto See
+		Death:
+			CHIL H 5 A_ScreamAndUnblock
+			CHIL I 5 A_Gravity
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,45,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,90,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,135,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,180,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,225,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,270,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,315,0)
+			CHIL I 0 A_CustomMissile("ChillerFog2",32,0,0,0)
+			CHIL JKLM 5 A_FadeOut(0.1)
+			CHIL N 0 A_SetTranslucent(0.01)
+			CHIL N -1
+			Stop
+		Raise:
+			CHIL NMLKJ 5 A_FadeIn(0.1)
+			CHIL I 5 A_NoGravity
+			CHIL H 5 A_SetTranslucent(0.85)
+			Goto See
+	}
 }
 
 Actor IceRipper
@@ -1176,7 +1168,6 @@ Actor Diabloist : Archvile
   PainSound "Monster/diapai"
   DeathSound "Monster/diadth"
   ActiveSound "Monster/diaact"
-  Dropitem "Activebox4" 5
   States
   {
   Spawn:
@@ -1474,7 +1465,6 @@ actor SegwayZombie
   activesound "grunt/active"
   meleedamage 1
   meleerange 32
-  Dropitem "Activebox1" 1
   translation "112:127=[139,134,78]:[0,0,0]"
   MONSTER
   +NOICEDEATH
@@ -1577,7 +1567,6 @@ Actor Cybruiser : BaronOfHell
   HitObituary "%o was smashed by a Cybruiser."
   +FloorClip
   +MissileMore
-  Dropitem" Activebox1" 1
   +Boss
   +DontHurtSpecies
   SeeSound "monster/brusit"
@@ -1688,7 +1677,6 @@ ACTOR DevastatorZombie
   activesound "chainguy/active"
   dropitem "CellPack"
   missiletype DevastatorBall
-  Dropitem"Activebox1" 5
   MONSTER
   +FLOORCLIP
   states
@@ -1883,28 +1871,27 @@ Actor DevPuff
 
 ACTOR BOSSTerminator
 {
-Health 4000
-Radius 24
-Height 64
-Mass 1500
-Speed 12
-PainChance 8
-scale 1.2
-MONSTER
-Obituary "%o was liquidated by a Terminator."
-+FLOORCLIP
-+MISSILEMORE
-+BOSS
-+DONTHURTSPECIES
-+NORADIUSDMG
-Missiletype Grenadeblast
-Damagefactor "Redblast", 0.0
-SeeSound "monster/termsit"
-PainSound "monster/termpin"
-DeathSound "monster/termdth"
-ActiveSound "Terminator/termact"
-Dropitem "Bossbox" 25
-States
+	Health 4000
+	Radius 24
+	Height 64
+	Mass 1500
+	Speed 12
+	PainChance 8
+	scale 1.2
+	MONSTER
+	Obituary "%o was liquidated by a Terminator."
+	+FLOORCLIP
+	+MISSILEMORE
+	+BOSS
+	+DONTHURTSPECIES
+	+NORADIUSDMG
+	Missiletype Grenadeblast
+	Damagefactor "Redblast", 0.0
+	SeeSound "monster/termsit"
+	PainSound "monster/termpin"
+	DeathSound "monster/termdth"
+	ActiveSound "Terminator/termact"
+	States
    {
    Spawn:
        TERM AB 10 A_Look
@@ -2206,7 +2193,6 @@ Actor Afrit
   PainSound "Baron/Pain"
   DeathSound "Baron/Death"
   ActiveSound "Baron/Active"
-  Dropitem" Activebox1"
   Monster
   +NoGravity
   +NoBlood
@@ -3458,77 +3444,76 @@ States
 //Mostly inspired to DeVloek Volacubi one - Thankx to MagicWazard for suggestions!
 ACTOR Haedexebus : Hardfatso
 {
-//$Category Monsters
-//$Sprite UNMBA1
-//$Title "Haedexebus"
-  Radius 48
-  Height 64
-Health 750
-Mass 600
-Speed 20
-+FLOAT
-+FLOATBOB
--FLOORCLIP
-+NOGRAVITY
-+MISSILEMORE
-+NOINFIGHTING
-+DONTHURTSPECIES
-  +BOSSDEATH
-SEESOUND "UNMNROAM"
-PAINSOUND "UNMNPAIN"
-DEATHSOUND "UNMNDYIN"
-Dropitem "Activebox4" 10
-Decal "RedPlasmaScorch"
-Obituary "%o was unmade by an UnMancubus."
-States
+	//$Category Monsters
+	//$Sprite UNMBA1
+	//$Title "Haedexebus"
+	Radius 48
+	Height 64
+	Health 750
+	Mass 600
+	Speed 20
+	+FLOAT
+	+FLOATBOB
+	-FLOORCLIP
+	+NOGRAVITY
+	+MISSILEMORE
+	+NOINFIGHTING
+	+DONTHURTSPECIES
+	+BOSSDEATH
+	SEESOUND "UNMNROAM"
+	PAINSOUND "UNMNPAIN"
+	DEATHSOUND "UNMNDYIN"
+	Decal "RedPlasmaScorch"
+	Obituary "%o was unmade by an UnMancubus."
+	States
 	{
-	Spawn:
-	UNMB AABB 8 A_Look
-	Loop
-	See:
-	UNMB AAAABBBB 4 A_Chase
-	Loop
-	Missile:
-	UNMB C 5 A_FatRaise
-	UNMB CD 5 A_FaceTarget
-	UNMB D 0 A_Jump(128,"Missile2")
-	UNMB E 0 Bright A_PlaySound("UNMBWOSH")
-	UNMB E 0 BRIGHT LIGHT(UNMNBALLR) A_CustomMissile("FatMace", 48, 32, random(-7,4))
-	UNMB E 0 Bright A_PlaySound("UNMBWOSH")
-	UNMB E 5 BRIGHT LIGHT(UNMNBALLL) A_CustomMissile("FatMace", 48, -32, random(-4,7))
-	UNMB CD 5 A_FaceTarget
-	Goto See
-	Missile2:
-	UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-	UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB CD 5 A_FaceTarget
-	UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-	UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB CD 5 A_FaceTarget
-	UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-	UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-	UNMB CD 5 A_FaceTarget
-	Goto See
-	Pain:
-	UNMB F 4
-	UNMB F 4 A_Pain
-	Goto See
-	Death:
-	TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
-	UNMB G 7 A_SetFloorClip
-	UNMB H 6 A_Scream
-	UNMB I 6 A_NoBlocking
-	UNMB JKLM 5 A_UnsetSolid
-	UNMB N -1 A_KillMaster
-	Stop
-	Raise:
-	UNMB N 6 A_UnSetFloorClip
-	UNMB MLKJIHG 6 A_SetSolid
-	TNT1 A 0 A_ChangeFlag(FLOATBOB, 1)
-	Goto See
+		Spawn:
+			UNMB AABB 8 A_Look
+			Loop
+		See:
+			UNMB AAAABBBB 4 A_Chase
+			Loop
+		Missile:
+			UNMB C 5 A_FatRaise
+			UNMB CD 5 A_FaceTarget
+			UNMB D 0 A_Jump(128,"Missile2")
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 0 BRIGHT LIGHT(UNMNBALLR) A_CustomMissile("FatMace", 48, 32, random(-7,4))
+			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
+			UNMB E 5 BRIGHT LIGHT(UNMNBALLL) A_CustomMissile("FatMace", 48, -32, random(-4,7))
+			UNMB CD 5 A_FaceTarget
+			Goto See
+		Missile2:
+			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB CD 5 A_FaceTarget
+			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB CD 5 A_FaceTarget
+			Goto See
+		Pain:
+			UNMB F 4
+			UNMB F 4 A_Pain
+			Goto See
+		Death:
+			TNT1 A 0 A_ChangeFlag(FLOATBOB, 0)
+			UNMB G 7 A_SetFloorClip
+			UNMB H 6 A_Scream
+			UNMB I 6 A_NoBlocking
+			UNMB JKLM 5 A_UnsetSolid
+			UNMB N -1 A_KillMaster
+			Stop
+		Raise:
+			UNMB N 6 A_UnSetFloorClip
+			UNMB MLKJIHG 6 A_SetSolid
+			TNT1 A 0 A_ChangeFlag(FLOATBOB, 1)
+			Goto See
 	}
 }
 
@@ -3692,7 +3677,6 @@ actor ArachnotronMK2 : Arachnotron
   PainSound "baby/pain"
   DeathSound "baby/death"
   ActiveSound "baby/active"
-  Dropitem "Activebox1" 1
   Dropitem "Batterypackspecial" 10
   States
   {
@@ -3822,7 +3806,6 @@ ACTOR ASGZAmmo: Ammo
 
 ACTOR BeamRevenant : HardRevenant
 {
-  Dropitem "activebox4" 1
   Dropitem "Railgundrop" 128
   HitObituary "%o was punched by a Beam Revenant."
   Obituary "%o couldn't was caught in a Beam Revenant's crosshairs."
@@ -3992,7 +3975,6 @@ Actor WarlordOfHell 22282
   BloodColor "39 59 9F"
   Monster
   +BOSSDEATH
-  Dropitem "activebox4" 1
   +FloorClip
   Obituary "%o was extuingished by the warlord of hell."
   SeeSound "warlord/sight"
@@ -4163,7 +4145,6 @@ Actor FusionSpider
   +FloorClip
   +MissileMore
   +MissileEvenMore
-  Dropitem "Bossbox" 25
   States
   {
   Spawn:
@@ -4366,8 +4347,6 @@ ACTOR cyberImp
   PainSound "CIMPPAIN"
   DeathSound "CIMPDTH"
   ActiveSound "CIMPACT"
-  Dropitem "Activebox4" 1
-  Dropitem "Activebox1" 1
 
   HitObituary "%o was torn apart by a cyber imp"
   Obituary "%o was fried by a cyber imp"
@@ -4437,8 +4416,6 @@ ACTOR DarkcyberImp
   PainSound "CIMPPAIN"
   DeathSound "Darkcyberimp/Die"
   ActiveSound "CIMPACT"
-  Dropitem "Activebox4" 1
-  Dropitem "Activebox1" 1
   Translation "61:79=[255, 255, 255]:[0, 0, 0]"
   HitObituary "%o was torn apart by a Dark cyber imp"
   Obituary "%o was fried by a Dark cyber imp"
@@ -9272,7 +9249,6 @@ Actor Demolisher
   PainSound "spider/pain"
   DeathSound "monster/demdth"
   ActiveSound "spider/active"
-  Dropitem "Bossbox" 30
   States
   {
   Spawn:
@@ -10135,7 +10111,6 @@ ACTOR Annihilator
 	PainSound "cyber/pain"
 	DeathSound "monster/anndth"
 	ActiveSound "cyber/active"
-	DropItem "BossBox", 30
 	DropItem "RocketAmmo"
 	States
 	{
@@ -10261,7 +10236,6 @@ ACTOR SuperFlyingImp : SH_BaseMonster
 	PAINSOUND "imp/pain"
 	DEATHSOUND "imp/death"
 	ACTIVESOUND "imp/active"
-	Dropitem "Activebox" 1
 
 	+FLOAT
 	+NOGRAVITY
@@ -10398,8 +10372,6 @@ ACTOR RocketImp : SH_BaseMonster //20128
 	PainSound "Rocketimp/xdie"
 	DeathSound "Rocketimp/xdie"
 	ActiveSound "Rocketimp/Idle"
-	Dropitem "Activebox1 " 5
-	Dropitem "Activebox4 " 1
 	Dropitem "Rocketammo"
 	Dropitem "Rocketlauncher" 72
 	Obituary "%o was blown apart by a Robo Rocket Imp"
@@ -10640,7 +10612,6 @@ Actor BruiserDemon : SH_BaseMonster
 	Obituary "%o was slaughtered by a Bruiserdemon."
 	HitObituary "%o was cremated by a Bruiserdemon."
 	MeleeDamage 35
-	Dropitem "Activebox4"
 	Scale 1.25
 	States
 	{
@@ -12269,7 +12240,6 @@ ACTOR DarkInquisitor : Inquisitor
     +MISSILEMORE
     +MISSILEEVENMORE
     +DROPOFF
-	Dropitem "bossbox" 50
     Damagefactor "EMP", 0
     Damagefactor "Disintegrate", 0
     States
@@ -14544,7 +14514,6 @@ actor Vulgar : DoomImp 30127
   deathsound "monster/vuldth"
   activesound "monster/vulact"
   meleesound "monster/vulhit"
-	Dropitem "Activebox1" 1
   MONSTER
   +FLOORCLIP
   states

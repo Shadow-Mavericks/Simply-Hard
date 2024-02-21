@@ -4,22 +4,27 @@
 //////////////////////
 // Player Tick Handler
 //////////////////////
+#define MAX_PLAYERS 64
 #define STATUS_UNUSED 0
 #define STATUS_GRAVITY 1
 
-int p_status[64][2];
+int p_status[MAX_PLAYERS][2];
 script "SV_PLAYERTICKER" OPEN
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
+	int tickNum = 0;
 	SetActivator(-1);
 
 	while(1)
 	{
-		int tickNum = timer();
-		for(int p = 0; p < playercount(); p++)
+		tickNum++;
+		for(int p = 0; p < MAX_PLAYERS; p++)
 		{
+			if(!PlayerInGame(p))
+				continue;
+
 			SetActivatorToPlayer(p);
 			//////////////////////////////////////////////
 			// Heavy Metal Effect
@@ -45,7 +50,7 @@ script "SV_PLAYERTICKER" OPEN
 				if(!(tickNum % 17))
 					Thing_Damage2(0, random(2, 4), "Burn");
 			}
-			
+
 			// Ability Charge Regen
 			if(CheckActorClass(0, "MaximusPrime"))
 			{

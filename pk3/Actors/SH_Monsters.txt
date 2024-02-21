@@ -97,7 +97,6 @@ ACTOR averageZombieMan
   ActiveSound "grunt/active"
   Obituary "$OB_ZOMBIE" // "%o was killed by a zombieman."
   DropItem "Clip"
-  Dropitem "Activebox1" 1
   States
   {
   Spawn:
@@ -180,7 +179,6 @@ ACTOR TryhardZombieMan
   ActiveSound "grunt/active"
   Obituary "$OB_ZOMBIE" // "%o was killed by a zombieman."
   DropItem "Clip"
-  Dropitem "Activebox1" 1
   States
   {
   Spawn:
@@ -271,8 +269,6 @@ actor EnemySentryGun
 	+NEVERRESPAWN
 	+STANDSTILL
 	+NEVERFAST
-	Dropitem "Activebox1" 1
-
 	states
 	{
 		Spawn:
@@ -325,7 +321,6 @@ ACTOR Hardimp
   ActiveSound "imp/active"
   HitObituary "$OB_IMPHIT"
   Obituary "$OB_IMP"
-  Dropitem "Activebox1" 1
   States
   {
   Spawn:
@@ -408,7 +403,6 @@ ACTOR Critimp
    PainChance "Mightyboot", 255
   +FLOORCLIP
   Translation "61:79=93:111"
-  Dropitem "Activebox1" 1
   SeeSound "imp/sight"
   PainSound "imp/pain"
   DeathSound "imp/death"
@@ -510,7 +504,6 @@ ACTOR hardrevenant
   +MISSILEMORE
   +Noicedeath
   +FLOORCLIP
-  Dropitem "Activebox1" 1
   SeeSound "skeleton/sight"
   PainSound "skeleton/pain"
   DeathSound "skeleton/death"
@@ -587,8 +580,6 @@ ACTOR Tryhardrevenant
    PainChance "Mightyboot", 255
   +FLOORCLIP
   +Noicedeath
-  Dropitem "activebox4" 1
-  Dropitem "Activebox1" 1
   SeeSound "skeleton/sight"
   PainSound "skeleton/pain"
   DeathSound "skeleton/death"
@@ -662,7 +653,6 @@ ACTOR fastdemon
   Mass 400
   Monster
   +FLOORCLIP
-  Dropitem "Activebox1" 1
   SeeSound "demon/sight"
   AttackSound "demon/melee"
   PainSound "demon/pain"
@@ -741,7 +731,6 @@ ACTOR fastSpectre : fastDemon
   RenderStyle OptFuzzy
   Alpha 0.25
    PainChance "Mightyboot", 255
-  Dropitem "Activebox1" 1
   SeeSound "spectre/sight"
   AttackSound "spectre/melee"
   PainSound "spectre/pain"
@@ -764,7 +753,6 @@ ACTOR Hardcaco
    PainChance "Mightyboot", 255
   +FLOAT
   +NOGRAVITY
-  Dropitem "Activebox1" 1
   SeeSound "caco/sight"
   PainSound "caco/pain"
   DeathSound "caco/death"
@@ -944,7 +932,6 @@ ACTOR hardshootgunguy1
   ActiveSound "shotguy/active"
   Obituary "$OB_SHOTGUY"
   DropItem "Shotgundrop"
-  Dropitem "Activebox1" 1
   States
   {
   Spawn:
@@ -1031,7 +1018,6 @@ ACTOR hardshootgunguy2
   DeathSound "shotguy/death"
   ActiveSound "shotguy/active"
   Obituary "$OB_SHOTGUY"
-  Dropitem "Activebox1" 1
   DropItem "Shotgundrop"
   States
   {
@@ -1182,7 +1168,6 @@ ACTOR Hardchaingunguy
 	ActiveSound "chainguy/active"
 	AttackSound "chainguy/attack"
 	Obituary "$OB_CHAINGUY"
-	Dropitem "Activebox1" 1
 	Dropitem "AK47Drop"
 	Dropitem "Clip" 100
 	Dropitem "ClipBox" 20
@@ -1273,7 +1258,6 @@ ACTOR HARDCyberdemon
   DeathSound "cyber/death"
   ActiveSound "cyber/active"
   Obituary "$OB_CYBORG"
-  Dropitem "Minibossbox" 50
   States
   {
   Spawn:
@@ -1352,8 +1336,6 @@ ACTOR Hardvile
   ActiveSound "vile/active"
   MeleeSound "vile/stop"
   Obituary "$OB_VILE"
-  Dropitem "Activebox1" 5
-  Dropitem "activebox4" 1
   States
   {
   Spawn:
@@ -1431,8 +1413,6 @@ ACTOR HardHellKnight : BaronOfHell
   DeathSound "knight/death"
   HitObituary "$OB_KNIGHTHIT"
   Obituary "$OB_KNIGHT"
-  Dropitem "Activebox1" 1
-  Dropitem "activebox4" 1
   States
   {
   Spawn:
@@ -1498,8 +1478,6 @@ ACTOR HardBaron : Baronofhell replaces Baronofhell
   ActiveSound "baron/active"
   Obituary "$OB_BARON"
   HitObituary "$OB_BARONHIT"
-  Dropitem "Activebox1" 2
-  Dropitem "activebox4" 1
   States
   {
   Spawn:
@@ -1555,7 +1533,6 @@ ACTOR HardArachnotron
   DeathSound "baby/death"
   ActiveSound "baby/active"
   Obituary "$OB_BABY"
-  Dropitem "Activebox1" 1
   States
   {
   Spawn:
@@ -1612,8 +1589,6 @@ ACTOR HardFatso
   DeathSound "fatso/death"
   ActiveSound "fatso/active"
   Obituary "$OB_FATSO"
-  Dropitem "Activebox1" 1
-  Dropitem "activebox4" 1
   States
   {
   Spawn:
@@ -1682,7 +1657,6 @@ ACTOR HardSpiderboss
 	DeathSound "spider/death"
 	ActiveSound "spider/active"
 	Obituary "$OB_SPIDER"
-	Dropitem "activebox4" 25
 	States
 	{
 		Spawn:
@@ -1732,7 +1706,6 @@ ACTOR HardPainisElemental
   PainSound "pain/pain"
   DeathSound "pain/death"
   ActiveSound "pain/active"
-  Dropitem "Activebox1" 1
   Meleedamage 9
   States
   {
@@ -1803,7 +1776,6 @@ ACTOR Cacomother :Painelemental//Caco spawn
   Obituary "$OB_CACO"
   BloodColor "black"
   HitObituary "$OB_CACOHIT"
-  Dropitem "Activebox1" 1
    States
    {
    Spawn:
@@ -1939,8 +1911,6 @@ ACTOR DragoonElemental : HardPainisElemental
 	DeathSound "Dragoon/Death"
 	AttackSound "Dragoon/attack"
 	Obituary "%o was cursed by a Dragoon Elemental"
-	Dropitem "Activebox1" 1
-	Dropitem "activebox4" 1
 	States
 	{
 		Spawn:
@@ -2184,7 +2154,6 @@ ACTOR GasterBlaster
 	ActiveSound "Gaster/active"
 	Obituary "%o Got Dunked on by a GasterBlaster"
 	HitObituary "%o Got Dunked on by a GasterBlaster"
-	Dropitem "Activebox1" 1
 	States
 	{
 		Spawn:
@@ -2566,6 +2535,7 @@ ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 	{
 		Spawn:
 			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", -1)
+			PLAY A 0 A_SetUserVar("user_manncobox_chance", -1)
 			goto SpawnLoop
 		SpawnLoop:
 			PLAY AB 5 A_Look

@@ -1,6 +1,9 @@
 #Library "STRIKERS_CODE"
 #include "zcommon.acs"
 
+// All code in this file is by StrikerTheHedgefox.
+// Please ask permission if you want to use this!
+
 function bool startsWithVowel(str string)
 {
 	switch (GetChar(string, 0))
@@ -22,12 +25,15 @@ function bool startsWithVowel(str string)
 	return false;
 }
 
-// Orb spawning code by StrikerTheHedgefox
-
+// Kill script, for things like orbs, lives, and box drops.
 script "ON_KILL" KILL
 {
 	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
 		terminate;
+		
+	SetHudSize(640, 480, true);
+	
+	int i;
 
 	// Get some properties of our monster.
 	str Class = GetActorClass(0);
@@ -73,31 +79,39 @@ script "ON_KILL" KILL
 
 	if(NumOrbs <= 0) // Everything is worth at least one orb.
 		NumOrbs = 1;
+		
+	for(i = 0; i < NumOrbs; i++)
+	{
+		int TID = UniqueTID (0, 0);
+		SpawnForced("DEMONENERGY", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), TID, random(0, 255));
+		SetActorVelocity(TID, random(-HOrbSpeed, HOrbSpeed), random(-HOrbSpeed, HOrbSpeed), random(2.0, VOrbSpeed), false, false);
+		Thing_ChangeTID(TID, 0);
+	}
 
 	if(GetUserVariable(0, "user_extralife_chance") != -1) // -1 = No spawn
 	{
 		bool doLifeSpawn = false;
-		int lifeChance = Random(1, 200);
+		int lifeRandom = Random(1, 200);
 		if(GetUserVariable(0, "user_extralife_chance") > 0)
 		{
-			if(lifeChance <= GetUserVariable(0, "user_extralife_chance"))
+			if(lifeRandom <= GetUserVariable(0, "user_extralife_chance"))
 				doLifeSpawn = true;
 		}
 		else
 		{
 			if(Health >= 6000) // 100%
 				doLifeSpawn = true;
-			else if(Health >= 5000 && lifeChance <= 150) // 75%
+			else if(Health >= 5000 && lifeRandom <= 150) // 75%
 				doLifeSpawn = true;
-			else if(Health >= 4000 && lifeChance <= 100) // 50%
+			else if(Health >= 4000 && lifeRandom <= 100) // 50%
 				doLifeSpawn = true;
-			else if(Health >= 3000 && lifeChance <= 80) // 40%
+			else if(Health >= 3000 && lifeRandom <= 80) // 40%
 				doLifeSpawn = true;
-			else if(Health >= 2500 && lifeChance <= 20) // 10%
+			else if(Health >= 2500 && lifeRandom <= 20) // 10%
 				doLifeSpawn = true;
-			else if(Health >= 1000 && lifeChance <= 2) // 1%
+			else if(Health >= 1000 && lifeRandom <= 2) // 1%
 				doLifeSpawn = true;
-			else if(Health >= 500 && lifeChance <= 1) // 0.5%
+			else if(Health >= 500 && lifeRandom <= 1) // 0.5%
 				doLifeSpawn = true;
 		}
 
@@ -113,39 +127,91 @@ script "ON_KILL" KILL
 				SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
 				SetActorVelocity(lifeTID, random(-HOrbSpeed/2, HOrbSpeed/2), random(-HOrbSpeed/2, HOrbSpeed/2), random(2.0, VOrbSpeed), false, false);
 
-				if(startsWithVowel(StrParam(n:0)))
-				{
-					HudMessageBold(s:"Two extra lives were dropped by an ", n:0;
-					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
-				}
-				else
-				{
-					HudMessageBold(s:"Two extra lives were dropped by a ", n:0;
-					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
-				}
+				HudMessageBold(s:"Two extra lives were dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
+				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
 			}
 			else
 			{
-				if(startsWithVowel(StrParam(n:0)))
-				{
-					HudMessageBold(s:"An extra life was dropped by an ", n:0;
-					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
-				}
-				else
-				{
-					HudMessageBold(s:"An extra life was dropped by a ", n:0;
-					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 0.5, 0.25, 5.0, 0.01, 0.5);
-				}
+				HudMessageBold(s:"An extra life was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
+				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
 			}
 		}
 	}
-
-	for(int i = 0; i < NumOrbs; i++)
+	
+	if(GetUserVariable(0, "user_manncobox_chance") != -1)
 	{
-		int TID = UniqueTID (0, 0);
-		SpawnForced("DEMONENERGY", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), TID, random(0, 255));
-		SetActorVelocity(TID, random(-HOrbSpeed, HOrbSpeed), random(-HOrbSpeed, HOrbSpeed), random(2.0, VOrbSpeed), false, false);
-		Thing_ChangeTID(TID, 0);
+		bool doBoxSpawn = false;
+		int boxRandom = Random(1, 400);
+		int boxChance = Health/30;
+		
+		if(CheckFlag(0, "BOSS"))
+			boxChance += 10;
+		
+		if (boxChance > 400)
+			boxChance = 400;
+		else if (boxChance < 1)
+			boxChance = 1;
+			
+		if(GetUserVariable(0, "user_manncobox_chance") > 0)
+		{
+			if(boxRandom <= GetUserVariable(0, "user_manncobox_chance"))
+				doBoxSpawn = true;
+		}
+		else if(boxRandom <= boxChance && Health > 15)
+			doBoxSpawn = true;
+		
+		if(doBoxSpawn)
+		{
+			int tierWeights[5] = { 1, 2, 3, 4, 5 };
+			int maxTier = 1;
+			int totalWeight = 0;
+			
+			if(Health >= 500) // Tier 2
+				maxTier++;
+			if(Health >= 1000) // Tier 3
+				maxTier++;
+			if(Health >= 2500) // Tier 4
+				maxTier++;
+			if(Health >= 4000) // Tier 5
+				maxTier++;
+			
+			if(Health <= 1000 && CheckFlag(0, "BOSS")) // If low health enemy is boss, boost.
+				maxTier++;
+			
+			if(maxTier > 5)
+				maxTier = 5;
+			
+			// This should make the weight exponentially higher for every 4000 health over 4000.
+			for(i = 0; i < maxTier; i++)
+			{
+				int scale = FixedDiv(Health << 16, 4000.0);
+				int newWeight = FixedMul((tierWeights[i]*tierWeights[i]) << 16, scale) >> 16;
+				if(newWeight < 1)
+					newWeight = 1;
+				tierWeights[i] = newWeight;
+				totalWeight += newWeight;
+			}
+			
+			if(GetCVar("sh_debug"))
+				log(s:"DEBUG: Tier weights - ", d:tierWeights[0], s:", ", d:tierWeights[1], s:", ", d:tierWeights[2], s:", ", d:tierWeights[3], s:", ", d:tierWeights[4]);
+			
+			int rnd = random(0, totalWeight-1);
+			for(i=0; i < maxTier; i++)
+			{
+				int weight = tierWeights[i];
+				if(rnd < weight)
+				{
+					int boxTID = UniqueTID (0, 0);
+					SpawnForced("ActiveBox1", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), boxTID, random(0, 255));
+					SetUserVariable(boxTID, "user_tier", i+1);
+					
+					HudMessageBold(s:"A tier ", d:i+1, s:" MannCo box was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0, s:"!\n\cjWhat will you get?!";
+					HUDMSG_TYPEON | HUDMSG_LOG, 70, CR_GOLD, 320.4, 128.1, 30.0, 0.01, 0.5);
+					break;
+				}
+				rnd -= weight;
+			}
+		}
 	}
 
 	SetActivatorToTarget(0); // Set activator to the one who killed this monster.
@@ -156,7 +222,7 @@ script "ON_KILL" KILL
 
 // Damage Numbers
 // --------------
-// [JM] Ported from SMMP by StrikerTheHedgefox! (Aka. [JM]) Please ask permission if you want to use this!
+// This is code ported over from SMMP, another one of my projects.
 function int pow (int x, int n)
 {
 	int y = 1;
@@ -892,7 +958,7 @@ int tier1_totalweight[2];
 int tier1_numentries[2];
 MannCoBoxData_t tier1_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",		100,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",		75,		DELAY_NONE },
 	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	20,		DELAY_NONE },
 	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	15,		DELAY_NONE },
 	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	10,		DELAY_NONE },
@@ -913,11 +979,13 @@ int tier2_totalweight[2];
 int tier2_numentries[2];
 MannCoBoxData_t tier2_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",		50,	DELAY_NONE },
-	{ "A Depoloyable Shield.",			"Shield",		45,	DELAY_NONE },
-	{ "A Mini-Sentry Box.",				"SENTREH",		45,	DELAY_NONE },
-	{ "A Dispenser!",					"DISPENSER",	45,	DELAY_NONE },
-	{ "A Gaster Blaster!",				"Gaster",		1,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			75,	DELAY_NONE },
+	{ "An Ammo Belt!",					"AmmoBelt",			75,	DELAY_NONE },
+	{ "A Depoloyable Shield.",			"Shield",			45,	DELAY_NONE },
+	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
+	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
+	{ "An Ammo Expansion!",				"AmmoExpansion",	15,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			1,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier2_bad[] =
@@ -927,28 +995,29 @@ MannCoBoxData_t tier2_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
-	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		1,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		2,	DELAY_NONE },
 };
 
 int tier3_totalweight[2];
 int tier3_numentries[2];
 MannCoBoxData_t tier3_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",		75,	DELAY_NONE },
-	{ "A Kan-Kan Powerup!",				"KanKan",		25,	DELAY_NONE },
-	{ "A Soulsphere!",					"SoulSphere",	64,	DELAY_NONE },
-	{ "An Invulnerability Powerup!",	"Invuln",		35,	DELAY_NONE },
-	{ "An Energy Tank!", 				"ETank",		25,	DELAY_NONE },
-	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	40,	DELAY_NONE },
-	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	30,	DELAY_NONE },
-	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	25,	DELAY_NONE },
-	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",	20,	DELAY_NONE },
-	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",	15,	DELAY_NONE },
-	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",	10,	DELAY_NONE },
-	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",	5,	DELAY_NONE },
-	{ "An Extra Life!",					"ExtraLife",	30,	DELAY_NONE },
-	{ "A Gaster Blaster!",				"Gaster",		25,	DELAY_NONE },
-	{ "An Item Bundle!",				"Bundle",		25,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			75,	DELAY_NONE },
+	{ "An Ammo Expansion!",				"AmmoExpansion",	50,	DELAY_NONE },
+	{ "A Kan-Kan Powerup!",				"KanKan",			25,	DELAY_NONE },
+	{ "A Soulsphere!",					"SoulSphere",		64,	DELAY_NONE },
+	{ "An Invulnerability Powerup!",	"Invuln",			35,	DELAY_NONE },
+	{ "An Energy Tank!", 				"ETank",			25,	DELAY_NONE },
+	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",		40,	DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",		30,	DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",		25,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		20,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		15,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		10,	DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		8,	DELAY_NONE },
+	{ "An Extra Life!",					"ExtraLife",		30,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			25,	DELAY_NONE },
+	{ "An Item Bundle!",				"Bundle",			25,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier3_bad[] =
@@ -973,8 +1042,9 @@ MannCoBoxData_t tier4_good[] =
 	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },
 	{ "A Spew of Health Potions!",	"HealthVomit",			100,	DELAY_NONE },
 	{ "An Upchuck of Orbs!",		"OrbVomit",				100,	DELAY_NONE },
-	{ "A Barf of Bullets!",			"ClipVomit",			100,	DELAY_NONE },
-	{ "A Regurgitation of Shells!",	"ShellVomit",			100,	DELAY_NONE },
+	{ "A Barf of Bullets!",			"ClipVomit",			75,		DELAY_NONE },
+	{ "A Regurgitation of Shells!",	"ShellVomit",			70,		DELAY_NONE },
+	{ "A Cascade of Cells!",		"CellVomit",			65,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier4_bad[] =
@@ -995,11 +1065,11 @@ int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
 	{ "A Medical Bag.",					"MedBag",		50,		DELAY_NONE },
-	{ "A Kan-Kan Powerup!",				"KanKan",		4,		DELAY_NONE },
-	{ "An Invulnerability Powerup!",	"Invuln",		3,		DELAY_NONE },
-	{ "An Energy Tank!", 				"ETank",		2,		DELAY_NONE },
-	{ "Legendary Armor!",				"WINRAR",		1,		DELAY_NONE },
-	{ "A Megasphere!",					"MegaSphere",	100,	DELAY_NONE },
+	{ "A Kan-Kan Powerup!",				"KanKan",		5,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",	"Invuln",		4,		DELAY_NONE },
+	{ "An Energy Tank!", 				"ETank",		3,		DELAY_NONE },
+	{ "Legendary Armor!",				"WINRAR",		2,		DELAY_NONE },
+	{ "A Megasphere!",					"MegaSphere",	75,		DELAY_NONE },
 	{ "Barf Bonanza!",					"VomitAll",		50,		DELAY_NONE },
 };
 
@@ -1100,7 +1170,10 @@ script "MANNCO_PICK" (int tier)
 {
 	int type = random(GOOD, BAD);
 	int rnd, weight, delaytype, i;
-
+	
+	str pickedName;
+	str pickedState;
+	
 	switch(tier)
 	{
 		case 0:
@@ -1113,17 +1186,9 @@ script "MANNCO_PICK" (int tier)
 				if(rnd < weight)
 				{
 					delaytype = (!type) ? tier1_good[i].delaytype : tier1_bad[i].delaytype;
-					if(delaytype != 0)
-					{
-						SetActorState(0, boxDelay[delaytype].state, false);
-						Delay(boxDelay[delaytype].time);
-					}
-					
-					HudMessageBold(s:((!type) ? tier1_good[i].name : tier1_bad[i].name);
-					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
-						
-					SetActorState(0, ((!type) ? tier1_good[i].state : tier1_bad[i].state), false);
-					terminate;
+					pickedName = (!type) ? tier1_good[i].name : tier1_bad[i].name;
+					pickedState = (!type) ? tier1_good[i].state : tier1_bad[i].state;
+					break;
 				}
 
 				rnd -= weight;
@@ -1140,17 +1205,9 @@ script "MANNCO_PICK" (int tier)
 				if(rnd < weight)
 				{
 					delaytype = (!type) ? tier2_good[i].delaytype : tier2_bad[i].delaytype;
-					if(delaytype != 0)
-					{
-						SetActorState(0, boxDelay[delaytype].state, false);
-						Delay(boxDelay[delaytype].time);
-					}
-					
-					HudMessageBold(s:((!type) ? tier2_good[i].name : tier2_bad[i].name);
-					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
-						
-					SetActorState(0, ((!type) ? tier2_good[i].state : tier2_bad[i].state), false);
-					terminate;
+					pickedName = (!type) ? tier2_good[i].name : tier2_bad[i].name;
+					pickedState = (!type) ? tier2_good[i].state : tier2_bad[i].state;
+					break;
 				}
 
 				rnd -= weight;
@@ -1167,17 +1224,9 @@ script "MANNCO_PICK" (int tier)
 				if(rnd < weight)
 				{
 					delaytype = (!type) ? tier3_good[i].delaytype : tier3_bad[i].delaytype;
-					if(delaytype != 0)
-					{
-						SetActorState(0, boxDelay[delaytype].state, false);
-						Delay(boxDelay[delaytype].time);
-					}
-					
-					HudMessageBold(s:((!type) ? tier3_good[i].name : tier3_bad[i].name);
-					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
-						
-					SetActorState(0, ((!type) ? tier3_good[i].state : tier3_bad[i].state), false);
-					terminate;
+					pickedName = (!type) ? tier3_good[i].name : tier3_bad[i].name;
+					pickedState = (!type) ? tier3_good[i].state : tier3_bad[i].state;
+					break;
 				}
 
 				rnd -= weight;
@@ -1194,17 +1243,9 @@ script "MANNCO_PICK" (int tier)
 				if(rnd < weight)
 				{
 					delaytype = (!type) ? tier4_good[i].delaytype : tier4_bad[i].delaytype;
-					if(delaytype != 0)
-					{
-						SetActorState(0, boxDelay[delaytype].state, false);
-						Delay(boxDelay[delaytype].time);
-					}
-					
-					HudMessageBold(s:((!type) ? tier4_good[i].name : tier4_bad[i].name);
-					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
-						
-					SetActorState(0, ((!type) ? tier4_good[i].state : tier4_bad[i].state), false);
-					terminate;
+					pickedName = (!type) ? tier4_good[i].name : tier4_bad[i].name;
+					pickedState = (!type) ? tier4_good[i].state : tier4_bad[i].state;
+					break;
 				}
 
 				rnd -= weight;
@@ -1221,17 +1262,9 @@ script "MANNCO_PICK" (int tier)
 				if(rnd < weight)
 				{
 					delaytype = (!type) ? tier5_good[i].delaytype : tier5_bad[i].delaytype;
-					if(delaytype != 0)
-					{
-						SetActorState(0, boxDelay[delaytype].state, false);
-						Delay(boxDelay[delaytype].time);
-					}
-					
-					HudMessageBold(s:((!type) ? tier5_good[i].name : tier5_bad[i].name);
-					HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 0.5, 0.275, 5.0, 0.01, 0.5);
-						
-					SetActorState(0, ((!type) ? tier5_good[i].state : tier5_bad[i].state), false);
-					terminate;
+					pickedName = (!type) ? tier5_good[i].name : tier5_bad[i].name;
+					pickedState = (!type) ? tier5_good[i].state : tier5_bad[i].state;
+					break;
 				}
 
 				rnd -= weight;
@@ -1239,4 +1272,15 @@ script "MANNCO_PICK" (int tier)
 			break;
 		}
 	}
+	
+	if(delaytype != 0)
+	{
+		SetActorState(0, boxDelay[delaytype].state, false);
+		Delay(boxDelay[delaytype].time);
+	}
+	
+	SetHudSize(640, 480, true);
+	HudMessageBold(s:pickedName;
+	HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 320.4, 144.1, 5.0, 0.01, 0.5);
+	SetActorState(0, pickedState, false);
 }

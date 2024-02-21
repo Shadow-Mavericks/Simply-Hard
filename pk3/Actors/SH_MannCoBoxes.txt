@@ -237,6 +237,14 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 		MedBag:
 			"####" A 1 A_SpawnItemEx ("MEDBAG", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			goto Despawn
+		
+		AmmoExpansion:
+			"####" A 1 A_SpawnItemEx ("SimplyBackpack",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			goto Despawn
+		
+		AmmoBelt:
+			"####" A 1 A_SpawnItemEx ("AmmoBelt",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			goto Despawn
 			
 		KanKan:
 			"####" A 1 A_SpawnItemEx ("GOATFREESKANKAN", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
@@ -286,50 +294,54 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 
 		HealthVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		ArmorVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		OrbVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGreen", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGold", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyRed", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyBlue", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyViolet", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGreen", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGold", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyRed", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyBlue", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyViolet", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		ClipVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Clip", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Clip", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		ShellVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			goto Despawn
+		CellVomit:
+			"####" D 0 A_PlaySound("PeterVomit")
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Cell", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 			
 		VomitAll:
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("Nadez", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("Nadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("BaronBall_Acid_Gravity", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("BaronBall_Acid_Gravity", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGreen", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGold", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyRed", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyBlue", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
-			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyViolet", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGreen", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyGold", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyRed", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyBlue", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDD 1 A_SpawnItemEx("DemonEnergyViolet", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Kago", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Kago", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Clip", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Clip", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Shell", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		WINRAR:
@@ -417,15 +429,15 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			
 		NadeVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Nadez", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Nadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		BaronBallVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("BaronBall_Acid_Gravity", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("BaronBall_Acid_Gravity", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		BeeVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Kago", 0, 0, 8, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Kago", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 			
 		BruiserDemon: // DELAY_LONG
@@ -570,70 +582,20 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" DCBA 10
 			goto Despawn
 			
+		/*
+		Flemoidboss:
+			MAN5 D 1 A_Jump(128, "Flembomination")
+			MAN5 D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			MAN5 A 0 A_alertmonsters(512)
+			goto Despawn
+		Flembomination:
+			MAN5 D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
+			MAN5 A 0 A_alertmonsters(512)
+			goto Despawn
+		*/
+			
 		Despawn:
 			"####" A 1 A_FADEOUT(0.005)
 			loop
 	}
-}
-
-Actor ActiveBox2 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 2)
-			goto Super::Spawn
-	}
-}
-
-Actor ActiveBox3 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 3)
-			goto Super::Spawn
-	}
-}
-
-Actor ActiveBox4 : ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
-{
-	+DONTGIB
-	scale 0.5
-	States
-	{
-		Spawn:
-			MAN1 A 0 NoDelay A_SetUserVar("user_tier", 4)
-			goto Super::Spawn
-	}
-}
-
-Actor Bossbox : ActiveBox1 //Decorate by Fiendzy
-{
-	Radius 10
-	Height 32
-	scale 1.5
-	States
-	{
-		Spawn:
-			MAN5 A 0 NoDelay A_SetUserVar("user_tier", 5)
-			goto Super::Spawn
-/*	Flemoidboss:
-		MAN5 D 1 A_Jump(128, "Flembomination")
-		MAN5 D 1 A_SpawnItemEx("Snotfolus", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-		MAN5 A 0 A_alertmonsters(512)
-		goto Despawn
-	Flembomination:
-		MAN5 D 1 A_SpawnItemEx("Flembomination", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-		MAN5 A 0 A_alertmonsters(512)
-		goto Despawn
-*/
-	}
-}
-
-Actor MiniBossbox : BossBox //Decorate by Fiendzy
-{
-	Radius 10
-	Height 32
-	scale 1.5
 }

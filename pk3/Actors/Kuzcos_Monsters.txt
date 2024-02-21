@@ -10,7 +10,6 @@ actor Base_Kart
 	meleerange 32
 	meleedamage 1
 	Species "Kart"
-	Dropitem "Activebox1" 1
 	MONSTER
 	+NOICEDEATH
 	+FLOORCLIP
@@ -2430,7 +2429,6 @@ actor Dejavuskelebob : Segwayzombie
 	painchance 100
 	meleedamage 2
 	meleerange 42
-	Dropitem "Activebox1" 1
 	MONSTER
 	+NOICEDEATH
 	+FLOORCLIP

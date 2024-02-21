@@ -1,0 +1,10 @@
+Column "Lives"
+{
+	AddFlag NOSPECTATORS
+	AddFlag REQUIRESLIVES
+	AddFlag ALWAYSUSESHORTESTWIDTH
+
+	Alignment = Right
+	CVar = sv_maxlives, 0, 255
+	Size = 16
+}

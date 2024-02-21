@@ -24,6 +24,7 @@ actor SH_BaseMonster
 	MONSTER
 	
 	var int user_extralife_chance;
+	var int user_manncobox_chance;
 }
 
 //////////////////////////////////////////////////////////////////

@@ -15,8 +15,6 @@ Actor D16Cyberdemon 31050
 	PainSound "Cybie/Pain"
 	DeathSound ""
 	ActiveSound "Cybie/Idle"
-	Dropitem "Minibossbox" 50
-	Dropitem "extralifethingy" 127
 	+BOSS
 	+SOLID
 	+FLOORCLIP
