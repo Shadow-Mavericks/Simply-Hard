@@ -1,7 +1,8 @@
 gameinfo
 {
-	forcekillscripts = true
+	ForceKillScripts = true
 	ForceDamageEventScripts = true
+	ForceSpawnEventScripts = true
 }
 
 map SH01 "Hunted?"

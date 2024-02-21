@@ -192,7 +192,7 @@ script "ON_KILL" KILL
 				totalWeight += newWeight;
 			}
 			
-			if(GetCVar("sh_debug"))
+			if(GetCVar("sh_debug_boxes"))
 				log(s:"DEBUG: Tier weights - ", d:tierWeights[0], s:", ", d:tierWeights[1], s:", ", d:tierWeights[2], s:", ", d:tierWeights[3], s:", ", d:tierWeights[4]);
 			
 			int rnd = random(0, totalWeight-1);
@@ -216,7 +216,7 @@ script "ON_KILL" KILL
 
 	SetActivatorToTarget(0); // Set activator to the one who killed this monster.
 
-	if(GetCVar("sh_debug"))
+	if(GetCVar("sh_debug_orbs"))
 		log(s:"DEBUG: ", n:0, s:" killed ", s:Class, s:" [", d:Health, s:"] ", s:"Orbs: ", d:NumOrbs);
 }
 
@@ -257,33 +257,7 @@ function void PrintDamage(int damage)
 	if(z+10.0 >= ceilingZ)
 		z = (ceilingZ-10.0) + Random(-10.0, 0.0);
 
-	int SelectedColor = Random(0, 6);
-	int TranslationNumber = Random(6000, 6500);
-
-	switch (SelectedColor)
-	{
-		case 0: // Red
-			CreateTranslation(TranslationNumber, 160:160=[255, 0, 0]:[255, 0, 0]);
-			break;
-		case 1: // Green
-			CreateTranslation(TranslationNumber, 160:160=[0, 255, 0]:[0, 255, 0]);
-			break;
-		case 2: // Blue
-			CreateTranslation(TranslationNumber, 160:160=[0, 0, 255]:[0, 0, 255]);
-			break;
-		case 3: // Yellow
-			CreateTranslation(TranslationNumber, 160:160=[255, 255, 0]:[255, 255, 0]);
-			break;
-		case 4: // Cyan
-			CreateTranslation(TranslationNumber, 160:160=[0, 255, 255]:[0, 255, 255]);
-			break;
-		case 5: // Magenta
-			CreateTranslation(TranslationNumber, 160:160=[255, 0, 255]:[255, 0, 255]);
-			break;
-		case 6: // White
-			CreateTranslation(TranslationNumber, 160:160=[255, 255, 255]:[255, 255, 255]);
-			break;
-	}
+	int TranslationNumber = Random(6000, 6007);
 
 	int NumberID = Random(6000, 6500);
 
@@ -346,6 +320,17 @@ function void PrintDamage(int damage)
 	return;
 }
 
+script "GENERATE_DMG_TRANSLATIONS" OPEN
+{
+	CreateTranslation(6001, 160:160=[255, 0, 0]:[255, 0, 0]); // Red
+	CreateTranslation(6002, 160:160=[0, 255, 0]:[0, 255, 0]); // Green
+	CreateTranslation(6003, 160:160=[0, 0, 255]:[0, 0, 255]); // Blue
+	CreateTranslation(6004, 160:160=[255, 255, 0]:[255, 255, 0]); // Yellow
+	CreateTranslation(6005, 160:160=[0, 255, 255]:[0, 255, 255]); // Cyan
+	CreateTranslation(6006, 160:160=[255, 0, 255]:[255, 0, 255]); // Magenta
+	CreateTranslation(6007, 160:160=[255, 255, 255]:[255, 255, 255]); // White
+}
+
 #define HIT_OTHER 0
 #define HIT_FLESH 1
 
@@ -377,6 +362,28 @@ function void hit_marker(int soundType, bool friendly)
 	}
 	HudMessage(s:"A";
 	HUDMSG_FADEOUT, id, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
+	
+	return;
+}
+
+function void actor_swap(str replace, str with)
+{
+	if(!CheckActorClass(0, replace))
+		return;
+
+	if(GetCVar("sh_debug_spawns"))
+		log(s:replace, s:" has been swapped with ", s:with);
+
+	int thisTID = UniqueTID();
+	Thing_ChangeTID(0, thisTID);
+
+	int xvel = GetActorVelX(0);
+	int yvel = GetActorVelY(0);
+	int zvel = GetActorVelZ(0);
+	int uTID = UniqueTID();
+	SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+	SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
+	Thing_Remove(thisTID);
 	
 	return;
 }
@@ -449,7 +456,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			if(CheckActorClass(0, "FistPuff") || wasConcussed)
 				yeetAmt = random(arg1 >> 2, arg1);
 			
-			if(GetCVar("sh_debug"))
+			if(GetCVar("sh_debug_damage"))
 				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
 		}
 
@@ -522,6 +529,13 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				}
 			}
 		}
+	}
+	else if(type == GAMEEVENT_ACTOR_SPAWNED)
+	{
+		// Strange Aeons compatibility swaps
+		actor_swap("AK47", "Chaingundrop");
+		actor_swap("Yithgun", "PLASMAdrop");
+		actor_swap("ImpalerXBow", "Chainsawpowerdrop");
 	}
 }
 
@@ -880,7 +894,7 @@ function void updateClass(void)
 	if((ConsolePlayerNumber() == PlayerNumber()) && (ConsolePlayerNumber() != -1))
 	{
 		playerClassName = GetActorClass(0);
-		if(GetCVar("sh_debug"))
+		if(GetCVar("sh_debug_classes"))
 			log(s:"DEBUG: class is ", s:playerClassName);
 	}
 }
@@ -910,7 +924,7 @@ script "SUPERCHARGE_CHECK" (void)
 		SetUserVariable(0, "user_supercharge_useammo", (GetUserVariable(0, "user_supercharge_useammo")+1) & 1);
 		SetResultValue(GetUserVariable(0, "user_supercharge_useammo"));
 		
-		if(GetCVar("sh_debug"))
+		if(GetCVar("sh_debug_weapons"))
 			log(s:"DEBUG: user_supercharge_useammo ", d:GetUserVariable(0, "user_supercharge_useammo"));
 	}
 	else
@@ -1150,7 +1164,7 @@ script "TALLY_WEIGHTS" OPEN
 		tier5_totalweight[BAD] += tier5_bad[i].weight;
 	// ------
 	
-	if(GetCVar("sh_debug"))
+	if(GetCVar("sh_debug_boxes"))
 	{
 		log(s:"MannCo Box Info");
 		log(s:"Tier 1 (GOOD): ", d:tier1_numentries[GOOD], s:" with total weight of ", d:tier1_totalweight[GOOD], s:".");
