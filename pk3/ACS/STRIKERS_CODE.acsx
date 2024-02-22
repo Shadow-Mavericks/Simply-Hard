@@ -373,9 +373,6 @@ function void actor_swap(str replace, str with, int chance)
 
 	if((chance >= 255) || (random(0, 255) < chance))
 	{
-		if(GetCVar("sh_debug_spawns"))
-			log(s:replace, s:" has been swapped with ", s:with);
-
 		int thisTID = ActivatorTID();
 		int uTID = UniqueTID();
 		int xvel = GetActorVelX(0);
@@ -392,8 +389,12 @@ function void actor_swap(str replace, str with, int chance)
 		//SetActorFlag(uTID, "TOSSED", tossed);
 		SetActorFlag(uTID, "FRIENDLY", friendly);
 		SetActorFlag(uTID, "STEALTH", stealth);
-		Thing_ChangeTID(uTID, thisTID);
 		
+		if(GetCVar("sh_debug_spawns"))
+			log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with);
+		
+		// These must be last!
+		Thing_ChangeTID(uTID, thisTID);
 		Thing_Remove(0);
 	}
 	
@@ -550,7 +551,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		// Strange Aeons compatibility swaps
 		actor_swap("AK47", "Chaingundrop", 256);
 		actor_swap("Yithgun", "PLASMAdrop", 256);
-		actor_swap("ImpalerXBow", "Chainsawpowerdrop", 256);
+		actor_swap("ImpalerXBow", "Railgundrop", 256);
 		actor_swap("Devil", "Imps", 64);
 		actor_swap("RapidFireTrooper", "Zamble", 64);
 		actor_swap("UndeadHunter", "Shotgunzamble", 64);
