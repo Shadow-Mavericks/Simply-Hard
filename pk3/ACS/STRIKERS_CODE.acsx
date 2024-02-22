@@ -366,24 +366,36 @@ function void hit_marker(int soundType, bool friendly)
 	return;
 }
 
-function void actor_swap(str replace, str with)
+function void actor_swap(str replace, str with, int chance)
 {
 	if(!CheckActorClass(0, replace))
 		return;
 
-	if(GetCVar("sh_debug_spawns"))
-		log(s:replace, s:" has been swapped with ", s:with);
+	if((chance >= 255) || (random(0, 255) < chance))
+	{
+		if(GetCVar("sh_debug_spawns"))
+			log(s:replace, s:" has been swapped with ", s:with);
 
-	int thisTID = UniqueTID();
-	Thing_ChangeTID(0, thisTID);
-
-	int xvel = GetActorVelX(0);
-	int yvel = GetActorVelY(0);
-	int zvel = GetActorVelZ(0);
-	int uTID = UniqueTID();
-	SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-	SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
-	Thing_Remove(thisTID);
+		int thisTID = ActivatorTID();
+		int uTID = UniqueTID();
+		int xvel = GetActorVelX(0);
+		int yvel = GetActorVelY(0);
+		int zvel = GetActorVelZ(0);
+		bool dropped = CheckFlag(0, "DROPPED");
+		//bool tossed = CheckFlag(0, "TOSSED");
+		bool friendly = CheckFlag(0, "FRIENDLY");
+		bool stealth = CheckFlag(0, "STEALTH");
+		
+		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
+		SetActorFlag(uTID, "DROPPED", dropped);
+		//SetActorFlag(uTID, "TOSSED", tossed);
+		SetActorFlag(uTID, "FRIENDLY", friendly);
+		SetActorFlag(uTID, "STEALTH", stealth);
+		Thing_ChangeTID(uTID, thisTID);
+		
+		Thing_Remove(0);
+	}
 	
 	return;
 }
@@ -449,7 +461,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				if(arg1 < minDamage)
 					arg1 = minDamage;
 					
-				SetResultValue(arg1);
+				//SetResultValue(arg1);
 			}
 			
 			wasConcussed = CheckActorClass(0, "ConcussionBlast");
@@ -475,7 +487,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
 				{
 					arg1 += 1;
-					SetResultValue(arg1);
+					//SetResultValue(arg1);
 				}
 				
 				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
@@ -487,12 +499,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					doTeamDamageScale = true;
 			}
 			
-			if(GetCVar("sh_friendly_damagescale") && doTeamDamageScale && !wasTelefrag)
+			if(GetCVar("sh_friendly_scaledamage") && doTeamDamageScale && !wasTelefrag)
 			{
 				int teamDamage = GetCvar("teamdamage");
 				fixedDamage = arg1 << 16;
 				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
-				SetResultValue(arg1);
+				//SetResultValue(arg1);
 			}
 		}
 
@@ -516,7 +528,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			
 			if(wasConcussed)
 				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
-
+			
+			// KEEP THIS AT THE END!
+			SetResultValue(arg1);
+			
 			if(doNumbers)
 			{
 				GiveInventory("DamageTallyHack", arg1);
@@ -533,9 +548,15 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 	else if(type == GAMEEVENT_ACTOR_SPAWNED)
 	{
 		// Strange Aeons compatibility swaps
-		actor_swap("AK47", "Chaingundrop");
-		actor_swap("Yithgun", "PLASMAdrop");
-		actor_swap("ImpalerXBow", "Chainsawpowerdrop");
+		actor_swap("AK47", "Chaingundrop", 256);
+		actor_swap("Yithgun", "PLASMAdrop", 256);
+		actor_swap("ImpalerXBow", "Chainsawpowerdrop", 256);
+		actor_swap("Devil", "Imps", 64);
+		actor_swap("RapidFireTrooper", "Zamble", 64);
+		actor_swap("UndeadHunter", "Shotgunzamble", 64);
+		actor_swap("Skeleton", "MeleeRevenant", 64);
+		actor_swap("HellWarrior", "BaronSpawner", 64);
+		actor_swap("SlimeWorm", "JIHADReplacer", 64);
 	}
 }
 

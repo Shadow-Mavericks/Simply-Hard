@@ -1460,7 +1460,7 @@ Ice:
   }
 }
 
-ACTOR HardBaron : Baronofhell replaces Baronofhell
+ACTOR HardBaron : Baronofhell
 {
   Health 1000
   +BOSSDEATH
