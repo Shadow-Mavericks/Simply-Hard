@@ -787,7 +787,7 @@ actor FusionCutter : Weapon
 	Weapon.AmmoType1 "DF_PowerCell"
 	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"
-	Weapon.kickback 150
+	Weapon.kickback 100
 	Weapon.BobStyle "InverseSmooth"
 	Weapon.SlotNumber 3
 	Weapon.BobRangeX 1
