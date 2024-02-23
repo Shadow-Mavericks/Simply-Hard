@@ -379,16 +379,18 @@ function void actor_swap(str replace, str with, int chance)
 		int yvel = GetActorVelY(0);
 		int zvel = GetActorVelZ(0);
 		bool dropped = CheckFlag(0, "DROPPED");
-		//bool tossed = CheckFlag(0, "TOSSED");
+		bool ambush = CheckFlag(0, "AMBUSH");
 		bool friendly = CheckFlag(0, "FRIENDLY");
 		bool stealth = CheckFlag(0, "STEALTH");
+		bool standstill = CheckFlag(0, "STANDSTILL");
 		
 		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
 		SetActorFlag(uTID, "DROPPED", dropped);
-		//SetActorFlag(uTID, "TOSSED", tossed);
+		SetActorFlag(uTID, "AMBUSH", ambush);
 		SetActorFlag(uTID, "FRIENDLY", friendly);
 		SetActorFlag(uTID, "STEALTH", stealth);
+		SetActorFlag(uTID, "STANDSTILL", standstill);
 		
 		if(GetCVar("sh_debug_spawns"))
 			log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with);
@@ -554,7 +556,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		actor_swap("ImpalerXBow", "Railgundrop", 256);
 		actor_swap("Devil", "Imps", 64);
 		actor_swap("RapidFireTrooper", "Zamble", 64);
-		actor_swap("UndeadHunter", "Shotgunzamble", 64);
+		actor_swap("UndeadHunter", "Shootgunzamble", 64);
 		actor_swap("Skeleton", "MeleeRevenant", 64);
 		actor_swap("HellWarrior", "BaronSpawner", 64);
 		actor_swap("SlimeWorm", "JIHADReplacer", 64);
