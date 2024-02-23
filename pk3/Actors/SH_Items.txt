@@ -18,7 +18,7 @@ Actor Greenarmorbonus : Custominventory
   +INVENTORY.ALWAYSPICKUP
   Inventory.RespawnTics "99999999"
   +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +20Armor"
+  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
   States
   {
   Spawn:
@@ -41,7 +41,7 @@ Actor Greenarmorbonus : Custominventory
     Stop
   Maxpickup:
     TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("SH_MaxArmorBonus")
+    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
     Stop
   }
 }
@@ -52,7 +52,7 @@ Actor Redarmorbonus : CustomInventory
   TRANSLATION "112:127=174:191"
   Inventory.RespawnTics "99999999"
   +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +20Armor"
+  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
   Radius 20
   Height 16
   +COUNTITEM
@@ -79,7 +79,7 @@ Actor Redarmorbonus : CustomInventory
     Stop
   Maxpickup:
     TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("MaxArmorBonus")
+    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
     Stop
   }
 }
@@ -90,7 +90,7 @@ Actor Bluearmorbonus : CustomInventory
   TRANSLATION "112:127=198:207"
   Inventory.RespawnTics "99999999"
   +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +20Armor"
+  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
   Radius 20
   Height 16
   +COUNTITEM
@@ -117,7 +117,7 @@ Actor Bluearmorbonus : CustomInventory
     Stop
   Maxpickup:
     TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("MaxArmorBonus")
+    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
     Stop
   }
 }
@@ -130,7 +130,7 @@ Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
   +INVENTORY.QUIET
   Scale 0.1
   Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +75Armor"
+  Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
   States
   {
   Spawn:
@@ -168,7 +168,7 @@ Actor BluearmorFilter : CustomInventory Replaces Bluearmor
   Height 16
   +INVENTORY.QUIET
   Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Fiend +200Armor/Gosimer +250Armor/Kunai +400Armor/Max +150Armor"
+  Inventory.PickupMessage "Fiend +200Armor/Gosimer +250Armor/Kunai +400Armor/Max +200Armor"
   States
   {
   Spawn:
@@ -288,7 +288,7 @@ ACTOR GosimersBlueArmorBonus : BasicArmorBonus
   }
 }
 
-ACTOR SH_MaxArmorBonus : BasicArmorBonus replaces MaxArmorBonus
+ACTOR SH_ArmorBonus_Max : BasicArmorBonus
 {
 	Radius 20
 	Height 16
@@ -381,7 +381,7 @@ ACTOR GreenArmorMax : BasicArmorPickup
   +INVENTORY.QUIET
   Inventory.RespawnTics "99999999"
   Armor.SavePercent 100
-  Armor.SaveAmount 75
+  Armor.SaveAmount 100
   Damagefactor 0.5
   States
   {
@@ -471,7 +471,7 @@ ACTOR BlueArmorMax : BasicArmorpickup
   Inventory.RespawnTics "99999999"
   Armor.SavePercent 100
   Damagefactor 0.5
-  Armor.SaveAmount 150
+  Armor.SaveAmount 200
   States
   {
   Spawn:
