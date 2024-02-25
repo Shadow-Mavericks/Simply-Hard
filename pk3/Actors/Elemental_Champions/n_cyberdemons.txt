@@ -16,7 +16,6 @@ ACTOR N_Cyberdemon_Base : Monster_Base
 	DeathSound "cyber/death"
 	ActiveSound "cyber/active"
 	Obituary "$OB_CYBORG"
-	Dropitem "Minibossbox" 50
 	States
 	{
 		Spawn:
