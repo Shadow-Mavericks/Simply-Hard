@@ -92,9 +92,11 @@ Ice:
 /////////////////////////
 actor P_ArchvileFire_Acid : Particle_Base
 {
+	RenderStyle Add
+	Alpha 1.0
 	Translation "160:167=[128, 255, 128]:[32, 64, 32]"
-  States
-  {
+	States
+	{
 		Spawn:
 			FIRE A 2 Bright A_StartFire
 			FIRE BAB 2 Bright A_Fire
@@ -108,8 +110,8 @@ actor P_ArchvileFire_Acid : Particle_Base
 actor N_Archvile_Acid : N_Archvile_Base 
 {
 	Translation "48:79=[128, 255, 128]:[32, 64, 32]", "128:143=[128, 255, 128]:[32, 64, 32]", "144:151=[64, 128, 64]:[32, 64, 32]", "236:239=[64, 128, 64]:[32, 64, 32]", "13:15=[64, 128, 64]:[32, 64, 32]", "210:211=[128, 255, 128]:[128, 255, 128]"
-  States
-  {	
+	States
+	{
 		Missile:
 			VILE G 0 Bright A_VileStart
 			VILE G 10 Bright A_FaceTarget
@@ -126,9 +128,11 @@ actor N_Archvile_Acid : N_Archvile_Base
 /////////////////////////
 actor P_ArchvileFire_Void : Particle_Base
 {
+	RenderStyle Add
+	Alpha 1.0
 	Translation "160:167=[192, 128, 255]:[16, 0, 32]"
-  States
-  {
+	States
+	{
 		Spawn:
 			FIRE A 2 Bright A_StartFire
 			FIRE BAB 2 Bright A_Fire
@@ -137,7 +141,7 @@ actor P_ArchvileFire_Void : Particle_Base
 			FIRE E 2 Bright A_FireCrackle
 			FIRE FEFEFGHGHGH 2 Bright A_Fire
 			Stop
-  }
+	}
 }
 actor N_Archvile_Void : N_Archvile_Base 
 {
@@ -160,9 +164,11 @@ actor N_Archvile_Void : N_Archvile_Base
 /////////////////////////
 actor P_ArchvileFire_Fire : Particle_Base
 {
+	RenderStyle Add
+	Alpha 1.0
 	Translation "160:167=[255, 128, 0]:[64, 32, 0]"
-  States
-  {
+	States
+	{
 		Spawn:
 			FIRE A 2 Bright A_StartFire
 			FIRE BAB 2 Bright A_Fire
@@ -171,13 +177,13 @@ actor P_ArchvileFire_Fire : Particle_Base
 			FIRE E 2 Bright A_FireCrackle
 			FIRE FEFEFGHGHGH 2 Bright A_Fire
 			Stop
-  }
+	}
 }
 actor N_Archvile_Fire : N_Archvile_Base 
 {
 	Translation "48:79=[255, 128, 0]:[64, 32, 0]", "128:143=[255, 128, 0]:[64, 32, 0]", "144:151=[128, 64, 0]:[64, 32, 0]", "236:239=[128, 64, 0]:[64, 32, 0]", "13:15=[128, 64, 0]:[64, 32, 0]", "210:211=[255, 128, 0]:[255, 128, 0]"
-  States
-  {	
+	States
+	{
 		Missile:
 			VILE G 0 Bright A_VileStart
 			VILE G 10 Bright A_FaceTarget
@@ -195,9 +201,11 @@ actor N_Archvile_Fire : N_Archvile_Base
 /////////////////////////
 actor P_ArchvileFire_Electric : Particle_Base
 {
+	RenderStyle Add
+	Alpha 1.0
 	Translation "160:167=[255, 255, 96]:[64, 64, 32]"
-  States
-  {
+	States
+	{
 		Spawn:
 			FIRE A 2 Bright A_StartFire
 			FIRE BAB 2 Bright A_Fire
@@ -206,7 +214,7 @@ actor P_ArchvileFire_Electric : Particle_Base
 			FIRE E 2 Bright A_FireCrackle
 			FIRE FEFEFGHGHGH 2 Bright A_Fire
 			Stop
-  }
+	}
 }
 actor N_Archvile_Electric : N_Archvile_Base 
 {
@@ -229,9 +237,11 @@ actor N_Archvile_Electric : N_Archvile_Base
 /////////////////////////
 actor P_ArchvileFire_Ice : Particle_Base
 {
+	RenderStyle Add
+	Alpha 1.0
 	Translation "160:167=[128, 192, 255]:[32, 48, 64]"
-  States
-  {
+	States
+	{
 		Spawn:
 			FIRE A 2 Bright A_StartFire
 			FIRE BAB 2 Bright A_Fire
@@ -240,14 +250,14 @@ actor P_ArchvileFire_Ice : Particle_Base
 			FIRE E 2 Bright A_FireCrackle
 			FIRE FEFEFGHGHGH 2 Bright A_Fire
 			Stop
-  }
+	}
 }
 actor N_Archvile_Ice : N_Archvile_Base 
 {
 	+Noicedeath
 	Translation "48:79=[128, 192, 255]:[32, 48, 64]", "128:143=[128, 192, 255]:[32, 48, 64]", "144:151=[64, 96, 128]:[32, 48, 64]", "236:239=[64, 96, 128]:[32, 48, 64]", "13:15=[64, 96, 128]:[32, 48, 64]", "210:211=[128, 192, 255]:[128, 192, 255]"
-  States
-  {	
+	States
+	{
 		Missile:
 			VILE G 0 Bright A_VileStart
 			VILE G 10 Bright A_FaceTarget
