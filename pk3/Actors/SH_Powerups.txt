@@ -687,7 +687,7 @@ Actor Dispenser : CustomInventory //
 	Inventory.RespawnTics "99999999"
 	Inventory.MaxAmount 3
 	Inventory.InterHubAmount 3
-	Inventory.Icon "I_DISPENS"
+	Inventory.Icon "I_DISPEN"
 	Inventory.PickupSound "MBackP"
 	Inventory.PickupMessage "When used; Plays music and heals team in a small radius"
 	States
