@@ -525,30 +525,26 @@ actor MaximusPrime : DoomPlayer
 			PLAY F 6 BRIGHT
 			Goto Missile
 		Pain:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
-			PLAY G 4 A_Pain
+			PLAY G 0 A_Pain
+			PLAY G 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			Goto Spawn
 		
 		Pain.Acid:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
 			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
 			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
 			Goto Pain
 		
 		Pain.Void:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
 			Goto Pain
 		
 		Pain.Fire:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Electric:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			//PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
@@ -560,7 +556,6 @@ actor MaximusPrime : DoomPlayer
 			Goto Pain
 			
 		Pain.HeavyMetal:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_HeavyMetal", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 0.3, 35*5)
 			Goto Pain
