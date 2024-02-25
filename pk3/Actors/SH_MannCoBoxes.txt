@@ -238,6 +238,10 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 1 A_SpawnItemEx ("MEDBAG", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
+		Medkit:
+			"####" D 1 A_SpawnItemEx ("Normalmedkit",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			goto Despawn
+
 		AmmoExpansion:
 			"####" D 1 A_SpawnItemEx ("SimplyBackpack",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			goto Despawn
@@ -264,6 +268,10 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 
 		ETank:
 			"####" D 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			goto Despawn
+			
+		BerserkPack:
+			"####" D 1 A_SpawnItemEx ("Hardberserk", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Joy:
@@ -451,8 +459,8 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 1 A_SpawnItemEx("Kago", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
-		KagoNest:
-			"####" D 1 A_SpawnItemEx("Kago", 0, 0, 4.0*scaley, 0, 0, 0, frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+		KagoHive:
+			"####" D 1 A_SpawnItemEx("KagoHive", 0, 0, 4.0*scaley, 0, 0, 0, frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		BruiserDemon: // DELAY_LONG

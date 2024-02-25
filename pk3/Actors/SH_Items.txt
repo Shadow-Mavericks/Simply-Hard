@@ -12,212 +12,153 @@ Actor Ammoexpansioncheck : Ammo
 
 Actor Greenarmorbonus : Custominventory
 {
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.RespawnTics "99999999"
-  +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("FiendsgreenArmorbonus")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMRGET",chan_5)
-    TNT1 A 0 A_Giveinventory("Kunaisredarmorbonus")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("Gosimersbluearmorbonus")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
-    Stop
-  }
+	Radius 20
+	Height 16
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +20Armor"
+	States
+	{
+		Spawn:
+			BON2 ABCDCB 6
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
+			TNT1 A 0 A_playsound("Fiend/armorget",chan_5)
+			TNT1 A 0 A_Giveinventory("FiendsgreenArmorbonus")
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("ARMRGET",chan_5)
+			TNT1 A 0 A_Giveinventory("Kunaisredarmorbonus")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("Gosimer/Armorget",chan_5)
+			TNT1 A 0 A_Giveinventory("Gosimersbluearmorbonus")
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
+			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 20)
+			Stop
+	}
 }
 
 
-Actor Redarmorbonus : CustomInventory
+Actor Redarmorbonus : Greenarmorbonus
 {
-  TRANSLATION "112:127=174:191"
-  Inventory.RespawnTics "99999999"
-  +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("FiendsgreenArmorbonus")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMRGET",chan_5)
-    TNT1 A 0 A_Giveinventory("Kunaisredarmorbonus")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("Gosimersbluearmorbonus")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
-    Stop
-  }
+	TRANSLATION "112:127=174:191"
 }
 
-Actor Bluearmorbonus : CustomInventory
+Actor Bluearmorbonus : Greenarmorbonus
 {
-
-  TRANSLATION "112:127=198:207"
-  Inventory.RespawnTics "99999999"
-  +INVENTORY.QUIET
-  Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +10Armor"
-  Radius 20
-  Height 16
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_playsound("Fiend/armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("FiendsgreenArmorbonus")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMRGET",chan_5)
-    TNT1 A 0 A_Giveinventory("Kunaisredarmorbonus")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("Gosimer/Armorget",chan_5)
-    TNT1 A 0 A_Giveinventory("Gosimersbluearmorbonus")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-    TNT1 A 0 A_Giveinventory("SH_ArmorBonus_Max")
-    Stop
-  }
+	TRANSLATION "112:127=198:207"
 }
-
 
 Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Scale 0.1
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
-  States
-  {
-  Spawn:
-    ARM1 A 6 Bright
-    ARM1 B 7 Bright
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
-    TNT1 A 0 A_PLAYSOUND("Jim/Taunt5",Chan_7)
-    TNT1 A 0 A_Giveinventory("Greenarmorfiend")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
-    TNT1 A 0 A_Giveinventory("GreenarmorKunai")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
-    TNT1 A 0 A_Playsound("GARMGET",CHAN_5)
-    TNT1 A 0 A_Giveinventory("Greenarmorgosimer")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
-    TNT1 A 0 A_Giveinventory("Greenarmormax")
-    Stop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	Scale 0.1
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
+	States
+	{
+		Spawn:
+			ARM1 A 6 Bright
+			ARM1 B 7 Bright
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
+			TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
+			TNT1 A 0 A_PLAYSOUND("Jim/Taunt5",Chan_7)
+			TNT1 A 0 A_Giveinventory("Greenarmorfiend")
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
+			TNT1 A 0 A_Giveinventory("GreenarmorKunai")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("ARMOUR/GREEN",Chan_6)
+			TNT1 A 0 A_Playsound("GARMGET",CHAN_5)
+			TNT1 A 0 A_Giveinventory("Greenarmorgosimer")
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_JumpIfInventory("MaxEnergyShield", 200, "Failure")
+			TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
+			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 100)
+			Stop
+		Failure:
+			TNT1 A 0
+			fail
+	}
 }
-
 
 Actor BluearmorFilter : CustomInventory Replaces Bluearmor
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Fiend +200Armor/Gosimer +250Armor/Kunai +400Armor/Max +200Armor"
-  States
-  {
-  Spawn:
-    ARM2 A 6 Bright
-    ARM2 B 6 Bright
-    Loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-    TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_playsound("Fiend/Bluearmorget",Chan_6)
-    TNT1 A 0 A_playsound("Jim/Taunt2",chan_7)
-    TNT1 A 0 A_Giveinventory("Bluearmorfiend")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("ARMOUR/BLUE",Chan_6)
-    TNT1 A 0 A_Giveinventory("BluearmorKunai")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_playsound("ARMOUR/BLUE",Chan_6)
-    TNT1 A 0 A_Playsound("GARMGET",CHAN_5)
-    TNT1 A 0 A_Giveinventory("Bluearmorgosimer")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
-    TNT1 A 0 A_Giveinventory("Bluearmormax")
-    Stop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Fiend +200Armor/Gosimer +250Armor/Kunai +400Armor/Max +200Armor"
+	States
+	{
+		Spawn:
+			ARM2 A 6 Bright
+			ARM2 B 6 Bright
+			Loop
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
+			TNT1 A 0 A_playsound("Fiend/Bluearmorget",Chan_6)
+			TNT1 A 0 A_playsound("Jim/Taunt2",chan_7)
+			TNT1 A 0 A_Giveinventory("Bluearmorfiend")
+			Stop
+		Kunaipickup:
+			TNT1 A 0 A_playsound("ARMOUR/BLUE",Chan_6)
+			TNT1 A 0 A_Giveinventory("BluearmorKunai")
+			Stop
+		Gosimerpickup:
+			TNT1 A 0 A_playsound("ARMOUR/BLUE",Chan_6)
+			TNT1 A 0 A_Playsound("GARMGET",CHAN_5)
+			TNT1 A 0 A_Giveinventory("Bluearmorgosimer")
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_JumpIfInventory("MaxEnergyShield", 200, "Failure")
+			TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
+			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 200)
+			Stop
+		Failure:
+			TNT1 A 0
+			fail
+	}
 }
 
 ACTOR FiendsGreenArmorBonus : BasicArmorBonus
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Inventory.Icon "ARM1A0"
-  Inventory.PickupSound "FARMRGET"
-  Inventory.RespawnTics "99999999"
-  Armor.SavePercent 100
-  Armor.SaveAmount 5
-  Armor.MaxSaveAmount 300
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	Inventory.Icon "ARM1A0"
+	Inventory.PickupSound "FARMRGET"
+	Inventory.RespawnTics "99999999"
+	Armor.SavePercent 100
+	Armor.SaveAmount 5
+	Armor.MaxSaveAmount 300
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+		Spawn:
+			BON2 ABCDCB 6
+			Loop
+	}
 }
 
 ACTOR DispenserArmorBonus : BasicArmorBonus
@@ -288,28 +229,6 @@ ACTOR GosimersBlueArmorBonus : BasicArmorBonus
   }
 }
 
-ACTOR SH_ArmorBonus_Max : BasicArmorBonus
-{
-	Radius 20
-	Height 16
-	+INVENTORY.QUIET
-	Inventory.Icon "ARM1A0"
-	Inventory.RespawnTics "99999999"
-	Armor.SavePercent 100
-	Armor.SaveAmount 10
-	Armor.MaxSaveAmount 150
-	Damagefactor 0.5
-	+COUNTITEM
-	+INVENTORY.ALWAYSPICKUP
-	States
-	{
-		Spawn:
-			BON2 ABCDCB 6
-			Loop
-	}
-}
-
-
 ACTOR GreenArmorFiend : BasicArmorPickup
 {
   Radius 20
@@ -372,24 +291,22 @@ ACTOR GreenArmorGosimer : GosimersBlueArmorBonus
   }
 }
 
-ACTOR GreenArmorMax : BasicArmorPickup
+ACTOR MaxEnergyShield : Inventory
 {
-  Radius 20
-  Height 16
-  Inventory.PickupMessage "$GOTARMOR" // "Picked up the armor."
-  Inventory.Icon "ARM1A0"
-  +INVENTORY.QUIET
-  Inventory.RespawnTics "99999999"
-  Armor.SavePercent 100
-  Armor.SaveAmount 100
-  Damagefactor 0.5
-  States
-  {
-  Spawn:
-    ARM1 A 6
-    ARM1 B 7 Bright
-    Loop
-  }
+	Radius 20
+	Height 16
+	Inventory.PickupMessage "$GOTARMOR" // "Picked up the armor."
+	Inventory.Icon "ARM1A0"
+	Inventory.RespawnTics "99999999"
+	Inventory.MaxAmount 200
+	Inventory.Amount 100
+	States
+	{
+		Spawn:
+			ARM1 A 6
+			ARM1 B 7 Bright
+			Loop
+	}
 }
 
 ACTOR BlueArmorFiend : Basicarmorpickup
@@ -458,27 +375,6 @@ ACTOR Bluearmorgosimer : GosimersBlueArmorBonus
   Spawn:
     BON2 ABCDCB 6
     Loop
-  }
-}
-
-ACTOR BlueArmorMax : BasicArmorpickup
-{
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Inventory.PickupMessage "$GOTARMOR" // "Picked up the armor."
-  Inventory.Icon "ARM1A0"
-  Inventory.RespawnTics "99999999"
-  Armor.SavePercent 100
-  Damagefactor 0.5
-  Armor.SaveAmount 200
-  States
-  {
-  Spawn:
-    ARM2 A 6
-    ARM2 B 6 Bright
-    Loop
-
   }
 }
 

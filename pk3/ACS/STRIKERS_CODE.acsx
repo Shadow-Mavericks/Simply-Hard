@@ -25,6 +25,45 @@ function bool startsWithVowel(str string)
 	return false;
 }
 
+function int min (int a, int b)
+{
+	if (a < b)
+		return a;
+
+	return b;
+}
+
+function int max (int a, int b)
+{
+	if (a > b)
+		return a;
+
+	return b;
+}
+
+function int clamp(int in, int min, int max)
+{
+	int out = (in < min) ? min : in;
+	return (out > max) ? max : out;
+}
+
+// Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
+// to have basic, important functions that have existed since 2016.
+function str ACSUtils_ChangeFlagName(str flag, bool value)
+{
+	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:(!!value));
+}
+
+function void ChangeFlag(str flag, bool value)
+{
+	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
+}
+
+function void ChangeActorFlag(int tid, str flag, bool value)
+{
+	GiveActorInventory(tid, ACSUtils_ChangeFlagName(flag, value), 1);
+}
+
 // Kill script, for things like orbs, lives, and box drops.
 script "ON_KILL" KILL
 {
@@ -42,14 +81,8 @@ script "ON_KILL" KILL
 	int Damage = GetActorProperty(0, APROP_Damage);
 
 	// Base velocities for Orbs
-	int HOrbSpeed = GetActorProperty(0, APROP_Radius) / 4;
-	int VOrbSpeed = Height/6;
-
-	if(HOrbSpeed < 6.0)
-		HOrbSpeed = 6.0;
-
-	if(VOrbSpeed < 6.0)
-		VOrbSpeed = 6.0;
+	int HOrbSpeed = max(GetActorProperty(0, APROP_Radius) / 4, 6.0);
+	int VOrbSpeed = max(Height/6, 6.0);
 
 	int NumOrbs = 0;
 
@@ -88,6 +121,8 @@ script "ON_KILL" KILL
 		Thing_ChangeTID(TID, 0);
 	}
 
+	// Extra Life Drops
+	// ----------------
 	if(GetUserVariable(0, "user_extralife_chance") != -1) // -1 = No spawn
 	{
 		bool doLifeSpawn = false;
@@ -138,6 +173,8 @@ script "ON_KILL" KILL
 		}
 	}
 	
+	// ManCo Box Drops
+	// ---------------
 	if(GetUserVariable(0, "user_manncobox_chance") != -1)
 	{
 		bool doBoxSpawn = false;
@@ -386,11 +423,11 @@ function void actor_swap(str replace, str with, int chance)
 		
 		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
-		SetActorFlag(uTID, "DROPPED", dropped);
-		SetActorFlag(uTID, "AMBUSH", ambush);
-		SetActorFlag(uTID, "FRIENDLY", friendly);
-		SetActorFlag(uTID, "STEALTH", stealth);
-		SetActorFlag(uTID, "STANDSTILL", standstill);
+		ChangeActorFlag(uTID, "DROPPED", dropped);
+		ChangeActorFlag(uTID, "AMBUSH", ambush);
+		ChangeActorFlag(uTID, "FRIENDLY", friendly);
+		ChangeActorFlag(uTID, "STEALTH", stealth);
+		ChangeActorFlag(uTID, "STANDSTILL", standstill);
 		
 		if(GetCVar("sh_debug_spawns"))
 			log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with);
@@ -423,6 +460,8 @@ function void actor_swap(str replace, str with, int chance)
 #define GAMEEVENT_PLAYERLEAVESSERVER	15
 */
 
+#define ONE_16 (1<<16)
+
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	if(type == GAMEEVENT_ACTOR_DAMAGED)
@@ -439,6 +478,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		
 		bool doNumbers = false;
 		bool doTeamDamageScale = false;
+		bool directMonsterDamage = false;
 		bool wasConcussed = false;
 		bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
 
@@ -447,6 +487,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			
 		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 		{
+			directMonsterDamage = CheckFlag(0, "ISMONSTER");
+			
 			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
 			int falloffAmt = GetUserVariable(0, "user_falloff");
 			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
@@ -470,7 +512,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			wasConcussed = CheckActorClass(0, "ConcussionBlast");
 			if(CheckActorClass(0, "FistPuff") || wasConcussed)
 				yeetAmt = random(arg1 >> 2, arg1);
-			
+
 			if(GetCVar("sh_debug_damage"))
 				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
 		}
@@ -531,6 +573,44 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			
 			if(wasConcussed)
 				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+			
+			if(victimPlayerNum != -1)
+			{
+				if(CheckActorClass(0, "MaximusPrime"))
+				{
+					if(directMonsterDamage)
+						arg1 >>= 1; // Halve direct damage.
+
+					if(CheckInventory("MaxEnergyShield") > 0 && !directMonsterDamage)
+					{
+						// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
+						fixedDamage = arg1 << 16;
+						int shields = CheckInventory("MaxEnergyShield") << 16;
+						int healthDmg = 0;
+						
+						// The amount of shield energy left after taking *half* damage.
+						int halfShieldDmg = fixedDamage >> 1;
+						shields = max(0, shields - halfShieldDmg);
+						
+						if (shields < (50<<16))
+						{
+							// healthDmg += shieldDmg * (1 - shields/50.0)
+							int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
+							healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
+						}
+						
+						// Now take the other half away.
+						shields = max(0, shields - halfShieldDmg);
+						TakeInventory("MaxEnergyShield", 9999);
+						GiveInventory("MaxEnergyShield", shields>>16);
+						
+						arg1 = healthDmg>>16;
+						ActivatorSound("Max/ShieldDamage", 127);
+						
+						FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
+					}
+				}
+			}
 			
 			// KEEP THIS AT THE END!
 			SetResultValue(arg1);
@@ -997,10 +1077,12 @@ int tier1_numentries[2];
 MannCoBoxData_t tier1_good[] =
 {
 	{ "A Medical Bag.",					"MedBag",		75,		DELAY_NONE },
-	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	20,		DELAY_NONE },
-	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	15,		DELAY_NONE },
-	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	10,		DELAY_NONE },
-	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",	5,		DELAY_NONE },
+	{ "A Medkit.",						"Medkit",		40,		DELAY_NONE },
+	{ "A Berserk Pack.",				"BerserkPack",	30,		DELAY_NONE },
+	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	25,		DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	20,		DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	15,		DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",	10,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier1_bad[] =
@@ -1019,8 +1101,9 @@ int tier2_numentries[2];
 MannCoBoxData_t tier2_good[] =
 {
 	{ "A Medical Bag.",					"MedBag",			75,	DELAY_NONE },
+	{ "A Berserk Pack.",				"BerserkPack",		75,	DELAY_NONE },
 	{ "An Ammo Belt!",					"AmmoBelt",			75,	DELAY_NONE },
-	{ "A Depoloyable Shield.",			"Shield",			45,	DELAY_NONE },
+	{ "A Deployable Shield.",			"Shield",			45,	DELAY_NONE },
 	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
 	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
 	{ "An Ammo Expansion!",				"AmmoExpansion",	15,	DELAY_NONE },
@@ -1052,8 +1135,8 @@ MannCoBoxData_t tier3_good[] =
 	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",		30,	DELAY_NONE },
 	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		25,	DELAY_NONE },
 	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		20,	DELAY_NONE },
-	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		15,	DELAY_NONE },
-	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		10,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		18,	DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		15,	DELAY_NONE },
 	{ "An Extra Life!",					"ExtraLife",		30,	DELAY_NONE },
 	{ "A Gaster Blaster!",				"Gaster",			25,	DELAY_NONE },
 	{ "An Item Bundle!",				"Bundle",			25,	DELAY_NONE },
@@ -1070,7 +1153,7 @@ MannCoBoxData_t tier3_bad[] =
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
 	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
 	{ "A Bombing Run!",						"BombingRun",		25,	DELAY_LAUGH },
-	{ "A Kago Nest!",						"KagoNest",			10,	DELAY_NONE },
+	{ "A Kago Hive!",						"KagoHive",			10,	DELAY_NONE },
 };
 
 int tier4_totalweight[2];
@@ -1112,7 +1195,7 @@ MannCoBoxData_t tier5_good[] =
 	{ "An Energy Tank!", 				"ETank",		3,		DELAY_NONE },
 	{ "Legendary Armor!",				"WINRAR",		2,		DELAY_NONE },
 	{ "A Megasphere!",					"MegaSphere",	75,		DELAY_NONE },
-	{ "Barf Bonanza!",					"VomitAll",		50,		DELAY_NONE },
+	{ "A Barf Bonanza!",				"VomitAll",		50,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier5_bad[] =
@@ -1124,9 +1207,9 @@ MannCoBoxData_t tier5_bad[] =
 	{ "Corrupt Trio!",					"CorruptTrio",		50,		DELAY_BOSSLAUGH },
 	{ "Deja Vu!",						"DejaVu",			50,		DELAY_NONE },
 	{ "Kart Racists!",					"Kartrape",			50,		DELAY_NONE },
-	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	10,		DELAY_BOSSLAUGH },
-	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	10,		DELAY_BOSSLAUGH },
-	{ "A Horde of Ettins!",				"EttinHordeSpawn",	10,		DELAY_BOSSLAUGH },
+	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	15,		DELAY_BOSSLAUGH },
+	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	15,		DELAY_BOSSLAUGH },
+	{ "A Horde of Ettins!",				"EttinHordeSpawn",	15,		DELAY_BOSSLAUGH },
 };
 
 script "TALLY_WEIGHTS" OPEN

@@ -1,11 +1,23 @@
 #library "PlayerTicker"
 #include "Zcommon.acs"
 
+// Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
+// to have basic, important functions that have existed since 2016.
+function str ACSUtils_ChangeFlagName(str flag, bool value)
+{
+	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:(!!value));
+}
+
+function void ChangeFlag(str flag, bool value)
+{
+	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
+}
+
 //////////////////////
 // Player Tick Handler
 //////////////////////
 #define MAX_PLAYERS 64
-#define STATUS_UNUSED 0
+#define STATUS_ALARMVOL 0
 #define STATUS_GRAVITY 1
 
 int p_status[MAX_PLAYERS][2];
@@ -26,6 +38,10 @@ script "SV_PLAYERTICKER" OPEN
 				continue;
 
 			SetActivatorToPlayer(p);
+			
+			if(GetActorProperty(0, APROP_Health) <= 0)
+				continue;
+
 			//////////////////////////////////////////////
 			// Heavy Metal Effect
 			//////////////////////////////////////////////
@@ -51,11 +67,48 @@ script "SV_PLAYERTICKER" OPEN
 					Thing_Damage2(0, random(2, 4), "Burn");
 			}
 
-			// Ability Charge Regen
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
+				// Ability Charge Regen
 				if(CheckInventory("PowerStrength") && !(tickNum % 70))
 					GiveInventory("AbilityCharge", 1);
+
+				// Swap other armor types for Max's shield.
+				if(CheckInventory("BasicArmor") > 0)
+				{
+					if(CheckInventory("BasicArmor") > CheckInventory("MaxEnergyShield"))
+					{
+						TakeInventory("MaxEnergyShield", 9999);
+						GiveInventory("MaxEnergyShield", CheckInventory("BasicArmor"));
+					}
+
+					TakeInventory("BasicArmor", 9999);
+				}
+				
+				// Don't bleed if we're over 50 shield.
+				if(CheckInventory("MaxEnergyShield") > 50)
+				{
+					if(!CheckFlag(0, "NOBLOOD"))
+						ChangeFlag("NOBLOOD", true); //SetActorFlag("NOBLOOD", true);
+				}
+				else if(CheckFlag(0, "NOBLOOD"))
+					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
+			}
+			
+			// low health alarm
+			if(GetActorProperty(0, APROP_Health) < 35)
+			{
+				if(!(tickNum % 70))
+				{
+					if(p_status[p][STATUS_ALARMVOL] > 0.5)
+						p_status[p][STATUS_ALARMVOL] -= 0.1;
+
+					PlayActorSound(0, SOUND_Bounce, CHAN_BODY, p_status[p][STATUS_ALARMVOL], false, 1.0);
+				}
+			}
+			else
+			{
+				p_status[p][STATUS_ALARMVOL] = 1.0;
 			}
 		}
 		

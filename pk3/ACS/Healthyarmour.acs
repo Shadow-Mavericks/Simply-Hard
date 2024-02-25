@@ -50,22 +50,6 @@ script "CL_MedicalMonitor" enter clientside
 				{
 					Thing_SetTranslation(id, hp);
 				}
-				playeralarms[i][ALARM_VOLUME] = 1.0;
-			}
-			
-			// low health alarm
-			if(hp < 35)
-			{
-				if(playeralarms[i][ALARM_VOLUME] > 0.5)
-				{
-					playeralarms[i][ALARM_VOLUME]-=0.005;
-				}
-				playeralarms[i][ALARM_TIMER]++;
-				if(playeralarms[i][ALARM_TIMER] == 35*2)
-				{
-					 PlayActorSound (id, SOUND_Bounce, CHAN_BODY, playeralarms[i][ALARM_VOLUME], false, 1.0); 
-					 playeralarms[i][ALARM_TIMER] = 0;
-				}
 			}
 		}
 		hp_p = hp;

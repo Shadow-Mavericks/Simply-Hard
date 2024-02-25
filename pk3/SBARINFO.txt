@@ -2,8 +2,8 @@ Base Doom;
 CompleteBorder true;
 Resolution 320, 240;
 height 0;
-InterpolateHealth true, 4;
-InterpolateArmor true, 4;
+InterpolateHealth true, 8;
+InterpolateArmor true, 8;
 
 statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 {
@@ -270,7 +270,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		// ---------
 		drawimage "JKHLEFT", 0, -59;
 		DrawNumber 3, JKHLTFNT, Untranslated, Health, fillzeros, 28, -24;
-		Drawnumber 3, JKARMFNT, NeonLime, Armor, fillzeros, 38, -16;
+		Drawnumber 3, JKARMFNT, NeonLime, MaxEnergyShield, fillzeros, interpolate(8), 38, -16;
 
 		IfHealth 200 % { drawimage "JKHLTH10", 21, -38; }
 		else IfHealth 175 % { drawimage "JKHLTH09", 21, -38; }
@@ -285,16 +285,16 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 
 		DrawKeyBar 6, Vertical, Reverse, 8, 2, -61;
 		
-		InInventory "BasicArmor", 200 { drawimage "JKSHLD11", 12, -49; }
-		else InInventory "BasicArmor", 175 { drawimage "JKSHLD10", 12, -49; }
-		else InInventory "BasicArmor", 150 { drawimage "JKSHLD09", 12, -49; }
-		else InInventory "BasicArmor", 125 { drawimage "JKSHLD08", 12, -49; }
-		else InInventory "BasicArmor", 125 { drawimage "JKSHLD07", 12, -49; }
-		else InInventory "BasicArmor", 100 { drawimage "JKSHLD06", 12, -49; }
-		else InInventory "BasicArmor", 75 { drawimage "JKSHLD05", 12, -49; }
-		else InInventory "BasicArmor", 50 { drawimage "JKSHLD04", 12, -49; }
-		else InInventory "BasicArmor", 25 { drawimage "JKSHLD03", 12, -49; }
-		else InInventory "BasicArmor", 1 { drawimage "JKSHLD02", 12, -49; }
+		InInventory "MaxEnergyShield", 200 { drawimage "JKSHLD11", 12, -49; }
+		else InInventory "MaxEnergyShield", 175 { drawimage "JKSHLD10", 12, -49; }
+		else InInventory "MaxEnergyShield", 150 { drawimage "JKSHLD09", 12, -49; }
+		else InInventory "MaxEnergyShield", 125 { drawimage "JKSHLD08", 12, -49; }
+		else InInventory "MaxEnergyShield", 125 { drawimage "JKSHLD07", 12, -49; }
+		else InInventory "MaxEnergyShield", 100 { drawimage "JKSHLD06", 12, -49; }
+		else InInventory "MaxEnergyShield", 75 { drawimage "JKSHLD05", 12, -49; }
+		else InInventory "MaxEnergyShield", 50 { drawimage "JKSHLD04", 12, -49; }
+		else InInventory "MaxEnergyShield", 25 { drawimage "JKSHLD03", 12, -49; }
+		else InInventory "MaxEnergyShield", 1 { drawimage "JKSHLD02", 12, -49; }
 		else { drawimage "JKSHLD01", 12, -49; }
 		
 		Drawimage	 "AMXPBR00",	62,	-20;

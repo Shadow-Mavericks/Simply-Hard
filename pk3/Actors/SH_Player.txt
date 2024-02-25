@@ -481,19 +481,20 @@ actor MaximusPrime : DoomPlayer
 {
 	Speed 0.9
 	Gravity 0.75
-	Health 200
-	Player.MaxHealth 200
+	Health 100
+	Player.MaxHealth 100
 	Radius 16
 	Height 56
 	Mass 100
 	PainChance 255
 
-	DamageFactor 1
+	DamageFactor 1.0
 	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
 	DamageFactor "PlayerExplosivePuff", 0.0
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
+	DamageFactor "Electric", 0.75 // Max's class resists lightning a bit.
 
 	Player.DisplayName "Rebel Scum"
 	Player.CrouchSprite "PLYC"
@@ -502,7 +503,7 @@ actor MaximusPrime : DoomPlayer
 	Player.StartItem "DFFist"
 	Player.StartItem "DF_EnergyUnit", 100
 	Player.StartItem "MaxToken"
-	Player.Startitem "GreenArmorMax"
+	Player.Startitem "MaxEnergyShield", 100
 	BounceSound "PlayerHP/AlarmMax"
 	Player.JumpZ 10
 	Player.AirCapacity 3
@@ -548,7 +549,7 @@ actor MaximusPrime : DoomPlayer
 			
 		Pain.Electric:
 			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
-			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
+			//PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
 			
