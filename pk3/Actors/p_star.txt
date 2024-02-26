@@ -104,14 +104,14 @@ actor Star_Follower
             TNT1 A 0 A_Warp(AAPTR_TARGET, -12, 0, 0, 0, WARPF_NOCHECKPOSITION|WARPF_STOP)
             TNT1 A 1 A_SpawnItemEx("Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
             TNT1 A 0 A_CheckFlag("SOLID", "Spawn", AAPTR_TARGET)
-
+            goto Poof
         Poof:
             TNT1 A 0
             stop
 	}
 }
 
-actor Super_Follower 
+actor Super_Follower
 {
     +NOINTERACTION
 	+CLIENTSIDEONLY
@@ -127,14 +127,14 @@ actor Super_Follower
             TNT1 A 0 A_SpawnItemEx("Super_Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
             TNT1 A 1 A_SpawnItemEx("Super_Trail")
             TNT1 A 0 A_CheckFlag("SOLID", "Spawn", AAPTR_TARGET)
-            
+            goto Poof
         Poof:
             TNT1 A 0
             stop
 	}
 }
 
-actor Hyper_Follower 
+actor Hyper_Follower
 {
     +NOINTERACTION
 	+CLIENTSIDEONLY
@@ -153,31 +153,31 @@ actor Hyper_Follower
             TNT1 A 0 A_SpawnItemEx("Hyper_Star_Blue", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
             TNT1 A 0 A_SpawnItemEx("Hyper_Star_Yellow", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
             TNT1 A 0 A_Jump(255, "t1", "t2", "t3", "t4", "t5")
-            
+
             t1:
             TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Green")
             goto cont
-            
+
             t2:
             TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Red")
             goto cont
-            
+
             t3:
             TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Purple")
             goto cont
-            
+
             t4:
             TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Blue")
             goto cont
-            
+
             t5:
             TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Yellow")
 
             cont:
             TNT1 A 0 A_CheckFlag("SOLID", "Spawn", AAPTR_TARGET)
-            
+
         Poof:
-            TNT1 A 0 
+            TNT1 A 0
             stop
 	}
 }
@@ -190,13 +190,12 @@ actor Hyper_Follower
 
 actor Star : Particle_Base
 {
-    
 	Scale 0.05
 	States
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
 			STR1 AFEDCBA 1 bright
 			stop
 	}
@@ -209,7 +208,7 @@ actor Ring_Star : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
 			STR2 AFEDCBA 1 bright
 			stop
 	}
@@ -222,7 +221,7 @@ actor Super_Star : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
 			STR7 AFEDCBA 1 bright
 			stop
 	}
@@ -235,7 +234,7 @@ actor Hyper_Star_Green : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
 			STR3 AFEDCBA 1 bright
 			stop
 	}
@@ -248,7 +247,7 @@ actor Hyper_Star_Red : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
 			STR4 AFEDCBA 1 bright
 			stop
 	}
@@ -261,7 +260,7 @@ actor Hyper_Star_Purple : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
 			STR5 AFEDCBA 1 bright
 			stop
 	}
@@ -274,7 +273,7 @@ actor Hyper_Star_Blue : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
 			STR6 AFEDCBA 1 bright
 			stop
 	}
@@ -287,7 +286,7 @@ actor Hyper_Star_Yellow : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
+			TNT1 A 0 ThrustThingZ(0, random(25,45), 0, 0)
 			STR7 AFEDCBA 1 bright
 			stop
 	}
@@ -304,7 +303,7 @@ actor Super_Trail : Particle_Base
 	{
 		Spawn:
 			TNT1 A 0
-            TNT1 A 48
+			TNT1 A 48
 			stop
 	}
 }

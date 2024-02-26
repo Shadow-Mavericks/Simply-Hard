@@ -74,15 +74,16 @@ script "SV_PLAYERTICKER" OPEN
 					GiveInventory("AbilityCharge", 1);
 
 				// Swap other armor types for Max's shield.
-				if(CheckInventory("BasicArmor") > 0)
+				if(CheckInventory("BasicArmor") != CheckInventory("MaxEnergyShield"))
 				{
 					if(CheckInventory("BasicArmor") > CheckInventory("MaxEnergyShield"))
 					{
-						TakeInventory("MaxEnergyShield", 9999);
+						TakeInventory("MaxEnergyShield", 99999);
 						GiveInventory("MaxEnergyShield", CheckInventory("BasicArmor"));
 					}
 
-					TakeInventory("BasicArmor", 9999);
+					TakeInventory("BasicArmor", 99999);
+					GiveInventory("NullArmorHack", CheckInventory("MaxEnergyShield"));
 				}
 				
 				// Don't bleed if we're over 50 shield.
@@ -94,7 +95,40 @@ script "SV_PLAYERTICKER" OPEN
 				else if(CheckFlag(0, "NOBLOOD"))
 					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
 			}
-			
+		}
+		
+		SetActivator(-1);
+		delay(1);
+	}
+}
+
+script "CL_PLAYERTICKER" OPEN CLIENTSIDE
+{
+	int tickNum = 0;
+	SetActivator(-1);
+
+	while(1)
+	{
+		tickNum++;
+		for(int p = 0; p < MAX_PLAYERS; p++)
+		{
+			if(!PlayerInGame(p))
+				continue;
+
+			SetActivatorToPlayer(p);
+
+			if(GetActorProperty(0, APROP_Health) <= 0)
+				continue;
+
+			/////////////////////////////////////////////
+			// Blinded Lightning Bolt Effect
+			/////////////////////////////////////////////
+			if(CheckInventory("Debuff_Blind"))
+			{
+				if(!(tickNum % 3))
+					Spawn("Particle_Lightning7", GetActorX(0), GetActorY(0), GetActorZ(0) + 30.0, 0, 0);
+			}
+
 			// low health alarm
 			if(GetActorProperty(0, APROP_Health) < 35)
 			{
@@ -111,8 +145,5 @@ script "SV_PLAYERTICKER" OPEN
 				p_status[p][STATUS_ALARMVOL] = 1.0;
 			}
 		}
-		
-		SetActivator(-1);
-		delay(1);
 	}
 }

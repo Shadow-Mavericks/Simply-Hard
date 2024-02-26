@@ -163,23 +163,23 @@ ACTOR FiendsGreenArmorBonus : BasicArmorBonus
 
 ACTOR DispenserArmorBonus : BasicArmorBonus
 {
-  Radius 20
-  Height 16
-  +INVENTORY.QUIET
-  Inventory.Icon "ARM1A0"
-  Inventory.PickupSound ""
-  Inventory.RespawnTics "99999999"
-  Armor.SavePercent 100
-  Armor.SaveAmount 5
-  Armor.MaxSaveAmount 500
-  +COUNTITEM
-  +INVENTORY.ALWAYSPICKUP
-  States
-  {
-  Spawn:
-    BON2 ABCDCB 6
-    Loop
-  }
+	Radius 20
+	Height 16
+	+INVENTORY.QUIET
+	Inventory.Icon "ARM1A0"
+	Inventory.PickupSound ""
+	Inventory.RespawnTics "99999999"
+	Armor.SavePercent 100
+	Armor.SaveAmount 5
+	Armor.MaxSaveAmount 500
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+		Spawn:
+			BON2 ABCDCB 6
+			Loop
+	}
 }
 
 ACTOR KunaisRedArmorBonus : BasicArmorBonus
@@ -289,6 +289,12 @@ ACTOR GreenArmorGosimer : GosimersBlueArmorBonus
     BON2 ABCDCB 6
     Loop
   }
+}
+
+ACTOR NullArmorHack : BasicArmorPickup // Needed for Max's energy shield.
+{
+	Armor.SavePercent 0
+	Armor.SaveAmount 1
 }
 
 ACTOR MaxEnergyShield : Inventory

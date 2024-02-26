@@ -601,8 +601,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						
 						// Now take the other half away.
 						shields = max(0, shields - halfShieldDmg);
-						TakeInventory("MaxEnergyShield", 9999);
+						TakeInventory("MaxEnergyShield", 99999);
 						GiveInventory("MaxEnergyShield", shields>>16);
+
+						TakeInventory("BasicArmor", 99999);
+						GiveInventory("NullArmorHack", shields>>16);
 						
 						arg1 = healthDmg>>16;
 						ActivatorSound("Max/ShieldDamage", 127);

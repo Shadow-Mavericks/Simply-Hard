@@ -1,7 +1,5 @@
 PlayerIDs
 PlayerTicker
-Particle_manager
-healthyarmour
 ExtraLifeThingy
 Backpackexpander
 DIVSHADW
