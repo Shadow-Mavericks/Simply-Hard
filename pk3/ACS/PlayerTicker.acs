@@ -145,5 +145,8 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 				p_status[p][STATUS_ALARMVOL] = 1.0;
 			}
 		}
+
+		SetActivator(-1);
+		delay(1);
 	}
 }
