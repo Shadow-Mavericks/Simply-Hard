@@ -998,31 +998,22 @@ script "AMMO_PICKUP" (int type, int dropped)
 // Clientside Pickup Transformation
 // --------------------------------
 
-str playerClassName = "None";
-function void updateClass(void)
-{
-	if((ConsolePlayerNumber() == PlayerNumber()) && (ConsolePlayerNumber() != -1))
-	{
-		playerClassName = GetActorClass(0);
-		if(GetCVar("sh_debug_classes"))
-			log(s:"DEBUG: class is ", s:playerClassName);
-	}
-}
-
-script "GET_CLASS" ENTER CLIENTSIDE
-{
-	updateClass();
-}
-
-script "GET_CLASS_RESPAWN" RESPAWN CLIENTSIDE
-{
-	updateClass();
-}
-
 script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 {
+	if(ConsolePlayerNumber() == -1)
+		terminate;
+
+	int oldTID = ActivatorTID();
+	int newTID = UniqueTID();
+	Thing_ChangeTID(0, newTID);
+	
+	SetActivatorToPlayer(ConsolePlayerNumber());
+	str playerClassName = GetActorClass(0);
+	
+	SetActivator(newTID);
 	if(!SetActorState(0, playerClassName, false))
 		SetActorState(0, "Base", false);
+	Thing_ChangeTID(0, oldTID);
 }
 
 // -----------------------------
