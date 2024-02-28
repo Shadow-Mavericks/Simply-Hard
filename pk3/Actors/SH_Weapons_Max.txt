@@ -368,10 +368,16 @@ actor GoldAssaultCannonMissile : AssaultCannonMissile
 	}
 }
 
-actor Cutshot : Inventory
+actor CutterBarrelTracker : Inventory
 {
 	inventory.amount 1
 	inventory.maxamount 5
+}
+
+actor QuadConcBarrelTracker : Inventory
+{
+	inventory.amount 1
+	inventory.maxamount 1
 }
 
 actor Bullet : FastProjectile
@@ -567,34 +573,98 @@ actor ConcRifle : Weapon
 	states
 	{
 		Select:
+			CONC A 0 A_JumpIfInventory ("Tier6upgradetoken", 1, "GoldSelect")
 			CONC A 1 A_Raise
-			NULL AA 0 A_Raise
+			CONC AA 0 A_Raise
 			loop
+		
 		Deselect:
+			CONC A 0 A_JumpIfInventory ("Tier6upgradetoken", 1, "GoldDeselect")
 			CONC A 1 A_Lower
-			NULL AA 0 A_Lower
+			CONC AA 0 A_Lower
 			loop
+		
 		Ready:
+			CONC A 0 A_JumpIfInventory ("Tier6upgradetoken", 1, "GoldReady")
 			CONC A 1 A_WeaponReady
 			Loop
+		
 		Fire:
 			CONC B 0 A_JumpIfNoAmmo("DryFire")
+			CONC B 0 A_JumpIfInventory ("Tier6upgradetoken", 1, "GoldFire")
 			CONC B 0 A_GunFlash
-			CONC B 0 A_PlaySound ("Max/ConcRifle")
+			CONC B 0 A_PlaySound ("Max/ConcRifle", CHAN_WEAPON)
 			CONC B 14 bright A_FireCustomMissile ("ConcussionBlast", 0, CallACS("SUPERCHARGE_CHECK"), 5, 0, 0)
 			CONC C 4 bright
 			CONC A 10
 			CONC A 0 A_ReFire
 			Goto Ready
+			
 		DryFire:
 			CONC A 0 A_PlaySound("Max/ConcDryFire", CHAN_WEAPON)
+			CONC A 0 A_JumpIfInventory ("Tier6upgradetoken", 1, "GoldDryFire")
 			CONC A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 			COCC A 0 A_Refire
 			goto Ready
+
 		Flash:
 			TNT1 A 7 bright A_Light1
 			TNT1 A 7 bright A_Light0
 			stop
+
+		GoldSelect:
+			QUAD A 1 A_Raise
+			QUAD AA 0 A_Raise
+			loop
+		GoldDeselect:
+			QUAD A 1 A_Lower
+			QUAD AA 0 A_Lower
+			loop
+		GoldReady:
+			QUAD A 1 A_WeaponReady
+			loop
+		GoldFire:
+			QUAD B 0 A_JumpIfInventory("QuadConcBarrelTracker", 1, "GoldFire2")
+			QUAD B 0 A_GunFlash
+			QUAD B 0 A_PlaySound ("Max/ConcRifle", CHAN_WEAPON)
+			QUAD B 0 A_FireCustomMissile ("ConcussionBlast", frandom(0.0, 1.5), CallACS("SUPERCHARGE_CHECK"), 3, -1, 0, frandom(-0.75, 0.75))
+			QUAD B 0 A_FireCustomMissile ("ConcussionBlast", frandom(-1.5, 0.0), CallACS("SUPERCHARGE_CHECK"), 9, -1, 0, frandom(-0.75, 0.75))
+			QUAD B 0 A_GiveInventory("QuadConcBarrelTracker", 1)
+			QUAD B 2 bright A_Quake (1.0, 6, 0, 64, "")
+			QUAD C 1 Offset(2, 34)
+			QUAD C 1 Offset(4, 36)
+			QUAD D 1 Offset(6, 38)
+			QUAD D 1 Offset(8, 40)
+			QUAD A 1 Offset(9, 41)
+			QUAD A 1 Offset(6, 38)
+			QUAD A 1 Offset(2, 34)
+			QUAD A 1 Offset(1, 33)
+			QUAD A 18 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH | WRF_NOBOB) // Clear Offsets
+			QUAD A 0 A_ReFire
+			Goto Ready
+		GoldFire2:
+			QUAD E 0 A_GunFlash
+			QUAD E 0 A_PlaySound ("Max/ConcRifle", CHAN_WEAPON)
+			QUAD E 0 A_FireCustomMissile ("ConcussionBlast", frandom(0.0, 1.5), CallACS("SUPERCHARGE_CHECK"), 3, 3, 0, frandom(-0.75, 0.75))
+			QUAD E 0 A_FireCustomMissile ("ConcussionBlast", frandom(-1.5, 0.0), CallACS("SUPERCHARGE_CHECK"), 9, 3, 0, frandom(-0.75, 0.75))
+			QUAD E 0 A_TakeInventory("QuadConcBarrelTracker", 1)
+			QUAD E 2 bright A_Quake (1.0, 6, 0, 64, "")
+			QUAD F 1 Offset(3, 34)
+			QUAD F 1 Offset(6, 36)
+			QUAD G 1 Offset(9, 38)
+			QUAD G 1 Offset(12, 40)
+			QUAD A 1 Offset(13, 41)
+			QUAD A 1 Offset(6, 38)
+			QUAD A 1 Offset(2, 34)
+			QUAD A 1 Offset(1, 33)
+			QUAD A 18 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH | WRF_NOBOB) // Clear Offsets
+			QUAD A 0 A_ReFire
+			Goto Ready
+		GoldDryFire:
+			QUAD A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
+			QUAD A 0 A_Refire
+			goto GoldReady
+	
 		Spawn:
 			CRIF A -1
 			Stop
@@ -830,50 +900,50 @@ actor FusionCutter : Weapon
 		Fire:
 			TNT1 A 0 A_JumpIfNoAmmo("DryFire")
 			TNT1 A 0 A_JumpIfInventory ("Tier3upgradetoken", 1, "GoldFire")
-			FUSI A 0 A_JumpIfInventory("Cutshot", 1, "Fire2")
+			FUSI A 0 A_JumpIfInventory("CutterBarrelTracker", 1, "Fire2")
 			FUSI A 0 A_GunFlash
 			FUSI A 0 A_PlaySound("Max/fusion", CHAN_WEAPON)
 			FUSI B 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
-			FUSI A 4 A_GiveInventory ("Cutshot", 1)
+			FUSI A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire2:
-			FUSI A 0 A_JumpIfInventory("Cutshot", 2, "Fire3")
+			FUSI A 0 A_JumpIfInventory("CutterBarrelTracker", 2, "Fire3")
 			FUSI C 0 A_GunFlash
 			FUSI C 0 A_PlaySound("Max/fusion", CHAN_WEAPON)
 			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
-			FUSI A 4 A_GiveInventory ("Cutshot", 1)
+			FUSI A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire3:
-			FUSI A 0 A_JumpIfInventory("Cutshot", 3, "Fire4")
+			FUSI A 0 A_JumpIfInventory("CutterBarrelTracker", 3, "Fire4")
 			FUSI D 0 A_GunFlash
 			FUSI D 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
 			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
-			FUSI A 4 A_GiveInventory ("Cutshot", 1)
+			FUSI A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire4:
-			FUSI A 0 A_JumpIfInventory("Cutshot", 4, "Fire5")
+			FUSI A 0 A_JumpIfInventory("CutterBarrelTracker", 4, "Fire5")
 			FUSI E 0 A_GunFlash
 			FUSI E 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
 			FUSI E 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 12, -3, 0)
-			FUSI A 4 A_GiveInventory ("Cutshot", 1)
+			FUSI A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire5:
-			FUSI A 0 A_JumpIfInventory("Cutshot", 5, "Fire6")
+			FUSI A 0 A_JumpIfInventory("CutterBarrelTracker", 5, "Fire6")
 			FUSI D 0 A_GunFlash
 			FUSI D 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
 			FUSI D 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
-			FUSI A 4 A_GiveInventory ("Cutshot", 1)
+			FUSI A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		Fire6:
 			FUSI C 0 A_GunFlash
 			FUSI C 0 A_PlaySound ("Max/fusion", CHAN_WEAPON)
 			FUSI C 4 bright A_FireCustomMissile ("CutBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
-			FUSI A 4 A_TakeInventory ("Cutshot", 5)
+			FUSI A 4 A_TakeInventory ("CutterBarrelTracker", 5)
 			FUSI A 1 A_ReFire
 			Goto Ready
 		AltFire:
@@ -912,50 +982,50 @@ actor FusionCutter : Weapon
 			FUS2 A 0 A_Refire
 			goto GoldReady
 		GoldFire:
-			FUS2 A 0 A_JumpIfInventory("Cutshot", 1, "GoldFire2")
+			FUS2 A 0 A_JumpIfInventory("CutterBarrelTracker", 1, "GoldFire2")
 			TNT1 A 0 A_GunFlash
 			TNT1 A 0 A_PlaySound ("Max/Goob")
 			FUS2 B 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -12, 0, 0)
-			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
+			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire2:
-			TNT1 A 0 A_JumpIfInventory("Cutshot", 2, "GoldFire3")
+			TNT1 A 0 A_JumpIfInventory("CutterBarrelTracker", 2, "GoldFire3")
 			FUS2 C 0 A_GunFlash
 			FUS2 C 0 A_PlaySound ("Max/Goob")
 			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
-			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
+			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire3:
-			TNT1 A 0 A_JumpIfInventory("Cutshot", 3, "GoldFire4")
+			TNT1 A 0 A_JumpIfInventory("CutterBarrelTracker", 3, "GoldFire4")
 			FUS2 D 0 A_GunFlash
 			FUS2 D 0 A_PlaySound ("Max/Goob")
 			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
-			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
+			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire4:
-			TNT1 A 0 A_JumpIfInventory("Cutshot", 4, "GoldFire5")
+			TNT1 A 0 A_JumpIfInventory("CutterBarrelTracker", 4, "GoldFire5")
 			FUS2 E 0 A_GunFlash
 			FUS2 E 0 A_PlaySound ("Max/Goob")
 			FUS2 E 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 12, -3, 0)
-			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
+			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire5:
-			TNT1 A 0 A_JumpIfInventory("Cutshot", 5, "GoldFire6")
+			TNT1 A 0 A_JumpIfInventory("CutterBarrelTracker", 5, "GoldFire6")
 			FUS2 D 0 A_GunFlash
 			FUS2 D 0 A_PlaySound ("Max/Goob", CHAN_WEAPON)
 			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
-			FUS2 A 4 A_GiveInventory ("Cutshot", 1)
+			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire6:
 			FUS2 C 0 A_GunFlash
 			FUS2 C 0 A_PlaySound ("Max/Goob")
 			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
-			FUS2 A 4 A_TakeInventory ("Cutshot", 5)
+			FUS2 A 4 A_TakeInventory ("CutterBarrelTracker", 5)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldAltFire:
