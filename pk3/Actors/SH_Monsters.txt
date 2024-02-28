@@ -2221,6 +2221,7 @@ ACTOR GasterBlasterFollower
 	+NOINFIGHTING
 	+NOTAUTOAIMED
 	+PUSHABLE
+	-SOLID
 	-COUNTKILL
 	SeeSound "Gaster/sight"
 	PainSound "Gaster/pain"

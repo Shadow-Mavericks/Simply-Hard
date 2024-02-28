@@ -1,4 +1,5 @@
 #include "actors/SH_BaseActors.txt"
+#include "actors/SH_Hax.txt"
 
 #include "actors/Elemental_Champions/n_base_objects.txt"
 

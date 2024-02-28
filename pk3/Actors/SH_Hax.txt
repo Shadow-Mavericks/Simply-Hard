@@ -1,0 +1,46 @@
+// Hacks to work around Zandronum's woefully bullshit and out of date code.
+
+ACTOR NullArmorHack : BasicArmorPickup // Needed for Max's energy shield.
+{
+	Armor.SavePercent 0
+	Armor.SaveAmount 1
+}
+
+actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.InterHubAmount 9999
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
+actor DamageTallyHack : Inventory // Hack to track damage for numbers.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.InterHubAmount 9999
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
+actor HealthDisplayHack : Inventory // Hack because Zandronum lacks the "ifhealth" SBARINFO token.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.InterHubAmount 9999
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}

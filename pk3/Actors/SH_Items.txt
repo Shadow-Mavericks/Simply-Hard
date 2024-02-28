@@ -291,12 +291,6 @@ ACTOR GreenArmorGosimer : GosimersBlueArmorBonus
   }
 }
 
-ACTOR NullArmorHack : BasicArmorPickup // Needed for Max's energy shield.
-{
-	Armor.SavePercent 0
-	Armor.SaveAmount 1
-}
-
 ACTOR MaxEnergyShield : Inventory
 {
 	Radius 20
@@ -2071,44 +2065,5 @@ actor ExtraLifeThingy : CustomInventory
 		Failure:
 			TNT1 A 0
 			fail
-	}
-}
-
-actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
-{
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	+INVENTORY.NEVERRESPAWN
-	-INVENTORY.INTERHUBSTRIP
-	States
-	{
-		Spawn:
-			ONEM A 1 Bright
-			stop
-	}
-}
-
-actor DamageTallyHack : Inventory // Hack to track damage for numbers.
-{
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	+INVENTORY.NEVERRESPAWN
-	States
-	{
-		Spawn:
-			TNT1 A 1 Bright
-			stop
 	}
 }

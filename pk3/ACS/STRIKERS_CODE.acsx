@@ -511,7 +511,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			
 			wasConcussed = CheckActorClass(0, "ConcussionBlast");
 			if(CheckActorClass(0, "FistPuff") || wasConcussed)
-				yeetAmt = random(arg1 >> 2, arg1);
+			{
+				int yeetForceBase = arg1;
+				yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
+			}
 
 			if(GetCVar("sh_debug_damage"))
 				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
@@ -530,10 +533,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				
 				// Gosimer's Berserk Buff
 				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
-				{
 					arg1 += 1;
-					//SetResultValue(arg1);
-				}
 				
 				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
 					doTeamDamageScale = true;
@@ -549,13 +549,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				int teamDamage = GetCvar("teamdamage");
 				fixedDamage = arg1 << 16;
 				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
-				//SetResultValue(arg1);
 			}
 		}
 
 		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 		{
-			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST") && !CheckFlag(0, "FLOAT"))
+			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST"))
 			{
 				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
 				if(assMass <= 0)
@@ -568,7 +567,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						yeetAmt = 1; // We always do a little bit of yeeting.
 				}
 				
-				ThrustThingZ(0, yeetAmt, 0, 1);
+				if(!CheckFlag(0, "FLOAT"))
+					ThrustThingZ(0, yeetAmt, 0, 1);
+					
+				if(wasConcussed)
+					ChangeFlag("BLASTED", true);
 			}
 			
 			if(wasConcussed)
