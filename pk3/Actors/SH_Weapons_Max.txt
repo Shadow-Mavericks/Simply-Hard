@@ -1159,7 +1159,7 @@ actor Autogun : Weapon
 		GoldHold:
 			NULL A 0 A_GunFlash
 			NULL A 0 A_PlaySound ("Max/GAutoloop", CHAN_WEAPON, 1, 1)
-			GYRO C 3
+			GYRO C 2
 			GYRO B 2 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			GYRO C 2 Bright
 			GYRO C 0 A_ReFire
