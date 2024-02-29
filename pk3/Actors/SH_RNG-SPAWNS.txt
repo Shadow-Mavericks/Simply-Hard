@@ -43,7 +43,7 @@ Actor Imps : RandomSpawner Replaces Doomimp
 	Dropitem "N_Imp_Heavymetal"		255 5
 	Dropitem "N_Imp_Ice"			255 5
 	Dropitem "RocketImp"			255 5
-	Dropitem "Vulgar"				255 5
+	Dropitem "SH_Vulgar"			255 5
 	Dropitem "BlackHoleImp"			255 5
 }
 

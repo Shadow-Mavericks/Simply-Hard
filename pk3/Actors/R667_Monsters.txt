@@ -14497,93 +14497,92 @@ Actor EttinMaceProjectile
   }
 }
 
-actor Vulgar : DoomImp 30127
+actor SH_Vulgar : DoomImp
 {
-  obituary "%o was poisoned by a vulgar."
-  hitobituary "A Vulgar had %o for lunch."
-  health 70
-  radius 20
-  height 56
-  mass 120
-  speed 8
-  painchance 180
-  MeleeDamage 4
-  +DONTHURTSPECIES
-  seesound "monster/vulsit"
-  painsound "monster/vulpai"
-  deathsound "monster/vuldth"
-  activesound "monster/vulact"
-  meleesound "monster/vulhit"
-  MONSTER
-  +FLOORCLIP
-  states
-  {
-  Spawn:
-    VULG AB 10 A_Look
-    loop
-  See:
-    VULG AABBCCDD 3 A_Chase
-    loop
-  Melee:
-    Missile:
-    VULG E 8 A_FaceTarget
-    VULG F 1 A_PlaySound("monster/vulswg")
-    VULG F 7 A_FaceTarget
-    VULG G 6 A_MeleeAttack
-    goto See
-  Missile:
-    VULG EF 8 A_FaceTarget
-    VULG G 6 A_CustomMissile("VulgarShot",37,0,0,0,0)
-    goto See
-  Pain:
-    VULG H 2
-    VULG H 2 A_Pain
-    goto See
-  Death:
-    VULG I 8
-    VULG J 8 A_Scream
-    VULG KL 6
-    VULG M 6 A_NoBlocking
-    VULG N -1
-    stop
-  XDeath:
-    VULG O 5
-    VULG P 5 A_XScream
-    VULG Q 5
-    VULG R 5 A_NoBlocking
-    VULG STU 5
-    VULG V -1
-    stop
-  Raise:
-    VULG ML 8
-    VULG KJI 6
-    goto See
-  }
+	obituary "%o was poisoned by a vulgar."
+	hitobituary "A Vulgar had %o for lunch."
+	health 70
+	radius 20
+	height 56
+	mass 120
+	speed 8
+	painchance 180
+	MeleeDamage 4
+	seesound "monster/vulsit"
+	painsound "monster/vulpai"
+	deathsound "monster/vuldth"
+	activesound "monster/vulact"
+	meleesound "monster/vulhit"
+	MONSTER
+	+DONTHURTSPECIES
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			VULG AB 10 A_Look
+			loop
+		See:
+			VULG AABBCCDD 3 A_Chase
+			loop
+		Melee:
+			VULG E 8 A_FaceTarget
+			VULG F 1 A_PlaySound("monster/vulswg")
+			VULG F 7 A_FaceTarget
+			VULG G 6 A_MeleeAttack
+			goto See
+		Missile:
+			VULG EF 8 A_FaceTarget
+			VULG G 6 A_CustomMissile("VulgarShot",37,0,0,0,0)
+			goto See
+		Pain:
+			VULG H 2
+			VULG H 2 A_Pain
+			goto See
+		Death:
+			VULG I 8
+			VULG J 8 A_Scream
+			VULG KL 6
+			VULG M 6 A_NoBlocking
+			VULG N -1
+			stop
+		XDeath:
+			VULG O 5
+			VULG P 5 A_XScream
+			VULG Q 5
+			VULG R 5 A_NoBlocking
+			VULG STU 5
+			VULG V -1
+			stop
+		Raise:
+			VULG ML 8
+			VULG KJI 6
+			goto See
+	}
 }
 
 ACTOR VulgarShot
 {
-   Radius 8
-   Height 16
-   Speed 10
-   Damage 4
-   PoisonDamage 32
-   RENDERSTYLE ADD
-   ALPHA 0.67
-   PROJECTILE
-   +THRUGHOST
-   Seesound "monster/vulsh1"
-   DeathSound "monster/vulsh2"
-   Decal "DoomImpScorch"
-   States
-   {
-   Spawn:
-      FVUL AAABBB 1 Bright A_SpawnItemEx("BarbTrail",0,0,0,0,0,0,0,128,0)
-      loop
-   Death:
-      FVUL CDEF 4 Bright
-      stop
-   }
+	Radius 8
+	Height 16
+	Speed 10
+	Damage 4
+	PoisonDamage 32
+	RENDERSTYLE ADD
+	ALPHA 0.67
+	Seesound "monster/vulsh1"
+	DeathSound "monster/vulsh2"
+	Decal "DoomImpScorch"
+	PROJECTILE
+	+THRUGHOST
+	States
+	{
+		Spawn:
+			FVUL AAABBB 1 Bright A_SpawnItemEx("BarbTrail",0,0,0,0,0,0,0,128,0)
+			loop
+		Death:
+			FVUL CDEF 4 Bright
+			stop
+	}
 }
 
 ACTOR Barbtrail
