@@ -66,7 +66,7 @@ ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did 
 		GNTR A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldfire")
 		GNTR A 1 A_Gunflash
 		GNTR B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
-		GNTR B 0 A_FireCustomMissile("Nadez",0,1,0,0,0,7)
+		GNTR B 0 A_FireCustomMissile("BouncyNadez",0,1,0,0,0,7)
 		GNTR CDE 1 Bright
 		GNTR FA 2
 		GNTR A 0 A_Jumpifnoammo("Ready")
@@ -85,7 +85,7 @@ ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did 
 		GNTR A 0 A_Jumpifinventory("Tier5upgradetoken",1,"Goldaltfire")
 		GNTR A 1 A_Gunflash
 		GNTR B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
-		GNTR B 0 A_FireCustomMissile("ALTNadez",0,1,0,0,0,7)
+		GNTR B 0 A_FireCustomMissile("ImpactNadez",0,1,0,0,0,7)
 		GNTR CDE 1 Bright
 		GNTR FA 2
 		GNTR A 0 A_Jumpifnoammo("Ready")
@@ -113,7 +113,7 @@ ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did 
 		GNTG A 1
 		GNTG A 0 A_Gunflash
 		GNTG B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
-		GNTR B 0 A_FireCustomMissile("CritNadez",0,1,0,0,0,7)
+		GNTR B 0 A_FireCustomMissile("CritBouncyNadez",0,1,0,0,0,7)
 		GNTG CDE 1 Bright
 		GNTG FA 2
 		GNTR A 0 A_Jumpifnoammo("Ready")
@@ -132,7 +132,7 @@ ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did 
 		GNTG A 1
 		GNTG A 0 A_Gunflash
 		GNTG B 1 Bright A_Playsound ("Gosimer/GrenadeL_POOT",Chan_weapon)
-		GNTR B 0 A_FireCustomMissile("ALTCritNadez",0,1,0,0,0,7)
+		GNTR B 0 A_FireCustomMissile("CritImpactNadez",0,1,0,0,0,7)
 		GNTG CDE 1 Bright
 		GNTG FA 2
 		GNTG A 0 A_Jumpifnoammo("Ready")

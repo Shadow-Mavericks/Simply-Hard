@@ -2934,23 +2934,17 @@ ACTOR REDChannelerTrail
 
 //Quake 2 Grenade  //CodeBase from HFC2X
 
-Actor Nadez
+Actor Nadez_Base
 {
 	Radius 8
 	Height 8
 	Speed 40
 	Damage 20
-	DamageType Fire
 	Gravity 0.5
-
-	BounceType Doom
-	BounceSound "Weapon/nadebounce"
-
 	Projectile
 	-NOGRAVITY
 	+NOTIMEFREEZE
 	+GRENADETRAIL
-	+EXPLODEONDEATH
 	States
 	{
 		Spawn:
@@ -2967,20 +2961,9 @@ Actor Nadez
 	}
 }
 
-Actor ALTNadez : Nadez
+Actor CritNadez_Base : Nadez_Base
 {
-	Speed 40
-	Damage 40
-	BounceType None
-	-DOOMBOUNCE
-	-BOUNCEONACTORS
-	-BOUNCEONFLOORS
-	-BOUNCEONWALLS
-}
-
-Actor Critnadez : Nadez
-{
-	Damage 40
+	DamageType Fire
 	SeeSound "Weapons/GrenLF"
 	+FORCERADIUSDMG
 	+EXTREMEDEATH
@@ -3000,15 +2983,29 @@ Actor Critnadez : Nadez
 	}
 }
 
-Actor ALTCritnadez : Critnadez
+Actor BouncyNadez : Nadez_Base
+{
+	BounceType Doom
+	BounceSound "Weapon/nadebounce"
+}
+
+Actor ImpactNadez : Nadez_Base
+{
+	Speed 40
+	Damage 40
+}
+
+Actor CritBouncyNadez : CritNadez_Base
+{
+	BounceType Doom
+	BounceSound "Weapon/nadebounce"
+	Damage 40
+}
+
+Actor CritImpactNadez : CritNadez_Base
 {
 	Speed 40
 	Damage 60
-	BounceType None
-	-DOOMBOUNCE
-	-BOUNCEONACTORS
-	-BOUNCEONFLOORS
-	-BOUNCEONWALLS
 }
 
 Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
@@ -3200,155 +3197,9 @@ Actor FiendsPlasma4 : Plasmaball //Sprites by Kunai Kitsune
 		Loop
 	Death:
 		NULL A 0 //A_SpawnItem("PlasmaExplosion")
-	Stop
+		Stop
 	}
 }
-
-
-/*
-Actor GosimersPlasma : Plasmaball
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 1
-	Speed 15
-	+ripper
-	var int user_theta;
-	Damage (Random(75,100))
-	States
-	{
-	Spawn:
-		TBAL C 15 bright A_SetUserVar("user_theta",0)
-	//	loop
-	Death:
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("Critnadez",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_JumpIf(user_theta==360,"Death2")
-		loop
-	Death2:
-		NULL A 0
-	Stop
-	}
-}
-
-Actor GosimersPlasma3 : Plasmaball
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 1.25
-	Speed 7
-	+ripper
-	var int user_theta;
-	Damage (Random(10,40))
-	States
-	{
-	Spawn:
-		TBAL B 15 bright A_SetUserVar("user_theta",0)
-
-	Spawn2:
-		TBAL B 1 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("redlaser",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		loop
-	Death:
-		NULL A 0
-	Stop
-	}
-}
-*/
-/*Actor CCCCPAINIS : Plasmaball
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 1.25
-	Speed 0
-	+ripper
-	var int user_theta;
-	Damage (Random(10,40))
-	States
-	{
-	Spawn:
-		TBAL C 0 bright A_SetUserVar("user_theta",0)
-	Death:
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_JumpIf(user_theta==360,"Death2")
-		loop
-	Death2:
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 bright A_playsound("weapon/GPlasfire", CHAN_BODY, 1.0, 1)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TNT1 A 1 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-		TBAL C 0 A_CustomMissile("REDLASER",0,0,user_theta)
-  		TBAL C 0 A_SetUserVar("user_theta",user_theta+2)
-	Death3:
-		NULL A 0
-	Stop
-	}
-}*/
 
 Actor CCCCPAINIS : Plasmaball
 {

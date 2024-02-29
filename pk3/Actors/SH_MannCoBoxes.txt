@@ -338,7 +338,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("HealthBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("Nadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("BouncyNadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
 			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_SpawnItemEx("ArmorBonus", 0, 0, 4.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			"####" D 0 A_PlaySound("PeterVomit", CHAN_AUTO)
@@ -444,7 +444,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 
 		NadeVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
-			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("Nadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 2 A_SpawnItemEx("BouncyNadez", 0, 0, 8.0*scaley, frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(2.0, 12.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		BaronBallVomit:
 			"####" D 0 A_PlaySound("PeterVomit")
