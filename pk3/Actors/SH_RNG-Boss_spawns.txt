@@ -73,6 +73,7 @@ actor BaronSpawner : RandomSpawner replaces Baronofhell
 	DropItem "N_Baron_Electric"		255 1
 	DropItem "N_Baron_HeavyMetal"	255 1
 	DropItem "Belphegorclone"		255 1
+	DropItem "Phantom"				255 1
 //	DropItem "LordOfHeresy"			255 1
 //	DropItem "ProfaneOne"			255 1
 }
