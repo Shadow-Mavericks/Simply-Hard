@@ -3839,45 +3839,45 @@ Actor Slimegoop
 	{
 	Spawn:
 	See:
-	    FLSP A 60 A_chase
-		FLSP A 0 A_jump(240,"Commonus")
-		FLSP A 0 A_jump(240,"Bipedicus")
-		FLSP A 0 A_jump(240,"ABipedicus")
-		FLSP A 0 A_jump(240,"Larva")
-		FLSP A 0 A_jump(240,"Stridicus")
-		FLSP A 0 A_jump(240,"Cycloptis")
-		FLSP A 0 A_jump(240,"Quadrumpus")
-		FLSP A 0 A_jump(255,"FlemMine")
-		FLSP A 0 A_jump(240,"SuperCycloptis")
-		FLSP A 0 A_jump(240,"Maximus")
-		FLSP A 0 A_jump(255,"Death")
+	    SLIG A 60 A_chase
+		SLIG A 0 A_jump(240,"Commonus")
+		SLIG A 0 A_jump(240,"Bipedicus")
+		SLIG A 0 A_jump(240,"ABipedicus")
+		SLIG A 0 A_jump(240,"Larva")
+		SLIG A 0 A_jump(240,"Stridicus")
+		SLIG A 0 A_jump(240,"Cycloptis")
+		SLIG A 0 A_jump(240,"Quadrumpus")
+		SLIG A 0 A_jump(255,"FlemMine")
+		SLIG A 0 A_jump(240,"SuperCycloptis")
+		SLIG A 0 A_jump(240,"Maximus")
+		SLIG A 0 A_jump(255,"Death")
 		Loop
 	Commonus:	
-		FLSP A 1 A_spawnitemex("Commonus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Commonus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 		goto death
     Bipedicus:
-		FLSP A 1 A_spawnitemex("Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	ABipedicus:
-		FLSP A 1 A_spawnitemex("A-Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("A-Bipedicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	Larva:
-		FLSP A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	Stridicus:
-		FLSP A 1 A_spawnitemex("Stridicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Stridicus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	Cycloptis:
-		FLSP A 1 A_spawnitemex("Cycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("Cycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	Quadrumpus:
-		FLSP A 1 A_spawnitemex("Quadrumpus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("Quadrumpus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	FlemMine:
-		FLSP A 1 A_spawnitemex("FlemMine", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("FlemMine", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	SuperCycloptis:
-		FLSP A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	SuperCycloptis:
-		FLSP A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("SuperCycloptis", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	Maximus:
-		FLSP A 1 A_spawnitemex("Maximus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
+		SLIG A 1 A_spawnitemex("Maximus", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1) 
 	Death:
-		FLSP A 1
-	Stop
+		SLIG A 1
+		Stop
 	}
 }
 
@@ -3894,21 +3894,21 @@ Actor Flemgoop
 	{
 	Spawn:
 	See:
-		FLSP A 0 A_jump(85,"Commonus")
-		FLSP A 0 A_jump(85,"Bipedicus")
-		FLSP A 0 A_jump(85,"Larva")
-		FLSP A 0 A_jump(85,"Death")
-		FLSP A 60 A_chase
+		SLIG A 0 A_jump(85,"Commonus")
+		SLIG A 0 A_jump(85,"Bipedicus")
+		SLIG A 0 A_jump(85,"Larva")
+		SLIG A 0 A_jump(85,"Death")
+		SLIG A 60 A_chase
 		Loop
 	Commonus:	
-		FLSP A 1 A_spawnitemex("Commonus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Commonus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 		goto death
     Bipedicus:
-		FLSP A 1 A_spawnitemex("Bipedicus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Bipedicus2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	Larva:
-		FLSP A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
+		SLIG A 1 A_spawnitemex("Larva2", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 1)
 	Death:
-		FLSP A 1
+		SLIG A 1
 	Stop
 	}
 }
