@@ -636,16 +636,19 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 	}
 	else if(type == GAMEEVENT_ACTOR_SPAWNED)
 	{
-		// Strange Aeons compatibility swaps
-		actor_swap("AK47", "Chaingundrop", 256);
-		actor_swap("Yithgun", "PLASMAdrop", 256);
-		actor_swap("ImpalerXBow", "Railgundrop", 256);
-		actor_swap("Devil", "Imps", 64);
-		actor_swap("RapidFireTrooper", "Zamble", 64);
-		actor_swap("UndeadHunter", "Shootgunzamble", 64);
-		actor_swap("Skeleton", "MeleeRevenant", 64);
-		actor_swap("HellWarrior", "BaronSpawner", 64);
-		actor_swap("SlimeWorm", "JIHADReplacer", 64);
+		if(GetCVar("sh_compat_swaps"))
+		{
+			// Strange Aeons compatibility swaps
+			actor_swap("AK47", "Chaingundrop", 256);
+			actor_swap("Yithgun", "PLASMAdrop", 256);
+			actor_swap("ImpalerXBow", "Railgundrop", 256);
+			actor_swap("Devil", "Imps", 64);
+			actor_swap("RapidFireTrooper", "Zamble", 64);
+			actor_swap("UndeadHunter", "Shootgunzamble", 64);
+			actor_swap("Skeleton", "MeleeRevenant", 64);
+			actor_swap("HellWarrior", "BaronSpawner", 64);
+			actor_swap("SlimeWorm", "JIHADReplacer", 64);
+		}
 	}
 }
 
