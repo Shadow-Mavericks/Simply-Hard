@@ -21,7 +21,7 @@ function bool startsWithVowel(str string)
 			return true;
 			break;
 	}
-	
+
 	return false;
 }
 
@@ -69,9 +69,9 @@ script "ON_KILL" KILL
 {
 	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
 		terminate;
-		
+
 	SetHudSize(640, 480, true);
-	
+
 	int i;
 
 	// Get some properties of our monster.
@@ -112,7 +112,7 @@ script "ON_KILL" KILL
 
 	if(NumOrbs <= 0) // Everything is worth at least one orb.
 		NumOrbs = 1;
-		
+
 	for(i = 0; i < NumOrbs; i++)
 	{
 		int TID = UniqueTID (0, 0);
@@ -172,7 +172,7 @@ script "ON_KILL" KILL
 			}
 		}
 	}
-	
+
 	// ManCo Box Drops
 	// ---------------
 	if(GetUserVariable(0, "user_manncobox_chance") != -1)
@@ -180,15 +180,15 @@ script "ON_KILL" KILL
 		bool doBoxSpawn = false;
 		int boxRandom = Random(1, 400);
 		int boxChance = Health/40;
-		
+
 		if(CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))
 			boxChance += 10;
-		
+
 		if (boxChance > 400)
 			boxChance = 400;
 		else if (boxChance < 1)
 			boxChance = 1;
-			
+
 		if(GetUserVariable(0, "user_manncobox_chance") > 0)
 		{
 			if(boxRandom <= GetUserVariable(0, "user_manncobox_chance"))
@@ -196,13 +196,13 @@ script "ON_KILL" KILL
 		}
 		else if(boxRandom <= boxChance && Health > 15)
 			doBoxSpawn = true;
-		
+
 		if(doBoxSpawn)
 		{
 			int tierWeights[5] = { 1, 2, 4, 6, 8 };
 			int maxTier = 1;
 			int totalWeight = 0;
-			
+
 			if(Health >= 500) // Tier 2
 				maxTier++;
 			if(Health >= 1000) // Tier 3
@@ -211,13 +211,13 @@ script "ON_KILL" KILL
 				maxTier++;
 			if(Health >= 4000) // Tier 5
 				maxTier++;
-			
+
 			if(Health < 2500 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
 				maxTier++;
-			
+
 			if(maxTier > 5)
 				maxTier = 5;
-			
+
 			// This should make the weight exponentially higher for every 4000 health over 4000.
 			for(i = 0; i < maxTier; i++)
 			{
@@ -228,10 +228,10 @@ script "ON_KILL" KILL
 				tierWeights[i] = newWeight;
 				totalWeight += newWeight;
 			}
-			
+
 			if(GetCVar("sh_debug_boxes"))
 				log(s:"DEBUG: Tier weights - ", d:tierWeights[0], s:", ", d:tierWeights[1], s:", ", d:tierWeights[2], s:", ", d:tierWeights[3], s:", ", d:tierWeights[4]);
-			
+
 			int rnd = random(0, totalWeight-1);
 			for(i=0; i < maxTier; i++)
 			{
@@ -241,7 +241,7 @@ script "ON_KILL" KILL
 					int boxTID = UniqueTID (0, 0);
 					SpawnForced("ActiveBox1", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), boxTID, random(0, 255));
 					SetUserVariable(boxTID, "user_tier", i+1);
-					
+
 					HudMessageBold(s:"A tier ", d:i+1, s:" MannCo box was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0, s:"!\n\cjWhat will you get?!";
 					HUDMSG_TYPEON | HUDMSG_LOG, 70, CR_GOLD, 320.4, 128.1, 30.0, 0.01, 0.5);
 					break;
@@ -387,7 +387,7 @@ function void hit_marker(int soundType, bool friendly)
 				break;
 		}
 	}
-	
+
 	SetHudSize(1024, 768, 0);
 	int id = 6969;
 	if(!friendly)
@@ -399,7 +399,7 @@ function void hit_marker(int soundType, bool friendly)
 	}
 	HudMessage(s:"A";
 	HUDMSG_FADEOUT, id, CR_UNTRANSLATED, 512.4, 384.0, 1, 0.5);
-	
+
 	return;
 }
 
@@ -420,7 +420,7 @@ function void actor_swap(str replace, str with, int chance)
 		bool friendly = CheckFlag(0, "FRIENDLY");
 		bool stealth = CheckFlag(0, "STEALTH");
 		bool standstill = CheckFlag(0, "STANDSTILL");
-		
+
 		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
 		ChangeActorFlag(uTID, "DROPPED", dropped);
@@ -428,15 +428,15 @@ function void actor_swap(str replace, str with, int chance)
 		ChangeActorFlag(uTID, "FRIENDLY", friendly);
 		ChangeActorFlag(uTID, "STEALTH", stealth);
 		ChangeActorFlag(uTID, "STANDSTILL", standstill);
-		
+
 		if(GetCVar("sh_debug_spawns"))
 			log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with);
-		
+
 		// These must be last!
 		Thing_ChangeTID(uTID, thisTID);
 		Thing_Remove(0);
 	}
-	
+
 	return;
 }
 
@@ -470,12 +470,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
 		int yeetAmt;		// Vertical push.
 		// -------------
-		
+
 		int victimPlayerNum = PlayerNumber();
 		bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 		bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
 		bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
-		
+
 		bool doNumbers = false;
 		bool doTeamDamageScale = false;
 		bool directMonsterDamage = false;
@@ -484,11 +484,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 		if (victimIsMonster)
 			doNumbers = true;
-			
+
 		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 		{
 			directMonsterDamage = CheckFlag(0, "ISMONSTER");
-			
+
 			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
 			int falloffAmt = GetUserVariable(0, "user_falloff");
 			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
@@ -496,19 +496,19 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				int falloffRate = GetUserVariable(0, "user_falloffrate");
 				if(falloffRate <= 0)
 					falloffRate = 1;
-					
+
 				fixedDamage = arg1 << 16;
 				int minDamage = GetUserVariable(0, "user_mindmg");
 				int falloffTics = GetUserVariable(0, "user_fallofftics");
-				
+
 				arg1 = (fixedDamage - (falloffAmt * (falloffTics/falloffRate))) >> 16;
-				
+
 				if(arg1 < minDamage)
 					arg1 = minDamage;
-					
+
 				//SetResultValue(arg1);
 			}
-			
+
 			wasConcussed = CheckActorClass(0, "ConcussionBlast");
 			if(CheckActorClass(0, "FistPuff") || wasConcussed)
 			{
@@ -525,16 +525,16 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			int attackerPlayerNum = PlayerNumber();
 			bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
 			bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
-			
+
 			if(attackerPlayerNum != -1) // Source is player
 			{
 				if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
 					hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
-				
+
 				// Gosimer's Berserk Buff
 				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
 					arg1 += 1;
-				
+
 				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
 					doTeamDamageScale = true;
 			}
@@ -543,7 +543,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				if(attackerIsFriendly && victimPlayerNum != -1) // Friendly monster hitting player.
 					doTeamDamageScale = true;
 			}
-			
+
 			if(GetCVar("sh_friendly_scaledamage") && doTeamDamageScale && !wasTelefrag)
 			{
 				int teamDamage = GetCvar("teamdamage");
@@ -559,24 +559,24 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
 				if(assMass <= 0)
 					assMass = 1;
-				
+
 				if(assMass > 1)
 				{
 					yeetAmt /= assMass;
 					if(yeetAmt <= 0)
 						yeetAmt = 1; // We always do a little bit of yeeting.
 				}
-				
+
 				if(!CheckFlag(0, "FLOAT"))
 					ThrustThingZ(0, yeetAmt, 0, 1);
-					
-				if(wasConcussed)
+
+				if(wasConcussed && victimIsMonster)
 					ChangeFlag("BLASTED", true);
 			}
-			
+
 			if(wasConcussed)
 				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
-			
+
 			if(victimPlayerNum != -1)
 			{
 				if(CheckActorClass(0, "MaximusPrime"))
@@ -590,18 +590,18 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						fixedDamage = arg1 << 16;
 						int shields = CheckInventory("MaxEnergyShield") << 16;
 						int healthDmg = 0;
-						
+
 						// The amount of shield energy left after taking *half* damage.
 						int halfShieldDmg = fixedDamage >> 1;
 						shields = max(0, shields - halfShieldDmg);
-						
+
 						if (shields < (50<<16))
 						{
 							// healthDmg += shieldDmg * (1 - shields/50.0)
 							int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
 							healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
 						}
-						
+
 						// Now take the other half away.
 						shields = max(0, shields - halfShieldDmg);
 						TakeInventory("MaxEnergyShield", 99999);
@@ -609,18 +609,18 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 						TakeInventory("BasicArmor", 99999);
 						GiveInventory("NullArmorHack", shields>>16);
-						
+
 						arg1 = healthDmg>>16;
 						ActivatorSound("Max/ShieldDamage", 127);
-						
+
 						FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
 					}
 				}
 			}
-			
+
 			// KEEP THIS AT THE END!
 			SetResultValue(arg1);
-			
+
 			if(doNumbers)
 			{
 				GiveInventory("DamageTallyHack", arg1);
@@ -677,19 +677,19 @@ script "AMMO_PICKUP" (int type, int dropped)
 	str ammo1_class = "None";
 	str ammo1_name = "None";
 	int ammo1_amount = 0;
-	
+
 	str ammo2_class = "None";
 	str ammo2_name = "None";
 	int ammo2_amount = 0;
-	
+
 	str pickupsound = "misc/i_pkup";
 	str extrasound = "None";
 	str textcolor = "\cf";
-	
+
 	bool no_halve_on_drop = false;
-	
+
 	int fade_rgb[3] = { 255, 192, 0 };
-	
+
 	// Our ammo types. Determined by a numerical index passed to the script.
 	switch(type)
 	{
@@ -698,7 +698,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "PeastolClip";
 			ammo1_name = "Pistol Round";
 			ammo1_amount = 12;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
@@ -706,7 +706,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 				ammo1_name = "Energy Unit";
 				ammo1_amount = 15;
 			}
-			
+
 			pickupsound = "AMMO/CLIP";
 			break;
 		}
@@ -715,7 +715,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "AK_MAG";
 			ammo1_name = "MG Round";
 			ammo1_amount = 75;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
@@ -727,7 +727,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			{
 				extrasound = "Jim/taunt10";
 			}
-			
+
 			pickupsound = "AMMO/CLIP";
 			break;
 		}
@@ -736,7 +736,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Shellz";
 			ammo1_name = "SG Shell";
 			ammo1_amount = 2;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
@@ -750,7 +750,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 				ammo2_name = "SSG Shell";
 				ammo2_amount = 2;
 			}
-			
+
 			pickupsound = "AMMO/SHEL";
 			break;
 		}
@@ -759,7 +759,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Shellz";
 			ammo1_name = "SG Shell";
 			ammo1_amount = 10;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
@@ -773,7 +773,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 				ammo2_name = "SSG Shell";
 				ammo2_amount = 10;
 			}
-			
+
 			pickupsound = "AMMO/SHELBAWX";
 			break;
 		}
@@ -782,13 +782,13 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Roketammo";
 			ammo1_name = "Rocket";
 			ammo1_amount = 1;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
 				ammo1_name = "Mortar Shell";
 			}
-			
+
 			pickupsound = "AMMO/ROKET";
 			break;
 		}
@@ -797,13 +797,13 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Roketammo";
 			ammo1_name = "Rocket";
 			ammo1_amount = 5;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
 				ammo1_name = "Mortar Shell";
 			}
-			
+
 			pickupsound = "AMMO/ROKETBAWX";
 			break;
 		}
@@ -812,25 +812,25 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Battery";
 			ammo1_name = "Energy Cell";
 			ammo1_amount = 40;
-			
+
 			ammo2_class = "RailSLUGS";
 			ammo2_name = "Uranium Slug";
 			ammo2_amount = 6;
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
 				ammo1_class = "DF_PlasmaCartridge";
 				ammo1_name = "Plasma Cartridge";
 				ammo1_amount = 20;
-				
+
 				ammo2_name = "Disruptor Cell";
 			}
 			else if(CheckActorClass(0, "Fiend"))
 			{
 				extrasound = "Jim/taunt6";
 			}
-			
+
 			pickupsound = "AMMO/BATTERY";
 			break;
 		}
@@ -839,20 +839,20 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_class = "Battery";
 			ammo1_name = "Energy Cell";
 			ammo1_amount = 100;
-			
+
 			ammo2_class = "BFGCHARGE";
 			ammo2_name = "Argent Energy Charge";
 			ammo2_amount = 2;
-			
+
 			// Todo: Lightning Ammo.
-			
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				no_halve_on_drop = true;
 				ammo1_class = "DF_Missile";
 				ammo1_name = "Missile";
 				ammo1_amount = 5;
-				
+
 				ammo2_class = "DF_PlasmaCartridge";
 				ammo2_name = "Plasma Cartridge";
 				ammo2_amount = 60;
@@ -867,12 +867,12 @@ script "AMMO_PICKUP" (int type, int dropped)
 			{
 				extrasound = "Jim/taunt4";
 			}
-			
+
 			pickupsound = "AMMO/BATTERYPAK";
 			break;
 		}
 	}
-	
+
 	if(!no_halve_on_drop)
 	{
 		if(dropped && ammo1_amount > 0)
@@ -881,7 +881,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			if(ammo1_amount == 0)
 				ammo1_amount = 1;
 		}
-		
+
 		if(dropped && ammo2_amount > 0)
 		{
 			ammo2_amount /= 2;
@@ -889,12 +889,12 @@ script "AMMO_PICKUP" (int type, int dropped)
 				ammo2_amount = 1;
 		}
 	}
-	
+
 	bool success = false;
 	int ammofactor = 1;
 	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
 		ammofactor = 2;
-	
+
 	if(StrIcmp(ammo1_class, "None") != 0 && ammo1_amount > 0)
 	{
 		if(CheckInventory(ammo1_class) < GetAmmoCapacity(ammo1_class))
@@ -903,7 +903,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			// Doing this so I can pass the real amount gained to the pickup message.
 			if((CheckInventory(ammo1_class) + ammo1_amount) > GetAmmoCapacity(ammo1_class))
 				ammo1_amount = GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class);
-			
+
 			GiveInventory(ammo1_class, ammo1_amount);
 			success = true;
 		}
@@ -912,7 +912,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo1_amount = 0;
 		}
 	}
-	
+
 	if(StrIcmp(ammo2_class, "None") != 0 && ammo2_amount > 0)
 	{
 		if(CheckInventory(ammo2_class) < GetAmmoCapacity(ammo2_class))
@@ -920,7 +920,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			// Ditto.
 			if((CheckInventory(ammo2_class) + ammo2_amount) > GetAmmoCapacity(ammo2_class))
 				ammo2_amount = GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class);
-				
+
 			GiveInventory(ammo2_class, ammo2_amount);
 			success = true;
 		}
@@ -929,7 +929,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			ammo2_amount = 0;
 		}
 	}
-	
+
 	if(success)
 	{
 		str suffix1 = "";
@@ -940,7 +940,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			suffix1 = "s";
 		if ((ammo2_amount * ammofactor) > 1)
 			suffix2 = "s";
-			
+
 		if(CheckActorClass(0, "MaximusPrime"))
 		{
 			textcolor = "\ci";
@@ -948,7 +948,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 			fade_rgb[1] = 0;
 			fade_rgb[2] = 255;
 		}
-		
+
 		str msg = StrParam(s:textcolor);
 		if(ammo1_amount > 0)
 		{
@@ -956,14 +956,14 @@ script "AMMO_PICKUP" (int type, int dropped)
 			if(ammo2_amount > 0)
 				msg = StrParam(s:msg, s:" & ");
 		}
-		
+
 		if(ammo2_amount > 0)
 		{
 			msg = StrParam(s:msg, d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
 		}
-		
+
 		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
-		
+
 		//if(ammo1_amount > 0 && ammo2_amount > 0)
 			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
 		//else if(ammo1_amount > 0)
@@ -972,7 +972,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 		PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
 		if(StrIcmp(extrasound, "None") != 0)
 			PlaySound(0, extrasound, CHAN_6, 1.0, false);
-		
+
 		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
 
 		SetResultValue(1);
@@ -1009,10 +1009,10 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 	int oldTID = ActivatorTID();
 	int newTID = UniqueTID();
 	Thing_ChangeTID(0, newTID);
-	
+
 	SetActivatorToPlayer(ConsolePlayerNumber());
 	str playerClassName = GetActorClass(0);
-	
+
 	SetActivator(newTID);
 	if(!SetActorState(0, playerClassName, false))
 		SetActorState(0, "Base", false);
@@ -1027,7 +1027,7 @@ script "SUPERCHARGE_CHECK" (void)
 	{
 		SetUserVariable(0, "user_supercharge_useammo", (GetUserVariable(0, "user_supercharge_useammo")+1) & 1);
 		SetResultValue(GetUserVariable(0, "user_supercharge_useammo"));
-		
+
 		if(GetCVar("sh_debug_weapons"))
 			log(s:"DEBUG: user_supercharge_useammo ", d:GetUserVariable(0, "user_supercharge_useammo"));
 	}
@@ -1215,7 +1215,7 @@ MannCoBoxData_t tier5_bad[] =
 script "TALLY_WEIGHTS" OPEN
 {
 	int i;
-	
+
 	// Tier 1
 	// ------
 	tier1_numentries[GOOD] = sizeof(tier1_good) / sizeof(tier1_good[0]);
@@ -1226,7 +1226,7 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier1_numentries[BAD]; i++)
 		tier1_totalweight[BAD] += tier1_bad[i].weight;
 	// ------
-	
+
 	// Tier 2
 	// ------
 	tier2_numentries[GOOD] = sizeof(tier2_good) / sizeof(tier2_good[0]);
@@ -1237,7 +1237,7 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier2_numentries[BAD]; i++)
 		tier2_totalweight[BAD] += tier2_bad[i].weight;
 	// ------
-	
+
 	// Tier 3
 	// ------
 	tier3_numentries[GOOD] = sizeof(tier3_good) / sizeof(tier3_good[0]);
@@ -1248,7 +1248,7 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier3_numentries[BAD]; i++)
 		tier3_totalweight[BAD] += tier3_bad[i].weight;
 	// ------
-	
+
 	// Tier 4
 	// ------
 	tier4_numentries[GOOD] = sizeof(tier4_good) / sizeof(tier4_good[0]);
@@ -1259,7 +1259,7 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier4_numentries[BAD]; i++)
 		tier4_totalweight[BAD] += tier4_bad[i].weight;
 	// ------
-	
+
 	// Tier 5
 	// ------
 	tier5_numentries[GOOD] = sizeof(tier5_good) / sizeof(tier5_good[0]);
@@ -1270,22 +1270,22 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier5_numentries[BAD]; i++)
 		tier5_totalweight[BAD] += tier5_bad[i].weight;
 	// ------
-	
+
 	if(GetCVar("sh_debug_boxes"))
 	{
 		log(s:"MannCo Box Info");
 		log(s:"Tier 1 (GOOD): ", d:tier1_numentries[GOOD], s:" with total weight of ", d:tier1_totalweight[GOOD], s:".");
 		log(s:"Tier 1 (BAD): ", d:tier1_numentries[BAD], s:" with total weight of ", d:tier1_totalweight[BAD], s:".");
-		
+
 		log(s:"Tier 2 (GOOD): ", d:tier2_numentries[GOOD], s:" with total weight of ", d:tier2_totalweight[GOOD], s:".");
 		log(s:"Tier 2 (BAD): ", d:tier2_numentries[BAD], s:" with total weight of ", d:tier2_totalweight[BAD], s:".");
-		
+
 		log(s:"Tier 3 (GOOD): ", d:tier3_numentries[GOOD], s:" with total weight of ", d:tier3_totalweight[GOOD], s:".");
 		log(s:"Tier 3 (BAD): ", d:tier3_numentries[BAD], s:" with total weight of ", d:tier3_totalweight[BAD], s:".");
-		
+
 		log(s:"Tier 4 (GOOD): ", d:tier4_numentries[GOOD], s:" with total weight of ", d:tier4_totalweight[GOOD], s:".");
 		log(s:"Tier 4 (BAD): ", d:tier4_numentries[BAD], s:" with total weight of ", d:tier4_totalweight[BAD], s:".");
-		
+
 		log(s:"Tier 5 (GOOD): ", d:tier5_numentries[GOOD], s:" with total weight of ", d:tier5_totalweight[GOOD], s:".");
 		log(s:"Tier 5 (BAD): ", d:tier5_numentries[BAD], s:" with total weight of ", d:tier5_totalweight[BAD], s:".");
 	}
@@ -1295,10 +1295,10 @@ script "MANNCO_PICK" (int tier)
 {
 	int type = random(GOOD, BAD);
 	int rnd, weight, delaytype, i;
-	
+
 	str pickedName;
 	str pickedState;
-	
+
 	switch(tier)
 	{
 		case 0:
@@ -1320,7 +1320,7 @@ script "MANNCO_PICK" (int tier)
 			}
 			break;
 		}
-		
+
 		case 2:
 		{
 			rnd = random(0, tier2_totalweight[type]-1);
@@ -1339,7 +1339,7 @@ script "MANNCO_PICK" (int tier)
 			}
 			break;
 		}
-		
+
 		case 3:
 		{
 			rnd = random(0, tier3_totalweight[type]-1);
@@ -1358,7 +1358,7 @@ script "MANNCO_PICK" (int tier)
 			}
 			break;
 		}
-		
+
 		case 4:
 		{
 			rnd = random(0, tier4_totalweight[type]-1);
@@ -1377,7 +1377,7 @@ script "MANNCO_PICK" (int tier)
 			}
 			break;
 		}
-		
+
 		case 5:
 		{
 			rnd = random(0, tier5_totalweight[type]-1);
@@ -1397,13 +1397,13 @@ script "MANNCO_PICK" (int tier)
 			break;
 		}
 	}
-	
+
 	if(delaytype != 0)
 	{
 		SetActorState(0, boxDelay[delaytype].state, false);
 		Delay(boxDelay[delaytype].time);
 	}
-	
+
 	SetHudSize(640, 480, true);
 	HudMessageBold(s:pickedName;
 	HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 320.4, 144.1, 5.0, 0.01, 0.5);
