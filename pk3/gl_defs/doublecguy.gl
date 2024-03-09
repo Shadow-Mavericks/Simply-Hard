@@ -7,7 +7,7 @@ FlickerLight2 DoubleChaingunGuy
 	offset 0 40 0
 }
 
-Object ChaingunGuy2
+Object DoubleChaingunGuy
 {
 	Frame DPOSE { Light DoubleChaingunGuy }
 	Frame DPOSF { Light DoubleChaingunGuy }
@@ -38,11 +38,13 @@ BrightMap Sprite DPOSE4
 	DisableFullBright
 }
 
+/*
 BrightMap Sprite DPOSE5
 {
     Map "brightmaps/Realm667/Monsters/DoubleChaingunGuy/BMDPOSE5.png"
 	DisableFullBright
 }
+*/
 
 BrightMap Sprite DPOSE6
 {

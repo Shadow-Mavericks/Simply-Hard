@@ -844,8 +844,11 @@ ACTOR spenserspawn1
 			MESP A 0 A_SetUserVar("user_healamt", 5)
 			goto HealLoop
 		HealLoop:
-			MESP A 6 Bright A_RadiusGive("Spencerhp", 320, RGF_PLAYERS | RGF_NOSIGHT, user_healamt)
-			MESP BCDE 6 Bright
+			MESP A 6 Bright Light("HealingDVA1") A_RadiusGive("Spencerhp", 320, RGF_PLAYERS | RGF_NOSIGHT, user_healamt)
+			MESP B 6 Bright Light("HealingDVA2")
+			MESP C 6 Bright Light("HealingDVA3")
+			MESP D 6 Bright Light("HealingDVA4")
+			MESP E 6 Bright Light("HealingDVA5")
 			MESP E 0 A_SetUserVar("user_loops", user_loops-1)
 			MESP E 0 A_JumpIf(user_loops <= 0, "End")
 			loop
@@ -909,9 +912,12 @@ ACTOR spenserspawn5 : spenserspawn1
 			MESP A 0 A_SetUserVar("user_healamt", 1)
 			goto HealLoop
 		HealLoop:
-			MESP A 6 Bright A_RadiusGive("Spencerhp", 320, RGF_PLAYERS, user_healamt)
-			MESP A 0 Bright A_RadiusGive("DispenserArmorBonus", 460, RGF_PLAYERS, 5)
-			MESP BCDE 6 Bright
+			MESP A 6 Bright Light("HealingDVA1") A_RadiusGive("Spencerhp", 320, RGF_PLAYERS, user_healamt)
+			MESP A 0 Bright Light("HealingDVA1") A_RadiusGive("DispenserArmorBonus", 460, RGF_PLAYERS, 5)
+			MESP B 6 Bright Light("HealingDVA2")
+			MESP C 6 Bright Light("HealingDVA3")
+			MESP D 6 Bright Light("HealingDVA4")
+			MESP E 6 Bright Light("HealingDVA5")
 			MESP E 0 A_SetUserVar("user_loops", user_loops-1)
 			MESP E 0 A_JumpIf(user_loops <= 0, "End")
 			loop

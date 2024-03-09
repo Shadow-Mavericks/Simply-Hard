@@ -1,0 +1,25 @@
+pointlight HealingDVA1
+{
+    color 0 0 1
+    size 280
+}
+pointlight HealingDVA2
+{
+    color 1	0 1
+    size 240
+}
+pointlight HealingDVA3
+{
+    color 1 0 0
+    size 200
+}
+pointlight HealingDVA4
+{
+    color 1 1 0
+    size 240
+}
+pointlight HealingDVA5
+{
+    color 0 1 0
+    size 280
+}
