@@ -41,7 +41,7 @@ Actor Greenarmorbonus : Custominventory
 			Stop
 		Maxpickup:
 			TNT1 A 0 A_Playsound("Max/ArmorBonus",chan_5)
-			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 20)
+			TNT1 A 0 A_Giveinventory("MaxShield20")
 			Stop
 	}
 }
@@ -89,9 +89,9 @@ Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
 			TNT1 A 0 A_Giveinventory("Greenarmorgosimer")
 			Stop
 		Maxpickup:
-			TNT1 A 0 A_JumpIfInventory("MaxEnergyShield", 200, "Failure")
+			TNT1 A 0 A_JumpIfInventory("BasicArmor", 200, "Failure")
 			TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
-			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 100)
+			TNT1 A 0 A_Giveinventory("MaxShield100")
 			Stop
 		Failure:
 			TNT1 A 0
@@ -130,9 +130,9 @@ Actor BluearmorFilter : CustomInventory Replaces Bluearmor
 			TNT1 A 0 A_Giveinventory("Bluearmorgosimer")
 			Stop
 		Maxpickup:
-			TNT1 A 0 A_JumpIfInventory("MaxEnergyShield", 200, "Failure")
+			TNT1 A 0 A_JumpIfInventory("BasicArmor", 200, "Failure")
 			TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
-			TNT1 A 0 A_Giveinventory("MaxEnergyShield", 200)
+			TNT1 A 0 A_Giveinventory("MaxShield200")
 			Stop
 		Failure:
 			TNT1 A 0
@@ -291,22 +291,31 @@ ACTOR GreenArmorGosimer : GosimersBlueArmorBonus
   }
 }
 
-ACTOR MaxEnergyShield : Inventory
+ACTOR MaxShield20 : BasicArmorBonus
 {
-	Radius 20
-	Height 16
-	Inventory.PickupMessage "$GOTARMOR" // "Picked up the armor."
-	Inventory.Icon "ARM1A0"
-	Inventory.RespawnTics "99999999"
-	Inventory.MaxAmount 200
-	Inventory.Amount 100
-	States
-	{
-		Spawn:
-			ARM1 A 6
-			ARM1 B 7 Bright
-			Loop
-	}
+	Armor.SavePercent 0
+	Armor.SaveAmount 20
+	Armor.MaxSaveAmount 200
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+}
+
+ACTOR MaxShield100 : BasicArmorBonus
+{
+	Armor.SavePercent 0
+	Armor.SaveAmount 100
+	Armor.MaxSaveAmount 200
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+}
+
+ACTOR MaxShield200 : BasicArmorBonus
+{
+	Armor.SavePercent 0
+	Armor.SaveAmount 200
+	Armor.MaxSaveAmount 200
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
 }
 
 ACTOR BlueArmorFiend : Basicarmorpickup

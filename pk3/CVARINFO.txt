@@ -7,3 +7,4 @@ local bool sh_debug_damage = false;
 local bool sh_debug_classes = false;
 local bool sh_debug_boxes = false;
 local bool sh_debug_weapons = false;
+local bool sh_debug_armor = false;

@@ -488,12 +488,12 @@ actor MaximusPrime : DoomPlayer
 	Mass 100
 	PainChance 255
 
-	DamageFactor 1.0
+	DamageFactor 0.75
 	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
 	DamageFactor "PlayerExplosivePuff", 0.0
-	DamageFactor "MaxBlasterBolt", 0.5
-	DamageFactor "MaxExplosion", 0.5
+	DamageFactor "MaxBlasterBolt", 0.67
+	DamageFactor "MaxExplosion", 0.67
 	DamageFactor "Electric", 0.75 // Max's class resists lightning a bit.
 
 	Player.DisplayName "Rebel Scum"
@@ -503,7 +503,7 @@ actor MaximusPrime : DoomPlayer
 	Player.StartItem "DFFist"
 	Player.StartItem "DF_EnergyUnit", 100
 	Player.StartItem "MaxToken"
-	Player.Startitem "MaxEnergyShield", 100
+	Player.Startitem "MaxShield100", 1
 	BounceSound "PlayerHP/AlarmMax"
 	Player.JumpZ 10
 	Player.AirCapacity 3

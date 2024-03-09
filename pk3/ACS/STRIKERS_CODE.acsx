@@ -581,14 +581,18 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				if(CheckActorClass(0, "MaximusPrime"))
 				{
-					if(directMonsterDamage)
-						arg1 >>= 1; // Halve direct damage.
+					if(directMonsterDamage) // Reduce Melee Damage
+					{
+						fixedDamage = fixedmul(arg1<<16, 0.67);
+						arg1 = fixedDamage>>16;
+					}
 
-					if(CheckInventory("MaxEnergyShield") > 0 && !directMonsterDamage)
+					// Monster melee passes through shields.
+					if(CheckInventory("BasicArmor") > 0 && !directMonsterDamage)
 					{
 						// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
 						fixedDamage = arg1 << 16;
-						int shields = CheckInventory("MaxEnergyShield") << 16;
+						int shields = CheckInventory("BasicArmor") << 16;
 						int healthDmg = 0;
 
 						// The amount of shield energy left after taking *half* damage.
@@ -604,9 +608,6 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 						// Now take the other half away.
 						shields = max(0, shields - halfShieldDmg);
-						TakeInventory("MaxEnergyShield", 99999);
-						GiveInventory("MaxEnergyShield", shields>>16);
-
 						TakeInventory("BasicArmor", 99999);
 						GiveInventory("NullArmorHack", shields>>16);
 
@@ -1117,7 +1118,7 @@ MannCoBoxData_t tier2_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
-	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		2,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		5,	DELAY_NONE },
 };
 
 int tier3_totalweight[2];
@@ -1160,7 +1161,7 @@ int tier4_totalweight[2];
 int tier4_numentries[2];
 MannCoBoxData_t tier4_good[] =
 {
-	{ "All The Weapon Upgrades!",	"AllUpgrades",			5,		DELAY_BLUEIMP },
+	{ "All The Weapon Upgrades!",	"AllUpgrades",			8,		DELAY_BLUEIMP },
 	{ "Legendary Armor!",			"WINRAR",				10,		DELAY_NONE },
 	{ "An Extra Life!",				"ExtraLife",			30,		DELAY_NONE },
 	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },

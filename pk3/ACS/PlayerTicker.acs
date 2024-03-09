@@ -72,22 +72,18 @@ script "SV_PLAYERTICKER" OPEN
 				// Ability Charge Regen
 				if(CheckInventory("PowerStrength") && !(tickNum % 70))
 					GiveInventory("AbilityCharge", 1);
-
-				// Swap other armor types for Max's shield.
-				if(CheckInventory("BasicArmor") != CheckInventory("MaxEnergyShield"))
+				
+				if(CheckInventory("Armor") > 0 && !GetArmorType("NullArmorHack", p))
 				{
-					if(CheckInventory("BasicArmor") > CheckInventory("MaxEnergyShield"))
-					{
-						TakeInventory("MaxEnergyShield", 99999);
-						GiveInventory("MaxEnergyShield", CheckInventory("BasicArmor"));
-					}
-
+					int oldArmor = CheckInventory("BasicArmor");
 					TakeInventory("BasicArmor", 99999);
-					GiveInventory("NullArmorHack", CheckInventory("MaxEnergyShield"));
+					GiveInventory("NullArmorHack", oldArmor);
+					if(GetCVar("sh_debug_armor"))
+						log(s:"Swapping armor type to NullArmorHack");
 				}
 				
 				// Don't bleed if we're over 50 shield.
-				if(CheckInventory("MaxEnergyShield") > 50)
+				if(CheckInventory("BasicArmor") > 50)
 				{
 					if(!CheckFlag(0, "NOBLOOD"))
 						ChangeFlag("NOBLOOD", true); //SetActorFlag("NOBLOOD", true);
