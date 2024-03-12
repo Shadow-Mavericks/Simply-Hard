@@ -19,7 +19,6 @@
 #include "actors/SH_Weapons_Gosimer.txt"
 #include "actors/SH_Weapons_Max.txt"
 
-#include "actors/SH_RNG-Boss_spawns.txt"
 #include "actors/SH_Kunai_SFX.txt"
 #include "actors/SH_MannCoBoxes.txt"
 
