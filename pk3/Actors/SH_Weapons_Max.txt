@@ -184,6 +184,7 @@ actor Mortarnade
 	+NOTIMEFREEZE
 	+FORCERADIUSDMG
 	-NOGRAVITY
+	-NOTELEPORT
 	
 	States
 	{
@@ -332,6 +333,7 @@ actor AssaultCannonMissile
 	+NOTIMEFREEZE
 	+FORCERADIUSDMG
 	+FORCEPAIN
+	-NOTELEPORT
 	
 	States
 	{
