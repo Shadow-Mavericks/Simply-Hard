@@ -1993,6 +1993,7 @@ actor ExtraLifeThingy : CustomInventory
 	+NOBLOCKMONST
 	+CANBLAST
 	+DROPOFF
+	+DONTGIB
 	States
 	{
 		Spawn:
