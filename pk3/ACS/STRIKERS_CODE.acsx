@@ -756,6 +756,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 #define AMMO_CELL		6
 #define AMMO_CELLBOX	7
 
+#define DROPTYPE_HALVED 0
+#define DROPTYPE_FULL 1
+#define DROPTYPE_RANDOM 2
+
 // Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
 // Use with "NamedSendNetworkString".
 script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
@@ -763,7 +767,7 @@ script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
 	log(s:msg);
 }
 
-script "AMMO_PICKUP" (int type, int dropped)
+script 13236 (int type, int dropped) // "AMMO_PICKUP"
 {
 	SetResultValue(0);
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -781,7 +785,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 	str extrasound = "None";
 	str textcolor = "\cf";
 
-	bool no_halve_on_drop = false;
+	int droptype = DROPTYPE_HALVED;
 
 	int fade_rgb[3] = { 255, 192, 0 };
 
@@ -796,10 +800,14 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_name = "Energy Unit";
 				ammo1_amount = 15;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				droptype = DROPTYPE_RANDOM;
 			}
 
 			pickupsound = "AMMO/CLIP";
@@ -813,7 +821,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_name = "Energy Unit";
 				ammo1_amount = 45;
@@ -834,7 +842,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
 				ammo1_name = "Power Cell";
 				ammo1_amount = 10;
@@ -857,7 +865,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
 				ammo1_name = "Power Cell";
 				ammo1_amount = 30;
@@ -880,8 +888,12 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_name = "Mortar Shell";
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				ammo1_name = "Grenade";
 			}
 
 			pickupsound = "AMMO/ROKET";
@@ -895,8 +907,12 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_name = "Mortar Shell";
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				ammo1_name = "Grenade";
 			}
 
 			pickupsound = "AMMO/ROKETBAWX";
@@ -914,7 +930,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PlasmaCartridge";
 				ammo1_name = "Plasma Cartridge";
 				ammo1_amount = 20;
@@ -943,7 +959,7 @@ script "AMMO_PICKUP" (int type, int dropped)
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				no_halve_on_drop = true;
+				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_Missile";
 				ammo1_name = "Missile";
 				ammo1_amount = 5;
@@ -967,21 +983,45 @@ script "AMMO_PICKUP" (int type, int dropped)
 			break;
 		}
 	}
-
-	if(!no_halve_on_drop)
+	
+	if(dropped)
 	{
-		if(dropped && ammo1_amount > 0)
+		switch(droptype)
 		{
-			ammo1_amount /= 2;
-			if(ammo1_amount == 0)
-				ammo1_amount = 1;
-		}
+			case DROPTYPE_HALVED:
+			{
+				if(ammo1_amount > 0)
+				{
+					ammo1_amount /= 2;
+					if(ammo1_amount == 0)
+						ammo1_amount = 1;
+				}
 
-		if(dropped && ammo2_amount > 0)
-		{
-			ammo2_amount /= 2;
-			if(ammo2_amount == 0)
-				ammo2_amount = 1;
+				if(ammo2_amount > 0)
+				{
+					ammo2_amount /= 2;
+					if(ammo2_amount == 0)
+						ammo2_amount = 1;
+				}
+				break;
+			}
+			case DROPTYPE_RANDOM:
+			{
+				if(ammo1_amount > 0)
+				{
+					ammo1_amount = random(ammo1_amount>>1, ammo1_amount);
+					if(ammo1_amount == 0)
+						ammo1_amount = 1;
+				}
+				
+				if(ammo2_amount > 0)
+				{
+					ammo2_amount = random(ammo2_amount>>1, ammo2_amount);
+					if(ammo2_amount == 0)
+						ammo2_amount = 1;
+				}
+				break;
+			}
 		}
 	}
 
