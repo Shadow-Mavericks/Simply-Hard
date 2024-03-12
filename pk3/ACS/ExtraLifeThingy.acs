@@ -7,6 +7,8 @@ global int 1:lives_at_end[];
 int timeOfDeath[64];
 bool justRevived;
 
+int spawn_pos[4];
+
 function void update_lives(int lives)
 {
 	int pNum = PlayerNumber();
@@ -61,6 +63,14 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 {
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
 		terminate;
+		
+	if(!IsNetworkGame()) // Record spawn position in SP.
+	{
+		spawn_pos[0] = GetActorX(0);
+		spawn_pos[1] = GetActorY(0);
+		spawn_pos[2] = GetActorZ(0);
+		spawn_pos[3] = GetActorAngle(0);
+	}
 
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
@@ -107,7 +117,7 @@ script "RESETTIMEOFDEATH" OPEN // Resets time of death on level open.
 
 script "RECORDDEATHTIME" DEATH // Records time of death to choose revive order.
 {
-	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1) // Only execute on server.
 		terminate;
 
 	int pNum = PlayerNumber();
@@ -116,7 +126,7 @@ script "RECORDDEATHTIME" DEATH // Records time of death to choose revive order.
 
 script "REVIVEPLAYER" (void) NET
 {
-	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1) // Only execute on server.
 		terminate;
 
 	int pNum = PlayerNumber();
