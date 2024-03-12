@@ -119,18 +119,17 @@ Actor Reload : Custominventory
 
 ACTOR Soulreaper : Weapon
 {
-	Weapon.PreferredSkin "Knife-Marine"
+	Tag "Soul-Reaper"
 	Game Doom
-	+WEAPON.NOAUTOAIM
+	Inventory.ForbiddenTo "Maximusprime"
 	Weapon.SelectionOrder 8
 	Weapon.slotnumber 1
-	Inventory.ForbiddenTo "Maximusprime"
 	Weapon.Kickback 100
-	Tag "Soul-Reaper"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.RestrictedTo "Kunai"
 	Inventory.PickupSound "weapon/srget"
+	+WEAPON.NOAUTOAIM
 	+WEAPON.MELEEWEAPON
 	States
 	{

@@ -39,7 +39,7 @@ actor BlastBolt : FastProjectile
 			TNT1 A 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			goto SpawnLoop
 		SpawnLoop:
-			BLAS A 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
+			BLAS A 1 BRIGHT Light("RedBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
 			SPAR A 0 A_SetTranslucent(1.0, 0)
@@ -134,7 +134,7 @@ actor CutBlast : BlastBolt
 			CULT A 0 BRIGHT A_SetUserVar(user_mindmg, 1 * DARKFORCES_DMG_MULT)
 			goto SpawnLoop
 		SpawnLoop:
-			CULT AAAABBBBCCCCDDDD 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
+			CULT AAAABBBBCCCCDDDD 1 BRIGHT Light("GreenBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
 			CUEX A  0 A_SetTranslucent(1.0, 0)
@@ -156,7 +156,7 @@ actor GoobBlast : CutBlast
 			GOOB A 0 BRIGHT A_SetUserVar(user_mindmg, 1 * DARKFORCES_DMG_MULT)
 			goto SpawnLoop
 		SpawnLoop:
-			GOOB AAAABBBBCCCCDDDD 1 BRIGHT A_SetUserVar(user_fallofftics, user_fallofftics+1)
+			GOOB AAAABBBBCCCCDDDD 1 BRIGHT Light("BlueBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
 			GOSP A  0 A_SetTranslucent(1.0, 0)
@@ -228,7 +228,7 @@ actor ConcussionBlast : FastProjectile
 	States
 	{
 		Spawn:
-			BULL A 1 Bright
+			BULL A 1 Bright Light("BlueBolt")
 			Loop
 		Death:
 			CBLA A 0 Bright A_PlaySound("Max/LrgExplo", CHAN_AUTO)
@@ -402,7 +402,7 @@ actor Bullet : FastProjectile
 	States
 	{
 		Spawn:
-			BULL A 1 BRIGHT
+			BULL A 1 BRIGHT Light("SmallBlueBolt")
 			loop
 		Death:
 			BUEX A 0 A_SetTranslucent(1.0, 0)
@@ -418,7 +418,7 @@ actor GoldBullet : Bullet
 	States
 	{
 	Spawn:
-		GBUL A 1 BRIGHT
+		GBUL A 1 BRIGHT Light("OrangeBolt")
 		loop
 	Death:
 		BUEX A 0 A_SetTranslucent(1.0, 0)

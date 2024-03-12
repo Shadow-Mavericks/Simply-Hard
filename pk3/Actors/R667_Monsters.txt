@@ -89,8 +89,7 @@ actor SuicideBomber
 			wait
 		Rise:
 			TFOG ABABCD 4 BRIGHT
-			Goto See
-	
+			Goto See	
 	}
 }
 
@@ -487,7 +486,7 @@ ACTOR SSGZombie
 	}
 }
 
-actor NamiDarkImp
+actor NamiDarkImp : DoomImp
 {
 	//$Category Monsters
     Health 100
@@ -2294,12 +2293,12 @@ Actor Comet
   States
   {
   Spawn:
-    COMT AAAABBBBCCCC 1 Bright A_SpawnItemEx("CometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+    COMT AAAABBBBCCCC 1 Bright A_SpawnItemEx("CometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
     Loop
   Death:
-    COMT D 3 Bright A_SpawnItemEx("CometDeathGlow", 0, 0, 0, 0, 0, 0, 0, 128)
+    COMT D 3 Bright A_SpawnItemEx("CometDeathGlow", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
     COMT E 3 Bright A_Explode(80, 80, 0)
-    TNT1 A 0 A_SpawnItemEx("CometDeath", 0, 0, 0, 0, 0, 0, 0, 128)
+    TNT1 A 0 A_SpawnItemEx("CometDeath", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
     Stop
   }
 }
@@ -11227,7 +11226,8 @@ scale 0.75
 
 ACTOR PoisonSoul
 {
-	Health 100
+	Tag "Poison Soul"
+	Health 75
 	Radius 16
 	Height 56
 	Mass 50
@@ -13067,64 +13067,65 @@ Actor DoubleChaingunGuy
   }
 }
 
-ACTOR ESoul // replaces Zombieman
+ACTOR ESoul
 {
-  obituary "%o was raped by a black soul."
-  health 100
-  radius 16
-  height 32
-  mass 400
-  speed 5
-  damage 5
-  painchance 128
-  renderstyle Add
-  Alpha 0.4
-  attacksound "skull/melee"
-  PainSound "nightmare/pain"
-  DeathSound "nightmare/death"
-  ActiveSound "nightmare/active"
-  MONSTER
-  +FLOAT
-  +NOGRAVITY
-  +NOICEDEATH
-  +MISSILEMORE
-  +DONTFALL
-  +STEALTH
-  +NOBLOOD
-  states
-  {
-  Spawn:
-    ETHS ABCD 10 bright A_Look
-    loop
-  See:
-    ETHS AABBCCDD 3 bright A_Chase
-    loop
-  Missile:
-    ETHS C 0 bright A_Jump(128,9)
-    ETHS C 6 bright A_FaceTarget
-    ETHS E 4 bright A_SkullAttack
-    ETHS E 0 bright A_FaceTarget
-    ETHS F 4 bright A_SkullAttack
-    ETHS F 0 bright A_FaceTarget
-    ETHS E 4 bright A_SkullAttack
-    ETHS E 0 bright A_FaceTarget
-    ETHS F 4 bright A_SkullAttack
-    goto See
-    ETHS P 3 bright A_FaceTarget
-    ETHS Q 4 bright A_FaceTarget
-    ETHS R 5 bright A_CustomMissile("ShadowBall", 0, 0, 0)
-    ETHS E 4 bright
-    goto See
-  Pain:
-    ETHS G 3 bright
-    ETHS G 3 bright A_Pain
-    goto See
-  Death:
-    ETHS F 3 bright
-    ETHS H 3 bright A_ScreamAndUnblock
-    ETHS IJKLMNO 3 bright
-    stop
-  }
+	Tag "Ethereal Soul"
+	obituary "%o was spooked by an ethereal soul."
+	health 75
+	radius 16
+	height 32
+	mass 400
+	speed 5
+	damage 5
+	painchance 128
+	renderstyle Add
+	Alpha 0.4
+	attacksound "skull/melee"
+	PainSound "nightmare/pain"
+	DeathSound "nightmare/death"
+	ActiveSound "nightmare/active"
+	MONSTER
+	+FLOAT
+	+NOGRAVITY
+	+NOICEDEATH
+	+MISSILEMORE
+	+DONTFALL
+	+STEALTH
+	+NOBLOOD
+	states
+	{
+		Spawn:
+			ETHS ABCD 10 bright A_Look
+			loop
+		See:
+			ETHS AABBCCDD 3 bright A_Chase
+			loop
+		Missile:
+			ETHS C 0 bright A_Jump(128,9)
+			ETHS C 6 bright A_FaceTarget
+			ETHS E 4 bright A_SkullAttack
+			ETHS E 0 bright A_FaceTarget
+			ETHS F 4 bright A_SkullAttack
+			ETHS F 0 bright A_FaceTarget
+			ETHS E 4 bright A_SkullAttack
+			ETHS E 0 bright A_FaceTarget
+			ETHS F 4 bright A_SkullAttack
+			goto See
+			ETHS P 3 bright A_FaceTarget
+			ETHS Q 4 bright A_FaceTarget
+			ETHS R 5 bright A_CustomMissile("ShadowBall", 0, 0, 0)
+			ETHS E 4 bright
+			goto See
+		Pain:
+			ETHS G 3 bright
+			ETHS G 3 bright A_Pain
+			goto See
+		Death:
+			ETHS F 3 bright
+			ETHS H 3 bright A_ScreamAndUnblock
+			ETHS IJKLMNO 3 bright
+			stop
+	}
 }
 
 ACTOR ShadowBall
@@ -13172,71 +13173,73 @@ actor ShadowTrail
 
 Actor ForgottenOne
 {
-  Obituary "A Forgotten One rammed %o"
-  Health 40
-  Radius 14
-  Height 30
-  Mass 50
-  Speed 8
-  PainChance 230
-  Scale 0.7
-  PainSound "Forgotten/Pain"
-  DeathSound "Forgotten/Death"
-  ActiveSound "Forgotten/Active"
-  Damage 3
-  Monster
-  +FloorClip
-  +Float
-  +NoGravity
-  +NoIceDeath
-  +DontFall
-  +FloatBob
-  +NoBlood
-  States
-  {
-  Spawn:
-    FRGO A 0 Bright
-    FRGO A 0 Bright A_ChangeFlag("FloatBob", 1)
-    FRGO AAAAAABBBBBB 1 Bright A_Look
-    Loop
-  See:
-    FRGO A 0 A_ChangeFlag("FloatBob", 1)
-    FRGO AABB 3 Bright A_Chase
-    Loop
-  Missile:
-    FRGO C 0 A_ChangeFlag("FloatBob", 0)
-    FRGO CCDDC 2 Bright A_FaceTarget
-    FRGO D 0 Bright A_PlaySound("Forgotten/Attack")
-    FRGO D 2 Bright A_SkullAttack
-    FRGO C 2 Bright
-    FRGO C 0 Bright A_JumpIfTargetInLOS(4, 75)
-    FRGO C 0 A_Jump(24, "StopCharge")
-    FRGO DC 2 Bright
-    Goto Missile+10
-    FRGO C 0 Bright
-    Goto Missile+7
-  StopCharge:
-    FRGO C 0 A_Stop
-    Goto See
-  Pain:
-    FRGO E 0 A_ChangeFlag("FloatBob", 1)
-    FRGO E 3 Bright
-    FRGO E 3 Bright A_Pain
-    Goto See
-  Death:
-    FRGO E 0 A_ChangeFlag("FloatBob", 0)
-    FRGO E 0 A_Stop
-    FRGO EF 4 Bright
-    FRGO G 6 Bright A_Scream
-    FRGO H 6 Bright
-    FRGO I 6 Bright A_NoBlocking
-    FRGO J 6 Bright
-    Stop
-  }
+	Tag "Forgotten One"
+	Obituary "A Forgotten One rammed %o"
+	Health 40
+	Radius 14
+	Height 30
+	Mass 50
+	Speed 8
+	PainChance 230
+	Scale 0.7
+	PainSound "Forgotten/Pain"
+	DeathSound "Forgotten/Death"
+	ActiveSound "Forgotten/Active"
+	Damage 3
+	Monster
+	+FloorClip
+	+Float
+	+NoGravity
+	+NoIceDeath
+	+DontFall
+	+FloatBob
+	+NoBlood
+	States
+	{
+		Spawn:
+			FRGO A 0 Bright
+			FRGO A 0 Bright A_ChangeFlag("FloatBob", 1)
+			FRGO AAAAAABBBBBB 1 Bright A_Look
+			Loop
+		See:
+			FRGO A 0 A_ChangeFlag("FloatBob", 1)
+			FRGO AABB 3 Bright A_Chase
+			Loop
+		Missile:
+			FRGO C 0 A_ChangeFlag("FloatBob", 0)
+			FRGO CCDDC 2 Bright A_FaceTarget
+			FRGO D 0 Bright A_PlaySound("Forgotten/Attack")
+			FRGO D 2 Bright A_SkullAttack
+			FRGO C 2 Bright
+			FRGO C 0 Bright A_JumpIfTargetInLOS(4, 75)
+			FRGO C 0 A_Jump(24, "StopCharge")
+			FRGO DC 2 Bright
+			Goto Missile+10
+			FRGO C 0 Bright
+			Goto Missile+7
+		StopCharge:
+			FRGO C 0 A_Stop
+			Goto See
+		Pain:
+			FRGO E 0 A_ChangeFlag("FloatBob", 1)
+			FRGO E 3 Bright
+			FRGO E 3 Bright A_Pain
+			Goto See
+		Death:
+			FRGO E 0 A_ChangeFlag("FloatBob", 0)
+			FRGO E 0 A_Stop
+			FRGO EF 4 Bright
+			FRGO G 6 Bright A_Scream
+			FRGO H 6 Bright
+			FRGO I 6 Bright A_NoBlocking
+			FRGO J 6 Bright
+			Stop
+	}
 }
 
 ACTOR LordofHeresy
 {
+	Tag "Lord of Heresy"
     Health 1000
     Radius 20
     Height 56
@@ -13304,6 +13307,7 @@ ACTOR LordofHeresy
 
 ACTOR Phantom
 {
+	Tag "Phantom"
 	OBITUARY "%o was scared by a phantom"
 	HITOBITUARY "%o was covered in ectoplasm by a phantom"
 	Health 850
@@ -13575,17 +13579,13 @@ ACTOR SoulSmoke
 
 ACTOR ProfaneOne : BaronOfHell
 {
+	Tag "Profane One"
 	Health 1000
 	Radius 24
 	Height 64
 	Mass 1000
 	Speed 10
 	PainChance 45
-	Monster
-	+FLOORCLIP
-	+BOSS
-	+MISSILEMORE
-	+MISSILEEVENMORE
 	Poisondamage 10
 	SeeSound "profane/sight"
 	PainSound "baron/pain"
@@ -13593,6 +13593,11 @@ ACTOR ProfaneOne : BaronOfHell
 	ActiveSound "baron/active"
 	Obituary "%o is now the Profane One's trophy."
 	HitObituary "The Profane One mauled %o."
+	Monster
+	+FLOORCLIP
+	+BOSS
+	+MISSILEMORE
+	+MISSILEEVENMORE
 	States
 	{
 	Spawn:
@@ -14768,7 +14773,7 @@ ACTOR FodderSoul
   }
 }
 
-ACTOR BlackHoleImp
+ACTOR BlackHoleImp : DoomImp
 {
 	Health 60
 	Radius 20
@@ -15053,76 +15058,76 @@ actor PulseDeathOrb
 
 actor DarkStarPortal
 {
-  scale 0.1
-  +NOGRAVITY
-  +NOBLOCKMAP
-  +NOCLIP
-  States
-  {
-    Spawn:
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.15, 0.15)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.2, 0.2)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.25, 0.25)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.3, 0.3)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.35, 0.35)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.4, 0.4)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.45, 0.45)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.5, 0.5)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.55, 0.55)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.6, 0.6)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright A_SetScale(0.65, 0.65)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  TNT1 A 0 A_PlaySoundEX("PORTAC", 2, 0, 0)
-	  DKST A 2 bright A_SetScale(0.70, 0.70)
-	  TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  DKST A 2 bright
-	  TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  TNT1 A 0 A_RadiusThrust(625, 550)
-	  TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-	  goto Fade
-	Fade:
-	  DKST A 1 A_Fadeout
-	  loop
-  }
+	scale 0.1
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+NOCLIP
+	States
+	{
+		Spawn:
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.15, 0.15)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.2, 0.2)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.25, 0.25)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.3, 0.3)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.35, 0.35)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.4, 0.4)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.45, 0.45)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.5, 0.5)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.55, 0.55)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.6, 0.6)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright A_SetScale(0.65, 0.65)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			TNT1 A 0 A_PlaySoundEX("PORTAC", 2, 0, 0)
+			DKST A 2 bright A_SetScale(0.70, 0.70)
+			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			DKST A 2 bright
+			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			TNT1 A 0 A_RadiusThrust(625, 550, RTF_NOIMPACTDAMAGE)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+			goto Fade
+		Fade:
+			DKST A 1 A_Fadeout
+			loop
+	}
 }
 
 
@@ -15137,6 +15142,7 @@ ACTOR PulseStarBall
   Projectile
   +RANDOMIZE
   +EXTREMEDEATH
+  +MTHRUSPECIES
   DamageFactor "DarkStar", 0.0
   SeeSound "PUSTF"
   DeathSound "BHEXP"
@@ -15285,23 +15291,23 @@ ACTOR Uberchain
 
 Actor UberTracer
 {
-Projectile
-+BLOODSPLATTER
-+THRUGHOST
-speed 90
-damage (random(2,5))
-scale 0.25
-RenderStyle Add
-Alpha 0.5
-States
-{
-	Spawn:
-		UCHB A 1 BRIGHT A_Quake(3,4,0,100,0)
-        Loop
-	Death:
-		UCHB A 1 A_PlaySound("UCHAIN/Bullets")
-    Stop
-}
+	Projectile
+	+BLOODSPLATTER
+	+THRUGHOST
+	speed 90
+	damage (random(2,5))
+	scale 0.25
+	RenderStyle Add
+	Alpha 0.5
+	States
+	{
+		Spawn:
+			UCHB A 1 BRIGHT A_Quake(3,4,0,100,0)
+			Loop
+		Death:
+			UCHB A 1 A_PlaySound("UCHAIN/Bullets")
+		Stop
+	}
 }
 
 Actor UberTracer2

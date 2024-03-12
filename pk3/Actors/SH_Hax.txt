@@ -44,3 +44,19 @@ actor HealthDisplayHack : Inventory // Hack because Zandronum lacks the "ifhealt
 	+INVENTORY.PERSISTENTPOWER
 	-INVENTORY.INTERHUBSTRIP
 }
+
+actor SightCheckBeacon // Used for sight checks on enemy multiplier.
+{
+	Radius 8
+	Height 8
+	//+NOINTERACTION
+	//+NOCLIP
+	+SERVERSIDEONLY
+	+NOSPAWNEVENTSCRIPT
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			stop
+	}
+}

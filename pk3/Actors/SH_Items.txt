@@ -19,12 +19,30 @@ Actor Greenarmorbonus : Custominventory
 	+INVENTORY.QUIET
 	Inventory.RespawnTics "99999999"
 	Inventory.PickupMessage "Fiend +5Armor/Gosimer +5Armor/Kunai +10Armor/Max +20Armor"
+	var int user_loopCount;
 	States
 	{
 		Spawn:
-			BON2 ABCDCB 6
-			Loop
-		pickup:
+			TNT1 A 0
+			goto CheckSprite
+			
+		CheckSprite:
+			"####" "#" 0 Bright A_SetUserVar("user_loopCount", 10)
+			"####" "#" 70 Bright ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
+			loop
+
+		Base:
+			BON2 ABCDCB 6 Bright
+			BON2 A 0 A_SetUservar("user_loopCount", user_loopCount-1)
+			BON2 A 0 A_JumpIf(user_loopCount == 0, "CheckSprite")
+			loop
+		MaximusPrime:
+			MXSB ABCDCB 3 Bright
+			MXSB A 0 A_SetUservar("user_loopCount", user_loopCount-1)
+			MXSB A 0 A_JumpIf(user_loopCount == 0, "CheckSprite")
+			loop
+
+		Pickup:
 			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
 			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
 			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
@@ -919,129 +937,88 @@ Actor Takoget : Custominventory
 
 //--------------<Health
 
-Actor Bluhelffilter : HealthPotion_Base
+Actor Bluhelffilter : CustomInventory
 {
+	Radius 20
+	Height 16
+	Scale 0.75
+	Inventory.RespawnTics "99999999"
 	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	+COUNTITEM
 	States
 	{
 		Spawn:
 			BONB ABCDCB 2
-			Loop
-		pickup:
-			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
+			loop
+			
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"GosimerPickup")
+			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"KunaiPickup")
+			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"MaxPickup")
 			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Giveinventory("HealthPainis")
 			TNT1 A 32
 			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
 			Stop
-		Kunaipickup:
+		KunaiPickup:
 			TNT1 A 0 A_playsound("HPGET",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Giveinventory("HealthPainis")
 			Stop
-		Gosimerpickup:
+		GosimerPickup:
 			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Giveinventory("HealthPainis")
 			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
 			Stop
-		Maxpickup:
+		MaxPickup:
 			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
+			TNT1 A 0 A_Giveinventory("HealthPainis_200max")
 			Stop
 	}
 }
 
-Actor REDhelffilter : HealthPotion_Base
+Actor REDhelffilter : Bluhelffilter
 {
 	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
 	States
 	{
 		Spawn:
 			BONR ABCDCB 2
-			Loop
-		pickup:
-			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			TNT1 A 32
-			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-			Stop
-		Kunaipickup:
-			TNT1 A 0 A_playsound("HPGET",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			Stop
-		Gosimerpickup:
-			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-			Stop
-		Maxpickup:
-			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			Stop
+			loop
 	}
 }
 
-Actor GREENhelffilter : HealthPotion_Base
+Actor GREENhelffilter : Bluhelffilter
 {
 	Inventory.PickupMessage "Picked up a Health Bonus! +5HP"
 	States
 	{
 		Spawn:
 			BONG ABCDCB 2
-			Loop
-		pickup:
-			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-			TNT1 A 0 A_Jumpifinventory("MaxToken", 1,"Maxpickup")
-			TNT1 A 0 A_playsound("Fiend/BOODOOP",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			TNT1 A 32
-			TNT1 A 16 A_Playsound("Jim/TauntTasty",Chan_6)
-			Stop
-		Kunaipickup:
-			TNT1 A 0 A_playsound("HPGET",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			Stop
-		Gosimerpickup:
-			TNT1 A 0 A_playsound("Gosimer/Boodoop",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			TNT1 A 0 A_Playsound("Health/burp",Chan_6)
-			Stop
-		Maxpickup:
-			TNT1 A 0 A_playsound("Max/HealthBonus",chan_5)
-			TNT1 A 0 A_Giveinventory("BlueHealthPainis")
-			Stop
+			loop
 	}
 }
 
-ACTOR BlueHealthpainis : Health
+ACTOR HealthPainis : Health
 {
-	Game Doom
-	SpawnID 152
-	+COUNTITEM
 	+INVENTORY.QUIET
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.Amount 5
 	Inventory.MaxAmount 300
-	Inventory.PickupSound "HPGET"
-	Inventory.RespawnTics "99999999"
-	Inventory.PickupMessage "Picked up a health bonus. +5"
-	States
-	{
-		Spawn:
-			BONB ABCDCB 2
-			Loop
-	}
+}
+
+ACTOR HealthPainis_200max : Health
+{
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 5
+	Inventory.MaxAmount 200
 }
 
 ACTOR Spencerhp : Health
 {
 	Game Doom
-	SpawnID 152
 	+COUNTITEM
 	+INVENTORY.QUIET
 	+INVENTORY.ALWAYSPICKUP
@@ -1058,146 +1035,100 @@ ACTOR Spencerhp : Health
 	}
 }
 
-ACTOR REDHealthpainis : Health
-{
-	Game Doom
-	SpawnID 152
-	+COUNTITEM
-	+INVENTORY.QUIET
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.Amount 5
-	Inventory.MaxAmount 300
-	Inventory.PickupSound "HPGET"
-	Inventory.RespawnTics "99999999"
-	Inventory.PickupMessage "Picked up a health bonus. +5"
-	States
-	{
-		Spawn:
-			BONR ABCDCB 2
-			Loop
-	}
-}
-
-ACTOR GreenHealthpainis : Health
-{
-	Game Doom
-	SpawnID 152
-	+COUNTITEM
-	+INVENTORY.QUIET
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.Amount 5
-	Inventory.MaxAmount 300
-	Inventory.PickupSound "HPGET"
-	Inventory.RespawnTics "99999999"
-	Inventory.PickupMessage "Picked up a health bonus. +5"
-	States
-	{
-		Spawn:
-			BONG ABCDCB 2
-			Loop
-	}
-}
-
 ACTOR NerfedMedkit : Health
 {
-  Game Doom
-  scale 1
-  SpawnID 24
-  Inventory.Amount 20
-  Inventory.PickupSound "HEALTH/NMEDKIT"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Small Medkit. +20"
-  States
-  {
-  Spawn:
-    MEDI A -1
-    Stop
-  }
+	Game Doom
+	scale 1
+	Inventory.Amount 20
+	Inventory.PickupSound "HEALTH/NMEDKIT"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Small Medkit. +20"
+	States
+	{
+		Spawn:
+			MEDI A -1
+			Stop
+	}
 }
 
 ACTOR NerfedStimpack : Health
 {
-  Game Doom
-  SpawnID 23
-  scale 1
-  Inventory.Amount 5
-  Inventory.PickupSound "HEALTH/NSTIM"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Small Stimpack. +5"
-  States
-  {
-  Spawn:
-    SMBS A -1
-    Stop
-  }
+	Game Doom
+	scale 1
+	Inventory.Amount 5
+	Inventory.PickupSound "HEALTH/NSTIM"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Small Stimpack. +5"
+	States
+	{
+		Spawn:
+			SMBS A -1
+			Stop
+	}
 }
 
 ACTOR NormalMedkit : Health
 {
-  Game Doom
-  SpawnID 24
-  scale 1
-  Inventory.Amount 25
-  Inventory.PickupSound "HEALTH/MMEDKIT"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Medium Medkit +25"
-  States
-  {
-  Spawn:
-    MEDP ABCDEDCB 4
-    Loop
-  }
+	Game Doom
+	scale 1
+	Inventory.Amount 25
+	Inventory.PickupSound "HEALTH/MMEDKIT"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Medium Medkit +25"
+	States
+	{
+		Spawn:
+			MEDP ABCDEDCB 4
+			Loop
+	}
 }
 
 ACTOR NormalStimpack : Health
 {
-  Game Doom
-  SpawnID 23
-  Inventory.Amount 10
-  Inventory.PickupSound "HEALTH/MSTIM"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Medium Stimpack +10"
-  States
-  {
-  Spawn:
-    STIM A -1
-    Stop
-  }
+	Game Doom
+	Inventory.Amount 10
+	Inventory.PickupSound "HEALTH/MSTIM"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Medium Stimpack +10"
+	States
+	{
+		Spawn:
+			STIM A -1
+			Stop
+	}
 }
 
 ACTOR BuffedMedkit : Health
 {
-  Game Doom
-  SpawnID 23
-  scale 0.75
-  Inventory.Amount 30
-  Inventory.PickupSound "HEALTH/BMEDKIT"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Large Medkit +30"
-  States
-  {
-  Spawn:
-    QMEG A -1
-    Stop
-  }
+	Game Doom
+	scale 0.75
+	Inventory.Amount 30
+	Inventory.PickupSound "HEALTH/BMEDKIT"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Large Medkit +30"
+	States
+	{
+		Spawn:
+			QMEG A -1
+			Stop
+	}
 }
 
 
 ACTOR BuffedStimpack : Health
 {
-  Game Doom
-  SpawnID 23
-  scale 1
-  Inventory.Amount 15
-  Inventory.PickupSound "HEALTH/BSTIM"
-  Inventory.RespawnTics "99999999"
-  Inventory.PickupMessage "Laege Stimpack +15"
-  States
-  {
-  Spawn:
-    QMED A -1
-    Stop
-  }
+	Game Doom
+	scale 1
+	Inventory.Amount 15
+	Inventory.PickupSound "HEALTH/BSTIM"
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Laege Stimpack +15"
+	States
+	{
+		Spawn:
+			QMED A -1
+			Stop
+	}
 }
 
 //Sentry gun!

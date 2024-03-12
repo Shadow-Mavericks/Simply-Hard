@@ -27,6 +27,16 @@ actor SH_BaseMonster
 	var int user_manncobox_chance;
 }
 
+actor SH_BaseMonsterRandomSpawner : RandomSpawner
+{
+	+SOLID
+	+ISMONSTER
+	+USESPAWNEVENTSCRIPT
+	-NOBLOCKMAP
+	-NOSECTOR
+	-THRUACTORS
+}
+
 //////////////////////////////////////////////////////////////////
 // Portals
 //////////////////////////////////////////////////////////////////
@@ -72,18 +82,8 @@ actor UpgradeToken_Base : Inventory
 }
 
 //////////////////////////////////////////////////////////////////
-// Health & Armor
+// Ammo & Weapons
 //////////////////////////////////////////////////////////////////
-actor HealthPotion_Base : CustomInventory
-{
-	Radius 20
-	Height 16
-	Inventory.RespawnTics "99999999"
-	Scale 0.75
-	+COUNTITEM
-	+INVENTORY.QUIET
-	+INVENTORY.ALWAYSPICKUP
-}
 
 actor AmmoGiver_Base : CustomInventory
 {

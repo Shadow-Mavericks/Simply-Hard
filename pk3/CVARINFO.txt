@@ -1,6 +1,7 @@
 server bool sh_orbs_logarithmic = false;
 server bool sh_friendly_scaledamage = true;
 server bool sh_compat_swaps = true;
+server int sh_enemy_mult = 1;
 local bool sh_debug_spawns = false;
 local bool sh_debug_orbs = false;
 local bool sh_debug_damage = false;

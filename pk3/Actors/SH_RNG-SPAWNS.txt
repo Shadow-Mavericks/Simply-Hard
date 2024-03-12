@@ -1,5 +1,6 @@
-Actor Zamble : RandomSpawner Replaces zombieman
+Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
 {
+	Radius 20
 	DropItem "Noobzombieman"		255 100
 	DropItem "averagezombieman"		255 80
 	DropItem "Tryhardzombieman"		255 60
@@ -12,8 +13,9 @@ Actor Zamble : RandomSpawner Replaces zombieman
 	Dropitem "FemalePlasma"			255 5
 }
 
-Actor Shootgunzamble : Randomspawner Replaces Shotgunguy
+Actor Shootgunzamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
 {
+	Radius 20
 	Dropitem "hardshootgunguy"		255 100
 	Dropitem "hardshootgunguy1"		255 80
 	Dropitem "hardshootgunguy2"		255 60
@@ -28,8 +30,9 @@ Actor Shootgunzamble : Randomspawner Replaces Shotgunguy
 	Dropitem "FemalePlasma"			255 5
 }
 
-Actor Imps : RandomSpawner Replaces Doomimp
+Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 {
+	Radius 20
 	DropItem "hardimp"				255 100
 	DropItem "Critimp"				255 25
 	DropItem "NamiDarkimp"			255 5
@@ -44,11 +47,12 @@ Actor Imps : RandomSpawner Replaces Doomimp
 	Dropitem "N_Imp_Ice"			255 5
 	Dropitem "RocketImp"			255 5
 	Dropitem "SH_Vulgar"			255 5
-	Dropitem "BlackHoleImp"			255 5
+	Dropitem "BlackHoleImp"			255 3
 }
 
-Actor Cahingunzambles : Randomspawner replaces Chaingunguy
+Actor Cahingunzambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
 {
+	Radius 20
 	DropItem "HardChaingunguy"		255 100
 	DropItem "Bfgguy"				255 2
 	DropItem "DevastatorZombie"		255 2
@@ -58,7 +62,7 @@ Actor Cahingunzambles : Randomspawner replaces Chaingunguy
 	//Dropitem "Uberchain"			255 5
 }
 
-Actor Hardrev : Randomspawner replaces Revenant
+Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 {
 	Dropitem "Hardrevenant" 			255 100
 	Dropitem "TryhardRevenant"			255 25
@@ -74,8 +78,9 @@ Actor Hardrev : Randomspawner replaces Revenant
 	//DropItem "RevGhoul"	255 5
 }
 
-Actor Lostpainis : Randomspawner replaces Lostsoul
+Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul
 {
+	Radius 16
 	Dropitem "hardsoul"					255 100
 	Dropitem "Dragoonsoul"				255 25
 	Dropitem "Babycaco"					255 5
@@ -87,8 +92,9 @@ Actor Lostpainis : Randomspawner replaces Lostsoul
 	Dropitem "ForgottenOne"				255 25
 }
 
-Actor JIHADReplacer : RandomSpawner Replaces Demon //ALALALALALALALA DED
+Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALALA DED
 {
+	Radius 30
 	DropItem "fastDemon" 				255 100
 	DropItem "fastSpectre" 				255 5
 	Dropitem "Segwayzombie" 			255 5
@@ -105,8 +111,9 @@ Actor JIHADReplacer : RandomSpawner Replaces Demon //ALALALALALALALA DED
 	//Dropitem "Flemmeteorite"			255 5
 }
 
-Actor stealthynessdemon : Randomspawner Replaces Spectre
+Actor stealthynessdemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 {
+	Radius 30
 	Dropitem "fastSpectre" 					255 100
 	Dropitem "Stealthdemon" 				255 25
 	Dropitem "Suicidebomber" 				255 5
@@ -123,8 +130,9 @@ Actor stealthynessdemon : Randomspawner Replaces Spectre
 	//Dropitem "mawfulmole"					255 1
 }
 
-Actor meatballspawner : Randomspawner Replaces cacodemon
+Actor meatballspawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 {
+	Radius 31
 	Dropitem "hardcaco"						255 100
 	//Dropitem "Cacomother"					255 1
 	Dropitem "GasterBlaster"				255 5
@@ -140,16 +148,18 @@ Actor meatballspawner : Randomspawner Replaces cacodemon
 	Dropitem "Duke3D_SentryDrone"			255 4
 }
 
-Actor Lostspawner : Randomspawner Replaces Painelemental
+Actor PainisElementalspawner : SH_BaseMonsterRandomSpawner Replaces PainElemental
 {
+	Radius 31
 	Dropitem "HardpainisElemental"		255 15
 	Dropitem "Dragoonelemental"			255 2
 	//Dropitem "cacomother" 			255 1
 	Dropitem "Mastersphere"				255 1
 }
 
-Actor Hellpainis : Randomspawner Replaces Hellknight
+Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
 {
+	Radius 24
 	Dropitem "HardHellknight"			255 50
 	Dropitem "Cybruiser"				255 5
 	Dropitem "Afrit"					255 5
@@ -160,6 +170,7 @@ Actor Hellpainis : Randomspawner Replaces Hellknight
 
 Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 {
+	+ISMONSTER
 	Dropitem "Hardcyberdemon"			255 10
 	//Dropitem "BOSSTerminator"			255 1
 	//Dropitem "Annihilator"			255 1
@@ -175,7 +186,7 @@ Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 	Dropitem "Zyberdemon"				255	1
 }
 
-actor Painisvile : Randomspawner Replaces archvile
+actor Painisvile : SH_BaseMonsterRandomSpawner Replaces archvile
 {
 	Dropitem "hardvile"					255 5
 	//Dropitem "Diabloist"				255 1
@@ -190,6 +201,7 @@ actor Painisvile : Randomspawner Replaces archvile
 
 Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
 {
+	+ISMONSTER
 	Dropitem "HardSpiderboss"	255 3
 	Dropitem "AracnorbQueen"	255 1
 	Dropitem "Fusionspider"		255 3

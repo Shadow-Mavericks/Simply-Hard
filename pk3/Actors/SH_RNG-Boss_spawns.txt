@@ -43,12 +43,14 @@
 
 Actor Speedorspawner : Randomspawner Replaces Arachnotron
 {
+	+ISMONSTER
 	Dropitem "Hardarachnotron"	255 10
 	Dropitem "Railarachnotron"	255 2
 	Dropitem "Arachnotronmk2"	255 1
 }
 actor FatsoSpawner : RandomSpawner replaces Fatso
 {
+	+ISMONSTER
 	DropItem "Hardfatso"				255 10
 	DropItem "Haedexebus"				255 2
 	DropItem "N_Mancubus_Acid"			255 1
@@ -63,6 +65,8 @@ actor FatsoSpawner : RandomSpawner replaces Fatso
 
 actor BaronSpawner : RandomSpawner replaces Baronofhell
 {
+	Radius 24
+	+ISMONSTER
 	DropItem "Hardbaron"			255 10
 	DropItem "Warlordofhell"		255 3
 	DropItem "Cyberbaron"			255 1

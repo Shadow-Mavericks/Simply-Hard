@@ -1660,7 +1660,7 @@ ACTOR SphereMaster
   See:
     SPHM A 6 A_chase
     SPHM A 0 A_RadiusGive("Health", 320, RGF_MONSTERS, 10)
-	SPHM A 0 A_AlertMonsters
+	SPHM A 0 A_AlertMonsters(1024)
     Goto see
   Melee:
   Missile:

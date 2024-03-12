@@ -257,8 +257,8 @@ ACTOR Megasphere1 : Custominventory //Gosimer and kunais version (300 max hp)
   Pickup:
     TNT1 A 0 A_GiveInventory("Bluearmorfilter", 1)
     TNT1 A 0 A_GiveInventory("Bluearmorfilter", 1)
-    TNT1 A 0 A_GiveInventory("Soulsphere3", 1)
-    TNT1 A 0 A_GiveInventory("Soulsphere3", 1)
+    TNT1 A 0 A_GiveInventory("Soulsphere300Cap", 1)
+    TNT1 A 0 A_GiveInventory("Soulsphere300Cap", 1)
     Stop
   }
 }
@@ -282,8 +282,8 @@ ACTOR Megasphere2 : Custominventory //Fiends version (max 200 hp)
   Pickup:
     TNT1 A 0 A_GiveInventory("Bluearmorfilter", 1)
     TNT1 A 0 A_GiveInventory("Bluearmorfilter", 1)
-    TNT1 A 0 A_GiveInventory("Soulsphere2", 1)
-    TNT1 A 0 A_GiveInventory("Soulsphere2", 1)
+    TNT1 A 0 A_GiveInventory("Soulsphere200Cap", 1)
+    TNT1 A 0 A_GiveInventory("Soulsphere200Cap", 1)
     Stop
   }
 }
@@ -319,74 +319,44 @@ Actor MegasphereFilter: Custominventory Replaces Megasphere
     }
 }
 
-ACTOR Soulsphere2 : Health //capped fiends max supercharge to 200 due to self sustain
+ACTOR Soulsphere200Cap : Health //capped fiends max supercharge to 200 due to self sustain
 {
-  +COUNTITEM
-  +INVENTORY.QUIET
-    +DONTGIB
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 100
-  Inventory.MaxAmount 200
-  Inventory.RespawnTics "99999999"
-  RenderStyle Add
-  Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
-  States
-  {
-  Spawn:
-    SOUL ABCDCB 6 Bright
-    Loop
-  Pickup:
-    TNT1 A 0 A_Playsound("Jim/powerup",Chan_6)
-    Stop
-  }
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 100
+	Inventory.MaxAmount 200
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_Playsound("Jim/powerup",Chan_6)
+			Stop
+	}
 }
 
-ACTOR Soulsphere3 : Health //Kunai + gosimer use this soulsphere for the 300hp version
+ACTOR Soulsphere300Cap : Health //Kunai + gosimer use this soulsphere for the 300hp version
 {
-  +COUNTITEM
-  +INVENTORY.QUIET
-    +DONTGIB
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 100
-  Inventory.MaxAmount 300
-  Inventory.RespawnTics "99999999"
-  RenderStyle Add
-  Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
-  States
-  {
-  Spawn:
-    SOUL ABCDCB 6 Bright
-    Loop
-  Pickup:
-    SOUL A 0 A_playsound("Duke/Soulsphere",chan_6)
-    Stop
-  }
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 100
+	Inventory.MaxAmount 300
+	States
+	{
+		Pickup:
+			SOUL A 0 A_playsound("Duke/Soulsphere",chan_6)
+			Stop
+	}
 }
 
-ACTOR Soulsphere4 : Health //Silent soulsphere  // mainly used for powerups and abilities?
+ACTOR SoulsphereSilent : Health // mainly used for powerups and abilities.
 {
-  +COUNTITEM
-  +INVENTORY.QUIET
-    +DONTGIB
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.Amount 100
-  Inventory.MaxAmount 300
-  Inventory.RespawnTics "99999999"
-  RenderStyle Add
-  Inventory.PickupMessage "$GOTSUPER" // "Supercharge!"
-  States
-  {
-  Spawn:
-    SOUL ABCDCB 6 Bright
-    Loop
-
-  }
+	+INVENTORY.QUIET
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 100
+	Inventory.MaxAmount 300
 }
 
-Actor Soulsphere1 : Custominventory Replaces Soulsphere  //Soulsphere class distribution check
+Actor SoulsphereGiver : Custominventory Replaces Soulsphere  //Soulsphere class distribution check
 {
 	Radius 20
 	Height 16
@@ -403,13 +373,23 @@ Actor Soulsphere1 : Custominventory Replaces Soulsphere  //Soulsphere class dist
 			SOUL ABCD 2 BRIGHT
 			Loop
 		pickup:
-			TNT1 A 0 A_Jumpifinventory("Fiendtoken",1,"Funky")
-			TNT1 A 0 A_Playsound("Duke/Soulsphere", Chan_6)
-			TNT1 A 0 A_GIVEINVENTORY("Soulsphere3")
+			TNT1 A 0 A_Jumpifinventory("Fiendtoken",1,"Fiend")
+			TNT1 A 0 A_JumpIfInventory("MaxToken", 1, "Max")
+			goto DefaultBehavior
+		
+		DefaultBehavior:
+			TNT1 A 0 A_Playsound("Duke/Soulsphere", CHAN_6)
+			TNT1 A 0 A_GiveInventory("Soulsphere300Cap")
 			Stop
-		Funky:
-			TNT1 A 0 A_Playsound("Jim/powerup",Chan_6)
-			TNT1 A 0 A_GIVEINVENTORY("Soulsphere2")
+		
+		Fiend:
+			TNT1 A 0 A_Playsound("Jim/powerup",CHAN_6)
+			TNT1 A 0 A_GiveInventory("Soulsphere200Cap")
+			Stop
+			
+		Max:
+			TNT1 A 0 A_playsound("Max/ArmorGet", CHAN_6)
+			TNT1 A 0 A_GiveInventory("Soulsphere200Cap")
 			Stop
 	}
 }
@@ -1491,8 +1471,8 @@ Actor Joy : Custominventory
 			Loop
 		use:
 			TNT1 A 0 ACS_NamedExecuteWithResult("UsedJoy",0,0,0,0)
-			TNT1 A 0 A_Giveinventory("Soulsphere4")
-			TNT1 A 0 A_Giveinventory("Soulsphere4")
+			TNT1 A 0 A_Giveinventory("SoulsphereSilent")
+			TNT1 A 0 A_Giveinventory("SoulsphereSilent")
 			TNT1 A 0 A_Giveinventory("JoySpeed")
 			TNT1 A 0 A_Giveinventory("JoyDamage")
 			TNT1 A 0 A_Giveinventory("JoyResistance")
@@ -1600,45 +1580,39 @@ actor PowerupItem_Slimed : PowerupGiver
 	powerup.type "Powerup_Slimed"
 }
 
-ACTOR HardBerserkFiend : CustomInventory
-{
-  +COUNTITEM
-     +Dontgib
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupMessage "$GOTBERSERK" // "Berserk!"
-  States
-  {
-  Spawn:
-    PSTR A -1
-    Stop
-  Pickup:
-    TNT1 A 0 A_Playsound("Jim/powerup",Chan_6)
-    TNT1 A 0 A_GiveInventory("PowerStrength")
-    TNT1 A 0 A_Giveinventory("Soulsphere4")
-    Stop
-  }
-}
-
 ACTOR HardBerserk : CustomInventory
 {
-  +COUNTITEM
-     +Dontgib
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupMessage "$GOTBERSERK" // "Berserk!"
-  States
-  {
-  Spawn:
-    PSTR A -1
-    Stop
-  Pickup:
-    TNT1 A 0 A_jumpifinventory("Fiendtoken",1,"Groovy")
-    TNT1 A 0 A_Playsound("Duke/Vitamins",Chan_6)
-    TNT1 A 0 A_GiveInventory("PowerStrength")
-    TNT1 A 0 HealThing(100, 0)
-    Stop
-  Groovy:
-    TNT1 A 0 A_Giveinventory("HardBerserkFiend")
-  }
+	+COUNTITEM
+	+DONTGIB
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupMessage "$GOTBERSERK" // "Berserk!"
+	States
+	{
+		Spawn:
+			PSTR A -1
+			Stop
+	
+		Pickup:
+			TNT1 A 0 A_JumpIfInventory("FiendToken", 1, "FiendPickup")
+			TNT1 A 0 A_JumpIfInventory("GosimerToken", 1, "GosimerPickup")
+			goto PickupEnd
+			
+		FiendPickup:
+			TNT1 A 0 A_Playsound("Jim/powerup", CHAN_6)
+			TNT1 A 0 A_GiveInventory("PowerStrength")
+			TNT1 A 0 A_Giveinventory("SoulsphereSilent")
+			TNT1 A 0 A_RailWait
+			stop
+	
+		GosimerPickup:
+			TNT1 A 0 A_Playsound("Duke/Vitamins", CHAN_6)
+			goto PickupEnd
+			
+		PickupEnd:
+			TNT1 A 0 A_GiveInventory("PowerStrength")
+			TNT1 A 0 HealThing(100, 0)
+			Stop
+	}
 }
 
 

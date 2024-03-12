@@ -1581,6 +1581,7 @@ Actor DroidLaser : FastProjectile
 	+NEVERFAST
 	+RIPPER
 	+EXTREMEDEATH
+	+BLOODLESSIMPACT
 	States
 	{
 		Spawn:

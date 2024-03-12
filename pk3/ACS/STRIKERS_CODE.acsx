@@ -41,6 +41,14 @@ function int max (int a, int b)
 	return b;
 }
 
+function int abs (int x)
+{
+	if (x < 0)
+		return -x;
+
+	return x;
+}
+
 function int clamp(int in, int min, int max)
 {
 	int out = (in < min) ? min : in;
@@ -637,6 +645,92 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 	}
 	else if(type == GAMEEVENT_ACTOR_SPAWNED)
 	{
+		if((GetCVar("sh_enemy_mult") > 1) && arg1 == true && CheckFlag(0, "ISMONSTER"))
+		{
+			int mult = clamp(GetCVar("sh_enemy_mult"), 2, 100);
+			int radius = GetActorProperty(0, APROP_Radius)*2;
+			int pos[4] = { GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0)>>8 };
+			bool ambush = CheckFlag(0, "AMBUSH");
+			bool friendly = CheckFlag(0, "FRIENDLY");
+			bool stealth = CheckFlag(0, "STEALTH");
+			bool standstill = CheckFlag(0, "STANDSTILL");
+		
+			int enemyCount = 1;
+			int dir = 0;
+			int stride = 0;
+			int spawnAttempts = 0;
+			
+			if(GetCVar("sh_debug_spawns"))
+				log(s:"Multiplying ", s:GetActorClass(0));
+
+			do
+			{
+				int iter = 0;
+
+				do
+				{
+					iter++;
+					switch (dir)
+					{
+						case 0: pos[1] += radius; break;
+						case 1: pos[0] += radius; break;
+						case 2: pos[1] -= radius; break;
+						case 3: pos[0] -= radius; break;
+					}
+					
+					int newFloorZ = GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16);
+					int floorZDiff = abs(pos[2] - newFloorZ);
+					int beaconTID = UniqueTID(0);
+					
+					bool floorZPassed = (floorZDiff <= 64.0);
+					bool sightPassed = false;
+					int spawnPassed = false;
+					
+					if(floorZPassed)
+					{
+						Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0);
+						sightPassed = CheckSight(0, beaconTID, 0);
+						
+						if(sightPassed)
+						{
+							int thisTID = ActivatorTID();
+							int uTID = UniqueTID(0);
+							spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], pos[2], uTID, pos[3]);
+							ChangeActorFlag(uTID, "AMBUSH", ambush);
+							ChangeActorFlag(uTID, "FRIENDLY", friendly);
+							ChangeActorFlag(uTID, "STEALTH", stealth);
+							ChangeActorFlag(uTID, "STANDSTILL", standstill);
+							Thing_ChangeTID(uTID, thisTID);
+						}
+					}
+					
+					if(!floorZPassed || !sightPassed || !spawnPassed)
+					{
+						spawnAttempts++;
+						if(spawnAttempts >= 25)
+						{
+							if(GetCVar("sh_debug_spawns"))
+								log(s:"Giving up after too many attempts to spawn.");
+							
+							enemyCount = mult;
+							break;
+						}
+						
+						continue;
+					}
+
+					spawnAttempts = 0;
+					enemyCount++;
+						
+					if(GetCVar("sh_debug_spawns"))
+						log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos[2], s:" floorz: ", f:GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16));
+				} while((iter < stride) && enemyCount < mult);
+				
+				dir = (dir+1)%4;
+				stride++;
+			} while(enemyCount < mult);
+		}
+		
 		if(GetCVar("sh_compat_swaps"))
 		{
 			// Strange Aeons compatibility swaps
