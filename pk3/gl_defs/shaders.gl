@@ -1,0 +1,401 @@
+HardwareShader flat NUKAGE1
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat NUKAGE2
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat NUKAGE3
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BLOOD1
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BLOOD2
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BLOOD3
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BLOOD4
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat PURPW1
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat PURPW2
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat PURPW3
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat PURPW4
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat FWATER1
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat FWATER2
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat FWATER3
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader flat FWATER4
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture PUFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture PUFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture PUFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture PUFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture GRYFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture GRYFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture GRYFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture GRYFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture BFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture LAVFALL1
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVFALL2
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVFALL3
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVFALL4
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LFALL_1
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LFALL_2
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LFALL_3
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LFALL_4
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MAGFALL1
+{
+	Shader "shaders/lavafall_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MAGFALL2
+{
+	Shader "shaders/lavafall_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MAGFALL3
+{
+	Shader "shaders/lavafall_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MAGFALL4
+{
+	Shader "shaders/lavafall_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture SFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME01
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME02
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME03
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME04
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME05
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME06
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME07
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SLIME08
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SLMFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SLMFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SLMFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture SLMFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture LAVA1
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVA2
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVA3
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LAVA4
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MLAVA1
+{
+	Shader "shaders/lava_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MLAVA2
+{
+	Shader "shaders/lava_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MLAVA3
+{
+	Shader "shaders/lava_purple.fp"
+	Speed 1.0
+}
+
+HardwareShader texture MLAVA4
+{
+	Shader "shaders/lava_purple.fp"
+	Speed 1.0
+}

@@ -14,7 +14,10 @@
 #include gl_defs/lordofheresy.gl
 #include gl_defs/revghoul.gl
 #include gl_defs/rocketzombie.gl
+#include gl_defs/shaders.gl
 #include gl_defs/ssgzombie.gl
+#include gl_defs/xstars.gl
+#include gl_defs/darkforces.gl
 
 Glow
 {
@@ -42,6 +45,14 @@ Glow
 		SLIME6
 		SLIME7
 		SLIME8
+		PURPW1
+		PURPW2
+		PURPW3
+		PURPW4
+		MLAVA1
+		MLAVA2
+		MLAVA3
+		MLAVA4
 	}
 }
 

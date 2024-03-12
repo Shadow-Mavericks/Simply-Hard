@@ -1,0 +1,29 @@
+pointlight RedBolt
+{
+	color 1.0 0.0 0.0
+	size 48
+}
+
+pointlight GreenBolt
+{
+	color 0.0 1.0 0.0
+	size 48
+}
+
+pointlight BlueBolt
+{
+	color 0.0 0.25 1.0
+	size 48
+}
+
+pointlight SmallBlueBolt
+{
+	color 0.0 0.25 1.0
+	size 32
+}
+
+pointlight OrangeBolt
+{
+	color 1.0 0.25 0.0
+	size 48
+}

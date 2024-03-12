@@ -2664,6 +2664,13 @@ brightmap sprite SPIDR0
 	disablefullbright
 }
 
+brightmap sprite BON2A0
+{
+	map "brightmaps/doom/BON2A0.png"
+	iwad
+	disablefullbright
+}
+
 brightmap sprite BON2B0
 {
 	map "brightmaps/doom/BON2B0.png"
@@ -2671,14 +2678,14 @@ brightmap sprite BON2B0
 	disablefullbright
 }
 
-brightmap sprite BON2c0
+brightmap sprite BON2C0
 {
 	map "brightmaps/doom/BON2c0.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite BON2d0
+brightmap sprite BON2D0
 {
 	map "brightmaps/doom/BON2d0.png"
 	iwad
@@ -2692,16 +2699,16 @@ brightmap sprite FCANA0
 	disablefullbright
 }
 
-brightmap sprite FCANb0
+brightmap sprite FCANB0
 {
-	map "brightmaps/doom/FCANb0.png"
+	map "brightmaps/doom/FCANB0.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite FCANc0
+brightmap sprite FCANC0
 {
-	map "brightmaps/doom/FCANc0.png"
+	map "brightmaps/doom/FCANC0.png"
 	iwad
 	disablefullbright
 }
