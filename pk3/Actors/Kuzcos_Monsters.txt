@@ -1923,7 +1923,7 @@ actor CCCDroid
 	Activesound "Droid/Active"
 	Deathsound "Droid/Death"
 	Painsound "Droid/Pain"
-	DamageFactor "MaxExplosion", 1.25
+	DamageFactor "MaxExplosion", 1.5
 	DamageFactor "MaxBlasterBolt", 2.0
 	DropItem "Cell", 256
 	var int user_theta;
