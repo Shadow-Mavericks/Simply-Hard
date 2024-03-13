@@ -764,9 +764,12 @@ ACTOR CombatShotgun : Doomweapon
 			GUN2 A 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
 			GUN2 AAAAAA 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "Bulletpuff", FBF_NORANDOM)
 			GUN2 A 0 A_GunFlash
-			GUN2 H 2 A_PlaySound("GShotgunFire", CHAN_WEAPON)
-			GUN2 A 2
-			GUN2 A 3
+			GUN2 A 1 Offset(0, 48) A_PlaySound("GShotgunFire", CHAN_WEAPON)
+			SUN2 A 1 Offset(0, 47)
+			GUN2 A 1 Offset(0, 36)
+			GUN2 A 1 Offset(0, 34)
+			GUN2 A 1 Offset(0, 33)
+			GUN2 A 2 Offset(0, 32)
 			GUN2 G 3
 			GUN2 B 3
 			GUN2 C 5 A_PlaySound("GShotgunCock1", CHAN_AUTO)
@@ -792,9 +795,12 @@ ACTOR CombatShotgun : Doomweapon
 			SUN2 A 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "GosimersExplosivepuff", FBF_USEAMMO | FBF_NORANDOM)
 			SUN2 AAAAAA 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "GosimersExplosivepuff", FBF_NORANDOM)
 			SUN2 A 0 A_GunFlash
-			SUN2 H 2 A_PlaySound("GShotgunFireGold", CHAN_WEAPON)
-			SUN2 A 2
-			SUN2 A 3
+			SUN2 A 1 Offset(0, 48) A_PlaySound("GShotgunFireGold", CHAN_WEAPON)
+			SUN2 A 1 Offset(0, 47)
+			SUN2 A 1 Offset(0, 36)
+			SUN2 A 1 Offset(0, 34)
+			SUN2 A 1 Offset(0, 33)
+			SUN2 A 2 Offset(0, 32)
 			SUN2 G 3
 			SUN2 B 3
 			SUN2 C 5 A_PlaySound("GShotgunCock1", CHAN_AUTO)
