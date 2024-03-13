@@ -682,6 +682,7 @@ Dispenser/Tune38	medspe38
 Dispenser/Tune39	medspe39
 Dispenser/Tune40	medspe40
 Dispenser/Tune41	medspe41
+Dispenser/Tune42	medspe42
 $Random Lucio/Healingboost { Lucio/Heal1 Lucio/Heal2 Lucio/Heal3 Lucio/Heal4 Lucio/Heal5 }
 
 Lucio/Heal1		Meduse1

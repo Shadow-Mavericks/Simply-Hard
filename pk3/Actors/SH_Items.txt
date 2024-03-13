@@ -181,23 +181,11 @@ ACTOR FiendsGreenArmorBonus : BasicArmorBonus
 
 ACTOR DispenserArmorBonus : BasicArmorBonus
 {
-	Radius 20
-	Height 16
-	+INVENTORY.QUIET
-	Inventory.Icon "ARM1A0"
-	Inventory.PickupSound ""
-	Inventory.RespawnTics "99999999"
 	Armor.SavePercent 100
-	Armor.SaveAmount 5
+	Armor.SaveAmount 1
 	Armor.MaxSaveAmount 500
-	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
-	States
-	{
-		Spawn:
-			BON2 ABCDCB 6
-			Loop
-	}
+	+INVENTORY.QUIET
 }
 
 ACTOR KunaisRedArmorBonus : BasicArmorBonus

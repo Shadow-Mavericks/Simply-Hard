@@ -22,8 +22,20 @@ pointlight SmallBlueBolt
 	size 32
 }
 
+pointlight BigBlueBolt
+{
+	color 0.0 0.25 1.0
+	size 56
+}
+
 pointlight OrangeBolt
 {
 	color 1.0 0.25 0.0
 	size 48
+}
+
+pointlight BigYellowBolt
+{
+	color 1.0 0.75 0.0
+	size 56
 }

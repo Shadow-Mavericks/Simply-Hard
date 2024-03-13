@@ -1,0 +1,771 @@
+Actor Dispenser : CustomInventory //
+{
+	Radius 4
+	Height 18
+	+INVENTORY.INVBAR
+	+Dontgib
+	Inventory.RespawnTics "99999999"
+	Inventory.MaxAmount 3
+	Inventory.InterHubAmount 3
+	Inventory.Icon "I_DISPEN"
+	Inventory.PickupSound "MBackP"
+	Inventory.PickupMessage "When used; Plays music and heals team in a small radius"
+	States
+	{
+		Spawn:
+			SNDB A -1
+			Stop
+		Use:
+			SNDB A 0 A_Playsound("Lucio/Healingboost")
+			SNDB A 0 A_Jump(256, "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15","D16","D17","D18","D19","D20","D21","D22","D23","D24","D25","D26","D27","D28","D29","D30","D31","D32","D33","D34","D35","D36","D37","D38","D39","D40","D41","D42")
+		D1:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn1", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D2:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn2", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D3:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn3", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D4:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn4", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D5:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn5", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D6:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn6", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D7:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn7", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D8:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn8", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D9:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn9", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D10:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn10", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D11:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn11", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D12:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn12", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D13:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn13", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D14:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn14", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D15:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn15", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D16:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn16", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D17:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn17", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D18:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn18", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D19:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn19", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D20:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn20", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D21:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn21", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D22:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn22", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D23:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn23", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D24:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn24", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D25:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn25", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D26:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn26", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D27:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn27", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D28:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn28", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D29:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn29", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D30:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn30", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D31:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn31", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D32:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn32", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D33:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn33", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D34:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn34", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D35:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn35", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D36:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn36", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D37:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn37", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D38:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn38", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D39:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn39", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D40:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn40", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+		D41:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn41", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+
+		D42:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn42", 0, 0, 28, 0, 0, 0, 0, 1)
+			goto despawn
+
+		Despawn:
+			MBPK A 0
+			Stop
+	}
+}
+
+ACTOR spenserspawn1
+{
+	-SOLID
+	+DONTGIB
+	var int user_loops;
+	var int user_healamt;
+	var int user_armoramt;
+	var int user_armorgiven;
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune1", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune1", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune1", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+		HealLoop:
+			MESP A 0 A_RadiusGive("Spencerhp", 320, RGF_PLAYERS, user_healamt)
+			MESP A 0 A_JumpIf(user_armoramt > 0, "ArmorLoop")
+			goto Anim
+		ArmorLoop: // Bullshit hack because ZDoom/Zan can't give more than one armor bonus per call.
+			MESP A 0 A_RadiusGive("DispenserArmorBonus", 320, RGF_PLAYERS, 1)
+			MESP A 0 A_SetUserVar("user_armorgiven", user_armorgiven+1)
+			MESP A 0 A_JumpIf(user_armorgiven < user_armoramt, "ArmorLoop")
+			MESP A 0 A_SetUserVar("user_armorgiven", 0)
+			goto Anim
+		Anim:
+			MESP A 6 Bright Light("HealingDVA1")
+			MESP B 6 Bright Light("HealingDVA2")
+			MESP C 6 Bright Light("HealingDVA3")
+			MESP D 6 Bright Light("HealingDVA4")
+			MESP E 6 Bright Light("HealingDVA5")
+			MESP E 0 A_SetUserVar("user_loops", user_loops-1)
+			MESP E 0 A_JumpIf(user_loops <= 0, "End")
+			goto HealLoop
+		End:
+			MESP F -1
+			stop
+	}
+}
+
+ACTOR spenserspawn2 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune2", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune2", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune2", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn3 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune3", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune3", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune3", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn4 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune4", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune4", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune4", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn5 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune5", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune5", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune5", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 108)
+			MESP A 0 A_SetUserVar("user_healamt", 1)
+			MESP A 0 A_SetUserVar("user_armoramt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn6 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune6", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune6", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune6", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn7 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune7", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune7", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune7", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn8 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune8", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune8", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune8", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn9 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune9", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune9", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune9", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn10 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune10", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune10", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune10", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn11 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune11", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune11", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune11", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn12 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune12", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune12", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune12", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn13 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune13", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune13", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune13", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn14 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune14", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune14", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune14", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn15 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune15", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune15", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune15", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn16 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune16", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune16", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune16", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn17 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune17", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune17", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune17", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn18 : spenserspawn1
+{
+States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune18", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune18", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune18", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn19 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune19", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune19", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune19", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 10) // Doubled healing
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn20 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune20", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune20", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune20", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn21 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune21", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune21", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune21", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn22 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune22", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune22", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune22", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn23 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune23", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune23", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune23", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn24 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune24", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune24", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune24", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn25 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune25", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune25", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune25", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn26 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune26", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune26", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune26", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn27 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune27", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune27", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune27", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn28 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune28", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune28", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune28", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn29 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune29", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune29", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune29", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn30 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune30", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune30", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune30", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn31 : spenserspawn1 //////////////////////////////////////////////////////////////////////////////// NEW TRACKS AS OF DEC 19, 2019 SIMPLY HARD VERSION VERSION 139
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune31", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune31", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune31", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn32 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune32", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune32", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune32", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn33 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune33", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune33", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune33", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn34 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune34", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune34", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune34", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn35 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune35", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune35", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune35", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn36 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune36", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune36", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune36", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn37 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune37", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune37", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune37", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn38 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune38", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune38", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune38", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn39 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune39", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune39", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune39", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn40 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune40", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune40", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune40", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn41 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune41", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune41", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune41", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn42 : spenserspawn1
+{
+	States
+	{
+		Spawn:
+			MESP A 0 A_Playsound("Dispenser/Tune42", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune42", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune42", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 96)
+			MESP A 0 A_SetUserVar("user_healamt", 2)
+			MESP A 0 A_SetUserVar("user_armoramt", 2)
+			goto HealLoop
+	}
+}

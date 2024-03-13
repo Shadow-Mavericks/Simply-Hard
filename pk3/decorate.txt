@@ -12,6 +12,7 @@
 #include "actors/SH_Monsters.txt"
 #include "actors/SH_Player.txt"
 #include "actors/SH_Powerups.txt"
+#include "actors/SH_Dispensers.txt"
 #include "actors/SH_Projectiles.txt"
 #include "actors/SH_RNG-Spawns.txt"
 

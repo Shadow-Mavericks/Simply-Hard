@@ -222,9 +222,9 @@ actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
 	DropItem "Haedexebus"				255 2
 	DropItem "N_Mancubus_Acid"			255 1
 	DropItem "N_Mancubus_Fire"			255 1
-	DropItem "Cryocubus"			    255 1
-	DropItem "N_Mancubus_Electric"		255 1		
-	DropItem "N_Mancubus_Heavymetal"	255 1	
+	DropItem "Cryocubus"				255 1
+	DropItem "N_Mancubus_Electric"		255 1
+	DropItem "N_Mancubus_Heavymetal"	255 1
 	DropItem "N_Mancubus_Void"			255 1
 	DropItem "Arachnocubus"				255 1
 	DropItem "FlyingFatso"				255 1
