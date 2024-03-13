@@ -73,6 +73,15 @@ script "SV_PLAYERTICKER" OPEN
 				if(CheckInventory("PowerStrength") && !(tickNum % 70))
 					GiveInventory("AbilityCharge", 1);
 				
+				if(!(tickNum % 105))
+				{
+					if((GetActorProperty(0, APROP_Health) > 200))
+						SetActorProperty(0, APROP_Health, GetActorProperty(0, APROP_Health)-1);
+					if(CheckInventory("BasicArmor") > 200)
+						TakeInventory("BasicArmor", 1);
+					
+				}
+				
 				if(CheckInventory("Armor") > 0 && !GetArmorType("NullArmorHack", p))
 				{
 					int oldArmor = CheckInventory("BasicArmor");
