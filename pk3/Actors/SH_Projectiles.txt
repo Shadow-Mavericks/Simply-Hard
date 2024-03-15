@@ -151,7 +151,7 @@ ACTOR CRocket : Rocket //Recolor by Fiend Kitsune
 	Height 8
 	Speed 20
 	Damage 40
-	SCALE 1.5
+	Scale 1.5
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"
 	Obituary "%o Is Blasting off again!"
@@ -2934,80 +2934,6 @@ ACTOR REDChannelerTrail
 }
 
 //Quake 2 Grenade  //CodeBase from HFC2X
-
-Actor Nadez_Base
-{
-	Radius 8
-	Height 8
-	Speed 40
-	Damage 20
-	Gravity 0.5
-	Projectile
-	-NOGRAVITY
-	+NOTIMEFREEZE
-	+GRENADETRAIL
-	States
-	{
-		Spawn:
-			SGRN A 1 Bright
-			loop
-		Death:
-			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
-			DEXP A 0 Bright A_SetScale(0.1, 0.1)
-			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
-			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(128, 192)
-			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
-			stop
-	}
-}
-
-Actor CritNadez_Base : Nadez_Base
-{
-	DamageType Fire
-	SeeSound "Weapons/GrenLF"
-	+FORCERADIUSDMG
-	+EXTREMEDEATH
-	States
-	{
-		Spawn:
-			SGRN A 1 Bright
-			loop
-		Death:
-			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
-			DEXP A 0 Bright A_SetScale(0.2, 0.2)
-			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
-			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(192, 192)
-			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
-			stop
-	}
-}
-
-Actor BouncyNadez : Nadez_Base
-{
-	BounceType Doom
-	BounceSound "Weapon/nadebounce"
-}
-
-Actor ImpactNadez : Nadez_Base
-{
-	Speed 40
-	Damage 40
-}
-
-Actor CritBouncyNadez : CritNadez_Base
-{
-	BounceType Doom
-	BounceSound "Weapon/nadebounce"
-	Damage 40
-}
-
-Actor CritImpactNadez : CritNadez_Base
-{
-	Speed 40
-	Damage 60
-}
 
 Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
 {
