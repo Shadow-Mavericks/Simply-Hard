@@ -151,3 +151,17 @@ Model GreenGiantBloodSpot      // Name of actor in DECORATE
    ZOffset 0.7
    FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
 }
+
+model DispenserBubble
+{
+	Path "Models"
+	Model 0 "sphere.md3"
+	
+	Path "Textures"
+	Skin 0 "POWBUBBL.png"
+	
+	//ALIGNANGLE
+	scale 6.0 6.0 6.0
+
+	FrameIndex PUFF A 0 0
+}

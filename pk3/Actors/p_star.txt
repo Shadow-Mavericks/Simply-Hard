@@ -292,6 +292,17 @@ actor Hyper_Star_Yellow : Particle_Base
 	}
 }
 
+actor Star_NoRise : Particle_Base
+{
+	Scale 0.05
+	States
+	{
+		Spawn:
+			STR1 AFEDCBA 1 bright
+			stop
+	}
+}
+
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 // The Lights

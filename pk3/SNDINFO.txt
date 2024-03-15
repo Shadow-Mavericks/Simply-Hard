@@ -1893,3 +1893,5 @@ Kunaishotgun_FIRE2	KHTS_FR2
 Kunaishotgun_Pump	KHTS_RL
 
 $random Kunaishotgun_FIRE { Kunaishotgun_FIRE1 Kunaishotgun_FIRE2 }
+
+Pop Pop
