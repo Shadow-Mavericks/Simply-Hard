@@ -209,8 +209,8 @@ actor ConcussionBlast : FastProjectile
 {
 	SeeSound "Max/ConcProj"
 	Obituary "%o was unlucky to meet %k's Concussion Rifle"
-	Radius 6
-	Height 6
+	Radius 2
+	Height 2
 	Damage (40) // In DF there's no direct damage, but making an exception.
 	Speed 47
 	
