@@ -566,3 +566,6 @@ Sprites By: WARDUST
 
 // DL-44 Blaster
 Sprites By: WARDUST - https://www.doomworld.com/forum/topic/113928-rogue-rebel-tc-release/
+
+// Shield Battery
+Sprites By: Xim
