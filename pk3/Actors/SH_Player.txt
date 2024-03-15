@@ -16,6 +16,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Fiendzy"
 	Player.CrouchSprite "PLYC"
+	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "Renettim9"
 	Player.StartItem "Fists"
 	Player.StartItem "Shellz", 6
@@ -173,6 +174,7 @@ ACTOR Kunai : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Bulk Bogan"
 	Player.CrouchSprite "PLYC"
+	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "Kunaisrevolver"
 	Player.StartItem "Soulreaper"
 	Player.StartItem "Shellz", 8
@@ -328,6 +330,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Dookie Nookie"
 	Player.CrouchSprite "PLYC"
+	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "GosimersHandgun"
 	Player.StartItem "UAC-Chainsaw"
 	Player.StartItem "Shellz", 8
@@ -491,6 +494,7 @@ actor MaximusPrime : SH_BasePlayer
 	Player.DisplayName "Rebel Scum"
 	Player.CrouchSprite "PLYC"
 	Player.SoundClass "MaximusPrime"
+	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "DFPistol"
 	Player.StartItem "DFFist"
 	Player.StartItem "DF_EnergyUnit", 100

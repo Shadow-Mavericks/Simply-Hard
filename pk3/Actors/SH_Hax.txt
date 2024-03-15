@@ -45,6 +45,32 @@ actor HealthDisplayHack : Inventory // Hack because Zandronum lacks the "ifhealt
 	-INVENTORY.INTERHUBSTRIP
 }
 
+actor SpecialHax : Inventory // General purpose hack for monsters & items.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.InterHubAmount 9999
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
+actor PlayerCheckHax : Inventory // Useful for A_JumpIfInTargetInventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 1
+	Inventory.InterHubAmount 1
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
 actor SightCheckBeacon // Used for sight checks on enemy multiplier.
 {
 	Radius 8
