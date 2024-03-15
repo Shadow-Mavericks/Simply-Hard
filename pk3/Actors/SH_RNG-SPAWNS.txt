@@ -118,7 +118,6 @@ Actor stealthynessdemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 	Dropitem "Stealthdemon" 				255 25
 	Dropitem "Suicidebomber" 				255 5
 	Dropitem "fastDemon" 					255 5
-	Dropitem "Chiller"						255 5
 	DropItem "N_Demonghost_Acid"			255 5
 	DropItem "N_Demonghost_Fire"			255 5
 	DropItem "N_Demonghost_Void"			255 5
@@ -152,7 +151,8 @@ Actor PainisElementalspawner : SH_BaseMonsterRandomSpawner Replaces PainElementa
 {
 	Radius 31
 	Dropitem "HardpainisElemental"		255 15
-	Dropitem "Dragoonelemental"			255 2
+	Dropitem "Dragoonelemental"			255 3
+	Dropitem "Chiller"					255 2
 	//Dropitem "cacomother" 			255 1
 	Dropitem "Mastersphere"				255 1
 }
