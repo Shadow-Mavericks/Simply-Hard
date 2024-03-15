@@ -13,20 +13,25 @@ actor ClipGiver : AmmoGiver_Base replaces Clip
 	States
 	{
 		Base:
-			CLIP A 0 A_SetScale(1.0)
-			goto Idle
+			CLIP A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			ENGU A 0 A_SetScale(0.8)
-			goto Idle
+			ENGU A 70
+			goto CheckSprite
 			
 		Gosimer:
-			D3DA A 0 A_SetScale(0.3)
-			goto Idle
+			D3DA A 70
+			goto CheckSprite
 
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CLIP) // Ammo Type
 			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 30)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -35,20 +40,25 @@ actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 	States
 	{
 		Base:
-			AKAM A 0 A_SetScale(1.0)
-			goto Idle
+			AKAM A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			ENGU B 0 A_SetScale(0.8)
-			goto Idle
+			ENGU B 70
+			goto CheckSprite
 
 		Gosimer:
-			D3DA B 0 A_SetScale(0.6)
-			goto Idle
+			D3DA B 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CLIPBOX) // Ammo Type
 			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -57,16 +67,20 @@ actor ShellGiver : AmmoGiver_Base replaces Shell
 	States
 	{
 		Base:
-			SHEL A 0 A_SetScale(1.0)
-			goto Idle
+			SHEL A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			PCEL A 0 A_SetScale(0.8)
-			goto Idle
+			PCEL A 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_SHELLS) // Ammo Type
 			goto CheckSprite
+			
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -75,20 +89,25 @@ actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 	States
 	{
 		Base:
-			SBOX A 0 A_SetScale(1.0)
-			goto Idle
+			SBOX A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			PCEL B 0 A_SetScale(0.8)
-			goto Idle
+			PCEL B 70
+			goto CheckSprite
 			
 		Gosimer:
-			D3DA C 0 A_SetScale(0.6)
-			goto Idle
+			D3DA C 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_SHELLBOX) // Ammo Type
 			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -97,20 +116,25 @@ actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
 	States
 	{
 		Base:
-			ROCK A 0 A_SetScale(1.0)
-			goto Idle
+			ROCK A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			MRTA A 0 A_SetScale(0.8)
-			goto Idle
+			MRTA A 70
+			goto CheckSprite
 			
 		Gosimer:
-			GOSG A 0 A_SetScale(1.0)
-			goto Idle
+			GOSG A 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_ROCKET) // Ammo Type
 			goto CheckSprite
+			
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -119,16 +143,20 @@ actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
 	States
 	{
 		Base:
-			BROK A 0 A_SetScale(1.0)
-			goto Idle
+			BROK A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			MRTA B 0 A_SetScale(0.8)
-			goto Idle
+			MRTA B 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_ROCKETBOX) // Ammo Type
 			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -137,16 +165,20 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 	States
 	{
 		Base:
-			CELL A 0 A_SetScale(1.0)
-			goto Idle
+			CELL A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			ACAM A 0 A_SetScale(0.8)
-			goto Idle
+			ACAM A 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CELL) // Ammo Type
 			goto CheckSprite
+			
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }
 
@@ -155,19 +187,24 @@ actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 	States
 	{
 		Base:
-			CELP A 0 A_SetScale(1.0)
-			goto Idle
+			CELP A 70
+			goto CheckSprite
 		
 		MaximusPrime:
-			ACAM B 0 A_SetScale(0.8)
-			goto Idle
+			ACAM B 70
+			goto CheckSprite
 			
 		Gosimer:
-			D3DA D 0 A_SetScale(0.6)
-			goto Idle
+			D3DA D 70
+			goto CheckSprite
 			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CELLBOX) // Ammo Type
 			goto CheckSprite
+			
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto SetSprite
 	}
 }

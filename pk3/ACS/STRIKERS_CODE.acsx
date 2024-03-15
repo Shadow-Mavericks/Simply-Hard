@@ -1147,10 +1147,25 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 
 	SetActivatorToPlayer(ConsolePlayerNumber());
 	str playerClassName = GetActorClass(0);
+	str scaleVar = StrParam(s:"user_scale_", s:playerClassName);
 
 	SetActivator(newTID);
+
 	if(!SetActorState(0, playerClassName, false))
 		SetActorState(0, "Base", false);
+
+	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
+	if(GetUserVariable(0, scaleVar) > 0)
+	{
+		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, scaleVar)*0.01);
+		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, scaleVar)*0.01);
+	}
+	else
+	{
+		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, "user_scale_Base")*0.01);
+		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, "user_scale_Base")*0.01);
+	}
+	
 	Thing_ChangeTID(0, oldTID);
 }
 

@@ -98,7 +98,17 @@ actor UpgradeToken_Base : Inventory
 // Ammo & Weapons
 //////////////////////////////////////////////////////////////////
 
-actor AmmoGiver_Base : FakeInventory
+actor SH_FakeInventory : FakeInventory
+{
+	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
+	var int user_scale_Base;
+	var int user_scale_Fiend;
+	var int user_scale_Kunai;
+	var int user_scale_Gosimer;
+	var int user_scale_MaximusPrime;
+}
+
+actor AmmoGiver_Base : SH_FakeInventory
 {
 	Radius 20
 	Height 16
@@ -108,14 +118,15 @@ actor AmmoGiver_Base : FakeInventory
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false)
+			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")
-			TNT1 A 0 A_Jump(256,"Init")
-			wait
+			TNT1 A -1 A_JumpIf(1 == 1, "Init")
+			stop
 
 		Dropped:
 			TNT1 A 0 A_SetArg(2, true) // Dropped
-			TNT1 A 0 A_Jump(256,"Init")
-			wait
+			TNT1 A -1 A_JumpIf(1 == 1, "Init")
+			stop
 
 		Init:
 			TNT1 A 0 // A_SetArg(1, AMMO_CLIP) // Ammo Type
@@ -125,11 +136,16 @@ actor AmmoGiver_Base : FakeInventory
 			UNKN A 35
 			goto CheckSprite
 			
-		Idle:
-			"####" "#" 70
-			goto CheckSprite
-			
+		
 		CheckSprite:
+			"####" "#" -1 A_JumpIf(1 == 1, "SetScale")
+			stop
+			
+		SetScale:
+			"####" "#" 0
+			goto SetSprite
+
+		SetSprite:
 			"####" "#" 70 ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
 			loop
 	}
