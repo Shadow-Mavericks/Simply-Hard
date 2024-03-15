@@ -2956,6 +2956,7 @@ actor Duke3D_SentryDrone
 	attacksound "duke3d/Rawr"
 	painsound "Duke3d/pain"
 	deathsound "weapons/rocklx"
+	DamageFactor "MaxBlasterBolt", 2.0
 	MONSTER
 	+FLOAT
 	+NOGRAVITY
