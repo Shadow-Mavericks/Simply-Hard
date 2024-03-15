@@ -123,39 +123,39 @@ actor Crocket_Heavymetal : Crocket
 
 ACTOR N_Cyberdemon_Acid : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
-  PainChance 20
+	//	Scale 1.1
+	+Dontrip
+	PainChance 20
 	Translation "48:79=[128, 255, 128]:[32, 64, 32]", "144:151=[128, 255, 128]:[32, 64, 32]"
 	States
 	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
-    Goto See
+		Missile:
+			CYBR E 24 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, 0)
+			CYBR E 6 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
+			CYBR E 6 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
+			Goto See
 	}
 }
 
 ACTOR N_Cyberdemon_Void : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
-  PainChance 30
+	//	Scale 1.1
+	+Dontrip
+	PainChance 30
 	Translation "48:79=[192, 128, 255]:[16, 0, 32]", "144:151=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
-    Goto See
+		Missile:
+			CYBR E 24 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, 0)
+			CYBR E 6 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
+			CYBR E 6 A_FaceTarget
+			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
+			Goto See
 	}
 }
 
