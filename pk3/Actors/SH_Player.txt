@@ -1,4 +1,4 @@
-ACTOR Fiend : DoomPlayer
+ACTOR Fiend : SH_BasePlayer
 {
 	Speed 1
 	Health 100
@@ -7,9 +7,7 @@ ACTOR Fiend : DoomPlayer
 	Mass 100
 	
 	DamageFactor 1.0
-	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
-	DamageFactor "PlayerDynamite", 0.25
-	DamageFactor "PlayerExplosivePuff", 0.0
+
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 	
@@ -162,7 +160,7 @@ Actor Fiendtoken : Inventory
   }
 }
 
-ACTOR Kunai : DoomPlayer
+ACTOR Kunai : SH_BasePlayer
 {
 	Speed 1.25
 	Health 100
@@ -187,9 +185,7 @@ ACTOR Kunai : DoomPlayer
 	BounceSound "PlayerHP/AlarmKunai"
 
 	DamageFactor 1.25
-	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
-	DamageFactor "PlayerDynamite", 0.25
-	DamageFactor "PlayerExplosivePuff", 0.0
+
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 	
@@ -319,7 +315,7 @@ Actor Kunaitoken : Inventory
 	}
 }
 
-ACTOR Gosimer : DoomPlayer
+ACTOR Gosimer : SH_BasePlayer
 {
 	Speed 0.85
 	Health 150
@@ -345,9 +341,7 @@ ACTOR Gosimer : DoomPlayer
 	Player.DamageScreenColor Yellow, 1
 
 	DamageFactor 0.75
-	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
-	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
-	DamageFactor "PlayerExplosivePuff", 0.0
+
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 
@@ -477,7 +471,7 @@ Actor GosimerToken : Inventory
   }
 }
 
-actor MaximusPrime : DoomPlayer
+actor MaximusPrime : SH_BasePlayer
 {
 	Speed 0.9
 	Gravity 0.75
@@ -489,9 +483,7 @@ actor MaximusPrime : DoomPlayer
 	PainChance 255
 
 	DamageFactor 0.75
-	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
-	DamageFactor "PlayerDynamite", 0.25 // team bfg damage midigation ie Doom bfg tracers
-	DamageFactor "PlayerExplosivePuff", 0.0
+
 	DamageFactor "MaxBlasterBolt", 0.67
 	DamageFactor "MaxExplosion", 0.67
 	DamageFactor "Electric", 0.75 // Max's class resists lightning a bit.
@@ -507,8 +499,6 @@ actor MaximusPrime : DoomPlayer
 	BounceSound "PlayerHP/AlarmMax"
 	Player.JumpZ 10
 	Player.AirCapacity 3
-
-	var int user_supercharge_useammo;
 
 	States
 	{
