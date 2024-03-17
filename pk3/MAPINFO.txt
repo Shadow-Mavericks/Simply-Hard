@@ -27,9 +27,9 @@ map SH02 "Tribute Of Blood"
 
 map SH03 "Familiar places"
 {
-	Next = "SH07"  //as of this build, map does not exsist
+	Next 	=	"SH07"  //as of this build, map does not exsist
 	Music	=	"D_e1m5"
-	sky1	=	" RSKY3", 0.0
+	sky1	=	"SH_RSKY3", 0.0
 	Nojump
 	Nocrouch
 }
