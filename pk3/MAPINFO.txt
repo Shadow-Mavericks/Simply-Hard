@@ -25,12 +25,11 @@ map SH02 "Tribute Of Blood"
 	nocrouch
 }
 
-map SH03 "Unnamed Map?"
+map SH03 "Familiar places"
 {
-	next = "SH01"
-	music = "D_SCRAY"
-	sky1 = "SH_RSKY2", 0.0
-	//author = "Gosimer"
-	nojump
-	nocrouch
+	Next = "SH07"  //as of this build, map does not exsist
+	Music	=	"D_e1m5"
+	sky1	=	" RSKY3", 0.0
+	Nojump
+	Nocrouch
 }

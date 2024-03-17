@@ -1,0 +1,24 @@
+
+// white
+texture CRYSTAL1, 64, 128	{	Patch CRYSTAL, 0, 0	{}}
+
+// red
+texture CRYSTAL2, 64, 128	{	Patch CRYSTAL, -64, 0	{}}
+
+// gold
+texture CRYSTAL3, 64, 128	{	Patch CRYSTAL, -128, 0	{}}
+
+// green
+texture CRYSTAL4, 64, 128	{	Patch CRYSTAL, -192, 0	{}}
+
+// cyan
+texture CRYSTAL5, 64, 128	{	Patch CRYSTAL, -256, 0	{}}
+
+// blue
+texture CRYSTAL6, 64, 128	{	Patch CRYSTAL, -320, 0	{}}
+
+// purple
+texture CRYSTAL7, 64, 128	{	Patch CRYSTAL, -384, 0	{}}
+
+// magenta
+texture CRYSTAL8, 64, 128	{	Patch CRYSTAL, -448, 0	{}}
