@@ -400,6 +400,68 @@ HardwareShader texture MLAVA4
 	Speed 1.0
 }
 
+// ------ BAK_LEG -------
+HardwareShader texture WWATER01
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WDWATR01
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WREDLIQ
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
+HardwareShader texture WSLIME01
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader texture WSLIMH
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader texture WSLIME02
+{
+	Shader "shaders/water.fp"
+	Speed 0.5
+}
+
+HardwareShader texture WSLIME03
+{
+	Shader "shaders/water.fp"
+	Speed 0.5
+}
+
+HardwareShader texture WLLSLIM1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture WLLBLOD1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture WLLATFL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+// Model Shaders
 HardwareShader texture POWBUBBL
 {
 	Shader "shaders/bubbleshield.fp"
