@@ -1,6 +1,7 @@
 Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
 {
 	Radius 20
+	Height 56
 	DropItem "Noobzombieman"		255 100
 	DropItem "averagezombieman"		255 80
 	DropItem "Tryhardzombieman"		255 60
@@ -16,6 +17,7 @@ Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
 Actor Shootgunzamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
 {
 	Radius 20
+	Height 56
 	Dropitem "hardshootgunguy"		255 100
 	Dropitem "hardshootgunguy1"		255 80
 	Dropitem "hardshootgunguy2"		255 60
@@ -33,6 +35,7 @@ Actor Shootgunzamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
 Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 {
 	Radius 20
+	Height 56
 	DropItem "hardimp"				255 100
 	DropItem "Critimp"				255 25
 	DropItem "NamiDarkimp"			255 5
@@ -53,6 +56,7 @@ Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 Actor Cahingunzambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
 {
 	Radius 20
+	Height 56
 	DropItem "HardChaingunguy"		255 100
 	DropItem "Bfgguy"				255 2
 	DropItem "DevastatorZombie"		255 2
@@ -64,6 +68,8 @@ Actor Cahingunzambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
 
 Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 {
+	Radius 20
+	Height 56
 	Dropitem "Hardrevenant" 			255 100
 	Dropitem "TryhardRevenant"			255 25
 	Dropitem "Papyrus"					255 5
@@ -81,6 +87,7 @@ Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul
 {
 	Radius 16
+	Height 56
 	Dropitem "hardsoul"					255 100
 	Dropitem "Dragoonsoul"				255 25
 	Dropitem "Babycaco"					255 5
@@ -95,6 +102,7 @@ Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul
 Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALALA DED
 {
 	Radius 30
+	Height 56
 	DropItem "fastDemon" 				255 100
 	DropItem "fastSpectre" 				255 5
 	Dropitem "Segwayzombie" 			255 5
@@ -114,6 +122,7 @@ Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALA
 Actor stealthynessdemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 {
 	Radius 30
+	Height 56
 	Dropitem "fastSpectre" 					255 100
 	Dropitem "Stealthdemon" 				255 25
 	Dropitem "Suicidebomber" 				255 5
@@ -132,6 +141,7 @@ Actor stealthynessdemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 Actor meatballspawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 {
 	Radius 31
+	Height 56
 	Dropitem "hardcaco"						255 100
 	//Dropitem "Cacomother"					255 1
 	Dropitem "GasterBlaster"				255 5
@@ -150,6 +160,7 @@ Actor meatballspawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 Actor PainisElementalspawner : SH_BaseMonsterRandomSpawner Replaces PainElemental
 {
 	Radius 31
+	Height 56
 	Dropitem "HardpainisElemental"		255 15
 	Dropitem "Dragoonelemental"			255 3
 	Dropitem "Chiller"					255 2
@@ -160,6 +171,7 @@ Actor PainisElementalspawner : SH_BaseMonsterRandomSpawner Replaces PainElementa
 Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
 {
 	Radius 24
+	Height 64
 	Dropitem "HardHellknight"			255 50
 	Dropitem "Cybruiser"				255 5
 	Dropitem "Afrit"					255 5
@@ -170,7 +182,6 @@ Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
 
 Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 {
-	+ISMONSTER
 	Dropitem "Hardcyberdemon"			255 10
 	//Dropitem "BOSSTerminator"			255 1
 	//Dropitem "Annihilator"			255 1
@@ -188,6 +199,8 @@ Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 
 actor Painisvile : SH_BaseMonsterRandomSpawner Replaces archvile
 {
+	Radius 20
+	Height 56
 	Dropitem "hardvile"					255 5
 	//Dropitem "Diabloist"				255 1
 	Dropitem "Divineshadow"				255 1
@@ -201,7 +214,6 @@ actor Painisvile : SH_BaseMonsterRandomSpawner Replaces archvile
 
 Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
 {
-	+ISMONSTER
 	Dropitem "HardSpiderboss"	255 3
 	Dropitem "AracnorbQueen"	255 1
 	Dropitem "Fusionspider"		255 3
@@ -211,6 +223,7 @@ Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
 Actor Speedorspawner : SH_BaseMonsterRandomSpawner Replaces Arachnotron
 {
 	Radius 64
+	Height 64
 	Dropitem "Hardarachnotron"	255 10
 	Dropitem "Railarachnotron"	255 2
 	Dropitem "Arachnotronmk2"	255 1
@@ -218,6 +231,7 @@ Actor Speedorspawner : SH_BaseMonsterRandomSpawner Replaces Arachnotron
 actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
 {
 	Radius 48
+	Height 64
 	DropItem "Hardfatso"				255 10
 	DropItem "Haedexebus"				255 2
 	DropItem "N_Mancubus_Acid"			255 1
@@ -230,9 +244,10 @@ actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
 	DropItem "FlyingFatso"				255 1
 }
 
-actor BaronSpawner : RandomSpawner replaces Baronofhell
+actor BaronSpawner : SH_BaseMonsterRandomSpawner replaces Baronofhell
 {
 	Radius 24
+	Height 64
 	DropItem "Hardbaron"			255 10
 	DropItem "Warlordofhell"		255 3
 	DropItem "Cyberbaron"			255 1
