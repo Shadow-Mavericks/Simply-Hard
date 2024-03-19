@@ -138,8 +138,8 @@ actor AmmoGiver_Base : SH_FakeInventory
 			
 		
 		CheckSprite:
-			"####" "#" -1 A_JumpIf(1 == 1, "SetScale")
-			stop
+			"####" "#" 70 A_JumpIf(1 == 1, "SetScale")
+			loop
 			
 		SetScale:
 			"####" "#" 0
