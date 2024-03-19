@@ -428,11 +428,14 @@ function void actor_swap(str replace, str with, int chance)
 		bool friendly = CheckFlag(0, "FRIENDLY");
 		bool stealth = CheckFlag(0, "STEALTH");
 		bool standstill = CheckFlag(0, "STANDSTILL");
+		bool dormant = CheckFlag(0, "DORMANT");
 
 		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
+		
+		SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
+		SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
 		ChangeActorFlag(uTID, "DROPPED", dropped);
-		ChangeActorFlag(uTID, "AMBUSH", ambush);
 		ChangeActorFlag(uTID, "FRIENDLY", friendly);
 		ChangeActorFlag(uTID, "STEALTH", stealth);
 		ChangeActorFlag(uTID, "STANDSTILL", standstill);
@@ -654,6 +657,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			bool friendly = CheckFlag(0, "FRIENDLY");
 			bool stealth = CheckFlag(0, "STEALTH");
 			bool standstill = CheckFlag(0, "STANDSTILL");
+			bool dormant = CheckFlag(0, "DORMANT");
 		
 			int enemyCount = 1;
 			int dir = 0;
@@ -661,7 +665,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			int spawnAttempts = 0;
 			
 			if(GetCVar("sh_debug_spawns"))
-				log(s:"Multiplying ", s:GetActorClass(0));
+				log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:ambush, s:")");
 
 			do
 			{
@@ -688,20 +692,26 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					
 					if(floorZPassed)
 					{
-						Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0);
-						sightPassed = CheckSight(0, beaconTID, 0);
-						
-						if(sightPassed)
+						if(Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0))
 						{
-							int thisTID = ActivatorTID();
-							int uTID = UniqueTID(0);
-							spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], pos[2], uTID, pos[3]);
-							ChangeActorFlag(uTID, "AMBUSH", ambush);
-							ChangeActorFlag(uTID, "FRIENDLY", friendly);
-							ChangeActorFlag(uTID, "STEALTH", stealth);
-							ChangeActorFlag(uTID, "STANDSTILL", standstill);
-							ChangeActorFlag(uTID, "DROPPED", 0);
-							Thing_ChangeTID(uTID, thisTID);
+							sightPassed = CheckSight(0, beaconTID, 0);
+							if(sightPassed)
+							{
+								int thisTID = ActivatorTID();
+								int uTID = UniqueTID(0);
+
+								spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], pos[2], uTID, pos[3]);
+
+								SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
+								SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
+								SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
+								ChangeActorFlag(uTID, "FRIENDLY", friendly);
+								ChangeActorFlag(uTID, "STEALTH", stealth);
+								ChangeActorFlag(uTID, "STANDSTILL", standstill);
+								ChangeActorFlag(uTID, "DROPPED", 0);
+
+								Thing_ChangeTID(uTID, thisTID);
+							}
 						}
 					}
 					

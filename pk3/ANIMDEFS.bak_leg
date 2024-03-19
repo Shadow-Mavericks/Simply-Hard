@@ -51,13 +51,11 @@ texture GLAVA1
 
 texture FLTAAWA1
 	pic FLTAAWA1 tics 8
-	pic FLTAAWA2 tics 8
-	pic FLTAAWA3 tics 8
+	pic FLTAAWA1 tics 8
 
 texture FLTMUD1
 	pic FLTMUD1 tics 8
-	pic FLTMUD2 tics 8
-	pic FLTMUD3 tics 8
+	pic FLTMUD1 tics 8
 
 texture FLTTEL21
 	pic FLTTEL21 tics 8

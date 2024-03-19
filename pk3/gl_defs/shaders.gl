@@ -419,6 +419,18 @@ HardwareShader texture WREDLIQ
 	Speed 1.0
 }
 
+HardwareShader texture FLTAAWA1
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader texture FLTMUD1
+{
+	Shader "shaders/water.fp"
+	Speed 0.5
+}
+
 HardwareShader texture WSLIME01
 {
 	Shader "shaders/water.fp"

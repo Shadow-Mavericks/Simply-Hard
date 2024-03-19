@@ -155,6 +155,7 @@ Actor meatballspawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 	Dropitem "CCCDroid"						255 4
 	Dropitem "Maludemon"					255 5
 	Dropitem "Duke3D_SentryDrone"			255 4
+	Dropitem "Chiller"						255 1
 }
 
 Actor PainisElementalspawner : SH_BaseMonsterRandomSpawner Replaces PainElemental
