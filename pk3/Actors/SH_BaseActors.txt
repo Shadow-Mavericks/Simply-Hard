@@ -120,12 +120,12 @@ actor AmmoGiver_Base : SH_FakeInventory
 			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false)
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")
-			TNT1 A -1 A_JumpIf(1 == 1, "Init")
+			TNT1 A -1 A_Jump(256, "Init")
 			stop
 
 		Dropped:
 			TNT1 A 0 A_SetArg(2, true) // Dropped
-			TNT1 A -1 A_JumpIf(1 == 1, "Init")
+			TNT1 A -1 A_Jump(256, "Init")
 			stop
 
 		Init:
@@ -138,7 +138,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 			
 		
 		CheckSprite:
-			"####" "#" 70 A_JumpIf(1 == 1, "SetScale")
+			"####" "#" 70 A_Jump(256, "SetScale")
 			loop
 			
 		SetScale:

@@ -1171,7 +1171,7 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, scaleVar)*0.01);
 		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, scaleVar)*0.01);
 	}
-	else
+	else if(GetUserVariable(0, "user_scale_Base") > 0)
 	{
 		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, "user_scale_Base")*0.01);
 		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, "user_scale_Base")*0.01);
