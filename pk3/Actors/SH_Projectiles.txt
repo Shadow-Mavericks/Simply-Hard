@@ -831,7 +831,7 @@ ACTOR CRITImpBall
 	Height 8
 	Speed 20
 	FastSpeed 30
-	Damage 8
+	Damage (20)
 	RenderStyle Add
 	Alpha 1
 	DeathSound "imp/shotx"
@@ -974,7 +974,7 @@ Actor impballtrailPurple : Particle_Base
 
 
 
-Actor  impballtrailBlue : Particle_Base
+Actor impballtrailBlue : Particle_Base
 {
 	RenderStyle Add
 	Alpha 0.5
