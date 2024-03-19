@@ -70,7 +70,7 @@ script "SV_PLAYERTICKER" OPEN
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				// Ability Charge Regen
-				if(CheckInventory("PowerStrength") && !(tickNum % 70))
+				if(CheckInventory("PowerStrength") && !(tickNum % 52))
 					GiveInventory("AbilityCharge", 1);
 				
 				if(!(tickNum % 105))
