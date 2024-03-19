@@ -626,6 +626,7 @@ ACTOR NuclearMissileLauncher : Weapon
 			NUKG A 46
 			NUKG A 28 A_GunFlash
 			NUKG A 0 A_Recoil(5)
+			NUKG A 0 A_PlayWeaponSound ("weapons/nuclearmissilefire")
 			NUKG B 4 Bright A_FireCustomMissile("NuclearMissileShot",0,1,0,5)
 			NUKG B 3 Bright A_Recoil(-4.5)
 			NUKG B 28

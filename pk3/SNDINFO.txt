@@ -397,14 +397,15 @@ $limit Sentry/Attack	0
 
 //Nuke launcher r667
 
-weapons/nuclearmissilecharge1	dsnukcrg
-weapons/nuclearmissilecharge2	dsnukcr2
+weapons/nuclearmissilecharge	dsnukcrg
 weapons/nuclearmissileexplode	dsnukxpl
+weapons/nuclearmissilefire1 dsnukfir
+weapons/nuclearmissilefire2 dsnukfi2
 weapons/nuclearmissileburn	dsnukbrn
 weapons/nuclearmissileflamehit	dsflwexp
 weapons/nuclearmissileflamewall	dsflwgrn
 
-$random weapons/nuclearmissilecharge { weapons/nuclearmissilecharge1 weapons/nuclearmissilecharge2 }
+$random weapons/nuclearmissilefire { weapons/nuclearmissilefire1 weapons/nuclearmissilefire2 }
 
 Weapons/SRswing1	SRSWING1
 Weapons/SRswing2	SRSWING2

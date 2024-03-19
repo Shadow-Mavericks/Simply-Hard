@@ -9041,7 +9041,7 @@ ACTOR PyroZombie
     PYRZ E 10 A_FaceTarget
     PYRZ F 10 Bright
     PYRZ F 0 Bright A_PlaySound ("PyroCannon/Fire")
-    PYRZ F 10 Bright
+    PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire")
     PYRZ E 10 Bright A_MissileAttack
     goto See
   Pain:

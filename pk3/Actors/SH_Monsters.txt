@@ -2481,7 +2481,8 @@ ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Son
 			PLAY E 40
 			Goto See
 		Bfgattack:
-			PLAY E 30 A_PlaySound ("weapons/nuclearmissilecharge")
+			PLAY E 25 A_PlaySound ("weapons/nuclearmissilecharge")
+			PLAY E 5 A_PlaySound ("weapons/nuclearmissilefire")
 			PLAY F 10 A_CustomMissile ("NuclearMissileShot", 32, 0, 0)
 			PLAY E 20
 			PLAY E 5
