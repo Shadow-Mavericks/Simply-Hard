@@ -700,6 +700,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							ChangeActorFlag(uTID, "FRIENDLY", friendly);
 							ChangeActorFlag(uTID, "STEALTH", stealth);
 							ChangeActorFlag(uTID, "STANDSTILL", standstill);
+							ChangeActorFlag(uTID, "DROPPED", 0);
 							Thing_ChangeTID(uTID, thisTID);
 						}
 					}
