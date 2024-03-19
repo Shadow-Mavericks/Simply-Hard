@@ -700,17 +700,21 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 								int thisTID = ActivatorTID();
 								int uTID = UniqueTID(0);
 
-								spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], pos[2], uTID, pos[3]);
+								spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], newFloorZ, uTID, pos[3]);
 
-								SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
-								SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
-								SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
-								ChangeActorFlag(uTID, "FRIENDLY", friendly);
-								ChangeActorFlag(uTID, "STEALTH", stealth);
-								ChangeActorFlag(uTID, "STANDSTILL", standstill);
-								ChangeActorFlag(uTID, "DROPPED", 0);
+								if(spawnPassed)
+								{
+									SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
+									SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
+									SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
 
-								Thing_ChangeTID(uTID, thisTID);
+									ChangeActorFlag(uTID, "FRIENDLY", friendly);
+									ChangeActorFlag(uTID, "STEALTH", stealth);
+									ChangeActorFlag(uTID, "STANDSTILL", standstill);
+									ChangeActorFlag(uTID, "DROPPED", 0);
+
+									Thing_ChangeTID(uTID, thisTID);
+								}
 							}
 						}
 					}
@@ -1331,6 +1335,9 @@ MannCoBoxData_t tier4_good[] =
 	{ "A Barf of Bullets!",			"ClipVomit",			75,		DELAY_NONE },
 	{ "A Regurgitation of Shells!",	"ShellVomit",			70,		DELAY_NONE },
 	{ "A Cascade of Cells!",		"CellVomit",			65,		DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",	"T5Upgrade",			20,		DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",	"T6Upgrade",			18,		DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",	"T7Upgrade",			15,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier4_bad[] =
@@ -1351,9 +1358,9 @@ int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
 	{ "A Medical Bag.",					"MedBag",		25,		DELAY_NONE },
-	{ "A Kan-Kan Powerup!",				"KanKan",		5,		DELAY_NONE },
-	{ "An Invulnerability Powerup!",	"Invuln",		4,		DELAY_NONE },
-	{ "An Energy Tank!", 				"ETank",		3,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",				"KanKan",		10,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",	"Invuln",		5,		DELAY_NONE },
+	{ "An Energy Tank!", 				"ETank",		4,		DELAY_NONE },
 	{ "Legendary Armor!",				"WINRAR",		2,		DELAY_NONE },
 	{ "A Megasphere!",					"MegaSphere",	75,		DELAY_NONE },
 	{ "A Barf Bonanza!",				"VomitAll",		50,		DELAY_NONE },
