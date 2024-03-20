@@ -432,7 +432,7 @@ function void actor_swap(str replace, str with, int chance)
 
 		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
-		
+
 		SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
 		SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
 		ChangeActorFlag(uTID, "DROPPED", dropped);
@@ -658,12 +658,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			bool stealth = CheckFlag(0, "STEALTH");
 			bool standstill = CheckFlag(0, "STANDSTILL");
 			bool dormant = CheckFlag(0, "DORMANT");
-		
+
 			int enemyCount = 1;
 			int dir = 0;
 			int stride = 0;
 			int spawnAttempts = 0;
-			
+
 			if(GetCVar("sh_debug_spawns"))
 				log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:ambush, s:")");
 
@@ -681,15 +681,15 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						case 2: pos[1] -= radius; break;
 						case 3: pos[0] -= radius; break;
 					}
-					
+
 					int newFloorZ = GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16);
 					int floorZDiff = abs(pos[2] - newFloorZ);
 					int beaconTID = UniqueTID(0);
-					
+
 					bool floorZPassed = (floorZDiff <= 64.0);
 					bool sightPassed = false;
 					int spawnPassed = false;
-					
+
 					if(floorZPassed)
 					{
 						if(Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0))
@@ -718,7 +718,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							}
 						}
 					}
-					
+
 					if(!floorZPassed || !sightPassed || !spawnPassed)
 					{
 						spawnAttempts++;
@@ -726,26 +726,26 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						{
 							if(GetCVar("sh_debug_spawns"))
 								log(s:"Giving up after too many attempts to spawn.");
-							
+
 							enemyCount = mult;
 							break;
 						}
-						
+
 						continue;
 					}
 
 					spawnAttempts = 0;
 					enemyCount++;
-						
+
 					if(GetCVar("sh_debug_spawns"))
 						log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos[2], s:" floorz: ", f:GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16));
 				} while((iter < stride) && enemyCount < mult);
-				
+
 				dir = (dir+1)%4;
 				stride++;
 			} while(enemyCount < mult);
 		}
-		
+
 		if(GetCVar("sh_compat_swaps"))
 		{
 			// Strange Aeons compatibility swaps
@@ -800,7 +800,7 @@ function int add_ammo(str ammo_class, int amount)
 			return amount;
 		}
 	}
-	
+
 	return 0;
 }
 
@@ -1020,7 +1020,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			break;
 		}
 	}
-	
+
 	if(dropped)
 	{
 		switch(droptype)
@@ -1050,7 +1050,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 					if(ammo1_amount == 0)
 						ammo1_amount = 1;
 				}
-				
+
 				if(ammo2_amount > 0)
 				{
 					ammo2_amount = random(ammo2_amount>>1, ammo2_amount);
@@ -1152,6 +1152,8 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 
 	SetActivator(newTID);
 
+	SetActorState(0, "SetScale", false);
+
 	if(!SetActorState(0, playerClassName, false))
 		SetActorState(0, "Base", false);
 
@@ -1166,7 +1168,7 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, "user_scale_Base")*0.01);
 		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, "user_scale_Base")*0.01);
 	}
-	
+
 	Thing_ChangeTID(0, oldTID);
 }
 

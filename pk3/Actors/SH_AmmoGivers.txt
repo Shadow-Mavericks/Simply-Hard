@@ -31,7 +31,7 @@ actor ClipGiver : AmmoGiver_Base replaces Clip
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 30)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -58,7 +58,7 @@ actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -80,7 +80,7 @@ actor ShellGiver : AmmoGiver_Base replaces Shell
 			
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -107,7 +107,7 @@ actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -134,7 +134,7 @@ actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -156,7 +156,7 @@ actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
 
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -178,7 +178,7 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 			
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }
 
@@ -205,6 +205,6 @@ actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
-			goto SetSprite
+			goto Idle
 	}
 }

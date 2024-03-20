@@ -149,7 +149,7 @@ Actor CritImpactNadez : CritNadez_Base
 
 
 
-ACTOR BoomToob : Doomweapon //Sprites from Serghei → Typical.SF / Gosimer did gold frames
+ACTOR BoomToob : SH_Weapon //Sprites from Serghei → Typical.SF / Gosimer did gold frames
 {
 	Weapon.PreferredSkin "Grenade-Marine"
 	Weapon.SelectionOrder 2500
@@ -290,7 +290,7 @@ Actor DookiClip : Ammo
 	ammo.Backpackmaxamount 12
 }
 
-ACTOR GosimersHandgun : Weapon
+ACTOR GosimersHandgun : SH_Weapon
 {
 	Tag "Pistol"
 	Inventory.Forbiddento "Maximusprime"
@@ -464,7 +464,7 @@ actor LightningPuff_Painless : LightningPuff
 	-FORCEPAIN
 }
 
-ACTOR Lightning_Rifle: DoomWeapon
+ACTOR Lightning_Rifle: SH_Weapon
 {
 	Game Doom
 	Scale 0.8
@@ -614,7 +614,7 @@ ACTOR Devistator_shell
 	}
 }
 
-ACTOR micro_Devistator : DoomWeapon
+ACTOR micro_Devistator : SH_Weapon
 {
 	Game Doom
 	Scale 0.8
@@ -699,7 +699,7 @@ ACTOR micro_Devistator : DoomWeapon
 	}
 }
 
-ACTOR HMachinegun : Doomweapon
+ACTOR HMachinegun : SH_Weapon
 {
 	Tag "Heavy Machinegun"
 	Weapon.PreferredSkin "Minigun-Marine"
@@ -825,7 +825,7 @@ ACTOR HMachinegun : Doomweapon
 
 //Combat Shotgun
 
-ACTOR CombatShotgun : Doomweapon
+ACTOR CombatShotgun : SH_Weapon
 {
 	Tag "Shotgun"
 	Weapon.PreferredSkin "Shotgun-Marine"
@@ -963,7 +963,7 @@ ACTOR CombatShotgun : Doomweapon
 }
 
 // Burst shotgun
-Actor BurstShotgun : DoomWeapon
+Actor BurstShotgun : SH_Weapon
 {
 	Weapon.PreferredSkin "SSG-Marine"
 	radius 20
@@ -1206,7 +1206,7 @@ Actor BurstShotgun : DoomWeapon
 	}
 }
 
-Actor Propulsion_Cannon : doomweapon
+Actor Propulsion_Cannon : SH_Weapon
 {
 	Weapon.PreferredSkin "Carbine-Marine"
 	Radius 20

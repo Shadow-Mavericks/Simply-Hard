@@ -288,7 +288,7 @@ actor AssaultCannonPlasma
 			ACSH CD 3 BRIGHT Light("BigBlueBolt")
 			goto SpawnLoop
 		SpawnLoop:
-			ACSH ABCD 3 BRIGHT
+			ACSH ABCD 3 BRIGHT Light("BigBlueBolt")
 			loop
 		Death:
 			ACBL A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
@@ -309,7 +309,7 @@ actor GoldAssaultCannonPlasma : AssaultCannonPlasma
 			WPLS B 0 BRIGHT Light("BigYellowBolt") A_ChangeFlag("FORCEPAIN", false)
 			goto SpawnLoop
 		SpawnLoop:
-			WPLS ABCD 3 BRIGHT
+			WPLS ABCD 3 BRIGHT Light("BigYellowBolt")
 			Loop
 		Death:
 			WEXP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
@@ -439,7 +439,7 @@ actor ScopeZoom : Inventory
 	inventory.maxamount 1
 }
 
-actor MortarGun : Weapon
+actor MortarGun : SH_Weapon
 {
 	weapon.selectionorder 7
 	weapon.AmmoUse 1
@@ -510,7 +510,7 @@ actor MortarGun : Weapon
 	}
 }
 
-actor ConcRifle : Weapon
+actor ConcRifle : SH_Weapon
 {
 	Tag "Stouker Concussion Rifle"
 	obituary "%o was unlucky to meet %k's Concussion Rifle"
@@ -638,7 +638,7 @@ actor ConcRifle : Weapon
 	}
 }
 
-actor AssaultCannon : Weapon
+actor AssaultCannon : SH_Weapon
 {
 	obituary "%o became another victim to %k's Assault Cannon"
 	weapon.selectionorder 1
@@ -752,7 +752,7 @@ actor AssaultCannon : Weapon
 	}
 }
 
-actor DisruptorRifle : DoomWeapon
+actor DisruptorRifle : SH_Weapon
 {
 	Tag "Tenloss DXR-6 Disruptor Rifle"
 	obituary "%o was disintegrated by %k"
@@ -814,7 +814,7 @@ actor DisruptorRifle : DoomWeapon
 	}
 }
 
-actor FusionCutter : Weapon
+actor FusionCutter : SH_Weapon
 {
 	obituary "%k demonstrated the power of the fusion cutter tool to %o"
 	Weapon.selectionorder 4
@@ -1015,7 +1015,7 @@ actor FusionCutter : Weapon
 	}
 }
 
-actor Autogun : Weapon
+actor Autogun : SH_Weapon
 {
 	Tag "Repeater"
 	obituary "%o got in the way of %k's repeater rifle"
@@ -1147,7 +1147,7 @@ actor Autogun : Weapon
 	}
 }
 
-actor DFPistol : Weapon
+actor DFPistol : SH_Weapon
 {
 	Tag "Bryar Pistol / DL-44"
 	obituary "%o couldn't handle %k's blaster pistol"
@@ -1239,7 +1239,7 @@ actor DFPistol : Weapon
 	}
 }
 
-actor DFBlaster : Weapon
+actor DFBlaster : SH_Weapon
 {
 	obituary "%o was blasted away by %k's E-11 rifle"
 	Weapon.SelectionOrder 8
@@ -1382,7 +1382,7 @@ ACTOR FistPuff
 	}
 }
 
-actor DFFist : Weapon
+actor DFFist : SH_Weapon
 {
 	weapon.selectionorder 110
 	weapon.Kickback 200
@@ -1462,7 +1462,7 @@ actor SaberPuff_SweetSpot : SaberPuff
 
 const int SABER_DMG = 40;
 
-actor Lightsaber : Weapon
+actor Lightsaber : SH_Weapon
 {
 	weapon.selectionorder 1000
 	weapon.kickback 250

@@ -1,4 +1,4 @@
-ACTOR PlasmagunMK2 : DoomWeapon
+ACTOR PlasmagunMK2 : SH_Weapon
 {
   Weapon.SelectionOrder 2
   Weapon.AmmoUse1 1
@@ -127,7 +127,7 @@ ACTOR PlasmagunMK2 : DoomWeapon
   }
 }
 
-ACTOR DEPlasmaRifle : DoomWeapon //Weapon From erience
+ACTOR DEPlasmaRifle : SH_Weapon //Weapon From erience
 {
 	Game Doom
 	Scale 0.8
@@ -394,7 +394,7 @@ ACTOR DEPlasmaRifle : DoomWeapon //Weapon From erience
 	}
 }
 
-ACTOR PlasmaRifle : DoomWeapon
+ACTOR PlasmaRifle : SH_Weapon
 {
 	Weapon.SelectionOrder 100
 	Weapon.AmmoUse 1

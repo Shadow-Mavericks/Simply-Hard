@@ -40,7 +40,7 @@ ACTOR Fists : fist replaces Fist
 	}
 }
 
-ACTOR kankanboot : Weapon
+ACTOR kankanboot : SH_Weapon
 {
 	Weapon.PreferredSkin "Fist-Marine"
 	Weapon.SelectionOrder 8
@@ -117,7 +117,7 @@ Actor Reload : Custominventory
 }
 
 
-ACTOR Soulreaper : Weapon
+ACTOR Soulreaper : SH_Weapon
 {
 	Tag "Soul-Reaper"
 	Game Doom
@@ -196,7 +196,7 @@ ACTOR Soulreaper : Weapon
 //---< Chainsaw replacer >---
 //---------------------------
 
-ACTOR UAC-Chainsaw : Weapon
+ACTOR UAC-Chainsaw : SH_Weapon
 {
 	Weapon.PreferredSkin "Chainsaw-Marine"
 	Game Doom
@@ -279,7 +279,7 @@ Actor ChainsawDrop : CustomInventory
 //---------------------------
 
 
-ACTOR RenettiM9 : doomweapon
+ACTOR RenettiM9 : SH_Weapon
 {
 	Weapon.SelectionOrder 10
 	Weapon.PreferredSkin "Pistol-Marine"
@@ -605,7 +605,7 @@ Actor Allupgradetokens : CustomInventory
 //----< Shawtgun replacer >----
 //-----------------------------
 
-Actor D3shotgun : Doomweapon
+Actor D3shotgun : SH_Weapon
 {
 	Weapon.PreferredSkin "Shotgun-Marine"
 	Game Doom
@@ -809,7 +809,7 @@ Actor Shootgundrop : CustomInventory replaces Shotgun //This is to prevent the "
 //--< Super Shotgun replacer>--
 //-----------------------------
 
-ACTOR SuperShawtgun : Doomweapon
+ACTOR SuperShawtgun : SH_Weapon
 {
 	Weapon.PreferredSkin "SSG-Marine"
 	Weapon.SelectionOrder 5
@@ -1003,114 +1003,111 @@ Actor ssgdrop : CustomInventory replaces Supershotgun
 //----< Chaingun replacer >----
 //-----------------------------
 
-ACTOR D3Machinegun : Doomweapon  //This weapon used to be an AK47 weapon (golden souls mod)
+ACTOR D3Machinegun : SH_Weapon  //This weapon used to be an AK47 weapon (golden souls mod)
 {
-  Tag "Minigun"
-  Weapon.PreferredSkin "Minigun-Marine"
-  //$Category Weapons
-  Weapon.SelectionOrder 3
-  Weapon.AmmoUse 1
-  Weapon.AmmoGive 20
-  decal Bulletchip
-  Weapon.AmmoType "AK_Mag"  //Old ak ammo type, before it changed to a minigun, (too lazy to change)
-  Weapon.BobSpeed 1.5
-  Weapon.BobRangeX .5
-  Weapon.BobStyle "InverseSmooth"
-  //+WEAPON.NOAUTOAIM
-  Inventory.Respawntics"4200"
-  Inventory.PickupSound "weapon/Miniget"
+	//$Category Weapons
+	Tag "Minigun"
+	Weapon.PreferredSkin "Minigun-Marine"
+	Weapon.SelectionOrder 3
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 20
+	Weapon.AmmoType "AK_Mag"  //Old ak ammo type, before it changed to a minigun, (too lazy to change)
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
 	Weapon.slotnumber 4
-	Inventory.ForbiddenTo "Maximusprime"
-  Inventory.ForbiddenTo "Kunai"
-  Inventory.ForbiddenTo "Gosimer"
-  Inventory.RestrictedTo "Fiend"
-  Obituary "%o was in %k's sights"
-  Inventory.Pickupmessage "You picked up a Minigun"
+	//+WEAPON.NOAUTOAIM
+	Inventory.Respawntics"4200"
+	Inventory.PickupSound "weapon/Miniget"
+	Inventory.RestrictedTo "Fiend"
+	Inventory.Pickupmessage "You picked up a Minigun"
+	Obituary "%o was in %k's sights"
+	Decal Bulletchip
 	States
 	{
-	 Ready:
-		FGN4 A 1 A_WeaponReady
-		Loop
-	Deselect:
-		TNT1 AA 0 A_Lower
-		FGN4 A 1 A_Lower
-		Loop
-	Select:
+		Ready:
+			FGN4 A 1 A_WeaponReady
+			Loop
+		Deselect:
+			TNT1 AA 0 A_Lower
+			FGN4 A 1 A_Lower
+			Loop
+		Select:
 			TNT1 AA 0 A_Raise
 			FGN4 A 1 A_Raise
 			Loop
-	Fire:
-		NULL A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Ragefire")
-		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-		COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
-		COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
-		FGF4 C 1
-		FGF4 D 1
-		FGN4 C 1
-		FGN4 D 1
-		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-		COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
-		COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-		FGF4 A 1
-		FGF4 B 1
-		FGN4 C 1
-		FGN4 D 1
-		FGN4 A 2 A_ReFire
-		FGN4 B 3 A_WeaponReady
-		FGN4 C 3 A_WeaponReady
-		FGN4 D 3 A_WeaponReady
-		FGN4 A 4 A_WeaponReady
-		FGN4 B 4 A_WeaponReady
-		FGN4 C 4 A_WeaponReady
-		FGN4 D 5 A_WeaponReady
-		FGN4 A 5 A_WeaponReady
-		FGN4 B 5 A_WeaponReady
-		FGN4 C 6 A_WeaponReady
-		FGN4 D 6 A_WeaponReady
-		FGN4 A 7 A_WeaponReady
-		FGN4 B 7 A_WeaponReady
-		FGN4 C 7 A_WeaponReady
-		FGN4 D 7 A_WeaponReady
-		FGN4 A 8 A_WeaponReady
-		FGN4 B 8 A_WeaponReady
-		FGN4 C 9 A_WeaponReady
-		FGN4 D 9 A_WeaponReady
-
-	Goto Ready
+		Fire:
+			NULL A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Ragefire")
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			FGF4 C 1
+			FGF4 D 1
+			FGN4 C 1
+			FGN4 D 1
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			FGF4 A 1
+			FGF4 B 1
+			FGN4 C 1
+			FGN4 D 1
+			FGN4 A 2 A_ReFire
+			FGN4 B 3 A_WeaponReady
+			FGN4 C 3 A_WeaponReady
+			FGN4 D 3 A_WeaponReady
+			FGN4 A 4 A_WeaponReady
+			FGN4 B 4 A_WeaponReady
+			FGN4 C 4 A_WeaponReady
+			FGN4 D 5 A_WeaponReady
+			FGN4 A 5 A_WeaponReady
+			FGN4 B 5 A_WeaponReady
+			FGN4 C 6 A_WeaponReady
+			FGN4 D 6 A_WeaponReady
+			FGN4 A 7 A_WeaponReady
+			FGN4 B 7 A_WeaponReady
+			FGN4 C 7 A_WeaponReady
+			FGN4 D 7 A_WeaponReady
+			FGN4 A 8 A_WeaponReady
+			FGN4 B 8 A_WeaponReady
+			FGN4 C 9 A_WeaponReady
+			FGN4 D 9 A_WeaponReady
+			Goto Ready
+			
 		RageFire:
-		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-		COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
-		COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-		FGF4 C 1
-		FGN4 C 1
-		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-		COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
-		COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-		FGF4 A 1
-		FGN4 C 1
-		Fgn4 A 0 A_Refire
-		FGN4 D 1 A_WeaponReady
-		FGN4 A 2 A_WeaponReady
-		FGN4 B 3 A_WeaponReady
-		FGN4 C 3 A_WeaponReady
-		FGN4 D 3 A_WeaponReady
-		FGN4 A 4 A_WeaponReady
-		FGN4 B 4 A_WeaponReady
-		FGN4 C 4 A_WeaponReady
-		FGN4 D 5 A_WeaponReady
-		FGN4 A 5 A_WeaponReady
-		FGN4 B 5 A_WeaponReady
-		FGN4 C 6 A_WeaponReady
-		FGN4 D 6 A_WeaponReady
-		FGN4 A 7 A_WeaponReady
-		FGN4 B 7 A_WeaponReady
-		FGN4 C 7 A_WeaponReady
-		FGN4 D 7 A_WeaponReady
-		FGN4 A 8 A_WeaponReady
-		FGN4 B 8 A_WeaponReady
-		FGN4 C 9 A_WeaponReady
-		FGN4 D 9 A_WeaponReady
-		Goto Ready
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			FGF4 C 1
+			FGN4 C 1
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			FGF4 A 1
+			FGN4 C 1
+			Fgn4 A 0 A_Refire
+			FGN4 D 1 A_WeaponReady
+			FGN4 A 2 A_WeaponReady
+			FGN4 B 3 A_WeaponReady
+			FGN4 C 3 A_WeaponReady
+			FGN4 D 3 A_WeaponReady
+			FGN4 A 4 A_WeaponReady
+			FGN4 B 4 A_WeaponReady
+			FGN4 C 4 A_WeaponReady
+			FGN4 D 5 A_WeaponReady
+			FGN4 A 5 A_WeaponReady
+			FGN4 B 5 A_WeaponReady
+			FGN4 C 6 A_WeaponReady
+			FGN4 D 6 A_WeaponReady
+			FGN4 A 7 A_WeaponReady
+			FGN4 B 7 A_WeaponReady
+			FGN4 C 7 A_WeaponReady
+			FGN4 D 7 A_WeaponReady
+			FGN4 A 8 A_WeaponReady
+			FGN4 B 8 A_WeaponReady
+			FGN4 C 9 A_WeaponReady
+			FGN4 D 9 A_WeaponReady
+			Goto Ready
 		Altfire:
 			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
 			Goto Ready
@@ -1143,46 +1140,46 @@ ACTOR D3Machinegun : Doomweapon  //This weapon used to be an AK47 weapon (golden
 			RLGG A 1 Offset ( -25, 60 )
 			RLGG A 1 Offset ( -26, 70 )
 			goto Ready
-  Spawn:
-	MGUN A -1
-	Stop
-  }
+		Spawn:
+			MGUN A -1
+			Stop
+	}
 }
 
 Actor AK47drop : CustomInventory //This is to prevent the "CHGCHG Machinegun!" sound spam!
 {
-  Radius 12
-  Height 18
-  scale 1
+	Radius 12
+	Height 18
+	scale 1
 	Inventory.Respawntics"4200"
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupSound ""
-  Inventory.PickupMessage "You got a Machinegun weapon"
-  States
-  {
-  Spawn:
-	MGUN A -1
-	Stop
-  pickup:
-	TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-	TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_PLAYSOUND("misc/w_pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("d3machinegun")
-	Stop
-  Kunaipickup:
-	TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("PDW")
-	Stop
-  Gosimerpickup:
-	TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("HMachinegun")
-	Stop
-  Maxpickup:
-	TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-	TNT1 A 0 A_Giveinventory("Autogun")
-	Stop
-  }
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.PickupSound ""
+	Inventory.PickupMessage "You got a Machinegun weapon"
+	States
+	{
+	Spawn:
+		MGUN A -1
+		Stop
+	pickup:
+		TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
+		TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
+		TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
+		TNT1 A 0 A_PLAYSOUND("misc/w_pkup",chan_6)
+		TNT1 A 0 A_Giveinventory("d3machinegun")
+		Stop
+	Kunaipickup:
+		TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
+		TNT1 A 0 A_Giveinventory("PDW")
+		Stop
+	Gosimerpickup:
+		TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
+		TNT1 A 0 A_Giveinventory("HMachinegun")
+		Stop
+	Maxpickup:
+		TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
+		TNT1 A 0 A_Giveinventory("Autogun")
+		Stop
+	}
 }
 
 Actor Chaingundrop : CustomInventory replaces Chaingun //This is to prevent the "CHGCHG Machinegun!" sound spam!
@@ -1224,7 +1221,7 @@ Actor Chaingundrop : CustomInventory replaces Chaingun //This is to prevent the 
 //----< Rawket lawnchair replacer >----
 //-------------------------------------
 
-ACTOR Rawketlawnchair : DoomWeapon //Zdoom spriting carnival
+ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 {
 	Game Doom
 	Weapon.PreferredSkin "rocket-Marine"
@@ -1420,7 +1417,7 @@ Actor Plasmaclip : Ammo
 }
 
 
-ACTOR DEPlasmaRifle : DoomWeapon
+ACTOR DEPlasmaRifle : SH_Weapon
 {
 	Game Doom
 	Scale 1
@@ -1838,7 +1835,7 @@ Actor bfgdrop : CustomInventory replaces Bfg9000
 
 //Kunais Class Weapons
 
-ACTOR Kunaisrevolver : weapon //Weapon base from Golden souls
+ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 {
 	Weapon.SelectionOrder 7
 	Weapon.PreferredSkin "Pistol-Marine"
@@ -2220,7 +2217,7 @@ actor REV_Shot : Ammo
 }
 
 //Kunai Single Shotgun
-ACTOR Helltechshotgun : weapon //Weapon from Laundry
+ACTOR Helltechshotgun : SH_Weapon //Weapon from Laundry
 {
 	Weapon.SelectionOrder 6
 	Weapon.SlotNumber 3
@@ -2320,7 +2317,7 @@ ACTOR Helltechshotgun : weapon //Weapon from Laundry
 	}
 }
 
-ACTOR CryoBow : Weapon
+ACTOR CryoBow : SH_Weapon
 {
 	Weapon.PreferredSkin "ROCKET-Marine"
 	Weapon.AmmoType "RoketAmmo"
@@ -2572,7 +2569,7 @@ ACTOR CryoBow : Weapon
 }
 
 
-ACTOR streetsweeper : DoomWeapon 8467
+ACTOR streetsweeper : SH_Weapon 8467
 {
 	Weapon.PreferredSkin "SSG-Marine"
 	Game Doom
@@ -2656,7 +2653,7 @@ ACTOR streetsweeper : DoomWeapon 8467
 	}
 }
 
-Actor PDW : Doomweapon
+Actor PDW : SH_Weapon
 {
 	Weapon.PreferredSkin "Carbine-Marine"
 	Game Doom
@@ -2746,7 +2743,7 @@ actor Coolant : Ammo
 	inventory.maxamount 100
 }
 
-ACTOR PlasmagunMK2 : DoomWeapon
+ACTOR PlasmagunMK2 : SH_Weapon
 {
   Weapon.SelectionOrder 2
   Weapon.AmmoUse1 1
@@ -2884,7 +2881,7 @@ ACTOR Shotgunmayray : Bulletpuff
 	DamageType Mightyboot
 }
 
-Actor KunaisKar98 : Doomweapon
+Actor KunaisKar98 : SH_Weapon
 {
 	Weapon.PreferredSkin "Carbine-Marine"
 	Game Doom
@@ -3066,7 +3063,7 @@ actor Railclip : Ammo
 }
 */
 
-ACTOR FiendsRailgun : DoomWeapon
+ACTOR FiendsRailgun : SH_Weapon
 {
 	Weapon.PreferredSkin "Carbine-Marine"
 	Weapon.SelectionOrder 700

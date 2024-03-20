@@ -98,6 +98,11 @@ actor UpgradeToken_Base : Inventory
 // Ammo & Weapons
 //////////////////////////////////////////////////////////////////
 
+actor SH_Weapon : Weapon
+{
+	+INVENTORY.UNDROPPABLE
+}
+
 actor SH_FakeInventory : FakeInventory
 {
 	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
@@ -136,16 +141,11 @@ actor AmmoGiver_Base : SH_FakeInventory
 			UNKN A 35
 			goto CheckSprite
 			
-		
-		CheckSprite:
-			"####" "#" 70 A_Jump(256, "SetScale")
-			loop
-			
-		SetScale:
-			"####" "#" 0
-			goto SetSprite
+		Idle:
+			"####" "#" -1
+			stop
 
-		SetSprite:
+		CheckSprite:
 			"####" "#" 70 ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
 			loop
 	}

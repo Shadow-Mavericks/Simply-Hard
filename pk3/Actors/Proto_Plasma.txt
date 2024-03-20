@@ -15,7 +15,7 @@ Actor PlasmaCoolant : Ammo
 		}
 }
 
-ACTOR Fiend_PlasmaRifle : DoomWeapon
+ACTOR Fiend_PlasmaRifle : SH_Weapon
 {
 	Weapon.PreferredSkin "Plasma-Rifle-Marine"
     Weapon.SelectionOrder 100
