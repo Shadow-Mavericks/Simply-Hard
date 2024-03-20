@@ -601,48 +601,9 @@ Actor Allupgradetokens : CustomInventory
 			Stop
 	}
 }
-
-Actor Abilitycharge : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	Inventory.MaxAmount 1000
-}
-
-Actor UltimateAbilityCharge : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	Inventory.MaxAmount 2000
-}
-
-ACTOR PeastolClip : Ammo
-{
-  Inventory.PickupMessage "$GOTCLIP" // "Picked up a clip."
-  Inventory.Amount 12
-  Inventory.MaxAmount 100
-  Ammo.BackpackAmount 24
-  Ammo.BackpackMaxAmount 250
-  Inventory.Icon "CLIPA0"
-  Inventory.Respawntics"2100"
-  Inventory.PickupSound "AMMO/CLIP"
-  States
-  {
-  Spawn:
-	CLIP A -1
-	Stop
-  }
-}
-
 //-----------------------------
 //----< Shawtgun replacer >----
 //-----------------------------
-
-Actor Shotgunclip : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	Inventory.MaxAmount 6
-	ammo.Backpackmaxamount 12
-}
-
 
 Actor D3shotgun : Doomweapon
 {
@@ -1037,40 +998,6 @@ Actor ssgdrop : CustomInventory replaces Supershotgun
 	}
 }
 
-ACTOR ShellZ : Ammo
-{
-  Inventory.PickupMessage "Picked up 2 shotgun + SSG Shells"
-  Inventory.Amount 2
-  Inventory.MaxAmount 50
-  Ammo.BackpackMaxAmount 150
-  Inventory.Respawntics"4200"
-  Inventory.Icon "SHELA0"
-  Inventory.PickupSound "AMMO/SHEL"
-  States
-  {
-  Spawn:
-	SHEL A -1
-	Stop
-  }
-}
-
-ACTOR SuperShellZ : Ammo
-{
-  Inventory.PickupMessage "Picked up 10 shotgun + SSG Shells"
-  Inventory.Amount 2
-  Inventory.MaxAmount 50
-  Ammo.BackpackMaxAmount 150
-  Inventory.Respawntics"4200"
-  Inventory.Icon "SHELA0"
-  Inventory.PickupSound "AMMO/SHEL"
-  States
-  {
-  Spawn:
-	SHEL A -1
-	Stop
-  }
-}
-
 
 //-----------------------------
 //----< Chaingun replacer >----
@@ -1293,25 +1220,6 @@ Actor Chaingundrop : CustomInventory replaces Chaingun //This is to prevent the 
   }
 }
 
-ACTOR Ak_Mag : Ammo
-{
-  //$Category Ammunition
-  Inventory.PickupMessage "Picked up an AK Magazine."
-  Inventory.Amount 75
-  Inventory.MaxAmount 250
-  Ammo.BackpackAmount 75
-  Inventory.Respawntics"4200"
-  Ammo.BackpackMaxAmount 500
-  Inventory.Icon "AKAMA0"
-  Inventory.PickupSound "AMMO/AKMAG"
-  States
-  {
-  Spawn:
-	AKAM A -1
-	Stop
-  }
-}
-
 //-------------------------------------
 //----< Rawket lawnchair replacer >----
 //-------------------------------------
@@ -1500,24 +1408,6 @@ Actor RLdrop : CustomInventory replaces Rocketlauncher
 	}
 }
 
-ACTOR RoketAmmo : Ammo
-{
-	Inventory.PickupMessage "$GOTROCKET" // "Picked up a rocket."
-	Inventory.Amount 1
-	Inventory.MaxAmount 50
-	Inventory.Respawntics 6300
-	Ammo.BackpackAmount 1
-	Ammo.BackpackMaxAmount 100
-	Inventory.Icon "ROCKA0"
-	Inventory.PickupSound "AMMO/ROKET"
-	States
-	{
-		Spawn:
-			ROCK A -1
-			Stop
-	}
-}
-
 //---------------------------
 //----< Plasma replacer >----
 //---------------------------
@@ -1651,43 +1541,6 @@ Actor Highnoon : Inventory
 	}
 }
 
-ACTOR Battery : AMMO
-{
-	Inventory.PickupMessage "$GOTCELL" // "Picked up an energy cell."
-	Inventory.Amount 20
-	Inventory.MaxAmount 300
-	Ammo.BackpackAmount 20
-	Ammo.BackpackMaxAmount 800
-	Inventory.Icon "CELLA0"
-	Inventory.Respawntics"4200"
-	Inventory.PickupSound "AMMO/BATTERY"
-	States
-	{
-		Spawn:
-			CELL A -1
-			Stop
-	}
-}
-
-
-ACTOR Railslugs : AMMO
-{
-	Inventory.PickupMessage "you have collected some Rail Slug(s)!"
-	Inventory.Amount 5
-	Inventory.MaxAmount 25
-	Ammo.BackpackAmount 10
-	Ammo.BackpackMaxAmount 50
-	Inventory.Icon "CELLA0"
-	Inventory.Respawntics"4200"
-	Inventory.PickupSound "AMMO/BATTERY"
-	States
-	{
-		Spawn:
-			CELL A -1
-			Stop
-	}
-}
-
 Actor PLASMAdrop : CustomInventory replaces Plasmarifle
 {
   Radius 12
@@ -1727,25 +1580,6 @@ Actor PLASMAdrop : CustomInventory replaces Plasmarifle
 //--------------=-------------
 //----< Bfg9000 replacer >----
 //---------------=------------
-
-
-ACTOR BFGCHARGE : Ammo
-{
-	Inventory.PickupMessage "Got a bfg charge!" // "Picked up an BFG CHARGE!"
-	Inventory.Amount 2
-	Inventory.MaxAmount 10
-	Ammo.BackpackAmount 3
-	Ammo.BackpackMaxAmount 20
-	Inventory.Icon "CELLA0"
-	Inventory.Respawntics"8400"
-	Inventory.PickupSound "AMMO/BATTERY"
-	States
-	{
-		Spawn:
-			CELL A -1
-			Stop
-	}
-}
 
 
 /*ACTOR DEBFG9500 : DoomWeapon  //Sprites from Shivers

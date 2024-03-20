@@ -3711,6 +3711,11 @@ actor ArachnotronMK2 : Arachnotron
   }
 }
 
+ACTOR ASGZAmmo: Ammo
+{
+     Inventory.MaxAmount 16
+}
+
 ACTOR ASGGuy
 {
     Health 90
@@ -3795,11 +3800,6 @@ ACTOR ASGGuy
         ASGZ NMLKJIH 5
         Goto See
     }
-}
-
-ACTOR ASGZAmmo: Ammo
-{
-     Inventory.MaxAmount 16
 }
 
 ACTOR BeamRevenant : HardRevenant
@@ -15408,58 +15408,58 @@ Actor ImpWarlord // Simply Hard ActiveBox version
 
 ACTOR MeleeRevenant
 {
-  Health 150
-  Radius 20
-  Height 56
-  Mass 500
-  Speed 10
-  PainChance 100
-  Monster
-  MeleeThreshold 196
-  +MISSILEMORE
-  +FLOORCLIP
-  +ALWAYSFAST
-  SeeSound "skeleton/sight"
-  PainSound "skeleton/pain"
-  DeathSound "skeleton/death"
-  ActiveSound "skeleton/active"
-  MeleeSound "skeleton/melee"
-  HitObituary "$OB_UNDEADHIT" // "%o was punched by a revenant."
-  States
-  {
-  Spawn:
-    ZKEL AB 10 A_Look
-    Loop
-  See:
-    ZKEL AABBCCDDEEFF 2 A_Chase
-    Loop
-  Melee:
-    ZKEL G 1 A_FaceTarget
-    ZKEL G 6 A_SkelWhoosh
-    ZKEL H 0 A_FaceTarget
-   ZKEL H 2 A_Recoil(-3)
-    ZKEL H 0 A_FaceTarget
-   ZKEL H 2 A_Recoil(-4)
-    ZKEL H 0 A_FaceTarget
-   ZKEL H 2 A_Recoil(-4 )
-    ZKEL I 6 A_SkelFist
-    Goto See
-  Pain:
-    ZKEL L 5
-    ZKEL L 5 A_Pain
-    Goto See
-  Death:
-    ZKEL LM 7
-    ZKEL N 7 A_Scream
-    ZKEL O 7 A_NoBlocking
-    ZKEL P 7
-    ZKEL Q -1
-    Stop
-  Raise:
-    ZKEL Q 5
-    ZKEL PONML 5
-    Goto See
-  }
+	Health 150
+	Radius 20
+	Height 56
+	Mass 500
+	Speed 10
+	PainChance 100
+	Monster
+	MeleeThreshold 196
+	+MISSILEMORE
+	+FLOORCLIP
+	+ALWAYSFAST
+	SeeSound "skeleton/sight"
+	PainSound "skeleton/pain"
+	DeathSound "skeleton/death"
+	ActiveSound "skeleton/active"
+	MeleeSound "skeleton/melee"
+	HitObituary "$OB_UNDEADHIT" // "%o was punched by a revenant."
+	States
+	{
+		Spawn:
+			ZKEL AB 10 A_Look
+			Loop
+		See:
+			ZKEL AABBCCDDEEFF 2 A_Chase
+			Loop
+		Melee:
+			ZKEL G 1 A_FaceTarget
+			ZKEL G 6 A_SkelWhoosh
+			ZKEL H 0 A_FaceTarget
+			ZKEL H 2 A_Recoil(-3)
+			ZKEL H 0 A_FaceTarget
+			ZKEL H 2 A_Recoil(-4)
+			ZKEL H 0 A_FaceTarget
+			ZKEL H 2 A_Recoil(-4 )
+			ZKEL I 6 A_SkelFist
+			Goto See
+		Pain:
+			ZKEL L 5
+			ZKEL L 5 A_Pain
+			Goto See
+		Death:
+			ZKEL LM 7
+			ZKEL N 7 A_Scream
+			ZKEL O 7 A_NoBlocking
+			ZKEL P 7
+			ZKEL Q -1
+			Stop
+		Raise:
+			ZKEL Q 5
+			ZKEL PONML 5
+			Goto See
+	}
 }
 
 //===========================================================================

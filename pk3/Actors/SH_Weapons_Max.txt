@@ -439,46 +439,6 @@ actor ScopeZoom : Inventory
 	inventory.maxamount 1
 }
 
-ACTOR DF_EnergyUnit : Ammo
-{
-	Inventory.PickupMessage "15 Energy Units"
-	Inventory.Amount 15
-	Inventory.MaxAmount 500
-	Ammo.BackpackAmount 15
-	Ammo.BackpackMaxAmount 700
-	Inventory.Icon "ENGUA0"
-}
-
-ACTOR DF_PowerCell : Ammo
-{
-	Inventory.PickupMessage "10 Power Cells"
-	Inventory.Amount 10
-	Inventory.MaxAmount 500
-	Ammo.BackpackAmount 10
-	Ammo.BackpackMaxAmount 700
-	Inventory.Icon "PCELA0"
-}
-
-ACTOR DF_PlasmaCartridge : Ammo
-{
-	Inventory.PickupMessage "20 Plasma Cartridges"
-	Inventory.Amount 20
-	Inventory.MaxAmount 400
-	Ammo.BackpackAmount 20
-	Ammo.BackpackMaxAmount 600
-	Inventory.Icon "ACAMA0"
-}
-
-ACTOR DF_Missile : Ammo
-{
-	Inventory.PickupMessage "5 Missiles"
-	Inventory.Amount 5
-	Inventory.MaxAmount 20
-	Ammo.BackpackAmount 5
-	Ammo.BackpackMaxAmount 40
-	Inventory.Icon "ACAMB0"
-}
-
 actor MortarGun : Weapon
 {
 	weapon.selectionorder 7

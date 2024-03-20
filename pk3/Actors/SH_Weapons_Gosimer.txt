@@ -614,25 +614,6 @@ ACTOR Devistator_shell
 	}
 }
 
-ACTOR DevastatorAmmo : Ammo
-{
-	Inventory.PickupMessage "Devastator Ammo" // "Picked up an BFG CHARGE!"
-	Inventory.Amount 50
-	Inventory.MaxAmount 150
-	Ammo.BackpackAmount 25
-	Ammo.BackpackMaxAmount 250
-	Inventory.Icon "CELLA0"
-	Inventory.Respawntics"4200"
-	Inventory.PickupSound "AMMO/BATTERY"
-	States
-	{
-		Spawn:
-			CELL A -1
-			Stop
-	}
-}
-
-
 ACTOR micro_Devistator : DoomWeapon
 {
 	Game Doom

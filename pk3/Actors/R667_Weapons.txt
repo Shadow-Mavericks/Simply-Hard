@@ -943,38 +943,3 @@ ACTOR DispersionRocketExplosion3 : DispersionRocketExplosion1
    ExplosionRadius 104
 }
 
-ACTOR NuclearMissile : Ammo
-{
-   Inventory.Amount 1
-   Inventory.MaxAmount 25
-   Ammo.BackpackAmount 1
-   Ammo.BackpackMaxAmount 50
-   Inventory.PickupMessage "Picked up a nuclear missile."
-   Inventory.PickupSound "weapons/ammo06"
-   Inventory.Icon "NUKAA0"
-   States
-   {
-   Spawn:
-      NUKA A -1
-      Stop
-   }
-}
-
-ACTOR Nukecharge : Ammo
-{
-  Inventory.PickupMessage "Got a Nukecharge!? don't kill the guy who gave it to you!" // "Picked up an BFG CHARGE!"
-  Inventory.Amount 1
-  Inventory.MaxAmount 3
-  Ammo.BackpackAmount 3
-  Ammo.BackpackMaxAmount 3
-  Inventory.Icon "CELLA0"
-  Inventory.Respawntics"4200"
-  Inventory.PickupSound "AMMO/BATTERY"
-  States
-  {
-  Spawn:
-    NUKA A -1
-    Stop
-  }
-}
-

@@ -782,6 +782,28 @@ script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
 	log(s:msg);
 }
 
+function int add_ammo(str ammo_class, int amount)
+{
+	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
+		amount *= 2;
+
+	if(StrIcmp(ammo_class, "None") != 0 && amount > 0)
+	{
+		if(CheckInventory(ammo_class) < GetAmmoCapacity(ammo_class))
+		{
+			// Adjust ammo given to remainder of capacity, if applicable.
+			// Doing this so I can pass the real amount gained to the pickup message.
+			if((CheckInventory(ammo_class) + amount) > GetAmmoCapacity(ammo_class))
+				amount = GetAmmoCapacity(ammo_class) - CheckInventory(ammo_class);
+
+			GiveInventory(ammo_class, amount);
+			return amount;
+		}
+	}
+	
+	return 0;
+}
+
 script 13236 (int type, int dropped) // "AMMO_PICKUP"
 {
 	SetResultValue(0);
@@ -1040,45 +1062,9 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		}
 	}
 
-	bool success = false;
-	int ammofactor = 1;
-	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
-		ammofactor = 2;
-
-	if(StrIcmp(ammo1_class, "None") != 0 && ammo1_amount > 0)
-	{
-		if(CheckInventory(ammo1_class) < GetAmmoCapacity(ammo1_class))
-		{
-			// Adjust ammo given to remainder of capacity, if applicable.
-			// Doing this so I can pass the real amount gained to the pickup message.
-			if((CheckInventory(ammo1_class) + ammo1_amount) > GetAmmoCapacity(ammo1_class))
-				ammo1_amount = GetAmmoCapacity(ammo1_class) - CheckInventory(ammo1_class);
-
-			GiveInventory(ammo1_class, ammo1_amount);
-			success = true;
-		}
-		else
-		{
-			ammo1_amount = 0;
-		}
-	}
-
-	if(StrIcmp(ammo2_class, "None") != 0 && ammo2_amount > 0)
-	{
-		if(CheckInventory(ammo2_class) < GetAmmoCapacity(ammo2_class))
-		{
-			// Ditto.
-			if((CheckInventory(ammo2_class) + ammo2_amount) > GetAmmoCapacity(ammo2_class))
-				ammo2_amount = GetAmmoCapacity(ammo2_class) - CheckInventory(ammo2_class);
-
-			GiveInventory(ammo2_class, ammo2_amount);
-			success = true;
-		}
-		else
-		{
-			ammo2_amount = 0;
-		}
-	}
+	ammo1_amount = add_ammo(ammo1_class, ammo1_amount);
+	ammo2_amount = add_ammo(ammo2_class, ammo2_amount);
+	bool success = (ammo1_amount || ammo2_amount);
 
 	if(success)
 	{
@@ -1086,9 +1072,9 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		str suffix2 = "";
 
 		// Add a plural suffix, if applicable.
-		if((ammo1_amount * ammofactor) > 1)
+		if((ammo1_amount) > 1)
 			suffix1 = "s";
-		if ((ammo2_amount * ammofactor) > 1)
+		if ((ammo2_amount) > 1)
 			suffix2 = "s";
 
 		if(CheckActorClass(0, "MaximusPrime"))
@@ -1102,22 +1088,22 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		str msg = StrParam(s:textcolor);
 		if(ammo1_amount > 0)
 		{
-			msg = StrParam(s:msg, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+			msg = StrParam(s:msg, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1);
 			if(ammo2_amount > 0)
 				msg = StrParam(s:msg, s:" & ");
 		}
 
 		if(ammo2_amount > 0)
 		{
-			msg = StrParam(s:msg, d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+			msg = StrParam(s:msg, d:ammo2_amount, s:" ", s:ammo2_name, s:suffix2);
 		}
 
 		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
 
 		//if(ammo1_amount > 0 && ammo2_amount > 0)
-			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount * ammofactor, s:" ", s:ammo2_name, s:suffix2);
+			//log(s:textcolor, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1, s:" & ", d:ammo2_amount, s:" ", s:ammo2_name, s:suffix2);
 		//else if(ammo1_amount > 0)
-			//log(s:textcolor, d:ammo1_amount * ammofactor, s:" ", s:ammo1_name, s:suffix1);
+			//log(s:textcolor, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1);
 
 		PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
 		if(StrIcmp(extrasound, "None") != 0)
@@ -1330,14 +1316,14 @@ MannCoBoxData_t tier4_good[] =
 	{ "An Extra Life!",				"ExtraLife",			30,		DELAY_NONE },
 	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },
 	{ "Drugs?!",					"Joy",					50,		DELAY_NONE },
-	{ "A Spew of Health Potions!",	"HealthVomit",			100,	DELAY_NONE },
-	{ "An Upchuck of Orbs!",		"OrbVomit",				100,	DELAY_NONE },
+	{ "A Spew of Health Potions!",	"HealthVomit",			80,		DELAY_NONE },
+	{ "An Upchuck of Orbs!",		"OrbVomit",				80,		DELAY_NONE },
 	{ "A Barf of Bullets!",			"ClipVomit",			75,		DELAY_NONE },
 	{ "A Regurgitation of Shells!",	"ShellVomit",			70,		DELAY_NONE },
 	{ "A Cascade of Cells!",		"CellVomit",			65,		DELAY_NONE },
-	{ "A Tier 5 Weapon Upgrade!",	"T5Upgrade",			20,		DELAY_NONE },
-	{ "A Tier 6 Weapon Upgrade!",	"T6Upgrade",			18,		DELAY_NONE },
-	{ "A Tier 7 Weapon Upgrade!",	"T7Upgrade",			15,		DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",	"T5Upgrade",			30,		DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",	"T6Upgrade",			25,		DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",	"T7Upgrade",			20,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier4_bad[] =

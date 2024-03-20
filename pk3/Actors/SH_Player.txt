@@ -20,7 +20,6 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "Renettim9"
 	Player.StartItem "Fists"
 	Player.StartItem "Shellz", 6
-	Player.StartItem "Shotgunclip", 6
 	Player.StartItem "peastolClip", 50
 	Player.StartItem "Fiendtoken"
 	Player.StartItem "MEDBAG"

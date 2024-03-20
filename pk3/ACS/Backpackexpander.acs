@@ -27,7 +27,6 @@ script "Playerbackpackupgrade" (void)
 	// To-Do: Make ammo belt use this function too, but not increase capacity.
 
 	//AddAmmoCapacity("Clip", 100);
-	AddAmmoCapacity("Shotgunclip",  1);
 	AddAmmoCapacity("PeastolClip", 25);
 	AddAmmoCapacity("Shellz",      10);
 	AddAmmoCapacity("SuperShellz", 10);

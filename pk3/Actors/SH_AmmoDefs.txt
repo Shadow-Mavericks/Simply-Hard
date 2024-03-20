@@ -1,0 +1,247 @@
+Actor Abilitycharge : Ammo
+{
+	Inventory.MaxAmount 1000
+	+INVENTORY.IGNORESKILL
+}
+
+Actor UltimateAbilityCharge : Ammo
+{
+	Inventory.MaxAmount 2000
+	+INVENTORY.IGNORESKILL
+}
+
+ACTOR PeastolClip : Ammo
+{
+	Inventory.PickupMessage "$GOTCLIP" // "Picked up a clip."
+	Inventory.Amount 12
+	Inventory.MaxAmount 100
+	Inventory.Icon "CLIPA0"
+	Inventory.Respawntics"2100"
+	Inventory.PickupSound "AMMO/CLIP"
+	Ammo.BackpackAmount 24
+	Ammo.BackpackMaxAmount 250
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			CLIP A -1
+			Stop
+	}
+}
+
+ACTOR ShellZ : Ammo
+{
+	Inventory.PickupMessage "Picked up 2 shotgun + SSG Shells"
+	Inventory.Amount 2
+	Inventory.MaxAmount 50
+	Inventory.Respawntics"4200"
+	Inventory.Icon "SHELA0"
+	Inventory.PickupSound "AMMO/SHEL"
+	Ammo.BackpackMaxAmount 150
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			SHEL A -1
+			Stop
+	}
+}
+
+ACTOR SuperShellZ : Ammo
+{
+	Inventory.PickupMessage "Picked up 10 shotgun + SSG Shells"
+	Inventory.Amount 2
+	Inventory.MaxAmount 50
+	Inventory.Respawntics"4200"
+	Inventory.Icon "SHELA0"
+	Inventory.PickupSound "AMMO/SHEL"
+	Ammo.BackpackMaxAmount 150
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			SHEL A -1
+			Stop
+	}
+}
+
+ACTOR Ak_Mag : Ammo
+{
+	//$Category Ammunition
+	Inventory.PickupMessage "Picked up an AK Magazine."
+	Inventory.Amount 75
+	Inventory.MaxAmount 250
+	Inventory.Respawntics"4200"
+	Inventory.Icon "AKAMA0"
+	Inventory.PickupSound "AMMO/AKMAG"
+	Ammo.BackpackAmount 75
+	Ammo.BackpackMaxAmount 500
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			AKAM A -1
+			Stop
+	}
+}
+
+ACTOR RoketAmmo : Ammo
+{
+	Inventory.PickupMessage "$GOTROCKET" // "Picked up a rocket."
+	Inventory.Amount 1
+	Inventory.MaxAmount 50
+	Inventory.Respawntics 6300
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 100
+	Inventory.Icon "ROCKA0"
+	Inventory.PickupSound "AMMO/ROKET"
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			ROCK A -1
+			Stop
+	}
+}
+
+ACTOR Battery : AMMO
+{
+	Inventory.PickupMessage "$GOTCELL" // "Picked up an energy cell."
+	Inventory.Amount 20
+	Inventory.MaxAmount 300
+	Inventory.Icon "CELLA0"
+	Inventory.Respawntics"4200"
+	Inventory.PickupSound "AMMO/BATTERY"
+	Ammo.BackpackAmount 20
+	Ammo.BackpackMaxAmount 800
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			CELL A -1
+			Stop
+	}
+}
+
+
+ACTOR Railslugs : AMMO
+{
+	Inventory.PickupMessage "you have collected some Rail Slug(s)!"
+	Inventory.Amount 5
+	Inventory.MaxAmount 25
+	Inventory.Icon "CELLA0"
+	Inventory.Respawntics"4200"
+	Inventory.PickupSound "AMMO/BATTERY"
+	Ammo.BackpackAmount 10
+	Ammo.BackpackMaxAmount 50
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			CELL A -1
+			Stop
+	}
+}
+
+ACTOR BFGCHARGE : Ammo
+{
+	Inventory.PickupMessage "Got a bfg charge!" // "Picked up an BFG CHARGE!"
+	Inventory.Amount 2
+	Inventory.MaxAmount 10
+	Inventory.Icon "CELLA0"
+	Inventory.Respawntics"8400"
+	Inventory.PickupSound "AMMO/BATTERY"
+	Ammo.BackpackAmount 3
+	Ammo.BackpackMaxAmount 20
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			CELL A -1
+			Stop
+	}
+}
+
+ACTOR Nukecharge : Ammo
+{
+	Inventory.PickupMessage "Got a Nukecharge!? don't kill the guy who gave it to you!" // "Picked up an BFG CHARGE!"
+	Inventory.Amount 1
+	Inventory.MaxAmount 3
+	Inventory.Icon "CELLA0"
+	Inventory.Respawntics"4200"
+	Inventory.PickupSound "AMMO/BATTERY"
+	Ammo.BackpackAmount 3
+	Ammo.BackpackMaxAmount 3
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			NUKA A -1
+			Stop
+	}
+}
+
+// ********* GOSIMER'S AMMO ************
+ACTOR DevastatorAmmo : Ammo
+{
+	Inventory.PickupMessage "Devastator Ammo" // "Picked up an BFG CHARGE!"
+	Inventory.Amount 50
+	Inventory.MaxAmount 150
+	Inventory.Icon "CELLA0"
+	Inventory.Respawntics"4200"
+	Inventory.PickupSound "AMMO/BATTERY"
+	Ammo.BackpackAmount 25
+	Ammo.BackpackMaxAmount 250
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+	States
+	{
+		Spawn:
+			CELL A -1
+			Stop
+	}
+}
+
+// ********* MAX'S AMMO ************
+ACTOR DF_EnergyUnit : Ammo
+{
+	Inventory.PickupMessage "15 Energy Units"
+	Inventory.Amount 15
+	Inventory.MaxAmount 500
+	Inventory.Icon "ENGUA0"
+	Ammo.BackpackAmount 15
+	Ammo.BackpackMaxAmount 700
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
+
+ACTOR DF_PowerCell : Ammo
+{
+	Inventory.PickupMessage "10 Power Cells"
+	Inventory.Amount 10
+	Inventory.MaxAmount 500
+	Inventory.Icon "PCELA0"
+	Ammo.BackpackAmount 10
+	Ammo.BackpackMaxAmount 700
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
+
+ACTOR DF_PlasmaCartridge : Ammo
+{
+	Inventory.PickupMessage "20 Plasma Cartridges"
+	Inventory.Amount 20
+	Inventory.MaxAmount 400
+	Inventory.Icon "ACAMA0"
+	Ammo.BackpackAmount 20
+	Ammo.BackpackMaxAmount 600
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
+
+ACTOR DF_Missile : Ammo
+{
+	Inventory.PickupMessage "5 Missiles"
+	Inventory.Amount 5
+	Inventory.MaxAmount 20
+	Inventory.Icon "ACAMB0"
+	Ammo.BackpackAmount 5
+	Ammo.BackpackMaxAmount 40
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
