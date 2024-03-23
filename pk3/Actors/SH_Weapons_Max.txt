@@ -43,7 +43,7 @@ actor BlastBolt : FastProjectile
 			BLAS A 1 BRIGHT Light("RedBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
-			SPAR A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			SPAR A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			SPAR A 0 A_SetTranslucent(1.0, 0)
 			SPAR ABCDEF 2 BRIGHT
 			Stop
@@ -137,7 +137,7 @@ actor CutBlast : BlastBolt
 			CULT AAAABBBBCCCCDDDD 1 BRIGHT Light("GreenBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
-			CUEX A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			CUEX A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			CUEX A 0 A_SetTranslucent(1.0, 0)
 			CUEX ABCDEFGH 4 BRIGHT
 			Stop
@@ -160,7 +160,7 @@ actor GoobBlast : CutBlast
 			GOOB AAAABBBBCCCCDDDD 1 BRIGHT Light("BlueBolt") A_SetUserVar(user_fallofftics, user_fallofftics+1)
 			loop
 		Death:
-			GOSP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			GOSP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			GOSP A  0 A_SetTranslucent(1.0, 0)
 			GOSP ABCDEFGH 4 BRIGHT
 			Stop
@@ -231,7 +231,7 @@ actor ConcussionBlast : FastProjectile
 			BULL A 1 Bright Light("BlueBolt")
 			Loop
 		Death:
-			CBLA A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			CBLA A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			CBLA A 0 Bright A_PlaySound("Max/LrgExplo", CHAN_AUTO)
 			CBLA A 3 Bright A_Explode(30 * DARKFORCES_DMG_MULT, 25 * DARKFORCES_RAD_MULT, XF_HURTSOURCE, false, 25 * DARKFORCES_RAD_MULT)
 			CBLA B 3 Bright
@@ -291,7 +291,7 @@ actor AssaultCannonPlasma
 			ACSH ABCD 3 BRIGHT Light("BigBlueBolt")
 			loop
 		Death:
-			ACBL A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			ACBL A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			ACBL ABCDEF 3 BRIGHT
 			Stop
 	}
@@ -312,7 +312,7 @@ actor GoldAssaultCannonPlasma : AssaultCannonPlasma
 			WPLS ABCD 3 BRIGHT Light("BigYellowBolt")
 			Loop
 		Death:
-			WEXP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 16, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
+			WEXP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			WEXP ABCDEF 3 Bright
 			stop
 	}
@@ -816,11 +816,12 @@ actor DisruptorRifle : SH_Weapon
 
 actor FusionCutter : SH_Weapon
 {
+	Tag "Jeron Fusion Cutter"
 	obituary "%k demonstrated the power of the fusion cutter tool to %o"
 	Weapon.selectionorder 4
 	Weapon.AmmoUse1 1
 	Weapon.AmmoUse2 4
-	Weapon.AmmoGive1 50
+	Weapon.AmmoGive1 0 // Handled in ACS
 	Weapon.AmmoType1 "DF_PowerCell"
 	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"

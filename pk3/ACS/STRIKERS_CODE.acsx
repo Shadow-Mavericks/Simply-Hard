@@ -55,6 +55,18 @@ function int clamp(int in, int min, int max)
 	return (out > max) ? max : out;
 }
 
+function str GetClassTag(str className)
+{
+	int uTID = UniqueTID();
+
+	if(!SpawnForced(className, 0, 0, 0, uTID, 0))
+		return className;
+
+	str tag = GetActorProperty(uTID, APROP_NameTag);
+	Thing_Remove(uTID);
+	return tag;
+}
+
 // Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
 // to have basic, important functions that have existed since 2016.
 function str ACSUtils_ChangeFlagName(str flag, bool value)
@@ -594,7 +606,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				{
 					if(directMonsterDamage) // Reduce Melee Damage
 					{
-						fixedDamage = fixedmul(arg1<<16, 0.67);
+						fixedDamage = fixedmul(arg1<<16, 0.78);
 						arg1 = fixedDamage>>16;
 					}
 
@@ -661,7 +673,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 			int enemyCount = 1;
 			int dir = 0;
-			int stride = 0;
+			int stride = 1;
+			int stride_cycle = 0;
 			int spawnAttempts = 0;
 
 			if(GetCVar("sh_debug_spawns"))
@@ -742,7 +755,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				} while((iter < stride) && enemyCount < mult);
 
 				dir = (dir+1)%4;
-				stride++;
+				stride_cycle++;
+				if((stride_cycle % 2) == 0)
+					stride++;
 			} while(enemyCount < mult);
 		}
 
@@ -1148,6 +1163,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			break;
 		
 		case WEAPON_SHOTGUN:
+		{
 			weapon_class = "D3Shotgun";
 			ammo1_class = "Shellz";
 			ammo1_amount = 12;
@@ -1172,8 +1188,40 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_amount = 15;
 			}
+			break;
+		}
+		
+		case WEAPON_SSG:
+		{
+			weapon_class = "SuperShawtgun";
+			ammo1_class = "SuperShellz";
+			ammo1_amount = 8;
+			
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "weapon/Fssgget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				pickupsound_new = "weapon/StreetsweeperGet";
+				weapon_class = "Streetsweeper";
+				ammo1_amount = 20;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				pickupsound_new = "Weapon/PRotoget";
+				weapon_class = "BurstShotgun";
+				ammo1_amount = 24;
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "FusionCutter";
+				ammo1_class = "DF_PowerCell";
+				ammo1_amount = 50;
+			}
 
 			break;
+		}
 	}
 	
 	if(!dropped)

@@ -81,6 +81,7 @@ actor SigilEvilEyeFix : EvilEye replaces EvilEye // Needed so Max's class can pl
 
 actor SigilHitscanHax : BulletPuff // Also needed.
 {
+	+ACTIVATEIMPACT
 	+BLOODLESSIMPACT
 	+PUFFONACTORS
 	+PAINLESS

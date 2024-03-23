@@ -974,8 +974,8 @@ Actor BurstShotgun : SH_Weapon
 	Weapon.AmmoUse2 1
 	Weapon.AmmoType1 "SuperShellz"
 	Weapon.AmmoType2 "SuperShellz"
-	Weapon.AmmoGive1 24
-	Weapon.Ammogive2 0
+	Weapon.AmmoGive1 0 // Handled in ACS
+	Weapon.AmmoGive2 0
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"

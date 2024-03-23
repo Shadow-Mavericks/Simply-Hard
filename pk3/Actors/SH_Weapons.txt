@@ -750,7 +750,7 @@ ACTOR SuperShawtgun : SH_Weapon
 	Weapon.SelectionOrder 5
 	Weapon.KickBack 512
 	Weapon.AmmoUse 2
-	Weapon.AmmoGive 8
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "SuperShellz"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -894,45 +894,6 @@ ACTOR SuperShawtgun : SH_Weapon
 			Stop
 	}
 }
-
-
-
-Actor ssgdrop : CustomInventory replaces Supershotgun
-{
-	Radius 12
-	Height 18
-	scale 0.1
-	Inventory.Respawntics"4200"
-	+INVENTORY.ALWAYSPICKUP
-	Inventory.PickupSound ""
-	Inventory.PickupMessage "You got a Supahshawtgun weapon"
-	States
-	{
-		Spawn:
-			SSGB ABC 15 BRIGHT
-			LOOP
-		pickup:
-			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-			TNT1 A 0 A_Playsound("weapon/Fssgget",Chan_7)
-			TNT1 A 0 A_Giveinventory("SuperShawtgun")
-			Stop
-		Kunaipickup:
-			TNT1 A 0 A_playsound("Weapon/StreetsweeperGet",Chan_7)
-			TNT1 A 0 A_Giveinventory("Streetsweeper")
-			Stop
-		Gosimerpickup:
-			TNT1 A 0 A_playsound("Weapon/PRotoget",Chan_7)
-			TNT1 A 0 A_Giveinventory("BurstShotgun")
-			Stop
-		Maxpickup:
-			TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-			TNT1 A 0 A_Giveinventory("FusionCutter")
-			Stop
-	}
-}
-
 
 //-----------------------------
 //----< Chaingun replacer >----
@@ -2217,7 +2178,7 @@ ACTOR Helltechshotgun : SH_Weapon //Weapon from Laundry
 		KSGG A 1 A_Lower
 		Loop
 	GoldSelect:
-		SNGL A 1 A_Raise
+		KSGG A 1 A_Raise
 		Loop
 	GoldFire:
 		KSGG A 1 A_Playsound("Kunaishotgun_FIRE",Chan_weapon)
@@ -2508,7 +2469,7 @@ ACTOR streetsweeper : SH_Weapon 8467
 	SpawnID 28
 	Weapon.SelectionOrder 1
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 20
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "SuperShellz"
 	Weapon.SlotNumber 3
 	Weapon.slotpriority 2

@@ -531,8 +531,6 @@ special
    str   -166:LumpGetInfoString(2, int, int),
    int   -167:LumpClose(1, int),
 
-   str   -178:GetClassTag(1, str),
-
    // ZDoom's (continued)
    int   -200:CheckClass(1, str, int, int),
    int   -201:DamageActor(6, int, int, int, int, int, str),
