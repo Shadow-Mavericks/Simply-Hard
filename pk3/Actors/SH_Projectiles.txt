@@ -782,6 +782,7 @@ ACTOR Healgunshot
 	DeathSound "HPGET"
 	Projectile
 	+NOTIMEFREEZE
+	+FORCEALLYCOLLISION
 	States
 	{
 		Spawn:
