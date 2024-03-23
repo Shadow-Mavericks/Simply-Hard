@@ -8,17 +8,17 @@ vec4 getTexelWrapped(vec2 coord)
 
 vec4 Process(vec4 color)
 {
-	vec2 basetex = gl_TexCoord[0].st;
-	vec2 fliptex = gl_TexCoord[0].st;
-	fliptex.s *= -1;
+	vec2 baseCoord = gl_TexCoord[0].st;
+	vec2 flipCoord = gl_TexCoord[0].st;
+	flipCoord.s *= -1;
 	
 	// Scroll
-	basetex.y -= timer * 0.50;
-	fliptex.y -= timer * 1.00;
+	baseCoord.y -= timer * 0.50;
+	flipCoord.y -= timer * 1.00;
 	
 	// Get result
-	vec4 baseTexel = getTexelWrapped(basetex);
-	vec4 flipTexel = getTexelWrapped(fliptex);
+	vec4 baseTexel = getTexelWrapped(baseCoord);
+	vec4 flipTexel = getTexelWrapped(flipCoord);
 	
 	// Darken layers.
 	baseTexel.rgb *= 0.5;
