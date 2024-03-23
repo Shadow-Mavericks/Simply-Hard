@@ -1241,10 +1241,11 @@ actor DFPistol : SH_Weapon
 
 actor DFBlaster : SH_Weapon
 {
+	Tag "BlasTech E-11"
 	obituary "%o was blasted away by %k's E-11 rifle"
 	Weapon.SelectionOrder 8
 	Weapon.AmmoUse 2
-	Weapon.AmmoGive 15
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "DF_EnergyUnit"
 	Weapon.UpSound "Max/WepRaise"
 	Inventory.PickupMessage "Blaster Rifle"
@@ -1257,10 +1258,10 @@ actor DFBlaster : SH_Weapon
 	weapon.BobRangeX 1
 	weapon.BobRangeY 1
 	weapon.bobspeed 1
-	
+
 	Weapon.ViewPitchStyle "Centered"
 	Weapon.ViewPitchOffset 24
-	
+
 	+WEAPON.AMMO_OPTIONAL
 	States
 	{

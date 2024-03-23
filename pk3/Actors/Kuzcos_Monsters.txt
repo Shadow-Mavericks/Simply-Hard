@@ -2536,13 +2536,14 @@ ACTOR Kagohive
 	Species "Kago"
 	Monster
 	+FLOORCLIP
-	+SOLID
 	+THRUSPECIES
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	+QUICKTORETALIATE
 	+DONTBLAST
 	+NOTAUTOAIMED
+	-SOLID // Needed to stop hives from breaking teleports.
+	-COUNTKILL
 	-CANBLAST
 	//+DONTTHRUST // Not in Zandronum yet. Fucking lame.
 	SeeSound ""
@@ -2585,6 +2586,7 @@ ACTOR Kago : SwarmFly
 	Species "Kago"
 	ActiveSound "KagoIdle"
 	-SOLID
+	-COUNTKILL
 	+FLOAT
 	+NOGRAVITY
 	+LOOKALLAROUND

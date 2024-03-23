@@ -21,7 +21,7 @@ WeaponSection "Simply-Hard"
 SetSlot 1 Fists Lightsaber soulreaper ShieldGun UAC-Chainsaw DFFist
 SetSlot 2 Renettim9 Kunaisrevolver GosimersHandgun DFPistol
 SetSlot 3 D3shotgun Helltechshotgun CombatShotgun SuperShawtgun DFBlaster
-SetSlot 4 Streetsweeper BurstShotgun D3Machinegun Autogun
+SetSlot 4 Streetsweeper BurstShotgun D3Chaingun Autogun
 SetSlot 5 PDW Hmachinegun Rawketlawnchair FusionCutter
 SetSlot 6 Cryobow BoomToob DEPlasmaRifle MortarGun
 SetSlot 7 Propulsion_Cannon PlasmagunMk2 KunaisKar98 Fiendsrailgun SH_Flameshot Channeler Fiend_PlasmaRifle Lightning_Rifle ConcRifle DisruptorRifle

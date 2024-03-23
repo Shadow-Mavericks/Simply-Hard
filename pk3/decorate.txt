@@ -17,6 +17,7 @@
 #include "actors/SH_Projectiles.txt"
 #include "actors/SH_RNG-Spawns.txt"
 
+#include "actors/SH_WeaponGivers.txt"
 #include "actors/SH_Weapons.txt"
 #include "actors/SH_Weapons_Gosimer.txt"
 #include "actors/SH_Weapons_Max.txt"

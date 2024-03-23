@@ -12,6 +12,7 @@ Actor UltimateAbilityCharge : Ammo
 
 ACTOR PeastolClip : Ammo
 {
+	Tag "Pistol Round"
 	Inventory.PickupMessage "$GOTCLIP" // "Picked up a clip."
 	Inventory.Amount 12
 	Inventory.MaxAmount 100
@@ -31,6 +32,7 @@ ACTOR PeastolClip : Ammo
 
 ACTOR ShellZ : Ammo
 {
+	Tag "SG Shell"
 	Inventory.PickupMessage "Picked up 2 shotgun + SSG Shells"
 	Inventory.Amount 2
 	Inventory.MaxAmount 50
@@ -49,6 +51,7 @@ ACTOR ShellZ : Ammo
 
 ACTOR SuperShellZ : Ammo
 {
+	Tag "SSG Shell"
 	Inventory.PickupMessage "Picked up 10 shotgun + SSG Shells"
 	Inventory.Amount 2
 	Inventory.MaxAmount 50
@@ -67,7 +70,7 @@ ACTOR SuperShellZ : Ammo
 
 ACTOR Ak_Mag : Ammo
 {
-	//$Category Ammunition
+	Tag "MG Round"
 	Inventory.PickupMessage "Picked up an AK Magazine."
 	Inventory.Amount 75
 	Inventory.MaxAmount 250
@@ -87,6 +90,7 @@ ACTOR Ak_Mag : Ammo
 
 ACTOR RoketAmmo : Ammo
 {
+	Tag "Rocket"
 	Inventory.PickupMessage "$GOTROCKET" // "Picked up a rocket."
 	Inventory.Amount 1
 	Inventory.MaxAmount 50
@@ -106,6 +110,7 @@ ACTOR RoketAmmo : Ammo
 
 ACTOR Battery : AMMO
 {
+	Tag "Energy Cell"
 	Inventory.PickupMessage "$GOTCELL" // "Picked up an energy cell."
 	Inventory.Amount 20
 	Inventory.MaxAmount 300
@@ -126,6 +131,7 @@ ACTOR Battery : AMMO
 
 ACTOR Railslugs : AMMO
 {
+	Tag "Uranium Slug"
 	Inventory.PickupMessage "you have collected some Rail Slug(s)!"
 	Inventory.Amount 5
 	Inventory.MaxAmount 25
@@ -145,6 +151,7 @@ ACTOR Railslugs : AMMO
 
 ACTOR BFGCHARGE : Ammo
 {
+	Tag "Argent Energy Charge"
 	Inventory.PickupMessage "Got a bfg charge!" // "Picked up an BFG CHARGE!"
 	Inventory.Amount 2
 	Inventory.MaxAmount 10
@@ -164,6 +171,7 @@ ACTOR BFGCHARGE : Ammo
 
 ACTOR Nukecharge : Ammo
 {
+	Tag "Nuke Charge"
 	Inventory.PickupMessage "Got a Nukecharge!? don't kill the guy who gave it to you!" // "Picked up an BFG CHARGE!"
 	Inventory.Amount 1
 	Inventory.MaxAmount 3
@@ -184,6 +192,7 @@ ACTOR Nukecharge : Ammo
 // ********* GOSIMER'S AMMO ************
 ACTOR DevastatorAmmo : Ammo
 {
+	Tag "Devastator Missile"
 	Inventory.PickupMessage "Devastator Ammo" // "Picked up an BFG CHARGE!"
 	Inventory.Amount 50
 	Inventory.MaxAmount 150
@@ -204,6 +213,7 @@ ACTOR DevastatorAmmo : Ammo
 // ********* MAX'S AMMO ************
 ACTOR DF_EnergyUnit : Ammo
 {
+	Tag "Energy Unit"
 	Inventory.PickupMessage "15 Energy Units"
 	Inventory.Amount 15
 	Inventory.MaxAmount 500
@@ -215,6 +225,7 @@ ACTOR DF_EnergyUnit : Ammo
 
 ACTOR DF_PowerCell : Ammo
 {
+	Tag "Power Cell"
 	Inventory.PickupMessage "10 Power Cells"
 	Inventory.Amount 10
 	Inventory.MaxAmount 500
@@ -226,6 +237,7 @@ ACTOR DF_PowerCell : Ammo
 
 ACTOR DF_PlasmaCartridge : Ammo
 {
+	Tag "Plasma Cartridge"
 	Inventory.PickupMessage "20 Plasma Cartridges"
 	Inventory.Amount 20
 	Inventory.MaxAmount 400
@@ -237,6 +249,7 @@ ACTOR DF_PlasmaCartridge : Ammo
 
 ACTOR DF_Missile : Ammo
 {
+	Tag "Missile"
 	Inventory.PickupMessage "5 Missiles"
 	Inventory.Amount 5
 	Inventory.MaxAmount 20

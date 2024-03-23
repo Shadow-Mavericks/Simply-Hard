@@ -771,9 +771,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 #define AMMO_CELL		6
 #define AMMO_CELLBOX	7
 
-#define DROPTYPE_HALVED 0
-#define DROPTYPE_FULL 1
-#define DROPTYPE_RANDOM 2
+#define DROPTYPE_NONE 0
+#define DROPTYPE_HALVED 1
+#define DROPTYPE_FULL 2
+#define DROPTYPE_RANDOM 3
 
 // Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
 // Use with "NamedSendNetworkString".
@@ -782,10 +783,33 @@ script "LOGMESSAGE_HACK" (int msg) CLIENTSIDE
 	log(s:msg);
 }
 
-function int add_ammo(str ammo_class, int amount)
+// Gives ammo to player.
+// return value is how much was really given after doubling or accounting for capacity.
+function int add_ammo(str ammo_class, int amount, int droptype)
 {
+	if(amount == 0)
+		return 0;
+
 	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
 		amount *= 2;
+
+	switch(droptype)
+	{
+		case DROPTYPE_HALVED:
+		{
+			amount /= 2;
+			if(amount == 0)
+				amount = 1;
+			break;
+		}
+		case DROPTYPE_RANDOM:
+		{
+			amount = random(amount>>1, amount);
+			if(amount == 0)
+				amount = 1;
+			break;
+		}
+	}
 
 	if(StrIcmp(ammo_class, "None") != 0 && amount > 0)
 	{
@@ -806,7 +830,7 @@ function int add_ammo(str ammo_class, int amount)
 
 script 13236 (int type, int dropped) // "AMMO_PICKUP"
 {
-	SetResultValue(0);
+	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
@@ -832,14 +856,12 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_CLIP:
 		{
 			ammo1_class = "PeastolClip";
-			ammo1_name = "Pistol Round";
 			ammo1_amount = 12;
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
-				ammo1_name = "Energy Unit";
 				ammo1_amount = 15;
 			}
 			else if(CheckActorClass(0, "Gosimer"))
@@ -853,14 +875,12 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_CLIPBOX:
 		{
 			ammo1_class = "AK_MAG";
-			ammo1_name = "MG Round";
 			ammo1_amount = 75;
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
-				ammo1_name = "Energy Unit";
 				ammo1_amount = 45;
 			}
 			else if(CheckActorClass(0, "Fiend"))
@@ -874,20 +894,17 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_SHELLS:
 		{
 			ammo1_class = "Shellz";
-			ammo1_name = "SG Shell";
 			ammo1_amount = 2;
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
-				ammo1_name = "Power Cell";
 				ammo1_amount = 10;
 			}
 			else
 			{
 				ammo2_class = "Supershellz";
-				ammo2_name = "SSG Shell";
 				ammo2_amount = 2;
 			}
 
@@ -897,20 +914,17 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_SHELLBOX:
 		{
 			ammo1_class = "Shellz";
-			ammo1_name = "SG Shell";
 			ammo1_amount = 10;
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
-				ammo1_name = "Power Cell";
 				ammo1_amount = 30;
 			}
 			else
 			{
 				ammo2_class = "Supershellz";
-				ammo2_name = "SSG Shell";
 				ammo2_amount = 10;
 			}
 
@@ -920,7 +934,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_ROCKET:
 		{
 			ammo1_class = "Roketammo";
-			ammo1_name = "Rocket";
 			ammo1_amount = 1;
 
 			if(CheckActorClass(0, "MaximusPrime"))
@@ -939,7 +952,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_ROCKETBOX:
 		{
 			ammo1_class = "Roketammo";
-			ammo1_name = "Rocket";
 			ammo1_amount = 5;
 
 			if(CheckActorClass(0, "MaximusPrime"))
@@ -958,18 +970,15 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_CELL:
 		{
 			ammo1_class = "Battery";
-			ammo1_name = "Energy Cell";
 			ammo1_amount = 40;
 
 			ammo2_class = "RailSLUGS";
-			ammo2_name = "Uranium Slug";
 			ammo2_amount = 6;
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PlasmaCartridge";
-				ammo1_name = "Plasma Cartridge";
 				ammo1_amount = 20;
 
 				ammo2_name = "Disruptor Cell";
@@ -985,11 +994,9 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		case AMMO_CELLBOX:
 		{
 			ammo1_class = "Battery";
-			ammo1_name = "Energy Cell";
 			ammo1_amount = 100;
 
 			ammo2_class = "BFGCHARGE";
-			ammo2_name = "Argent Energy Charge";
 			ammo2_amount = 2;
 
 			// Todo: Lightning Ammo.
@@ -998,17 +1005,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			{
 				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_Missile";
-				ammo1_name = "Missile";
 				ammo1_amount = 5;
 
 				ammo2_class = "DF_PlasmaCartridge";
-				ammo2_name = "Plasma Cartridge";
 				ammo2_amount = 60;
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
 				ammo2_class = "DevastatorAmmo";
-				ammo2_name = "Devastator Missile";
 				ammo2_amount = 50;
 			}
 			else if(CheckActorClass(0, "Fiend"))
@@ -1020,54 +1024,22 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			break;
 		}
 	}
+	
+	if(!dropped)
+		droptype = DROPTYPE_NONE;
 
-	if(dropped)
-	{
-		switch(droptype)
-		{
-			case DROPTYPE_HALVED:
-			{
-				if(ammo1_amount > 0)
-				{
-					ammo1_amount /= 2;
-					if(ammo1_amount == 0)
-						ammo1_amount = 1;
-				}
-
-				if(ammo2_amount > 0)
-				{
-					ammo2_amount /= 2;
-					if(ammo2_amount == 0)
-						ammo2_amount = 1;
-				}
-				break;
-			}
-			case DROPTYPE_RANDOM:
-			{
-				if(ammo1_amount > 0)
-				{
-					ammo1_amount = random(ammo1_amount>>1, ammo1_amount);
-					if(ammo1_amount == 0)
-						ammo1_amount = 1;
-				}
-
-				if(ammo2_amount > 0)
-				{
-					ammo2_amount = random(ammo2_amount>>1, ammo2_amount);
-					if(ammo2_amount == 0)
-						ammo2_amount = 1;
-				}
-				break;
-			}
-		}
-	}
-
-	ammo1_amount = add_ammo(ammo1_class, ammo1_amount);
-	ammo2_amount = add_ammo(ammo2_class, ammo2_amount);
+	ammo1_amount = add_ammo(ammo1_class, ammo1_amount, droptype);
+	ammo2_amount = add_ammo(ammo2_class, ammo2_amount, droptype);
 	bool success = (ammo1_amount || ammo2_amount);
 
 	if(success)
 	{
+		// If name isn't overridden, use ammo's tag.
+		if(!StrIcmp(ammo1_name, "None"))
+			ammo1_name = GetClassTag(ammo1_class);
+		if(!StrIcmp(ammo2_name, "None"))
+			ammo2_name = GetClassTag(ammo2_class);
+
 		str suffix1 = "";
 		str suffix2 = "";
 
@@ -1128,8 +1100,159 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 #define WEAPON_PLASMA		6
 #define WEAPON_BFG			7
 #define WEAPON_RAILGUN		8
+#define WEAPON_FLAME		9
+#define WEAPON_NUKE			10
 
 // Unfinished...
+
+script 13237 (int type, int dropped) // "WEAPON_PICKUP"
+{
+	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
+	str weapon_class = "None";
+	str pickupsound = "misc/w_pkup";
+	str pickupsound_new = "None";
+	
+	str ammo1_class = "None";
+	str ammo2_class = "None";
+	
+	str ammo1_name = "None";
+	str ammo2_name = "None";
+	
+	str weapontextcolor = "\cd";
+	str ammotextcolor = "\cf";
+	
+	int ammo1_amount = 0;
+	int ammo2_amount = 0;
+	
+	int droptype = DROPTYPE_HALVED;
+
+	int tier = 0;
+	
+	int fade_rgb[3] = { 255, 192, 0 };
+	
+	if(CheckActorClass(0, "MaximusPrime"))
+	{
+		pickupsound = "Max/HealthBonus";
+		droptype = DROPTYPE_FULL;
+	}
+	
+	switch(type)
+	{
+		case WEAPON_CHAINSAW:
+		case WEAPON_PISTOL:
+			SetResultValue(0);  // Unused, for now.
+			terminate;
+			break;
+		
+		case WEAPON_SHOTGUN:
+			weapon_class = "D3Shotgun";
+			ammo1_class = "Shellz";
+			ammo1_amount = 12;
+			
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "weapon/singleget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				weapon_class = "HelltechShotgun";
+				ammo1_amount = 8;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				weapon_class = "CombatShotgun";
+				ammo1_amount = 8;
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "DFBlaster";
+				ammo1_class = "DF_EnergyUnit";
+				ammo1_amount = 15;
+			}
+
+			break;
+	}
+	
+	if(!dropped)
+	{
+		droptype = DROPTYPE_NONE;
+		// If weapon is set to stay, and weapon already given.
+		if(GetCVar("sv_weaponstay") && CheckInventory(weapon_class))
+			terminate;
+	}
+
+	ammo1_amount = add_ammo(ammo1_class, ammo1_amount, droptype);
+	ammo2_amount = add_ammo(ammo2_class, ammo2_amount, droptype);
+	bool success = (ammo1_amount || ammo2_amount || !CheckInventory(weapon_class));
+	if(success)
+	{
+		bool isNew = false;
+		if(!CheckInventory(weapon_class))
+		{
+			GiveInventory(weapon_class, 1);
+			if(GetUserCVar(PlayerNumber(), "switchonpickup") > 1)
+				SetWeapon(weapon_class);
+
+			isNew = true;
+		}
+
+		// If name isn't overridden, use ammo's tag.
+		if(!StrIcmp(ammo1_name, "None"))
+			ammo1_name = GetClassTag(ammo1_class);
+		if(!StrIcmp(ammo2_name, "None"))
+			ammo2_name = GetClassTag(ammo2_class);
+			
+		str suffix1 = "";
+		str suffix2 = "";
+
+		// Add a plural suffix, if applicable.
+		if((ammo1_amount) > 1)
+			suffix1 = "s";
+		if ((ammo2_amount) > 1)
+			suffix2 = "s";
+
+		if(CheckActorClass(0, "MaximusPrime"))
+		{
+			ammotextcolor = "\ci";
+			fade_rgb[0] = 0;
+			fade_rgb[1] = 0;
+			fade_rgb[2] = 255;
+		}
+		
+		str weapon_name = GetClassTag(weapon_class);
+
+		str msg = StrParam(s:weapontextcolor, s:weapon_name, s:ammotextcolor, s:" (+");
+		if(ammo1_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1);
+			if(ammo2_amount > 0)
+				msg = StrParam(s:msg, s:" & ");
+		}
+
+		if(ammo2_amount > 0)
+		{
+			msg = StrParam(s:msg, d:ammo2_amount, s:" ", s:ammo2_name, s:suffix2);
+		}
+		
+		if(ammo1_amount || ammo2_amount)
+			msg = StrParam(s:msg, s:")");
+
+		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
+
+		if(isNew && (StrIcmp(pickupsound_new, "None") != 0))
+			PlaySound(0, pickupsound_new, CHAN_ITEM, 1.0, false);
+		else
+			PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
+
+		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
+		
+		if(!GetCVar("sv_weaponstay"))
+			SetResultValue(1);
+	}
+}
 
 // --------------------------------
 

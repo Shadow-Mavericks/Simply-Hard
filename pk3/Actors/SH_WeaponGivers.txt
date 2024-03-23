@@ -1,0 +1,39 @@
+// Must match values in STRIKERS_CODE.ACS.
+const int WEAPON_CHAINSAW	= 0;
+const int WEAPON_PISTOL		= 1;
+const int WEAPON_SHOTGUN	= 2;
+const int WEAPON_SSG		= 3;
+const int WEAPON_CHAINGUN	= 4;
+const int WEAPON_ROCKET		= 5;
+const int WEAPON_PLASMA		= 6;
+const int WEAPON_BFG		= 7;
+const int WEAPON_RAILGUN	= 8;
+const int WEAPON_FLAME		= 9;
+const int WEAPON_NUKE		= 10;
+
+actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
+{
+	States
+	{
+		Base:
+			SHOT A 70
+			goto CheckSprite
+
+		Gosimer:
+			DSHT A 70
+			goto CheckSprite
+		
+		MaximusPrime:
+			BRIF A 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_SHOTGUN) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 50)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}

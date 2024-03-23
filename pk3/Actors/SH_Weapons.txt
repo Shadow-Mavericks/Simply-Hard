@@ -7,14 +7,13 @@
 
 ACTOR Fists : fist replaces Fist
 {
+	Tag "Fisticuffs"
 	Weapon.PreferredSkin "Fist-Marine"
-	Game Doom
 	Weapon.SelectionOrder 9
-	Weapon.slotnumber 1
+	Weapon.SlotNumber 1
 	Inventory.RestrictedTo "Fiend"
 	Weapon.Kickback 100
 	Obituary "$OB_MPFIST"
-	Tag "Fisty cuffs"
 	+WEAPON.WIMPY_WEAPON
 	+WEAPON.MELEEWEAPON
 	+WEAPON.CHEATNOTWEAPON
@@ -198,23 +197,18 @@ ACTOR Soulreaper : SH_Weapon
 
 ACTOR UAC-Chainsaw : SH_Weapon
 {
+	Tag "Chainsaw"
+	Obituary "$OB_MPCHAINSAW"
 	Weapon.PreferredSkin "Chainsaw-Marine"
-	Game Doom
-	SpawnID 32
+	Weapon.SlotNumber 1
 	Weapon.Kickback 0
 	Weapon.SelectionOrder 9
 	Weapon.UpSound "weapons/sawup"
 	Weapon.ReadySound "weapons/sawidle"
 	Inventory.PickupMessage "$GOTCHAINSAW"
-	Obituary "$OB_MPCHAINSAW"
-	Tag "$TAG_CHAINSAW"
-	+WEAPON.MELEEWEAPON
-	Weapon.slotnumber 1
-	Inventory.ForbiddenTo "Maximusprime"
 	Inventory.RestrictedTo "Gosimer"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.ForbiddenTo "Kunai"
 	Inventory.PickupSound "weapon/chainget"
+	+WEAPON.MELEEWEAPON
 	States
 	{
 		Ready:
@@ -247,10 +241,10 @@ Actor ChainsawDrop : CustomInventory
 {
 	Radius 12
 	Height 18
-	scale 1
-	+INVENTORY.ALWAYSPICKUP
+	Scale 1.0
 	Inventory.PickupSound ""
 	Inventory.PickupMessage "You got a Chainsaw! (Soul reaper for Kunai)"
+	+INVENTORY.ALWAYSPICKUP
 	States
 	{
 		Spawn:
@@ -287,15 +281,12 @@ ACTOR RenettiM9 : SH_Weapon
 	Weapon.AmmoGive 30
 	Weapon.AmmoType "peastolclip"
 	Weapon.slotnumber 2
-	Inventory.ForbiddenTo "Maximusprime"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Gosimer"
+	Inventory.PickupSound "misc/w_pkup"
 	Inventory.RestrictedTo "Fiend"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
-	decal bulletchip
-	Inventory.PickupSound "misc/w_pkup"
+	Decal bulletchip
 	States
 	{
 		Ready:
@@ -462,7 +453,7 @@ Actor Leftpistolshot : Inventory
 {
 	Radius 4
 	Height 18
-	scale 1
+	Scale 1.0
 	Inventory.MaxAmount 1
 	States
 	{
@@ -575,6 +566,19 @@ Actor Tier7upgradetoken : UpgradeToken_Base
 	}
 }
 
+Actor Tier8upgradetoken : UpgradeToken_Base
+{
+	Inventory.PickupMessage "You picked up a Railgun Token!"
+	Inventory.PickupSound "Mannco/PRToken"
+	States
+	{
+		Spawn:
+			GUGT WXYDD 3 Bright
+			Loop
+	}
+}
+
+
 Actor Allupgradetokens : CustomInventory
 {
 	Radius 12
@@ -598,6 +602,7 @@ Actor Allupgradetokens : CustomInventory
 			TNT1 A 0 A_Giveinventory("Tier5upgradetoken",1)
 			TNT1 A 0 A_Giveinventory("Tier6upgradetoken",1)
 			TNT1 A 0 A_Giveinventory("Tier7upgradetoken",1)
+			TNT1 A 0 A_Giveinventory("Tier8upgradetoken",1)
 			Stop
 	}
 }
@@ -607,14 +612,14 @@ Actor Allupgradetokens : CustomInventory
 
 Actor D3shotgun : SH_Weapon
 {
+	Tag "Shotgun"
 	Weapon.PreferredSkin "Shotgun-Marine"
-	Game Doom
 	scale 1
 	SpawnID 28
 	Weapon.SelectionOrder 3
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 12
-	Weapon.AmmoType "shellz"
+	Weapon.AmmoType "ShellZ"
+	Weapon.AmmoGive 0 // Handled in ACS.
 	//+WEAPON.NOAUTOAIM
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -630,7 +635,6 @@ Actor D3shotgun : SH_Weapon
 	Obituary "$OB_MPSHOTGUN"
 	Inventory.PickupSound "weapon/singleget"
 	attacksound ""
-	Tag "$TAG_SHOTGUN"
 	States
 	{
 		Ready:
@@ -736,75 +740,6 @@ Actor D3shotgun : SH_Weapon
 	}
 }
 
-Actor Shotgundrop : CustomInventory //This is to prevent the "CHGCHG SHOTGUN!" sound spam!
-{
-  Radius 12
-  Height 18
-  scale 1
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupSound ""
-  Inventory.PickupMessage "You got a shawtgun weapon"
-  States
-  {
-  Spawn:
-	SHOT A -1
-	Stop
-  pickup:
-	TNT1 A 0 A_JumpIfInventory ("Kunaitoken", 1,"Kunaipickup")
-	TNT1 A 0 A_JumpIfInventory ("Gosimertoken",1,"GosimerPickup")
-	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_PLAYSOUND("misc/w_pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("D3Shotgun")
-	Stop
-  Kunaipickup:
-	TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("Helltechshotgun")
-	Stop
-  Gosimerpickup:
-	TNT1 A 0 A_Playsound("Misc/W_Pkup",chan_6)
-	TNT1 A 0 A_Giveinventory("CombatShotgun")
-	Stop
-  Maxpickup:
-	TNT1 A 0 A_Playsound("Max/HealthBonus",chan_6)
-	TNT1 A 0 A_Giveinventory("DFBlaster")
-	Stop
-  }
-}
-
-Actor Shootgundrop : CustomInventory replaces Shotgun //This is to prevent the "CHGCHG SHOTGUN!" sound spam!
-{
-  Radius 12
-  Height 18
-  scale 0.10
-  Inventory.Respawntics"2100"
-  +INVENTORY.ALWAYSPICKUP  Inventory.PickupSound ""
-  Inventory.PickupMessage "You got a shawtgun weapon"
-  States
-  {
-  Spawn:
-	SGBX ABC 15 BRIGHT
-	loop
-  pickup:
-	TNT1 A 0 A_JumpIfInventory ("Kunaitoken", 1,"Kunaipickup")
-	TNT1 A 0 A_JumpIfInventory ("Gosimertoken",1,"GosimerPickup")
-	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_PLAYSOUND("weapon/singleget",Chan_7)
-	TNT1 A 0 A_Giveinventory("D3shotgun")
-	Stop
-  Kunaipickup:
-	TNT1 A 0 A_playsound("weapon/singleget",CHAN_7)
-	TNT1 A 0 A_Giveinventory("Helltechshotgun")
-	Stop
-  Gosimerpickup:
-	TNT1 A 0 A_Playsound("Weapon/GShotget",CHAN_7)
-	TNT1 A 0 A_Giveinventory("CombatShotgun")
-	Stop
-  Maxpickup:
-	TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-	TNT1 A 0 A_Giveinventory("DFBlaster")
-	Stop
-  }
-}
 //-----------------------------
 //--< Super Shotgun replacer>--
 //-----------------------------
@@ -1003,7 +938,7 @@ Actor ssgdrop : CustomInventory replaces Supershotgun
 //----< Chaingun replacer >----
 //-----------------------------
 
-ACTOR D3Machinegun : SH_Weapon  //This weapon used to be an AK47 weapon (golden souls mod)
+ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden souls mod)
 {
 	//$Category Weapons
 	Tag "Minigun"
@@ -1165,7 +1100,7 @@ Actor AK47drop : CustomInventory //This is to prevent the "CHGCHG Machinegun!" s
 		TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
 		TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
 		TNT1 A 0 A_PLAYSOUND("misc/w_pkup",chan_6)
-		TNT1 A 0 A_Giveinventory("d3machinegun")
+		TNT1 A 0 A_Giveinventory("D3Chaingun")
 		Stop
 	Kunaipickup:
 		TNT1 A 0 A_playsound("misc/w_pkup",chan_6)
@@ -1200,7 +1135,7 @@ Actor Chaingundrop : CustomInventory replaces Chaingun //This is to prevent the 
 	TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
 	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
 	TNT1 A 0 A_playsound("Weapon/Miniget",Chan_7)
-	TNT1 A 0 A_Giveinventory("D3Machinegun")
+	TNT1 A 0 A_Giveinventory("D3Chaingun")
 	Stop
   Kunaipickup:
 	TNT1 A 0 A_playsound("Weapon/lmgget",Chan_7)
@@ -2219,24 +2154,21 @@ actor REV_Shot : Ammo
 //Kunai Single Shotgun
 ACTOR Helltechshotgun : SH_Weapon //Weapon from Laundry
 {
-	Weapon.SelectionOrder 6
-	Weapon.SlotNumber 3
-	Inventory.Forbiddento "Maximusprime"
-	Weapon.PreferredSkin "Shotgun-Marine"
-	Inventory.ForbiddenTo "Fiend"
-	Inventory.ForbiddenTo "Gosimer"
+	Tag "HellTech Shotgun"
+	Decal BulletChip
 	Inventory.RestrictedTo "Kunai"
-	Weapon.AmmoUse1 1
-	Weapon.AmmoGive 8
 	Inventory.Respawntics"4200"
+	Inventory.PickupSound "weapon/singleget"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
-	+WEAPON.NOAUTOAIM
-	Inventory.PickupSound "weapon/singleget"
-	Weapon.BobStyle "InverseSmooth"
 	Weapon.AmmoType "Shellz"
-	decal bulletchip
+	Weapon.SelectionOrder 6
+	Weapon.SlotNumber 3
+	Weapon.PreferredSkin "Shotgun-Marine"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive 0 // Handled in ACS
+	+WEAPON.NOAUTOAIM
 	States
 	{
 	Ready:

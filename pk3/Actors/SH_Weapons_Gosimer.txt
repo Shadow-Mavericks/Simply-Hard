@@ -827,11 +827,11 @@ ACTOR HMachinegun : SH_Weapon
 
 ACTOR CombatShotgun : SH_Weapon
 {
-	Tag "Shotgun"
+	Tag "Combat Shotgun"
 	Weapon.PreferredSkin "Shotgun-Marine"
 	Weapon.SelectionOrder 2
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 8
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "Shellz"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5

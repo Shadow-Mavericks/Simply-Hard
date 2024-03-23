@@ -110,7 +110,7 @@ ACTOR FlamerZombie
     ActiveSound "grunt/active"
     Obituary "%o got fried by a flamer zombie."
     Dropitem "Clip"
-    Dropitem "Shotgundrop"
+    Dropitem "Shotgun"
     MeleeRange 384
     States
     {
@@ -291,7 +291,7 @@ actor BFGGuy
   deathsound "chainguy/death"
   activesound "chainguy/active"
   Dropitem "Clip"
-  Dropitem "Shotgundrop"
+  Dropitem "Shotgun"
   Dropitem "Chaingundrop"
   Dropitem "Cell"
   Dropitem "bfg9000" 20
@@ -9041,7 +9041,7 @@ ACTOR PyroZombie
     PYRZ E 10 A_FaceTarget
     PYRZ F 10 Bright
     PYRZ F 0 Bright A_PlaySound ("PyroCannon/Fire")
-    PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire")
+    PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire", CHAN_WEAPON)
     PYRZ E 10 Bright A_MissileAttack
     goto See
   Pain:
