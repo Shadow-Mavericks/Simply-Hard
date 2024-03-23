@@ -1249,7 +1249,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 
 		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
 		
-		if(!GetCVar("sv_weaponstay"))
+		if(!GetCVar("sv_weaponstay") || dropped)
 			SetResultValue(1);
 	}
 }
