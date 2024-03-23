@@ -272,7 +272,6 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		DrawNumber 3, JKHLTFNT, Untranslated, Health, fillzeros, 28, -24;
 		Drawnumber 3, JKARMFNT, NeonLime, Armor, fillzeros, 38, -16;
 
-		/* // Zandronum is outdated as fuck...
 		IfHealth 200 % { drawimage "JKHLTH10", 21, -38; }
 		else IfHealth 175 % { drawimage "JKHLTH09", 21, -38; }
 		else IfHealth 150 % { drawimage "JKHLTH08", 21, -38; }
@@ -282,18 +281,6 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		else IfHealth 50 % { drawimage "JKHLTH04", 21, -38; }
 		else IfHealth 25 % { drawimage "JKHLTH03", 21, -38; }
 		else IfHealth 1 % { drawimage "JKHLTH02", 21, -38; }
-		else { drawimage "JKHLTH01", 21, -38; }
-		*/
-		
-		InInventory "HealthDisplayHack", 200 { drawimage "JKHLTH10", 21, -38; }
-		else InInventory "HealthDisplayHack", 175 { drawimage "JKHLTH09", 21, -38; }
-		else InInventory "HealthDisplayHack", 150 { drawimage "JKHLTH08", 21, -38; }
-		else InInventory "HealthDisplayHack", 125 { drawimage "JKHLTH07", 21, -38; }
-		else InInventory "HealthDisplayHack", 100 { drawimage "JKHLTH06", 21, -38; }
-		else InInventory "HealthDisplayHack", 75 { drawimage "JKHLTH05", 21, -38; }
-		else InInventory "HealthDisplayHack", 50 { drawimage "JKHLTH04", 21, -38; }
-		else InInventory "HealthDisplayHack", 25 { drawimage "JKHLTH03", 21, -38; }
-		else InInventory "HealthDisplayHack", 1 { drawimage "JKHLTH02", 21, -38; }
 		else { drawimage "JKHLTH01", 21, -38; }
 
 		DrawKeyBar 6, Vertical, Reverse, 8, 2, -61;

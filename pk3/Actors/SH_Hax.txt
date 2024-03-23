@@ -32,19 +32,6 @@ actor DamageTallyHack : Inventory // Hack to track damage for numbers.
 	-INVENTORY.INTERHUBSTRIP
 }
 
-actor HealthDisplayHack : Inventory // Hack because Zandronum lacks the "ifhealth" SBARINFO token.
-{
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
-}
-
 actor SpecialHax : Inventory // General purpose hack for monsters & items.
 {
 	Inventory.Amount 1

@@ -121,13 +121,6 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 				continue;
 
 			SetActivatorToPlayer(p);
-			
-			// Bullshit hack needed due to Zandronum's lack of "ifhealth" in SBARINFO.
-			if(CheckInventory("HealthDisplayHack") != GetActorProperty(0, APROP_Health))
-			{
-				TakeInventory("HealthDisplayHack", 9999);
-				GiveInventory("HealthDisplayHack", GetActorProperty(0, APROP_Health));
-			}
 
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
