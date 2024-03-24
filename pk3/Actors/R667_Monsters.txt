@@ -1780,7 +1780,7 @@ ACTOR DevastatorBall2
    Radius 8
    Height 8
    Speed 16
-   Damage 11
+   Damage (15)
    PROJECTILE
    RENDERSTYLE ADD
    ALPHA 0.90
@@ -1795,7 +1795,7 @@ ACTOR DevastatorBall2
       Loop
    Death:
       DBA2 C 1 Bright
-      DBA2 C 3 Bright A_Explode(128, 64, 1)
+      DBA2 C 3 Bright A_Explode(96, 64, 1)
       DBA2 DE 4 Bright
       Stop
    }
