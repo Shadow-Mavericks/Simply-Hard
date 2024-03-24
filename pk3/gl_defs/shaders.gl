@@ -1,3 +1,46 @@
+HardwareShader flat RROCK08
+{
+	Shader "shaders/lavacrack.fp"
+	Speed 1.0
+}
+
+HardwareShader flat SLIME12
+{
+	Shader "shaders/lavacrack.fp"
+	Speed 1.0
+}
+
+HardwareShader flat RROCK02
+{
+	Shader "shaders/lavacrack2.fp"
+	Speed 1.0
+}
+
+HardwareShader texture CRACKLE4
+{
+	Shader "shaders/lavacrack2.fp"
+	Speed 1.0
+}
+
+HardwareShader flat CRACKLE4
+{
+	Shader "shaders/lavacrack2.fp"
+	Speed 1.0
+}
+
+HardwareShader texture CRACKLE2
+{
+	Shader "shaders/lavacrack2.fp"
+	Speed 1.0
+}
+
+HardwareShader flat CRACKLE2
+{
+	Shader "shaders/lavacrack2.fp"
+	Speed 1.0
+}
+
+
 HardwareShader flat NUKAGE1
 {
 	Shader "shaders/water.fp"
@@ -160,30 +203,6 @@ HardwareShader texture GRYFALL4
 	Speed 1.0
 }
 
-HardwareShader texture BFALL1
-{
-	Shader "shaders/waterfall.fp"
-	Speed 0.75
-}
-
-HardwareShader texture BFALL2
-{
-	Shader "shaders/waterfall.fp"
-	Speed 0.75
-}
-
-HardwareShader texture BFALL3
-{
-	Shader "shaders/waterfall.fp"
-	Speed 0.75
-}
-
-HardwareShader texture BFALL4
-{
-	Shader "shaders/waterfall.fp"
-	Speed 0.75
-}
-
 HardwareShader texture LAVFALL1
 {
 	Shader "shaders/lavafall.fp"
@@ -275,6 +294,78 @@ HardwareShader texture SFALL3
 }
 
 HardwareShader texture SFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat SFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader texture BFALL4
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BFALL2
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BFALL3
+{
+	Shader "shaders/waterfall.fp"
+	Speed 0.75
+}
+
+HardwareShader flat BFALL4
 {
 	Shader "shaders/waterfall.fp"
 	Speed 0.75
@@ -474,6 +565,7 @@ HardwareShader texture WLLATFL1
 }
 
 // Model Shaders
+// -------------
 HardwareShader texture POWBUBBL
 {
 	Shader "shaders/bubbleshield.fp"

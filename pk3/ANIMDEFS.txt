@@ -374,6 +374,40 @@ texture optional GRYFALL3
 texture optional GRYFALL4
 	pic GRYFALL4 tics 8
 	pic GRYFALL4 tics 8
+	
+// Lava Rock
+flat RROCK05
+	pic RROCK08 tics 8
+	pic RROCK08 tics 8
+	
+flat RROCK06
+	pic RROCK08 tics 8
+	pic RROCK08 tics 8
+	
+flat RROCK07
+	pic RROCK08 tics 8
+	pic RROCK08 tics 8
+	
+flat RROCK08
+	pic RROCK08 tics 8
+	pic RROCK08 tics 8
+	
+// Small Lava Rock
+flat SLIME09
+	pic SLIME12 tics 8
+	pic SLIME12 tics 8
+	
+flat SLIME10
+	pic SLIME12 tics 8
+	pic SLIME12 tics 8
+	
+flat SLIME11
+	pic SLIME12 tics 8
+	pic SLIME12 tics 8
+	
+flat SLIME12
+	pic SLIME12 tics 8
+	pic SLIME12 tics 8
 
 texture FIREBLU1
 	pic	FIREBL01 tics 2
