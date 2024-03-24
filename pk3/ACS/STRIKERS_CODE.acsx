@@ -608,6 +608,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					{
 						fixedDamage = fixedmul(arg1<<16, 0.78);
 						arg1 = fixedDamage>>16;
+						if(arg1 < 1)
+							arg1 = 1;
 					}
 
 					// Monster melee passes through shields.
