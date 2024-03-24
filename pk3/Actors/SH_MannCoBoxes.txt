@@ -436,10 +436,10 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 		CorruptTrio: // DELAY_BOSSLAUGH
 			"####" D 1 ACS_NamedExecuteWithResult("SV_Chex") //FF7 Jenova piece - moved from Chex payout as its broken -Fiend
-			"####" D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			"####" D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			"####" D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 1)
-			"####" D 0 A_alertmonsters(512)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Fiend", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Gosimer", 0, 48, 1, 0, 0, 0, 45, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Corrupt_Kunai", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_AlertMonsters(512)
 			"####" D 10
 			Goto Despawn
 
