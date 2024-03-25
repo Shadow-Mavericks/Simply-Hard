@@ -28,6 +28,10 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 			goto CheckSprite
 		
 		MaximusPrime:
+			AGUN A 70
+			goto CheckSprite
+
+		MaximusPrimeDropped:
 			BRIF A 70
 			goto CheckSprite
 
@@ -69,6 +73,42 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 75)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
+
+actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
+{
+	States
+	{
+		Base:
+			FCGN A 70
+			goto CheckSprite
+			
+		Kunai:
+			KPDW Z 70
+			goto CheckSprite
+
+		Gosimer:
+			DEGT A 70
+			goto CheckSprite
+			
+		MaximusPrime:
+			BRIF A 70
+			goto CheckSprite
+			
+		MaximusPrimeDropped:
+			AGUN A 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_CHAINGUN) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			goto Idle
 	}

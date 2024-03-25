@@ -766,7 +766,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		if(GetCVar("sh_compat_swaps"))
 		{
 			// Strange Aeons compatibility swaps
-			actor_swap("AK47", "Chaingundrop", 256);
+			actor_swap("AK47", "ChaingunGiver", 256);
 			actor_swap("Yithgun", "PLASMAdrop", 256);
 			actor_swap("ImpalerXBow", "Railgundrop", 256);
 			actor_swap("Devil", "Imps", 64);
@@ -1186,9 +1186,18 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
-				weapon_class = "DFBlaster";
-				ammo1_class = "DF_EnergyUnit";
-				ammo1_amount = 15;
+				if(!dropped)
+				{
+					weapon_class = "Autogun";
+					ammo1_class = "DF_PowerCell";
+					ammo1_amount = 30;
+				}
+				else
+				{
+					weapon_class = "DFBlaster";
+					ammo1_class = "DF_EnergyUnit";
+					ammo1_amount = 15;
+				}
 			}
 			break;
 		}
@@ -1211,7 +1220,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
-				pickupsound_new = "Weapon/PRotoget";
+				pickupsound_new = "Weapon/Protoget";
 				weapon_class = "BurstShotgun";
 				ammo1_amount = 24;
 			}
@@ -1222,6 +1231,47 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 				ammo1_amount = 50;
 			}
 
+			break;
+		}
+		
+		case WEAPON_CHAINGUN:
+		{
+			weapon_class = "D3Chaingun";
+			ammo1_class = "AK_Mag";
+			ammo1_amount = 20;
+			
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "Weapon/Miniget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				pickupsound_new = "Weapon/lmgget";
+				weapon_class = "PDW";
+				ammo1_amount = 50;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				pickupsound_new = "Weapon/Ripperget";
+				weapon_class = "HMachinegun";
+				ammo1_amount = 50;
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				if(!dropped)
+				{
+					weapon_class = "DFBlaster";
+					ammo1_class = "DF_EnergyUnit";
+					ammo1_amount = 15;
+				}
+				else
+				{
+					weapon_class = "Autogun";
+					ammo1_class = "DF_PowerCell";
+					ammo1_amount = 30;
+				}
+			}
+			
 			break;
 		}
 	}
@@ -1324,10 +1374,19 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 	str scaleVar = StrParam(s:"user_scale_", s:playerClassName);
 
 	SetActivator(newTID);
-
 	SetActorState(0, "SetScale", false);
-
-	if(!SetActorState(0, playerClassName, false))
+	
+	bool stateSet = false;
+	if(CheckFlag(0, "DROPPED"))
+	{
+		str droppedState = StrParam(s:playerClassName, s:"Dropped");
+		stateSet = SetActorState(0, droppedState, false);
+	}
+		
+	if(!stateSet)
+		stateSet = SetActorState(0, playerClassName, false);
+	
+	if(!stateSet)
 		SetActorState(0, "Base", false);
 
 	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.

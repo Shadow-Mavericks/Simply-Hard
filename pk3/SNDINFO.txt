@@ -1861,6 +1861,7 @@ Weapon/Litning_START	thunuse
 //Max's sounds
 
 Max/LZHIT	DFLHIT
+$limit Max/LZHIT 0
 Max/fist	DFSWING
 
 Max/LrgExplo DFLRGEX

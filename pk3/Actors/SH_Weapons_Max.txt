@@ -1018,13 +1018,13 @@ actor FusionCutter : SH_Weapon
 
 actor Autogun : SH_Weapon
 {
-	Tag "Repeater"
+	Tag "Imperial Repeater Rifle"
 	obituary "%o got in the way of %k's repeater rifle"
 	Weapon.SlotNumber 4
 	Weapon.SelectionOrder 5
 	Weapon.AmmoUse1 1
 	Weapon.AmmoUse2 3
-	Weapon.AmmoGive1 30
+	Weapon.AmmoGive1 0 // Handled in ACS
 	Weapon.AmmoType1 "DF_PowerCell"
 	Weapon.AmmoType2 "DF_PowerCell"
 	Weapon.UpSound "Max/WepRaise"
@@ -1081,7 +1081,7 @@ actor Autogun : SH_Weapon
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldHold")
 			NULL A 0 A_GunFlash
 			NULL A 0 A_PlaySound ("Max/autoloop", CHAN_WEAPON, 1, 1)
-			AUTO C 3
+			AUTO C 2
 			AUTO B 2 Bright A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			AUTO C 2
 			NULL C 0 A_ReFire
@@ -1127,9 +1127,8 @@ actor Autogun : SH_Weapon
 		GoldHold:
 			NULL A 0 A_GunFlash
 			NULL A 0 A_PlaySound ("Max/GAutoloop", CHAN_WEAPON, 1, 1)
-			GYRO C 2
 			GYRO B 2 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
-			GYRO C 2 Bright
+			GYRO C 3
 			GYRO C 0 A_ReFire
 			GYRO A 0 A_StopSound(CHAN_WEAPON)
 			Goto Ready

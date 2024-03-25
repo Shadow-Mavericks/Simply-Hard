@@ -292,7 +292,7 @@ actor BFGGuy
   activesound "chainguy/active"
   Dropitem "Clip"
   Dropitem "Shotgun"
-  Dropitem "Chaingundrop"
+  Dropitem "Chaingun"
   Dropitem "Cell"
   Dropitem "bfg9000" 20
   missiletype KewlBFG
