@@ -444,7 +444,7 @@ actor MortarGun : SH_Weapon
 	weapon.selectionorder 7
 	weapon.AmmoUse 1
 	weapon.ammotype "RoketAmmo"
-	weapon.ammogive 3
+	weapon.ammogive 0 // Handled in ACS
 	Weapon.UpSound "Max/WepRaise"
 	weapon.kickback 300
 	weapon.BobStyle "InverseSmooth"

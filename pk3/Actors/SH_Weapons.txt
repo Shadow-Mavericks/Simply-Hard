@@ -1054,7 +1054,7 @@ ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 	SpawnID 29
 	Weapon.SelectionOrder 5
 	Weapon.AmmoUse 1
-	Weapon.Ammogive 5
+	Weapon.Ammogive 0 // Handled in ACS
 	Weapon.AmmoType "RoketAmmo"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -1190,42 +1190,6 @@ ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 			Goto LightDone
 		Spawn:
 			LAUN A -1
-			Stop
-	}
-}
-
-Actor RLdrop : CustomInventory replaces Rocketlauncher
-{
-	Radius 12
-	Height 18
-	scale 0.1
-	Inventory.Respawntics 6300
-	Inventory.PickupSound ""
-	Inventory.PickupMessage "You got an Explosive weapon"
-	+INVENTORY.ALWAYSPICKUP
-	States
-	{
-		Spawn:
-			RLBX ABC 15 BRIGHT
-			loop
-		pickup:
-			TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-			TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-			TNT1 A 0 A_playsound("Weapon/Rocketget",Chan_7)
-			TNT1 A 0 A_Giveinventory("Rawketlawnchair")
-			Stop
-		Kunaipickup:
-			TNT1 A 0 A_playsound("Weapon/Bowget",Chan_7)
-			TNT1 A 0 A_Giveinventory("Cryobow")
-			Stop
-		Gosimerpickup:
-			TNT1 A 0 A_playsound("Weapon/Nadeget",Chan_7)
-			TNT1 A 0 A_Giveinventory("BoomToob")
-			Stop
-		Maxpickup:
-			TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-			TNT1 A 0 A_Giveinventory("MortarGun")
 			Stop
 	}
 }
@@ -2141,11 +2105,12 @@ ACTOR Helltechshotgun : SH_Weapon //Weapon from Laundry
 
 ACTOR CryoBow : SH_Weapon
 {
+	Tag "Cryobow"
 	Weapon.PreferredSkin "ROCKET-Marine"
 	Weapon.AmmoType "RoketAmmo"
 	Weapon.SelectionOrder 2
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 5
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.SlotNumber 5
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.ForbiddenTo "Fiend"

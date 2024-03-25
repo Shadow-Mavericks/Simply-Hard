@@ -113,3 +113,35 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 			goto Idle
 	}
 }
+
+actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
+{
+	States
+	{
+		Base:
+			DERL A 70
+			goto CheckSprite
+			
+		Kunai:
+			WBOW A 70
+			goto CheckSprite
+
+		Gosimer:
+			GNTR Z 70
+			goto CheckSprite
+			
+		MaximusPrime:
+			MOGU A 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_ROCKET) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
