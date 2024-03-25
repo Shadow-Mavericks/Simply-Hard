@@ -127,61 +127,61 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 		// Good Results
 		// ------------
 		DISPENSER:
-			"####" D 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, 1)
+			"####" D 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		SENTREH:
-			"####" D 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, 1)
+			"####" D 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Shield:
-			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Bundle:
-			"####" D 1 A_SpawnItemEx ("SentryBox",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("Dispenser",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SentryBox",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Dispenser",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		MedBag:
-			"####" D 1 A_SpawnItemEx ("MEDBAG", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("MEDBAG", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Medkit:
-			"####" D 1 A_SpawnItemEx ("Normalmedkit",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Normalmedkit",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		AmmoExpansion:
-			"####" D 1 A_SpawnItemEx ("SimplyBackpack",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SimplyBackpack",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		AmmoBelt:
-			"####" D 1 A_SpawnItemEx ("AmmoBelt",  0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("AmmoBelt",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		KanKan:
-			"####" D 1 A_SpawnItemEx ("GOATFREESKANKAN", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("GOATFREESKANKAN", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		SoulSphere:
-			"####" D 1 A_SpawnItemEx ("Soulsphere", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Soulsphere", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		MegaSphere:
-			"####" D 1 A_SpawnItemEx ("Megasphere", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Megasphere", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Invuln:
-			"####" D 1 A_SpawnItemEx ("Super_invuln", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Super_invuln", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		ETank:
-			"####" D 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Energy-Tank", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 			
 		BerserkPack:
-			"####" D 1 A_SpawnItemEx ("Hardberserk", 0, 0, 12, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Hardberserk", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Joy:
@@ -190,25 +190,25 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 
 		T1Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier1upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier1upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T2Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier2upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier2upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T3Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier3upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier3upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T4Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier4upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier4upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T5Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier5upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier5upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T6Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier6upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier6upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		T7Upgrade:
-			"####" D 1 A_SpawnItemEx ("Tier7upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Tier7upgradetoken", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 		AllUpgrades: // DELAY_BLUEIMP
 			"####" V 6 A_SpawnItemEx ("Allupgradetokens", 0, 0, 12, 0, 0, 0, 0, 1)
@@ -308,11 +308,11 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 
 		ExtraLife:
-			"####" D 1 A_SpawnItemEx ("ExtraLifeThingy", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("ExtraLifeThingy", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Gaster:
-			"####" D 1 A_SpawnItemEx ("KunaiGastersummon", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("KunaiGastersummon", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		BombingRun: // DELAY_LAUGH
