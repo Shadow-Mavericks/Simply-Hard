@@ -34,12 +34,6 @@ Weapon/FlameshotEND	FSEND
 //Armour
 GARMGET	GARMGET
 
-
-//Doom3
-Weapon/FPRIDLE	FPRIDLE
-Weapon/FPREND	FPREND
-Weapon/FPRCOOL	FPRCOOL
-
 //Casings
 Bulletcasing1	9mmcal1		
 Bulletcasing2	9mmcal2
@@ -118,10 +112,6 @@ weapon/LMGGIRE	 	LMGFIRE
 Weapon/Nadefire	 	dsglaun
 Weapon/Nadeboom  	nadedie
 Weapon/nadebounce	nadebnc
-Weapon/FPlasvent	Plasvent
-
-Weapon/FPlasfire	PMK2FIRE
-Weapon/GPlasfire	PMK3FIRE
 
 //Plasmashotgun
 PulseShotgun/Fire RAILGF2

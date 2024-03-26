@@ -1961,8 +1961,6 @@ actor CCCDroid
 			CCCD IJKL 2 Bright A_Facetarget(0, 0)
 			CCCD A 0 Bright A_Facetarget(0, 0)
 			CCCD A 0 A_playsound("Droid/Attack")
-			//CCCD A 0 A_giveinventory("Ragerune", 1)
-			//CCCD L 5 Bright A_CustomMissile("CCCCPAINIS",36, 0, 0,0,0)
 			CCCD L 0 bright A_SetUserVar("user_theta", -45)
 			CCCD L 0 bright A_Jump(128, "RightSweep")
 			goto LeftSweep
