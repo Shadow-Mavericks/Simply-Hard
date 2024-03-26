@@ -140,7 +140,7 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
-			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			goto Idle
 	}
