@@ -48,6 +48,4 @@
 #include "actors/Elemental_Champions/n_mancubi.txt"
 #include "actors/Elemental_Champions/n_revenant.txt"
 
-#include "actors/Proto_Plasma.txt"
-
 #include "actors/damagedigits.txt"

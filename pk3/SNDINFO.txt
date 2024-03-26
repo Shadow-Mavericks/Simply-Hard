@@ -119,8 +119,10 @@ Weapon/Nadefire	 	dsglaun
 Weapon/Nadeboom  	nadedie
 Weapon/nadebounce	nadebnc
 Weapon/FPlasvent	Plasvent
+
 Weapon/FPlasfire	PMK2FIRE
 Weapon/GPlasfire	PMK3FIRE
+
 //Plasmashotgun
 PulseShotgun/Fire RAILGF2
 PulseShotgun/Pump DSRLLOAD
@@ -262,7 +264,7 @@ FHAHAHA FHAHAHA // <- Omega Floweys Laugh
 YOULOSE YOULOSE
 "SNGL/Fire" SNGLFIRE
 "SNGL/Load" SNGLLOAD
-//AKFIRE AKFIRE
+
 AKBOLT1 AKBOLT1
 AKBOLT2 AKBOLT2
 AKINSERT AKINSERT
@@ -579,10 +581,6 @@ cbaron/metal	cmetal
 //fusion spider shot
 fusionspid/die FUSPDIE
 fusionspid/see FUSPSEE
-
-//Gosimers bfg
-Weapon/Gosimersbfg	GBFG69K
-Weapon/Gosimersbfgidle	GSHOKIDL
 
 //cyber imp
 $RANDOM Cyberimp/see { Cyberimp/HERROMF Cyberimp/HI }
@@ -921,12 +919,6 @@ FiendsRocket/Reload		FRCKTLD
 
 FiendsRailgun/Fire		FRGSHOT
 FiendsRailgun/Bounce	FRGPJBNC
-
-Weapon/Fiendsakfire1	Fakfire1
-Weapon/Fiendsakfire2	Fakfire2
-Weapon/Fiendsakfire3	Fakfire3
-
-$Random AKFire {Weapon/Fiendsakfire1 Weapon/Fiendsakfire2 Weapon/Fiendsakfire3}
 
 //$Random weapons/rocklx {World/Rocketexplosion1 World/Rocketexplosion2 World/Rocketexplosion3 World/Rocketexplosion4 World/Rocketexplosion5}
 

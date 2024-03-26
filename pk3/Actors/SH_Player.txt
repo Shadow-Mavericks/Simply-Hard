@@ -23,7 +23,6 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "peastolClip", 50
 	Player.StartItem "Fiendtoken"
 	Player.StartItem "MEDBAG"
-	Player.startItem "Coolant", 100
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
 	Player.DamageScreenColor Green, 1

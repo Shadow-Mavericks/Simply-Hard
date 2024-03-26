@@ -2339,7 +2339,7 @@ ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 			Goto See
 		Chaingunattack:
 			PLAY F 2 A_CPosAttack
-			PLAY E 1 A_Playsound("AKFIRE")
+			PLAY E 1 A_Playsound("Weapon/Machinegunfire")
 			PLAY E 1 A_MonsterRefire(130, "See") // About 50% chance to jump to "See" if target is out of sight.
 			Goto Missile+1
 			Goto Chaingunattack
