@@ -5557,30 +5557,6 @@ BrightMap Sprite GUN1R0
 	DisableFullBright
 }
 
-BrightMap Sprite DGTFA0
-{
-    Map "brightmaps/Weapon/DGTFA0.PNG"
-	DisableFullBright
-}
-
-BrightMap Sprite DGTFB0
-{
-    Map "brightmaps/Weapon/DGTFB0.PNG"
-	DisableFullBright
-}
-
-BrightMap Sprite DGTFC0
-{
-    Map "brightmaps/Weapon/DGTFC0.PNG"
-	DisableFullBright
-}
-
-BrightMap Sprite DGTFD0
-{
-    Map "brightmaps/Weapon/DGTFD0.PNG"
-	DisableFullBright
-}
-
 flickerlight2 SPIMPBALL1
 {
     color 1.0 0.8 0.2
