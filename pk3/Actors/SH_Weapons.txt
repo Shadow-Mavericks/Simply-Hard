@@ -933,77 +933,77 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGN4 A 1 A_Raise
 			Loop
 		Fire:
-			NULL A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Ragefire")
-			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
-			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
-			FGF4 C 1
-			FGF4 D 1
-			FGN4 C 1
-			FGN4 D 1
-			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(3, 3, 1, 5, "BulletPuff")
-			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-			FGF4 A 1
-			FGF4 B 1
-			FGN4 C 1
-			FGN4 D 1
-			FGN4 A 2 A_ReFire
-			FGN4 B 3 A_WeaponReady
-			FGN4 C 3 A_WeaponReady
-			FGN4 D 3 A_WeaponReady
-			FGN4 A 4 A_WeaponReady
-			FGN4 B 4 A_WeaponReady
-			FGN4 C 4 A_WeaponReady
-			FGN4 D 5 A_WeaponReady
-			FGN4 A 5 A_WeaponReady
-			FGN4 B 5 A_WeaponReady
-			FGN4 C 6 A_WeaponReady
-			FGN4 D 6 A_WeaponReady
-			FGN4 A 7 A_WeaponReady
-			FGN4 B 7 A_WeaponReady
-			FGN4 C 7 A_WeaponReady
-			FGN4 D 7 A_WeaponReady
-			FGN4 A 8 A_WeaponReady
-			FGN4 B 8 A_WeaponReady
-			FGN4 C 9 A_WeaponReady
-			FGN4 D 9 A_WeaponReady
-			Goto Ready
+		NULL A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Ragefire")
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+		COLT B 0 A_FireBullets(5, 5, 2, 5, "BulletPuff")
+		COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+		FGF4 C 1
+		FGF4 D 1
+		FGN4 C 1
+		FGN4 D 1
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+		COLT B 0 A_FireBullets(5, 5, 2, 5, "BulletPuff")
+		COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+		FGF4 A 1
+		FGF4 B 1
+		FGN4 C 1
+		FGN4 D 1
+		FGN4 A 2 A_ReFire
+		FGN4 B 3 A_WeaponReady
+		FGN4 C 3 A_WeaponReady
+		FGN4 D 3 A_WeaponReady
+		FGN4 A 4 A_WeaponReady
+		FGN4 B 4 A_WeaponReady
+		FGN4 C 4 A_WeaponReady
+		FGN4 D 5 A_WeaponReady
+		FGN4 A 5 A_WeaponReady
+		FGN4 B 5 A_WeaponReady
+		FGN4 C 6 A_WeaponReady
+		FGN4 D 6 A_WeaponReady
+		FGN4 A 7 A_WeaponReady
+		FGN4 B 7 A_WeaponReady
+		FGN4 C 7 A_WeaponReady
+		FGN4 D 7 A_WeaponReady
+		FGN4 A 8 A_WeaponReady
+		FGN4 B 8 A_WeaponReady
+		FGN4 C 9 A_WeaponReady
+		FGN4 D 9 A_WeaponReady
 			
 		RageFire:
-			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
-			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-			FGF4 C 1
-			FGN4 C 1
-			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(3, 3, 2, 5, "BulletPuff")
-			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-			FGF4 A 1
-			FGN4 C 1
-			Fgn4 A 0 A_Refire
-			FGN4 D 1 A_WeaponReady
-			FGN4 A 2 A_WeaponReady
-			FGN4 B 3 A_WeaponReady
-			FGN4 C 3 A_WeaponReady
-			FGN4 D 3 A_WeaponReady
-			FGN4 A 4 A_WeaponReady
-			FGN4 B 4 A_WeaponReady
-			FGN4 C 4 A_WeaponReady
-			FGN4 D 5 A_WeaponReady
-			FGN4 A 5 A_WeaponReady
-			FGN4 B 5 A_WeaponReady
-			FGN4 C 6 A_WeaponReady
-			FGN4 D 6 A_WeaponReady
-			FGN4 A 7 A_WeaponReady
-			FGN4 B 7 A_WeaponReady
-			FGN4 C 7 A_WeaponReady
-			FGN4 D 7 A_WeaponReady
-			FGN4 A 8 A_WeaponReady
-			FGN4 B 8 A_WeaponReady
-			FGN4 C 9 A_WeaponReady
-			FGN4 D 9 A_WeaponReady
-			Goto Ready
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+		COLT B 0 A_FireBullets(5, 5, 3, 5, "BulletPuff")
+		COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+		FGF4 C 1
+		FGF4 D 1
+		FGN4 C 1
+		FGN4 D 1
+		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+		COLT B 0 A_FireBullets(5, 5, 3, 5, "BulletPuff")
+		COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+		FGF4 A 1
+		FGF4 B 1
+		FGN4 C 1
+		FGN4 D 1
+		FGN4 A 2 A_ReFire
+		FGN4 B 3 A_WeaponReady
+		FGN4 C 3 A_WeaponReady
+		FGN4 D 3 A_WeaponReady
+		FGN4 A 4 A_WeaponReady
+		FGN4 B 4 A_WeaponReady
+		FGN4 C 4 A_WeaponReady
+		FGN4 D 5 A_WeaponReady
+		FGN4 A 5 A_WeaponReady
+		FGN4 B 5 A_WeaponReady
+		FGN4 C 6 A_WeaponReady
+		FGN4 D 6 A_WeaponReady
+		FGN4 A 7 A_WeaponReady
+		FGN4 B 7 A_WeaponReady
+		FGN4 C 7 A_WeaponReady
+		FGN4 D 7 A_WeaponReady
+		FGN4 A 8 A_WeaponReady
+		FGN4 B 8 A_WeaponReady
+		FGN4 C 9 A_WeaponReady
+		FGN4 D 9 A_WeaponReady
 		Altfire:
 			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
 			Goto Ready
