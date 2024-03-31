@@ -807,7 +807,9 @@ function int add_ammo(str ammo_class, int amount, int droptype)
 	if(amount == 0)
 		return 0;
 
-	if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
+	if(GetCvar("sh_ammo_mult") > 1)
+		amount *= GetCvar("sh_ammo_mult");
+	else if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
 		amount *= 2;
 
 	switch(droptype)
