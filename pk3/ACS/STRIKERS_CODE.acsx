@@ -767,7 +767,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		{
 			// Strange Aeons compatibility swaps
 			actor_swap("AK47", "ChaingunGiver", 256);
-			actor_swap("Yithgun", "PLASMAdrop", 256);
+			actor_swap("Yithgun", "PlasmaRifleGiver", 256);
 			actor_swap("ImpalerXBow", "Railgundrop", 256);
 			actor_swap("Devil", "Imps", 64);
 			actor_swap("RapidFireTrooper", "Zamble", 64);
@@ -1041,7 +1041,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			break;
 		}
 	}
-	
+
 	if(!dropped)
 		droptype = DROPTYPE_NONE;
 
@@ -1131,31 +1131,31 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 	str weapon_class = "None";
 	str pickupsound = "misc/w_pkup";
 	str pickupsound_new = "None";
-	
+
 	str ammo1_class = "None";
 	str ammo2_class = "None";
-	
+
 	str ammo1_name = "None";
 	str ammo2_name = "None";
-	
+
 	str weapontextcolor = "\cd";
 	str ammotextcolor = "\cf";
-	
+
 	int ammo1_amount = 0;
 	int ammo2_amount = 0;
-	
+
 	int droptype = DROPTYPE_HALVED;
 
 	int tier = 0;
-	
+
 	int fade_rgb[3] = { 255, 192, 0 };
-	
+
 	if(CheckActorClass(0, "MaximusPrime"))
 	{
 		pickupsound = "Max/HealthBonus";
 		droptype = DROPTYPE_FULL;
 	}
-	
+
 	switch(type)
 	{
 		case WEAPON_CHAINSAW:
@@ -1163,13 +1163,13 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			SetResultValue(0);  // Unused, for now.
 			terminate;
 			break;
-		
+
 		case WEAPON_SHOTGUN:
 		{
 			weapon_class = "D3Shotgun";
 			ammo1_class = "Shellz";
 			ammo1_amount = 12;
-			
+
 			if(CheckActorClass(0, "Fiend"))
 			{
 				pickupsound_new = "weapon/singleget";
@@ -1201,13 +1201,13 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			break;
 		}
-		
+
 		case WEAPON_SSG:
 		{
 			weapon_class = "SuperShawtgun";
 			ammo1_class = "SuperShellz";
 			ammo1_amount = 8;
-			
+
 			if(CheckActorClass(0, "Fiend"))
 			{
 				pickupsound_new = "weapon/Fssgget";
@@ -1233,13 +1233,13 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 
 			break;
 		}
-		
+
 		case WEAPON_CHAINGUN:
 		{
 			weapon_class = "D3Chaingun";
 			ammo1_class = "AK_Mag";
 			ammo1_amount = 20;
-			
+
 			if(CheckActorClass(0, "Fiend"))
 			{
 				pickupsound_new = "Weapon/Miniget";
@@ -1271,15 +1271,16 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 					ammo1_amount = 30;
 				}
 			}
-			
+
 			break;
 		}
+
 		case WEAPON_ROCKET:
 		{
 			weapon_class = "Rawketlawnchair";
 			ammo1_class = "RoketAmmo";
 			ammo1_amount = 5;
-			
+
 			if(CheckActorClass(0, "Fiend"))
 			{
 				pickupsound_new = "Weapon/Rocketget";
@@ -1303,8 +1304,73 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			break;
 		}
+
+		case WEAPON_PLASMA:
+		{
+			weapon_class = "DEPlasmaRifle";
+			ammo1_class = "Battery";
+			ammo1_amount = 40;
+
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "weapon/Plasmaget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				pickupsound_new = "Weapon/ChannlerGet";
+				weapon_class = "Channeler";
+				ammo1_amount = 40;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				pickupsound_new = "Weapon/thunderboltget";
+				weapon_class = "Lightning_Rifle";
+				ammo1_amount = 40;
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "ConcRifle";
+				ammo1_class = "DF_PowerCell";
+				ammo1_amount = 100;
+			}
+			break;
+		}
+		
+		case WEAPON_BFG:
+		{
+			weapon_class = "debfg9500";
+			ammo1_class = "bfgcharge";
+			ammo1_amount = 1;
+
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "weapon/bfgget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				pickupsound_new = "Weapon/Vortexget";
+				weapon_class = "Vortexgun";
+				ammo1_amount = 2;
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				pickupsound_new = "Weapon/devistatorget";
+				weapon_class = "micro_Devistator";
+				ammo1_class = "DevastatorAmmo";
+				ammo1_amount = 60;
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "AssaultCannon";
+				ammo1_class = "DF_PlasmaCartridge";
+				ammo1_amount = 30;
+				ammo2_class = "DF_Missile";
+				ammo2_amount = 2;
+			}
+			break;
+		}
 	}
-	
+
 	if(!dropped)
 	{
 		droptype = DROPTYPE_NONE;
@@ -1333,7 +1399,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			ammo1_name = GetClassTag(ammo1_class);
 		if(!StrIcmp(ammo2_name, "None"))
 			ammo2_name = GetClassTag(ammo2_class);
-			
+
 		str suffix1 = "";
 		str suffix2 = "";
 
@@ -1350,7 +1416,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			fade_rgb[1] = 0;
 			fade_rgb[2] = 255;
 		}
-		
+
 		str weapon_name = GetClassTag(weapon_class);
 
 		str msg = StrParam(s:weapontextcolor, s:weapon_name, s:ammotextcolor, s:" (+");
@@ -1365,7 +1431,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 		{
 			msg = StrParam(s:msg, d:ammo2_amount, s:" ", s:ammo2_name, s:suffix2);
 		}
-		
+
 		if(ammo1_amount || ammo2_amount)
 			msg = StrParam(s:msg, s:")");
 
@@ -1377,7 +1443,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
 
 		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
-		
+
 		if(!GetCVar("sv_weaponstay") || dropped)
 			SetResultValue(1);
 	}
@@ -1404,17 +1470,17 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 
 	SetActivator(newTID);
 	SetActorState(0, "SetScale", false);
-	
+
 	bool stateSet = false;
 	if(CheckFlag(0, "DROPPED"))
 	{
 		str droppedState = StrParam(s:playerClassName, s:"Dropped");
 		stateSet = SetActorState(0, droppedState, false);
 	}
-		
+
 	if(!stateSet)
 		stateSet = SetActorState(0, playerClassName, false);
-	
+
 	if(!stateSet)
 		SetActorState(0, "Base", false);
 

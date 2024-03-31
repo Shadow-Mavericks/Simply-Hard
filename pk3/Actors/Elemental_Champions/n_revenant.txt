@@ -62,26 +62,26 @@ ACTOR N_Revenant_Base : Monster_Base
 
 ACTOR RevenantTracer_Base : Projectile_Base
 {
-  Radius 11
-  Height 8
-  Speed 10
-  Damage 10
-  Projectile
-  +SEEKERMISSILE
-  +RANDOMIZE
-  SeeSound "skeleton/attack"
-  DeathSound "skeleton/tracex"
-  States
-  {
-  Spawn:
-    FATB AB 2 Bright A_Tracer
-    Loop
-  Death:
-    FBXP A 8 Bright
-    FBXP B 6 Bright
-    FBXP C 4 Bright
-    Stop
-  }
+	Radius 11
+	Height 8
+	Speed 10
+	Damage 10
+	Projectile
+	+SEEKERMISSILE
+	+RANDOMIZE
+	SeeSound "skeleton/attack"
+	DeathSound "skeleton/tracex"
+	States
+	{
+		Spawn:
+			FATB AB 2 Bright A_Tracer
+			Loop
+		Death:
+			FBXP A 8 Bright
+			FBXP B 6 Bright
+			FBXP C 4 Bright
+			Stop
+	}
 }
 
 

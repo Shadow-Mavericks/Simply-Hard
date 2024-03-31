@@ -13,14 +13,9 @@ ACTOR RuneDrain : PowerDrain
 
 actor Souldrain : PowerupGiver
 {
-	Game Doom
-	Game Heretic
-	Game Hexen
-	SpawnID 182
 	+INVENTORY.AUTOACTIVATE
-	-COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.AUTOACTIVATE
+	-COUNTITEM
 	inventory.pickupmessage ""
 	powerup.type "Drain"
 	powerup.duration 70
@@ -42,20 +37,15 @@ actor Souldrain : PowerupGiver
 
 ACTOR RageRune : PowerupGiver
 {
-	Game Doom
-	Game Heretic
-	Game Hexen
-	SpawnID 181
-	+COUNTITEM
-	+NOGRAVITY
+	Inventory.PickupMessage ""
+	Inventory.PickupAnnouncerEntry ""
+	Powerup.Duration 210
+	Powerup.Type DoubleFiringSpeed
 	+INVENTORY.AUTOACTIVATE
-	-COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.AUTOACTIVATE
-	Powerup.Type DoubleFiringSpeed
-	Inventory.PickupMessage ""
-	powerup.duration 210
-	Inventory.PickupAnnouncerEntry ""
+	+NOGRAVITY
+	-COUNTITEM
 	States
 	{
 	Spawn:
@@ -67,32 +57,32 @@ ACTOR RageRune : PowerupGiver
 
 ACTOR KankanInvulnerabilitySphere : PowerupGiver
 {
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.BIGPOWERUP
-  +DONTGIB
-  Inventory.MaxAmount 0
-  Powerup.Duration 1575
-  Powerup.Type "Invulnerable"
-  Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
-  States
-  {
-  Spawn:
-    PINV ABCD 6 Bright
-    Loop
-  }
-}
-
-ACTOR Res_protection : PowerupGiver
-{
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	Inventory.MaxAmount 0
+	Powerup.Duration 1575
+	Powerup.Type "Invulnerable"
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.BIGPOWERUP
 	+DONTGIB
+	States
+	{
+		Spawn:
+			PINV ABCD 6 Bright
+			Loop
+	}
+}
+
+ACTOR Res_protection : PowerupGiver
+{
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
 	Inventory.MaxAmount 0
 	Powerup.Duration 175
 	Powerup.Type "Invulnerable"
-	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	+DONTGIB
 	States
 	{
 		Spawn:
@@ -103,90 +93,90 @@ ACTOR Res_protection : PowerupGiver
 
 ACTOR Godsphere : PowerupGiver
 {
-  +COUNTITEM
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.BIGPOWERUP
-  Powerup.Duration -30
-  Inventory.MaxAmount 0
-  Powerup.Type "Invulnerable"
-  Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
-  States
-  {
-  Spawn:
-    PINV ABCD 4 Bright
-    Loop
-  }
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	Inventory.MaxAmount 0
+	Powerup.Duration -30
+	Powerup.Type "Invulnerable"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	+COUNTITEM
+	States
+	{
+		Spawn:
+			PINV ABCD 4 Bright
+			Loop
+	}
 }
 
 ACTOR UltimateGodsphere : PowerupGiver
 {
-  +COUNTITEM
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.BIGPOWERUP
-  Powerup.Duration -60
-  Inventory.MaxAmount 0
-  Powerup.Type "Invulnerable"
-  Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
-  States
-  {
-  Spawn:
-    PINV ABCD 4 Bright
-    Loop
-  }
+	Inventory.PickupMessage "$GOTINVUL" // "Invulnerability!"
+	Inventory.MaxAmount 0
+	Powerup.Duration -60
+	Powerup.Type "Invulnerable"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	+COUNTITEM
+	States
+	{
+		Spawn:
+			PINV ABCD 4 Bright
+			Loop
+	}
 }
 
 // Powerup
 ACTOR New_InvulnerabilitySpecial : PowerupGiver
 {
-  +INVENTORY.AUTOACTIVATE
-  +INVENTORY.ALWAYSPICKUP
-  +INVENTORY.QUIET
-  +INVENTORY.UNDROPPABLE
-  +DONTGIB
-  Inventory.MaxAmount 0
-  Powerup.Duration 858
-  Powerup.Type "Invulnerable"
-  States
-  {
-  Spawn:
-    TNT1 A -1
-    stop
-  }
+	Inventory.MaxAmount 0
+	Powerup.Duration 858
+	Powerup.Type "Invulnerable"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.QUIET
+	+INVENTORY.UNDROPPABLE
+	+DONTGIB
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			stop
+	}
 }
 
 ACTOR autoaimability : PowerInfiniteAmmo
 {
-  Powerup.Duration 245
+	Powerup.Duration 245
 }
 
 ACTOR Fake_Pickup : FakeInventory
 {
-        Radius 7
-        Height 32
-        +NOGRAVITY
-	  +DONTGIB
-        States
-        {
-                Spawn:
- 		PINV ABCD 6 Bright
-                loop
-        }
+	Radius 7
+	Height 32
+	+NOGRAVITY
+	+DONTGIB
+	States
+	{
+		Spawn:
+			PINV ABCD 6 Bright
+			loop
+	}
 }
 
 ACTOR Fake_Pickup2 : FakeInventory
 {
-        Radius 7
-        Height 32
-        +NOGRAVITY
-		+DONTGIB
-        States
-        {
-                Spawn:
- 		TNT1 A 6 Bright
-                loop
-        }
+	Radius 7
+	Height 32
+	+NOGRAVITY
+	+DONTGIB
+	States
+	{
+		Spawn:
+			TNT1 A 6 Bright
+			loop
+	}
 }
 
 ACTOR GOATFREESKANKAN : Custominventory

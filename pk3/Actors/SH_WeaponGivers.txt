@@ -145,3 +145,67 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 			goto Idle
 	}
 }
+
+actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
+{
+	States
+	{
+		Base:
+			DEPG A 70
+			goto CheckSprite
+			
+		Kunai:
+			AMCC A 70
+			goto CheckSprite
+
+		Gosimer:
+			THUN Z 70
+			goto CheckSprite
+			
+		MaximusPrime:
+			CRIF A 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_PLASMA) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 90)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
+
+actor BFGGiver : WeaponGiver_Base replaces BFG9000
+{
+	States
+	{
+		Base:
+			BFUG A 70
+			goto CheckSprite
+			
+		Kunai:
+			DCAN A 70
+			goto CheckSprite
+
+		Gosimer:
+			DASS Z 70
+			goto CheckSprite
+			
+		MaximusPrime:
+			ACAN B 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_BFG) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}

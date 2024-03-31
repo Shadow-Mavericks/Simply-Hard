@@ -1208,12 +1208,13 @@ Actor Plasmaclip : Ammo
 
 ACTOR DEPlasmaRifle : SH_Weapon
 {
+	Tag "Plasma Rifle"
 	Game Doom
 	Scale 1
 
 	Weapon.SelectionOrder 1
 	Weapon.AmmoUse 1
-	Weapon.Ammogive 40
+	Weapon.Ammogive 0 // Handled in ACS
 	Weapon.AmmoType "Battery"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -1325,42 +1326,6 @@ Actor Highnoon : Inventory
 			PIST A -1
 			Stop
 	}
-}
-
-Actor PLASMAdrop : CustomInventory replaces Plasmarifle
-{
-  Radius 12
-  Height 18
-  scale 0.1
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupSound ""
-  Inventory.Respawntics"8400"
-   Inventory.PickupMessage "You got a Plasma Weapon!"
-  States
-  {
-  Spawn:
-	PRBX ABC 15 Bright
-	loop
-  pickup:
-	TNT1 A 0 A_JumpifInventory ("Fiendtoken", 1,"Fiendpickup")
-	TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_Playsound("Weapon/thunderboltget",Chan_7)
-	TNT1 A 0 A_Giveinventory("Lightning_Rifle")
-	Stop
-  Kunaipickup:
-	TNT1 A 0 A_playsound("Weapon/ChannlerGet",Chan_6)
-	TNT1 A 0 A_Giveinventory("Channeler")
-	Stop
-  Fiendpickup:
-	TNT1 A 0 A_Playsound("weapon/Plasmaget",Chan_7)
-	TNT1 A 0 A_Giveinventory("DEPlasmaRifle")
-	Stop
-  Maxpickup:
-	TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-	TNT1 A 0 A_Giveinventory("ConcRifle")
-	Stop
-  }
 }
 
 //--------------=-------------
@@ -1488,7 +1453,7 @@ ACTOR DEBFG9500 : BFG9000
   SpawnID 31
   Weapon.SelectionOrder 7
   Weapon.AmmoUse 1
-  Weapon.AmmoGive 1
+  Weapon.AmmoGive 0 // Handled in ACS
   Weapon.AmmoType "bfgcharge"
   Weapon.BobSpeed 1.5
   Weapon.BobRangeX .5
@@ -1583,42 +1548,6 @@ Weapon.SlotNumber 7
 		RLGG A 1 Offset ( -25, 60 )
 		RLGG A 1 Offset ( -26, 70 )
 		goto Ready
-  }
-}
-
-Actor bfgdrop : CustomInventory replaces Bfg9000
-{
-  Radius 12
-  Height 18
-  scale 0.1
-	Inventory.Respawntics"21000"
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupSound ""
-  Inventory.PickupMessage "You got a BFG Weapon!"
-  States
-  {
-  Spawn:
-	9KBX ABC 15 BRIGHT
-	LOOP
-  pickup:
-	TNT1 A 0 A_JumpIfInventory ("GosimerToken", 1,"Gosimerpickup")
-	TNT1 A 0 A_JumpIfInventory ("KunaiToken", 1,"Kunaipickup")
-	TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_Playsound("weapon/bfgget",Chan_7)
-	TNT1 A 0 A_Giveinventory("debfg9500")
-	Stop
-  Kunaipickup:
-	TNT1 A 0 A_playsound("Weapon/Vortexget",Chan_6)
-	TNT1 A 0 A_Giveinventory("Vortexgun")
-	Stop
-  Gosimerpickup:
-	TNT1 A 0 A_Playsound("Weapon/devistatorget",Chan_7)
-	TNT1 A 0 A_Giveinventory("micro_Devistator")
-	Stop
-  Maxpickup:
-	TNT1 A 0 A_Playsound("Max/HealthBonus",CHAN_7)
-	TNT1 A 0 A_Giveinventory("AssaultCannon")
-	Stop
   }
 }
 

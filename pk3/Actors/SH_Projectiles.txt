@@ -2621,50 +2621,52 @@ Spawn:
 
 Actor ChannelerBeam : FastProjectile
 {
-  Speed 100
-  Radius 13
-  Height 8
-  Damage (Random(10,15))
-  Decal DoomImpScorch
-  Renderstyle Add
-  SeeSound ""
-  Scale 0.5
-  -CANNOTPUSH
-  +NOTIMEFREEZE
-  -NODAMAGETHRUST
-  +NOEXTREMEDEATH
-  MissileType "ChannelerTrailSpawner"
-  states
-  {
-  Death:
-    TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
-    TBAL A 2 bright
-    stop
-  }
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(10,15))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
+	+NOTIMEFREEZE
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	MissileType "ChannelerTrail"
+	states
+	{
+		Death:
+			TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
+			TBAL A 2 bright
+			stop
+	}
 }
 
 Actor ChannelerBeamhoming : FastProjectile
 {
-  Speed 100
-  Radius 13
-  Height 8
-  Damage (Random(5,10))
-  Decal DoomImpScorch
-  Renderstyle Add
-  SeeSound ""
-  Scale 0.5
-  -CANNOTPUSH
-  +NOTIMEFREEZE
-  -NODAMAGETHRUST
-  +NOEXTREMEDEATH
-  MissileType "ChannelerTrailSpawner"
-  states
-  {
-  Death:
-    TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
-    TBAL A 2 bright
-    stop
-  }
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(5,10))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
+	+NOTIMEFREEZE
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	MissileType "ChannelerTrail"
+	states
+	{
+		Death:
+			TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
+			TBAL A 2 bright
+			stop
+	}
 }
 
 
@@ -2744,61 +2746,47 @@ ACTOR ChannelerSeductor
    }
 }
 
-ACTOR ChannelerTrailSpawner
+ACTOR ChannelerTrail : Particle_Base
 {
-  +NoGravity
-  +NoClip
-  +NOTIMEFREEZE
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1 BRIGHT A_SpawnItemEx ("ChannelerTrail", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
-    stop
-  }
+	Radius 2
+	Height 2
+	RenderStyle Add
+	Scale 0.5
+	+NOTIMEFREEZE
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TBAL AAAAAAAAAA 1 Bright A_FadeOut
+			stop
+	}
 }
-
-ACTOR ChannelerTrail
-{
-  Radius 2
-  Height 2
-  RenderStyle Add
-  Scale 0.5
-  +NOTIMEFREEZE
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TBAL AAAAAAAAAA 1 Bright A_FadeOut
-    stop
-  }
-}
-
 
 // RED BEAM
 
 Actor REDChannelerBeam : FastProjectile
 {
-  Speed 100
-  Radius 13
-  Height 8
-  Damage (Random(10,15))
-  Decal DoomImpScorch
-  Renderstyle Add
-  SeeSound ""
-  Scale 0.5
-  -CANNOTPUSH
-  -NODAMAGETHRUST
-  +NOEXTREMEDEATH
-  +NOTIMEFREEZE
-  MissileType "REDChannelerTrailSpawner"
-  states
-  {
-  Death:
-    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
-    TBAL C 2 bright
-    stop
-  }
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(10,15))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	+NOTIMEFREEZE
+	MissileType "REDChannelerTrail"
+	states
+	{
+		Death:
+			TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
+			TBAL C 2 bright
+			stop
+	}
 }
 
 
@@ -2812,11 +2800,12 @@ Actor REDChannelerBeamHoming : FastProjectile
   Renderstyle Add
   SeeSound ""
   Scale 0.5
+  MissileHeight 0
   -CANNOTPUSH
   -NODAMAGETHRUST
   +NOEXTREMEDEATH
   +NOTIMEFREEZE
-  MissileType "REDChannelerTrailSpawner"
+  MissileType "REDChannelerTrail"
   states
   {
   Death:
@@ -2903,35 +2892,19 @@ ACTOR REDChannelerSeductor
    }
 }
 
-
-ACTOR REDChannelerTrailSpawner
+ACTOR REDChannelerTrail : Particle_Base
 {
-  +NoGravity
-  +NoClip
-  +NOTIMEFREEZE
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1 BRIGHT A_SpawnItemEx ("REDChannelerTrail", random (-3, 3), 0, random (-3, 3), 0, 0, 0, 0, 160)
-    stop
-  }
-}
-
-ACTOR REDChannelerTrail
-{
-  Radius 2
-  Height 2
-  +NOTIMEFREEZE
-  RenderStyle Add
-  Scale 0.5
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TBAL CCCCCCCCC 1 Bright A_FadeOut
-    stop
-  }
+	Radius 2
+	Height 2
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.5
+	States
+	{
+		Spawn:
+			TBAL CCCCCCCCC 1 Bright A_FadeOut
+			stop
+	}
 }
 
 //Quake 2 Grenade  //CodeBase from HFC2X

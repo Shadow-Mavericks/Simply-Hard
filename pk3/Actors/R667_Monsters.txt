@@ -3804,49 +3804,49 @@ ACTOR ASGGuy
 
 ACTOR BeamRevenant : HardRevenant
 {
-  Dropitem "Railgundrop" 128
-  HitObituary "%o was punched by a Beam Revenant."
-  Obituary "%o couldn't was caught in a Beam Revenant's crosshairs."
-  States
-  {
-  Spawn:
-    RASK AB 10 A_Look
-    Loop
-  See:
-    RASK AAABBBCCCDDDEEEFFF 2 A_Chase
-    Loop
-  Melee:
-    RASK G 1 A_FaceTarget
-    RASK G 6 A_SkelWhoosh
-    RASK H 6 A_FaceTarget
-    RASK I 6 A_SkelFist
-    Goto See
-  Missile:
-    RASK J 1 Bright A_FaceTarget
-    RASK J 9 Bright A_FaceTarget
-    RASK K 10 A_CustomMissile("Revrailshot", 60, 0, random(-4,4),0)
-    RASK K 10 A_FaceTarget
-    Goto See
-  Pain:
-    RASK L 5
-    RASK L 5 A_Pain
-    Goto See
-  Death:
-    RASK LM 7
-    RASK N 7 A_Scream
-    RASK O 7 A_NoBlocking
-    RASK P 7
-    RASK Q -1
-    Stop
-	Ice:
-    RASK L 5 A_GenericFreezeDeath
-    RASK L 1 A_FreezeDeathchunks
-    wait
-  Raise:
-    RASK Q 5
-    RASK PONML 5
-    Goto See
-  }
+	Dropitem "Railgundrop" 128
+	HitObituary "%o was punched by a Beam Revenant."
+	Obituary "%o couldn't was caught in a Beam Revenant's crosshairs."
+	States
+	{
+		Spawn:
+			RASK AB 10 A_Look
+			Loop
+		See:
+			RASK AAABBBCCCDDDEEEFFF 2 A_Chase
+			Loop
+		Melee:
+			RASK G 1 A_FaceTarget
+			RASK G 6 A_SkelWhoosh
+			RASK H 6 A_FaceTarget
+			RASK I 6 A_SkelFist
+			Goto See
+		Missile:
+			RASK J 1 Bright A_FaceTarget
+			RASK J 9 Bright A_FaceTarget
+			RASK K 10 A_CustomMissile("Revrailshot", 60, 0, random(-4,4),0)
+			RASK K 10 A_FaceTarget
+			Goto See
+		Pain:
+			RASK L 5
+			RASK L 5 A_Pain
+			Goto See
+		Death:
+			RASK LM 7
+			RASK N 7 A_Scream
+			RASK O 7 A_NoBlocking
+			RASK P 7
+			RASK Q -1
+			Stop
+		Ice:
+			RASK L 5 A_GenericFreezeDeath
+			RASK L 1 A_FreezeDeathchunks
+			wait
+		Raise:
+			RASK Q 5
+			RASK PONML 5
+			Goto See
+	}
 }
 
 ACTOR Revrailshot : FastProjectile

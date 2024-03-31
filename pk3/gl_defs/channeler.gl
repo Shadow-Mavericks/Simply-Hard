@@ -1,0 +1,131 @@
+BrightMap Sprite AMCCB0
+{
+	map "brightmaps/Weapon/AMCCB0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCC0
+{
+	map "brightmaps/Weapon/AMCCC0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCD0
+{
+	map "brightmaps/Weapon/AMCCD0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCE0
+{
+	map "brightmaps/Weapon/AMCCE0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCF0
+{
+	map "brightmaps/Weapon/AMCCF0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCG0
+{
+	map "brightmaps/Weapon/AMCCG0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCH0
+{
+	map "brightmaps/Weapon/AMCCH0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCI0
+{
+	map "brightmaps/Weapon/AMCCI0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCJ0
+{
+	map "brightmaps/Weapon/AMCCJ0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCK0
+{
+	map "brightmaps/Weapon/AMCCK0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMCCL0
+{
+	map "brightmaps/Weapon/AMCCL0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCB0
+{
+	map "brightmaps/Weapon/AMCCB0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCC0
+{
+	map "brightmaps/Weapon/AMCCC0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCD0
+{
+	map "brightmaps/Weapon/AMCCD0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCE0
+{
+	map "brightmaps/Weapon/AMCCE0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCF0
+{
+	map "brightmaps/Weapon/AMCCF0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCG0
+{
+	map "brightmaps/Weapon/AMCCG0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCH0
+{
+	map "brightmaps/Weapon/AMCCH0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCI0
+{
+	map "brightmaps/Weapon/AMCCI0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCJ0
+{
+	map "brightmaps/Weapon/AMCCJ0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCK0
+{
+	map "brightmaps/Weapon/AMCCK0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite AMGCL0
+{
+	map "brightmaps/Weapon/AMCCL0.png"
+	DisableFullBright
+}

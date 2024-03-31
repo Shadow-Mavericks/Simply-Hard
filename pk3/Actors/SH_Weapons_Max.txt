@@ -516,7 +516,7 @@ actor ConcRifle : SH_Weapon
 	obituary "%o was unlucky to meet %k's Concussion Rifle"
 	Weapon.SelectionOrder 4
 	Weapon.AmmoUse 4
-	Weapon.AmmoGive 100
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "DF_PowerCell"
 	Weapon.Kickback 384
 	Weapon.UpSound "Max/WepRaise"
@@ -644,8 +644,8 @@ actor AssaultCannon : SH_Weapon
 	weapon.selectionorder 1
 	weapon.ammouse 1
 	weapon.ammouse2 1
-	Weapon.AmmoGive 30
-	Weapon.AmmoGive2 2
+	Weapon.AmmoGive 0 // Handled in ACS
+	Weapon.AmmoGive2 0 // Ditto
 	Weapon.AmmoType "DF_PlasmaCartridge"
 	Weapon.AmmoType2 "DF_Missile"
 	Weapon.kickback 100

@@ -3,6 +3,7 @@
 #include gl_defs/dispenser.gl
 #include gl_defs/belphegor.gl
 #include gl_defs/bruiser.gl
+#include gl_defs/channeler.gl
 #include gl_defs/darkimp.gl
 #include gl_defs/demolisher.gl
 #include gl_defs/doombrights.gl
@@ -6730,66 +6731,6 @@ DisableFullBright
 BrightMap Sprite GLMGD0
 {
 map "brightmaps/Realm667/Weapons/Flamethrower/FLMGD0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGA0
-{
-map "brightmaps/Weapon/KPRGA0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGB0
-{
-map "brightmaps/Weapon/KPRGB0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGC0
-{
-map "brightmaps/Weapon/KPRGC0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGD0
-{
-map "brightmaps/Weapon/KPRGD0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGA0
-{
-map "brightmaps/Weapon/KPRGA0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGE0
-{
-map "brightmaps/Weapon/KPRGE0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGF0
-{
-map "brightmaps/Weapon/KPRGF0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGG0
-{
-map "brightmaps/Weapon/KPRGG0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGI0
-{
-map "brightmaps/Weapon/KPRGI0.png"
-DisableFullBright
-}
-
-BrightMap Sprite KPRGJ0
-{
-map "brightmaps/Weapon/KPRGJ0.png"
 DisableFullBright
 }
 

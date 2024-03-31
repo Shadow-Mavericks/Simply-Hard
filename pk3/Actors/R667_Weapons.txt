@@ -248,8 +248,8 @@ Actor Vortexgun : SH_Weapon
 {
 	Weapon.PreferredSkin "BFG10k-Marine"
 	Weapon.SelectionOrder 2900
-	Weapon.AmmoUse 0
-	Weapon.AmmoGive 2
+	Weapon.AmmoUse 2
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "bfgcharge"
 	Weapon.slotnumber 8
 	Inventory.Restrictedto "Kunai"
@@ -280,24 +280,11 @@ Actor Vortexgun : SH_Weapon
 			Loop
 		Fire:
 			DMAT A 0 A_JumpIfInventory("Tier7upgradetoken",1,"Goldfire")
-			FRGF A 0 A_JUMPIFINVENTORY("GosimersAmmoSphere",1,"INFAMMO")
-			DMAT A 0 A_JumpIfInventory("BFGCHARGE",2,1)
-			Goto Ready
 			DMAT A 30 A_PlayWeaponSound("DMC/Charge")
 			DMAT A 10 Bright
 			TNT1 A 0 A_PlayWeaponSound("DMC/Fire")
 			TNT1 A 0 A_GunFlash
-			DMAT A 0 A_takeinventory("bfgcharge",2)
-			DMAT B 4 Bright A_FireCustomMissile("DMBall",0,1,0,0)
-			DMAT CD 4 Bright
-			DMAT A 10
-			Goto Ready
-		INFAMMO:
-			DMAT A 30 A_PlayWeaponSound("DMC/Charge")
-			DMAT A 10 Bright
-			TNT1 A 0 A_PlayWeaponSound("DMC/Fire")
-			//TNT1 A 0 A_GunFlash
-			DMAT B 4 Bright A_FireCustomMissile("DMBall",0,0,0,0)
+			DMAT B 4 Bright A_FireCustomMissile("DMBall", 0, true, 0, 0)
 			DMAT CD 4 Bright
 			DMAT A 10
 			Goto Ready
@@ -315,24 +302,12 @@ Actor Vortexgun : SH_Weapon
 			DMAG A 1 A_WeaponReady
 			Loop
 		GoldFire:
-			FRGF A 0 A_JUMPIFINVENTORY("GosimersAmmoSphere",1,"GoldINFAMMO")
-			DMAG A 0 A_JumpIfInventory("BFGCHARGE",1,1)
-			Goto Ready
 			DMAG A 30 A_PlayWeaponSound("DMC/Charge")
 			DMAG A 10 Bright
 			TNT1 A 0 A_PlayWeaponSound("DMC/Fire")
 			TNT1 A 0 A_GunFlash
 			DMAG A 0 A_takeinventory("bfgcharge",1)
-			DMAG B 4 Bright A_FireCustomMissile("DMBall",0,1,0,0)
-			DMAG CD 4 Bright
-			DMAG A 10
-			Goto Ready
-		GoldINFAMMO:
-			DMAG A 30 A_PlayWeaponSound("DMC/Charge")
-			DMAG A 10 Bright
-			TNT1 A 0 A_PlayWeaponSound("DMC/Fire")
-			//TNT1 A 0 A_GunFlash
-			DMAG B 4 Bright A_FireCustomMissile("DMBall",0,0,0,0)
+			DMAG B 4 Bright A_FireCustomMissile("DMBall", 0, true, 0, 0)
 			DMAG CD 4 Bright
 			DMAG A 10
 			Goto Ready
@@ -344,7 +319,7 @@ Actor Vortexgun : SH_Weapon
 	}
 }
 
-actor Channeler : Weapon
+actor Channeler : SH_Weapon
 {
 	Weapon.PreferredSkin "Plasma-Rifle-Marine"
 	radius 20
@@ -352,7 +327,7 @@ actor Channeler : Weapon
 	Weapon.SelectionOrder 5
 	Weapon.AmmoUse 1
 	Weapon.AmmoType "Battery"
-	Weapon.AmmoGive 40
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.UpSound "Channeler/Up"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -369,62 +344,63 @@ actor Channeler : Weapon
 		Ready:
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "Goldready")
 			AMCC BCDEFG 2 BRIGHT A_WeaponReady
-			AMCC A 0 A_StopSoundEx(soundslot7)
+			AMCC A 0 A_StopSound(CHAN_7)
 			loop
 		Deselect: 
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "Golddeselect")
 			AMCC B 2 BRIGHT A_Lower
-			AMCC B 0 A_StopSoundEx(soundslot7)
+			AMCC B 0 A_StopSound(CHAN_7)
 			loop
 		Select:
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "Goldselect")
 			AMCC B 2 BRIGHT A_Raise
-			AMCC B 0 A_StopSoundEx(soundslot7)
+			AMCC B 0 A_StopSound(CHAN_7)
 			loop
 		GOLDReady:
 			AMGC BCDEFG 2 BRIGHT A_WeaponReady
-			AMGC A 0 A_StopSoundEx(soundslot7)
+			AMGC A 0 A_StopSound(CHAN_7)
 			loop
 		GOLDDeselect: 
 			AMGC B 2 BRIGHT A_Lower
 			AMGC B 0 A_Lower
-			AMGC B 0 A_StopSoundEx(soundslot7)
+			AMGC B 0 A_StopSound(CHAN_7)
 			loop
 		GOLDSelect:
 			TNT1 A 0 A_giveinventory("Tier6upgradetoken", 1)
 			AMGC B 2 BRIGHT A_Raise
 			AMGC B 0 A_Raise
-			AMGC B 0 A_StopSoundEx(soundslot7)
+			AMGC B 0 A_StopSound(CHAN_7)
 			loop
 		GoldFire:
-			AMGC B 0 A_PlaySoundEx("Channeler/Fire", "soundslot7", 1)
-			AMGC B 0 A_GunFlash
-			AMGC B 0 Bright A_FireCustomMissile("REDChannelerBeam", 0, 2, 0, 0)
-			AMGC B 0 Bright A_FireCustomMissile("REDChannelerBeam", 0, 0, 0, 0)
-			AMGC B 0 Bright A_FireCustomMissile("REDChannelerBeam", 0, 1, 0, 0)
-			AMGC H 2 BRIGHT
+			AMGC H 0 A_PlaySound("Channeler/Fire", CHAN_7, 1.0, true)
+			AMGC H 0 A_GunFlash
+			AMGC H 1 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, true, 0, 0)
 			AMGC I 1 BRIGHT
-			AMGC I 0 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, 2, 0, 0)
-			AMGC I 0 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, 0, 0, 0)
-			AMGC I 1 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, 1, 0, 0)
-			AMGC I 0 BRIGHT A_Refire
-			AMGC J 2 BRIGHT
-			AMGC K 2 BRIGHT
-			AMGC L 2 BRIGHT
-			AMGC K 0 A_Refire
-			AMGC B 2 A_StopSoundEx(soundslot7)
+			AMGC J 1 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, 0, 0, 0)
+			AMGC K 1 BRIGHT
+			AMGC L 1 BRIGHT A_FireCustomMissile("REDChannelerBeam", 0, 0, 0, 0)
+			AMGC G 0 A_Refire
+			AMGC G 0 A_StopSound(CHAN_7)
 			goto Ready
 		Fire:
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "GoldFire")
-			AMCC A 0 A_PlaySoundEx("Channeler/AltFire", "soundslot7", 0)
 			AMCC A 0 A_GunFlash
-			AMCC A 0 A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
-			AMCC G 2 BRIGHT
-			AMCC H 2 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
-			AMCC I 2 BRIGHT
-			AMCC B 1 Bright A_ReFire
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
+			AMCC A 0 A_GunFlash
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
+			AMCC A 0 A_GunFlash
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
 			AMCC JKL 2 BRIGHT
-			AMCC B 2 BRIGHT
+			AMCC B 0 Bright A_ReFire
 			goto Ready
 		AltFire:
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "GoldaltFire")
@@ -455,7 +431,7 @@ actor Channeler : Weapon
 	}
 }
 
-Actor SH_Flameshot : Weapon
+Actor SH_Flameshot : SH_Weapon
 {
 	Obituary "%o was BBQed by %k's flamethrower."
 	Inventory.PickupSound "weapon/Flameget"
@@ -588,7 +564,7 @@ Actor SH_Flameshot : Weapon
 
 // *** NUCLEAR MISSILE LAUNCHER ***
 
-ACTOR NuclearMissileLauncher : Weapon
+ACTOR NuclearMissileLauncher : SH_Weapon
 {
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5

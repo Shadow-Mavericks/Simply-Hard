@@ -22,6 +22,7 @@ actor SH_BasePlayer : DoomPlayer
 {
 	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25
+	DamageFactor "PlayerSucc", 0.25
 	DamageFactor "PlayerExplosivePuff", 0.0
 
 	var int user_supercharge_useammo;
@@ -72,6 +73,7 @@ actor PortalUnit_Base
 	Damage 0
 	Gravity 1
 	Projectile
+	+DONTGIB
 	+THRUACTORS
 	+NOTIMEFREEZE
 	-NOGRAVITY
