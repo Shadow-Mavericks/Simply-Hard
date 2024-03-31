@@ -164,7 +164,7 @@ ACTOR BoomToob : SH_Weapon //Sprites from Serghei → Typical.SF / Gosimer did g
 	Weapon.BobRangeX .5
 	Weapon.Bobstyle	"Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	+WEAPON.NOAUTOFIRE
 	+WEAPON.NOAUTOAIM
 	Inventory.ForbiddenTo	"Fiend"
@@ -312,7 +312,7 @@ ACTOR GosimersHandgun : SH_Weapon
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 
 	+WEAPON.NOAUTOAIM
 	+WEAPON.NOAUTOFIRE
@@ -479,7 +479,7 @@ ACTOR Lightning_Rifle: SH_Weapon
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	Weapon.PreferredSkin "Plasma-Marine"
 	Inventory.Respawntics"4200"
 	Inventory.RestrictedTo "Gosimer"
@@ -629,7 +629,7 @@ ACTOR micro_Devistator : SH_Weapon
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	+WEAPON.NOAUTOAIM
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.Respawntics"4200"
@@ -712,7 +712,7 @@ ACTOR HMachinegun : SH_Weapon
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupMessage "Heavy machinegun!"
 	Inventory.PickupSound "weapon/akget"
@@ -834,7 +834,7 @@ ACTOR CombatShotgun : SH_Weapon
 	Inventory.Respawntics"4200"
 	Weapon.SlotNumber 3
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.ForbiddenTo "Kunai"
@@ -975,7 +975,7 @@ Actor BurstShotgun : SH_Weapon
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	Inventory.RestrictedTo "Gosimer"
 	inventory.pickupsound "weapon/GSSGGET"
 	inventory.pickupmessage "You got the BurstShotgun"
@@ -1218,7 +1218,7 @@ Actor Propulsion_Cannon : SH_Weapon
 	Weapon.BobStyle "Smooth"
 	Weapon.SlotNumber 7
 	Weapon.SwayStyle "HorizontalOnly"
-	Weapon.SwaySpeed 1.0
+	Weapon.ViewSwaySpeed 1.0
 	Inventory.Forbiddento "Maximusprime"
 	Inventory.Respawntics"4200"
 	Inventory.ForbiddenTo "Kunai"

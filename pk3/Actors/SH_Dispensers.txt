@@ -240,6 +240,7 @@ ACTOR spenserspawn1
 			MESP A 0 A_SetUserVar("user_armorgiven", user_armorgiven+1)
 			MESP A 0 A_JumpIf(user_armorgiven < user_armoramt, "ArmorLoop")
 			MESP A 0 A_SetUserVar("user_armorgiven", 0)
+			MESP A -1 A_Jump(256, "Anim") // Bandaid to fix the fucking stupid "breaking infinite loop" bug.
 			goto Anim
 		Anim:
 			MESP A 6 Bright Light("HealingDVA1")
