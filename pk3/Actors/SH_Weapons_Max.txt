@@ -211,7 +211,7 @@ actor ConcussionBlast : FastProjectile
 	Obituary "%o was unlucky to meet %k's Concussion Rifle"
 	Radius 2
 	Height 2
-	Damage (40) // In DF there's no direct damage, but making an exception.
+	Damage (20) // In DF there's no direct damage, but making an exception.
 	Speed 47
 	
 	RenderStyle Add
