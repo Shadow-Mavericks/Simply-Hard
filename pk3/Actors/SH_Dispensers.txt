@@ -904,9 +904,12 @@ ACTOR spenserspawn44 : spenserspawn1
 	{
 		Init:
 			MESP A 0 A_SpawnItemEx("Marcianito", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0)
-			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_7)
-			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_6)
-			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_5)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_7)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_6)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_5)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_BODY)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_ITEM)
+			MESP A 0 A_Playsound("Dispenser/Tune44", CHAN_VOICE)
 			MESP A 0 A_SetUserVar("user_loops", 58)
 			MESP A 0 A_SetUserVar("user_healamt", 5)
 			goto HealLoop
