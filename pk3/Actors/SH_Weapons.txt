@@ -746,6 +746,7 @@ Actor D3shotgun : SH_Weapon
 
 ACTOR SuperShawtgun : SH_Weapon
 {
+	Tag "Super Shotgun"
 	Weapon.PreferredSkin "SSG-Marine"
 	Weapon.SelectionOrder 5
 	Weapon.KickBack 512
@@ -766,7 +767,6 @@ ACTOR SuperShawtgun : SH_Weapon
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.RestrictedTo "Fiend"
-	Tag "Super Shotgun"
 	decal bulletchip
 	States
 	{
@@ -1050,6 +1050,7 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 
 ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 {
+	Tag "Rocket Launcher"
 	Game Doom
 	Weapon.PreferredSkin "rocket-Marine"
 	Scale 0.8
@@ -2289,6 +2290,7 @@ ACTOR CryoBow : SH_Weapon
 
 ACTOR streetsweeper : SH_Weapon 8467
 {
+	Tag "Street Sweeper"
 	Weapon.PreferredSkin "SSG-Marine"
 	Game Doom
 	SpawnID 28
@@ -2373,6 +2375,7 @@ ACTOR streetsweeper : SH_Weapon 8467
 
 Actor PDW : SH_Weapon
 {
+	Tag "PDW"
 	Weapon.PreferredSkin "Carbine-Marine"
 	Game Doom
 	scale 1
