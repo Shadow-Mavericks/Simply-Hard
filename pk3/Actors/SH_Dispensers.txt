@@ -17,133 +17,138 @@ Actor Dispenser : CustomInventory //
 			Stop
 		Use:
 			SNDB A 0 A_Playsound("Lucio/Healingboost")
-			SNDB A 0 A_Jump(256, "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15","D16","D17","D18","D19","D20","D21","D22","D23","D24","D25","D26","D27","D28","D29","D30","D31","D32","D33","D34","D35","D36","D37","D38","D39","D40","D41","D42")
+			SNDB A 0 A_Jump(256, "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15","D16","D17","D18","D19","D20","D21","D22","D23","D24","D25","D26","D27","D28","D29","D30","D31","D32","D33","D34","D35","D36","D37","D38","D39","D40","D41","D42","D43","D44")
 		D1:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn1", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn1", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D2:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn2", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn2", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D3:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn3", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn3", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D4:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn4", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn4", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D5:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn5", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn5", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D6:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn6", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn6", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D7:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn7", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn7", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D8:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn8", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn8", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D9:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn9", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn9", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D10:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn10", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn10", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D11:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn11", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn11", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D12:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn12", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn12", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D13:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn13", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn13", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D14:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn14", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn14", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D15:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn15", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn15", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D16:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn16", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn16", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D17:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn17", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn17", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D18:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn18", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn18", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D19:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn19", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn19", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D20:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn20", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn20", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D21:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn21", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn21", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D22:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn22", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn22", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D23:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn23", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn23", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D24:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn24", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn24", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D25:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn25", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn25", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D26:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn26", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn26", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D27:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn27", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn27", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D28:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn28", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn28", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D29:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn29", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn29", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D30:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn30", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn30", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D31:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn31", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn31", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D32:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn32", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn32", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D33:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn33", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn33", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D34:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn34", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn34", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D35:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn35", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn35", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D36:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn36", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn36", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D37:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn37", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn37", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D38:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn38", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn38", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D39:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn39", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn39", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D40:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn40", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn40", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 		D41:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn41", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn41", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
-
 		D42:
-			TNT1 A 1 A_SpawnItemEx ("Spenserspawn42", 0, 0, 28, 0, 0, 0, 0, 1)
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn42", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			goto despawn
+		D43:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn43", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			goto despawn
+		D44:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn44", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
 
 		Despawn:
@@ -204,6 +209,42 @@ actor DispenserBubble
 			PUFF A 0 Bright A_RadiusGive("InsideDispenserSphere", 232, RGF_PLAYERS | RGF_MONSTERS, 1)
 			PUFF A 0 Bright A_RadiusGive("ProjectileKiller", 232, RGF_MISSILES | RGF_NOSIGHT, 1)
 			PUFF A 1 Bright A_Warp(AAPTR_MASTER, 0, 0, 0, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			loop
+	}
+}
+
+actor Marcianito
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.25
+	+NOGRAVITY
+	+ISMONSTER
+	-COUNTKILL
+	-SOLID
+	States
+	{
+		Spawn:
+			MRC1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			MRC2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 2 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			MRC3 ABCDEFGHIJKLMNOPQRSTUVWX 2 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			loop
+	}
+}
+
+actor JONNIL
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.5
+	+NOGRAVITY
+	+ISMONSTER
+	-COUNTKILL
+	-SOLID
+	States
+	{
+		Spawn:
+			JONN I 1 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 			loop
 	}
 }
@@ -832,6 +873,42 @@ ACTOR spenserspawn42 : spenserspawn1
 			MESP A 0 A_SetUserVar("user_loops", 96)
 			MESP A 0 A_SetUserVar("user_healamt", 2)
 			MESP A 0 A_SetUserVar("user_armoramt", 2)
+			goto HealLoop
+	}
+}
+
+ACTOR spenserspawn43 : spenserspawn1
+{
+	States
+	{
+		Init:
+			MESP A 0 A_SpawnItemEx("Marcianito", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0)
+			MESP A 0 A_Playsound("Dispenser/Tune43", Chan_7, 1.0, true)
+			MESP A 0 A_Playsound("Dispenser/Tune43", Chan_6, 1.0, true)
+			MESP A 0 A_Playsound("Dispenser/Tune43", Chan_5, 1.0, true)
+			MESP A 0 A_SetUserVar("user_loops", 54)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
+			goto HealLoop
+		End:
+			MESP F 0 A_StopSound(CHAN_7)
+			MESP F 0 A_StopSound(CHAN_6)
+			MESP F 0 A_StopSound(CHAN_5)
+			MESP F 10500 A_RemoveChildren(true)
+			goto Fade
+	}
+}
+
+ACTOR spenserspawn44 : spenserspawn1
+{
+	States
+	{
+		Init:
+			MESP A 0 A_SpawnItemEx("Marcianito", 0, 0, 0, 0, 0, 0, 0, SXF_SETMASTER, 0)
+			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune44", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 58)
+			MESP A 0 A_SetUserVar("user_healamt", 5)
 			goto HealLoop
 	}
 }

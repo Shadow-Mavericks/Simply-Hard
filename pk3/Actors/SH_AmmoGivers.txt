@@ -69,7 +69,11 @@ actor ShellGiver : AmmoGiver_Base replaces Shell
 		Base:
 			SHEL A 70
 			goto CheckSprite
-		
+
+		Gosimer:
+			D3DA E 70
+			goto CheckSprite
+
 		MaximusPrime:
 			PCEL A 70
 			goto CheckSprite
@@ -79,6 +83,7 @@ actor ShellGiver : AmmoGiver_Base replaces Shell
 			goto CheckSprite
 			
 		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			goto Idle
 	}
