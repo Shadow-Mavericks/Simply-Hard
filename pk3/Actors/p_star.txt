@@ -303,6 +303,17 @@ actor Star_NoRise : Particle_Base
 	}
 }
 
+actor Red_Star_NoRise : Particle_Base
+{
+	Scale 0.05
+	States
+	{
+		Spawn:
+			STR8 FEDCBA 2 bright
+			stop
+	}
+}
+
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 // The Lights

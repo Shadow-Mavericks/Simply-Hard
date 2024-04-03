@@ -19,6 +19,7 @@
 
 #include "actors/SH_WeaponGivers.txt"
 #include "actors/SH_Weapons.txt"
+#include "actors/SH_Weapons_Kunai.txt"
 #include "actors/SH_Weapons_Gosimer.txt"
 #include "actors/SH_Weapons_Max.txt"
 
