@@ -675,6 +675,8 @@ Dispenser/Tune42	medspe42
 Dispenser/Tune43	medspe43
 Dispenser/Tune44	medspe44
 Dispenser/Tune45	medspe45
+Dispenser/Tune46	medspe46
+Dispenser/Tune47	medspe47
 $limit Dispenser/Tune1 0
 $limit Dispenser/Tune2 0
 $limit Dispenser/Tune3 0
@@ -720,6 +722,8 @@ $limit Dispenser/Tune42 0
 $limit Dispenser/Tune43 0
 $limit Dispenser/Tune44 0
 $limit Dispenser/Tune45 0
+$limit Dispenser/Tune46 0
+$limit Dispenser/Tune47 0
 $Random Lucio/Healingboost { Lucio/Heal1 Lucio/Heal2 Lucio/Heal3 Lucio/Heal4 Lucio/Heal5 }
 
 Lucio/Heal1		Meduse1
