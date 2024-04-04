@@ -1109,38 +1109,42 @@ Actor ChillerTrailD
 
 Actor ChillerFog
 {
-  Radius 1
-  Height 1
-  Speed 2
-  +NoGravity
-  +NoClip
-  RenderStyle Add
-  Alpha 0.9
-  Scale 1.5
-  States
-  {
-  Spawn:
-    FFFG A 4 A_FadeOut(0.08)
-    Loop
-  }
+	Radius 1
+	Height 1
+	Speed 2
+	+NOGRAVITY
+	+NOCLIP
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.9
+	Scale 1.5
+	States
+	{
+		Spawn:
+			FFFG A 4 A_FadeOut(0.08)
+			Loop
+	}
 }
 
 Actor ChillerFog2
 {
-  Radius 1
-  Height 1
-  Speed 2
-  +NoGravity
-  +NoClip
-  RenderStyle Add
-  Alpha 0.6
-  Scale 2
-  States
-  {
-  Spawn:
-    FFFG A 4 A_FadeOut(0.08)
-    Loop
-  }
+	Radius 1
+	Height 1
+	Speed 2
+	+NOGRAVITY
+	+NOCLIP
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	RenderStyle Add
+	Alpha 0.6
+	Scale 2
+	States
+	{
+		Spawn:
+			FFFG A 4 A_FadeOut(0.08)
+			Loop
+	}
 }
 
 
