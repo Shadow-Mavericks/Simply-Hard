@@ -20,10 +20,13 @@ actor Particle_Base
 
 actor SH_BasePlayer : DoomPlayer
 {
+	Species "Player"
 	DamageFactor "Marines", 0.0 // Keep! Used for some things you don't want to have team damage for.
 	DamageFactor "PlayerDynamite", 0.25
 	DamageFactor "PlayerSucc", 0.25
 	DamageFactor "PlayerExplosivePuff", 0.0
+
+	//+THRUSPECIES
 
 	var int user_supercharge_useammo;
 }

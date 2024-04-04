@@ -1301,20 +1301,16 @@ Actor AmmoBelt : CustomInventory
   }
 }
 
-ACTOR PortShCount : Inventory
-{
-  Inventory.MaxAmount 400
-  Inventory.Amount 1
-}
-
 actor PShieldPart
 {
+	Species "Player"
 	Radius 10
 	Height 16
 	Scale 0.5
 	RenderStyle None
 	Alpha 0.25
 	Bloodtype "PShieldHit"
+	//+SOLID
 	+SHOOTABLE
 	+NOGRAVITY
 	+NOTELEPORT
@@ -1325,6 +1321,9 @@ actor PShieldPart
 	+FLOORCLIP
 	+REFLECTIVE
 	+NOTAUTOAIMED
+	+FRIENDLY
+	+CANPASS
+	-COUNTKILL
 	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
 	States
 	{
@@ -1337,50 +1336,83 @@ actor PShieldPart
 	}
 }
 
+actor RedAPShieldPart : PShieldPart
+{
+	Bloodtype "RedAPShieldHit"
+	States
+	{
+		Spawn:
+			HEXP A 4 bright
+			stop
+	}
+}
+
+actor RedBPShieldPart : PShieldPart
+{
+	Bloodtype "RedBPShieldHit"
+	States
+	{
+		Spawn:
+			HEXQ A 4 bright
+			stop
+	}
+}
+
+actor RedPShieldPart : PShieldPart
+{
+	Bloodtype "RedPShieldHit"
+	States
+	{
+		Spawn:
+			HEXR A 4 bright
+			stop
+	}
+}
+
 actor PShieldPartVisual
 {
-  Radius 8
-  Height 8
-  Scale 0.5
-  RenderStyle Add	//Fuzzy looks great in software mode
-  Alpha 0.25
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +FLOORCLIP
-  States
-  {
-  Spawn:
-    HEXA A 4 bright
-    stop
-  Death:
-    TNT1 A 2
-    stop
-  }
+	Radius 8
+	Height 8
+	Scale 0.5
+	RenderStyle Add	//Fuzzy looks great in software mode
+	Alpha 0.25
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			HEXA A 4 bright
+			stop
+		Death:
+			TNT1 A 2
+			stop
+	}
 }
 
 actor PShieldSpawner5up
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
-    //TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
-    TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPart", 0, 0, 64, 0, 0, 0, 0, 32)
+			//TNT1 A 0 A_SpawnItemEx ("ShieldPartVisual", 0, 0, 0, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 16, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 32, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 48, 0, 0, 0, 0, 32)
+			TNT1 A 0 A_SpawnItemEx ("PShieldPartVisual", 0, 0, 64, 0, 0, 0, 0, 32)
+			stop
+	}
 }
 
 actor PShieldSpawner4up
@@ -1448,36 +1480,6 @@ actor PShieldHit
 }
 
 //33% red part//
-
-actor RedAPShieldPart
-{
-	Radius 10
-	Height 16
-	Scale 0.5
-	RenderStyle None
-	Alpha 0.25
-	Bloodtype "RedAPShieldHit"
-	+SHOOTABLE
-	+NOGRAVITY
-	+NOTELEPORT
-	+NODAMAGE
-	+NORADIUSDMG
-	+DONTRIP
-	+NOBLOODDECALS
-	+FLOORCLIP
-	+REFLECTIVE
-	+NOTAUTOAIMED
-	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-	States
-	{
-		Spawn:
-			HEXP A 4 bright
-			stop
-		Death:
-			TNT1 A 2
-			stop
-	}
-}
 
 actor RedAPShieldPartVisual
 {
@@ -1591,36 +1593,6 @@ actor RedAPShieldHit
 
 //66% red part//
 
-actor RedBPShieldPart
-{
-	Radius 10
-	Height 16
-	Scale 0.5
-	RenderStyle None
-	Alpha 0.25
-	Bloodtype "RedBPShieldHit"
-	+SHOOTABLE
-	+NOGRAVITY
-	+NOTELEPORT
-	+NODAMAGE
-	+NORADIUSDMG
-	+DONTRIP
-	+NOBLOODDECALS
-	+FLOORCLIP
-	+REFLECTIVE
-	+NOTAUTOAIMED
-	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-	States
-	{
-		Spawn:
-			HEXQ A 4 bright
-			stop
-		Death:
-			TNT1 A 2
-			stop
-	}
-}
-
 actor RedBPShieldPartVisual
 {
   Radius 8
@@ -1732,36 +1704,6 @@ actor RedBPShieldHit
 }
 
 //100% red part//
-
-actor RedPShieldPart
-{
-	Radius 10
-	Height 16
-	Scale 0.5
-	RenderStyle None
-	Alpha 0.25
-	Bloodtype "RedPShieldHit"
-	+SHOOTABLE
-	+NOGRAVITY
-	+NOTELEPORT
-	+NODAMAGE
-	+NORADIUSDMG
-	+DONTRIP
-	+NOBLOODDECALS
-	+FLOORCLIP
-	+REFLECTIVE
-	+NOTAUTOAIMED
-	//+GHOST	//Give projectiles that you wish to pass through the shield THRUGHOST flag
-	States
-	{
-		Spawn:
-			HEXR A 4 bright
-			stop
-		Death:
-			TNT1 A 2
-			stop
-	}
-}
 
 actor RedPShieldPartVisual
 {
@@ -1895,6 +1837,7 @@ actor ActiveShield
 {
 	-SOLID
 	-SHOOTABLE
+	var int user_shield_time;
 	States
 	{
 		Spawn:
@@ -1910,58 +1853,60 @@ actor ActiveShield
 			TNT1 A 0 A_PlaySound ("ForceBarrier/Loop")
 			TNT1 A 0 A_SpawnItemEx ("ShieldSpawner2")
 			DEPS B 2
-			TNT1 A 0 A_GiveInventory("PortShCount", 1)
-			TNT1 A 0 A_JumpIfInventory ("PortShCount", 100, "See2")
+			TNT1 A 0 A_SetUserVar("user_shield_time", user_shield_time+1)
+			TNT1 A 0 A_JumpIf (user_shield_time >= 100, "See2")
 			Loop
 		See2:
 			DEPS C 1
 			TNT1 A 0 A_PlaySound ("ForceBarrier/Loop")
 			TNT1 A 0 A_SpawnItemEx ("RedAShieldSpawner2")
 			DEPS C 2
-			TNT1 A 0 A_GiveInventory("PortShCount", 1)
-			TNT1 A 0 A_JumpIfInventory ("PortShCount", 200, "See3")
+			TNT1 A 0 A_SetUserVar("user_shield_time", user_shield_time+1)
+			TNT1 A 0 A_JumpIf (user_shield_time >= 200, "See3")
 			Loop
 		See3:
 			DEPS D 1
 			TNT1 A 0 A_PlaySound ("ForceBarrier/Loop")
 			TNT1 A 0 A_SpawnItemEx ("RedBShieldSpawner2")
 			DEPS D 2
-			TNT1 A 0 A_GiveInventory("PortShCount", 1)
-			TNT1 A 0 A_JumpIfInventory ("PortShCount", 300, "See4")
+			TNT1 A 0 A_SetUserVar("user_shield_time", user_shield_time+1)
+			TNT1 A 0 A_JumpIf (user_shield_time >= 300, "See4")
 			Loop
 		See4:
 			DEPS E 1
 			TNT1 A 0 A_PlaySound ("ForceBarrier/Loop")
 			TNT1 A 0 A_SpawnItemEx ("RedShieldSpawner2")
 			DEPS E 2
-			TNT1 A 0 A_GiveInventory("PortShCount", 1)
-			TNT1 A 0 A_JumpIfInventory ("PortShCount", 400, "Death")
+			TNT1 A 0 A_SetUserVar("user_shield_time", user_shield_time+1)
+			TNT1 A 0 A_JumpIf (user_shield_time >= 400, "Death")
 			Loop
 		Death:
 			DESP A 0 A_PlaySound ("ForceBarrier/Off")
 			DEPS A 70
+			goto FadeOut
+		FadeOut:
 			DEPS A 3 A_FadeOut (0.05)
-			goto Death+2
+			loop
 	}
 }
 
 actor ShieldSpawner2
 {
-  Radius 1
-  Height 1
-  +NOGRAVITY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 1
-    TNT1 A 0 A_SpawnItemEx ("PShieldSpawner5up", 8, 0, 0)
-    TNT1 A 0 A_SpawnItemEx ("PShieldSpawner4up", 8, 24, 0)
-    TNT1 A 0 A_SpawnItemEx ("PShieldSpawner4up", 8, -24, 0)
-    TNT1 A 0 A_SpawnItemEx ("PShieldSpawner3up", 8, 48, 0)
-    TNT1 A 0 A_SpawnItemEx ("PShieldSpawner3up", 8, -48, 0)
-    stop
-  }
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			TNT1 A 0 A_SpawnItemEx ("PShieldSpawner5up", 8, 0, 0)
+			TNT1 A 0 A_SpawnItemEx ("PShieldSpawner4up", 8, 24, 0)
+			TNT1 A 0 A_SpawnItemEx ("PShieldSpawner4up", 8, -24, 0)
+			TNT1 A 0 A_SpawnItemEx ("PShieldSpawner3up", 8, 48, 0)
+			TNT1 A 0 A_SpawnItemEx ("PShieldSpawner3up", 8, -48, 0)
+			stop
+	}
 }
 
 actor RedShieldSpawner2

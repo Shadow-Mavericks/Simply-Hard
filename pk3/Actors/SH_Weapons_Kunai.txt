@@ -3,6 +3,7 @@ actor KunaisLifeStealingPuff : BulletPuff
 	+EXTREMEDEATH
 	+PUFFONACTORS
 	+PUFFGETSOWNER
+	+FORCEPAIN
 	States
 	{
 		XDeath:
@@ -941,14 +942,16 @@ Actor PDW : SH_Weapon
 			Loop
 		Fire:
 			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Goldfire")
-			KPDW A 0 A_GunFlash
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			KPDW A 0 A_PlaySound("PDWFire", CHAN_WEAPON)
-			KPDW B 1 Bright
+			KPDW B 1 Bright A_GunFlash("Shoot")
 			KPDW C 1 Bright
 			KPDW A 2
 			KPDW A 0 A_Refire
 			goto Ready
+		Shoot:
+			TNT1 A 0 A_FireBullets(4, 1, 1, random(6,7), "Bulletpuff")
+			goto Flash
 		Hold:
 			KPDW A 0 A_Jump(256, "RandomPos1", "RandomPos2", "RandomPos3", "RandomPos4", "RandomPos5", "RandomPos6", "RandomPos7")
 			goto Fire
@@ -1156,8 +1159,10 @@ actor Channeler : SH_Weapon
 	Obituary "%o was burned by %k's volatile plasma."
 	Weapon.PreferredSkin "Plasma-Rifle-Marine"
 	Weapon.SelectionOrder 5
-	Weapon.AmmoUse 1
-	Weapon.AmmoType "Battery"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoType1 "Battery"
+	Weapon.AmmoType2 "Battery"
 	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.UpSound "Channeler/Up"
 	Weapon.BobSpeed 1.5
@@ -1175,7 +1180,7 @@ actor Channeler : SH_Weapon
 	{
 		Ready:
 			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "Goldready")
-			AMCC BCDEFG 2 BRIGHT A_WeaponReady
+			AMCC BCDEFG 2 BRIGHT A_WeaponReady(WRF_NOSECONDARY)
 			AMCC A 0 A_StopSound(CHAN_7)
 			loop
 		Deselect: 
@@ -1188,6 +1193,27 @@ actor Channeler : SH_Weapon
 			AMCC B 2 BRIGHT A_Raise
 			AMCC B 0 A_StopSound(CHAN_7)
 			loop
+		
+		Fire:
+			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "GoldFire")
+			AMCC A 0 A_GunFlash
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
+			AMCC A 0 A_GunFlash
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
+			AMCC A 0 A_GunFlash
+			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMCC G 1 BRIGHT
+			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
+			AMCC I 1 BRIGHT
+			AMCC JKL 2 BRIGHT
+			AMCC B 0 Bright A_ReFire
+			goto Ready
 		GOLDReady:
 			AMGC BCDEFG 2 BRIGHT A_WeaponReady
 			AMGC A 0 A_StopSound(CHAN_7)
@@ -1214,43 +1240,24 @@ actor Channeler : SH_Weapon
 			AMGC G 0 A_Refire
 			AMGC G 0 A_StopSound(CHAN_7)
 			goto Ready
-		Fire:
-			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "GoldFire")
-			AMCC A 0 A_GunFlash
-			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
-			AMCC G 1 BRIGHT
-			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
-			AMCC I 1 BRIGHT
-			AMCC A 0 A_GunFlash
-			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
-			AMCC G 1 BRIGHT
-			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
-			AMCC I 1 BRIGHT
-			AMCC A 0 A_GunFlash
-			AMCC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
-			AMCC G 1 BRIGHT
-			AMCC H 1 BRIGHT A_FireCustomMissile("ChannelerSeducer", 0, 1, 0, 0)
-			AMCC I 1 BRIGHT
-			AMCC JKL 2 BRIGHT
-			AMCC B 0 Bright A_ReFire
-			goto Ready
-		AltFire:
-			AMCC A 0 A_Jumpifinventory("Tier6upgradetoken",1, "GoldaltFire")
-			AMCC A 0
-			Goto Ready
-		Goldaltfire:
-			AMGC B 0 A_Jumpifinventory("Battery",1,1)
-			goto Ready
-			AMGC B 0 A_takeinventory("Battery",1)
-			AMGC B 0 A_PlaySoundEx("Channeler/AltFire", "soundslot7", 0)
-			AMGC B 0 A_GunFlash
-			AMGC B 0 A_FireCustomMissile("REDChannelerSeducer", 0, 1, 0, 0)
-			AMGC G 2 BRIGHT
-			AMGC H 2 BRIGHT A_FireCustomMissile("REDChannelerSeducer", 0, 1, 0, 0)
-			AMGC I 2 BRIGHT
-			AMGC B 1 BRIGHT A_ReFire
+		AltFire: // Gold only
+			AMGC A 0 A_GunFlash
+			AMGC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMGC G 1 BRIGHT
+			AMGC H 1 BRIGHT A_FireCustomMissile("REDChannelerSeducer", 0, 1, 0, 0)
+			AMGC I 1 BRIGHT
+			AMGC A 0 A_GunFlash
+			AMGC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMGC G 1 BRIGHT
+			AMGC H 1 BRIGHT A_FireCustomMissile("REDChannelerSeducer", 0, 1, 0, 0)
+			AMGC I 1 BRIGHT
+			AMGC A 0 A_GunFlash
+			AMGC A 0 A_PlaySound("Channeler/AltFire", CHAN_7)
+			AMGC G 1 BRIGHT
+			AMGC H 1 BRIGHT A_FireCustomMissile("REDChannelerSeducer", 0, 1, 0, 0)
+			AMGC I 1 BRIGHT
 			AMGC JKL 2 BRIGHT
-			AMGC B 2 BRIGHT
+			AMGC B 0 Bright A_ReFire
 			goto Ready
 		Flash:
 			TNT1 A 1 bright A_Light1
