@@ -120,6 +120,7 @@ actor SH_Weapon : Weapon
 
 actor SH_FakeInventory : FakeInventory
 {
+	FakeInventory.Respawns
 	+DONTGIB
 
 	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
