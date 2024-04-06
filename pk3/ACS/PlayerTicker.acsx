@@ -13,14 +13,39 @@ function void ChangeFlag(str flag, bool value)
 	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
 }
 
+struct PlayerData_t
+{
+	int alarm_volume;
+	int invul_type;
+	int last_invul_type;
+	bool debuff_gravity;
+};
+
 //////////////////////
 // Player Tick Handler
 //////////////////////
 #define MAX_PLAYERS 64
-#define STATUS_ALARMVOL 0
-#define STATUS_GRAVITY 1
 
-int p_status[MAX_PLAYERS][2];
+#define INVUL_NONE 0
+#define INVUL_NORMAL 1
+#define INVUL_ULT 2
+
+PlayerData_t p_status[MAX_PLAYERS];
+
+str inv_music_list[] = {
+	"FP_INVUL",
+	"UT_Asgor",
+	"UT_DANCE",
+	"UT_BTIME",
+	"E2_Tange",
+	"E1_Buttv",
+	"CB1_MASK",
+	"S&k_star",
+	"S3_STAR",
+	"SM_Super",
+	"SMG_STAR"
+};
+
 script "SV_PLAYERTICKER" OPEN
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -41,19 +66,47 @@ script "SV_PLAYERTICKER" OPEN
 			
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
+			
+			// Check for invulnerability types.
+			if(CheckInventory("PowerFiendUlt"))
+				p_status[p].invul_type = INVUL_ULT;
+			else if(CheckInventory("PowerInvulnerable"))
+				p_status[p].invul_type = INVUL_NORMAL;
+			else
+				p_status[p].invul_type = INVUL_NONE;
+			
+			// If our invulnerability type changes from the last recorded, set music.
+			if(p_status[p].last_invul_type != p_status[p].invul_type)
+			{
+				switch (p_status[p].invul_type)
+				{
+					case INVUL_ULT:
+						LocalSetMusic("S4_METAL");
+						break;
+					case INVUL_NORMAL:
+						int list_size = sizeof(inv_music_list)-1;
+						LocalSetMusic(inv_music_list[random(0, list_size)]);
+						break;
+					case INVUL_NONE:
+						LocalSetMusic("*");
+						break;
+				}
+
+				p_status[p].last_invul_type = p_status[p].invul_type;
+			}
 
 			//////////////////////////////////////////////
 			// Heavy Metal Effect
 			//////////////////////////////////////////////
 			// does a player have the heavy metal effect?
-			if(CheckInventory("Debuff_HeavyMetal") && p_status[p][STATUS_GRAVITY] == false)
+			if(CheckInventory("Debuff_HeavyMetal") && p_status[p].debuff_gravity == false)
 			{
-				p_status[p][STATUS_GRAVITY] = true;
+				p_status[p].debuff_gravity = true;
 				SetActorProperty (0, APROP_Gravity, 3.0);
 			}
-			else if(!CheckInventory("Debuff_HeavyMetal") && p_status[p][STATUS_GRAVITY] == true)
+			else if(!CheckInventory("Debuff_HeavyMetal") && p_status[p].debuff_gravity == true)
 			{
-				p_status[p][STATUS_GRAVITY] = false;
+				p_status[p].debuff_gravity = false;
 				SetActorProperty(0, APROP_Gravity, 1.0);
 			}
 
@@ -139,15 +192,15 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			{
 				if(!(tickNum % 70))
 				{
-					if(p_status[p][STATUS_ALARMVOL] > 0.5)
-						p_status[p][STATUS_ALARMVOL] -= 0.1;
+					if(p_status[p].alarm_volume > 0.5)
+						p_status[p].alarm_volume -= 0.1;
 
-					PlayActorSound(0, SOUND_Bounce, CHAN_BODY, p_status[p][STATUS_ALARMVOL], false, 1.0);
+					PlayActorSound(0, SOUND_Bounce, CHAN_BODY, p_status[p].alarm_volume, false, 1.0);
 				}
 			}
 			else
 			{
-				p_status[p][STATUS_ALARMVOL] = 1.0;
+				p_status[p].alarm_volume = 1.0;
 			}
 		}
 

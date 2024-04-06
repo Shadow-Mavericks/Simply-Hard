@@ -47,56 +47,6 @@ Script "ULTIMATEABOOLITY" (Void) Net
 	}
 }
 
-
-//star code for invincibility and ultimate stuff! -Tribeams code
-
-str super_music_list[3] = { "S3_Super", "SK_Super", "SM_Super" };							//Invulernability music Normal and super manncobox spawns
-str super_music = "";
-
-str Ult_music_list[9] = { "UT_Asgor", "UT_DANCE", "UT_BTIME", "E2_Tange", "E1_Buttv", "CB1_MASK", "S&k_star", "S3_STAR", "SMG_STAR" };		//Ultimate Invulnerability music for Fiends class
-str Ult_music = "";
-
-script "SV_SuperStarMusicalSetup" open		//Script for Normal / Super invulnerability
-{
-   Ult_music = Ult_music_list[random(0,8)];
-}
-
-script "SV_ULTStarMusicalSetup" open		//Script for ultimate ability (Fiend only) <- Script breaks if invuln and ultimate is used
-{
-   Ult_music = Ult_music_list[random(0,8)];
-}
-
-script "SV_SuperStarMusical" (void) 
-{
-    int timecount = 30*35;
-    
-    SetMusic("");
-    delay(1);
-    
-    while(timecount > 0)
-    {
-        timecount--;
-        SetMusic(Ult_music);
-        delay(1);
-    }
-    SetMusic("*");
-}
-
-script "SV_Fiendsult" (void) // <- Music re-write code for invulnerability states
-{
-    int timecount = 60*35;
-    
-    SetMusic("S4_METAL");
-    delay(1);
-    
-    while(timecount > 0)
-    {
-        timecount--;
-        delay(1);
-    }
-    SetMusic("*");
-}
-
 Script "shieldRegeneration" (void) //Currently unable to get the timecount thing to work. doing it the old fasion unoptimized way
 {
 	for(int i = 0; i < 35; i++)

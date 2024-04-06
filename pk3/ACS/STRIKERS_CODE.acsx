@@ -485,169 +485,285 @@ function void actor_swap(str replace, str with, int chance)
 
 #define ONE_16 (1<<16)
 
+function int handle_damage_event(int type, int arg1, int arg2)
+{
+	// -------------
+	int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
+	int yeetAmt;		// Vertical push.
+	// -------------
+
+	int victimPlayerNum = PlayerNumber();
+	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
+	bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
+	bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
+
+	bool doTeamDamageScale = false;
+	bool directMonsterDamage = false;
+	bool wasConcussed = false;
+	bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
+	
+	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+	{
+		directMonsterDamage = CheckFlag(0, "ISMONSTER");
+
+		// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
+		int falloffAmt = GetUserVariable(0, "user_falloff");
+		if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
+		{
+			int falloffRate = GetUserVariable(0, "user_falloffrate");
+			if(falloffRate <= 0)
+				falloffRate = 1;
+
+			fixedDamage = arg1 << 16;
+			int minDamage = GetUserVariable(0, "user_mindmg");
+			int falloffTics = GetUserVariable(0, "user_fallofftics");
+
+			arg1 = (fixedDamage - (falloffAmt * (falloffTics/falloffRate))) >> 16;
+
+			if(arg1 < minDamage)
+				arg1 = minDamage;
+		}
+
+		wasConcussed = CheckActorClass(0, "ConcussionBlast");
+		if(CheckActorClass(0, "FistPuff") || wasConcussed)
+		{
+			int yeetForceBase = arg1;
+			yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
+		}
+
+		if(GetCVar("sh_debug_damage"))
+			log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
+	}
+
+	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+	{
+		int attackerPlayerNum = PlayerNumber();
+		bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
+		bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
+
+		if(attackerPlayerNum != -1) // Source is player
+		{
+			if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
+				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
+
+			// Gosimer's Berserk Buff
+			if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
+				arg1 += 1;
+
+			if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
+				doTeamDamageScale = true;
+		}
+		else if(attackerIsMonster) // Source is a monster.
+		{
+			if(attackerIsFriendly && victimPlayerNum != -1) // Friendly monster hitting player.
+				doTeamDamageScale = true;
+		}
+
+		if(GetCVar("sh_friendly_scaledamage") && doTeamDamageScale && !wasTelefrag)
+		{
+			int teamDamage = GetCvar("teamdamage");
+			fixedDamage = arg1 << 16;
+			arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
+		}
+	}
+
+	if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+	{
+		if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST"))
+		{
+			int assMass = GetActorProperty(0, APROP_Mass) >> 8;
+			if(assMass <= 0)
+				assMass = 1;
+
+			if(assMass > 1)
+			{
+				yeetAmt /= assMass;
+				if(yeetAmt <= 0)
+					yeetAmt = 1; // We always do a little bit of yeeting.
+			}
+
+			if(!CheckFlag(0, "FLOAT"))
+				ThrustThingZ(0, yeetAmt, 0, 1);
+
+			if(wasConcussed && victimIsMonster)
+				ChangeFlag("BLASTED", true);
+		}
+
+		if(wasConcussed)
+			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+
+		if(victimPlayerNum != -1)
+		{
+			// These inventory items provide invulnerability.
+			if(
+				CheckInventory("PowerInvulnerable") ||
+				CheckInventory("PowerSpawnProtection") ||
+				CheckInventory("PowerFiendUlt") ||
+				CheckInventory("PowerKanKan")
+			)
+			{
+				return 0;
+			}
+	
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				if(directMonsterDamage) // Reduce Melee Damage
+				{
+					fixedDamage = fixedmul(arg1<<16, 0.78);
+					arg1 = fixedDamage>>16;
+					if(arg1 < 1)
+						arg1 = 1;
+				}
+
+				// Monster melee passes through shields.
+				if(CheckInventory("BasicArmor") > 0 && !directMonsterDamage)
+				{
+					// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
+					fixedDamage = arg1 << 16;
+					int shields = CheckInventory("BasicArmor") << 16;
+					int healthDmg = 0;
+
+					// The amount of shield energy left after taking *half* damage.
+					int halfShieldDmg = fixedDamage >> 1;
+					shields = max(0, shields - halfShieldDmg);
+
+					if (shields < (50<<16))
+					{
+						// healthDmg += shieldDmg * (1 - shields/50.0)
+						int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
+						healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
+					}
+
+					// Now take the other half away.
+					shields = max(0, shields - halfShieldDmg);
+					TakeInventory("BasicArmor", 99999);
+					GiveInventory("NullArmorHack", shields>>16);
+
+					arg1 = healthDmg>>16;
+					ActivatorSound("Max/ShieldDamage", 127);
+
+					FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
+				}
+			}
+		}
+	}
+
+	return arg1;
+}
+
+function void multiply_actor(int mult)
+{
+	int radius = GetActorProperty(0, APROP_Radius)*2;
+	int pos[4] = { GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0)>>8 };
+	bool ambush = CheckFlag(0, "AMBUSH");
+	bool friendly = CheckFlag(0, "FRIENDLY");
+	bool stealth = CheckFlag(0, "STEALTH");
+	bool standstill = CheckFlag(0, "STANDSTILL");
+	bool dormant = CheckFlag(0, "DORMANT");
+
+	int enemyCount = 1;
+	int dir = 0;
+	int stride = 1;
+	int stride_cycle = 0;
+	int spawnAttempts = 0;
+
+	if(GetCVar("sh_debug_spawns"))
+		log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:ambush, s:")");
+
+	do
+	{
+		int iter = 0;
+
+		do
+		{
+			iter++;
+			switch (dir)
+			{
+				case 0: pos[1] += radius; break;
+				case 1: pos[0] += radius; break;
+				case 2: pos[1] -= radius; break;
+				case 3: pos[0] -= radius; break;
+			}
+
+			int newFloorZ = GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16);
+			int floorZDiff = abs(pos[2] - newFloorZ);
+			int beaconTID = UniqueTID(0);
+
+			bool floorZPassed = (floorZDiff <= 64.0);
+			bool sightPassed = false;
+			int spawnPassed = false;
+
+			if(floorZPassed)
+			{
+				if(Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0))
+				{
+					sightPassed = CheckSight(0, beaconTID, 0);
+					if(sightPassed)
+					{
+						int thisTID = ActivatorTID();
+						int uTID = UniqueTID(0);
+
+						spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], newFloorZ, uTID, pos[3]);
+
+						if(spawnPassed)
+						{
+							SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
+							SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
+							SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
+
+							ChangeActorFlag(uTID, "FRIENDLY", friendly);
+							ChangeActorFlag(uTID, "STEALTH", stealth);
+							ChangeActorFlag(uTID, "STANDSTILL", standstill);
+							ChangeActorFlag(uTID, "DROPPED", 0);
+
+							Thing_ChangeTID(uTID, thisTID);
+						}
+					}
+				}
+			}
+
+			if(!floorZPassed || !sightPassed || !spawnPassed)
+			{
+				spawnAttempts++;
+				if(spawnAttempts >= 25)
+				{
+					if(GetCVar("sh_debug_spawns"))
+						log(s:"Giving up after too many attempts to spawn.");
+
+					enemyCount = mult;
+					break;
+				}
+
+				continue;
+			}
+
+			spawnAttempts = 0;
+			enemyCount++;
+
+			if(GetCVar("sh_debug_spawns"))
+				log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos[2], s:" floorz: ", f:GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16));
+		} while((iter < stride) && enemyCount < mult);
+
+		dir = (dir+1)%4;
+		stride_cycle++;
+		if((stride_cycle % 2) == 0)
+			stride++;
+	} while(enemyCount < mult);
+}
+
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
-	if(type == GAMEEVENT_ACTOR_DAMAGED)
+	switch (type)
 	{
-		// -------------
-		int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
-		int yeetAmt;		// Vertical push.
-		// -------------
-
-		int victimPlayerNum = PlayerNumber();
-		bool victimIsMonster = CheckFlag(0, "ISMONSTER");
-		bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
-		bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
-
-		bool doNumbers = false;
-		bool doTeamDamageScale = false;
-		bool directMonsterDamage = false;
-		bool wasConcussed = false;
-		bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
-
-		if (victimIsMonster)
-			doNumbers = true;
-
-		if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+		case GAMEEVENT_ACTOR_ARMORDAMAGED:
 		{
-			directMonsterDamage = CheckFlag(0, "ISMONSTER");
-
-			// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
-			int falloffAmt = GetUserVariable(0, "user_falloff");
-			if(falloffAmt > 0) // Falloff calc for Max's blaster bolts.
-			{
-				int falloffRate = GetUserVariable(0, "user_falloffrate");
-				if(falloffRate <= 0)
-					falloffRate = 1;
-
-				fixedDamage = arg1 << 16;
-				int minDamage = GetUserVariable(0, "user_mindmg");
-				int falloffTics = GetUserVariable(0, "user_fallofftics");
-
-				arg1 = (fixedDamage - (falloffAmt * (falloffTics/falloffRate))) >> 16;
-
-				if(arg1 < minDamage)
-					arg1 = minDamage;
-
-				//SetResultValue(arg1);
-			}
-
-			wasConcussed = CheckActorClass(0, "ConcussionBlast");
-			if(CheckActorClass(0, "FistPuff") || wasConcussed)
-			{
-				int yeetForceBase = arg1;
-				yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
-			}
-
-			if(GetCVar("sh_debug_damage"))
-				log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
-		}
-
-		if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
-		{
-			int attackerPlayerNum = PlayerNumber();
-			bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
-			bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
-
-			if(attackerPlayerNum != -1) // Source is player
-			{
-				if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
-					hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
-
-				// Gosimer's Berserk Buff
-				if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
-					arg1 += 1;
-
-				if(victimIsMonster && victimIsFriendly) // Player hitting friendly monster.
-					doTeamDamageScale = true;
-			}
-			else if(attackerIsMonster) // Source is a monster.
-			{
-				if(attackerIsFriendly && victimPlayerNum != -1) // Friendly monster hitting player.
-					doTeamDamageScale = true;
-			}
-
-			if(GetCVar("sh_friendly_scaledamage") && doTeamDamageScale && !wasTelefrag)
-			{
-				int teamDamage = GetCvar("teamdamage");
-				fixedDamage = arg1 << 16;
-				arg1 = FixedMul(fixedDamage, teamDamage) >> 16;
-			}
-		}
-
-		if(SetActivator(0, AAPTR_DAMAGE_TARGET))
-		{
-			if(yeetAmt > 0 && !CheckFlag(0, "DONTBLAST"))
-			{
-				int assMass = GetActorProperty(0, APROP_Mass) >> 8;
-				if(assMass <= 0)
-					assMass = 1;
-
-				if(assMass > 1)
-				{
-					yeetAmt /= assMass;
-					if(yeetAmt <= 0)
-						yeetAmt = 1; // We always do a little bit of yeeting.
-				}
-
-				if(!CheckFlag(0, "FLOAT"))
-					ThrustThingZ(0, yeetAmt, 0, 1);
-
-				if(wasConcussed && victimIsMonster)
-					ChangeFlag("BLASTED", true);
-			}
-
-			if(wasConcussed)
-				SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
-
-			if(victimPlayerNum != -1)
-			{
-				if(CheckActorClass(0, "MaximusPrime"))
-				{
-					if(directMonsterDamage) // Reduce Melee Damage
-					{
-						fixedDamage = fixedmul(arg1<<16, 0.78);
-						arg1 = fixedDamage>>16;
-						if(arg1 < 1)
-							arg1 = 1;
-					}
-
-					// Monster melee passes through shields.
-					if(CheckInventory("BasicArmor") > 0 && !directMonsterDamage)
-					{
-						// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
-						fixedDamage = arg1 << 16;
-						int shields = CheckInventory("BasicArmor") << 16;
-						int healthDmg = 0;
-
-						// The amount of shield energy left after taking *half* damage.
-						int halfShieldDmg = fixedDamage >> 1;
-						shields = max(0, shields - halfShieldDmg);
-
-						if (shields < (50<<16))
-						{
-							// healthDmg += shieldDmg * (1 - shields/50.0)
-							int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
-							healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
-						}
-
-						// Now take the other half away.
-						shields = max(0, shields - halfShieldDmg);
-						TakeInventory("BasicArmor", 99999);
-						GiveInventory("NullArmorHack", shields>>16);
-
-						arg1 = healthDmg>>16;
-						ActivatorSound("Max/ShieldDamage", 127);
-
-						FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
-					}
-				}
-			}
-
-			// KEEP THIS AT THE END!
+			arg1 = handle_damage_event(type, arg1, arg2);
 			SetResultValue(arg1);
-
-			if(doNumbers)
+			break;
+		}
+		case GAMEEVENT_ACTOR_DAMAGED:
+		{
+			if(CheckFlag(0, "ISMONSTER"))
 			{
 				GiveInventory("DamageTallyHack", arg1);
 				delay(1);
@@ -658,123 +774,27 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					TakeInventory("DamageTallyHack", 9999);
 				}
 			}
+			break;
 		}
-	}
-	else if(type == GAMEEVENT_ACTOR_SPAWNED)
-	{
-		if((GetCVar("sh_enemy_mult") > 1) && arg1 == true && CheckFlag(0, "ISMONSTER"))
+		case GAMEEVENT_ACTOR_SPAWNED:
 		{
-			int mult = clamp(GetCVar("sh_enemy_mult"), 2, 100);
-			int radius = GetActorProperty(0, APROP_Radius)*2;
-			int pos[4] = { GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0)>>8 };
-			bool ambush = CheckFlag(0, "AMBUSH");
-			bool friendly = CheckFlag(0, "FRIENDLY");
-			bool stealth = CheckFlag(0, "STEALTH");
-			bool standstill = CheckFlag(0, "STANDSTILL");
-			bool dormant = CheckFlag(0, "DORMANT");
+			if((GetCVar("sh_enemy_mult") > 1) && arg1 == true && CheckFlag(0, "ISMONSTER"))
+				multiply_actor(clamp(GetCVar("sh_enemy_mult"), 2, 100));
 
-			int enemyCount = 1;
-			int dir = 0;
-			int stride = 1;
-			int stride_cycle = 0;
-			int spawnAttempts = 0;
-
-			if(GetCVar("sh_debug_spawns"))
-				log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:ambush, s:")");
-
-			do
+			if(GetCVar("sh_compat_swaps"))
 			{
-				int iter = 0;
-
-				do
-				{
-					iter++;
-					switch (dir)
-					{
-						case 0: pos[1] += radius; break;
-						case 1: pos[0] += radius; break;
-						case 2: pos[1] -= radius; break;
-						case 3: pos[0] -= radius; break;
-					}
-
-					int newFloorZ = GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16);
-					int floorZDiff = abs(pos[2] - newFloorZ);
-					int beaconTID = UniqueTID(0);
-
-					bool floorZPassed = (floorZDiff <= 64.0);
-					bool sightPassed = false;
-					int spawnPassed = false;
-
-					if(floorZPassed)
-					{
-						if(Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0))
-						{
-							sightPassed = CheckSight(0, beaconTID, 0);
-							if(sightPassed)
-							{
-								int thisTID = ActivatorTID();
-								int uTID = UniqueTID(0);
-
-								spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], newFloorZ, uTID, pos[3]);
-
-								if(spawnPassed)
-								{
-									SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
-									SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
-									SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
-
-									ChangeActorFlag(uTID, "FRIENDLY", friendly);
-									ChangeActorFlag(uTID, "STEALTH", stealth);
-									ChangeActorFlag(uTID, "STANDSTILL", standstill);
-									ChangeActorFlag(uTID, "DROPPED", 0);
-
-									Thing_ChangeTID(uTID, thisTID);
-								}
-							}
-						}
-					}
-
-					if(!floorZPassed || !sightPassed || !spawnPassed)
-					{
-						spawnAttempts++;
-						if(spawnAttempts >= 25)
-						{
-							if(GetCVar("sh_debug_spawns"))
-								log(s:"Giving up after too many attempts to spawn.");
-
-							enemyCount = mult;
-							break;
-						}
-
-						continue;
-					}
-
-					spawnAttempts = 0;
-					enemyCount++;
-
-					if(GetCVar("sh_debug_spawns"))
-						log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos[2], s:" floorz: ", f:GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16));
-				} while((iter < stride) && enemyCount < mult);
-
-				dir = (dir+1)%4;
-				stride_cycle++;
-				if((stride_cycle % 2) == 0)
-					stride++;
-			} while(enemyCount < mult);
-		}
-
-		if(GetCVar("sh_compat_swaps"))
-		{
-			// Strange Aeons compatibility swaps
-			actor_swap("AK47", "ChaingunGiver", 256);
-			actor_swap("Yithgun", "PlasmaRifleGiver", 256);
-			actor_swap("ImpalerXBow", "Railgundrop", 256);
-			actor_swap("Devil", "Imps", 64);
-			actor_swap("RapidFireTrooper", "Zamble", 64);
-			actor_swap("UndeadHunter", "Shootgunzamble", 64);
-			actor_swap("Skeleton", "MeleeRevenant", 64);
-			actor_swap("HellWarrior", "BaronSpawner", 64);
-			actor_swap("SlimeWorm", "JIHADReplacer", 64);
+				// Strange Aeons compatibility swaps
+				actor_swap("AK47", "ChaingunGiver", 256);
+				actor_swap("Yithgun", "PlasmaRifleGiver", 256);
+				actor_swap("ImpalerXBow", "Railgundrop", 256);
+				actor_swap("Devil", "Imps", 64);
+				actor_swap("RapidFireTrooper", "Zamble", 64);
+				actor_swap("UndeadHunter", "Shootgunzamble", 64);
+				actor_swap("Skeleton", "MeleeRevenant", 64);
+				actor_swap("HellWarrior", "BaronSpawner", 64);
+				actor_swap("SlimeWorm", "JIHADReplacer", 64);
+			}
+			break;
 		}
 	}
 }
