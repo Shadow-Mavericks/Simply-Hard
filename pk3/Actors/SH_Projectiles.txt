@@ -22,6 +22,11 @@ Actor Fiendzys_PlasmaBall : Plasmaball
 	}
 }
 
+actor SH_ArachnotronPlasma : Fiendzys_PlasmaBall replaces ArachnotronPlasma
+{
+	Damage (15)
+}
+
 Actor Rainbowrailshot
 {
 	Radius 8
@@ -104,7 +109,8 @@ ACTOR FiendsRawket : Rocket
 	Height 8
 	Speed 50
 	Damage 20
-	Scale 1
+	DamageType "Normal"
+	Scale 1.0
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"
 	Obituary "$OB_MPROCKET" // "%o rode %k's rocket."

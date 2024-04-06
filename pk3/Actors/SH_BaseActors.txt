@@ -3,6 +3,7 @@
 //////////////////////////////////////////////////////////////////
 actor Particle_Base
 {
+	+ALLOWCLIENTSPAWN
 	+FORCEXYBILLBOARD
 	+CLIENTSIDEONLY
 	+NOINTERACTION

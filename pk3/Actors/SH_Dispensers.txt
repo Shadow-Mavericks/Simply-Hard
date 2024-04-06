@@ -215,8 +215,8 @@ actor DispenserBubble
 	{
 		Spawn:
 			PUFF A 0
-			PUFF A 0 Bright A_RadiusGive("InsideDispenserSphere", 232, RGF_PLAYERS | RGF_MONSTERS, 1)
-			PUFF A 0 Bright A_RadiusGive("ProjectileKiller", 232, RGF_MISSILES | RGF_NOSIGHT, 1)
+			PUFF A 0 Bright A_RadiusGive("InsideDispenserSphere", 240, RGF_PLAYERS | RGF_MONSTERS, 1)
+			PUFF A 0 Bright A_RadiusGive("ProjectileKiller", 240, RGF_MISSILES | RGF_NOSIGHT, 1)
 			PUFF A 1 Bright A_Warp(AAPTR_MASTER, 0, 0, 0, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 			loop
 	}

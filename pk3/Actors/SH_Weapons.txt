@@ -925,6 +925,23 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 		Fire:
 			NULL A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldFire")
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(2.0, 1.5, 2, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			FGF4 C 1
+			FGF4 D 1
+			FGN4 C 1
+			FGN4 D 1
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(2.0, 1.5, 2, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			FGF4 A 1
+			FGF4 B 1
+			FGN4 C 1
+			FGN4 D 1
+			FGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		Hold:
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			COLT B 0 A_FireBullets(5, 5, 2, 5, "BulletPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			FGF4 C 1
@@ -938,7 +955,9 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGF4 B 1
 			FGN4 C 1
 			FGN4 D 1
-			FGN4 A 2 A_ReFire
+			FGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		FireDone:
 			FGN4 B 3 A_WeaponReady
 			FGN4 C 3 A_WeaponReady
 			FGN4 D 3 A_WeaponReady
@@ -961,6 +980,23 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			goto Ready
 		GoldFire:
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(2.0, 1.5, 3, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			FGF4 C 1
+			FGF4 D 1
+			FGN4 C 1
+			FGN4 D 1
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			COLT B 0 A_FireBullets(2.0, 1.5, 3, 5, "BulletPuff")
+			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			FGF4 A 1
+			FGF4 B 1
+			FGN4 C 1
+			FGN4 D 1
+			FGN4 A 2 A_ReFire("GoldHold")
+			goto GoldFireDone
+		GoldHold:
+			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			COLT B 0 A_FireBullets(5, 5, 3, 5, "BulletPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			FGF4 C 1
@@ -974,7 +1010,9 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGF4 B 1
 			FGN4 C 1
 			FGN4 D 1
-			FGN4 A 2 A_ReFire
+			FGN4 A 2 A_ReFire("GoldHold")
+			goto GoldFireDone
+		GoldFireDone:
 			FGN4 B 3 A_WeaponReady
 			FGN4 C 3 A_WeaponReady
 			FGN4 D 3 A_WeaponReady

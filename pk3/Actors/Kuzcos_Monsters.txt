@@ -1599,7 +1599,6 @@ ACTOR Papyrus : HardRevenant
 		PAPY P 7
 		PAPY Q 7
 		PAPY R 7
-		NULL A -1
 		Stop
 	}
 }
