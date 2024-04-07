@@ -502,9 +502,12 @@ function int handle_damage_event(int type, int arg1, int arg2)
 	bool wasConcussed = false;
 	bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
 	
+	str inflictorClass = "Unknown";
+	
 	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 	{
 		directMonsterDamage = CheckFlag(0, "ISMONSTER");
+		inflictorClass = GetActorClass(0);
 
 		// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
 		int falloffAmt = GetUserVariable(0, "user_falloff");
@@ -591,6 +594,12 @@ function int handle_damage_event(int type, int arg1, int arg2)
 
 		if(wasConcussed)
 			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+		
+		if(victimIsMonster && victimCanBleed)
+		{
+			if(!StrIcmp(inflictorClass, "GoldCryoShot"))
+				GiveInventory("KunaisLifeStealingItem", 1);
+		}
 
 		if(victimPlayerNum != -1)
 		{
@@ -1585,6 +1594,11 @@ MannCoBoxData_t tier1_good[] =
 	{ "A Medical Bag.",					"MedBag",		75,		DELAY_NONE },
 	{ "A Medkit.",						"Medkit",		40,		DELAY_NONE },
 	{ "A Berserk Pack.",				"BerserkPack",	30,		DELAY_NONE },
+	{ "A Tier 2 Weapon.",				"T2Weapon",		30,		DELAY_NONE },
+	{ "A Tier 3 Weapon.",				"T3Weapon",		25,		DELAY_NONE },
+	{ "A Tier 4 Weapon.",				"T4Weapon",		20,		DELAY_NONE },
+	{ "A Tier 5 Weapon.",				"T5Weapon",		10,		DELAY_NONE },
+	{ "A Rocket Launcher-Tier Weapon.",	"SuperShotgun",	25,		DELAY_NONE },
 	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	25,		DELAY_NONE },
 	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	20,		DELAY_NONE },
 	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	15,		DELAY_NONE },
@@ -1594,6 +1608,8 @@ MannCoBoxData_t tier1_good[] =
 MannCoBoxData_t tier1_bad[] =
 {
 	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
+	{ "A Chaingunner.",						"Chaingunner",		50,	DELAY_NONE },
+	{ "A Pinky Demon.",						"Demon",			50,	DELAY_NONE },
 	{ "You get nothing!",					"YouLose",			75,	DELAY_NONE },
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
@@ -1613,12 +1629,16 @@ MannCoBoxData_t tier2_good[] =
 	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
 	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
 	{ "An Ammo Expansion!",				"AmmoExpansion",	15,	DELAY_NONE },
-	{ "A Gaster Blaster!",				"Gaster",			1,	DELAY_NONE },
+	{ "A Tier 5 Weapon!",				"T6Weapon",			15,	DELAY_NONE },
+	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
+	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			5,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier2_bad[] =
 {
 	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
+	{ "A swarm of lost souls!",				"LostSouls",		25,	DELAY_NONE },
 	{ "You get nothing!",					"YouLose",			75,	DELAY_NONE },
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
@@ -1698,13 +1718,13 @@ int tier5_totalweight[2];
 int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",		25,		DELAY_NONE },
-	{ "A Kan-Kan Powerup!",				"KanKan",		10,		DELAY_NONE },
-	{ "An Invulnerability Powerup!",	"Invuln",		5,		DELAY_NONE },
-	{ "An Energy Tank!", 				"ETank",		4,		DELAY_NONE },
-	{ "Legendary Armor!",				"WINRAR",		2,		DELAY_NONE },
-	{ "A Megasphere!",					"MegaSphere",	75,		DELAY_NONE },
-	{ "A Barf Bonanza!",				"VomitAll",		50,		DELAY_NONE },
+	{ "A Medical Bag. \cgFuck you.",			"MedBag",			1,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",						"KanKan",			10,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",			"Invuln",			5,		DELAY_NONE },
+	{ "An Energy Tank!", 						"ETank",			4,		DELAY_NONE },
+	{ "Legendary Armor!",						"WINRAR",			2,		DELAY_NONE },
+	{ "A Megasphere... \cgAnd an archvile!",	"MegaSphereArchie",	75,		DELAY_NONE },
+	{ "A Barf Bonanza!",						"VomitAll",			50,		DELAY_NONE },
 };
 
 MannCoBoxData_t tier5_bad[] =
