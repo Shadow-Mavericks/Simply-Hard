@@ -26,6 +26,13 @@ actor SH_BasePlayer : DoomPlayer
 	DamageFactor "PlayerDynamite", 0.25
 	DamageFactor "PlayerSucc", 0.25
 	DamageFactor "PlayerExplosivePuff", 0.0
+	
+	Player.DamageScreenColor "FF 00 00", 1.0
+	Player.DamageScreenColor "00 FF 00", 1.0, "Acid"
+	Player.DamageScreenColor "FF 64 00", 1.0, "Fire"
+	Player.DamageScreenColor "00 88 FF", 1.0, "Ice"
+	Player.DamageScreenColor "FF FF 00", 1.0, "Electric"
+	Player.DamageScreenColor "88 00 FF", 1.0, "Void"
 
 	//+THRUSPECIES
 

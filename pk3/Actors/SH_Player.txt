@@ -25,8 +25,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "MEDBAG"
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
-	Player.DamageScreenColor Green, 1
-	//Player.RunHealth 25
+
 	BounceSound "PlayerHP/Alarmfiend"
 	Player.JumpZ 9
 	Player.AirCapacity 1.5
@@ -181,7 +180,7 @@ ACTOR Kunai : SH_BasePlayer
 	Player.StartItem "Kunaitoken"
 	Player.StartItem "KunaiGastersummon", 2
 	Player.StartItem "SentryBox"
-	Player.DamageScreenColor Red, 1.0
+
 	BounceSound "PlayerHP/AlarmKunai"
 
 	DamageFactor 1.25
@@ -339,7 +338,6 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.StartItem "Gosimersbackpack", 1
 	Player.StartItem "DeployableShield", 1
 	BounceSound "PlayerHP/AlarmGosimer"
-	Player.DamageScreenColor Yellow, 1
 
 	DamageFactor 0.75
 

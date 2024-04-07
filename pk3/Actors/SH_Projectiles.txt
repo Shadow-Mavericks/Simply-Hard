@@ -109,7 +109,7 @@ ACTOR FiendsRawket : Rocket
 	Height 8
 	Speed 50
 	Damage 20
-	DamageType "Normal"
+	DamageType "Normal" // Todo: Turn to acid later.
 	Scale 1.0
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"
