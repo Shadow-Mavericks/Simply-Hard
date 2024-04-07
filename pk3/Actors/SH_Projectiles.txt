@@ -3413,7 +3413,7 @@ actor DarkSeeker
     Radius 8
     Height 6
     Speed 10
-    Damage 10
+    Damage (32)
     +SEEKERMISSILE
     PROJECTILE
     RENDERSTYLE ADD
