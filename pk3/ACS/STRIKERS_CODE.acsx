@@ -1441,7 +1441,11 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 
 		str weapon_name = GetClassTag(weapon_class);
 
-		str msg = StrParam(s:weapontextcolor, s:weapon_name, s:ammotextcolor, s:" (+");
+		str msg = StrParam(s:weapontextcolor, s:weapon_name);
+		
+		if(ammo1_amount > 0 || ammo2_amount > 0)
+			msg = StrParam(s:msg, s:ammotextcolor, s:" (+");
+			
 		if(ammo1_amount > 0)
 		{
 			msg = StrParam(s:msg, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1);
