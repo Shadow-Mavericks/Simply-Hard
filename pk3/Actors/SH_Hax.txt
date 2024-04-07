@@ -45,6 +45,19 @@ actor SpecialHax : Inventory // General purpose hack for monsters & items.
 	-INVENTORY.INTERHUBSTRIP
 }
 
+actor SentryHealth : Inventory // Used to track how much health a picked up sentry has left.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 500
+	Inventory.InterHubAmount 500
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
 actor PlayerCheckHax : Inventory // Useful for A_JumpIfInTargetInventory
 {
 	Inventory.Amount 1
