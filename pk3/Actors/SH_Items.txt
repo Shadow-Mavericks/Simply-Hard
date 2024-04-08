@@ -1187,7 +1187,7 @@ actor MiniSentryGun
 	Monster
 	ReactionTime 1
 	
-	Activation THINGSPEC_ThingActs | THINGSpec_ThingTargets
+	Activation THINGSPEC_TriggerActs | THINGSpec_TriggerTargets
 	
 	var int user_owner;
 	
@@ -1263,6 +1263,7 @@ actor SentryBoom
 
 ACTOR SentryBox : CustomInventory 12369
 {
+	Tag "Mini-Sentry Box"
 	+COUNTITEM
 	+INVENTORY.INVBAR
 	Inventory.MaxAmount 1
@@ -1285,6 +1286,7 @@ ACTOR SentryBox : CustomInventory 12369
 
 ACTOR UsedSentryBox : CustomInventory
 {
+	Tag "Unboxed Mini-Sentry"
 	+COUNTITEM
 	+INVENTORY.INVBAR
 	Inventory.MaxAmount 1

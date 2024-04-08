@@ -1488,23 +1488,43 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 
 script 13238 (void) // "PICK_UP_SENTRY"
 {
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
+	SetResultValue(0);
+	
+	int playerNum = PlayerNumber();	
+	if(CheckInventory("UsedSentryBox"))
+	{
+		Print(s:"You are already carrying a sentry!");
+		terminate;
+	}
+
+	SetActivator(0, AAPTR_TARGET);
 	int health = GetActorProperty(0, APROP_Health);
 	int owner = GetUserVariable(0, "user_owner");
-	int uTID = UniqueTID();
-	Thing_ChangeTID(0, uTID);
-	SetActivatorToTarget(uTID);
+	SetActivatorToPlayer(playerNum);
 
-	int playerNum = PlayerNumber();
-	if(owner == playerNum)
+	if(owner != playerNum)
 	{
-		GiveInventory("SentryHealth", health);
-		GiveInventory("UsedSentryBox", 1);
-		Thing_Remove(uTID);
+		Print(s:"This sentry belongs to ", n:owner+1);
+		terminate;
 	}
+
+	GiveInventory("SentryHealth", health);
+	GiveInventory("UsedSentryBox", 1);
+	
+	Print(s:"\ccPicked up sentry with \cd", d:health, s:"\cc health remaining.");
+
+	SetActivator(0, AAPTR_TARGET);
+	Thing_Remove(0);
 }
 
 script "DROP_SENTRY" (bool used)
 {
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
 	int playerNum = PlayerNumber();
 	int health = CheckInventory("SentryHealth");
 	int uTID = UniqueTID();
@@ -1519,9 +1539,13 @@ script "DROP_SENTRY" (bool used)
 	if(success)
 	{
 		if(used)
+		{
 			SetActorProperty(uTID, APROP_Health, health);
+			TakeInventory("SentryHealth", health);
+		}
 
 		SetUserVariable(uTID, "user_owner", playerNum);
+		Thing_SetTranslation(uTID, -1);
 	}
 	
 	SetResultValue(success);
