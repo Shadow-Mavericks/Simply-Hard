@@ -1486,6 +1486,47 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 
 // --------------------------------
 
+script 13238 (void) // "PICK_UP_SENTRY"
+{
+	int health = GetActorProperty(0, APROP_Health);
+	int owner = GetUserVariable(0, "user_owner");
+	int uTID = UniqueTID();
+	Thing_ChangeTID(0, uTID);
+	SetActivatorToTarget(uTID);
+
+	int playerNum = PlayerNumber();
+	if(owner == playerNum)
+	{
+		GiveInventory("SentryHealth", health);
+		GiveInventory("UsedSentryBox", 1);
+		Thing_Remove(uTID);
+	}
+}
+
+script "DROP_SENTRY" (bool used)
+{
+	int playerNum = PlayerNumber();
+	int health = CheckInventory("SentryHealth");
+	int uTID = UniqueTID();
+	
+	int distance = 48.0;
+	int angle = GetActorAngle(0);
+	int x = GetActorX(0) + FixedMul(cos(angle), distance);
+	int y = GetActorY(0) + FixedMul(sin(angle), distance);
+	int z = GetActorZ(0) + 24.0;
+	
+	bool success = Spawn("MiniSentryGun", x, y, z, uTID, angle>>8);
+	if(success)
+	{
+		if(used)
+			SetActorProperty(uTID, APROP_Health, health);
+
+		SetUserVariable(uTID, "user_owner", playerNum);
+	}
+	
+	SetResultValue(success);
+}
+
 // --------------------------------
 // Clientside Pickup Transformation
 // --------------------------------
