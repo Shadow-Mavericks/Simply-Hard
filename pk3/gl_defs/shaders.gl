@@ -564,6 +564,13 @@ HardwareShader texture WLLATFL1
 	Speed 0.75
 }
 
+// -- BTSX --
+HardwareShader flat FWATER02
+{
+	Shader "shaders/water.fp"
+	Speed 1.0
+}
+
 // Model Shaders
 // -------------
 HardwareShader texture POWBUBBL

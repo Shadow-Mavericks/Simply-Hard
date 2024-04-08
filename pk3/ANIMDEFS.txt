@@ -227,6 +227,10 @@ flat FWATER4
 	pic FWATER4 tics 8
 	pic FWATER4 tics 8
 	
+flat optional FWATER02
+	pic FWATER02 tics 8
+	pic FWATER02 tics 8
+	
 texture optional WFALL1
 	pic WFALL1 tics 8
 	pic WFALL1 tics 8
