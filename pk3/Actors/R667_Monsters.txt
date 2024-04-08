@@ -675,10 +675,10 @@ actor AracnorbQueen
 		Death:
 			ARNQ G 0 A_ChangeFlag("FLOATBOB",0)
 			ARNQ G 9 A_Scream
-			ARNQ G 3
+			ARNQ G 3 A_Fall
 			Wait
 		Crash:
-			ARNQ H 0 A_Fall
+			ARNQ H 0 A_NoBlocking
 			ARNQ HIJKL 9
 			ARNQ M -1
 			Stop
