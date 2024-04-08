@@ -17,7 +17,7 @@ Actor Dispenser : CustomInventory //
 			Stop
 		Use:
 			SNDB A 0 A_Playsound("Lucio/Healingboost")
-			SNDB A 0 A_Jump(256, "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15","D16","D17","D18","D19","D20","D21","D22","D23","D24","D25","D26","D27","D28","D29","D30","D31","D32","D33","D34","D35","D36","D37","D38","D39","D40","D41","D42","D43","D44","D45","D46","D47")
+			SNDB A 0 A_Jump(256, "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15","D16","D17","D18","D19","D20","D21","D22","D23","D24","D25","D26","D27","D28","D29","D30","D31","D32","D33","D34","D35","D36","D37","D38","D39","D40","D41","D42","D43","D44","D45","D46","D47","D48")
 		D1:
 			TNT1 A 1 A_SpawnItemEx ("Spenserspawn1", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
@@ -159,6 +159,9 @@ Actor Dispenser : CustomInventory //
 		D47:
 			TNT1 A 1 A_SpawnItemEx ("Spenserspawn47", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto despawn
+		D48:
+			TNT1 A 1 A_SpawnItemEx ("Spenserspawn48", 0, 0, 28, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			goto despawn
 
 		Despawn:
 			MBPK A 0
@@ -222,15 +225,20 @@ actor DispenserBubble
 	}
 }
 
-actor Marcianito
+actor DispenserHologram
 {
 	RenderStyle Add
 	Alpha 0.5
-	Scale 0.25
-	+NOGRAVITY
+	+BRIGHT
 	+ISMONSTER
+	+NOGRAVITY
 	-COUNTKILL
 	-SOLID
+}
+
+actor Marcianito : DispenserHologram
+{
+	Scale 0.25
 	States
 	{
 		Spawn:
@@ -241,16 +249,10 @@ actor Marcianito
 	}
 }
 
-actor JONNIL
+actor JONNIL : DispenserHologram
 {
-	RenderStyle Add
-	Alpha 0.5
 	XScale 1.0
 	YScale 0.8
-	+NOGRAVITY
-	+ISMONSTER
-	-COUNTKILL
-	-SOLID
 	States
 	{
 		Spawn:
@@ -259,16 +261,10 @@ actor JONNIL
 	}
 }
 
-actor DVA
+actor DVA : DispenserHologram
 {
-	RenderStyle Add
-	Alpha 0.5
 	XScale 0.25
 	YScale 0.2
-	+NOGRAVITY
-	+ISMONSTER
-	-COUNTKILL
-	-SOLID
 	States
 	{
 		Spawn:
@@ -277,21 +273,48 @@ actor DVA
 	}
 }
 
-actor MY_MUSCLES_INVOLUNTARILY_FLEX
+actor MY_MUSCLES_INVOLUNTARILY_FLEX : DispenserHologram
 {
-	RenderStyle Add
-	Alpha 0.5
 	XScale 0.25
 	YScale 0.20
-	+NOGRAVITY
-	+ISMONSTER
-	-COUNTKILL
-	-SOLID
 	States
 	{
 		Spawn:
 			EDDI E 1 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 			loop
+	}
+}
+
+Actor BabeHologram : DispenserHologram
+{
+	// BPM: 133
+	// Frames: 5
+	// 60 / 133 = 0.45112781954887218045112781954887
+	// ↑ * 35 = 15.789473684210526315789473684211
+	// ↑ / 5 = 3.1578947368421052631578947368421
+	XScale 0.5
+	YScale 0.4
+	var int user_fixTic;
+	States
+	{
+		Spawn: // Try to make it match the BPM of the song. Basically add a tick when user_fixTic is >= 1 (A_SetTics only takes int which helps), then subtract that 1 from the total, else add the delta.
+			BABE A 3 A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE) "####" # 0 A_SetTics(user_fixTic) "####" # 0 A_SetUserVar("user_fixTic", user_fixTic + (user_fixTic >= 1 ? -1 : 0.1578947368421052631578947368421))
+			BABE B 3 A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE) "####" # 0 A_SetTics(user_fixTic) "####" # 0 A_SetUserVar("user_fixTic", user_fixTic + (user_fixTic >= 1 ? -1 : 0.1578947368421052631578947368421))
+			BABE C 3 A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE) "####" # 0 A_SetTics(user_fixTic) "####" # 0 A_SetUserVar("user_fixTic", user_fixTic + (user_fixTic >= 1 ? -1 : 0.1578947368421052631578947368421))
+			BABE D 3 A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE) "####" # 0 A_SetTics(user_fixTic) "####" # 0 A_SetUserVar("user_fixTic", user_fixTic + (user_fixTic >= 1 ? -1 : 0.1578947368421052631578947368421))
+			BABE E 3 A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE) "####" # 0 A_SetTics(user_fixTic) "####" # 0 A_SetUserVar("user_fixTic", user_fixTic + (user_fixTic >= 1 ? -1 : 0.1578947368421052631578947368421))
+			Loop
+	}
+}
+
+Actor BabeHologramEnd : BabeHologram
+{
+	States
+	{
+		Spawn:
+			BABE FGH 3 Bright A_Warp(AAPTR_MASTER, 0, 0, 32, 0, WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+			BABE GH 3 Bright A_FadeOut(0.08571428571428571428571428571429)
+			Goto Spawn+3
 	}
 }
 
@@ -1008,5 +1031,25 @@ ACTOR spenserspawn47 : spenserspawn1
 			MESP A 0 A_SetUserVar("user_healamt", 1)
 			MESP A 0 A_SetUserVar("user_armoramt", 1)
 			goto HealLoop
+	}
+}
+
+// PSX Duke Bar Music
+Actor spenserspawn48 : spenserspawn1
+{
+	States
+	{
+		Init:
+			MESP A 0 A_SpawnItemEx("BabeHologram", 0, 0, 32, 0, 0, 0, 0, SXF_SETMASTER, 0)
+			MESP A 0 A_Playsound("Dispenser/Tune48", Chan_7)
+			MESP A 0 A_Playsound("Dispenser/Tune48", Chan_6)
+			MESP A 0 A_Playsound("Dispenser/Tune48", Chan_5)
+			MESP A 0 A_SetUserVar("user_loops", 67) // 69 was too long :(
+			MESP A 0 A_SetUserVar("user_healamt", 1)
+			MESP A 0 A_SetUserVar("user_armoramt", 1)
+			goto HealLoop
+		End:
+			MESP F 0 A_SpawnItemEx("BabeHologramEnd", 0, 0, 32, 0, 0, 0, 0, 0, 0)
+			goto Super::End
 	}
 }
