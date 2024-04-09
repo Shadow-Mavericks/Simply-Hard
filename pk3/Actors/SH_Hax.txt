@@ -6,6 +6,28 @@ ACTOR NullArmorHack : BasicArmorPickup // Needed for Max's energy shield.
 	Armor.SaveAmount 1
 }
 
+// Hack to stop randomspawners from
+// shitting absolute fucking dick online and
+// causing a memory leak & infinite recursion.
+actor NullHax
+{
+	Radius 0
+	Height 0
+	+SERVERSIDEONLY
+	+NOSPAWNEVENTSCRIPT
+	+NONETID
+	+NOINTERACTION
+	+NOSECTOR
+	+NOBLOCKMAP
+	+NOCLIP
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			stop
+	}
+}
+
 actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
 {
 	Inventory.Amount 1

@@ -123,6 +123,7 @@ enum
 	WADCOMPAT_NORMAL,
 	WADCOMPAT_MAYHEM18O,
 	WADCOMPAT_MAYHEM18P,
+	WADCOMPAT_STRANGEAEONS,
 };
 
 function void detect_wads(void)
@@ -166,6 +167,15 @@ function void detect_wads(void)
 		{
 			Log(s:"MAYhem 2018: Purple Edition Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_MAYHEM18P);
+			return;
+		}
+		
+		find_pos = seek_string(mapinfo_data, "map E1M1 \"The Traveler\"", 0);
+		find_pos = seek_string(mapinfo_data, "map E1M2 \"Resident Evil\"", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"Strange Aeons Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_STRANGEAEONS);
 			return;
 		}
 
@@ -517,6 +527,9 @@ function void hit_marker(int soundType, bool friendly)
 
 function void multiply_actor(int mult)
 {
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		return;
+
 	int radius = GetActorProperty(0, APROP_Radius)*2;
 	int pos[4] = { GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0)>>8 };
 	bool ambush = CheckFlag(0, "AMBUSH");
@@ -556,7 +569,7 @@ function void multiply_actor(int mult)
 
 			bool floorZPassed = (floorZDiff <= 64.0);
 			bool sightPassed = false;
-			int spawnPassed = false;
+			int spawnPassed = 0;
 
 			if(floorZPassed)
 			{
@@ -634,28 +647,28 @@ function void actor_swap(str replace, str with, int chance)
 		bool standstill = CheckFlag(0, "STANDSTILL");
 		bool dormant = CheckFlag(0, "DORMANT");
 
-		SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
+		int success = SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		if(success)
+		{
+			SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
 
-		SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
-		SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
-		ChangeActorFlag(uTID, "DROPPED", dropped);
-		ChangeActorFlag(uTID, "FRIENDLY", friendly);
-		ChangeActorFlag(uTID, "STEALTH", stealth);
-		ChangeActorFlag(uTID, "STANDSTILL", standstill);
+			SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
+			SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
+			ChangeActorFlag(uTID, "DROPPED", dropped);
+			ChangeActorFlag(uTID, "FRIENDLY", friendly);
+			ChangeActorFlag(uTID, "STEALTH", stealth);
+			ChangeActorFlag(uTID, "STANDSTILL", standstill);
 
-		if(GetCVar("sh_debug_spawns"))
-			log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorProperty(0, APROP_Species), s:")");
+			if(GetCVar("sh_debug_spawns"))
+				log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorProperty(0, APROP_Species), s:")");
 
-		// These must be last!
-		SetActorProperty(0, APROP_Species, "None"); // Stops RandomSpawners from doing anything.
-		int removeTID = UniqueTID();
-		Thing_ChangeTID(0, removeTID);
+			// These must be last!
+			SetActorProperty(0, APROP_Species, "NullHax"); // Stops RandomSpawners from doing anything.
+			Thing_Remove(0);
 
-		SetActivator(uTID, AAPTR_DEFAULT);
-		Thing_ChangeTID(uTID, thisTID);
-		
-		Thing_Remove(removeTID);
+			SetActivator(uTID);
+			Thing_ChangeTID(uTID, thisTID);
+		}
 	}
 
 	return;
@@ -899,7 +912,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		}
 		case GAMEEVENT_ACTOR_SPAWNED:
 		{
-			bool canMultiply = (arg1 == GAMEEVENT_SPAWN_LEVELSPAWNED);
+			bool canMultiply = ((arg1 == GAMEEVENT_SPAWN_LEVELSPAWNED) && CheckFlag(0, "ISMONSTER"));
 
 			if(GetCVar("sh_compat_swaps"))
 			{
@@ -916,21 +929,24 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					{
 						break;
 					}
+					case WADCOMPAT_STRANGEAEONS:
+					{
+						actor_swap("AK47", "ChaingunGiver", 256);
+						actor_swap("Yithgun", "PlasmaRifleGiver", 256);
+						actor_swap("ImpalerXBow", "Railgundrop", 256);
+						actor_swap("Devil", "Imps", 64);
+						actor_swap("RapidFireTrooper", "Zamble", 64);
+						actor_swap("UndeadHunter", "Shootgunzamble", 64);
+						actor_swap("Skeleton", "MeleeRevenant", 64);
+						actor_swap("HellWarrior", "BaronSpawner", 64);
+						actor_swap("SlimeWorm", "JIHADReplacer", 64);
+						break;
+					}
 				}
 				
-				// Strange Aeons compatibility swaps
-				actor_swap("AK47", "ChaingunGiver", 256);
-				actor_swap("Yithgun", "PlasmaRifleGiver", 256);
-				actor_swap("ImpalerXBow", "Railgundrop", 256);
-				actor_swap("Devil", "Imps", 64);
-				actor_swap("RapidFireTrooper", "Zamble", 64);
-				actor_swap("UndeadHunter", "Shootgunzamble", 64);
-				actor_swap("Skeleton", "MeleeRevenant", 64);
-				actor_swap("HellWarrior", "BaronSpawner", 64);
-				actor_swap("SlimeWorm", "JIHADReplacer", 64);
 			}
-			
-			if((GetCVar("sh_enemy_mult") > 1) && canMultiply && CheckFlag(0, "ISMONSTER"))
+
+			if((GetCVar("sh_enemy_mult") > 1) && canMultiply)
 				multiply_actor(clamp(GetCVar("sh_enemy_mult"), 2, 100));
 
 			break;
