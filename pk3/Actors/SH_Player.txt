@@ -45,31 +45,27 @@ ACTOR Fiend : SH_BasePlayer
 			Goto Missile
 	
 		Pain:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
+			PLAY G 4
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
 		Pain.Acid:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
 			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
 			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Void:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Fire:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
 			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Electric:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*3)
 			Goto Pain
@@ -81,7 +77,6 @@ ACTOR Fiend : SH_BasePlayer
 			Goto Pain
 	
 		Pain.HeavyMetal:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_HeavyMetal", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 0.3, 35*5)
 			Goto Pain
@@ -107,8 +102,7 @@ ACTOR Fiend : SH_BasePlayer
 			Goto Spawn
 
 		Death:
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			PLAY H 10
 			PLAY I 10 A_PlayerScream
 			PLAY J 10 A_NoBlocking
 			PLAY KLM 10
@@ -205,31 +199,27 @@ ACTOR Kunai : SH_BasePlayer
 			PLAY F 6 BRIGHT
 			Goto Missile
 		Pain:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
+			PLAY G 4
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
 		Pain.Acid:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
 			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
 			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Void:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Fire:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
 			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Electric:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
@@ -240,7 +230,6 @@ ACTOR Kunai : SH_BasePlayer
 			Goto Pain
 			
 		Pain.HeavyMetal:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_HeavyMetal", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 0.3, 35*5)
 			Goto Pain
@@ -264,8 +253,7 @@ ACTOR Kunai : SH_BasePlayer
 			TNT1 A 0 A_CustomMissile("Kunaisultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
 		Death:
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			PLAY H 10
 			PLAY I 10 A_PlayerScream
 			PLAY J 10 A_NoBlocking
 			PLAY KLM 10
@@ -361,30 +349,26 @@ ACTOR Gosimer : SH_BasePlayer
 			PLAY F 6 BRIGHT
 			Goto Missile
 		Pain:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
+			PLAY G 4
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
 		Pain.Acid:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))  
 			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
 			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Void:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Fire:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
 			Goto Pain
 			
 		Pain.Electric:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
@@ -396,7 +380,6 @@ ACTOR Gosimer : SH_BasePlayer
 			Goto Pain
 		
 		Pain.HeavyMetal:
-			PLAY G 4 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			PLAY G 0 A_GiveInventory("DebuffItem_HeavyMetal", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 0.3, 35*5)
 			Goto Pain
@@ -420,8 +403,7 @@ ACTOR Gosimer : SH_BasePlayer
 			TNT1 A 0 A_CustomMissile("Fiendsultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
 		Death:
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			PLAY H 10
 			PLAY I 10 A_PlayerScream
 			PLAY J 10 A_NoBlocking
 			PLAY KLM 10
@@ -516,7 +498,7 @@ actor MaximusPrime : SH_BasePlayer
 			Goto Missile
 		Pain:
 			PLAY G 0 A_Pain
-			PLAY G 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			PLAY G 8
 			Goto Spawn
 		
 		Pain.Acid:
@@ -569,8 +551,7 @@ actor MaximusPrime : SH_BasePlayer
 			Goto Spawn
 		Death:
 			PLAY H 0 A_StopSound(CHAN_WEAPON)
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
-			PLAY H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			PLAY H 10
 			PLAY I 10 A_PlayerScream
 			PLAY J 10 A_NoBlocking
 			PLAY KLM 10

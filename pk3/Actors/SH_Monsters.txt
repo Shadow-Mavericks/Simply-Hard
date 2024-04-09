@@ -42,10 +42,10 @@ ACTOR NOOBZombieMan
     POSS G 3 A_Pain
     Goto See
   Death:
-  	POSS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+  	POSS H 5
     POSS I 8
     POSS J 8 A_Scream
-	POSS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
+	POSS K 5
     POSS L 6 A_NoBlocking
 	POSS L -1
     Stop
@@ -123,10 +123,10 @@ ACTOR averageZombieMan
     POSS H 2 A_Pain
     Goto See
   Death:
- 	POSS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+ 	POSS H 5
     POSS I 8
     POSS J 8 A_Scream
-	POSS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
+	POSS K 5
     POSS L 6 A_NoBlocking
 	POSS L -1
     Stop
@@ -211,7 +211,7 @@ ACTOR TryhardZombieMan
     POSS H 2 A_Pain
     Goto See
   Death:
- 	POSS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+ 	POSS H 5
     POSS I 8
     POSS J 8 A_Scream
 	POSS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
@@ -347,7 +347,7 @@ ACTOR Hardimp : DoomImp
 			TROO H 2 A_Pain
 			Goto See
 		Death:
-			TROO I 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			TROO I 8
 			TROO J 8 A_Scream
 			TROO K 6
 			TROO L 6 A_NoBlocking
@@ -440,7 +440,7 @@ ACTOR Critimp : DoomImp
 			TROO H 2 A_Pain
 			Goto See
 		Death:
-			TROO I 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			TROO I 8
 			TROO J 8 A_Scream
 			TROO K 6
 			TROO L 6 A_NoBlocking
@@ -678,7 +678,7 @@ ACTOR fastdemon
 			SARG H 2 A_Pain
 			Goto See
 		Death:
-			SARG I 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			SARG I 8
 			SARG J 8 A_Scream
 			SARG K 4
 			SARG L 4 A_NoBlocking
@@ -776,15 +776,14 @@ ACTOR Hardcaco
 	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
 	Goto See
 	Pain:
-		HEAD E 3 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		HEAD E 3
 		HEAD E 3 A_Pain
 		HEAD F 6
 		Goto See
 	Death:
-		HEAD G 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		HEAD G 8
 		HEAD H 8 A_Scream
-		HEAD I 8
-		HEAD J 8 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
+		HEAD IJ 8
 		HEAD K 8 A_NoBlocking
 		HEAD L -1 A_SetFloorClip
 		Stop
@@ -861,11 +860,11 @@ ACTOR hardshootgunguy
 	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
 	Goto See
 	Pain:
-		SPOS G 3 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS G 3
 		SPOS G 3 A_Pain
 		Goto See
 	Death:
-		SPOS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS H 5
 		SPOS I 5 A_Scream
 		SPOS J 5 A_NoBlocking
 		SPOS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
@@ -948,11 +947,11 @@ ACTOR hardshootgunguy1
 	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
 	Goto See
 	Pain:
-		SPOS G 3 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS G 3
 		SPOS G 3 A_Pain
 		Goto See
 	Death:
-		SPOS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS H 5
 		SPOS I 5 A_Scream
 		SPOS J 5 A_NoBlocking
 		SPOS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
@@ -1037,11 +1036,11 @@ ACTOR hardshootgunguy2
 	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
 	Goto See
  	Pain:
-		SPOS G 3 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS G 3
 		SPOS G 3 A_Pain
 		Goto See
 	Death:
-		SPOS H 5 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+		SPOS H 5
 		SPOS I 5 A_Scream
 		SPOS J 5 A_NoBlocking
 		SPOS K 5 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
@@ -1185,11 +1184,10 @@ ACTOR Hardchaingunguy
 			TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
 			Goto See
 		Pain:
-			CPOS G 3 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			CPOS G 3
 			CPOS G 3 A_Pain
 			Goto See
 		Death:
-			TNT1 AAAA 0 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
 			CPOS H 5
 			CPOS I 5 A_Scream
 			CPOS J 5 A_NoBlocking

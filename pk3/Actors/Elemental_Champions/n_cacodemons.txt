@@ -44,10 +44,9 @@ ACTOR N_Cacodemon_Base : Monster_Base
 			HEAD F 6
 			Goto See
 		Death:
-			HEAD G 8 A_CustomMissile ("Brutal_Blood", 48, 0, random (0, 360), 2, random (0, 160))
+			HEAD G 8
 			HEAD H 8 A_Scream
-			HEAD I 8
-			HEAD J 8 A_CustomMissile ("MediumBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
+			HEAD IJ 8
 			HEAD K 8 A_NoBlocking
 			HEAD L -1 A_SetFloorClip
 			Stop

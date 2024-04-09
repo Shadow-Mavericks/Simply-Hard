@@ -3300,23 +3300,16 @@ actor Projectile_Base
 {
 	Projectile
 	+FORCEXYBILLBOARD
-	+SEEKERMISSILE		// lets get this out of the way
 	+FORCERADIUSDMG
 	+SPAWNSOUNDSOURCE
 	+DONTSEEKINVISIBLE
 	+THRUGHOST
 	+NOBOSSRIP
-	+MTHRUSPECIES
 	+RANDOMIZE
 	-NOTELEPORT			// lets make things different
 	-FORCEPAIN
 	//$Category Tribeam's particles
 }
-
-
-
-
-
 
 actor Flameshotfire: Projectile_Base
 {
@@ -3470,14 +3463,14 @@ ACTOR Meatballprojectile : Cacodemonball replaces cacodemonball
 
 ACTOR Beem_Slash
 {
-	Damage 35
+	Damage (100)
 	Speed 30
 	Height 16
 	Radius 16
 	Projectile
 	+NOTIMEFREEZE
+	+RIPPER
 	Deathsound "BladeBeam/death"
-	+ripper
 	States
 	{
 		Spawn:
