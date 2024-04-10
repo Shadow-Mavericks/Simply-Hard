@@ -88,7 +88,7 @@ Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
 	Radius 20
 	Height 16
 	+INVENTORY.QUIET
-	Scale 0.1
+	Scale 1.0
 	Inventory.RespawnTics "99999999"
 	Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
 	var int user_loopCount;
@@ -1207,6 +1207,7 @@ actor MiniSentryGun
 	+NOTAUTOAIMED
 	+NOPAIN
 	+USESPECIAL
+	-BUMPSPECIAL
 	-COUNTKILL
 	states
 	{
@@ -1216,6 +1217,7 @@ actor MiniSentryGun
 	SpawnLoop:
 		SEMT AAAAAAAAAAAAAAAA  3 A_Look
 		SEMT A 0 A_PlaySound ("Sentry/Active")
+		SEMT A 0 A_SetSpecial(84, 13238)
 		loop
 	See:
 		SEMT AAAAAAAAAAAAAAAA 3 A_Chase
