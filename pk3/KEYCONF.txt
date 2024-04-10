@@ -1,21 +1,23 @@
 addkeysection "Simply Hard" Simplyhard
-addmenukey "Soul Ability" useability
+addmenukey "Soul Ability" UseAbility
 addmenukey "Flares" Flares
-addmenukey "Ultimate Ability" Classultimates
+addmenukey "Ultimate Ability" ClassUltimates
 addmenukey "Revive Player" RevivePlayer
-alias useability "pukename ClassAbility"
+alias UseAbility "pukename ClassAbility"
 alias Flares "pukename FlareAbility"
-alias Classultimates "pukename ULTIMATEABOOLITY"
+alias ClassUltimates "pukename ULTIMATEABOOLITY"
 alias RevivePlayer "pukename REVIVEPLAYER"
 
 defaultbind l "RevivePlayer"
+defaultbind b "ClassUltimates"
+defaultbind mouse3 "UseAbility"
+defaultbind mouse5 "Flares"
 
 ClearPlayerClasses
 AddPlayerClass Fiend
 AddPlayerClass Kunai
 AddPlayerClass Gosimer
 AddPlayerClass MaximusPrime
-
 
 WeaponSection "Simply-Hard"
 SetSlot 1 Fists Lightsaber SoulReaper ShieldGun UAC-Chainsaw DFFist
