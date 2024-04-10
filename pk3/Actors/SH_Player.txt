@@ -309,6 +309,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Radius 16
 	Height 56
 	Mass 100
+	Gravity 0.875
 	PainChance 255
 	Player.MaxHealth 150
 	Player.SoundClass "Marine"
@@ -332,7 +333,7 @@ ACTOR Gosimer : SH_BasePlayer
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 
-	Player.JumpZ 8
+	Player.JumpZ 7
 	Player.AirCapacity 0.5
 	States
 	{

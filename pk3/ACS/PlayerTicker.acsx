@@ -107,7 +107,10 @@ script "SV_PLAYERTICKER" OPEN
 			else if(!CheckInventory("Debuff_HeavyMetal") && p_status[p].debuff_gravity == true)
 			{
 				p_status[p].debuff_gravity = false;
-				SetActorProperty(0, APROP_Gravity, 1.0);
+				if(CheckActorClass(0, "Gosimer"))
+					SetActorProperty(0, APROP_Gravity, 0.875);
+				else
+					SetActorProperty(0, APROP_Gravity, 1.0);
 			}
 
 			//////////////////////////////////////////////
