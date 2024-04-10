@@ -75,10 +75,11 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
 	timeOfDeath[pNum] = 0x7FFFFFFF;
-	
+
 	if(lives_at_end[pNum] > current_lives)
 		update_lives(lives_at_end[pNum]);
 
+	lives_at_end[pNum] = 0; // Clear it.
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 }
 
