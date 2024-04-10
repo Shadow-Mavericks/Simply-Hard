@@ -97,7 +97,7 @@ ACTOR SH_Zombieman2 : SH_Zombieman
 	}
 }
 
-ACTOR SH_Zombieman3
+ACTOR SH_Zombieman3 : SH_Zombieman
 {
 	Tag "Super Angry Zombieman"
 	Speed 12

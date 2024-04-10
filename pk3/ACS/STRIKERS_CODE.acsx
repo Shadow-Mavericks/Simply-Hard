@@ -718,6 +718,36 @@ function void actor_swap(str replace, str with, int chance)
 
 #define ONE_16 (1<<16)
 
+function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int ptr)
+{
+	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+	{
+		int oldTID = ActivatorTID();
+		int srcUTID = UniqueTID();
+		Thing_ChangeTID(0, srcUTID);
+		SetActivator(0, ptr);
+
+		int actualDmg = arg1;
+		if(victimHealth < arg1)
+			actualDmg = victimHealth;
+
+		int numOrbs = clamp(actualDmg >> 4, 1, 10);
+		int healAmt = max(max(actualDmg/healDiv, 1)/numOrbs, 1);
+		for(int i = 0; i < numOrbs; i++)
+		{
+			int uTID = UniqueTID();
+			SpawnProjectile(0, "HealingSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
+			SetActivator(uTID);
+			SetPointer(AAPTR_TRACER, srcUTID);
+			SetPointer(AAPTR_TARGET, srcUTID);
+			SetUserVariable(uTID, "user_healamt", healAmt);
+			SetActivator(0, ptr);
+		}
+		
+		Thing_ChangeTID(srcUTID, oldTID);
+	}
+}
+
 function int handle_damage_event(int type, int arg1, int arg2)
 {
 	// -------------
@@ -766,6 +796,20 @@ function int handle_damage_event(int type, int arg1, int arg2)
 		{
 			int yeetForceBase = arg1;
 			yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
+		}
+
+		if(victimIsMonster && victimCanBleed)
+		{
+			if(	CheckActorClass(0, "Beem_Slash") ||
+				CheckActorClass(0, "SoulreaperPuff") ||
+				CheckActorClass(0, "SoulreaperPuff_SweetSpot"))
+			{
+				kunai_health_sap(arg1, victimHealth, 6, AAPTR_DAMAGE_INFLICTOR);
+			}
+			else if(CheckActorClass(0, "KunaisLifeStealingPuff"))
+			{
+				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_INFLICTOR);
+			}
 		}
 
 		if(GetCVar("sh_debug_damage"))
@@ -832,28 +876,7 @@ function int handle_damage_event(int type, int arg1, int arg2)
 		if(victimIsMonster && victimCanBleed)
 		{
 			if(!StrIcmp(inflictorClass, "GoldCryoShot"))
-				GiveInventory("KunaisLifeStealingItem", 1);
-			else if(!StrIcmp(inflictorClass, "Beem_Slash") ||
-					!StrIcmp(inflictorClass, "SoulreaperPuff") ||
-					!StrIcmp(inflictorClass, "SoulreaperPuff_SweetSpot"))
-			{
-				int actualDmg = arg1;
-				if(victimHealth < arg1)
-					actualDmg = victimHealth;
-
-				bool switchSource = false;
-				if(!StrIcmp(inflictorClass, "SoulreaperPuff") || !StrIcmp(inflictorClass, "SoulreaperPuff_SweetSpot"))
-					switchSource = true;
-				
-				if(switchSource)
-					SetActivator(0, AAPTR_DAMAGE_INFLICTOR);
-				
-				for(int i = 0; i < clamp((actualDmg >> 3), 1, 25); i++)
-					GiveInventory("KunaisLifeStealingItem", 1);
-					
-				if(switchSource)
-					SetActivator(0, AAPTR_DAMAGE_TARGET);
-			}
+				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_TARGET);
 		}
 
 		if(victimPlayerNum != -1)
@@ -962,7 +985,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					case WADCOMPAT_MAYHEM18P:
 					{
 						actor_swap("CommanderKeen", "SuicideBomber", 256);
-						actor_swap("WolfensteinSS", "MarinePlasma", 256);
+						actor_swap("WolfensteinSS", "MayhemPlasmaMarine", 256);
+						actor_swap("BaronSpawner", "MayhemGrell", 256);
+						actor_swap("Masterpainisspawner", "MayhemImmolator", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
@@ -1084,6 +1109,9 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 	int droptype = DROPTYPE_HALVED;
 
 	int fade_rgb[3] = { 255, 192, 0 };
+	
+	if(CheckActorClass(0, "MaximusPrime"))
+		droptype = DROPTYPE_FULL;
 
 	// Our ammo types. Determined by a numerical index passed to the script.
 	switch(type)
@@ -1095,7 +1123,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_amount = 15;
 			}
@@ -1114,7 +1141,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_amount = 45;
 			}
@@ -1133,7 +1159,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 10;
 			}
@@ -1153,7 +1178,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 30;
 			}
@@ -1173,7 +1197,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_name = "Mortar Shell";
 			}
 			else if(CheckActorClass(0, "Gosimer"))
@@ -1191,7 +1214,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
-				droptype = DROPTYPE_FULL;
 				ammo1_name = "Mortar Shell";
 			}
 			else if(CheckActorClass(0, "Gosimer"))
@@ -1210,17 +1232,20 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			ammo2_class = "RailSLUGS";
 			ammo2_amount = 6;
 
-			if(CheckActorClass(0, "MaximusPrime"))
+			if(CheckActorClass(0, "Fiend"))
 			{
-				droptype = DROPTYPE_FULL;
+				extrasound = "Jim/taunt6";
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
 				ammo1_class = "DF_PlasmaCartridge";
 				ammo1_amount = 20;
 
 				ammo2_name = "Disruptor Cell";
 			}
-			else if(CheckActorClass(0, "Fiend"))
+			else if(CheckActorClass(0, "Kunai"))
 			{
-				extrasound = "Jim/taunt6";
+				ammo2_name = "7.92x57mm Mauser Round";
 			}
 
 			pickupsound = "AMMO/BATTERY";
@@ -1236,9 +1261,12 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			// Todo: Lightning Ammo.
 
-			if(CheckActorClass(0, "MaximusPrime"))
+			if(CheckActorClass(0, "Fiend"))
 			{
-				droptype = DROPTYPE_FULL;
+				extrasound = "Jim/taunt4";
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
 				ammo1_class = "DF_Missile";
 				ammo1_amount = 5;
 
@@ -1249,10 +1277,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			{
 				ammo2_class = "DevastatorAmmo";
 				ammo2_amount = 50;
-			}
-			else if(CheckActorClass(0, "Fiend"))
-			{
-				extrasound = "Jim/taunt4";
 			}
 
 			pickupsound = "AMMO/BATTERYPAK";
@@ -1529,11 +1553,13 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 				pickupsound_new = "Weapon/Nadeget";
 				weapon_class = "BoomToob";
 				ammo1_amount = 10;
+				ammo1_name = "Grenade";
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
 				weapon_class = "MortarGun";
 				ammo1_amount = 3;
+				ammo1_name = "Mortar Shell";
 			}
 			break;
 		}

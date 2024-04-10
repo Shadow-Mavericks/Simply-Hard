@@ -1,4 +1,4 @@
-actor MayhemPlasmaMarine : MarinePlasma
+actor MayhemPlasmaMarine
 {
 	Tag "FAAAABULOUS Marine"
 	Monster
@@ -101,5 +101,51 @@ actor MayhemGrell
 		Raise:
 			BOSS MLKJIHG 4
 			goto See
+	}
+}
+
+actor MayhemImmolator
+{
+	Tag "Immolator"
+	Monster
+	Health 2500
+	Speed 12
+	Radius 40
+	Height 80
+	ReactionTime 8
+	PainChance 20
+	Mass 1000
+	SeeSound "spider/sight"
+	PainSound "spider/pain"
+	DeathSound "spider/death"
+	ActiveSound "spider/active"
+	+NOGRAVITY
+	+FLOAT
+	States
+	{
+		Spawn:
+			SSWV AB 10 A_Look
+			loop
+		See:
+			SSWV AB 3 A_Chase
+			loop
+		Missile:
+			SSWV C 8 A_FaceTarget
+			SSWV D 4 A_FatAttack1
+			SSWV D 4 A_FatAttack2
+			SSWV D 4 A_FatAttack3
+			goto See
+		Pain:
+			SSWV E 5 A_Pain
+			SSWV E 5
+			SSWV C 8 A_FaceTarget
+			SSWV DDD 3 A_SkelMissile
+			goto See
+		Death:
+			SSWV F 8 A_Scream
+			SSWV G 8
+			SSWV H 8 A_Fall
+			SSWV IJKL 8
+			stop
 	}
 }

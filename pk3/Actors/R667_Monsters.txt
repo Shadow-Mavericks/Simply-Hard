@@ -9017,59 +9017,60 @@ actor SpiralFire50
 
 ACTOR PyroZombie
 {
-  obituary "%o was flambeed by a Pyro Zombie."
-  health 100
-  radius 20
-  height 56
-  mass 100
-  speed 8
-  painchance 170
-  seesound "chainguy/sight"
-  painsound "chainguy/pain"
-  deathsound "chainguy/death"
-  activesound "chainguy/active"
-  missiletype PyroShot
-  MONSTER
-  Dropitem "Nukecharge"
-  +FLOORCLIP
-  states
-  {
-  Spawn:
-    PYRZ AB 10 A_Look
-    loop
-  See:
-    PYRZ AABBCCDD 3 A_Chase
-    loop
-  Missile:
-    PYRZ E 1 Bright A_PlaySound ("weapons/nuclearmissilecharge")
-    PYRZ E 10 A_FaceTarget
-    PYRZ F 10 Bright
-    PYRZ F 0 Bright A_PlaySound ("PyroCannon/Fire")
-    PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire", CHAN_WEAPON)
-    PYRZ E 10 Bright A_MissileAttack
-    goto See
-  Pain:
-    PYRZ G 3
-    PYRZ G 3 A_Pain
-    goto See
-  Death:
-    PYRZ H 5
-    PYRZ I 5 A_Scream
-    PYRZ J 5 A_NoBlocking
-    PYRZ KLM 5
-    PYRZ N -1
-    stop
-  XDeath:
-    PYRZ O 5
-    PYRZ P 5 A_XScream
-    PYRZ Q 5 A_NoBlocking
-    PYRZ RS 5
-    PYRZ T -1
-    stop
-  Raise:
-    PYRZ NMLKJIH 5
-    goto See
-  }
+	obituary "%o was flambeed by a Pyro Zombie."
+	health 100
+	radius 20
+	height 56
+	mass 100
+	speed 8
+	painchance 170
+	ReactionTime 10
+	seesound "chainguy/sight"
+	painsound "chainguy/pain"
+	deathsound "chainguy/death"
+	activesound "chainguy/active"
+	missiletype PyroShot
+	MONSTER
+	Dropitem "Nukecharge"
+	+FLOORCLIP
+	states
+	{
+		Spawn:
+			PYRZ AB 10 A_Look
+			loop
+		See:
+			PYRZ AABBCCDD 3 A_Chase
+			loop
+		Missile:
+			PYRZ E 1 Bright A_PlaySound ("weapons/nuclearmissilecharge")
+			PYRZ E 10 A_FaceTarget
+			PYRZ F 10 Bright
+			PYRZ F 0 Bright A_PlaySound ("PyroCannon/Fire")
+			PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire", CHAN_WEAPON)
+			PYRZ E 10 Bright A_MissileAttack
+			goto See
+		Pain:
+			PYRZ G 3
+			PYRZ G 3 A_Pain
+			goto See
+		Death:
+			PYRZ H 5
+			PYRZ I 5 A_Scream
+			PYRZ J 5 A_NoBlocking
+			PYRZ KLM 5
+			PYRZ N -1
+			stop
+		XDeath:
+			PYRZ O 5
+			PYRZ P 5 A_XScream
+			PYRZ Q 5 A_NoBlocking
+			PYRZ RS 5
+			PYRZ T -1
+			stop
+		Raise:
+			PYRZ NMLKJIH 5
+			goto See
+	}
 }
 
 Actor PyroShot

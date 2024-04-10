@@ -10,9 +10,6 @@ actor KunaisLifeStealingPuff : BulletPuff
 	States
 	{
 		XDeath:
-			KPUF A 0
-			KPUF A 0 A_CustomMissile ("HealingSeeker", 0.0, 0.0, frandom(-45.0,45.0), CMF_OFFSETPITCH, frandom(-24.0, 24.0))
-			goto Spawn
 		Spawn:
 			KPUF AB 3 Bright
 			goto Melee
@@ -56,21 +53,6 @@ ACTOR SoulreaperPuff_SweetSpot : KunaisLifeStealingPuff
 	}
 }
 
-actor KunaisLifeStealingItem : CustomInventory
-{
-	Inventory.MaxAmount 0
-	Inventory.Amount 1
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.AUTOACTIVATE
-	States
-	{
-		Use:
-			KPUF A 0 A_CustomMissile ("HealingSeeker", frandom(8.0, height-8.0), 0.0, frandom(-45.0,45.0), CMF_OFFSETPITCH, frandom(-24.0, 24.0))
-			KPUF A 0 A_RailWait
-			stop
-	}
-}
-
 actor KunaisHealthStealBonus : HealthBonus
 {
 	Inventory.Amount 1
@@ -100,6 +82,9 @@ actor HealingSeeker
 	Scale 0.5
 	RenderStyle Add
 	Alpha 1.0
+	
+	var int user_healamt;
+	
 	Projectile
 	+SEEKERMISSILE
 	+NOCLIP
@@ -107,20 +92,21 @@ actor HealingSeeker
 	States
 	{
 		Spawn:
-			KPUF A 0 NoDelay A_RearrangePointers(AAPTR_TRACER, AAPTR_TRACER, AAPTR_TRACER, PTROP_NOSAFEGUARDS)
 			KPUF ABAB 1 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KPUF A 0 A_ChangeVelocity(frandom(30, 32), 0.0, velz, CVF_RELATIVE | CVF_REPLACE)
 			goto Seek
 		Seek:
-			KPUF A 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE, 256, 256)
+			KPUF A 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
 			KPUF A 0 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-			KPUF B 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE, 256, 256)
+			KPUF B 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
 			KPUF B 0 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_JumpIfCloser(32, "Heal")
 			loop
 		Heal:
-			KPUF A 0 A_GiveToTarget("KunaisHealthStealBonus", 1)
+			KPUF A 0 A_GiveToTarget("KunaisHealthStealBonus", user_healamt)
 			KPUF A 0 A_SpawnItemEx("HealingSeekerPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_PlaySound("SOTNHeartbeat", CHAN_AUTO, 0.5)
+			TNT1 A 2
 			stop
 	}
 }
