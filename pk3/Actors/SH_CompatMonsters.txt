@@ -1,0 +1,105 @@
+actor MayhemPlasmaMarine : MarinePlasma
+{
+	Tag "FAAAABULOUS Marine"
+	Monster
+	Radius 20
+	Height 56
+	Health 100
+	Speed 12
+	ReactionTime 8
+	PainChance 170
+	Mass 100
+	SeeSound "grunt/sight"
+	PainSound "*pain50"
+	DeathSound "*death"
+	ActiveSound "grunt/active"
+	DropItem "Cell"
+	States
+	{
+		Spawn:
+			PLAY AB 10 A_Look
+			loop
+		See:
+			PLAY AABBCCDD 3 A_Chase
+			loop
+		Missile:
+			PLAY E 5 A_FaceTarget
+			PLAY F 2 A_BspiAttack
+			PLAY E 3 A_FaceTarget
+			PLAY F 2 A_BspiAttack
+			PLAY E 3 A_FaceTarget
+			PLAY F 2 A_BspiAttack
+			PLAY E 3 A_FaceTarget
+			PLAY F 2 A_BspiAttack
+			PLAY E 3 A_FaceTarget
+			PLAY F 2 A_BspiAttack
+			PLAY E 3 A_FaceTarget
+			goto See
+		Pain:
+			PLAY G 3
+			PLAY G 3 A_Pain
+			goto See
+		Death:
+			PLAY H 5
+			PLAY I 5 A_Scream
+			PLAY J 5 A_Fall
+			PLAY KLM 5
+			PLAY N -1
+			stop
+		XDeath:
+			PLAY O 5
+			PLAY P 5 A_XScream
+			PLAY Q 5 A_Fall
+			PLAY RSTUV 5
+			PLAY W -1
+			stop
+		Raise:
+			PLAY NMLKJIH 5
+			goto SEE
+	}
+}
+
+actor MayhemGrell
+{
+	Tag "Grell"
+	Monster
+	Radius 24
+	Height 56
+	Health 300
+	Speed 10
+	ReactionTime 8
+	PainChance 128
+	Mass 400
+	SeeSound "baron/sight"
+	PainSound "baron/pain"
+	DeathSound "baron/death"
+	ActiveSound "baron/active"
+	+FLOAT
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			BOSS A 10 A_Look
+			loop
+		See:
+			BOSS AABBCC 3 A_Chase
+			loop
+		Missile:
+			BOSS AD 4 A_FaceTarget
+			BOSS E 4 A_BruisAttack
+			goto See
+		Pain:
+			BOSS F 3
+			BOSS F 3 A_Pain
+			goto See
+		Death:
+			BOSS G 5 A_Scream
+			BOSS H 4 A_Fall
+			BOSS IJKL 4
+			BOSS M -1
+			stop
+		Raise:
+			BOSS MLKJIHG 4
+			goto See
+	}
+}
