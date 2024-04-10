@@ -54,14 +54,12 @@ ACTOR N_Revenant_Base : Monster_Base
 }
 
 
-
-
-ACTOR RevenantTracer_Base : Projectile_Base
+ACTOR RevenantTracer_Base : Projectile_Base replaces RevenantTracer
 {
 	Radius 11
 	Height 8
 	Speed 10
-	Damage 10
+	Damage (40) // 10
 	Projectile
 	+SEEKERMISSILE
 	+RANDOMIZE

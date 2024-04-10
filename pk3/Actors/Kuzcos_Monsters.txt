@@ -1603,30 +1603,22 @@ ACTOR Papyrus : HardRevenant
 	}
 }
 
-ACTOR spaghetti : RevenantTracer
+ACTOR Spaghetti : RevenantTracer_Base
 {
-  Radius 11
-  Height 8
-  Speed 10
-  scale 1.5
-  Damage 20
-  Projectile
-  Renderstyle Normal
-  +SEEKERMISSILE
-  +RANDOMIZE
-  SeeSound "MOLE/THROW"
-  DeathSound "HEALTH/MMEDKIT"
-  States
-  {
-  Spawn:
-    SPAG A 2 Bright A_Tracer
-    Loop
-  Death:
-    FBXP A 8 Bright
-    FBXP B 6 Bright
-    FBXP C 4 Bright
-    Stop
-  }
+	Renderstyle Normal
+	SeeSound "MOLE/THROW"
+	DeathSound "HEALTH/MMEDKIT"
+	States
+	{
+		Spawn:
+			SPAG A 2 Bright A_Tracer
+			Loop
+		Death:
+			FBXP A 8 Bright
+			FBXP B 6 Bright
+			FBXP C 4 Bright
+			Stop
+	}
 }
 
 ACTOR SphereMaster

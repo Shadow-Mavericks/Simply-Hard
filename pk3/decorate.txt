@@ -39,8 +39,6 @@
 
 //#include "actors/ST_Drops.txt" // Temp disabled.
 
-#include "actors/Kuzcos_Monsters.txt"
-
 #include "actors/Elemental_Champions/n_archviles.txt"
 #include "actors/Elemental_Champions/n_barons.txt"
 #include "actors/Elemental_Champions/n_cyberdemons.txt"
@@ -49,5 +47,7 @@
 #include "actors/Elemental_Champions/n_imps.txt"
 #include "actors/Elemental_Champions/n_mancubi.txt"
 #include "actors/Elemental_Champions/n_revenant.txt"
+
+#include "actors/Kuzcos_Monsters.txt"
 
 #include "actors/damagedigits.txt"
