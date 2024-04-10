@@ -961,6 +961,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 					case WADCOMPAT_MAYHEM18P:
 					{
+						actor_swap("CommanderKeen", "SuicideBomber", 256);
+						actor_swap("WolfensteinSS", "MarinePlasma", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
