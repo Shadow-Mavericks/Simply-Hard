@@ -2,9 +2,9 @@ Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
 {
 	Radius 20
 	Height 56
-	DropItem "Noobzombieman"		255 100
-	DropItem "averagezombieman"		255 80
-	DropItem "Tryhardzombieman"		255 60
+	DropItem "SH_Zombieman"			255 100
+	DropItem "SH_Zombieman2"		255 80
+	DropItem "SH_Zombieman3"		255 60
 	DropItem "Flamerzombie"			255 5
 	Dropitem "Enemysentrygun"		255 5
 	Dropitem "Rocketzombie"			255 5
@@ -18,9 +18,9 @@ Actor Shootgunzamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
 {
 	Radius 20
 	Height 56
-	Dropitem "hardshootgunguy"		255 100
-	Dropitem "hardshootgunguy1"		255 80
-	Dropitem "hardshootgunguy2"		255 60
+	Dropitem "HardShotgunGuy"		255 100
+	Dropitem "HardShotgunGuy1"		255 80
+	Dropitem "HardShotgunGuy2"		255 60
 	Dropitem "SSGZombie"			255 5
 	DropItem "Flamerzombie"			255 5
 	DropItem "FreezeRifleGuy"		255 5
@@ -70,7 +70,7 @@ Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 {
 	Radius 20
 	Height 56
-	Dropitem "Hardrevenant" 			255 100
+	Dropitem "HardRevenant" 			255 100
 	Dropitem "TryhardRevenant"			255 25
 	Dropitem "Papyrus"					255 5
 	Dropitem "Beamrevenant"				255 5
@@ -142,7 +142,7 @@ Actor meatballspawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 {
 	Radius 31
 	Height 56
-	Dropitem "hardcaco"						255 100
+	Dropitem "HardCaco"						255 100
 	//Dropitem "Cacomother"					255 1
 	Dropitem "GasterBlaster"				255 5
 	Dropitem "Poe"							255 1
