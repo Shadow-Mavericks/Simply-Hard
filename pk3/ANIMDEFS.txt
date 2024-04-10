@@ -128,6 +128,10 @@ texture optional BFALL3
 texture optional BFALL4
 	pic BFALL4 tics 8
 	pic BFALL4 tics 8
+	
+flat optional BLOOD02
+	pic BLOOD02 tics 8
+	pic BLOOD02 tics 8
 
 // Nukage animation ------------------------------------------------------------
 
@@ -313,6 +317,10 @@ flat optional MLAVA4
 	pic MLAVA4 tics 8
 	pic MLAVA4 tics 8
 	
+flat optional LAVA02
+	pic LAVA02 tics 8
+	pic LAVA02 tics 8
+	
 texture optional LAVFALL1
 	pic LAVFALL1 tics 8
 	pic LAVFALL1 tics 8
@@ -360,6 +368,10 @@ texture optional MAGFALL3
 texture optional MAGFALL4
 	pic MAGFALL4 tics 8
 	pic MAGFALL4 tics 8
+	
+texture optional LFALL2
+	pic LFALL2 tics 8
+	pic LFALL2 tics 8
 
  // GreyWater animation -------------------------------------------------------------
 

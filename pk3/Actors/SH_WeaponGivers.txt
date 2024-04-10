@@ -11,6 +11,36 @@ const int WEAPON_RAILGUN	= 8;
 const int WEAPON_FLAME		= 9;
 const int WEAPON_NUKE		= 10;
 
+actor ChainsawGiver : WeaponGiver_Base
+{
+	States
+	{
+		Base:
+			2SAW A 70
+			goto CheckSprite
+			
+		Kunai:
+			KBLD Z 70
+			goto CheckSprite
+
+		Gosimer:
+			2SAW A 70
+			goto CheckSprite
+		
+		MaximusPrime:
+			LGSB R 70
+			goto CheckSprite
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_CHAINSAW) // Weapon Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
+
 actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 {
 	States
@@ -36,7 +66,7 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_SHOTGUN) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_SHOTGUN) // Weapon Type
 			goto CheckSprite
 
 		SetScale:
@@ -67,7 +97,7 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_SSG) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_SSG) // Weapon Type
 			goto CheckSprite
 
 		SetScale:
@@ -103,7 +133,7 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_CHAINGUN) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_CHAINGUN) // Weapon Type
 			goto CheckSprite
 
 		SetScale:
@@ -135,7 +165,7 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_ROCKET) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_ROCKET) // Weapon Type
 			goto CheckSprite
 
 		SetScale:
@@ -167,7 +197,7 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_PLASMA) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_PLASMA) // Weapon Type
 			goto CheckSprite
 
 		SetScale:
@@ -199,7 +229,7 @@ actor BFGGiver : WeaponGiver_Base replaces BFG9000
 			goto CheckSprite
 
 		Init:
-			TNT1 A 0 A_SetArg(1, WEAPON_BFG) // Ammo Type
+			TNT1 A 0 A_SetArg(1, WEAPON_BFG) // Weapon Type
 			goto CheckSprite
 
 		SetScale:

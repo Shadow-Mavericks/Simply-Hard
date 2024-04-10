@@ -538,29 +538,3 @@ Actor Twinkle2
 	Stop
 	}
 }
-
-ACTOR SoulreaperPuff //I know its for special effects but for this case, its honestly... just a sound for his soul reaper
-{
-  +NOBLOCKMAP
-  +NOGRAVITY
-  +ALLOWPARTICLES
-  +RANDOMIZE
-  PROJECTILE
-  RenderStyle add
-  +puffonactors
-  +noextremedeath
-  Alpha 0.5
-  Speed 0
-  Mass 10
-  Attacksound "Weapons/Sreaperwall"
-  Seesound "Weapons/SReaperhit"
-  Mass 5
-  States
-  {
-  Spawn:
-	PUFF A 4 Bright
-	PUFF B 4
-	PUFF CD 4
-    Stop
-  }
-}

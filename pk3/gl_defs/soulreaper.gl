@@ -1,0 +1,82 @@
+BrightMap Sprite KRDYA0
+{
+	Map "brightmaps/Weapon/KRDYA0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KRDYB0
+{
+	Map "brightmaps/Weapon/KRDYB0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KRDYC0
+{
+	Map "brightmaps/Weapon/KRDYC0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KRDYD0
+{
+	Map "brightmaps/Weapon/KRDYD0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBLDA0
+{
+	Map "brightmaps/Weapon/KBLDA0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDB0
+{
+	Map "brightmaps/Weapon/KBLDA0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDC0
+{
+	Map "brightmaps/Weapon/KBLDA0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBLDD0
+{
+	Map "brightmaps/Weapon/KBLDD0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDE0
+{
+	Map "brightmaps/Weapon/KBLDD0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDF0
+{
+	Map "brightmaps/Weapon/KBLDD0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBLDG0
+{
+	Map "brightmaps/Weapon/KBLDG0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDH0
+{
+	Map "brightmaps/Weapon/KBLDG0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDI0
+{
+	Map "brightmaps/Weapon/KBLDG0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBLDJ0
+{
+	Map "brightmaps/Weapon/KBLDJ0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBLDK0
+{
+	Map "brightmaps/Weapon/KBLDJ0.png"
+	DisableFullBright
+}

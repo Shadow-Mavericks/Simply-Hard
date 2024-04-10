@@ -571,6 +571,24 @@ HardwareShader flat FWATER02
 	Speed 1.0
 }
 
+HardwareShader flat BLOOD02
+{
+	Shader "shaders/water.fp"
+	Speed 0.75
+}
+
+HardwareShader flat LAVA02
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
+HardwareShader texture LFALL2
+{
+	Shader "shaders/lavafall.fp"
+	Speed 1.0
+}
+
 // Model Shaders
 // -------------
 HardwareShader texture POWBUBBL

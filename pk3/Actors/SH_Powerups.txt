@@ -5,27 +5,6 @@
 /////////////////////
 // Particle
 
-//Skulltag rune base
-
-actor RuneDrain : PowerDrain { }
-actor Souldrain : PowerupGiver
-{
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
-	-COUNTITEM
-	inventory.pickupmessage ""
-	powerup.type "Drain"
-	powerup.duration 70
-//	Inventory.PickupAnnouncerEntry "drain"
-	States
-	{
-	Spawn:
-		DRAR ABCD 6
-		Loop
-	}
-}
-
-
 //=================================================================================================
 //
 // Rage rune

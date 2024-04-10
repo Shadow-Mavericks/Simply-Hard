@@ -304,7 +304,7 @@ Actor Kunaitoken : Inventory
 
 ACTOR Gosimer : SH_BasePlayer
 {
-	Speed 0.85
+	Speed 0.875
 	Health 150
 	Radius 16
 	Height 56

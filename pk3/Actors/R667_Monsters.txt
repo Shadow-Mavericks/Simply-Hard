@@ -823,7 +823,7 @@ ACTOR ChainsawZombie
     PainSound "grunt/pain"
     DeathSound "grunt/death"
     ActiveSound "grunt/active"
-    DropItem Chainsawdrop
+    DropItem ChainsawGiver
     States
     {
     Spawn:

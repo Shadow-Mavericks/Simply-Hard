@@ -124,6 +124,7 @@ enum
 	WADCOMPAT_MAYHEM18O,
 	WADCOMPAT_MAYHEM18P,
 	WADCOMPAT_STRANGEAEONS,
+	WADCOMPAT_BTSXE2,
 };
 
 function void detect_wads(void)
@@ -178,12 +179,33 @@ function void detect_wads(void)
 			SetCVar("sh_compat_mode", WADCOMPAT_STRANGEAEONS);
 			return;
 		}
+		
+		find_pos = seek_string(mapinfo_data, "map MAP01 \"Shadow Port\"", 0);
+		find_pos = seek_string(mapinfo_data, "map MAP02 \"Underwater Explosions\"", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"Back To Saturn X: Episode 2 Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_BTSXE2);
+			return;
+		}
 
 		// Make sure to close the lump again to free the handle.
 		LumpClose(startIndex);
 	}
 	
 	SetCVar("sh_compat_mode", WADCOMPAT_NORMAL);
+}
+
+script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
+{
+	switch (GetCVar("sh_compat_mode"))
+	{
+		case WADCOMPAT_BTSXE2:
+		{
+			ReplaceTextures("DBRAIN1", "LFALL2");
+			break;
+		}
+	}
 }
 
 // Kill script, for things like orbs, lives, and box drops.
@@ -811,14 +833,26 @@ function int handle_damage_event(int type, int arg1, int arg2)
 		{
 			if(!StrIcmp(inflictorClass, "GoldCryoShot"))
 				GiveInventory("KunaisLifeStealingItem", 1);
-			else if(!StrIcmp(inflictorClass, "Beem_Slash"))
+			else if(!StrIcmp(inflictorClass, "Beem_Slash") ||
+					!StrIcmp(inflictorClass, "SoulreaperPuff") ||
+					!StrIcmp(inflictorClass, "SoulreaperPuff_SweetSpot"))
 			{
 				int actualDmg = arg1;
 				if(victimHealth < arg1)
 					actualDmg = victimHealth;
 
+				bool switchSource = false;
+				if(!StrIcmp(inflictorClass, "SoulreaperPuff") || !StrIcmp(inflictorClass, "SoulreaperPuff_SweetSpot"))
+					switchSource = true;
+				
+				if(switchSource)
+					SetActivator(0, AAPTR_DAMAGE_INFLICTOR);
+				
 				for(int i = 0; i < clamp((actualDmg >> 3), 1, 25); i++)
 					GiveInventory("KunaisLifeStealingItem", 1);
+					
+				if(switchSource)
+					SetActivator(0, AAPTR_DAMAGE_TARGET);
 			}
 		}
 
@@ -1341,6 +1375,21 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 	switch(type)
 	{
 		case WEAPON_CHAINSAW:
+			weapon_class = "UAC-Chainsaw";
+			if(CheckActorClass(0, "Fiend") || CheckActorClass(0, "Gosimer"))
+			{
+				pickupsound_new = "weapon/Chainget";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				weapon_class = "Soulreaper";
+				pickupsound_new = "Weapon/SRGET";
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "Lightsaber";
+			}
+			break;
 		case WEAPON_PISTOL:
 			SetResultValue(0);  // Unused, for now.
 			terminate;

@@ -569,3 +569,9 @@ Sprites By: WARDUST - https://www.doomworld.com/forum/topic/113928-rogue-rebel-t
 
 // Shield Battery
 Sprites By: Xim
+
+// Double-Bladed Chainsaw:
+Submitted: Xim, RichardDS90 (Update)
+Code: Xim, RichardDS90 (ZScript conversion)
+Sprites: id Software, Amuscaria
+Sounds: id Software, wildweasel
