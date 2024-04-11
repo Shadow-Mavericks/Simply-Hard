@@ -886,7 +886,8 @@ function int handle_damage_event(int type, int arg1, int arg2)
 				CheckInventory("PowerInvulnerable") ||
 				CheckInventory("PowerSpawnProtection") ||
 				CheckInventory("PowerFiendUlt") ||
-				CheckInventory("PowerKanKan")
+				CheckInventory("PowerKanKan") ||
+				CheckInventory("PowerShieldGate")
 			)
 			{
 				return 0;
@@ -930,6 +931,30 @@ function int handle_damage_event(int type, int arg1, int arg2)
 					ActivatorSound("Max/ShieldDamage", 127);
 
 					FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
+				}
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				if(CheckInventory("BasicArmor") > 0)
+				{
+					if(arg1 >= 50)
+						ActivatorSound("HitHeavy", 127);
+					else if(arg1 >= 25)
+						ActivatorSound("HitMedium", 127);
+					else
+						ActivatorSound("HitLight", 127);
+						
+					FadeRange (255, 0, 0, min(fixedmul(arg1<<16, 0.01), 1.0), 255, 0, 0, 0.0, 0.5);
+					
+					if(arg1 > CheckInventory("BasicArmor") && !CheckInventory("PowerShieldGateCooldown"))
+					{
+						arg1 = 0;
+						GiveInventory("ShieldGate", 1);
+						GiveInventory("ShieldGateCooldown", 1);
+						GiveInventory("ShieldBlast", 1);
+						TakeInventory("BasicArmor", 9999);
+						ActivatorSound("ShieldBlast", 127);
+					}
 				}
 			}
 		}
@@ -1896,7 +1921,6 @@ MannCoBoxData_t tier1_good[] =
 	{ "A Tier 3 Weapon.",				"T3Weapon",		25,		DELAY_NONE },
 	{ "A Tier 4 Weapon.",				"T4Weapon",		20,		DELAY_NONE },
 	{ "A Tier 5 Weapon.",				"T5Weapon",		10,		DELAY_NONE },
-	{ "A Rocket Launcher-Tier Weapon.",	"SuperShotgun",	25,		DELAY_NONE },
 	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	25,		DELAY_NONE },
 	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	20,		DELAY_NONE },
 	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	15,		DELAY_NONE },

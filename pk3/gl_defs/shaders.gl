@@ -596,3 +596,9 @@ HardwareShader texture POWBUBBL
 	Shader "shaders/bubbleshield.fp"
 	Speed 1.0
 }
+
+HardwareShader texture REDBUBBL
+{
+	Shader "shaders/bubbleshield.fp"
+	Speed 1.0
+}

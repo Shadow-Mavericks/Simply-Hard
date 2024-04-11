@@ -2470,7 +2470,7 @@ ACTOR FemalePlasma
 	activesound "fem/active"
 	Obituary "%o got burned by a female plasma zombie!"
 	DropItem Cell
-	MissileType Fiendzys_PlasmaBall
+	MissileType ArachnotronPlasma
 	States
 	{
 		Spawn:

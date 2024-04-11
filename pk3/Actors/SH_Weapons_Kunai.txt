@@ -59,6 +59,14 @@ actor KunaisHealthStealBonus : HealthBonus
 	Inventory.MaxAmount 150
 }
 
+ACTOR KunaisArmorStealBonus : BasicArmorBonus
+{
+	DamageFactor 0.75
+	Armor.SavePercent 100
+	Armor.SaveAmount 1
+	Armor.MaxSaveAmount 25
+}
+
 actor HealingSeekerPuff : KunaisLifeStealingPuff
 {
 	RenderStyle Add
@@ -82,9 +90,9 @@ actor HealingSeeker
 	Scale 0.5
 	RenderStyle Add
 	Alpha 1.0
-	
+
 	var int user_healamt;
-	
+
 	Projectile
 	+SEEKERMISSILE
 	+NOCLIP
@@ -92,13 +100,13 @@ actor HealingSeeker
 	States
 	{
 		Spawn:
-			KPUF ABAB 1 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KPUF AB 1 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_ChangeVelocity(frandom(30, 32), 0.0, velz, CVF_RELATIVE | CVF_REPLACE)
 			goto Seek
 		Seek:
-			KPUF A 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KPUF A 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
 			KPUF A 0 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-			KPUF B 1 Bright A_SeekerMissile(8.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KPUF B 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
 			KPUF B 0 Bright A_SpawnItemEx("Red_Star_NoRise", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_JumpIfCloser(32, "Heal")
 			loop
@@ -108,6 +116,68 @@ actor HealingSeeker
 			KPUF A 0 A_PlaySound("SOTNHeartbeat", CHAN_AUTO, 0.5)
 			TNT1 A 2
 			stop
+	}
+}
+
+Actor PowerShieldGate : Powerup { }
+ACTOR ShieldGate : PowerupGiver
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 1
+	Powerup.Type "ShieldGate"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+Actor PowerShieldGateCooldown : Powerup { }
+ACTOR ShieldGateCooldown : PowerupGiver
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "ShieldGateCooldown"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+actor ShieldBlast : CustomInventory
+{
+	Inventory.MaxAmount 0
+	Inventory.Amount 1
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+	States
+	{
+		Use:
+			KPUF A 0 A_RadiusThrust(8000, 96, RTF_NOTMISSILE, 64) 
+			KPUF A 0 A_SpawnItemEx("ShieldBlastWave", 0, 0, 2, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 0)
+			KPUF A 0 A_RailWait
+			stop
+	}
+}
+
+actor ShieldBlastWave : Particle_Base
+{
+	RenderStyle Add
+	Alpha 1.0
+	-CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			NULL A 0 NoDelay A_SpawnItemEx("ShieldBlastSphere", 0, 0, 0, 0, 0, 0, frandom(-180, 180), SXF_CLIENTSIDE | SXF_NOCHECKPOSITION, 0)
+			NULL ABCDEFGH 1 Bright
+			stop
+	}
+}
+
+actor ShieldBlastSphere : ShieldBlastWave
+{
+	States
+	{
+		Spawn:
+			NULL A 1 Bright
+			NULL A 0 Bright A_FadeOut(0.125)
+			NULL A 0 Bright A_SetScale(scalex+0.125)
+			loop
 	}
 }
 
@@ -149,7 +219,7 @@ ACTOR Soulreaper : SH_Weapon
 			Goto Normal
 		Normal:
 			KBLD D 1 A_playsound("weapons/srswing", Chan_6)
-			KBLD E 1
+			KBLD E 1 A_FireBullets(-30.0, -4.0, -1, 32, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD F 1 A_FireBullets(-16.0, 0.0, -1, 32, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD G 1 A_FireBullets(0.0, 2.0, -1, 32, "SoulreaperPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD H 1 A_FireBullets(8.0, 4.0, -1, 32, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
@@ -170,7 +240,7 @@ ACTOR Soulreaper : SH_Weapon
 			Goto Ready
 		Berserked:
 			KBLD D 1 A_playsound("weapons/srswing", Chan_6)
-			KBLD E 1
+			KBLD E 1 A_FireBullets(-30.0, -4.0, -1, 64, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD F 1 A_FireBullets(-16.0, 0.0, -1, 64, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD G 1 A_FireBullets(0.0, 2.0, -1, 64, "SoulreaperPuff_SweetSpot", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
 			KBLD H 1 A_FireBullets(8.0, 4.0, -1, 64, "SoulreaperPuff", FBF_EXPLICITANGLE | FBF_NORANDOM | FBF_NORANDOMPUFFZ | FBF_NOFLASH, 96.0)
@@ -218,6 +288,19 @@ ACTOR Soulreaper : SH_Weapon
 	}
 }
 
+actor REV_Shot : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	inventory.maxamount 6
+}
+
+actor FanCount : Inventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 6
+	+INVENTORY.ALWAYSPICKUP
+}
+
 ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 {
 	Weapon.SelectionOrder 7
@@ -228,8 +311,9 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 	Inventory.ForbiddenTo "Gosimer"
 	Inventory.RestrictedTo "Kunai"
 	Weapon.AmmoUse1 0
-	Weapon.AmmoUse2 0
+	Weapon.AmmoUse2 1
 	Weapon.AmmoGive1 18
+	+WEAPON.ALT_AMMO_OPTIONAL
 	+WEAPON.NOAUTOAIM
 	+DONTGIB
 	Weapon.BobSpeed 1.5
@@ -270,163 +354,52 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			COLT D 5
 			COLT A 1 A_refire
 			Goto Ready
-		ALTFIRE:
+		DryFire:
+			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GolddryFire")
+			COLT A 3 A_WeaponReady(WRF_NOFIRE)
+			COLT A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			COLT B 2 A_WeaponReady(WRF_NOFIRE)
+			Goto Reload
+
+		AltFire:
+			COLT A 0 A_TakeInventory("FanCount", 6)
 			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldAltFire")
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto AltfireDry
+			NULL A 0 A_JumpIfInventory("REV_SHOT",1,"AltStart")
+			Goto AltFireDry
+		AltStart:
 			HCLT A 4
 			HCLT B 4
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
+			goto AltLoop
+		AltLoop:
+			HCLT C 2
 			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNDry
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
-			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNDry
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
-			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNDry
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
-			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNDry
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
-			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNDry
-			HCLT C 2 A_TakeInventory("REV_SHOT",1)
-			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HLCT D 0 A_gunflash
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff",1)
+			HLCT D 0 BRIGHT A_GunFlash
+			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff", FBF_USEAMMO)
+			NULL A 0 A_GiveInventory("FanCount", 1)
+			NULL A 0 A_JumpIfInventory("FanCount", 6, "AltEnd")
+			NULL A 0 A_JumpIfInventory("REV_SHOT", 1, "AltLoop")
+			Goto AltLoopDry
+		AltEnd:
 			HCLT F 4
 			HCLT G 4
 			goto Reload
-		GoldALTFIRE:
-			GOLT A 0 A_JumpIfInventory("Highnoon",1,"HNGoldaltfire")
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto Golddry
-			HGLT A 4
-			HGLT B 4
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			HGLT F 4
-			HGLT G 4
-			goto Reload
-		HNGoldaltfire:
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto Golddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto HNGolddry
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff",1)
-			HGLT F 4
-			HGLT G 4
-			goto Reload
-		AltfireDry:
+		AltFireDry:
 			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Golddry")
 			HCLT A 4
 			HCLT B 4
 			HCLT C 4
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
 			HCLT F 4
 			HCLT G 4
 			COLT A 4
 			Goto Reload
-		GoldDry:
-			HGLT A 4
-			HGLT B 4
-			HGLT C 4
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			HGLT F 4
-			HGLT G 4
-			GOLT A 4
-			Goto Reload
-		HNGoldDry:
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			HGLT F 4
-			HGLT G 4
-			GOLT A 4
-			Goto Reload
-		HNDry:
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
+		AltLoopDry:
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
 			HCLT F 4
 			HCLT G 4
 			COLT A 4
 			Goto Reload
+
 		Reload:
 			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Goldreload")
 			NULL A 0 A_TakeInventory("Reload",1)
@@ -501,51 +474,31 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			HGLT C 70
 			HGLT C 4 A_WeaponReady(WRF_NOSECONDARY)
 			Goto ItsHighnoon+4
-		Deadeyeready:
-			HGLT B 4
-			HGLT C 4
-			HGLT C 4 A_WeaponReady
-			Goto Deadeyeready+2
-	
+
 		Flash:
 			TNT1 A 2 A_Light1
 			TNT1 A 0 A_Light0
 			Goto LightDone
-		DryFire:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GolddryFire")
-			COLT A 1 A_WeaponReady(WRF_NOFIRE)
-			COLT A 2 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			COLT B 2 A_WeaponReady(WRF_NOFIRE)
-			Goto Reload
-		GoldDryFire:
-			GOLT A 1 A_WeaponReady(WRF_NOFIRE)
-			GOLT A 2 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			GOLT B 2 A_WeaponReady(WRF_NOFIRE)
-			Goto Reload
+		
 		GoldReady:
-			TNT1 A 0 A_giveinventory("Tier1upgradetoken", 1)
-			GOLT A 0 A_JumpIfInventory("Highnoon",1,"Deadeyeready")
-			NULL A 0 A_JumpIfInventory("Reload",0,"Reload")
+			GOLT A 0 A_GiveInventory("Tier1upgradetoken", 1)
+			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNReady")
+			GOLT A 0 A_JumpIfInventory("Reload", 0, "Reload")
 			GOLT A 1 A_WeaponReady (WRF_ALLOWRELOAD)
 			Loop
-		GoldDeselect:
-			GOLT A 0 A_JumpIfInventory("Highnoon",1,"HighnoonDeselect")
-			NULL A 0 A_TakeInventory("Reload",1)
-			GOLT A 1 A_Lower
-			loop
-		HighnoonDeselect:
-			NULL A 0 A_TakeInventory("Reload",1)
-			HGLT F 4
-			HGLT G 4
-			GOLT A 1 A_Lower
-			Goto HighnoonDeselect+3
+			
 		GoldSelect:
 			GOLT A 1 A_Raise
 			Loop
+			
+		GoldDeselect:
+			GOLT A 0 A_JumpIfInventory("Highnoon",1,"HNDeselect")
+			NULL A 0 A_TakeInventory("Reload",1)
+			GOLT A 1 A_Lower
+			loop
+
 		GoldFire:
-			GOLT A 0 A_JumpIfInventory("Highnoon",1,"DeadeyeFire")
+			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNFire")
 			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
 			Goto Dryfire
 			GOLT A 1 A_TakeInventory("REV_SHOT",1)
@@ -557,32 +510,74 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			GOLT D 5
 			GOLT A 1 A_refire
 			Goto Ready
-		DeadeyeFire:
+		GoldDryFire:
+			GOLT A 3 A_WeaponReady(WRF_NOFIRE)
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			GOLT B 2 A_WeaponReady(WRF_NOFIRE)
+			Goto Reload
+
+		
+		GoldAltFire:
+			GOLT A 0 A_JumpIfInventory("Highnoon", 1, "HNFire")
+			NULL A 0 A_JumpIfInventory("REV_SHOT",1, "GoldAltStart")
+			Goto GoldAltDry
+		GoldAltStart:
+			HGLT A 4
+			HGLT B 4
+			goto GoldAltLoop
+		GoldAltLoop:
+			HGLT C 2
+			HGLT D 2 BRIGHT A_PlaySound("REVFIRE", CHAN_WEAPON)
+			HGLT D 0 BRIGHT A_GunFlash
+			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff", FBF_USEAMMO)
+			NULL A 0 A_GiveInventory("FanCount", 1)
+			NULL A 0 A_JumpIfInventory("FanCount", 6, "GoldAltEnd")
+			NULL A 0 A_JumpIfInventory("REV_SHOT", 1, "GoldAltLoop")
+			Goto GoldAltLoopDry
+		GoldAltEnd:
+			HGLT F 4
+			HGLT G 4
+			goto Reload
+		GoldAltDry:
+			HGLT A 4
+			HGLT B 4
+			HGLT C 4
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			HGLT F 4
+			HGLT G 4
+			GOLT A 4
+			Goto Reload
+		GoldAltLoopDry:
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			HGLT F 4
+			HGLT G 4
+			GOLT A 4
+			Goto Reload
+
+		HNReady:
+			HGLT B 4
+			HGLT C 4
+			HGLT C 4 A_WeaponReady
+			Goto HNReady+2
+		HNDeselect:
+			NULL A 0 A_TakeInventory("Reload",1)
+			HGLT F 4
+			HGLT G 4
+			GOLT A 1 A_Lower
+			Goto HNDeselect+3
+		HNFire:
 			NULL A 0 A_TakeInventory("Highnoon",1)
+			NULL A 0 A_TakeInventory("FanCount", 6)
+			goto HNFireLoop
+		HNFireLoop:
 			HGLT C 2 A_TakeInventory("REV_SHOT",1)
 			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGCT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff",1)
+			HGLT D 0 BRIGHT A_gunflash
+			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"BulletPuff", 0)
+			HGLT E 0 A_GiveInventory("FanCount", 1)
+			HGLT E 0 A_JumpIfInventory("FanCount", 6, "HNFireEnd")
+			loop
+		HNFireEnd:
 			HGLT F 4
 			HGLT G 4
 			goto Reload
@@ -590,13 +585,6 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			PIST A -1
 			Stop
 	}
-}
-
-
-actor REV_Shot : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	inventory.maxamount 6
 }
 
 //Kunai Single Shotgun

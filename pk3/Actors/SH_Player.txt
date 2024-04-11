@@ -139,17 +139,17 @@ ACTOR Fiend : SH_BasePlayer
 
 Actor Fiendtoken : Inventory
 {
-  Radius 4
-  Height 18
-  scale 1
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Fiend token"
-  States
-  {
-  Spawn:
-    SOUL A -1
-    Stop
-  }
+	Radius 4
+	Height 18
+	scale 1
+	Inventory.MaxAmount 1
+	Inventory.PickupMessage "You picked up a Fiend token"
+	States
+	{
+		Spawn:
+			SOUL A -1
+			Stop
+	}
 }
 
 ACTOR Kunai : SH_BasePlayer

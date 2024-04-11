@@ -165,3 +165,36 @@ model DispenserBubble
 
 	FrameIndex PUFF A 0 0
 }
+
+model ShieldBlastWave
+{
+	Path "Models"
+	Model 0 "ring.md3"
+	Skin 0 "redring.png"
+	
+	//ALIGNANGLE
+	scale 6.0 6.0 6.0
+
+	FrameIndex NULL A 0 0
+	FrameIndex NULL B 0 1
+	FrameIndex NULL C 0 2
+	FrameIndex NULL D 0 3
+	FrameIndex NULL E 0 4
+	FrameIndex NULL F 0 5
+	FrameIndex NULL G 0 6
+	FrameIndex NULL H 0 7
+}
+
+model ShieldBlastSphere
+{
+	Path "Models"
+	Model 0 "sphere.md3"
+	
+	Path "Textures"
+	Skin 0 "REDBUBBL.png"
+	
+	//ALIGNANGLE
+	scale 1.2 1.2 1.2
+
+	FrameIndex NULL A 0 0
+}

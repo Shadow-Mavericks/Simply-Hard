@@ -2586,22 +2586,19 @@ ACTOR Kago : SwarmFly
 	States
 	{
 		Spawn:
-			KAGO FGH 1 A_Look
+			KAGO FGHG 1 A_Look
 			Goto See
 		See:
-			KAGO FGH 1 A_Wander
-			KAGO FGH 1 A_Chase
-			KAGO FGH 1 A_Wander
-			KAGO FGH 1 A_Chase
-			KAGO FGH 1 A_Chase
+			KAGO FGHG 1 A_Wander
+			KAGO FGHG 1 A_Chase
 			Goto see
 		Melee:
 		Missile:
 			KAGO F 0 A_PlaySound("KagoAttack", CHAN_AUTO)
-			KAGO FG 1 A_Facetarget
-			KAGO H 8 A_Skullattack
-			KAGO FGH 8 A_Facetarget
-			Goto see
+			KAGO F 2 A_Facetarget
+			KAGO G 4 A_Skullattack
+			KAGO HG 4 A_Facetarget
+			Goto See
 		Death:
 			DTHX A 0 A_PlaySound("KagoDie", CHAN_AUTO)
 			DTHX A 0 BRIGHT A_setscale(0.25)

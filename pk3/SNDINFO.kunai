@@ -1,0 +1,15 @@
+//Kunai helltech shotgun
+Kunaishotgun_FIRE1	KHTS_FR1
+Kunaishotgun_FIRE2	KHTS_FR2
+Kunaishotgun_Pump	KHTS_RL
+
+$random Kunaishotgun_FIRE { Kunaishotgun_FIRE1 Kunaishotgun_FIRE2 }
+
+SOTNHeartbeat sv_hrtbt
+$limit SOTNHeartbeat 0
+
+// Hit sounds from Freedom Planet 2
+HitLight	HitLight
+HitMedium	HitMed
+HitHeavy	HitHeavy
+ShieldBlast	ShldBlst
