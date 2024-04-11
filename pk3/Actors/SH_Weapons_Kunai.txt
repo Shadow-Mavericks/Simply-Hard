@@ -123,7 +123,7 @@ Actor PowerShieldGate : Powerup { }
 ACTOR ShieldGate : PowerupGiver
 {
 	Inventory.MaxAmount 0
-	Powerup.Duration 1
+	Powerup.Duration 3
 	Powerup.Type "ShieldGate"
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
