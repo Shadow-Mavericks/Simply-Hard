@@ -739,6 +739,8 @@ ACTOR HardShotgunGuy1 : HardShotgunGuy
 ACTOR HardShotgunGuy2 : HardShotgunGuy
 {
 	Tag "Super Angry Shotgunner"
+	DropItem "Shotgun"
+	DropItem "Shell"
 	States
 	{
 		Missile:

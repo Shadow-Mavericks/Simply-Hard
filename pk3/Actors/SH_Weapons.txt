@@ -697,15 +697,15 @@ ACTOR SuperShawtgun : SH_Weapon
 			SHT2 C 4
 			SHT2 D 4 A_CheckReload
 			SHT2 E 3
-			SHT2 F 3 A_OpenShotgun2
+			SHT2 F 3 A_PlaySound("weapons/sshoto", CHAN_AUTO)
 			SHT2 G 3
 			SHT2 H 3
 			SHT2 I 3
-			SHT2 J 3 A_LoadShotgun2
+			SHT2 J 3 A_PlaySound("weapons/sshotl", CHAN_AUTO)
 			SHT2 K 3
 			SHT2 L 3
 			SHT2 M 2
-			SHT2 M 2 A_PlaySound ("weapons/sshotc", CHAN_WEAPON)
+			SHT2 M 2 A_PlaySound ("weapons/sshotc", CHAN_AUTO)
 			SHT2 N 2
 			SHT2 O 2
 			SHT2 P 2
@@ -722,11 +722,11 @@ ACTOR SuperShawtgun : SH_Weapon
 			SHT2 C 4
 			SHT2 D 4 A_CheckReload
 			SHT2 E 3
-			SHT2 F 3 A_OpenShotgun2
+			SHT2 F 3 A_PlaySound("weapons/sshoto", CHAN_AUTO)
 			SHT2 G 3
 			SHT2 H 3
 			SHT2 I 3
-			SHT2 J 3 A_LoadShotgun2
+			SHT2 J 3 A_PlaySound("weapons/sshotl", CHAN_AUTO)
 			SHT2 K 3
 			SHT2 L 3
 			SHT2 M 2
