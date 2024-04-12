@@ -70,10 +70,10 @@ actor MayhemGrell
 	ReactionTime 8
 	PainChance 128
 	Mass 400
-	SeeSound "baron/sight"
-	PainSound "baron/pain"
-	DeathSound "baron/death"
-	ActiveSound "baron/active"
+	SeeSound "DSBRSSIT"
+	PainSound "DSDMPAIN"
+	DeathSound "DSBRSDTH"
+	ActiveSound "DSDMACT"
 	+FLOAT
 	+NOGRAVITY
 	States
@@ -115,10 +115,10 @@ actor MayhemImmolator
 	ReactionTime 8
 	PainChance 20
 	Mass 1000
-	SeeSound "spider/sight"
-	PainSound "spider/pain"
-	DeathSound "spider/death"
-	ActiveSound "spider/active"
+	SeeSound "DSSPISIT"
+	PainSound "DSDMPAIN"
+	DeathSound "DSSPIDTH"
+	ActiveSound "DSDMACT"
 	+NOGRAVITY
 	+FLOAT
 	States

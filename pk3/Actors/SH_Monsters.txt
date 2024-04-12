@@ -1213,7 +1213,7 @@ ACTOR HardArachnotron
     Goto See+1
   Missile:
     BSPI A 20 Bright A_FaceTarget
-    BSPI G 2 Bright A_CustomMissile ("ArachnotronPlasma",20,0,0)
+    BSPI G 2 Bright A_CustomMissile ("SH_ArachnotronPlasma",20,0,0)
     BSPI H 2 Bright A_Playsound("weapons/plasma/fire")
     BSPI H 2 Bright A_SpidRefire
     Goto Missile+1
@@ -2473,7 +2473,7 @@ ACTOR FemalePlasma
 	activesound "fem/active"
 	Obituary "%o got burned by a female plasma zombie!"
 	DropItem Cell
-	MissileType ArachnotronPlasma
+	MissileType SH_ArachnotronPlasma
 	States
 	{
 		Spawn:

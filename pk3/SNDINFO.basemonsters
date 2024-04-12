@@ -1,0 +1,176 @@
+// Zombie man
+
+$random grunt/sight 	{ grunt/sight1  grunt/sight2  grunt/sight3 }
+$random grunt/death		{ grunt/death1  grunt/death2  grunt/death3 }
+grunt/sight1			dsposit1
+grunt/sight2			dsposit2
+grunt/sight3			dsposit3
+grunt/active			dsposact
+grunt/pain				kspopain
+grunt/death1			dspodth1
+grunt/death2			dspodth2
+grunt/death3			dspodth3
+grunt/attack			dspistol
+
+// Shotgun guy
+
+$random shotguy/sight	{ shotguy/sight1  shotguy/sight2  shotguy/sight3 }
+$random shotguy/death	{ shotguy/death1  shotguy/death2  shotguy/death3 }
+shotguy/sight1			dsposit1
+shotguy/sight2			dsposit2
+shotguy/sight3			dsposit3
+shotguy/active			dsposact
+shotguy/pain			kspopain
+shotguy/death1			dspodth1
+shotguy/death2			dspodth2
+shotguy/death3			dspodth3
+shotguy/attack			dsshotgn
+
+// Archvile
+
+vile/sight			ksvilsit
+vile/active			ksvilact
+vile/pain			ksvipain
+vile/death			ksvildth
+vile/raise			dsslop
+vile/start			dsvilatk
+vile/stop			dsbarexp
+vile/firestrt		dsflamst
+vile/firecrkl		dsflame
+
+// Revenant
+
+skeleton/sight			ksskesit
+skeleton/active			ksskeact
+skeleton/pain			kspopain
+skeleton/melee			dsskepch
+skeleton/swing			dsskeswg
+skeleton/death			ksskedth
+skeleton/attack			dsskeatk
+skeleton/tracex			dsbarexp
+
+// Fatso
+
+fatso/sight			ksmansit
+fatso/active		dsposact
+fatso/pain			ksmnpain
+fatso/raiseguns		ksmanatk
+fatso/death			ksmandth
+fatso/attack		dsfirsht
+fatso/shotx			dsfirxpl
+
+// Chainguy
+
+$random chainguy/sight		{ chainguy/sight1  chainguy/sight2  chainguy/sight3 }
+$random chainguy/death		{ chainguy/death1  chainguy/death2  chainguy/death3 }
+chainguy/sight1				dsposit1
+chainguy/sight2				dsposit2
+chainguy/sight3				dsposit3
+chainguy/active				dsposact
+chainguy/pain				kspopain
+chainguy/death1				dspodth1
+chainguy/death2				dspodth2
+chainguy/death3				dspodth3
+chainguy/attack				dsshotgn
+$limit chainguy/attack 0
+
+// Imp
+
+$random imp/sight		{ imp/sight1  imp/sight2 }
+$random imp/death		{ imp/death1  imp/death2 }
+imp/sight1				ksbgsit1
+imp/sight2				ksbgsit2
+imp/active				ksbgact
+imp/pain				kspopain
+imp/melee				dsclaw
+imp/death1				ksbgdth1
+imp/death2				ksbgdth2
+imp/attack				dsfirsht
+imp/shotx				dsfirxpl
+$limit imp/active 6
+
+// Demon
+
+demon/sight				kssgtsit
+demon/active			dsdmact
+demon/pain				ksdmpain
+demon/melee				kssgtatk
+demon/death				kssgtdth
+$limit demon/melee 4
+
+// Spectre
+
+spectre/sight			kssgtsit
+spectre/active			dsdmact
+spectre/pain			ksdmpain
+spectre/melee			kssgtatk
+spectre/death			kssgtdth
+
+// Cacodemon
+
+caco/sight			kscacsit
+caco/active			dsdmact
+caco/pain			ksdmpain
+caco/death			kscacdth
+caco/attack			dsfirsht
+caco/shotx			dsfirxpl
+
+// Baron of Hell
+
+baron/sight			ksbrssit
+baron/active		dsdmact
+baron/pain			kskntpai
+baron/melee			dsclaw
+baron/death			ksbrsdth
+baron/attack		dsfirsht
+baron/shotx			dsfirxpl
+
+// Hell Knight
+
+knight/sight			kskntsit
+knight/active			dsdmact
+knight/pain				kskntpai
+knight/death			kskntdth
+
+// Lost Soul
+
+skull/active			dsdmact
+skull/pain				ksdmpain
+skull/melee				dssklatk
+skull/death				dsfirxpl
+
+// Spider Mastermind
+
+spider/sight			ksspisit
+spider/active			dsdmact
+spider/pain				ksdmpain
+spider/attack			dscannon
+spider/death			ksspidth
+spider/walk				dsmetal
+
+// Arachnotron
+
+baby/sight			ksbspsit
+baby/active			dsbspact
+baby/pain			ksdmpain
+baby/death			ksbspdth
+baby/walk			ksbspwlk
+baby/attack			dsplasma
+baby/shotx			dsfirxpl
+
+$limit baby/attack 0
+
+// Cyber Demon
+
+cyber/sight			kscybsit
+cyber/active		dsdmact
+cyber/pain			kskntpai
+cyber/death			kscybdth
+cyber/hoof			kshoof
+
+// Pain Elemental
+
+pain/sight			dspesit
+pain/active			dsdmact
+pain/pain			dspepain
+pain/death			dspedth

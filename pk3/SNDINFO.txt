@@ -878,8 +878,6 @@ $Limit PyroCannon/Flare		0
 
 
 monster/demsit dsdemsit
-spider/attack dscannon
-
 monster/demdth dsdemdth
 harvester/scream shfbscrm
 

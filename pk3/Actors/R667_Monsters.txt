@@ -3694,9 +3694,9 @@ actor ArachnotronMK2 : Arachnotron
 			Goto See+1
 		Missile:
 			BSP2 A 20 Bright A_FaceTarget
-			BSP2 G 2 Bright A_CustomMissile("ArachnotronPlasma",19,-12)
+			BSP2 G 2 Bright A_CustomMissile("SH_ArachnotronPlasma",19,-12)
 			BSP2 R 2 Bright
-			BSP2 H 2 Bright A_CustomMissile("ArachnotronPlasma",19,12)
+			BSP2 H 2 Bright A_CustomMissile("SH_ArachnotronPlasma",19,12)
 			BSP2 Q 2 Bright A_SpidRefire
 			Goto Missile+1
 		Pain:
@@ -12035,23 +12035,23 @@ ACTOR Arachnocubus
   Dual:
 	NULL A 0 A_FaceTarget
 	FTBS G 20 Bright A_PlaySound("cubus5")
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
     FTBS H 10 Bright A_FatAttack1
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS S 5 Bright A_FaceTarget
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS G 5 Bright A_FaceTarget
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
     FTBS H 10 Bright A_FatAttack2
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS S 5 Bright A_FaceTarget
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS G 5 Bright A_FaceTarget
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
     FTBS H 10 Bright A_FatAttack3
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS S 5 Bright A_FaceTarget
-    FTBS H 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, random(-10, 10))
+    FTBS H 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, random(-10, 10))
 	FTBS G 5 Bright A_SpidReFire
 	Goto Dual+2
   Fatso:
@@ -12070,8 +12070,8 @@ ACTOR Arachnocubus
   Arachno:
 	NULL A 0 A_FaceTarget
 	FTBS G 20 Bright A_PlaySound("cubus5")
-    FTBS W 4 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, 0)
-	FTBS S 0 Bright A_CustomMissile("ArachnotronPlasma", 19, 0, 0)
+    FTBS W 4 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, 0)
+	FTBS S 0 Bright A_CustomMissile("SH_ArachnotronPlasma", 19, 0, 0)
 	FTBS S 5 Bright A_SpidReFire
 	Goto Arachno+2
   Death:
@@ -14957,7 +14957,7 @@ actor StarGrabber : FastProjectile
 	States
 	{
 		Spawn:
-			NULL A 35
+			NULL A 6
 			stop
 		Death:
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", random(-72, 72), random(-72, 72), random(5, 24), -6, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)

@@ -22,7 +22,7 @@ Actor Fiendzys_PlasmaBall : Plasmaball
 	}
 }
 
-actor SH_ArachnotronPlasma : Fiendzys_PlasmaBall replaces ArachnotronPlasma
+actor SH_ArachnotronPlasma : Fiendzys_PlasmaBall
 {
 	Damage (15)
 }
