@@ -1,3 +1,4 @@
+#include "actors/monsters/ArchSpeen.txt"
 #include "actors/monsters/Doom2016Cyber.txt"
 #include "actors/monsters/Zyberdemon.txt"
 
@@ -978,7 +979,7 @@ ACTOR HARDCyberdemon
 	}
 }
 
-ACTOR Hardvile
+ACTOR HardVile
 {
   Game Doom
   SpawnID 111

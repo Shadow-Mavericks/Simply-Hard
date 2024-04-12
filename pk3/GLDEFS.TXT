@@ -1,6 +1,7 @@
 // Includes
 #include gl_defs/shaders.gl
 #include gl_defs/dispenser.gl
+#include gl_defs/archspeen.gl
 #include gl_defs/belphegor.gl
 #include gl_defs/bruiser.gl
 #include gl_defs/channeler.gl

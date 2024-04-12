@@ -48,6 +48,15 @@ $limit KamikazeBoom 0
 // Evil Dead
 Monster/Evildead Evildead
 
+// Archspeen / Tornado Demon
+tornado/form Q2WIND
+wind/away HLWIND
+tornado/see NA_TAUNT
+tornado/death NA_DEATH
+tornado/pain NA_PAIN_
+tornado/active NA_IDLE_
+SPEEN speen
+
 // ***************
 // DOOM 2016 CYBER
 // ***************

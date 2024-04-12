@@ -366,7 +366,7 @@ Sprites: id Software
 Sprite Edit: Jimmy
 Idea Base: Upgraded version of the Arachnotron
 
-Autoshootgunguy
+Autoshotgunguy
 Submitted: scalliano
 Decorate: scalliano, Popsoap
 GLDefs: scalliano

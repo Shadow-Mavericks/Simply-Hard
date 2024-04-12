@@ -174,7 +174,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 		
 		MegaSphereArchie:
 			"####" D 20 A_SpawnItemEx ("Megasphere", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 20 A_SpawnItemEx ("Hardvile", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 0)
+			"####" D 20 A_SpawnItemEx ("HardVile", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Invuln:

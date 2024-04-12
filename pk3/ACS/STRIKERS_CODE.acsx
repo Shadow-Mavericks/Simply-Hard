@@ -1022,7 +1022,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("ImpalerXBow", "Railgundrop", 256);
 						actor_swap("Devil", "Imps", 64);
 						actor_swap("RapidFireTrooper", "Zamble", 64);
-						actor_swap("UndeadHunter", "Shootgunzamble", 64);
+						actor_swap("UndeadHunter", "Shotgunzamble", 64);
 						actor_swap("Skeleton", "MeleeRevenant", 64);
 						actor_swap("HellWarrior", "BaronSpawner", 64);
 						actor_swap("SlimeWorm", "JIHADReplacer", 64);

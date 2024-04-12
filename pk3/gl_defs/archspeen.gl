@@ -1,0 +1,22 @@
+Flickerlight2 TornadoDemonLeaves
+{
+	Color 1.0 1.0 1.0
+	Size 40
+	SecondarySize 48
+	Interval 1
+	Offset 0 40 0
+}
+
+Object Archspeen
+{
+	Frame SILEG { Light TornadoDemonLeaves }
+	Frame SILEH { Light TornadoDemonLeaves }
+	Frame SILEI { Light TornadoDemonLeaves }
+	Frame SILEJ { Light TornadoDemonLeaves }
+	Frame SILEK { Light TornadoDemonLeaves }
+	Frame SILEL { Light TornadoDemonLeaves }
+	Frame SILEM { Light TornadoDemonLeaves }
+	Frame SILEN { Light TornadoDemonLeaves }
+	Frame SILEO { Light TornadoDemonLeaves }
+	Frame SILEP { Light TornadoDemonLeaves }
+}
