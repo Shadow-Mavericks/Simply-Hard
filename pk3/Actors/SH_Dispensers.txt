@@ -194,8 +194,9 @@ actor ProjectileKiller : CustomInventory
 	{
 		Use:
 			TNT1 A 0 A_CheckFlag("NOINTERACTION", "Nope")
+			TNT1 A 0 A_CheckFlag("NOCLIP", "Nope")
 			TNT1 A 0 A_JumpIfInTargetInventory ("PowerInsideDispenser", 1, "Nope")
-			TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("Star_NoRise", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0,4.0), 0, 0, 0)
+			TNT1 AAAAAA 0 A_SpawnItemEx("Star_NoRise", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0,4.0), 0, 0, 0)
 			TNT1 A 0 A_PlaySound("Pop", CHAN_AUTO, 0.5)
 			TNT1 A 0 Thing_Remove(0)
 			TNT1 A 1 A_RailWait
