@@ -2545,9 +2545,10 @@ ACTOR whiterabbit : SH_BaseMonster
 	Mass 20
 	Scale 0.5
 	BloodColor "red"
-	seesound "monster/HGTO"
+	Seesound "monster/HGTO"
 	MaxTargetRange 256
 	MinMissileChance 192
+	ReactionTime 10
 	Damage 250
 
 	Dropitem "Allupgradetokens" 128
