@@ -90,15 +90,15 @@ function int seek_string(str string, str substring, int startPos)
 	int substringLength = StrLen(substring);
 	int firstMatchPos = -1;
 	int i,j;
-	
+
 	if(startPos < 0)
 		return -1;
-	
+
 	for(i = startPos; i < stringLength; i++)
 	{
 		if(GetChar(string, i) != GetChar(substring, 0))
 			continue;
-			
+
 		firstMatchPos = i;
 		for(j = 0; j < substringLength; j++)
 		{
@@ -107,13 +107,13 @@ function int seek_string(str string, str substring, int startPos)
 			if(char1 != char2)
 				break;
 		}
-		
+
 		if(j < substringLength)
 			continue;
-		
+
 		return firstMatchPos;
 	}
-	
+
 	return -1;
 }
 
@@ -131,11 +131,11 @@ function void detect_wads(void)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		return;
-	
+
 	// We only need to do this once, the first time any map is loaded.
 	if(GetCVar("sh_compat_mode") != WADCOMPAT_UNINITIALIZED)
 		return;
-	
+
 	int startIndex;
 	str mapinfo_data;
 
@@ -152,7 +152,7 @@ function void detect_wads(void)
 		int size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
 		int find_pos = 0;
 		mapinfo_data = LumpReadString(startIndex, 0, size);
-		
+
 		find_pos = seek_string(mapinfo_data, "map map01 \"Sundowning\"", 0);
 		find_pos = seek_string(mapinfo_data, "map map02 \"Asterion\"", find_pos);
 		if(find_pos != -1)
@@ -170,7 +170,7 @@ function void detect_wads(void)
 			SetCVar("sh_compat_mode", WADCOMPAT_MAYHEM18P);
 			return;
 		}
-		
+
 		find_pos = seek_string(mapinfo_data, "map E1M1 \"The Traveler\"", 0);
 		find_pos = seek_string(mapinfo_data, "map E1M2 \"Resident Evil\"", find_pos);
 		if(find_pos != -1)
@@ -179,7 +179,7 @@ function void detect_wads(void)
 			SetCVar("sh_compat_mode", WADCOMPAT_STRANGEAEONS);
 			return;
 		}
-		
+
 		find_pos = seek_string(mapinfo_data, "map MAP01 \"Shadow Port\"", 0);
 		find_pos = seek_string(mapinfo_data, "map MAP02 \"Underwater Explosions\"", find_pos);
 		if(find_pos != -1)
@@ -192,7 +192,7 @@ function void detect_wads(void)
 		// Make sure to close the lump again to free the handle.
 		LumpClose(startIndex);
 	}
-	
+
 	SetCVar("sh_compat_mode", WADCOMPAT_NORMAL);
 }
 
@@ -743,7 +743,7 @@ function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int ptr)
 			SetUserVariable(uTID, "user_healamt", healAmt);
 			SetActivator(0, ptr);
 		}
-		
+
 		Thing_ChangeTID(srcUTID, oldTID);
 	}
 }
@@ -765,9 +765,9 @@ function int handle_damage_event(int type, int arg1, int arg2)
 	bool directMonsterDamage = false;
 	bool wasConcussed = false;
 	bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
-	
+
 	str inflictorClass = "Unknown";
-	
+
 	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 	{
 		directMonsterDamage = CheckFlag(0, "ISMONSTER");
@@ -872,7 +872,7 @@ function int handle_damage_event(int type, int arg1, int arg2)
 
 		if(wasConcussed)
 			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
-		
+
 		if(victimIsMonster && victimCanBleed)
 		{
 			if(!StrIcmp(inflictorClass, "GoldCryoShot"))
@@ -892,7 +892,7 @@ function int handle_damage_event(int type, int arg1, int arg2)
 			{
 				return 0;
 			}
-	
+
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				if(directMonsterDamage) // Reduce Melee Damage
@@ -943,9 +943,9 @@ function int handle_damage_event(int type, int arg1, int arg2)
 						ActivatorSound("HitMedium", 127);
 					else
 						ActivatorSound("HitLight", 127);
-						
+
 					FadeRange (255, 0, 0, min(fixedmul(arg1<<16, 0.01), 1.0), 255, 0, 0, 0.0, 0.5);
-					
+
 					if(arg1 > CheckInventory("BasicArmor") && !CheckInventory("PowerShieldGateCooldown"))
 					{
 						arg1 = 0;
@@ -984,7 +984,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
 			}
-			
+
 			SetActivator(0, AAPTR_DAMAGE_TARGET);
 			if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
 			{
@@ -1036,7 +1036,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						break;
 					}
 				}
-				
+
 			}
 
 			if((GetCVar("sh_enemy_mult") > 1) && canMultiply)
@@ -1141,7 +1141,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 	int droptype = DROPTYPE_HALVED;
 
 	int fade_rgb[3] = { 255, 192, 0 };
-	
+
 	if(CheckActorClass(0, "MaximusPrime"))
 		droptype = DROPTYPE_FULL;
 
@@ -1626,7 +1626,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			break;
 		}
-		
+
 		case WEAPON_BFG:
 		{
 			weapon_class = "debfg9500";
@@ -1711,10 +1711,10 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 		str weapon_name = GetClassTag(weapon_class);
 
 		str msg = StrParam(s:weapontextcolor, s:weapon_name);
-		
+
 		if(ammo1_amount > 0 || ammo2_amount > 0)
 			msg = StrParam(s:msg, s:ammotextcolor, s:" (+");
-			
+
 		if(ammo1_amount > 0)
 		{
 			msg = StrParam(s:msg, d:ammo1_amount, s:" ", s:ammo1_name, s:suffix1);
@@ -1752,8 +1752,8 @@ script 13238 (void) // "PICK_UP_SENTRY"
 		terminate;
 
 	SetResultValue(0);
-	
-	int playerNum = PlayerNumber();	
+
+	int playerNum = PlayerNumber();
 	if(CheckInventory("UsedSentryBox"))
 	{
 		Print(s:"You are already carrying a sentry!");
@@ -1773,7 +1773,7 @@ script 13238 (void) // "PICK_UP_SENTRY"
 
 	GiveInventory("SentryHealth", health);
 	GiveInventory("UsedSentryBox", 1);
-	
+
 	Print(s:"\ccPicked up sentry with \cd", d:health, s:"\cc health remaining.");
 
 	SetActivator(0, AAPTR_TARGET);
@@ -1788,13 +1788,13 @@ script "DROP_SENTRY" (bool used)
 	int playerNum = PlayerNumber();
 	int health = CheckInventory("SentryHealth");
 	int uTID = UniqueTID();
-	
+
 	int distance = 50.0;
 	int angle = GetActorAngle(0);
 	int x = GetActorX(0) + FixedMul(cos(angle), distance);
 	int y = GetActorY(0) + FixedMul(sin(angle), distance);
 	int z = GetActorZ(0) + 24.0;
-	
+
 	bool success = Spawn("MiniSentryGun", x, y, z, uTID, angle>>8);
 	if(success)
 	{
@@ -1812,7 +1812,7 @@ script "DROP_SENTRY" (bool used)
 	{
 		Print(s:"\cgCannot place sentry, something is blocking the way!");
 	}
-	
+
 	SetResultValue(success);
 }
 
@@ -2050,11 +2050,12 @@ int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
 	{ "A Medical Bag. \cgFuck you.",			"MedBag",			1,		DELAY_NONE },
-	{ "A Kan-Kan Powerup!",						"KanKan",			10,		DELAY_NONE },
-	{ "An Invulnerability Powerup!",			"Invuln",			5,		DELAY_NONE },
-	{ "An Energy Tank!", 						"ETank",			4,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",						"KanKan",			15,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",			"Invuln",			8,		DELAY_NONE },
+	{ "An Energy Tank!", 						"ETank",			5,		DELAY_NONE },
 	{ "Legendary Armor!",						"WINRAR",			2,		DELAY_NONE },
 	{ "A Megasphere... \cgAnd an archvile!",	"MegaSphereArchie",	75,		DELAY_NONE },
+	{ "An Extra Life... \cgAnd a White Rabbit!","ExtraLifeRabbit",	30,		DELAY_NONE },
 	{ "A Barf Bonanza!",						"VomitAll",			50,		DELAY_NONE },
 };
 
