@@ -979,7 +979,14 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		}
 		case GAMEEVENT_ACTOR_DAMAGED:
 		{
-			if(CheckFlag(0, "ISMONSTER"))
+			bool attackerIsEnemy = false;
+			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+			{
+				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
+			}
+			
+			SetActivator(0, AAPTR_DAMAGE_TARGET);
+			if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
 			{
 				GiveInventory("DamageTallyHack", arg1);
 				delay(1);
