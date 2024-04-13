@@ -1951,9 +1951,10 @@ int tier2_totalweight[2];
 int tier2_numentries[2];
 MannCoBoxData_t tier2_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",			75,	DELAY_NONE },
+	{ "Armor.",							"GreenArmor",		75,	DELAY_NONE },
 	{ "A Berserk Pack.",				"BerserkPack",		75,	DELAY_NONE },
 	{ "An Ammo Belt!",					"AmmoBelt",			75,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			60,	DELAY_NONE },
 	{ "A Deployable Shield.",			"Shield",			45,	DELAY_NONE },
 	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
 	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
@@ -1961,7 +1962,8 @@ MannCoBoxData_t tier2_good[] =
 	{ "A Tier 5 Weapon!",				"T6Weapon",			15,	DELAY_NONE },
 	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
 	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
-	{ "A Gaster Blaster!",				"Gaster",			5,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			8,	DELAY_NONE },
+	{ "Drugs?!",						"Joy",				2,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier2_bad[] =

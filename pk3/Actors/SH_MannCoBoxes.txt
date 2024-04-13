@@ -152,6 +152,10 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 1 A_SpawnItemEx ("Normalmedkit",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
+		GreenArmor:
+			"####" D 1 A_SpawnItemEx ("GreenArmor",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			goto Despawn
+
 		AmmoExpansion:
 			"####" D 1 A_SpawnItemEx ("SimplyBackpack",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			goto Despawn
