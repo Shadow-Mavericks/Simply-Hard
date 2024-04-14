@@ -203,7 +203,7 @@ ACTOR ZombieFire
    Radius 2
    Height 4
    Speed 16
-   Damage 1
+   Damage (2)
    PROJECTILE
    RENDERSTYLE ADD
    DamageType Fire
@@ -14771,7 +14771,7 @@ ACTOR FodderSoul
 
 ACTOR BlackHoleImp : DoomImp
 {
-	Health 60
+	Health 50
 	Radius 20
 	Height 42
 	Mass 1000
@@ -14804,21 +14804,22 @@ ACTOR BlackHoleImp : DoomImp
 		Loop
 	Portal:
 		TNT1 A 0 A_Stop
-		DKSI A 12 A_ChangeFlag(INVULNERABLE, 1)
+		DKSI A 12 A_UnsetShootable
 		TNT1 A 0 A_PlaySound("PORTALO")
 		DKSI A 0 A_SpawnitemEx("DarkStarPortal", 0, 0, 15, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI A 17
-		DKSI A 0 A_SetTranslucent(0.0)
-		DKSI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0, 0, 0, 1)
+		TNT1 A 0 A_SetTranslucent(0.0)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_ExtChase(0, 0, 0, 1)
 		TNT1 A 0 A_PlaySound("PORTALO")
-		DKSI A 0 A_SpawnitemEx("DarkStarPortal", 0, 0, 15, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-		DKSI A 14
-		DKSI A 5 A_SetTranslucent(1.0)
-		TNT1 A 0 A_Stop
-		DKSI A 12 A_ChangeFlag(INVULNERABLE, 0)
+		TNT1 A 0 A_SpawnitemEx("DarkStarPortal", 0, 0, 15, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
+		TNT1 A 14
+		DKSI A 5
+		DKSI A 0 A_Stop
+		DKSI A 12 A_SetShootable
 		goto See
 	Missile:
 		TNT1 A 0 A_Jump(256, "PulseAttack", "GrabAttack")
+		goto GrabAttack
 	GrabAttack:
 		TNT1 AAA 0 A_SpawnItemEx("StarParticle", frandom(-4.0, 4.0), frandom(-4.0, 4.0), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI B 2 A_FaceTarget
