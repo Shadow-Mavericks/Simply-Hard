@@ -64,7 +64,7 @@ ACTOR KunaisArmorStealBonus : BasicArmorBonus
 	DamageFactor 0.75
 	Armor.SavePercent 100
 	Armor.SaveAmount 1
-	Armor.MaxSaveAmount 25
+	Armor.MaxSaveAmount 100
 }
 
 actor HealingSeekerPuff : KunaisLifeStealingPuff
@@ -92,6 +92,7 @@ actor HealingSeeker
 	Alpha 1.0
 
 	var int user_healamt;
+	var int user_type;
 
 	Projectile
 	+SEEKERMISSILE
@@ -111,7 +112,7 @@ actor HealingSeeker
 			KPUF A 0 A_JumpIfCloser(32, "Heal")
 			loop
 		Heal:
-			KPUF A 0 A_GiveToTarget("KunaisHealthStealBonus", user_healamt)
+			KPUF A 0 ACS_NamedExecuteWithResult("KUNAI_GIVE_HEALTH")
 			KPUF A 0 A_SpawnItemEx("HealingSeekerPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_PlaySound("SOTNHeartbeat", CHAN_AUTO, 0.5)
 			TNT1 A 2

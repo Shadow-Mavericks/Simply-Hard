@@ -125,6 +125,12 @@ ACTOR ArchSpeen 32725
 	}
 }
 
+Actor SpinnyDoomsauce : ArchSpeen
+{
+	Tag "Spinny Doomsauce, the friendly Archspeen!"
+	+FRIENDLY
+}
+
 ACTOR ArchspeenWind : CustomInventory
 {
 	Inventory.Amount 1

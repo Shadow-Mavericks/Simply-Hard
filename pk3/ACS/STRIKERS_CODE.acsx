@@ -748,6 +748,36 @@ function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int ptr)
 	}
 }
 
+script "KUNAI_GIVE_HEALTH" (int type)
+{
+	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+		terminate;
+
+	int healAmt = GetUserVariable(0, "user_healamt");
+	int type = GetUserVariable(0, "user_type");
+	
+	if(SetActivator(0, AAPTR_TARGET))
+	{
+		int curHealth = GetActorProperty(0, APROP_Health);
+		int armorAmt = 0;
+
+		if(healAmt+curHealth >= 100)
+		{
+			int oldHealAmt = healAmt;
+			healAmt = 100 - curHealth;
+			armorAmt = oldHealAmt - healAmt;
+		}
+		
+		if(healAmt > 0)
+			SetActorProperty(0, APROP_Health, curHealth+healAmt);
+		
+		if(armorAmt > 0)
+		{
+			GiveInventory("KunaisArmorStealBonus", armorAmt);
+		}
+	}
+}
+
 function int handle_damage_event(int type, int arg1, int arg2)
 {
 	// -------------
@@ -2057,6 +2087,7 @@ MannCoBoxData_t tier5_good[] =
 	{ "A Megasphere... \cgAnd an archvile!",	"MegaSphereArchie",	75,		DELAY_NONE },
 	{ "An Extra Life... \cgAnd a White Rabbit!","ExtraLifeRabbit",	30,		DELAY_NONE },
 	{ "A Barf Bonanza!",						"VomitAll",			50,		DELAY_NONE },
+	{ "A Friendly Archspeen!",					"FriendlyArchSpeen",15,		DELAY_LAUGH },
 };
 
 MannCoBoxData_t tier5_bad[] =
