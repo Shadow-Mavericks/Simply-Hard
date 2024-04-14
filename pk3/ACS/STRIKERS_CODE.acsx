@@ -776,7 +776,7 @@ script "KUNAI_GIVE_HEALTH" (int type)
 		if(healAmt > 0)
 			SetActorProperty(0, APROP_Health, curHealth+healAmt);
 		
-		if(armorAmt > 0)
+		if(armorAmt > 0 && !CheckInventory("PowerShieldGateCooldown"))
 		{
 			GiveInventory("KunaisArmorStealBonus", armorAmt);
 		}
