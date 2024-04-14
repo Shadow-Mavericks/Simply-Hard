@@ -10,6 +10,7 @@ const int AMMO_CELLBOX		= 7;
 
 actor ClipGiver : AmmoGiver_Base replaces Clip
 {
+	//$Sprite CLIPA0
 	States
 	{
 		Base:
@@ -37,6 +38,7 @@ actor ClipGiver : AmmoGiver_Base replaces Clip
 
 actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 {
+	//$Sprite AKAMA0
 	States
 	{
 		Base:
@@ -64,6 +66,7 @@ actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 
 actor ShellGiver : AmmoGiver_Base replaces Shell
 {
+	//$Sprite SHELA0
 	States
 	{
 		Base:
@@ -91,6 +94,7 @@ actor ShellGiver : AmmoGiver_Base replaces Shell
 
 actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 {
+	//$Sprite SBOXA0
 	States
 	{
 		Base:
@@ -118,6 +122,7 @@ actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 
 actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
 {
+	//$Sprite ROCKA0
 	States
 	{
 		Base:
@@ -145,6 +150,7 @@ actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
 
 actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
 {
+	//$Sprite BROKA0
 	States
 	{
 		Base:
@@ -167,6 +173,7 @@ actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
 
 actor CellGiver : AmmoGiver_Base replaces Cell
 {
+	//$Sprite CELLA0
 	States
 	{
 		Base:
@@ -189,6 +196,7 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 
 actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 {
+	//$Sprite CELPA0
 	States
 	{
 		Base:
