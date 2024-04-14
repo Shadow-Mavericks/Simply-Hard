@@ -13,6 +13,7 @@ const int WEAPON_NUKE		= 10;
 
 actor ChainsawGiver : WeaponGiver_Base
 {
+	//$Sprite 2SAWA0
 	States
 	{
 		Base:
@@ -43,6 +44,7 @@ actor ChainsawGiver : WeaponGiver_Base
 
 actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 {
+	//$Sprite SHOTA0
 	States
 	{
 		Base:
@@ -78,6 +80,7 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 
 actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 {
+	//$Sprite SGN2A0
 	States
 	{
 		Base:
@@ -110,6 +113,7 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 
 actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 {
+	//$Sprite FCGNA0
 	States
 	{
 		Base:
@@ -146,6 +150,7 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 
 actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 {
+	//$Sprite DERLA0
 	States
 	{
 		Base:
@@ -178,6 +183,7 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 
 actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 {
+	//$Sprite DEPGA0
 	States
 	{
 		Base:
@@ -210,6 +216,7 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 
 actor BFGGiver : WeaponGiver_Base replaces BFG9000
 {
+	//$Sprite BFUGA0
 	States
 	{
 		Base:
