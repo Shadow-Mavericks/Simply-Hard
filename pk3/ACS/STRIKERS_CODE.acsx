@@ -760,8 +760,13 @@ script "KUNAI_GIVE_HEALTH" (int type)
 	{
 		int curHealth = GetActorProperty(0, APROP_Health);
 		int armorAmt = 0;
-
-		if(healAmt+curHealth >= 100)
+		
+		if(curHealth >= 100)
+		{
+			armorAmt = healAmt;
+			healAmt = 0;
+		}
+		else if(curHealth+healAmt >= 100)
 		{
 			int oldHealAmt = healAmt;
 			healAmt = 100 - curHealth;
