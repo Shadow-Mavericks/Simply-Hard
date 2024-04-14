@@ -250,6 +250,10 @@ texture optional WFALL3
 texture optional WFALL4
 	pic WFALL4 tics 8
 	pic WFALL4 tics 8
+
+texture optional NBFALL1
+	pic NBFALL1 tics 8
+	pic NBFALL1 tics 8
 	
 flat optional PURPW1
 	pic PURPW1 tics 8

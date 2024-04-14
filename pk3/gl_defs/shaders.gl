@@ -371,6 +371,12 @@ HardwareShader flat BFALL4
 	Speed 0.75
 }
 
+HardwareShader texture NBFALL1
+{
+	Shader "shaders/waterfall.fp"
+	Speed 1.0
+}
+
 HardwareShader flat SLIME01
 {
 	Shader "shaders/water.fp"
