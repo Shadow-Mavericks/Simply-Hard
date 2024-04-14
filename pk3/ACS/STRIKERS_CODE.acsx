@@ -1865,6 +1865,7 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 	Thing_ChangeTID(0, newTID);
 
 	SetActivatorToPlayer(ConsolePlayerNumber());
+	SetActivator(0, AAPTR_PLAYER_GETCAMERA);
 	str playerClassName = GetActorClass(0);
 	str scaleVar = StrParam(s:"user_scale_", s:playerClassName);
 

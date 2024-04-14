@@ -941,5 +941,7 @@
 #define AAPTR_DAMAGE_INFLICTOR 0x40000000
 #define AAPTR_DAMAGE_TARGET    0x80000000
 
+#define AAPTR_PLAYER_GETCAMERA    0x8000000
+
 #endif//__GDCC_Header__ACS__zdefs_acs__
 
