@@ -31,7 +31,7 @@ ACTOR ArchSpeen 32725
 		See:
 			SILE AABBCC 2 A_Chase
 			SILE D 0 A_Jump(32, "Speen")
-			SILE DDEEFF 2 A_Chase
+			SILE DDEEFF 2 A_VileChase
 			SILE F 0 A_Jump(32, "Speen", "SpeenSpeak")
 			Loop
 		SpeenSpeak:
@@ -109,6 +109,13 @@ ACTOR ArchSpeen 32725
 			SILE A 1
 			SILE A 0 A_SetShootable
 			SILE A 1 A_PlaySound("wind/away")
+			Goto See
+		Heal:
+			WIND A 0 A_SetUserVar("user_speen_count", 0)
+			WIND ABCD 1 Bright
+			WIND A 0 A_Jump(32, "SpeenLoop")
+			FX07 ABCABC 2
+			WIND DCBA 1 Bright
 			Goto See
 		Pain:
 			SILE Q 5
