@@ -808,7 +808,7 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 	Weapon.SelectionOrder 3
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 0 // Handled in ACS
-	Weapon.AmmoType "AK_Mag"  //Old ak ammo type, before it changed to a minigun, (too lazy to change)
+	Weapon.AmmoType "MGRounds"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"

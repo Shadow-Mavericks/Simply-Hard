@@ -38,11 +38,11 @@ actor ClipGiver : AmmoGiver_Base replaces Clip
 
 actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 {
-	//$Sprite AKAMA0
+	//$Sprite AMMOA0
 	States
 	{
 		Base:
-			AKAM A 70
+			AMMO A 70
 			goto CheckSprite
 		
 		MaximusPrime:

@@ -1203,7 +1203,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		}
 		case AMMO_CLIPBOX:
 		{
-			ammo1_class = "AK_MAG";
+			ammo1_class = "MGRounds";
 			ammo1_amount = 75;
 
 			if(CheckActorClass(0, "MaximusPrime"))
@@ -1561,7 +1561,7 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 		case WEAPON_CHAINGUN:
 		{
 			weapon_class = "D3Chaingun";
-			ammo1_class = "AK_Mag";
+			ammo1_class = "MGRounds";
 			ammo1_amount = 20;
 
 			if(CheckActorClass(0, "Fiend"))

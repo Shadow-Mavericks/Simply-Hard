@@ -68,14 +68,14 @@ ACTOR SuperShellZ : Ammo
 	}
 }
 
-ACTOR Ak_Mag : Ammo
+ACTOR MGRounds : Ammo
 {
 	Tag "MG Round"
-	Inventory.PickupMessage "Picked up an AK Magazine."
+	Inventory.PickupMessage "Picked up some MG Rounds."
 	Inventory.Amount 75
 	Inventory.MaxAmount 250
 	Inventory.Respawntics"4200"
-	Inventory.Icon "AKAMA0"
+	Inventory.Icon "AMMOA0"
 	Inventory.PickupSound "AMMO/AKMAG"
 	Ammo.BackpackAmount 75
 	Ammo.BackpackMaxAmount 500
@@ -83,7 +83,7 @@ ACTOR Ak_Mag : Ammo
 	States
 	{
 		Spawn:
-			AKAM A -1
+			AMMO A -1
 			Stop
 	}
 }

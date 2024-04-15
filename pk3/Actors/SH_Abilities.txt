@@ -163,7 +163,7 @@ ACTOR ammobagportalpayout : PortalPayout_Base
 			EUAB A 0 Bright A_RadiusGive("Battery", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
 			EUAB A 0 Bright A_RadiusGive("SimplyBackpack", 512, RGF_PLAYERS | RGF_NOSIGHT, 1)
 			EUAB A 0 Bright A_RadiusGive("BatteryPack", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
-			EUAB A 0 Bright A_RadiusGive("AK_MAG", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
+			EUAB A 0 Bright A_RadiusGive("MGRounds", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
 			EUAB A 0 Bright A_RadiusGive("Shellz", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
 			EUAB A 0 Bright A_RadiusGive("Roketammo", 512, RGF_PLAYERS | RGF_NOSIGHT, 120)
 			EUAB A 1 Bright A_RadiusGive("bagspawnerGosimersAmmoSphere", 512, RGF_PLAYERS | RGF_NOSIGHT, 1)

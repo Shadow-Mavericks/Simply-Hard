@@ -1240,7 +1240,7 @@ actor MiniSentryGun
 		SEMT C 1 A_PlaySoundEx ("Sentry/KunaiDED", "SoundSlot5")
 		SEMT C 0 A_SpawnItem ("SentryBoom", 0, 24)
 		SEMT C 0 A_DropItem("Chaingun", 1, 256)
-		SEMT C 0 A_DropItem("AK_MAG", 1, 256)
+		SEMT C 0 A_DropItem("MGRounds", 1, 256)
 		SEMT C 1
 	FadeOut:
 		SENT C 2 A_FadeOut (0.1)
@@ -1317,7 +1317,7 @@ Actor AmmoBelt : CustomInventory
     TNT1 A 0 A_GiveInventory("peastolClip", 72)
     TNT1 A 0 A_GiveInventory("Shellz", 20)
     TNT1 A 0 A_GiveInventory("SuperShellz", 20)
-    TNT1 A 0 A_GiveInventory("ak_mag", 150)
+    TNT1 A 0 A_GiveInventory("MGRounds", 150)
     TNT1 A 0 A_GiveInventory("RoketAmmo", 5)
     TNT1 A 0 A_GiveInventory("battery", 100)
     TNT1 A 0 A_GiveInventory("bfgcharge", 2)

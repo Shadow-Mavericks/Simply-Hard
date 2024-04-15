@@ -707,7 +707,7 @@ ACTOR HMachinegun : SH_Weapon
 	Weapon.SlotNumber 5
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 0 // Handled in ACS
-	Weapon.AmmoType "AK_MAG"
+	Weapon.AmmoType "MGRounds"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
