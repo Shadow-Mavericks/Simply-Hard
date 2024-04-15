@@ -18,6 +18,7 @@
 #include gl_defs/revghoul.gl
 #include gl_defs/rocketzombie.gl
 #include gl_defs/ssgzombie.gl
+#include gl_defs/puffs.gl
 #include gl_defs/soulreaper.gl
 #include gl_defs/xstars.gl
 #include gl_defs/darkforces.gl

@@ -1,4 +1,4 @@
-PlayerIDs
+GlobalData
 PlayerTicker
 ExtraLifeThingy
 Backpackexpander

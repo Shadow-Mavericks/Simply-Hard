@@ -1039,7 +1039,7 @@ Actor BurstShotgun : SH_Weapon
 			STBE C 1 Offset(0,39)
 			STBE C 1 Offset(0,37)
 			STBE C 1 Offset(0,35)
-			STBE BA 2		
+			STBE BA 2
 			Goto Ready
 			
 		Fire:

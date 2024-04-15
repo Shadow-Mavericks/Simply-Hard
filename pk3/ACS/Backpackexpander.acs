@@ -30,7 +30,7 @@ script "Playerbackpackupgrade" (void)
 	AddAmmoCapacity("PeastolClip", 25);
 	AddAmmoCapacity("Shellz",      10);
 	AddAmmoCapacity("SuperShellz", 10);
-	AddAmmoCapacity("MGRounds",      50);
+	AddAmmoCapacity("MGRounds",    50);
 	AddAmmoCapacity("RoketAmmo",   10);
 	AddAmmoCapacity("Battery",     50);
 	AddAmmoCapacity("BFGCHARGE",    1);

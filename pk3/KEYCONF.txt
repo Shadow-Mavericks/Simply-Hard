@@ -22,7 +22,7 @@ AddPlayerClass MaximusPrime
 WeaponSection "Simply-Hard"
 SetSlot 1 Fists Lightsaber SoulReaper ShieldGun UAC-Chainsaw DFFist
 SetSlot 2 Renettim9 Kunaisrevolver GosimersHandgun DFPistol
-SetSlot 3 D3shotgun Helltechshotgun CombatShotgun SuperShawtgun DFBlaster
+SetSlot 3 D3shotgun HelltechShotgun CombatShotgun SuperShawtgun DFBlaster
 SetSlot 4 Streetsweeper BurstShotgun D3Chaingun Autogun
 SetSlot 5 PDW Hmachinegun Rawketlawnchair FusionCutter
 SetSlot 6 Cryobow BoomToob DEPlasmaRifle MortarGun

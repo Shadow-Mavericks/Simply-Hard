@@ -17,20 +17,20 @@ actor ChainsawGiver : WeaponGiver_Base
 	States
 	{
 		Base:
-			2SAW A 70
-			goto CheckSprite
+			2SAW A -1
+			loop
 			
 		Kunai:
-			KBLD Z 70
-			goto CheckSprite
+			KBLD Z -1
+			loop
 
 		Gosimer:
-			2SAW A 70
-			goto CheckSprite
+			2SAW A -1
+			loop
 		
 		MaximusPrime:
-			LGSB R 70
-			goto CheckSprite
+			LGSB R -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_CHAINSAW) // Weapon Type
@@ -48,24 +48,24 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 	States
 	{
 		Base:
-			SHOT A 70
-			goto CheckSprite
+			SHOT A -1
+			loop
 			
 		Kunai:
-			SNGL Z 70
-			goto CheckSprite
+			SNGL Z -1
+			loop
 
 		Gosimer:
-			DSHT A 70
-			goto CheckSprite
+			DSHT A -1
+			loop
 		
 		MaximusPrime:
-			AGUN A 70
-			goto CheckSprite
+			AGUN A -1
+			loop
 
 		MaximusPrimeDropped:
-			BRIF A 70
-			goto CheckSprite
+			BRIF A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_SHOTGUN) // Weapon Type
@@ -84,20 +84,20 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 	States
 	{
 		Base:
-			SGN2 A 70
-			goto CheckSprite
+			SGN2 A -1
+			loop
 			
 		Kunai:
-			STSP A 70
-			goto CheckSprite
+			STSP A -1
+			loop
 
 		Gosimer:
-			STBE X 70
-			goto CheckSprite
+			STBE X -1
+			loop
 		
 		MaximusPrime:
-			FCUT A 70
-			goto CheckSprite
+			FCUT A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_SSG) // Weapon Type
@@ -117,24 +117,24 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 	States
 	{
 		Base:
-			FCGN A 70
-			goto CheckSprite
+			FCGN A -1
+			loop
 			
 		Kunai:
-			KPDW Z 70
-			goto CheckSprite
+			KPDW Z -1
+			loop
 
 		Gosimer:
-			DEGT A 70
-			goto CheckSprite
+			DEGT A -1
+			loop
 			
 		MaximusPrime:
-			BRIF A 70
-			goto CheckSprite
+			BRIF A -1
+			loop
 			
 		MaximusPrimeDropped:
-			AGUN A 70
-			goto CheckSprite
+			AGUN A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_CHAINGUN) // Weapon Type
@@ -154,20 +154,20 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 	States
 	{
 		Base:
-			DERL A 70
-			goto CheckSprite
+			DERL A -1
+			loop
 			
 		Kunai:
-			WBOW A 70
-			goto CheckSprite
+			WBOW A -1
+			loop
 
 		Gosimer:
-			GNTR Z 70
-			goto CheckSprite
+			GNTR Z -1
+			loop
 			
 		MaximusPrime:
-			MOGU A 70
-			goto CheckSprite
+			MOGU A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_ROCKET) // Weapon Type
@@ -187,20 +187,20 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 	States
 	{
 		Base:
-			DEPG A 70
-			goto CheckSprite
+			DEPG A -1
+			loop
 			
 		Kunai:
-			AMCC A 70
-			goto CheckSprite
+			AMCC A -1
+			loop
 
 		Gosimer:
-			THUN Z 70
-			goto CheckSprite
+			THUN Z -1
+			loop
 			
 		MaximusPrime:
-			CRIF A 70
-			goto CheckSprite
+			CRIF A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_PLASMA) // Weapon Type
@@ -220,20 +220,20 @@ actor BFGGiver : WeaponGiver_Base replaces BFG9000
 	States
 	{
 		Base:
-			BFUG A 70
-			goto CheckSprite
+			BFUG A -1
+			loop
 			
 		Kunai:
-			DCAN A 70
-			goto CheckSprite
+			DCAN A -1
+			loop
 
 		Gosimer:
-			DASS Z 70
-			goto CheckSprite
+			DASS Z -1
+			loop
 			
 		MaximusPrime:
-			ACAN B 70
-			goto CheckSprite
+			ACAN B -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_BFG) // Weapon Type

@@ -1,10 +1,10 @@
 #library "ExtraLifeThingy"
 #include "zcommon.acs"
+#import "GlobalData.acsx"
 
 // Stuff pertaining to the lives system. Written by StrikerTheHedgefox.
 
 global int 1:lives_at_end[];
-int timeOfDeath[64];
 bool justRevived;
 
 int spawn_pos[4];
@@ -53,7 +53,7 @@ script "STORELIVES" UNLOADING
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
 		terminate;
 
-	for(int i = 0; i < 64; i++)
+	for(int i = 0; i < MAX_PLAYERS; i++)
 	{
 		lives_at_end[i] = GetPlayerLivesLeft(i);
 	}
@@ -74,7 +74,7 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
-	timeOfDeath[pNum] = 0x7FFFFFFF;
+	p_status[pNum].time_of_death = 0x7FFFFFFF;
 
 	if(lives_at_end[pNum] > current_lives)
 		update_lives(lives_at_end[pNum]);
@@ -112,8 +112,8 @@ script "ADDLIFE" (void)
 
 script "RESETTIMEOFDEATH" OPEN // Resets time of death on level open.
 {
-	for(int i = 0; i < 64; i++)
-		timeOfDeath[i] = 0x7FFFFFFF;
+	for(int i = 0; i < MAX_PLAYERS; i++)
+		p_status[i].time_of_death = 0x7FFFFFFF;
 }
 
 script "RECORDDEATHTIME" DEATH // Records time of death to choose revive order.
@@ -122,7 +122,7 @@ script "RECORDDEATHTIME" DEATH // Records time of death to choose revive order.
 		terminate;
 
 	int pNum = PlayerNumber();
-	timeOfDeath[pNum] = Timer();
+	p_status[pNum].time_of_death = Timer();
 }
 
 script "REVIVEPLAYER" (void) NET
@@ -141,13 +141,13 @@ script "REVIVEPLAYER" (void) NET
 		terminate;
 	}
 	
-	for(int i = 0; i < 64; i++)
+	for(int i = 0; i < MAX_PLAYERS; i++)
 	{
 		if(PlayerIsSpectator(i) == 2)
 		{
-			if(timeOfDeath[i] < earliest_death_time)
+			if(p_status[i].time_of_death < earliest_death_time)
 			{
-				earliest_death_time = timeOfDeath[i];
+				earliest_death_time = p_status[i].time_of_death;
 				dead_longest = i;
 			}
 		}

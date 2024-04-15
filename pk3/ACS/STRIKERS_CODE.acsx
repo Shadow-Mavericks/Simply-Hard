@@ -1,88 +1,9 @@
 #Library "STRIKERS_CODE"
 #include "zcommon.acs"
+#import "GlobalData.acsx"
 
 // All code in this file is by StrikerTheHedgefox.
 // Please ask permission if you want to use this!
-
-function bool startsWithVowel(str string)
-{
-	switch (GetChar(string, 0))
-	{
-		case 'a':
-		case 'e':
-		case 'i':
-		case 'o':
-		case 'u':
-		case 'A':
-		case 'E':
-		case 'I':
-		case 'O':
-		case 'U':
-			return true;
-			break;
-	}
-
-	return false;
-}
-
-function int min (int a, int b)
-{
-	if (a < b)
-		return a;
-
-	return b;
-}
-
-function int max (int a, int b)
-{
-	if (a > b)
-		return a;
-
-	return b;
-}
-
-function int abs (int x)
-{
-	if (x < 0)
-		return -x;
-
-	return x;
-}
-
-function int clamp(int in, int min, int max)
-{
-	int out = (in < min) ? min : in;
-	return (out > max) ? max : out;
-}
-
-function str GetClassTag(str className)
-{
-	int uTID = UniqueTID();
-
-	if(!SpawnForced(className, 0, 0, 0, uTID, 0))
-		return className;
-
-	str tag = GetActorProperty(uTID, APROP_NameTag);
-	Thing_Remove(uTID);
-	return tag;
-}
-
-// Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
-// to have basic, important functions that have existed since 2016.
-function str ACSUtils_ChangeFlagName(str flag, bool value)
-{
-	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:(!!value));
-}
-
-function void ChangeFlag(str flag, bool value)
-{
-	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
-}
-
-function void ChangeActorFlag(int tid, str flag, bool value)
-{
-	GiveActorInventory(tid, ACSUtils_ChangeFlagName(flag, value), 1);
-}
 
 function int seek_string(str string, str substring, int startPos)
 {
@@ -695,26 +616,6 @@ function void actor_swap(str replace, str with, int chance)
 
 	return;
 }
-
-// [JM] These defs are missing from ACC for some buttfuckin' reason.
-/*
-#define GAMEEVENT_PLAYERFRAGS			0
-#define GAMEEVENT_MEDALS				1
-#define GAMEEVENT_CAPTURES				2
-#define GAMEEVENT_TOUCHES				3
-#define GAMEEVENT_RETURNS				4
-#define GAMEEVENT_ROUND_STARTS			5
-#define GAMEEVENT_ROUND_ENDS			6
-#define GAMEEVENT_ROUND_ABORTED			7
-#define GAMEEVENT_CHAT					8
-#define GAMEEVENT_PLAYERCONNECT			9
-#define GAMEEVENT_ACTOR_SPAWNED			10
-#define GAMEEVENT_ACTOR_DAMAGED			11
-#define GAMEEVENT_ACTOR_ARMORDAMAGED	12
-#define GAMEEVENT_DOMINATION_CONTROL	13
-#define GAMEEVENT_DOMINATION_POINT		14
-#define GAMEEVENT_PLAYERLEAVESSERVER	15
-*/
 
 #define ONE_16 (1<<16)
 

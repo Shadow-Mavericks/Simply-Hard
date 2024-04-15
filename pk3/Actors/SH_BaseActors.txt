@@ -117,6 +117,8 @@ actor UpgradeToken_Base : Inventory
 	+SLIDESONWALLS
 	+CANBLAST
 	+INVENTORY.UNDROPPABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
 }
 
 //////////////////////////////////////////////////////////////////
@@ -151,6 +153,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false)
+			TNT1 A 0 Thing_ChangeTID(0, 69069)
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")
 			TNT1 A 35 A_Jump(256, "Init")
@@ -166,15 +169,18 @@ actor AmmoGiver_Base : SH_FakeInventory
 			goto CheckSprite
 			
 		Base:
-			UNKN A 35
-			goto CheckSprite
+			UNKN A -1
+			loop
 			
 		Idle:
 			"####" "#" -1
 			stop
 
+		RecheckSprite:
+			"####" "#" 1
+			goto CheckSprite
 		CheckSprite:
-			"####" "#" 70 ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
 			loop
 	}
 }
@@ -189,6 +195,7 @@ actor WeaponGiver_Base : SH_FakeInventory
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_SetSpecial(84, 13237, 0, false)
+			TNT1 A 0 Thing_ChangeTID(0, 69069)
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")
 			TNT1 A 35 A_Jump(256, "Init")
@@ -204,15 +211,18 @@ actor WeaponGiver_Base : SH_FakeInventory
 			goto CheckSprite
 			
 		Base:
-			UNKN A 35
-			goto CheckSprite
+			UNKN A -1
+			loop
 			
 		Idle:
 			"####" "#" -1
 			stop
 
+		RecheckSprite:
+			"####" "#" 1
+			goto CheckSprite
 		CheckSprite:
-			"####" "#" 70 ACS_NamedExecuteWithResult("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
 			loop
 	}
 }

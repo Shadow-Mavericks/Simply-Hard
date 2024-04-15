@@ -1,36 +1,13 @@
 #library "PlayerTicker"
 #include "Zcommon.acs"
-
-// Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
-// to have basic, important functions that have existed since 2016.
-function str ACSUtils_ChangeFlagName(str flag, bool value)
-{
-	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:(!!value));
-}
-
-function void ChangeFlag(str flag, bool value)
-{
-	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
-}
-
-struct PlayerData_t
-{
-	int alarm_volume;
-	int invul_type;
-	int last_invul_type;
-	bool debuff_gravity;
-};
+#import "GlobalData.acsx"
 
 //////////////////////
 // Player Tick Handler
 //////////////////////
-#define MAX_PLAYERS 64
-
 #define INVUL_NONE 0
 #define INVUL_NORMAL 1
 #define INVUL_ULT 2
-
-PlayerData_t p_status[MAX_PLAYERS];
 
 str inv_music_list[] = {
 	"FP_INVUL",
@@ -163,9 +140,11 @@ script "SV_PLAYERTICKER" OPEN
 	}
 }
 
+int lastCameraPlayerClass;
 script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 {
 	int tickNum = 0;
+	int consolePlayer = ConsolePlayerNumber();
 	SetActivator(-1);
 
 	while(1)
@@ -204,6 +183,22 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			else
 			{
 				p_status[p].alarm_volume = 1.0;
+			}
+			
+			if(p == consolePlayer)
+			{
+				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
+				{
+					int pCam = PlayerNumber();
+					if(pCam != -1)
+					{
+						if(PlayerClass(pCam) != lastCameraPlayerClass)
+						{
+							SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
+							lastCameraPlayerClass = PlayerClass(pCam);
+						}
+					}
+				}
 			}
 		}
 

@@ -1,0 +1,96 @@
+#Library "GlobalData"
+#include "zcommon.acs"
+
+#libdefine MAX_PLAYERS 64
+#libdefine PICKUP_SPRITE_TAG 69069
+
+struct PlayerData_t
+{
+	int alarm_volume;
+	int invul_type;
+	int last_invul_type;
+	int time_of_death;
+	bool debuff_gravity;
+};
+
+PlayerData_t p_status[MAX_PLAYERS];
+
+function bool startsWithVowel(str string)
+{
+	switch (GetChar(string, 0))
+	{
+		case 'a':
+		case 'e':
+		case 'i':
+		case 'o':
+		case 'u':
+		case 'A':
+		case 'E':
+		case 'I':
+		case 'O':
+		case 'U':
+			return true;
+			break;
+	}
+
+	return false;
+}
+
+function int min (int a, int b)
+{
+	if (a < b)
+		return a;
+
+	return b;
+}
+
+function int max (int a, int b)
+{
+	if (a > b)
+		return a;
+
+	return b;
+}
+
+function int abs (int x)
+{
+	if (x < 0)
+		return -x;
+
+	return x;
+}
+
+function int clamp(int in, int min, int max)
+{
+	int out = (in < min) ? min : in;
+	return (out > max) ? max : out;
+}
+
+function str GetClassTag(str className)
+{
+	int uTID = UniqueTID();
+
+	if(!SpawnForced(className, 0, 0, 0, uTID, 0))
+		return className;
+
+	str tag = GetActorProperty(uTID, APROP_NameTag);
+	Thing_Remove(uTID);
+	return tag;
+}
+
+// Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
+// to have basic, important functions that have existed since 2016.
+function str ACSUtils_ChangeFlagName(str flag, bool value)
+{
+	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:(!!value));
+}
+
+function void ChangeFlag(str flag, bool value)
+{
+	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
+}
+
+function void ChangeActorFlag(int tid, str flag, bool value)
+{
+	GiveActorInventory(tid, ACSUtils_ChangeFlagName(flag, value), 1);
+}
