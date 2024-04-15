@@ -14771,7 +14771,7 @@ ACTOR FodderSoul
 
 ACTOR BlackHoleImp : DoomImp
 {
-	Health 50
+	Health 60
 	Radius 20
 	Height 42
 	Mass 1000
@@ -14874,7 +14874,7 @@ ACTOR BlackHoleImp : DoomImp
 		TNT1 AAA 0 A_SpawnItemEx("StarParticle", frandom(-4.0, 4.0), random(-4.0, 4.0), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI C 2 A_FaceTarget
 		TNT1 AAA 0 A_SpawnItemEx("StarParticle", frandom(-4.0, 4.0), random(-4.0, 4.0), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-		DKSI D 2 A_CustomMeleeAttack(32, "STARGUT", "STARMISS")
+		DKSI D 2 A_CustomMeleeAttack(20, "STARGUT", "STARMISS")
 		TNT1 AAA 0 A_SpawnItemEx("StarParticle", frandom(-4.0, 4.0), random(-4.0, 4.0), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI D 2 A_FaceTarget
 		goto See
@@ -14889,7 +14889,7 @@ ACTOR BlackHoleImp : DoomImp
 		TNT1 AAAA 0 A_SpawnItemEx("StarParticle", random(-4, 4), random(-4, 4), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI C 2 A_FaceTarget
 		TNT1 AAAA 0 A_SpawnItemEx("StarParticle", random(-4, 4), random(-4, 4), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
-		DKSI D 2 A_CustomMeleeAttack(16, "STARGUT", "STARMISS")
+		DKSI D 2 A_CustomMeleeAttack(10, "STARGUT", "STARMISS")
 		TNT1 AAAA 0 A_SpawnItemEx("StarParticle", random(-4, 4), random(-4, 4), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 		DKSI D 2 A_FaceTarget
 		TNT1 AAAA 0 A_SpawnItemEx("StarParticle", random(-4, 4), random(-4, 4), 5, 0, 0, -1, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
@@ -15045,7 +15045,7 @@ actor PulseDeathOrb
 			NEGB A 2 bright
 			TNT1 AAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 			TNT1 A 0 A_RadiusThrust(2500, 550)
-			TNT1 A 0 A_Explode(75, 192,"DarkStar")
+			TNT1 A 0 A_Explode(10, 128,"DarkStar")
 			TNT1 A 0 A_Quake(2, 25, 0, 1024)
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("StarParticle", 0, 0, 0, random(-6, -6), random(-6, 6), random(-6, 6), random(0, 360), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE)
 			goto Fade
