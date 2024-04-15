@@ -157,6 +157,24 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 
 			SetActivatorToPlayer(p);
 
+			if(p == consolePlayer)
+			{
+				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
+				{
+					int pCam = PlayerNumber();
+					if(pCam != -1)
+					{
+						if(PlayerClass(pCam) != lastCameraPlayerClass)
+						{
+							SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
+							lastCameraPlayerClass = PlayerClass(pCam);
+						}
+					}
+				}
+
+				SetActivatorToPlayer(p);
+			}
+
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
 
@@ -183,22 +201,6 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			else
 			{
 				p_status[p].alarm_volume = 1.0;
-			}
-			
-			if(p == consolePlayer)
-			{
-				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
-				{
-					int pCam = PlayerNumber();
-					if(pCam != -1)
-					{
-						if(PlayerClass(pCam) != lastCameraPlayerClass)
-						{
-							SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
-							lastCameraPlayerClass = PlayerClass(pCam);
-						}
-					}
-				}
 			}
 		}
 

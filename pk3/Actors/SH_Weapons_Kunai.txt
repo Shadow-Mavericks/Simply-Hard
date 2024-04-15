@@ -127,7 +127,7 @@ Actor PowerShieldGate : Powerup { }
 ACTOR ShieldGate : PowerupGiver
 {
 	Inventory.MaxAmount 0
-	Powerup.Duration 3
+	Powerup.Duration 5
 	Powerup.Type "ShieldGate"
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
@@ -152,7 +152,7 @@ actor ShieldBlast : CustomInventory
 	States
 	{
 		Use:
-			KPUF A 0 A_RadiusThrust(8000, 96, RTF_NOTMISSILE, 64) 
+			KPUF A 0 A_RadiusThrust(8192, 128, RTF_NOTMISSILE, 80) 
 			KPUF A 0 A_SpawnItemEx("ShieldBlastWave", 0, 0, 2, 0, 0, 0, frandom(-180, 180), SXF_NOCHECKPOSITION, 0)
 			KPUF A 0 A_RailWait
 			stop
