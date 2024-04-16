@@ -1177,7 +1177,7 @@ actor MiniSentryGun
 	Monster
 	ReactionTime 1
 	
-	Activation THINGSPEC_TriggerActs | THINGSpec_TriggerTargets
+	Activation THINGSPEC_TriggerActs | THINGSpec_TriggerTargets | THINGSPEC_NoDeathSpecial
 	
 	var int user_owner;
 	
@@ -1205,11 +1205,11 @@ actor MiniSentryGun
 	SpawnLoop:
 		SEMT AAAAAAAAAAAAAAAA  3 A_Look
 		SEMT A 0 A_PlaySound ("Sentry/Active")
-		SEMT A 0 A_SetSpecial(84, 13238)
 		loop
 	See:
 		SEMT AAAAAAAAAAAAAAAA 3 A_Chase
 		SEMT A 0 A_PlaySound ("Sentry/Active")
+		SEMT A 0 A_SetSpecial(84, 13238)
 		loop
 	Missile:
 		SEMT A 0 A_PlaySound ("Sentry/See")
