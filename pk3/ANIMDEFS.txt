@@ -57,44 +57,6 @@ Texture SPORT1
 	pic SPORT3 tics 2
 	pic SPORT2 tics 2
 
-Texture GATE1
-	pic CTEL1 tics 2
-	pic CTEL2 tics 2
-	pic CTEL3 tics 2
-	pic CTEL4 tics 2
-	pic CTEL5 tics 2
-	pic CTEL6 tics 2
-	pic CTEL7 tics 2
-	pic CTEL8 tics 4
-
-Texture GATE2
-	pic GTEL1 tics 2
-	pic GTEL2 tics 2
-	pic GTEL3 tics 2
-	pic GTEL4 tics 2
-	pic GTEL5 tics 2
-	pic GTEL6 tics 2
-	pic GTEL7 tics 2
-	pic GTEL8 tics 4
-
-Texture GATE3
-	pic HTEL1 tics 40
-	pic HTEL2 tics 2
-	pic HTEL3 tics 2
-	pic HTEL4 tics 40
-	pic HTEL3 tics 2
-	pic HTEL2 tics 2
-
-Texture GATE4
-	pic SPORT1 tics 4
-	pic SPORT2 tics 2
-	pic SPORT3 tics 2
-	pic SPORT4 tics 2
-	pic SPORT5 tics 2
-	pic SPORT4 tics 2
-	pic SPORT3 tics 2
-	pic SPORT2 tics 2
-
 // Blood animation -------------------------------------------------------------
 
 flat BLOOD1

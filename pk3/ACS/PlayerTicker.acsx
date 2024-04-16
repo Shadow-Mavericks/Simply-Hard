@@ -40,10 +40,10 @@ script "SV_PLAYERTICKER" OPEN
 				continue;
 
 			SetActivatorToPlayer(p);
-			
+
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
-			
+
 			// Check for invulnerability types.
 			if(CheckInventory("PowerFiendUlt"))
 				p_status[p].invul_type = INVUL_ULT;
@@ -51,7 +51,7 @@ script "SV_PLAYERTICKER" OPEN
 				p_status[p].invul_type = INVUL_NORMAL;
 			else
 				p_status[p].invul_type = INVUL_NONE;
-			
+
 			// If our invulnerability type changes from the last recorded, set music.
 			if(p_status[p].last_invul_type != p_status[p].invul_type)
 			{
@@ -105,16 +105,16 @@ script "SV_PLAYERTICKER" OPEN
 				// Ability Charge Regen
 				if(CheckInventory("PowerStrength") && !(tickNum % 52))
 					GiveInventory("AbilityCharge", 1);
-				
+
 				if(!(tickNum % 105))
 				{
 					if((GetActorProperty(0, APROP_Health) > 200))
 						SetActorProperty(0, APROP_Health, GetActorProperty(0, APROP_Health)-1);
 					if(CheckInventory("BasicArmor") > 200)
 						TakeInventory("BasicArmor", 1);
-					
+
 				}
-				
+
 				if(CheckInventory("Armor") > 0 && !GetArmorType("NullArmorHack", p))
 				{
 					int oldArmor = CheckInventory("BasicArmor");
@@ -123,7 +123,7 @@ script "SV_PLAYERTICKER" OPEN
 					if(GetCVar("sh_debug_armor"))
 						log(s:"Swapping armor type to NullArmorHack");
 				}
-				
+
 				// Don't bleed if we're over 50 shield.
 				if(CheckInventory("BasicArmor") > 50)
 				{
@@ -134,7 +134,7 @@ script "SV_PLAYERTICKER" OPEN
 					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
 			}
 		}
-		
+
 		SetActivator(-1);
 		delay(1);
 	}
@@ -152,13 +152,9 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 		tickNum++;
 		for(int p = 0; p < MAX_PLAYERS; p++)
 		{
-			if(!PlayerInGame(p))
-				continue;
-
-			SetActivatorToPlayer(p);
-
 			if(p == consolePlayer)
 			{
+				SetActivatorToPlayer(p);
 				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
 				{
 					int pCam = PlayerNumber();
@@ -171,9 +167,12 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 						}
 					}
 				}
-
-				SetActivatorToPlayer(p);
 			}
+
+			if(!PlayerInGame(p))
+				continue;
+
+			SetActivatorToPlayer(p);
 
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
