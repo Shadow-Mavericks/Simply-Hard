@@ -67,6 +67,14 @@ actor SpecialHax : Inventory // General purpose hack for monsters & items.
 	-INVENTORY.INTERHUBSTRIP
 }
 
+actor TeleportHax : ArtiTeleport
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 0
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+}
+
 actor SentryHealth : Inventory // Used to track how much health a picked up sentry has left.
 {
 	Inventory.Amount 1

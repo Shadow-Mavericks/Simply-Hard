@@ -2206,3 +2206,16 @@ script "MANNCO_PICK" (int tier)
 	HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 320.4, 144.1, 5.0, 0.01, 0.5);
 	SetActorState(0, pickedState, false);
 }
+
+script "UNSTICK_PLAYER" (str who)
+{
+	for(int p = 0; p < MAX_PLAYERS; p++)
+	{
+		if(!PlayerInGame(p))
+			continue;
+
+		SetActivatorToPlayer(p);
+
+		GiveInventory("TeleportHax", 1);
+	}
+}
