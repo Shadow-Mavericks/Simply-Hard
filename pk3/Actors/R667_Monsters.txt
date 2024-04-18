@@ -10983,52 +10983,52 @@ ACTOR FreezeRifleGuy
 
 actor ZombieFreezeBlast
 {
-  Radius 13
-  Height 8
-  Speed 25
-  Damage 6
-  Projectile
-  +RANDOMIZE
-  RenderStyle Add
-  Alpha 0.75
-  scale 0.9
-  SeeSound "weapons/iceshot"
-  DeathSound "weapons/icehit"
-  DamageType Ice
-  Decal FreezeBlastMelt
-  States
-  {
-  Spawn:
-    FBLS AAA 6 bright A_SpawnItem("FreezeBlastTrail")
-    loop
-  Death:
-    FBLS BCDE 4 bright
-    stop
-  }
+	Radius 13
+	Height 8
+	Speed 25
+	Damage (20)
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 0.75
+	scale 0.9
+	SeeSound "weapons/iceshot"
+	DeathSound "weapons/icehit"
+	DamageType Ice
+	Decal FreezeBlastMelt
+	States
+	{
+		Spawn:
+			FBLS AAA 6 bright A_SpawnItem("FreezeBlastTrail")
+			loop
+		Death:
+			FBLS BCDE 4 bright
+			stop
+	}
 }
 
 actor FreezeBlastTrail
 {
-  Radius 13
-  Height 8
-  Speed 20
-  Damage 0
-  DamageType Ice
-  Projectile
-  +RANDOMIZE
-  RenderStyle Add
-  Alpha 0.75
-  SeeSound "weapons/iceshot"
-  DeathSound "weapons/icehit"
-  States
-  {
-  Spawn:
-    FRTR ABC 6 bright A_FadeOut(0.2)
-    loop
-  Death:
-    FRTR ABC 4 bright
-    stop
-  }
+	Radius 13
+	Height 8
+	Speed 20
+	Damage 0
+	DamageType Ice
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 0.75
+	SeeSound "weapons/iceshot"
+	DeathSound "weapons/icehit"
+	States
+	{
+		Spawn:
+			FRTR ABC 6 bright A_FadeOut(0.2)
+			loop
+		Death:
+			FRTR ABC 4 bright
+			stop
+	}
 }
 
 //Rictus, a new monster by Captain Toenail//
