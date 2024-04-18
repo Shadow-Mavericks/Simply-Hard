@@ -12107,7 +12107,7 @@ actor Squire : BaronOfHell
 	Scale 0.9
 	Obituary "%o was scorched by a Squire."
 	HitObituary "%o was torn up by a Squire."
-	health 225
+	health 200
 	gibhealth 50
 	radius 20
 	height 56
