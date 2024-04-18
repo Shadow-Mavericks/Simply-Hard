@@ -1,0 +1,6 @@
+VoteType Unstick
+{
+	Arg = Str;
+	Action = CallACS ("UNSTICK_PLAYER");
+	ForbidCVar = sh_vote_unstick_disabled;
+}
