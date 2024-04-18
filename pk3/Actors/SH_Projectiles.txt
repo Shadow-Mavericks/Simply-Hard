@@ -151,8 +151,6 @@ Actor Rockettrail1
 
 ACTOR CRocket : Rocket //Recolor by Fiend Kitsune
 {
-	Game Doom
-	SpawnID 127
 	Radius 11
 	Height 8
 	Speed 20
@@ -184,8 +182,6 @@ ACTOR CRocket : Rocket //Recolor by Fiend Kitsune
 
 ACTOR FiendsCRocket : Rocket //Recolor by Fiend Kitsune
 {
-	Game Doom
-	SpawnID 127
 	Radius 11
 	Height 8
 	Speed 60

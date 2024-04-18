@@ -981,12 +981,10 @@ ACTOR CryoBow : SH_Weapon
 }
 
 
-ACTOR Streetsweeper : SH_Weapon 8467
+ACTOR Streetsweeper : SH_Weapon
 {
 	Tag "Street Sweeper"
 	Weapon.PreferredSkin "SSG-Marine"
-	Game Doom
-	SpawnID 28
 	Weapon.SelectionOrder 1
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 0 // Handled in ACS
@@ -1076,7 +1074,6 @@ Actor PDW : SH_Weapon
 	Weapon.PreferredSkin "Carbine-Marine"
 	Game Doom
 	scale 1
-	SpawnID 28
 	Weapon.SelectionOrder 3
 	Weapon.SlotNumber 4
 	Inventory.Forbiddento "Maximusprime"

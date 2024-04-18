@@ -460,8 +460,6 @@ Actor Legendaryarmor : Custominventory
 
 ACTOR Legendary-Armor : BasicArmorPickup
 {
-	Game Doom
-	SpawnID 69
 	Radius 20
 	Height 16
 	Inventory.PickupMessage "Picked up the Legendary armor!!! +999"
@@ -515,8 +513,6 @@ Actor Kunaisabilityfilter : CustomInventory
 
 ACTOR DEMONENERGY
 {
-	Game Doom
-	SpawnID 69
 	Radius 8
 	Height 16
 	RenderStyle Add
@@ -639,8 +635,6 @@ ACTOR DEMONENERGY
 
 ACTOR DEMON_ENERGY_BASE : CustomInventory
 {
-	Game Doom
-	SpawnID 69
 	Radius 8
 	Height 16
 	scale 0.5

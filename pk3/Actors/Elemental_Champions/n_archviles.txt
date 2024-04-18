@@ -1,7 +1,6 @@
 ACTOR N_Archvile_Base : Monster_Base 
 {
 	Game Doom
-	SpawnID 111
 	Health 700
 	Radius 20
 	Height 56

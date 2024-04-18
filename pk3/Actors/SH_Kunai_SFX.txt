@@ -48,8 +48,6 @@ ACTOR TallGreentorch : Greentorch replaces Greentorch
 
 ACTOR DemonSoulheart
 {
-  Game Doom
-  SpawnID 69
   Radius 20
   Height 16
   RenderStyle Add
@@ -73,8 +71,6 @@ ACTOR DemonSoulheart
 
 ACTOR Demonsoulfragment1
 {
-  Game Doom
-  SpawnID 69
   Radius 20
   Height 16
   RenderStyle Add
@@ -98,8 +94,6 @@ ACTOR Demonsoulfragment1
 
 ACTOR Demonsoulfragment2
 {
-  Game Doom
-  SpawnID 69
   Radius 20
   Height 16
   RenderStyle Add
@@ -123,8 +117,6 @@ ACTOR Demonsoulfragment2
 
 ACTOR Demonsoulfragment3
 {
-  Game Doom
-  SpawnID 69
   Radius 20
   Height 16
   RenderStyle Add
@@ -148,8 +140,6 @@ ACTOR Demonsoulfragment3
 
 ACTOR Demonsoulfragment4
 {
-  Game Doom
-  SpawnID 69
   Radius 20
   Height 16
   RenderStyle Add

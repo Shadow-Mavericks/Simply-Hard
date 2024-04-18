@@ -2940,8 +2940,6 @@ ACTOR A-Bipedicus : Commonus
 ACTOR BipedicusBallV3
 {
 	Game Chex
-	SpawnID 10
-	SpawnID 10
 	Radius 6
 	Height 8
 	Speed 10

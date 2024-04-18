@@ -466,10 +466,8 @@ actor LightningPuff_Painless : LightningPuff
 
 ACTOR Lightning_Rifle: SH_Weapon
 {
-	Game Doom
 	Scale 0.8
 	Height 20
-	SpawnID 31
 	Weapon.SelectionOrder 7
 	Weapon.SlotNumber 7
 	Weapon.AmmoUse 1
@@ -616,10 +614,8 @@ ACTOR Devistator_shell
 
 ACTOR micro_Devistator : SH_Weapon
 {
-	Game Doom
 	Scale 0.8
 	Height 20
-	SpawnID 31
 	Weapon.SelectionOrder 8
 	Weapon.slotnumber 8
 	Weapon.AmmoUse 1

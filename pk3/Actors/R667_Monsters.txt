@@ -1346,7 +1346,6 @@ ACTOR DFlare
   Height 5
   Speed 25
   Damage 2
-  SpawnID 252
   RenderStyle Add
   DamageType Fire
   Alpha 0.85
@@ -1621,7 +1620,6 @@ Actor BruiserMissile
   Speed 20
   Damage 5
   Scale 1.0
-  SpawnID 251
   Projectile
   RenderStyle Normal
   +ThruGhost
@@ -1966,7 +1964,6 @@ ACTOR TerminatorBlaster
    Height 12
    Speed 24
    Damage 15
-   SpawnID 251
    PROJECTILE
    RENDERSTYLE ADD
    alpha 0.85
@@ -2284,7 +2281,6 @@ Actor Comet
   Height 8
   Speed 10
   Damage 2
-  SpawnID 250
   Scale 0.55
   Projectile
   SeeSound "Afrit/CometFire"
@@ -4331,8 +4327,6 @@ ACTOR Rocketzombie
 
 ACTOR cyberImp
 {
-  Game Doom
-  SpawnID 5
   Health 100
   Radius 20
   Height 56
@@ -4400,8 +4394,6 @@ ACTOR cyberImp
 
 ACTOR DarkcyberImp
 {
-  Game Doom
-  SpawnID 5
   Health 100
   Radius 20
   Height 56
@@ -5637,7 +5629,6 @@ ACTOR InfernoBomb
    Speed 15
    Damage 0
    DamageType "Inferno"
-   SpawnID 250
    Scale 1.0
    PROJECTILE
    RENDERSTYLE ADD
@@ -5820,7 +5811,6 @@ ACTOR Lavaball
    Damage 6
    DamageType "Inferno"
    Obituary "%o was sent to burn in the fires of hell for an eternity."
-   SpawnID 250
    Scale 1.0
    PROJECTILE
    RENDERSTYLE ADD
@@ -9917,8 +9907,7 @@ ACTOR FakePoe4 : FakePoe1
 
  ACTOR CrackoDemon
 {
-	//$Category DECORATE
-	SpawnID 175
+	//$Category Monsters
 	Health 500
 	Speed 10
 	Radius 32
@@ -10994,8 +10983,6 @@ ACTOR FreezeRifleGuy
 
 actor ZombieFreezeBlast
 {
-  Game Doom
-  SpawnID 51
   Radius 13
   Height 8
   Speed 25
@@ -11022,8 +11009,6 @@ actor ZombieFreezeBlast
 
 actor FreezeBlastTrail
 {
-  Game Doom
-  SpawnID 51
   Radius 13
   Height 8
   Speed 20

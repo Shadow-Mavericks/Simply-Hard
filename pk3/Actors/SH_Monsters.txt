@@ -5,8 +5,6 @@
 ACTOR SH_Zombieman
 {
 	Tag "Zombieman"
-	Game Doom
-	SpawnID 4
 	Health 20
 	Radius 20
 	Height 56
@@ -178,8 +176,6 @@ actor EnemySentryGun
 
 ACTOR Hardimp : DoomImp
 {
-	Game Doom
-	SpawnID 5
 	Health 60
 	Radius 20
 	Height 56
@@ -357,8 +353,6 @@ ACTOR Critimp : DoomImp
 ACTOR HardRevenant
 {
 	Tag "Revenant"
-	Game Doom
-	SpawnID 20
 	Health 300
 	Radius 20
 	Height 56
@@ -544,8 +538,6 @@ ACTOR FastSpectre : FastDemon
 ACTOR HardCaco
 {
 	Tag "Cacodemon"
-	Game Doom
-	SpawnID 19
 	Health 400
 	Radius 31
 	Height 56
@@ -629,8 +621,6 @@ ACTOR HardCaco
 ACTOR HardShotgunGuy
 {
 	Tag "Shotgunner"
-	Game Doom
-	SpawnID 1
 	Health 30
 	Radius 20
 	Height 56
@@ -746,8 +736,6 @@ ACTOR HardShotgunGuy2 : HardShotgunGuy
 
 ACTOR Hardsoul
 {
-	Game Doom
-	SpawnID 110
 	Health 60
 	Radius 16
 	Height 56
@@ -807,8 +795,6 @@ ACTOR Hardsoul
 }
 ACTOR Hardchaingunguy
 {
-	Game Doom
-	SpawnID 2
 	Health 70
 	Radius 20
 	Height 56
@@ -889,8 +875,6 @@ ACTOR Hardchaingunguy
 
 ACTOR HARDCyberdemon
 {
-	Game Doom
-	SpawnID 114
 	Health 4000
 	Radius 40
 	Height 110
@@ -968,8 +952,6 @@ ACTOR HARDCyberdemon
 
 ACTOR HardVile
 {
-  Game Doom
-  SpawnID 111
   Health 600
   Radius 20
   Height 56

@@ -142,8 +142,6 @@ Actor Ultimatetimefreeze : PowerupGiver
 
 ACTOR Megasphere1 : Custominventory //Gosimer and kunais version (300 max hp)
 {
-	Game Doom
-	SpawnID 132
 	+COUNTITEM
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.QUIET
@@ -166,8 +164,6 @@ ACTOR Megasphere1 : Custominventory //Gosimer and kunais version (300 max hp)
 
 ACTOR Megasphere2 : Custominventory //Fiends version (max 200 hp)
 {
-	Game Doom
-	SpawnID 132
 	+COUNTITEM
 	+DONTGIB
 	+INVENTORY.ALWAYSPICKUP
