@@ -112,46 +112,6 @@ Model MediumBloodSpot      // Name of actor in DECORATE
 }
 
 
-
-
-
-
-
-
-
-
-
-Model Green_BloodSpot      // Name of actor in DECORATE
-{
-   Path "models/bloodspot"    // Path to model in PK3
-   Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "greenstain.png"     // Model index, texture (can be in any format supported by GZDoom)
-   Scale 50.0 50.0 50.0            // Scale values
-   ZOffset 0.7
-   FrameIndex BPDL B 0 0         // The sprite lump, sprite frame, model index, frame number
-}
-
-Model Green_BloodSpot      // Name of actor in DECORATE
-{
-   Path "models/bloodspot"    // Path to model in PK3
-   Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "greenstain.png"     // Model index, texture (can be in any format supported by GZDoom)
-   Scale 60.0 60.0 60.0            // Scale values
-   ZOffset 0.7
-   FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
-}
-
-
-Model GreenGiantBloodSpot      // Name of actor in DECORATE
-{
-   Path "models/bloodspot"    // Path to model in PK3
-   Model 0 "bloodspot.md3"    // Model index, model file
-   Skin 0 "greenpool.png"     // Model index, texture (can be in any format supported by GZDoom)
-   Scale 80.0 80.0 80.0            // Scale values
-   ZOffset 0.7
-   FrameIndex BPDL A 0 0         // The sprite lump, sprite frame, model index, frame number
-}
-
 model DispenserBubble
 {
 	Path "Models"

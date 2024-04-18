@@ -1,28 +1,27 @@
 actor BloodTrails
 {
-Decal BrutalBloodSplat
- game Doom
+	Decal BrutalBloodSplat
 	Alpha 0.4
-+FORCEXYBILLBOARD
-+GHOST
-+NOBLOCKMAP
-Gravity 0.05
-+NOCLIP
-  +DontSplash
--EXPLODEONWATER
--ALLOWPARTICLES 
-+CLIENTSIDEONLY
--NOGRAVITY
-Scale 1.2
- states
- {
-  Spawn:
-	    TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
-        //BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.01)
-        TNT1 AAAAAA 0 A_CustomMissile ("BloodTr255G", 0, 0, random (0, 360), 2, random (0, 180))
-        //BLOD A 0 A_SpawnItem ("Big_Blood", 0, 10)
-        stop
- }
+	Gravity 0.05
+	+FORCEXYBILLBOARD
+	+GHOST
+	+NOBLOCKMAP
+	+NOCLIP
+	+DontSplash
+	-EXPLODEONWATER
+	-ALLOWPARTICLES 
+	+CLIENTSIDEONLY
+	-NOGRAVITY
+	Scale 1.2
+	states
+	{
+		Spawn:
+			TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
+			//BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FadeOut(0.01)
+			TNT1 AAAAAA 0 A_CustomMissile ("BloodTr255G", 0, 0, random (0, 360), 2, random (0, 180))
+			//BLOD A 0 A_SpawnItem ("Big_Blood", 0, 10)
+			stop
+	}
 }
 
 

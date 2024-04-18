@@ -339,7 +339,7 @@ ACTOR DripingBloodLeavesPool: TinyBlood
 			stop
 		Death:
 			TNT1 A 0
-			TNT1 A 0 A_SpawnItemEx("MediumBloodSpot", 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("MediumBloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_PlaySound("blooddrop")
 			XDT1 EFGHIJKL 2
 			stop
@@ -352,7 +352,7 @@ ACTOR DripingBloodLeavesSmallPool: DripingBloodLeavesPool
 	States
 	{
 		Death:
-			TNT1 A 0 A_SpawnItemEx("MinusculeBloodSpot", 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("MinusculeBloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_PlaySound("blooddrop")
 			XDT1 EFGHIJKL 2
 			stop
@@ -362,13 +362,12 @@ ACTOR DripingBloodLeavesSmallPool: DripingBloodLeavesPool
 // Blood trails spawned by FlyingBlood
 actor Brutal_FlyingBloodTrail
 {
-	game Doom
+	Speed 2
+	Alpha 0.7
 	Scale 0.70
 	Mass 0
 	RenderStyle Translucent
-	Alpha 0.7
 	Decal BrutalBloodSplat
-	Speed 2
 	+MISSILE
 	+LOWGRAVITY
 	+NOTELEPORT
@@ -410,10 +409,10 @@ actor BloodTr: Brutal_FlyingBloodTrail
 actor BloodTr2: Brutal_FlyingBloodTrail
 {
 	Speed 4
-	alpha 0.7
-	scale 1.1
-	-NOGRAVITY
+	Alpha 0.7
+	Scale 1.1
 	Gravity 0.6
+	-NOGRAVITY
 	states
 	{
 		Spawn:
@@ -429,10 +428,10 @@ actor BloodTr2: Brutal_FlyingBloodTrail
 actor BloodTr3: Brutal_FlyingBloodTrail
 {
 	Speed 6
-	alpha 0.7
+	Alpha 0.7
 	Scale 1.1
-	-NOGRAVITY
 	Gravity 0.9
+	-NOGRAVITY
 	states
 	{
 		Spawn:
@@ -482,23 +481,13 @@ actor BloodTr255: Brutal_FlyingBloodTrail
 	}
 }
 
-actor BloodTr255G: Brutal_FlyingBloodTrail
+actor BloodTr255G : BloodTr255
 {
 	Speed 3
 	Alpha 0.6
 	Scale 0.7
 	Gravity 0.8
 	-NOGRAVITY
-	states
-	{
-		Spawn:
-			TNT1 A 0 NoDelay A_JumpIf(waterlevel > 1, "Splash")
-			BTRL ABCD 3
-			stop
-		Death:
-			TNT1 A 0
-			Stop
-	}
 }
 
 actor Brutal_FlyingBloodFaster: Brutal_FlyingBloodTrail
@@ -861,52 +850,6 @@ ACTOR GoreBloodFly: Brutal_FlyingBlood
 {
  speed 10
 }
-
-actor Blue_Blood : Brutal_Blood
-{
-translation "168:191=192:207","16:47=240:247"
-Decal BlueBloodSplat
- states
- {
-  Spawn:
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
-		TNT1 AAA 0 A_CustomMissile ("Blue_FlyingBloodTrail", 15, 0, random (0, 360), 2, random (0, 180))
-		TNT1 AAAAAA 0 A_CustomMissile ("Blue_FlyingBloodTrail", 0, 0, random (0, 180), 2, random (0, 180))
-		TNT1 A 0 A_CustomMissile ("Blue_FlyingBlood", 32, 0, random (0, 360), 2, random (0, 160))
-stop
- }
-}
-
-actor Blue_FlyingBlood: Brutal_FlyingBlood
-{
-translation "168:191=192:207","16:47=240:247"
-Decal BlueBloodSplat
-states
-{
-	 Death:
-	   TNT1 A 1 A_SpawnItem("Blue_BloodSpot",0,0,0,1)
-		XDT1 EFGHIJKL 3
-	   Stop
-}
-}
-
-actor Blue_FlyingBloodTrail: Brutal_FlyingBloodTrail
-{
-Decal BlueBloodSplat
-translation "168:191=192:207","16:47=240:247"
-}
-
-actor Blue_BloodSpot: Brutal_BloodSpot
-{
-Decal BlueBloodSplat
-translation "168:191=192:207","16:47=240:247"
-Decal BlueBloodSplat
-}
-
-
-
-
-
 
 
 ACTOR WallRedBlood

@@ -28,8 +28,6 @@
 #include "actors/SH_MannCoBoxes.txt"
 
 #include "actors/gore/Decorate_Fluids.txt"
-#include "actors/gore/Decorate_Greenfluids.txt"
-#include "actors/gore/Decorate_GreenMeat.txt"
 #include "actors/gore/Decorate_Meat.txt"
 #include "actors/gore/Decorate_Supergore.txt"
 
