@@ -55,7 +55,7 @@ actor Brutal_Blood : Blood Replaces Blood
 			TNT1 A 0 A_JumpIf(waterlevel > 1, "Splash")
 			TNT1 AA 0 A_SpawnItemEx("SuperGoreBloodTr255", 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION, 0)
 			TNT1 A 0 A_PlaySound("misc/xdeath2")
-			TNT1 AA 0 A_CustomMissile ("Brutal_FlyingBlood", 7, 0, random (0, 360), 2, random (30, 150))
+			TNT1 AA 0 A_SpawnItemEx("Brutal_FlyingBlood", 0, 0, 7, frandom(-7.0, 7.0), 0, frandom(2.0, 8.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION, 32)
 			BLBD BCD 0
 			TNT1 A 5
 			stop
@@ -168,14 +168,14 @@ ACTOR Brutal_FlyingBlood
 			TNT1 A 0 A_JumpIf(z <= (floorz+4.0), "SpawnFloorBlood")
 			goto Splat
 		SpawnCeilBlood:
-			TNT1 A 0 A_SpawnItemEx("CeilBloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("CeilBloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			goto Splat
 		SpawnFloorBlood:
-			TNT1 A 0 A_SpawnItemEx("Brutal_BloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("Brutal_BloodSpot", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			goto Splat
 		Splat:
 			TNT1 A 0 A_PlaySound("blooddrop")
-			TNT1 AAAAA 0 A_CustomMissile ("BloodTr255", 0, 0, random (0, 360), 2, random (0, 360))
+			TNT1 AAAAA 0 A_SpawnItemEx("BloodTr255", 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(0.0, 2.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			TNT1 A 1
 			Stop
 	}
@@ -279,26 +279,26 @@ actor CeilBloodSpot: Brutal_BloodSpot
 	{
 		Spawn:
 			BPDL BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Warp(AAPTR_DEFAULT, 0, 0, (ceilingz-floorz)-1, angle, WARPF_TOFLOOR | WARPF_ABSOLUTEANGLE | WARPF_STOP | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE)
-			TNT1 A 0 A_SpawnItemEx("DripingBloodLeavesSmallPool", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("DripingBloodLeavesSmallPool", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION, 0)
 			TNT1 A 0 A_SetUserVar("user_loops", 0)
 			goto SpawnLoop
 		SpawnLoop:
 			BPDL BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB 1 A_Warp(AAPTR_DEFAULT, 0, 0, (ceilingz-floorz)-1, angle, WARPF_TOFLOOR | WARPF_ABSOLUTEANGLE | WARPF_STOP | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE)
-			TNT1 A 0 A_SpawnItemEx("TinyBlood", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("TinyBlood", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION, 0)
 			TNT1 A 0 A_SetUserVar("user_loops", user_loops+1)
 			TNT1 A 0 A_JumpIf(user_loops < 5, "SpawnLoop")
 			TNT1 A 0 A_SetUserVar("user_loops", 0)
 			goto SpawnLoop2
 		SpawnLoop2:
 			BPDL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_DEFAULT, 0, 0, (ceilingz-floorz)-1, angle, WARPF_TOFLOOR | WARPF_ABSOLUTEANGLE | WARPF_STOP | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE)
-			TNT1 A 0 A_SpawnItemEx("TinyBlood", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("TinyBlood", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION, 0)
 			TNT1 A 0 A_SetUserVar("user_loops", user_loops+1)
 			TNT1 A 0 A_JumpIf(user_loops < 5, "SpawnLoop2")
 			goto Die
 		Die:
 			TNT1 A 1
 			stop
-	
+
 		Splash:
 			BLBD A 0
 			stop
@@ -339,7 +339,7 @@ ACTOR DripingBloodLeavesPool: TinyBlood
 			stop
 		Death:
 			TNT1 A 0
-			TNT1 A 0 A_SpawnItem("MediumBloodSpot")
+			TNT1 A 0 A_SpawnItemEx("MediumBloodSpot", 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_PlaySound("blooddrop")
 			XDT1 EFGHIJKL 2
 			stop
@@ -352,7 +352,7 @@ ACTOR DripingBloodLeavesSmallPool: DripingBloodLeavesPool
 	States
 	{
 		Death:
-			TNT1 A 0 A_SpawnItem("MinuscleBloodSpot")
+			TNT1 A 0 A_SpawnItemEx("MinusculeBloodSpot", 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_PlaySound("blooddrop")
 			XDT1 EFGHIJKL 2
 			stop
@@ -849,7 +849,7 @@ Decal BrutalBloodSplat
 		TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("BloodTr255", 0, 0, random (0, 360), 2, random (0, 360))
 		TNT1 A 0 A_CustomMissile ("Brutal_FlyingBlood", 7, 0, random (0, 360), 2, random (0, 160))
 		TNT1 A 0 A_SpawnItem ("BloodHit")
-		
+
 		stop
 	Splash:
 		BLBD A 0
@@ -925,7 +925,7 @@ ACTOR WallRedBlood
    +CLIENTSIDEONLY
    +NOTELEPORT
    +NOBLOCKMAP
-	+BLOODLESSIMPACT 
+	+BLOODLESSIMPACT
 	+THRUACTORS
 	States
 	{
@@ -963,7 +963,7 @@ ACTOR MediumInfiniteBlood: Brutal_FlyingBlood
 		Death:
 			TNT1 A 0 A_PlaySound("blooddrop")
 			TNT1 A 0 A_SpawnItem ("MediumBloodSpot", 1)
-			TNT1 A 0  
+			TNT1 A 0
 			stop
 	}
 }
@@ -985,7 +985,7 @@ actor BloodDying : Brutal_Blood
 	}
 }
 
-actor MinuscleBloodSpot: Brutal_BloodSpot
+actor MinusculeBloodSpot: Brutal_BloodSpot
 {
 	Scale 0.25
 }
@@ -1008,7 +1008,7 @@ actor SuperGoreBloodTr255: Brutal_FlyingBloodTrail
 			Stop
 	}
 }
- 
+
 
 actor SuperGoreUnderwater: Brutal_FlyingBloodTrail
 {
@@ -1039,7 +1039,7 @@ actor Brutal_AxeBlood : AxeBlood Replaces AxeBlood
 	+NOGRAVITY
 	+NOCLIP
 	-DONTSPLASH
-	-ALLOWPARTICLES 
+	-ALLOWPARTICLES
 	Speed 0
 	states
 	{
