@@ -7,6 +7,7 @@ ACTOR N_Cacodemon_Base : Monster_Base
 	Speed 15
 	PainChance 128
 	PainChance "Mightyboot", 255
+	BloodColor Blue
 	+FLOAT
 	+NOGRAVITY
 	SeeSound "caco/sight"
