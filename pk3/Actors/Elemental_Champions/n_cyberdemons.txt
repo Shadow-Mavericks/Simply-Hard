@@ -6,16 +6,17 @@ ACTOR N_Cyberdemon_Base : Monster_Base
 	Mass 1000
 	Speed 16
 	MinMissileChance 160
-	+BOSS
-	+MISSILEMORE
-	+NORADIUSDMG
-	+DONTMORPH
-	+Dontrip
 	SeeSound "cyber/sight"
 	PainSound "cyber/pain"
 	DeathSound "cyber/death"
 	ActiveSound "cyber/active"
 	Obituary "$OB_CYBORG"
+	MissileType "Rawket"
+	+BOSS
+	+MISSILEMORE
+	+NORADIUSDMG
+	+DONTMORPH
+	+DONTRIP
 	States
 	{
 		Spawn:
@@ -30,12 +31,12 @@ ACTOR N_Cyberdemon_Base : Monster_Base
 			CYBR D 3 A_Chase
 			Loop
 		Missile:
-			CYBR E 24 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket",40,-27,0)
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket",40,-27,0)
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket",40,-27,0)
+			CYBR E 12 A_FaceTarget
+			CYBR F 12 Bright A_MissileAttack
+			CYBR E 12 A_FaceTarget
+			CYBR F 12 Bright A_MissileAttack
+			CYBR E 12 A_FaceTarget
+			CYBR F 12 Bright A_MissileAttack
 			Goto See
 		Pain:
 			CYBR G 10 A_Pain
@@ -70,17 +71,17 @@ ACTOR N_Cyberdemon_Base : Monster_Base
 
 //Translation "48:79=[128, 255, 128]:[32, 64, 32]", 
 
-actor Crocket_Acid : Crocket
+actor Rocket_Acid : Rawket
 { 
 	DamageType "Acid" 
 }
 
-actor Crocket_Void : Crocket
+actor Rocket_Void : Rawket
 { 
 	DamageType "Void" 
 }
 
-actor Crocket_Electric : Crocket
+actor Rocket_Electric : Rawket
 { 
 	DamageType "Electric" 
 	states
@@ -88,7 +89,7 @@ actor Crocket_Electric : Crocket
 		Spawn:
 			MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0)
 			MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0)
-			CRCK A 1 A_SpawnItemEx("Particle_Lightning16")
+			MISL A 1 A_SpawnItemEx("Particle_Lightning16")
 			Loop
 		Death:
 			MISL B 0 Bright A_Explode
@@ -104,158 +105,84 @@ actor Crocket_Electric : Crocket
 	}
 }
 
-actor Crocket_Ice : Crocket
+actor Rocket_Ice : Rawket
 { 
 	DamageType "Ice" 
 }
 
-actor Crocket_Fire : Crocket
+actor Rocket_Fire : Rawket
 { 
 	DamageType "Fire" 
 }
 
-actor Crocket_Heavymetal : Crocket
+actor Rocket_Heavymetal : Rawket
 { 
 	DamageType "Heavymetal" 
 }
 
 ACTOR N_Cyberdemon_Acid : N_Cyberdemon_Base 
 {
-	//	Scale 1.1
-	+Dontrip
 	PainChance 20
+	MissileType "Rocket_Acid"
 	Translation "48:79=[128, 255, 128]:[32, 64, 32]", "144:151=[128, 255, 128]:[32, 64, 32]"
-	States
-	{
-		Missile:
-			CYBR E 24 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, 0)
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Acid",40,-27, random(-45, 45))
-			Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_Void : N_Cyberdemon_Base 
 {
-	//	Scale 1.1
-	+Dontrip
 	PainChance 30
+	MissileType "Rocket_Void"
 	Translation "48:79=[192, 128, 255]:[16, 0, 32]", "144:151=[192, 128, 255]:[16, 0, 32]"
-	States
-	{
-		Missile:
-			CYBR E 24 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, 0)
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
-			CYBR E 6 A_FaceTarget
-			CYBR F 6 Bright A_CustomMissile ("Crocket_Void",40,-27, random(-45, 45))
-			Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_Fire : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
-  PainChance 20
+	PainChance 20
+	MissileType "Rocket_Fire"
 	Translation "48:79=[255, 128, 0]:[64, 32, 0]", "144:151=[255, 128, 0]:[64, 32, 0]"
-	States
-	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Fire",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Fire",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Fire",40,-27, random(-45, 45))
-    Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_Electric : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
-  PainChance 40
+	PainChance 40
+	MissileType "Rocket_Electric"
 	Translation "48:79=[255, 255, 96]:[64, 64, 32]", "144:151=[255, 255, 96]:[64, 64, 32]"
-	States
-	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Electric",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Electric",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Electric",40,-27, random(-45, 45))
-    Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_Ice : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
-  PainChance 10
+	PainChance 10
+	MissileType "Rocket_Ice"
 	Translation "48:79=[128, 192, 255]:[32, 48, 64]", "144:151=[128, 192, 255]:[32, 48, 64]"
-	States
-	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Ice",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Ice",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Ice",40,-27, random(-45, 45))
-    Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_HeavyMetal : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
 	Painchance 0
+	MissileType "Rocket_HeavyMetal"
 	Translation "48:79=[255, 255, 255]:[0, 0, 0]", "144:151=[255, 255, 255]:[0, 0, 0]"
-	States
-	{
-	  Missile:
-    CYBR E 24 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Heavymetal",40,-27, 0)
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Heavymetal",40,-27, random(-45, 45))
-    CYBR E 6 A_FaceTarget
-	CYBR F 6 Bright A_CustomMissile ("Crocket_Heavymetal",40,-27, random(-45, 45))
-    Goto See
-	}
 }
 
 ACTOR N_Cyberdemon_Magic : N_Cyberdemon_Base 
 {
-//	Scale 1.1
-+Dontrip
 	PainChance 40
 	Translation "48:79=[0, 128, 255]:[32, 32, 32]", "144:151=[0, 128, 255]:[32, 32, 32]", "1:1=[0, 16, 32]:[0, 16, 32]"
 	States
 	{
-	  Missile:
-    CYBR E 6 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_acid",40,-27, random(-45, 45))
-    CYBR E 3 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_fire",40,-27, random(-45, 45))
-    CYBR E 3 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_Ice",40,-27, random(-45, 45))
-	CYBR E 3 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_void",40,-27, random(-45, 45))
-    CYBR E 3 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_metal",40,-27, random(-45, 45))
-    CYBR E 3 A_FaceTarget
-	CYBR F 1 Bright A_CustomMissile ("Baronball_electric",40,-27, random(-45, 45))
-	CYBR F 0 A_SpidRefire
-    Goto See
+		Missile:
+			CYBR E 6 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_acid",40,-27, random(-45, 45))
+			CYBR E 3 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_fire",40,-27, random(-45, 45))
+			CYBR E 3 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_Ice",40,-27, random(-45, 45))
+			CYBR E 3 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_void",40,-27, random(-45, 45))
+			CYBR E 3 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_metal",40,-27, random(-45, 45))
+			CYBR E 3 A_FaceTarget
+			CYBR F 1 Bright A_CustomMissile ("Baronball_electric",40,-27, random(-45, 45))
+			CYBR F 0 A_SpidRefire
+			Goto See
 	}
 }
 
