@@ -50,7 +50,8 @@ Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 	Dropitem "N_Imp_Ice"			255 5
 	Dropitem "RocketImp"			255 5
 	Dropitem "SH_Vulgar"			255 5
-	Dropitem "BlackHoleImp"			255 3
+	Dropitem "Squire"				255 2
+	Dropitem "BlackHoleImp"			255 1
 }
 
 Actor ChaingunZambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
