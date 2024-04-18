@@ -133,6 +133,10 @@ actor RocketGiver : AmmoGiver_Base replaces RocketAmmo
 			MRTA A -1
 			loop
 			
+		Kunai:
+			ABOW ABCD 3 Bright
+			loop
+			
 		Gosimer:
 			GOSG A -1
 			loop
