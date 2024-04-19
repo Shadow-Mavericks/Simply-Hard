@@ -43,19 +43,22 @@ ACTOR RenettiM9 : SH_Weapon
 			NULL A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Goldfire")
 			FR9G A 0 A_Playsound("depisto",Chan_weapon)
 			NULL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-			FR9G B 1 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
-			FR9G C 1 BRIGHT
-			FR9G E 1
+			FR9G B 0 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FR9G B 1 BRIGHT A_SetPitch(pitch-0.25, SPF_INTERPOLATE)
+			FR9G C 1 BRIGHT A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
+			FR9G E 1 A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
 			FR9G A 0 A_Playsound("depisto",Chan_weapon)
 			NULL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-			FR9G B 1 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
-			FR9G C 1 BRIGHT
-			FR9G E 1
+			FR9G B 0 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FR9G B 1 BRIGHT A_SetPitch(pitch-0.25, SPF_INTERPOLATE)
+			FR9G C 1 BRIGHT A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
+			FR9G E 1 A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
 			FR9G A 0 A_Playsound("depisto",Chan_weapon)
 			NULL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 0, 1)
-			FR9G B 1 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
-			FR9G C 1 BRIGHT
-			FR9G D 1
+			FR9G B 0 BRIGHT A_FireBullets(2, 2, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FR9G B 1 BRIGHT A_SetPitch(pitch-0.25, SPF_INTERPOLATE)
+			FR9G C 1 BRIGHT A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
+			FR9G D 1 A_SetPitch(pitch+0.125, SPF_INTERPOLATE)
 			FR9G E 1
 			FR9G F 2
 			FR9G G 3

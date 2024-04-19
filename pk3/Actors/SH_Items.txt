@@ -30,7 +30,7 @@ Actor Greenarmorbonus : Custominventory
 			"####" "#" 1
 			goto CheckSprite
 		CheckSprite:
-			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
 			loop
 		Idle:
 			"####" "#" -1
@@ -97,7 +97,7 @@ Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
 			"####" "#" 1
 			goto CheckSprite
 		CheckSprite:
-			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
 			loop
 		Idle:
 			"####" "#" -1
@@ -159,7 +159,7 @@ Actor BluearmorFilter : CustomInventory Replaces Bluearmor
 			"####" "#" 1
 			goto CheckSprite
 		CheckSprite:
-			"####" "#" 1 A_ClientsideExecute("SET_PICKUP_SPRITE")
+			"####" "#" 1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
 			loop
 		Idle:
 			"####" "#" -1

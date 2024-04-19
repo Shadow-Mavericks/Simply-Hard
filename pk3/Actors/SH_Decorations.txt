@@ -1,0 +1,15 @@
+ACTOR Doggomeat : Meat2 Replaces meat2
+{
+	+SOLID
+	+NOGRAVITY
+	+SPAWNCEILING
+	States
+	{
+	Spawn:
+		ADOG A 15
+		ADOG BCD 9
+		ADOG E 15
+		ADOG DCB 9
+		loop
+	}
+}

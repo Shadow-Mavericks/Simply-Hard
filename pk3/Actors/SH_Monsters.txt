@@ -2492,28 +2492,6 @@ ACTOR FemalePlasma
 	}
 }
 
-
-//Random decoration becuse I don't feel like adding a new txt file for 1 thing... <__<
-
-ACTOR Doggomeat : Meat2 Replaces meat2
-{
-	Game Doom
-	Radius 16
-	Height 84
-	+SOLID
-	+NOGRAVITY
-	+SPAWNCEILING
-	States
-	{
-	Spawn:
-		GOR2 A 15
-		GOR2 BCD 9
-		GOR2 E 15
-		GOR2 DCB 9
-		loop
-	}
-}
-
 // Kuzcos white rabbit - Holy grail this isnt
 
 ACTOR whiterabbit : SH_BaseMonster

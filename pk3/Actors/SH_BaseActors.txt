@@ -180,7 +180,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 			"####" "#" 1
 			goto CheckSprite
 		CheckSprite:
-			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
 			loop
 	}
 }
@@ -222,7 +222,7 @@ actor WeaponGiver_Base : SH_FakeInventory
 			"####" "#" 1
 			goto CheckSprite
 		CheckSprite:
-			"####" "#" -1 A_ClientsideExecute("SET_PICKUP_SPRITE")
+			"####" "#" -1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
 			loop
 	}
 }
