@@ -76,3 +76,14 @@ model ConcussionBlast
 
 	FrameIndex BULL A 0 0
 }
+
+model Bluelaser
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "DarkBlueTracer.png"
+	Scale 16.0 3.0 3.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLSR A 0 0
+}

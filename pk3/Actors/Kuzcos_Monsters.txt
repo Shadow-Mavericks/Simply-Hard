@@ -2222,86 +2222,80 @@ ACTOR Steam
 
 Actor LaserGunMajor : ChaingunGuy
 {
-  Health 120
-  Painchance 40
-  Mass 5000
-  Obituary "%o was perforated by the Lasergunun major."
-  Decal "Pulse"
-  Dropitem "Batterypackspecial" 128
-  Dropitem "Plasmarifle" 50
-  States
-  {
-  Spawn:
-    LSGC AB 10 A_Look
-    Loop
-  See:
-    LSGC AABBCCDD 3 A_Chase
-    Loop
-  Missile:
-    LSGC E 10 A_FaceTarget
-    LSGC F 3 A_custommissile("Bluelaser",32,0, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
-	LSGC F 0 A_playsound("LDroid/Attack")
-	LSGC E 3 A_custommissile("Bluelaser",32,0, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
-	LSGC E 0 A_playsound("LasergunMajor/Attack")
-    LSGC F 1 A_CPosRefire
-	LSGC E 0 A_FaceTarget
-    Goto missile+1
-  Pain:
-    LSGC G 3
-    LSGC G 3 A_Pain
-    Goto See
-  Death:
-    LSGC H 5
-    LSGC I 5 A_Scream
-    LSGC J 5 A_Fall
-    LSGC KLMNO 5
-    LSGC P -1 A_BossDeath
-    Stop
-  XDeath:
-    LSGC Q 5 
-    LSGC R 5 A_XScream
-    LSGC S 5 A_Fall
-    LSGC TUVW 5
-    LSGC X -1
-    Stop
-  Raise:
-    LSGC P 5
-    LSGC ONMLKJIH 5
-    Goto See
-  }
+	Health 120
+	Painchance 40
+	Mass 5000
+	Obituary "%o was perforated by the Lasergunun major."
+	Decal "Pulse"
+	Dropitem "Batterypackspecial" 128
+	Dropitem "Plasmarifle" 50
+	States
+	{
+		Spawn:
+			LSGC AB 10 A_Look
+			Loop
+		See:
+			LSGC AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			LSGC E 10 A_FaceTarget
+			LSGC F 0 A_PlaySound("LasergunMajor/Attack", CHAN_WEAPON)
+			LSGC F 3 A_CustomMissile("Bluelaser", 34, 6, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+			LSGC E 3 A_FaceTarget
+			LSGC F 0 A_PlaySound("LasergunMajor/Attack", CHAN_WEAPON)
+			LSGC F 3 A_CustomMissile("Bluelaser", 34, 6, random(4, -4), CMF_OFFSETPITCH, random(2, -2))
+			LSGC E 3 A_FaceTarget
+			LSGC E 0 A_CPosRefire
+			Goto Missile+1
+		Pain:
+			LSGC G 3
+			LSGC G 3 A_Pain
+			Goto See
+		Death:
+			LSGC H 5
+			LSGC I 5 A_Scream
+			LSGC J 5 A_Fall
+			LSGC KLMNO 5
+			LSGC P -1 A_BossDeath
+			Stop
+		XDeath:
+			LSGC Q 5 
+			LSGC R 5 A_XScream
+			LSGC S 5 A_Fall
+			LSGC TUVW 5
+			LSGC X -1
+			Stop
+		Raise:
+			LSGC P 5
+			LSGC ONMLKJIH 5
+			Goto See
+	}
 }
 
 Actor Bluelaser
 {
- Projectile
- Damage 3
- Height 5
- Radius 10
- Speed 50
- Scale 0.5
- Renderstyle add
- Damagetype Fire
- DeathSound "weapons/plasmax"
- Decal "Pulse"
- +FLOAT
- +NOGRAVITY
- +BLOODLESSIMPACT
- +FORCEPAIN
- States
- {
- Spawn:
- BLSR A 1 BRIGHT
- LOOP
- Death:
- BLSX A 2 BRIGHT
- BLSX B 2 BRIGHT
- BLSX C 2 BRIGHT
- BLSX D 2 BRIGHT
- BLSX E 2 BRIGHT
- BLSX F 2 BRIGHT
- BLSX G 2 BRIGHT
- Stop
- }
+	Projectile
+	Damage (10)
+	Height 5
+	Radius 10
+	Speed 50
+	Scale 0.5
+	Renderstyle add
+	Damagetype Fire
+	DeathSound "weapons/plasmax"
+	Decal "Pulse"
+	+NOGRAVITY
+	+BLOODLESSIMPACT
+	+FORCEPAIN
+	States
+	{
+		Spawn:
+			BLSR A 1 BRIGHT
+			LOOP
+		Death:
+			BLSX ABCDEFG 2 BRIGHT
+			Stop
+	}
 }
 
 ACTOR Flyingcybermind : Cyberdemon

@@ -9833,8 +9833,8 @@ Offset 0 0 0
 
 Object Bluelaser
 {
-Frame BLSR { Light Bluelaserlight }
-Frame BLSX { Light Bluelaserlight2 }
+	Frame BLSR { Light Bluelaserlight }
+	Frame BLSX { Light Bluelaserlight2 }
 }
 
 Object DarkMatterBall
