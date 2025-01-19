@@ -152,7 +152,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false)
+			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false) // Set special to AMMO_PICKUP ACS Script (13236)
 			TNT1 A 0 Thing_ChangeTID(0, 69069)
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")
@@ -194,7 +194,7 @@ actor WeaponGiver_Base : SH_FakeInventory
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay A_SetSpecial(84, 13237, 0, false)
+			TNT1 A 0 NoDelay A_SetSpecial(84, 13237, 0, false) // Set special to WEAPON_PICKUP ACS Script (13237)
 			TNT1 A 0 Thing_ChangeTID(0, 69069)
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 0 A_CheckFlag("DROPPED", "Dropped")

@@ -1194,7 +1194,7 @@ actor MiniSentryGun
 	states
 	{
 	Spawn:
-		TNT1 A 0 NoDelay A_SetSpecial(84, 13238)
+		TNT1 A 0 NoDelay A_SetSpecial(84, 13238) // Set special to PICK_UP_SENTRY ACS Script (13238)
 		goto SpawnLoop
 	SpawnLoop:
 		SEMT AAAAAAAAAAAAAAAA  3 A_Look
@@ -1203,7 +1203,7 @@ actor MiniSentryGun
 	See:
 		SEMT AAAAAAAAAAAAAAAA 3 A_Chase
 		SEMT A 0 A_PlaySound ("Sentry/Active")
-		SEMT A 0 A_SetSpecial(84, 13238)
+		SEMT A 0 A_SetSpecial(84, 13238) // Set special to PICK_UP_SENTRY ACS Script (13238) - Again, because Zan loves to fucking clear it for some shitting reason.
 		loop
 	Missile:
 		SEMT A 0 A_PlaySound ("Sentry/See")
