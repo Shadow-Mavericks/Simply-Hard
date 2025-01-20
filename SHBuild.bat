@@ -93,6 +93,7 @@ GOTO COMPILEACS
 
 :DEVBUILD_CONTINUED
 echo Compiling Simply Hard Dev Build...
+cd /d %~dp0
 del .\builds\Simply-Hard_DEV.pk3 /q
 del .\pk3\*.tmp /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
@@ -109,6 +110,7 @@ GOTO COMPILEACS
 
 :RELEASEBUILD_CONTINUED
 echo Compiling Simply Hard Release Rev#: %REVISIONNUMBER% (Full Compression)...
+cd /d %~dp0
 del .\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
@@ -144,8 +146,11 @@ for %%f in (*.acsx) do (
 	)
 )
 
-IF BUILD_TYPE 2 GOTO RELEASEBUILD_CONTINUED
-IF BUILD_TYPE 1 GOTO DEVBUILD_CONTINUED
+if %BUILD_TYPE% == 2 (
+	GOTO RELEASEBUILD_CONTINUED
+) else if %BUILD_TYPE% == 1 (
+	GOTO DEVBUILD_CONTINUED
+)
 
 pause
 goto MENU

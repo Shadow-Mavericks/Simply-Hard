@@ -40,7 +40,16 @@ Script "SV_yourbestnightmare" (Void)
 
 Script "UsedJoy" (void)
 {
-	LocalSetMusic("Joy_use");
+	if(CheckActorClass(0, "MaximusPrime"))
+	{
+		LocalSetMusic("sesb-08");
+	}
+	else
+	{
+		LocalSetMusic("Joy_use");
+	}
+	
+	
 	Delay(1575);
 	GiveInventory("Joywithdrawl", 1);
 	LocalSetMusic("Joywthdl");
