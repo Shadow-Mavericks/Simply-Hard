@@ -52,7 +52,16 @@ Script "UsedJoy" (void)
 	
 	Delay(1575);
 	GiveInventory("Joywithdrawl", 1);
-	LocalSetMusic("Joywthdl");
+	
+	if(CheckActorClass(0, "MaximusPrime"))
+	{
+		LocalSetMusic("srtj-13");
+	}
+	else
+	{
+		LocalSetMusic("Joywthdl");
+	}
+	
 	Delay(1575);
 	LocalSetMusic("*");
 }
