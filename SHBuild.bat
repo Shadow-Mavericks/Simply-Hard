@@ -29,6 +29,7 @@ for /f "delims=" %%i in ('git rev-list HEAD --count') do (
 )
 
 :MENU
+SET BUILD_TYPE=0
 cd /d %~dp0
 cls
 
@@ -87,6 +88,10 @@ IF ERRORLEVEL 2 GOTO RELEASEBUILD
 IF ERRORLEVEL 1 GOTO DEVBUILD
 
 :DEVBUILD
+SET BUILD_TYPE=1
+GOTO COMPILEACS
+
+:DEVBUILD_CONTINUED
 echo Compiling Simply Hard Dev Build...
 del .\builds\Simply-Hard_DEV.pk3 /q
 del .\pk3\*.tmp /q
@@ -99,6 +104,10 @@ pause
 goto MENU
 
 :RELEASEBUILD
+SET BUILD_TYPE=2
+GOTO COMPILEACS
+
+:RELEASEBUILD_CONTINUED
 echo Compiling Simply Hard Release Rev#: %REVISIONNUMBER% (Full Compression)...
 del .\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
@@ -134,6 +143,9 @@ for %%f in (*.acsx) do (
 		del %%~nf.err
 	)
 )
+
+IF BUILD_TYPE 2 GOTO RELEASEBUILD_CONTINUED
+IF BUILD_TYPE 1 GOTO DEVBUILD_CONTINUED
 
 pause
 goto MENU

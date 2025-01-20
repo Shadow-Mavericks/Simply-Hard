@@ -23,7 +23,7 @@ Actor Greenarmorbonus : Custominventory
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069)
+			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
 			goto CheckSprite
 		
 		RecheckSprite:
@@ -91,7 +91,7 @@ Actor GreenarmorFilter : CustomInventory Replaces Greenarmor
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069)
+			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
 			goto CheckSprite
 		RecheckSprite:
 			"####" "#" 1
@@ -153,7 +153,7 @@ Actor BluearmorFilter : CustomInventory Replaces Bluearmor
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069)
+			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
 			goto CheckSprite
 		RecheckSprite:
 			"####" "#" 1
