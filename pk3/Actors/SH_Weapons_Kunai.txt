@@ -1190,7 +1190,7 @@ Actor KunaisKar98 : SH_Weapon
 	Scale 1.0
 	Weapon.PreferredSkin "Carbine-Marine"
 	Weapon.AmmoUse1 1
-	Weapon.AmmoGive1 5
+	Weapon.AmmoGive1 0 // Handled in ACS
 	Weapon.AmmoType1 "Railslugs"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5

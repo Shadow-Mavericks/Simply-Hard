@@ -960,7 +960,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					{
 						actor_swap("AK47", "ChaingunGiver", 256);
 						actor_swap("Yithgun", "PlasmaRifleGiver", 256);
-						actor_swap("ImpalerXBow", "Railgundrop", 256);
+						actor_swap("ImpalerXBow", "RailgunGiver", 256);
 						actor_swap("Devil", "Imps", 64);
 						actor_swap("RapidFireTrooper", "Zamble", 64);
 						actor_swap("UndeadHunter", "Shotgunzamble", 64);
@@ -1560,6 +1560,35 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 			}
 			break;
 		}
+		
+		case WEAPON_RAILGUN:
+		{
+			weapon_class = "FiendsRailgun";
+			ammo1_class = "Railslugs";
+			ammo1_amount = 10;
+
+			if(CheckActorClass(0, "Fiend"))
+			{
+				pickupsound_new = "weapon/RAILGET";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				weapon_class = "KunaisKar98";
+				ammo1_amount = 5;
+				ammo1_name = "7.92x57mm Mauser Round";
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				weapon_class = "Propulsion_Rifle";
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "DisruptorRifle";
+				ammo1_amount = 8;
+				ammo1_name = "Disruptor Cell";
+			}
+			break;
+		}
 
 		case WEAPON_BFG:
 		{
@@ -1898,7 +1927,7 @@ MannCoBoxData_t tier2_good[] =
 	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
 	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
 	{ "A Gaster Blaster!",				"Gaster",			8,	DELAY_NONE },
-	{ "Drugs?!",						"Joy",				2,	DELAY_NONE },
+	{ "Drugs?!",						"Joy",				5,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier2_bad[] =
@@ -1988,7 +2017,7 @@ MannCoBoxData_t tier5_good[] =
 	{ "A Kan-Kan Powerup!",						"KanKan",			15,		DELAY_NONE },
 	{ "An Invulnerability Powerup!",			"Invuln",			8,		DELAY_NONE },
 	{ "An Energy Tank!", 						"ETank",			5,		DELAY_NONE },
-	{ "Legendary Armor!",						"WINRAR",			2,		DELAY_NONE },
+	{ "Legendary Armor!",						"WINRAR",			3,		DELAY_NONE },
 	{ "A Megasphere... \cgAnd an archvile!",	"MegaSphereArchie",	75,		DELAY_NONE },
 	{ "An Extra Life... \cgAnd a White Rabbit!","ExtraLifeRabbit",	30,		DELAY_NONE },
 	{ "A Barf Bonanza!",						"VomitAll",			50,		DELAY_NONE },
@@ -2004,9 +2033,9 @@ MannCoBoxData_t tier5_bad[] =
 	{ "Corrupt Trio!",					"CorruptTrio",		50,		DELAY_BOSSLAUGH },
 	{ "Deja Vu!",						"DejaVu",			50,		DELAY_NONE },
 	{ "Kart Racists!",					"Kartrape",			50,		DELAY_NONE },
-	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	15,		DELAY_BOSSLAUGH },
-	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	15,		DELAY_BOSSLAUGH },
-	{ "A Horde of Ettins!",				"EttinHordeSpawn",	15,		DELAY_BOSSLAUGH },
+	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	25,		DELAY_BOSSLAUGH },
+	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	25,		DELAY_BOSSLAUGH },
+	{ "A Horde of Ettins!",				"EttinHordeSpawn",	25,		DELAY_BOSSLAUGH },
 };
 
 script "TALLY_WEIGHTS" OPEN

@@ -12,13 +12,16 @@ function void AddAmmoCapacity(str class, int amount)
 	GiveInventory(class, amount);
 }
 
-script "Playerbackpackupgrade" (void)
+script "BACKPACK_BELT_HANDLER" (int force_give_only)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	give_only = false;
 	if (GetAmmoCapacity("Battery") >= 800)
+		give_only = true;
+		
+	if(force_give_only)
 		give_only = true;
 		
 	if(!give_only)

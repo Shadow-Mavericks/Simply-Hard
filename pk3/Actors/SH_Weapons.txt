@@ -444,7 +444,7 @@ ACTOR FiendsRailgun : SH_Weapon
 	Weapon.PreferredSkin "Carbine-Marine"
 	Weapon.SelectionOrder 700
 	Weapon.AmmoUse 2
-	Weapon.AmmoGive 10
+	Weapon.AmmoGive 0 // Handled in ACS.
 	Weapon.AmmoType "Railslugs"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -457,7 +457,7 @@ ACTOR FiendsRailgun : SH_Weapon
 	Inventory.RestrictedTo "Fiend"
 	Inventory.PickupMessage "Fiends Lazer gun"
 	Obituary "(%K got gibbed by Fiend's Lazer gun"
-	Tag "Fiends Railgun"
+	Tag "Fiend's Railgun"
 	States
 	{
 	Ready:
@@ -591,7 +591,7 @@ ACTOR FiendsRailgun : SH_Weapon
 		RLGG A 1 Offset ( -26, 70 )
 		goto Ready
 	Spawn:
-		RLGN A -1
+		RAIL A -1
 		Stop
 	}
 }

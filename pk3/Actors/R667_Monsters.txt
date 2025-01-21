@@ -361,7 +361,7 @@ ACTOR RailArachnotron
 	+FLOORCLIP
 	+Bossdeath
 	+NEVERFAST
-    Dropitem "Railgundrop" 128
+	Dropitem "RailgunGiver" 128
 	SeeSound "baby/sight"
 	PainSound "baby/pain"
 	DeathSound "baby/death"
@@ -3800,7 +3800,7 @@ ACTOR ASGGuy
 
 ACTOR BeamRevenant : HardRevenant
 {
-	Dropitem "Railgundrop" 128
+	Dropitem "RailgunGiver" 128
 	HitObituary "%o was punched by a Beam Revenant."
 	Obituary "%o couldn't was caught in a Beam Revenant's crosshairs."
 	States

@@ -479,7 +479,7 @@ ACTOR SimplyBackpack : CustomInventory
 			AMXP A 1
 			loop
 		Pickup:
-			BPAK A 0 ACS_NamedExecuteWithResult("Playerbackpackupgrade",0,0,0,0)
+			BPAK A 0 ACS_NamedExecuteWithResult("BACKPACK_BELT_HANDLER", 0)
 			Stop
 	}
 }

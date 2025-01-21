@@ -214,6 +214,39 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 	}
 }
 
+actor RailgunGiver : WeaponGiver_Base
+{
+	//$Sprite RAILA0
+	States
+	{
+		Base:
+			RAIL A -1
+			loop
+			
+		Kunai:
+			K98G A -1
+			loop
+
+		Gosimer:
+			GSNP G -1
+			loop
+			
+		MaximusPrime:
+			DIRF A -1
+			loop
+
+		Init:
+			TNT1 A 0 A_SetArg(1, WEAPON_RAILGUN) // Weapon Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 90)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 90)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
+
 actor BFGGiver : WeaponGiver_Base replaces BFG9000
 {
 	//$Sprite BFUGA0

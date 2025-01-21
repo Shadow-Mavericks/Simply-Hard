@@ -1197,14 +1197,15 @@ Actor BurstShotgun : SH_Weapon
 	}
 }
 
-Actor Propulsion_Cannon : SH_Weapon
+Actor Propulsion_Rifle : SH_Weapon
 {
+	Tag "Propulsion Rifle"
 	Weapon.PreferredSkin "Carbine-Marine"
 	Radius 20
 	Height 16
 	Weapon.Selectionorder 100
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 10
+	Weapon.AmmoGive 0 // Handled in ACS
 	Weapon.AmmoType "Railslugs"
 	Weapon.SlotNumber 6 // This line isn't in skulltag.pk3, which instead defines the slot directly in DoomPlayer
 	Inventory.Pickupmessage "$PICKUP_RAILGUN" // "You got the railgun!"

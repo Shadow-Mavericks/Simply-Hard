@@ -34,43 +34,6 @@ Actor GLdrop : CustomInventory replaces Grenadelauncher
   }
 }
 
-Actor SKULLTAG_RAILGUNDROP : CustomInventory Replaces Railgun
-{
-  Radius 12
-  Height 18
-  scale 0.1
-  +INVENTORY.ALWAYSPICKUP
-  Inventory.PickupSound ""
-  Inventory.PickupMessage "You got a railgun"
-  States
-  {
-  Spawn:
-    RGBX A 7
-    RGBX B 7
-	RGBX C 7
-    loop
-  pickup:
-    TNT1 A 0 A_JumpIfInventory ("Kunaitoken", 1,"Kunaipickup")
-    TNT1 A 0 A_JumpIfInventory ("Gosimertoken",1,"GosimerPickup")
-    TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
-	TNT1 A 0 A_PLAYSOUND("weapon/RAILGET",chan_6)
-    TNT1 A 0 A_Giveinventory("FiendsRailgun")
-    Stop
-  Kunaipickup:
-    TNT1 A 0 A_playsound("weapon/RAILGET",chan_6)
-    TNT1 A 0 A_Giveinventory("Kunaiskar98")
-    Stop
-  Gosimerpickup:
-    TNT1 A 0 A_Playsound("weapon/RAILGET",chan_6)
-    TNT1 A 0 A_Giveinventory("Propulsion_Cannon")
-    Stop
-  Maxpickup:
-    TNT1 A 0 A_Playsound("Max/HealthBonus",chan_6)
-    TNT1 A 0 A_Giveinventory("DisruptorRifle")
-    Stop
-  }
-}
-
 Actor BUFFGABDROP : CustomInventory replaces BFG10k
 {
   Radius 12
