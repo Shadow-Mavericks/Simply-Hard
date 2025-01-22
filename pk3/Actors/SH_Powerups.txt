@@ -438,7 +438,7 @@ Actor Medbag : CustomInventory //
 	}
 }
 
-Actor GosimersBackpack : CustomInventory Replaces Backpack
+Actor GosimersBackpack : CustomInventory
 {
 	Radius 4
 	Height 18
@@ -461,7 +461,7 @@ Actor GosimersBackpack : CustomInventory Replaces Backpack
 	}
 }
 
-ACTOR SimplyBackpack : CustomInventory
+ACTOR SimplyBackpack : CustomInventory replaces Backpack
 {
 	Height 32
 	Radius 24

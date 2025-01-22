@@ -1945,7 +1945,8 @@ int tier3_totalweight[2];
 int tier3_numentries[2];
 MannCoBoxData_t tier3_good[] =
 {
-	{ "A Medical Bag.",					"MedBag",			75,	DELAY_NONE },
+	{ "A Mysterious Ammo Bag...",		"GosBackpack",		75,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			64,	DELAY_NONE },
 	{ "An Ammo Expansion!",				"AmmoExpansion",	50,	DELAY_NONE },
 	{ "A Kan-Kan Powerup!",				"KanKan",			25,	DELAY_NONE },
 	{ "A Soulsphere!",					"SoulSphere",		64,	DELAY_NONE },
