@@ -1967,7 +1967,7 @@ MannCoBoxData_t tier3_good[] =
 MannCoBoxData_t tier3_bad[] =
 {
 	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
-	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		25,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		10,	DELAY_NONE },
 	{ "A Lone Kago.",						"OneKago",			30,	DELAY_NONE },
 	{ "You get nothing!",					"YouLose",			50,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				50,	DELAY_NONE },
@@ -1975,7 +1975,7 @@ MannCoBoxData_t tier3_bad[] =
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
 	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
 	{ "A Bombing Run!",						"BombingRun",		25,	DELAY_LAUGH },
-	{ "A Kago Hive!",						"KagoHive",			10,	DELAY_NONE },
+	{ "A Kago Hive!",						"KagoHive",			15,	DELAY_NONE },
 };
 
 int tier4_totalweight[2];
@@ -1999,11 +1999,12 @@ MannCoBoxData_t tier4_good[] =
 
 MannCoBoxData_t tier4_bad[] =
 {
-	{ "The Big Succ!",					"BIGSUCC",			20,		DELAY_NONE },
-	{ "A Box of Farts N' Failure!",		"MANNFAIL",			100,	DELAY_NONE },
+	{ "The Big Succ!",					"BIGSUCC",			25,		DELAY_NONE },
+	{ "A Box of Farts N' Failure!",		"MANNFAIL",			50,		DELAY_NONE },
 	{ "Allahu Akbar.",					"SNAKBAR",			10,		DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!","WhiteRabbit",		10,		DELAY_NONE },
 	{ "Grenade Vomit!",					"NadeVomit",		30,		DELAY_NONE },
-	{ "Acid Puke!",						"BaronBallVomit",	100,	DELAY_NONE },
+	{ "Acid Puke!",						"BaronBallVomit",	75,		DELAY_NONE },
 	{ "Bee Barf!",						"BeeVomit",			50,		DELAY_NONE },
 	{ "A Bruiser Demon!",				"BruiserDemon",		45,		DELAY_LONG },
 	{ "A Bunch of Rocket Imps!",		"RocketImps",		30,		DELAY_LONG },
@@ -2014,15 +2015,16 @@ int tier5_totalweight[2];
 int tier5_numentries[2];
 MannCoBoxData_t tier5_good[] =
 {
-	{ "A Medical Bag. \cgFuck you.",			"MedBag",			1,		DELAY_NONE },
-	{ "A Kan-Kan Powerup!",						"KanKan",			15,		DELAY_NONE },
-	{ "An Invulnerability Powerup!",			"Invuln",			8,		DELAY_NONE },
-	{ "An Energy Tank!", 						"ETank",			5,		DELAY_NONE },
-	{ "Legendary Armor!",						"WINRAR",			3,		DELAY_NONE },
-	{ "A Megasphere... \cgAnd an archvile!",	"MegaSphereArchie",	75,		DELAY_NONE },
-	{ "An Extra Life... \cgAnd a White Rabbit!","ExtraLifeRabbit",	30,		DELAY_NONE },
-	{ "A Barf Bonanza!",						"VomitAll",			50,		DELAY_NONE },
-	{ "A Friendly Archspeen!",					"FriendlyArchSpeen",15,		DELAY_LAUGH },
+	{ "A Medical Bag. \cgFuck you.",						"MedBag",				1,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",									"KanKan",				15,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",						"Invuln",				8,		DELAY_NONE },
+	{ "An Energy Tank!", 									"ETank",				5,		DELAY_NONE },
+	{ "Legendary Armor!",									"WINRAR",				3,		DELAY_NONE },
+	{ "A Megasphere... \cgAnd an archvile!",				"MegaSphereArchie",		60,		DELAY_NONE },
+	{ "An Extra Life... \cgAnd a White Rabbit!",			"ExtraLifeRabbit",		30,		DELAY_NONE },
+	{ "A Barf Bonanza!",									"VomitAll",				50,		DELAY_NONE },
+	{ "A Friendly Archspeen!",								"FriendlyArchSpeen",	15,		DELAY_LAUGH },
+	{ "A Friendly Zyberdemon... \cgAnd 3 White Rabbits!!",	"FriendlyZyberRabbits",	10,		DELAY_LAUGH },
 };
 
 MannCoBoxData_t tier5_bad[] =

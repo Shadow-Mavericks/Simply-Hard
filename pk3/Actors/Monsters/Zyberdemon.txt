@@ -69,6 +69,11 @@ ACTOR Zyberdemon
 	}
 }
 
+actor FreddieTheFriendlyZyberdemon : Zyberdemon
+{
+	+FRIENDLY
+}
+
 ACTOR Microrocket
 {
 	Health 10
