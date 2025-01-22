@@ -314,7 +314,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.StartItem "DookiClip", 12
 	Player.StartItem "GosimerToken"
 	Player.StartItem "Flashlightcentered"
-	Player.StartItem "Gosimersbackpack", 1
+	Player.StartItem "GosimersBackpack", 1
 	Player.StartItem "DeployableShield", 1
 	BounceSound "PlayerHP/AlarmGosimer"
 
