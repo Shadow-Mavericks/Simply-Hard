@@ -24,9 +24,9 @@ ACTOR RageRune : PowerupGiver
 	-COUNTITEM
 	States
 	{
-	Spawn:
-		RAGR ABCDEFGH 6
-		Loop
+		Spawn:
+			RAGR ABCDEFGH 6
+			Loop
 	}
 }
 
@@ -438,7 +438,7 @@ Actor Medbag : CustomInventory //
 	}
 }
 
-Actor Gosimersbackpack : CustomInventory Replaces Backpack
+Actor GosimersBackpack : CustomInventory Replaces Backpack
 {
 	Radius 4
 	Height 18
@@ -527,32 +527,39 @@ Actor Gosimerbag
 			GBAG A 15
 			BPAK A 0 A_PlaySound("MBackP")
 			GBAG A 5
-			BPAK A -1 A_Jump(256, "Backpack", "AmmoBelt", "ClipBoxes", "Shells", "Rockets", "Cells")
+			BPAK A -1 A_Jump(256, "Backpack", "AmmoBelt", "ClipBoxes", "Shells", "Rockets", "Cells", "OneOfAll")
 			stop
 			
 		Backpack:
 			GBAG A 1 A_SpawnItemEx ("SimplyBackpack", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			goto Despawn
 			
 		AmmoBelt:
-			GBAG A 1 A_SpawnItemEx ("ammobelt", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			GBAG A 1 A_SpawnItemEx ("AmmoBelt", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			goto Despawn
 		
 		ClipBoxes:
 			GBAG AA 1 A_SpawnItemEx ("ClipBox", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			goto Despawn
 			
 		Shells:
 			GBAG AAAA 1 A_SpawnItemEx ("Shell", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			goto Despawn
 		
 		Rockets:
 			GBAG AAAA 1 A_SpawnItemEx ("RocketAmmo", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			goto Despawn
 			
 		Cells:
 			GBAG AA 1 A_SpawnItemEx ("Cell", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
-			goto despawn
+			goto Despawn
+			
+		OneOfAll:
+			GBAG A 1 A_SpawnItemEx ("ClipBox", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			GBAG A 1 A_SpawnItemEx ("Shell", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			GBAG A 1 A_SpawnItemEx ("RocketAmmo", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			GBAG A 1 A_SpawnItemEx ("Cell", 0, 0, 28, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			goto Despawn
 
 		Despawn:
 			GBAG A 1 A_FADEOUT(0.005)
@@ -570,13 +577,13 @@ Actor bagspawnerGosimersAmmoSphere : Custominventory
 	Inventory.PickupSound "misc/p_pkup"
 	States
 	{
-  Spawn:
-    SOUL A 4 BRIGHT
-    Loop
-  pickup:
-    TNT1 A 0 A_GIVEINVENTORY("Gosimersbackpack")
-    TNT1 A 0 A_GIVEINVENTORY("GosimersAmmoSphere")
-    Stop
+		Spawn:
+			SOUL A 4 BRIGHT
+			Loop
+		pickup:
+			TNT1 A 0 A_GIVEINVENTORY("GosimersBackpack")
+			TNT1 A 0 A_GIVEINVENTORY("GosimersAmmoSphere")
+			Stop
     }
 }
 
@@ -645,9 +652,9 @@ actor JoySpeed : PowerupGiver
 	+COUNTITEM
 	States
 	{
-	Spawn:
-		SOUL ABCD 6 Bright
-		Loop
+		Spawn:
+			SOUL ABCD 6 Bright
+			Loop
 	}
 }
 
@@ -669,9 +676,9 @@ ACTOR JoyDamage : PowerupGiver
 	+NOGRAVITY
 	States
 	{
-	Spawn:
-		SOUL ABCD 6 Bright
-		Loop
+		Spawn:
+			SOUL ABCD 6 Bright
+			Loop
 	}
 }
 
