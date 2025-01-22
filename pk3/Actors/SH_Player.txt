@@ -96,10 +96,6 @@ ACTOR Fiend : SH_BasePlayer
 		FlareAbility:
 			TNT1 A 0 A_CustomMissile("FlarenadeGReen", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
-		Fiendultimate:
-			TNT1 A 0 A_GiveInventory("Health", 100)
-			TNT1 A 0 A_CustomMissile("Fiendsultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
-			Goto Spawn
 
 		Death:
 			PLAY H 10
@@ -247,10 +243,6 @@ ACTOR Kunai : SH_BasePlayer
 		FlareAbility:
 			TNT1 A 0 A_CustomMissile("Flarenadered", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
-		Fiendultimate:
-			TNT1 A 0 A_GiveInventory("Health", 100)
-			TNT1 A 0 A_CustomMissile("Kunaisultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
-			Goto Spawn
 		Death:
 			PLAY H 10
 			PLAY I 10 A_PlayerScream
@@ -397,10 +389,6 @@ ACTOR Gosimer : SH_BasePlayer
 		FlareAbility:
 			TNT1 A 0 A_CustomMissile("FlarenadeGold", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
-		Fiendultimate:
-			TNT1 A 0 A_GiveInventory("spencerhp", 500)
-			TNT1 A 0 A_CustomMissile("Fiendsultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
-			Goto Spawn
 		Death:
 			PLAY H 10
 			PLAY I 10 A_PlayerScream
@@ -542,10 +530,6 @@ actor MaximusPrime : SH_BasePlayer
 			Goto Spawn
 		FlareAbility:
 			TNT1 A 0 A_CustomMissile("FlarenadeGold", 32, 0, 0, CMF_AIMDIRECTION, 0)
-			Goto Spawn
-		Fiendultimate:
-			TNT1 A 0 A_GiveInventory("spencerhp", 500)
-			TNT1 A 0 A_CustomMissile("Fiendsultimatecooppayout", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
 		Death:
 			PLAY H 0 A_StopSound(CHAN_WEAPON)

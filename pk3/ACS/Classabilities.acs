@@ -34,12 +34,29 @@ Script "ULTIMATEABOOLITY" (Void) Net
 	if(GetActorProperty(0, APROP_Health) <= 0)
 		terminate;
 		
-	if(Checkinventory("UltimateAbilityCharge") >= 2000)
+	if(CheckInventory("UltimateAbilityCharge") >= 2000)
 	{
-		ambientsound("Fiends/Ultimate",127);
+		AmbientSound("Fiends/Ultimate", 127);
+		if(CheckActorClass(0, "Gosimer") || CheckActorClass(0, "MaximusPrime"))
+		{
+			GiveInventory("spencerhp", 500);
+		}
+		else
+		{
+			GiveInventory("Health", 100);
+		}
+		
 		Delay(35);
-		SetActorState(0, "Fiendultimate");
-		takeinventory("UltimateAbilityCharge", 2000);
+		TakeInventory("UltimateAbilityCharge", 2000);	
+		
+		if(CheckActorClass(0, "Kunai"))
+		{
+			GiveInventory("KunaiUltRadiusGiver", 1);
+		}
+		else
+		{
+			GiveInventory("FiendUltRadiusGiver", 1);
+		}
 	}
 	else
 	{
