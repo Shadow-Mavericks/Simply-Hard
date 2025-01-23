@@ -1668,6 +1668,7 @@ ACTOR DevastatorZombie
   mass 100
   speed 8
   painchance 170
+  ReactionTime 12
   seesound "chainguy/sight"
   painsound "chainguy/pain"
   deathsound "chainguy/death"

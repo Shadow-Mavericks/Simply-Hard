@@ -461,13 +461,14 @@ Actor GosimersBackpack : CustomInventory
 	}
 }
 
-ACTOR SimplyBackpack : CustomInventory replaces Backpack
+ACTOR SimplyBackpack : CustomInventory
 {
 	Height 32
 	Radius 24
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.UNDROPPABLE
+	+INVENTORY.NEVERRESPAWN
 	+DONTGIB
 	+NOTIMEFREEZE
 	Inventory.MaxAmount 0
@@ -821,6 +822,7 @@ Actor SH_BlurSphere : CustomInventory Replaces BlurSphere
 	Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
 	
 	+INVENTORY.QUIET
+	+DONTGIB
 	+COUNTITEM
 	
 	var int user_scale_MaximusPrime;

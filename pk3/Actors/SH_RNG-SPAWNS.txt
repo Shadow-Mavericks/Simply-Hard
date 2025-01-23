@@ -297,3 +297,9 @@ Actor Armourhelmetspawner : RandomSpawner replaces Armorbonus // same as above b
 	DropItem "RedArmorbonus"	255 1
 	DropItem "BlueArmorbonus"	255 1
 }
+
+Actor RandomBackpack : Randomspawner Replaces Backpack
+{
+	Dropitem "SimplyBackpack"	255, 1
+	Dropitem "AmmoBelt" 		255, 1
+}
