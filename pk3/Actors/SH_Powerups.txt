@@ -739,7 +739,7 @@ actor PowerupItem_Slimed : PowerupGiver
 	powerup.type "Powerup_Slimed"
 }
 
-ACTOR HardBerserk : CustomInventory
+ACTOR HardBerserk : CustomInventory replaces Berserk
 {
 	+COUNTITEM
 	+DONTGIB
@@ -806,5 +806,70 @@ actor DoomScanner : PowerupGiver
 		Spawn:
 			TNT1 A 1
 			stop
+	}
+}
+
+
+Actor SH_BlurSphere : CustomInventory Replaces BlurSphere
+{
+	Radius 20
+	Height 56
+	Scale 1.0
+	RenderStyle Translucent
+
+	Inventory.RespawnTics "99999999"
+	Inventory.PickupMessage "Fiend +100Armor/Gosimer +125Armor/Kunai +200Armor/Max +100Armor"
+	
+	+INVENTORY.QUIET
+	+COUNTITEM
+	
+	var int user_scale_MaximusPrime;
+	
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
+			goto CheckSprite
+		RecheckSprite:
+			"####" "#" 1
+			goto CheckSprite
+		CheckSprite:
+			"####" "#" -1 A_ClientsideACSExecute("SET_PICKUP_SPRITE")
+			loop
+		Idle:
+			"####" "#" -1
+			stop
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+
+		Base:
+			PINS A 0 A_ChangeFlag("VISIBILITYPULSE", 1)
+			PINS A 0 A_SetTranslucent (0.5, 0) 
+			goto BaseLoop
+		BaseLoop:
+			PINS ABCD 6 Bright
+			loop
+
+		MaximusPrime:
+			WEPS A 0 A_ChangeFlag("VISIBILITYPULSE", 0)
+			WEPS A 0 A_SetTranslucent (1.0, 0)
+			goto MaximusPrimeLoop
+		MaximusPrimeLoop:
+			WEPS A -1 Bright
+			loop
+
+		pickup:
+			TNT1 A 0 A_JumpIfInventory ("Maxtoken",1,"MaxPickup")
+			TNT1 A 0 A_playsound("misc/p_pkup",Chan_6)
+			TNT1 A 0 A_GiveInventory("BlurSphere")
+			Stop
+		Maxpickup:
+			TNT1 A 0 A_playsound("Max/ArmorGet",Chan_6)
+			TNT1 A 0 A_GiveInventory("DF_SuperCharge")
+			Stop
+		Failure:
+			TNT1 A 0
+			fail
 	}
 }

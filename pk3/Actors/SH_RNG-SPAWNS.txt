@@ -297,8 +297,3 @@ Actor Armourhelmetspawner : RandomSpawner replaces Armorbonus // same as above b
 	DropItem "RedArmorbonus"	255 1
 	DropItem "BlueArmorbonus"	255 1
 }
-
-Actor Randomezerk : Randomspawner Replaces Berserk
-{
-	Dropitem "Medbag"		255 10
-}

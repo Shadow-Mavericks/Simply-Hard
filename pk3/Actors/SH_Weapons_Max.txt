@@ -1618,3 +1618,23 @@ actor Lightsaber : SH_Weapon
 			goto Ready
 	}
 }
+
+actor DF_SuperCharge : PowerupGiver
+{
+	Game Doom
+	Game Heretic
+	Game Hexen
+	Scale 0.6
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+	Powerup.Type PowerDoubleFiringSpeed
+	Inventory.PickupMessage "Weapon Super Charge"
+	powerup.duration -45
+	States
+	{
+	Spawn:
+		WEPS A -1
+		stop
+	}
+}
