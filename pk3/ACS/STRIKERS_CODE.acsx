@@ -1926,8 +1926,11 @@ MannCoBoxData_t tier2_good[] =
 	{ "A Tier 5 Weapon!",				"T6Weapon",			15,	DELAY_NONE },
 	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
 	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
-	{ "A Gaster Blaster!",				"Gaster",			8,	DELAY_NONE },
-	{ "Drugs?!",						"Joy",				5,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		12,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		11,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		10,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			10,	DELAY_NONE },
+	{ "Drugs?!",						"Joy",				12,	DELAY_NONE },
 };
 
 MannCoBoxData_t tier2_bad[] =

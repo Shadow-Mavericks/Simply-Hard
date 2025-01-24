@@ -428,7 +428,7 @@ ACTOR GosimersHandgun : SH_Weapon
 			TNT1 A 1 A_Light2
 			TNT1 A 1 A_Light1
 			TNT1 A 1 A_Light0
-			stop
+			goto LightDone
 		Spawn:
 			PIST A -1
 			Stop

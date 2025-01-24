@@ -177,6 +177,7 @@ Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
 	Dropitem "HardHellknight"			255 50
 	Dropitem "Cybruiser"				255 5
 	Dropitem "Afrit"					255 5
+	DropItem "HellsFury"				255 5
 	//DropItem "ChainmailEttin"			255 1
 	//DropItem "Squire"					255 1
 }

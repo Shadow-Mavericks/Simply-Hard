@@ -15,6 +15,7 @@ actor Particle_Base
 	+DROPOFF
 	+NOTELEPORT
 	+NOTIMEFREEZE
+	+DONTSPLASH
 }
 
 //////////////////////////////////////////////////////////////////

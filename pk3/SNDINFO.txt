@@ -840,7 +840,6 @@ monster/firebeamdeath IMPFIRE2
 monster/firebeamstart DARKFLAM
 pyro/explosion DSPIPEX1
 Glyph/Start FLAMESTR
-harvester/ghost shghscrm
 
 Infdem/see BE-SPOT1
 Infdem/active BE-GROWL
@@ -1894,26 +1893,13 @@ Weapon/Litning_START	thunuse
 
 //Max's sounds
 
-Max/LZHIT	DFLHIT
-$limit Max/LZHIT 0
-Max/fist	DFSWING
-
-Max/LrgExplo DFLRGEX
-Max/Disrupt DFDISR
-Max/DisrCh  DFDISC
-
-Max/Trail DFTRAIL
-Max/MedExplo MEDEXP
 Max/BWPlasma DFWPLAS
 Max/BWMissile DFWMISS
 Max/BWRock DFWROCK
-Max/WepRaise DFWEPON
 Max/ArmorBonus DFSHIELD
 Max/HealthBonus DFITEMUP
 Max/DemonEnergy DFDEFPU
 Max/ArmorGet	DFARMOR
-Max/fisthit		DFPUNCH
-Max/Zoom		DFZOOM
 Max/ShieldDamage	SHIELD1
 $playersound	MaximusPrime	male	*land		DFLAND
 $playersound 	MaximusPrime	male	*jump		DFJUMP

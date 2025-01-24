@@ -53,6 +53,21 @@ Max/MortarDryFire MORTAR9
 Max/MortarFire MORTAR4
 Max/MortarLoad MORTAR2
 
+// Golan Arms FC-1 Flechette Weapon
+Max/FlakFire FLAKFIRE
+Max/FlakAlt	FLAKALT
+Max/FlakBallExplosion FLAKBEXP
+$limit Max/FlakFire 0
+$limit Max/FlakAlt 0
+$limit Max/FlakBallExplosion 0
+
+Max/FlakBallBounce1 FLAKRIC3
+Max/FlakBallBounce2 FLAKRIC4
+$limit Max/FlakBallBounce1 0
+$limit Max/FlakBallBounce2 0
+$random Max/FlakBallBounce { Max/FlakBallBounce1 Max/FlakBallBounce2 }
+$limit Max/FlakBallBounce 0
+
 // Fusion Cutter
 Max/Fusion  DFFUSION
 Max/FusionDryFire FUSION2
@@ -113,3 +128,20 @@ Max/Hum3		DSSABHM4
 Max/Hum4		DSSABHM5
 Max/LSSelect	DSSABREU
 Max/LSDeselect	DSSABREO
+
+// Explosions
+Max/MedExplo MEDEXP
+Max/LrgExplo DFLRGEX
+$limit Max/MedExplo 0
+$limit Max/LrgExplo 0
+
+Max/LZHIT	DFLHIT
+$limit Max/LZHIT 0
+Max/fist	DFSWING
+Max/fisthit	DFPUNCH
+Max/Disrupt DFDISR
+Max/DisrCh  DFDISC
+Max/Zoom	DFZOOM
+
+Max/Trail DFTRAIL
+Max/WepRaise DFWEPON
