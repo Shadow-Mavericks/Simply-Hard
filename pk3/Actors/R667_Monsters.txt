@@ -4093,12 +4093,13 @@ ACTOR Cyberbaron : Baronofhell
 			CBOS R 8 A_customMissile("Greenbaronball",35,0,0)
 			Goto See
 		Missile:
-			CBOS E 0 A_jump(80,5)
+			CBOS E 0 A_jump(80,"Missile2")
 			CBOS E 10 A_FaceTarget
 			CBOS E 10 A_FaceTarget
 			CBOS F 10 Bright A_customMissile("Rawket",27,16,0)
 			CBOS E 10 A_FaceTarget
 			goto See
+		Missile2:
 			CBOS PQ 8 A_FaceTarget
 			CBOS R 8 A_customMissile("Greenbaronball",35,0,0)
 			Goto See
