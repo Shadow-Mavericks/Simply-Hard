@@ -9502,7 +9502,7 @@ Actor HellsFuryBall
 	Radius 6
 	Height 8
 	Speed 14
-	Damage 8
+	Damage (32)
 	Projectile
 	RenderStyle Add
 	Alpha 0.7
