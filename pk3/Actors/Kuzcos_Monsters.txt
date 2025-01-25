@@ -2537,7 +2537,12 @@ ACTOR Kagohive
 	{
 		Spawn:
 			KAGO ABCDE 5 A_LookEx(LOF_NOJUMP | LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0, 0, 0, 360)
+			KAGO E 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0, 150, 0, 360, "EmitKago")
 			loop
+		EmitKago:
+			KAGO EE 0 A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 224)
+			KAGO E 0 A_ClearTarget
+			goto Spawn
 		Pain:
 			KAGO A 0 Bright A_FaceTarget
 			KAGO A 5 Bright A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(0.0, 1.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
