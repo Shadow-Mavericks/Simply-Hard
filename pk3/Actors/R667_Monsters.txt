@@ -15447,76 +15447,76 @@ ACTOR MeleeRevenant
 
 ACTOR Cryocubus
 {
-  Health 600
-  Radius 48
-  Height 64
-  Mass 1000
-  Speed 8
-  PainChance 80
-  MeleeThreshold 300
-  Monster
-  +ALWAYSFAST
-  +NORADIUSDMG
-  +FLOORCLIP
-  +BOSSDEATH
-  Damagetype "Ice"
-  SeeSound "fatso/sight"
-  PainSound "fatso/pain"
-  DeathSound "fatso/death"
-  ActiveSound "fatso/active"
-  Obituary "%o was frozen by the Cryocubus."
-  var int user_isfiring;
-  States
-  {
-  Spawn:
-    HIEL AB 15 A_Look
-    Loop
-  See:
-    HIEL AABBCCDDEEFF 4 A_Chase
-    Loop
-Melee:
-    HIEL G 20  A_FatRaise
-    HIEL G 0 A_Facetarget
-    HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-	HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-    HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-    HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-    HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-    HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
-    HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
-    Goto See
-Missile:
-    HIEL H 2 A_JumpIfCloser(300, "Melee")
-	HIEL G 20 A_FatRaise
-	HIEL G 5 A_Facetarget
-	HIEL H 5 Bright A_FatAttack1("MancubusBall_Ice")
-	HIEL HG 5
-	HIEL H 10 Bright A_FatAttack2("MancubusBall_Ice")
-	HIEL HG 5
-	HIEL H 10 Bright A_FatAttack3("MancubusBall_Ice")
-	HIEL HG 5
-	Goto See
-  Pain:
-    HIEL J 3  A_SetUserVar("user_isfiring",0)
-	HIEL J 3  A_Pain
-    Goto See
-  Death:
-    HIEL K 6
-    HIEL L 6 A_Scream
-    HIEL M 6 A_NoBlocking
-    HIEL NOP 6
-    HIEL P -1 A_BossDeath
-    Stop
-  Raise:
-    HIEL R 5
-    HIEL QPONMLK 5
-    Goto See
-  }
+	Health 600
+	Radius 48
+	Height 64
+	Mass 1000
+	Speed 8
+	PainChance 80
+	MeleeThreshold 300
+	Monster
+	+ALWAYSFAST
+	+NORADIUSDMG
+	+FLOORCLIP
+	+BOSSDEATH
+	Damagetype "Ice"
+	SeeSound "fatso/sight"
+	PainSound "fatso/pain"
+	DeathSound "fatso/death"
+	ActiveSound "fatso/active"
+	Obituary "%o was frozen by the Cryocubus."
+	var int user_isfiring;
+	States
+	{
+		Spawn:
+			HIEL AB 15 A_Look
+			Loop
+		See:
+			HIEL AABBCCDDEEFF 4 A_Chase
+			Loop
+		Melee:
+			HIEL G 20  A_FatRaise
+			HIEL G 0 A_Facetarget
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			HIEL G 0 A_CustomMissile("LanzaHielo2",16,-24,0,3)
+			HIEL H 2 A_CustomMissile("LanzaHielo2",16,24,0,3)
+			Goto See
+		Missile:
+			HIEL H 2 A_JumpIfCloser(300, "Melee")
+			HIEL G 20 A_FatRaise
+			HIEL G 5 A_Facetarget
+			HIEL H 5 Bright A_FatAttack1("MancubusBall_Ice")
+			HIEL HG 5
+			HIEL H 10 Bright A_FatAttack2("MancubusBall_Ice")
+			HIEL HG 5
+			HIEL H 10 Bright A_FatAttack3("MancubusBall_Ice")
+			HIEL HG 5
+			Goto See
+		Pain:
+			HIEL J 3  A_SetUserVar("user_isfiring",0)
+			HIEL J 3  A_Pain
+			Goto See
+		Death:
+			HIEL K 6
+			HIEL L 6 A_Scream
+			HIEL M 6 A_NoBlocking
+			HIEL NOP 6
+			HIEL P -1 A_BossDeath
+			Stop
+		Raise:
+			HIEL R 5
+			HIEL QPONMLK 5
+			Goto See
+	}
 }
 
 ACTOR LanzaHielo2

@@ -1909,3 +1909,5 @@ $playersound 	MaximusPrime	male	*pain50		HEALTH1
 $playersound 	MaximusPrime	male	*pain25		HEALTH1
 
 Pop Pop
+FuckThis FuckThis
+SpyWhistle SpyWhstl

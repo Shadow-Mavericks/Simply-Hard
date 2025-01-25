@@ -1968,8 +1968,21 @@ actor RedBShieldSpawner2
   }
 }
 
+actor ExtraLifeTrail : Particle_Base
+{
+	RenderStyle Add
+	Alpha 0.5
+	States
+	{
+		Spawn:
+			ONEM A 1 Bright A_Fadeout(0.1)
+			loop
+	}
+}
+
 actor ExtraLifeThingy : CustomInventory
 {
+	Speed 15
 	Radius 20
 	Height 56
 	Inventory.Amount 1
@@ -1984,11 +1997,33 @@ actor ExtraLifeThingy : CustomInventory
 	+CANBLAST
 	+DROPOFF
 	+DONTGIB
+	+SEEINVISIBLE
+	+NOTIMEFREEZE
+	+FORCEXYBILLBOARD
 	States
 	{
 		Spawn:
-			ONEM A -1 Bright
+			ONEM A 10500 Bright
+			goto FuckThis
+		FuckThis:
+			ONEM A 20 Bright
+			ONEM A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 1024.0, 1024.0, 360.0, "Succ")
+			ONEM A 0 A_ClearTarget
+			Loop
+		Succ:
+			ONEM A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			ONEM A 70 Bright A_PlaySound("FuckThis", CHAN_AUTO, 1.0)
+			ONEM A 0 A_ChangeFlag("NOGRAVITY", 1)
+			ONEM A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			ONEM A 0 A_ChangeFlag("NOCLIP", 1)
+			ONEM A 0 A_PlaySound("SpyWhistle", CHAN_ITEM, 1.0, true)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" "#" 0 Bright A_SpawnItemEx("ExtraLifeTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			loop
+		
 		Pickup:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ADDLIFE", 0) == 0, "Failure")
 			TNT1 A 0 A_RailWait
