@@ -248,6 +248,7 @@ actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
 	DropItem "N_Mancubus_Void"			255 1
 	DropItem "Arachnocubus"				255 1
 	DropItem "FlyingFatso"				255 1
+	DropItem "Chainguncubus"			255 1
 }
 
 actor BaronSpawner : SH_BaseMonsterRandomSpawner replaces Baronofhell

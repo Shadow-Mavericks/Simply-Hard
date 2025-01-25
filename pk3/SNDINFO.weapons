@@ -1,6 +1,13 @@
 GenericCrit CRIT
 
 // ---------------
+// Fiend's Weapons
+// ---------------
+Weapon/Machinegunfire	DEMGFIRE
+$limit Weapon/Machinegunfire 0
+$volume Weapon/Machinegunfire 0.5
+
+// ---------------
 // Kunai's Weapons
 // ---------------
 
@@ -13,6 +20,9 @@ $random PDWFire { PDWFire1 PDWFire2 }
 SSWFire1 sswfir01
 SSWFire2 sswfir02
 $random SSWFire { SSWFire1 SSWFire2 }
+$limit SSWFire1 0
+$limit SSWFire2 0
+$limit SSWFire 0
 
 // -----------------
 // Gosimer's Weapons

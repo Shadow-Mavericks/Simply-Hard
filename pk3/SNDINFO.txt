@@ -819,8 +819,6 @@ Kunai/Death1		KDED1
 Kunai/Death2		KDED2
 Kunai/Death3		KDED3
 
-Weapon/Machinegunfire	DEMGFIRE
-
 //Inferno demon
 
 Inferno/Alert	INFRALRT
@@ -1879,8 +1877,6 @@ $limit weapon/D3DDEVSHOT 0
 $limit weapon/D3DDEVBOOM 0
 $limit weapon/D3DDEVSPAWN 0
 $limit weapon/D3DDEVFLY 0
-
-$volume Weapon/Machinegunfire 0.5
 
 Weapon/Fiend_SSG_Fire	SSHTGN
 Weapon/Fiend_SSG_Reload	SSHTGNR
