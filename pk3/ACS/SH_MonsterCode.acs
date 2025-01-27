@@ -1,4 +1,4 @@
-#library "SH_ACS_MonsterCode"
+#library "SH_MonsterCode"
 #include "zcommon.acs"
 
 //----------------------------------------------//

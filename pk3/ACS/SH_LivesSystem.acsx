@@ -1,6 +1,6 @@
-#library "SH_ACS_LivesSystem"
+#library "SH_LivesSystem"
 #include "zcommon.acs"
-#import "SH_ACS_GlobalData.acsx"
+#import "SH_GlobalData.acsx"
 
 // Stuff pertaining to the lives system. Written by StrikerTheHedgefox.
 

@@ -1,4 +1,4 @@
-#Library "SH_ACS_GlobalData"
+#Library "SH_GlobalData"
 #include "zcommon.acs"
 
 #libdefine MAX_PLAYERS 64

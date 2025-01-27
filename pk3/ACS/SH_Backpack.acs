@@ -1,4 +1,4 @@
-#Library "SH_ACS_Backpack"
+#Library "SH_Backpack"
 #Include "Zcommon.acs"
 
 //bool playerbackpack[64] = { FALSE };
