@@ -265,8 +265,8 @@ ACTOR CryoSmoke3
 	States
 	{
 		Spawn:
-			SMOK A 0
-			SMOK A 2 A_FadeOut (0.05)
+			IMST A 0
+			IMST A 2 A_FadeOut (0.05)
 			Wait
 	}
 }
@@ -283,7 +283,7 @@ Actor CryoSmoke4 : CryoSmoke3
 	{
 		Spawn:
 			TNT1 A 0
-			SMOK A 6 A_FadeOut(0.04)
+			IMST A 6 A_FadeOut(0.04)
 			Wait
 	}
 }
