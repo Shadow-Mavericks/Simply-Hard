@@ -108,20 +108,34 @@ actor PortalPayout_Base
 }
 
 //////////////////////////////////////////////////////////////////
-// Upgrades & Powerups
+// Misc Tokens & Flags
 //////////////////////////////////////////////////////////////////
-actor UpgradeToken_Base : Inventory
+actor SH_BaseToken : Inventory
 {
 	Radius 12
 	Height 56
-	scale 0.75
+	Inventory.Amount 1
 	Inventory.MaxAmount 1
-	Inventory.PickupSound "Mannco/PLToken"
-	+SLIDESONWALLS
-	+CANBLAST
 	+INVENTORY.UNDROPPABLE
 	+INVENTORY.HUBPOWER
 	+INVENTORY.PERSISTENTPOWER
+	States
+	{
+		Spawn:
+			SOUL A -1
+			Stop
+	}
+}
+
+//////////////////////////////////////////////////////////////////
+// Upgrades & Powerups
+//////////////////////////////////////////////////////////////////
+actor UpgradeToken_Base : SH_BaseToken
+{
+	scale 0.75
+	Inventory.PickupSound "Mannco/PLToken"
+	+SLIDESONWALLS
+	+CANBLAST
 }
 
 //////////////////////////////////////////////////////////////////

@@ -110,7 +110,7 @@ ACTOR GOATFREESKANKAN : Custominventory
 			TNT1 A 0 A_giveinventory("KankanInvulnerabilitySphere")
 			TNT1 A 0 A_giveinventory("KANKANBOOT")
 			TNT1 A 0 A_SelectWeapon("KANKANBOOT")
-			TNT1 A 0 A_Jumpifinventory("Gosimertoken",1,"Burpcan")
+			TNT1 A 0 A_Jumpifinventory("GosimerToken",1,"Burpcan")
 			TNT1 A 0 ACS_NamedExecuteWithResult("KUNAIKANKAN")
 			Stop
 		Burpcan:
@@ -203,8 +203,8 @@ Actor MegasphereFilter: Custominventory Replaces Megasphere
 			MEGA ABCD 4 BRIGHT
 			Loop
 		Pickup:
-			TNT1 A 0 A_Jumpifinventory("Fiendtoken",1,"Funky")
-			TNT1 A 0 A_Jumpifinventory("Kunaitoken",1,"Kunai")
+			TNT1 A 0 A_Jumpifinventory("FiendToken",1,"Funky")
+			TNT1 A 0 A_Jumpifinventory("KunaiToken",1,"Kunai")
 			TNT1 A 0 A_GIVEINVENTORY("Megasphere1")
 			Stop
 		Funky:
@@ -271,7 +271,7 @@ Actor SoulsphereGiver : Custominventory Replaces Soulsphere  //Soulsphere class 
 			SOUL ABCD 2 BRIGHT
 			Loop
 		pickup:
-			TNT1 A 0 A_Jumpifinventory("Fiendtoken",1,"Fiend")
+			TNT1 A 0 A_Jumpifinventory("FiendToken",1,"Fiend")
 			TNT1 A 0 A_JumpIfInventory("MaxToken", 1, "Max")
 			goto DefaultBehavior
 		

@@ -21,7 +21,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "Fists"
 	Player.StartItem "Shellz", 6
 	Player.StartItem "peastolClip", 50
-	Player.StartItem "Fiendtoken"
+	Player.StartItem "FiendToken"
 	Player.StartItem "MEDBAG"
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
@@ -132,21 +132,6 @@ ACTOR Fiend : SH_BasePlayer
 		}
 }
 
-Actor Fiendtoken : Inventory
-{
-	Radius 4
-	Height 18
-	scale 1
-	Inventory.MaxAmount 1
-	Inventory.PickupMessage "You picked up a Fiend token"
-	States
-	{
-		Spawn:
-			SOUL A -1
-			Stop
-	}
-}
-
 ACTOR Kunai : SH_BasePlayer
 {
 	Speed 1.25
@@ -166,7 +151,7 @@ ACTOR Kunai : SH_BasePlayer
 	Player.StartItem "Shellz", 8
 	Player.StartItem "peastolClip", 36
 	Player.StartItem "REV_SHOT", 6
-	Player.StartItem "Kunaitoken"
+	Player.StartItem "KunaiToken"
 	Player.StartItem "KunaiGastersummon", 2
 	Player.StartItem "SentryBox"
 
@@ -273,21 +258,6 @@ ACTOR Kunai : SH_BasePlayer
 			PLAY RSTUV 5
 			TNT1 A 0 A_CustomMissile ("GiantBloodSpot", 4, 0, random (0, 360), 2, random (0, 160))
 			PLAY W -1
-			Stop
-	}
-}
-
-Actor Kunaitoken : Inventory
-{
-	Radius 4
-	Height 18
-	scale 1
-	Inventory.MaxAmount 1
-	Inventory.PickupMessage "You picked up a Kunai token"
-	States
-	{
-		Spawn:
-			SOUL A -1
 			Stop
 	}
 }
@@ -423,21 +393,6 @@ ACTOR Gosimer : SH_BasePlayer
 	}
 }
 
-Actor GosimerToken : Inventory
-{
-  Radius 4
-  Height 18
-  scale 1
-  Inventory.MaxAmount 1
-  Inventory.PickupMessage "You picked up a Gosimer token"
-  States
-  {
-  Spawn:
-    SOUL A -1
-    Stop
-  }
-}
-
 actor MaximusPrime : SH_BasePlayer
 {
 	Speed 0.9
@@ -566,32 +521,27 @@ actor MaximusPrime : SH_BasePlayer
 	}
 }
 
-actor MaxToken : Inventory
+Actor FiendToken : SH_BaseToken
 {
-	Radius 4
-	Height 18
-	scale 1
-	Inventory.MaxAmount 1
-	Inventory.PickupMessage "You picked up a Max token"
-	States
-	{
-		Spawn:
-			SOUL A -1
-			Stop
-	}
+	Inventory.PickupMessage "You picked up a Fiend token"
 }
 
-Actor StrikerToken : Inventory
+Actor KunaiToken : SH_BaseToken
 {
-	Radius 4
-	Height 18
-	scale 1
-	Inventory.MaxAmount 1
+	Inventory.PickupMessage "You picked up a Kunai token"
+}
+
+Actor GosimerToken : SH_BaseToken
+{
+	Inventory.PickupMessage "You picked up a Gosimer token"
+}
+
+actor MaxToken : SH_BaseToken
+{
+	Inventory.PickupMessage "You picked up a Max token"
+}
+
+Actor StrikerToken : SH_BaseToken
+{
 	Inventory.PickupMessage "You have somehow picked up the Hedgefox Token"
-	States
-	{
-		Spawn:
-			SOUL A -1
-			Stop
-	}
 }
