@@ -399,7 +399,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 
 		MANNFAIL:
-			"####" D 1 ACS_NamedExecuteWithResult("sv_manncofail")
+			"####" D 1 A_PlaySound("Mannco/Fail", CHAN_VOICE, 1.0, false, ATTN_NONE)
 			goto Despawn
 
 		SNAKBAR:

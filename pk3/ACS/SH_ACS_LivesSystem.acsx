@@ -1,6 +1,6 @@
-#library "ExtraLifeThingy"
+#library "SH_ACS_LivesSystem"
 #include "zcommon.acs"
-#import "GlobalData.acsx"
+#import "SH_ACS_GlobalData.acsx"
 
 // Stuff pertaining to the lives system. Written by StrikerTheHedgefox.
 

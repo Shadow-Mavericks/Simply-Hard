@@ -1,6 +1,6 @@
-#library "PlayerTicker"
+#library "SH_ACS_PlayerTicker"
 #include "Zcommon.acs"
-#import "GlobalData.acsx"
+#import "SH_ACS_GlobalData.acsx"
 
 //////////////////////
 // Player Tick Handler

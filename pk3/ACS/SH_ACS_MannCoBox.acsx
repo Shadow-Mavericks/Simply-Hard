@@ -1,0 +1,403 @@
+#Library "SH_ACS_MannCoBox"
+#include "zcommon.acs"
+#import "SH_ACS_GlobalData.acsx"
+
+// -----------------------------------------
+// MannCo Boxes - Code by StrikerTheHedgefox
+// -----------------------------------------
+#define GOOD 0
+#define BAD 1
+
+#define DELAY_NONE 0
+#define DELAY_LONG 1
+#define DELAY_SHORT 2
+#define DELAY_BLUEIMP 3
+#define DELAY_LAUGH 4
+#define DELAY_BOSSLAUGH 5
+
+struct BoxDelay_t
+{
+	str state;
+	int time;
+};
+
+BoxDelay_t boxDelay[] =
+{
+	{ "None", 0 },
+	{ "DelayLong", 791 },
+	{ "DelayShort", 35 },
+	{ "DelayImBlue", 742 },
+	{ "DelayLaugh", 214 },
+	{ "DelayBossLaugh", 235 },
+};
+
+struct MannCoBoxData_t
+{
+	str name;
+	str state;
+	int weight;
+	int delaytype;
+};
+
+int tier1_totalweight[2];
+int tier1_numentries[2];
+MannCoBoxData_t tier1_good[] =
+{
+	{ "A Medical Bag.",					"MedBag",		75,		DELAY_NONE },
+	{ "A Medkit.",						"Medkit",		40,		DELAY_NONE },
+	{ "A Berserk Pack.",				"BerserkPack",	30,		DELAY_NONE },
+	{ "A Tier 2 Weapon.",				"T2Weapon",		30,		DELAY_NONE },
+	{ "A Tier 3 Weapon.",				"T3Weapon",		25,		DELAY_NONE },
+	{ "A Tier 4 Weapon.",				"T4Weapon",		20,		DELAY_NONE },
+	{ "A Tier 5 Weapon.",				"T5Weapon",		10,		DELAY_NONE },
+	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",	25,		DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",	20,		DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",	15,		DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",	10,		DELAY_NONE },
+};
+
+MannCoBoxData_t tier1_bad[] =
+{
+	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
+	{ "A Chaingunner.",						"Chaingunner",		50,	DELAY_NONE },
+	{ "A Pinky Demon.",						"Demon",			50,	DELAY_NONE },
+	{ "You get nothing!",					"YouLose",			75,	DELAY_NONE },
+	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
+	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
+	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
+	{ "A Lone Kago.",						"OneKago",			25,	DELAY_NONE },
+	{ "A BFG Surprise!",					"BFGTrap",			15,	DELAY_NONE },
+};
+
+int tier2_totalweight[2];
+int tier2_numentries[2];
+MannCoBoxData_t tier2_good[] =
+{
+	{ "Armor.",							"GreenArmor",		64,	DELAY_NONE },
+	{ "A Berserk Pack.",				"BerserkPack",		64,	DELAY_NONE },
+	{ "An Ammo Belt!",					"AmmoBelt",			64,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			50,	DELAY_NONE },
+	{ "A Deployable Shield.",			"Shield",			45,	DELAY_NONE },
+	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
+	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
+	{ "An Ammo Expansion!",				"AmmoExpansion",	15,	DELAY_NONE },
+	{ "A Tier 5 Weapon!",				"T6Weapon",			15,	DELAY_NONE },
+	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
+	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		15,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		14,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		13,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			15,	DELAY_NONE },
+	{ "Drugs?!",						"Joy",				15,	DELAY_NONE },
+};
+
+MannCoBoxData_t tier2_bad[] =
+{
+	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
+	{ "A swarm of lost souls!",				"LostSouls",		25,	DELAY_NONE },
+	{ "You get nothing!",					"YouLose",			75,	DELAY_NONE },
+	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			75,	DELAY_NONE },
+	{ "The screams of an angry soldier.",	"WAAAAAAH",			75,	DELAY_NONE },
+	{ "Absolutely nothing!",				"DED",				75,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		5,	DELAY_NONE },
+};
+
+int tier3_totalweight[2];
+int tier3_numentries[2];
+MannCoBoxData_t tier3_good[] =
+{
+	{ "A Mysterious Ammo Bag...",		"GosBackpack",		64,	DELAY_NONE },
+	{ "A Medical Bag.",					"MedBag",			50,	DELAY_NONE },
+	{ "An Ammo Expansion!",				"AmmoExpansion",	50,	DELAY_NONE },
+	{ "A Kan-Kan Powerup!",				"KanKan",			25,	DELAY_NONE },
+	{ "A Soulsphere!",					"SoulSphere",		64,	DELAY_NONE },
+	{ "An Invulnerability Powerup!",	"Invuln",			35,	DELAY_NONE },
+	{ "An Energy Tank!", 				"ETank",			25,	DELAY_NONE },
+	{ "A Tier 1 Weapon Upgrade!",		"T1Upgrade",		40,	DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",		"T2Upgrade",		35,	DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",		"T3Upgrade",		30,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		25,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",		"T5Upgrade",		20,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",		"T6Upgrade",		18,	DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",		"T7Upgrade",		15,	DELAY_NONE },
+	{ "An Extra Life!",					"ExtraLife",		30,	DELAY_NONE },
+	{ "A Gaster Blaster!",				"Gaster",			25,	DELAY_NONE },
+	{ "An Item Bundle!",				"Bundle",			25,	DELAY_NONE },
+};
+
+MannCoBoxData_t tier3_bad[] =
+{
+	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		10,	DELAY_NONE },
+	{ "A Lone Kago.",						"OneKago",			30,	DELAY_NONE },
+	{ "You get nothing!",					"YouLose",			50,	DELAY_NONE },
+	{ "Absolutely nothing!",				"DED",				50,	DELAY_NONE },
+	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			50,	DELAY_NONE },
+	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
+	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
+	{ "A Bombing Run!",						"BombingRun",		25,	DELAY_LAUGH },
+	{ "A Kago Hive!",						"KagoHive",			15,	DELAY_NONE },
+};
+
+int tier4_totalweight[2];
+int tier4_numentries[2];
+MannCoBoxData_t tier4_good[] =
+{
+	{ "All The Weapon Upgrades!",	"AllUpgrades",			8,		DELAY_BLUEIMP },
+	{ "Legendary Armor!",			"WINRAR",				10,		DELAY_NONE },
+	{ "An Extra Life!",				"ExtraLife",			30,		DELAY_NONE },
+	{ "A Megasphere!",				"MegaSphere",			50,		DELAY_NONE },
+	{ "Drugs?!",					"Joy",					50,		DELAY_NONE },
+	{ "A Spew of Health Potions!",	"HealthVomit",			75,		DELAY_NONE },
+	{ "An Upchuck of Orbs!",		"OrbVomit",				75,		DELAY_NONE },
+	{ "A Barf of Bullets!",			"ClipVomit",			75,		DELAY_NONE },
+	{ "A Regurgitation of Shells!",	"ShellVomit",			70,		DELAY_NONE },
+	{ "A Cascade of Cells!",		"CellVomit",			65,		DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",	"T5Upgrade",			30,		DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",	"T6Upgrade",			25,		DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",	"T7Upgrade",			20,		DELAY_NONE },
+};
+
+MannCoBoxData_t tier4_bad[] =
+{
+	{ "The Big Succ!",					"BIGSUCC",			25,		DELAY_NONE },
+	{ "A Box of Farts N' Failure!",		"MANNFAIL",			50,		DELAY_NONE },
+	{ "Allahu Akbar.",					"SNAKBAR",			10,		DELAY_NONE },
+	{ "The White Rabbit of Caerbannog!","WhiteRabbit",		10,		DELAY_NONE },
+	{ "Grenade Vomit!",					"NadeVomit",		30,		DELAY_NONE },
+	{ "Acid Puke!",						"BaronBallVomit",	75,		DELAY_NONE },
+	{ "Bee Barf!",						"BeeVomit",			50,		DELAY_NONE },
+	{ "A Bruiser Demon!",				"BruiserDemon",		45,		DELAY_LONG },
+	{ "A Bunch of Rocket Imps!",		"RocketImps",		30,		DELAY_LONG },
+	{ "A Horde of Annoying Zombies.",	"MiniZombieHorde",	25,		DELAY_SHORT },
+};
+
+int tier5_totalweight[2];
+int tier5_numentries[2];
+MannCoBoxData_t tier5_good[] =
+{
+	{ "A Medical Bag. \cgFuck you.",						"MedBag",				1,		DELAY_NONE },
+	{ "A Kan-Kan Powerup!",									"KanKan",				15,		DELAY_NONE },
+	{ "An Invulnerability Powerup!",						"Invuln",				8,		DELAY_NONE },
+	{ "An Energy Tank!", 									"ETank",				5,		DELAY_NONE },
+	{ "Legendary Armor!",									"WINRAR",				3,		DELAY_NONE },
+	{ "A Megasphere... \cgAnd an archvile!",				"MegaSphereArchie",		60,		DELAY_NONE },
+	{ "An Extra Life... \cgAnd a White Rabbit!",			"ExtraLifeRabbit",		30,		DELAY_NONE },
+	{ "A Barf Bonanza!",									"VomitAll",				50,		DELAY_NONE },
+	{ "A Friendly Archspeen!",								"FriendlyArchSpeen",	15,		DELAY_LAUGH },
+	{ "A Friendly Zyberdemon... \cgAnd 3 White Rabbits!!",	"FriendlyZyberRabbits",	10,		DELAY_LAUGH },
+};
+
+MannCoBoxData_t tier5_bad[] =
+{
+	{ "Bruiser Brothers!",				"BruiserBros",		50,		DELAY_NONE },
+	{ "Corrupt Fiend!",					"CorruptFiend",		50,		DELAY_NONE },
+	{ "Corrupt Gosimer!",				"CorruptGosimer",	50,		DELAY_NONE },
+	{ "Corrupt Kunai!",					"CorruptKunai",		50,		DELAY_NONE },
+	{ "Corrupt Trio!",					"CorruptTrio",		50,		DELAY_BOSSLAUGH },
+	{ "Deja Vu!",						"DejaVu",			50,		DELAY_NONE },
+	{ "Kart Racists!",					"Kartrape",			50,		DELAY_NONE },
+	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	25,		DELAY_BOSSLAUGH },
+	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	25,		DELAY_BOSSLAUGH },
+	{ "A Horde of Ettins!",				"EttinHordeSpawn",	25,		DELAY_BOSSLAUGH },
+};
+
+// This function adds up the weights of all good and bad results, which is used to determine the outcomes in MANNCO_PICK.
+// It only needs to be done once at map load.
+script "TALLY_WEIGHTS" OPEN
+{
+	int i;
+
+	// Tier 1
+	// ------
+	tier1_numentries[GOOD] = sizeof(tier1_good) / sizeof(tier1_good[0]);
+	for(i = 0; i < tier1_numentries[GOOD]; i++)
+		tier1_totalweight[GOOD] += tier1_good[i].weight;
+
+	tier1_numentries[BAD] = sizeof(tier1_bad) / sizeof(tier1_bad[0]);
+	for(i = 0; i < tier1_numentries[BAD]; i++)
+		tier1_totalweight[BAD] += tier1_bad[i].weight;
+	// ------
+
+	// Tier 2
+	// ------
+	tier2_numentries[GOOD] = sizeof(tier2_good) / sizeof(tier2_good[0]);
+	for(i = 0; i < tier2_numentries[GOOD]; i++)
+		tier2_totalweight[GOOD] += tier2_good[i].weight;
+
+	tier2_numentries[BAD] = sizeof(tier2_bad) / sizeof(tier2_bad[0]);
+	for(i = 0; i < tier2_numentries[BAD]; i++)
+		tier2_totalweight[BAD] += tier2_bad[i].weight;
+	// ------
+
+	// Tier 3
+	// ------
+	tier3_numentries[GOOD] = sizeof(tier3_good) / sizeof(tier3_good[0]);
+	for(i = 0; i < tier3_numentries[GOOD]; i++)
+		tier3_totalweight[GOOD] += tier3_good[i].weight;
+
+	tier3_numentries[BAD] = sizeof(tier3_bad) / sizeof(tier3_bad[0]);
+	for(i = 0; i < tier3_numentries[BAD]; i++)
+		tier3_totalweight[BAD] += tier3_bad[i].weight;
+	// ------
+
+	// Tier 4
+	// ------
+	tier4_numentries[GOOD] = sizeof(tier4_good) / sizeof(tier4_good[0]);
+	for(i = 0; i < tier4_numentries[GOOD]; i++)
+		tier4_totalweight[GOOD] += tier4_good[i].weight;
+
+	tier4_numentries[BAD] = sizeof(tier4_bad) / sizeof(tier4_bad[0]);
+	for(i = 0; i < tier4_numentries[BAD]; i++)
+		tier4_totalweight[BAD] += tier4_bad[i].weight;
+	// ------
+
+	// Tier 5
+	// ------
+	tier5_numentries[GOOD] = sizeof(tier5_good) / sizeof(tier5_good[0]);
+	for(i = 0; i < tier5_numentries[GOOD]; i++)
+		tier5_totalweight[GOOD] += tier5_good[i].weight;
+
+	tier5_numentries[BAD] = sizeof(tier5_bad) / sizeof(tier5_bad[0]);
+	for(i = 0; i < tier5_numentries[BAD]; i++)
+		tier5_totalweight[BAD] += tier5_bad[i].weight;
+	// ------
+
+	if(GetCVar("sh_debug_boxes"))
+	{
+		log(s:"MannCo Box Info");
+		log(s:"Tier 1 (GOOD): ", d:tier1_numentries[GOOD], s:" with total weight of ", d:tier1_totalweight[GOOD], s:".");
+		log(s:"Tier 1 (BAD): ", d:tier1_numentries[BAD], s:" with total weight of ", d:tier1_totalweight[BAD], s:".");
+
+		log(s:"Tier 2 (GOOD): ", d:tier2_numentries[GOOD], s:" with total weight of ", d:tier2_totalweight[GOOD], s:".");
+		log(s:"Tier 2 (BAD): ", d:tier2_numentries[BAD], s:" with total weight of ", d:tier2_totalweight[BAD], s:".");
+
+		log(s:"Tier 3 (GOOD): ", d:tier3_numentries[GOOD], s:" with total weight of ", d:tier3_totalweight[GOOD], s:".");
+		log(s:"Tier 3 (BAD): ", d:tier3_numentries[BAD], s:" with total weight of ", d:tier3_totalweight[BAD], s:".");
+
+		log(s:"Tier 4 (GOOD): ", d:tier4_numentries[GOOD], s:" with total weight of ", d:tier4_totalweight[GOOD], s:".");
+		log(s:"Tier 4 (BAD): ", d:tier4_numentries[BAD], s:" with total weight of ", d:tier4_totalweight[BAD], s:".");
+
+		log(s:"Tier 5 (GOOD): ", d:tier5_numentries[GOOD], s:" with total weight of ", d:tier5_totalweight[GOOD], s:".");
+		log(s:"Tier 5 (BAD): ", d:tier5_numentries[BAD], s:" with total weight of ", d:tier5_totalweight[BAD], s:".");
+	}
+}
+
+script "MANNCO_PICK" (int tier)
+{
+	int type = random(GOOD, BAD);
+	int rnd, weight, delaytype, i;
+
+	str pickedName;
+	str pickedState;
+
+	switch(tier)
+	{
+		case 0:
+		case 1:
+		{
+			rnd = random(0, tier1_totalweight[type]-1);
+			for(i=0; i < tier1_numentries[type]; i++)
+			{
+				weight = (!type) ? tier1_good[i].weight : tier1_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier1_good[i].delaytype : tier1_bad[i].delaytype;
+					pickedName = (!type) ? tier1_good[i].name : tier1_bad[i].name;
+					pickedState = (!type) ? tier1_good[i].state : tier1_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+
+		case 2:
+		{
+			rnd = random(0, tier2_totalweight[type]-1);
+			for(i=0; i < tier2_numentries[type]; i++)
+			{
+				weight = (!type) ? tier2_good[i].weight : tier2_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier2_good[i].delaytype : tier2_bad[i].delaytype;
+					pickedName = (!type) ? tier2_good[i].name : tier2_bad[i].name;
+					pickedState = (!type) ? tier2_good[i].state : tier2_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+
+		case 3:
+		{
+			rnd = random(0, tier3_totalweight[type]-1);
+			for(i=0; i < tier3_numentries[type]; i++)
+			{
+				weight = (!type) ? tier3_good[i].weight : tier3_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier3_good[i].delaytype : tier3_bad[i].delaytype;
+					pickedName = (!type) ? tier3_good[i].name : tier3_bad[i].name;
+					pickedState = (!type) ? tier3_good[i].state : tier3_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+
+		case 4:
+		{
+			rnd = random(0, tier4_totalweight[type]-1);
+			for(i=0; i < tier4_numentries[type]; i++)
+			{
+				weight = (!type) ? tier4_good[i].weight : tier4_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier4_good[i].delaytype : tier4_bad[i].delaytype;
+					pickedName = (!type) ? tier4_good[i].name : tier4_bad[i].name;
+					pickedState = (!type) ? tier4_good[i].state : tier4_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+
+		case 5:
+		{
+			rnd = random(0, tier5_totalweight[type]-1);
+			for(i=0; i < tier5_numentries[type]; i++)
+			{
+				weight = (!type) ? tier5_good[i].weight : tier5_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier5_good[i].delaytype : tier5_bad[i].delaytype;
+					pickedName = (!type) ? tier5_good[i].name : tier5_bad[i].name;
+					pickedState = (!type) ? tier5_good[i].state : tier5_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+	}
+
+	if(delaytype != 0)
+	{
+		SetActorState(0, boxDelay[delaytype].state, false);
+		Delay(boxDelay[delaytype].time);
+	}
+
+	SetHudSize(640, 480, true);
+	HudMessageBold(s:pickedName;
+	HUDMSG_TYPEON | HUDMSG_LOG, 70, (!type) ? CR_GREEN : CR_RED, 320.4, 144.1, 5.0, 0.01, 0.5);
+	SetActorState(0, pickedState, false);
+}

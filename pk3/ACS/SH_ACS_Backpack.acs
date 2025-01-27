@@ -1,4 +1,4 @@
-#Library "Backpackexpander"
+#Library "SH_ACS_Backpack"
 #Include "Zcommon.acs"
 
 //bool playerbackpack[64] = { FALSE };
@@ -21,13 +21,11 @@ script "BACKPACK_BELT_HANDLER" (int force_give_only)
 	if (GetAmmoCapacity("Battery") >= 800)
 		give_only = true;
 		
-	if(force_give_only)
+	if(force_give_only) // Used for things like the ammo belt.
 		give_only = true;
 		
 	if(!give_only)
 		Giveinventory("Ammoexpansioncheck",	1);
-		
-	// To-Do: Make ammo belt use this function too, but not increase capacity.
 
 	//AddAmmoCapacity("Clip", 100);
 	AddAmmoCapacity("PeastolClip", 25);

@@ -1,10 +1,17 @@
-#library "SoundAndMusic"
+#library "SH_ACS_SoundAndMusic"
 #include "zcommon.acs"
 
-Script "sv_manncofail" (Void)
+#define NUM_DEATH_SOUNDS 90
+
+script "DEATH_SOUNDS" DEATH
 {
-	Ambientsound("Mannco/Fail",127);
+	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
+		terminate;
+
+	str soundName = StrParam(s:"ded", d:random(1, NUM_DEATH_SOUNDS));
+	AmbientSound(soundName, 127);
 }
+
 
 Script "sv_manncosnakbar" (Void)
 {

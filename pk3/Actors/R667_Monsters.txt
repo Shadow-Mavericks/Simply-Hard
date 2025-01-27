@@ -15530,7 +15530,7 @@ ACTOR LanzaHielo2
 }
 
 //===========================================================================
-// Credit for Bulltubus
+// Credit for Bulletbus
 // Submitted: 00_Zombie_00
 // Decorate: 00_Zombie_00
 // GLDEFs: N/A

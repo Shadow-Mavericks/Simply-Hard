@@ -1,4 +1,4 @@
-#library "DIVSHADW"
+#library "SH_ACS_MonsterCode"
 #include "zcommon.acs"
 
 //----------------------------------------------//
