@@ -244,7 +244,7 @@ ACTOR armourportalpayout : PortalPayout_Base
 			EUAB A 1
 			KUAB A 1 Bright
 			EUAB A 1
-			EUAB A 0 Bright A_RadiusGive("Shieldregneration", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
+			EUAB A 0 Bright A_RadiusGive("ShieldRegeneration", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
 			EUAB A 0 Bright A_RadiusGive("SentryBox", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
 		End:
 			EUAB A 1 A_NoBlocking
@@ -254,7 +254,7 @@ ACTOR armourportalpayout : PortalPayout_Base
 	}
 }
 
-Actor Shieldregneration : CustomInventory
+Actor ShieldRegeneration : CustomInventory
 {
 	+INVENTORY.ALWAYSPICKUP
 	// Other flags and definitions
