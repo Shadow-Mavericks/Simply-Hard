@@ -2003,11 +2003,11 @@ actor ExtraLifeThingy : CustomInventory
 	States
 	{
 		Spawn:
-			ONEM A 10500 Bright
+			ONEM A 6300 Bright
 			goto FuckThis
 		FuckThis:
 			ONEM A 20 Bright
-			ONEM A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 1024.0, 1024.0, 360.0, "Succ")
+			ONEM A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 1280.0, 1280.0, 360.0, "Succ")
 			ONEM A 0 A_ClearTarget
 			Loop
 		Succ:
