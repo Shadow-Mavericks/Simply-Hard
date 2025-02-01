@@ -9013,11 +9013,11 @@ ACTOR PyroZombie
 			PYRZ AABBCCDD 3 A_Chase
 			loop
 		Missile:
-			PYRZ E 1 Bright A_PlaySound ("weapons/nuclearmissilecharge")
+			PYRZ E 1 Bright A_PlaySound("weapons/nuclearmissilecharge", CHAN_AUTO, 1.0, false, 0.5)
 			PYRZ E 10 A_FaceTarget
 			PYRZ F 10 Bright
-			PYRZ F 0 Bright A_PlaySound ("PyroCannon/Fire")
-			PYRZ F 10 Bright A_PlaySound ("weapons/nuclearmissilefire", CHAN_WEAPON)
+			PYRZ F 0 Bright A_PlaySound("PyroCannon/Fire", CHAN_AUTO, 1.0, false, 0.5)
+			PYRZ F 10 Bright A_PlaySound("weapons/nuclearmissilefire", CHAN_WEAPON, 1.0, false, 0.5)
 			PYRZ E 10 Bright A_MissileAttack
 			goto See
 		Pain:
