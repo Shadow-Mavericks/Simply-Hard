@@ -956,15 +956,16 @@ script "HPBAR_LOGIC" (void) // CLIENTSIDE // NOPE, CAN'T DO CLIENTSIDE BECAUSE Z
 		if((GetActorZ(0) + height) > (GetActorCeilingZ(0) - 2.0))
 			zoffset -= ((GetActorZ(0) + height) - (GetActorCeilingZ(0) - 2.0));
 		
-		if(health <= 0)
+		SetActivator(barTID);
+		int didWarp = Warp(AAPTR_TARGET, 0, 0, zoffset, 0, WARPF_NOCHECKPOSITION | WARPF_BOB | WARPF_USEPTR | WARPF_COPYINTERPOLATION, "", true, 0, 0, 0);
+		if(health <= 0 || !didWarp)
 		{
 			Thing_Remove(barTID);
 			terminate;
 		}
+		
 		SetActorState(barTID, state, true);
 		
-		SetActivator(barTID);
-		Warp(AAPTR_TARGET, 0, 0, zoffset, 0, WARPF_NOCHECKPOSITION | WARPF_BOB | WARPF_USEPTR | WARPF_COPYINTERPOLATION, "", true, 0, 0, 0);		
 		delay(1);
 	}
 }
