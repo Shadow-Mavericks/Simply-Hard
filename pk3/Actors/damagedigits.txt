@@ -11,6 +11,7 @@ actor DigitBase
 	+NOTIMEFREEZE
 	States
 	{
+		Death:
 		Spawn:
 			TNT1 A 1
 			stop
@@ -60,3 +61,90 @@ actor Digit4Num6 : DigitBase { States { Spawn: D4N6 A 1 BRIGHT A_Fadeout(0.02) l
 actor Digit4Num7 : DigitBase { States { Spawn: D4N7 A 1 BRIGHT A_Fadeout(0.02) loop } }
 actor Digit4Num8 : DigitBase { States { Spawn: D4N8 A 1 BRIGHT A_Fadeout(0.02) loop } }
 actor Digit4Num9 : DigitBase { States { Spawn: D4N9 A 1 BRIGHT A_Fadeout(0.02) loop } }
+
+actor HasHealthBar : SH_BaseToken { }
+actor HealthBar : DigitBase
+{
+	-CLIENTSIDEONLY // Zandronum is retarded.
+	States
+	{
+		Spawn:
+			HPBR A 1 //A_ClientsideACSExecute("HPBAR_LOGIC", 0) // Zandronum is retarded.
+			loop
+		Health24: 
+			HPBR A -1 BRIGHT 
+			loop
+		Health23: 
+			HPBR B -1 BRIGHT 
+			loop
+		Health22: 
+			HPBR C -1 BRIGHT 
+			loop
+		Health21: 
+			HPBR D -1 BRIGHT 
+			loop
+		Health20: 
+			HPBR E -1 BRIGHT 
+			loop
+		Health19: 
+			HPBR F -1 BRIGHT 
+			loop
+		Health18: 
+			HPBR G -1 BRIGHT 
+			loop
+		Health17: 
+			HPBR H -1 BRIGHT 
+			loop
+		Health16: 
+			HPBR I -1 BRIGHT 
+			loop
+		Health15: 
+			HPBR J -1 BRIGHT 
+			loop
+		Health14: 
+			HPBR K -1 BRIGHT 
+			loop
+		Health13: 
+			HPBR L -1 BRIGHT 
+			loop
+		Health12: 
+			HPBR M -1 BRIGHT 
+			loop
+		Health11: 
+			HPBR N -1 BRIGHT 
+			loop
+		Health10: 
+			HPBR O -1 BRIGHT 
+			loop
+		Health9: 
+			HPBR P -1 BRIGHT 
+			loop
+		Health8: 
+			HPBR Q -1 BRIGHT 
+			loop
+		Health7: 
+			HPBR R -1 BRIGHT 
+			loop
+		Health6: 
+			HPBR S -1 BRIGHT 
+			loop
+		Health5: 
+			HPBR T -1 BRIGHT 
+			loop
+		Health4: 
+			HPBR U -1 BRIGHT 
+			loop
+		Health3: 
+			HPBR V -1 BRIGHT 
+			loop
+		Health2: 
+			HPBR W -1 BRIGHT 
+			loop
+		Health1: 
+			HPBR X -1 BRIGHT 
+			loop
+		Health0:
+			HPBR Y -1 BRIGHT
+			loop
+	}
+}

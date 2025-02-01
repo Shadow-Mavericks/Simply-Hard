@@ -5,6 +5,8 @@
 // All code in this file is by StrikerTheHedgefox.
 // Please ask permission if you want to use this!
 
+#define ONE_16 (1<<16)
+
 function int seek_string(str string, str substring, int startPos)
 {
 	int stringLength = StrLen(string);
@@ -617,8 +619,6 @@ function void actor_swap(str replace, str with, int chance)
 	return;
 }
 
-#define ONE_16 (1<<16)
-
 function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int ptr)
 {
 	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
@@ -892,9 +892,81 @@ function int handle_damage_event(int type, int arg1, int arg2)
 				}
 			}
 		}
+		
+		if(GetCVar("sh_healthbars"))
+		{
+			if(victimIsMonster && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)) && !CheckFlag(0, "SHADOW") && !CheckFlag(0, "INVISIBLE"))
+			{		
+				if(!CheckInventory("HasHealthBar"))
+				{
+					GiveInventory("HasHealthBar", 1);
+					
+					ACS_NamedExecuteWithResult("CREATE_HP_BAR", 0);
+				}
+			}
+		}
 	}
 
 	return arg1;
+}
+
+script "CREATE_HP_BAR" (void)
+{
+	if(!GetCVar("sh_healthbars"))
+		terminate;
+		
+	int barTID = UniqueTID();
+	SpawnForced("HealthBar", GetActorX(0), GetActorY(0), GetActorZ(0)+GetActorProperty(0, AProp_Height), barTID, GetActorAngle(0));
+	
+	int oldTID = ActivatorTID(); // Get target's TID, memorize it.
+	int tgtUTID = UniqueTID();
+	Thing_ChangeTID(0, tgtUTID); // Give it our unique ID.
+	
+	// Set activator to the bar, and set its pointers to the target.
+	SetActivator(barTID);
+	SetPointer(AAPTR_TARGET, tgtUTID);
+	SetPointer(AAPTR_TRACER, tgtUTID);
+	
+	// Restore target's TID back to normal.
+	Thing_ChangeTID(tgtUTID, oldTID);
+	
+	// Zandronum is brainfuck dead stupid and doesn't sync health to clients, so I have to make this serverside and waste a metric fuckton of bandwidth. Joy.
+	ACS_NamedExecuteWithResult("HPBAR_LOGIC", 0);
+}
+
+script "HPBAR_LOGIC" (void) // CLIENTSIDE // NOPE, CAN'T DO CLIENTSIDE BECAUSE ZAN CAN'T SYNC HEALTH, GO FIGURE!
+{
+	int barTID = ActivatorTID();
+	SetActivatorToTarget(barTID);
+	int maxhealth = GetActorProperty(0, AProp_SpawnHealth) << 16;
+	int height = GetActorProperty(0, AProp_Height) + 20.0;
+	str enemyClass = GetActorClass(0);
+	
+	if((seek_string(enemyClass, "Revenant", 0) > -1) || (seek_string(enemyClass, "Haedexebus", 0) > -1))
+		height += 24.0;
+	
+	while(1)
+	{
+		SetActivatorToTarget(barTID);
+		int health = GetActorProperty(0, AProp_Health);
+		int zoffset = height;
+		int selector = FixedDiv(health << 16, maxhealth / 24) >> 16; // Health bar is divided into 24 segments
+		str state = strparam(s:"health", d:selector);
+		
+		if((GetActorZ(0) + height) > (GetActorCeilingZ(0) - 2.0))
+			zoffset -= ((GetActorZ(0) + height) - (GetActorCeilingZ(0) - 2.0));
+		
+		if(health <= 0)
+		{
+			Thing_Remove(barTID);
+			terminate;
+		}
+		SetActorState(barTID, state, true);
+		
+		SetActivator(barTID);
+		Warp(AAPTR_TARGET, 0, 0, zoffset, 0, WARPF_NOCHECKPOSITION | WARPF_BOB | WARPF_USEPTR | WARPF_COPYINTERPOLATION, "", true, 0, 0, 0);		
+		delay(1);
+	}
 }
 
 #define GAMEEVENT_LEVEL_INIT 16
