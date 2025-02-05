@@ -895,7 +895,11 @@ function int handle_damage_event(int type, int arg1, int arg2)
 		
 		if(GetCVar("sh_healthbars"))
 		{
-			if(victimIsMonster && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)) && !CheckFlag(0, "SHADOW") && !CheckFlag(0, "INVISIBLE"))
+			if (victimIsMonster && (arg1 > 0) &&
+			   (arg1 < GetActorProperty(0, AProp_Health)) &&
+			   !CheckFlag(0, "SHADOW") &&
+			   !CheckFlag(0, "INVISIBLE") &&
+			   !CheckFlag(0, "STEALTH"))
 			{		
 				if(!CheckInventory("HasHealthBar"))
 				{
