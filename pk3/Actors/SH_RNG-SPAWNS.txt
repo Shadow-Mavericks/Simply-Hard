@@ -223,7 +223,7 @@ Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
 	Dropitem "HardSpiderboss"	255 3
 	Dropitem "AracnorbQueen"	255 1
 	Dropitem "Fusionspider"		255 3
-	Dropitem "Demolisher"		255 3
+	Dropitem "Demolisher"		255 2
 }
 
 Actor Speedorspawner : SH_BaseMonsterRandomSpawner Replaces Arachnotron

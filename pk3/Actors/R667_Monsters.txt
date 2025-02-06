@@ -9204,79 +9204,80 @@ Actor DropFire
 
 Actor Demolisher
 {
-  Obituary "%o felt the power of the Spider-Demolisher."
-  Health 3000
-  Radius 96
-  Height 100
-  Mass 1000
-  Speed 16
-  PainChance 20
-  Monster
-  +Dontrip
-  +NoTarget
-  +FloorClip
-  +Boss
-  +MissileEvenMore
-  +NoRadiusDmg
-  SeeSound "monster/demsit"
-  AttackSound "spider/attack"
-  PainSound "spider/pain"
-  DeathSound "monster/demdth"
-  ActiveSound "spider/active"
-  States
-  {
-  Spawn:
-    DEMO AB 10 A_Look
-    Loop
-  See:
-    DEMO A 3 A_Metal
-    DEMO ABB 3 A_Chase
-    DEMO C 3 A_Metal
-    DEMO CDD 3 A_Chase
-    DEMO E 3 A_Metal
-    DEMO EFF 3 A_Chase
-    Loop
-  Missile:
-    DEMO A 0 Bright A_Jump (128,20)
-    DEMO A 20 A_FaceTarget
-    DEMO T 1 Bright A_Playsound ("BFG9K")
-    DEMO T 4 Bright A_FaceTarget
-    DEMO T 4 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO U 10 Bright A_CustomMissile ("BFGBall",32,0,0)
-    DEMO T 0 Bright A_Jump (128,10)
-    DEMO T 1 Bright A_Playsound ("BFG9K")
-    DEMO T 4 Bright A_FaceTarget
-    DEMO T 4 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO T 5 Bright A_FaceTarget
-    DEMO U 10 Bright A_CustomMissile ("BFGBall",32,0,0)
-    DEMO T 0 Bright A_Jump (192,1)
-    Goto See
-    DEMO A 20 A_FaceTarget
-    DEMO G 0 Bright A_SPosAttack
-    DEMO G 4 Bright A_SPosAttack
-    DEMO H 0 Bright A_SPosAttack
-    DEMO H 4 Bright A_SPosAttack
-    DEMO H 1 Bright A_SpidRefire
-    Goto Missile+21
-  Pain:
-    DEMO I 3
-    DEMO I 3 A_Pain
-    Goto See
-  Death:
-    DEMO J 20 Bright A_Scream
-    DEMO K 10 Bright A_NoBlocking
-    DEMO LMNOPQR 10 Bright
-    DEMO S 30
-    DEMO S -1 A_BossDeath
-    Stop
-   }
+	Obituary "%o felt the power of the Spider-Demolisher."
+	Health 3000
+	Radius 96
+	Height 100
+	Mass 1000
+	Speed 16
+	PainChance 20
+	Monster
+	+Dontrip
+	+NoTarget
+	+FloorClip
+	+Boss
+	+MissileEvenMore
+	+NoRadiusDmg
+	SeeSound "monster/demsit"
+	AttackSound "spider/attack"
+	PainSound "spider/pain"
+	DeathSound "monster/demdth"
+	ActiveSound "spider/active"
+	States
+	{
+	Spawn:
+		DEMO AB 10 A_Look
+		Loop
+	See:
+		DEMO A 3 A_Metal
+		DEMO ABB 3 A_Chase
+		DEMO C 3 A_Metal
+		DEMO CDD 3 A_Chase
+		DEMO E 3 A_Metal
+		DEMO EFF 3 A_Chase
+		Loop
+	Missile:
+		DEMO A 0 Bright A_Jump (128, "ChaingunAttack")
+		DEMO A 20 A_FaceTarget
+		DEMO T 1 Bright A_Playsound ("BFG9K")
+		DEMO T 4 Bright A_FaceTarget
+		DEMO T 4 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO U 10 Bright A_CustomMissile ("BFGBall",32,0,0)
+		DEMO T 0 Bright A_Jump (128, "ChaingunAttack")
+		DEMO T 1 Bright A_Playsound ("BFG9K")
+		DEMO T 4 Bright A_FaceTarget
+		DEMO T 4 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO T 5 Bright A_FaceTarget
+		DEMO U 10 Bright A_CustomMissile ("BFGBall",32,0,0)
+		DEMO T 0 Bright A_Jump (192,"ChaingunAttack")
+		Goto See
+	ChaingunAttack:
+		DEMO A 20 A_FaceTarget
+		DEMO G 0 Bright A_SPosAttack
+		DEMO G 4 Bright A_SPosAttack
+		DEMO H 0 Bright A_SPosAttack
+		DEMO H 4 Bright A_SPosAttack
+		DEMO H 1 Bright A_SpidRefire
+		Goto Missile+21
+	Pain:
+		DEMO I 3
+		DEMO I 3 A_Pain
+		Goto See
+	Death:
+		DEMO J 20 Bright A_Scream
+		DEMO K 10 Bright A_NoBlocking
+		DEMO LMNOPQR 10 Bright
+		DEMO S 30
+		DEMO S -1 A_BossDeath
+		Stop
+	}
 }
 
 actor DivineShadow : SH_BaseMonster
