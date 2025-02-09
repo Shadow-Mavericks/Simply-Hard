@@ -3464,6 +3464,9 @@ ACTOR Haedexebus : Hardfatso
 	States
 	{
 		Spawn:
+			UNMB A 0 NoDelay A_SetUserVar("user_hpbar_offset", 32)
+			goto SpawnLoop
+		SpawnLoop:
 			UNMB AABB 8 A_Look
 			Loop
 		See:

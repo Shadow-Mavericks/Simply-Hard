@@ -143,7 +143,7 @@ Actor MeatballSpawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 {
 	Radius 31
 	Height 56
-	Dropitem "HardCaco"						255 100
+	Dropitem "N_Cacodemon_Base"				255 100
 	//Dropitem "Cacomother"					255 1
 	Dropitem "GasterBlaster"				255 5
 	Dropitem "Poe"							255 1

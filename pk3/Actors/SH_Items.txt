@@ -1247,7 +1247,7 @@ actor SentryBoom
 	}
 }
 
-ACTOR SentryBox : CustomInventory 12369
+ACTOR SentryBox : CustomInventory
 {
 	Tag "Mini-Sentry Box"
 	+DONTGIB

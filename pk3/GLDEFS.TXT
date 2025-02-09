@@ -7283,16 +7283,16 @@ Object Gasterblasterfollower
 	frame GDIE	{ light slot5klite }
 }
 
-Object Meatballprojectile
+Object CacodemonBall_Base
 {
-	frame BAL2A	{ light Meatballlite1 }
-	frame BAL2B	{ light Meatballlite1 }
-	frame BAL2C	{ light Meatballlite2 }
-	frame BAL2D	{ light Meatballlite2 }
-	frame BAL2E	{ light Meatballlite3 }
-	frame BAL2F	{ light Meatballlite3 }
-	frame BAL2G	{ light Meatballlite2 }
-	frame BAL2H	{ light Meatballlite2 }
+	frame CCOBA	{ light Meatballlite1 }
+	frame CCOBB	{ light Meatballlite1 }
+	frame CCOBC	{ light Meatballlite2 }
+	frame CCOBD	{ light Meatballlite2 }
+	frame CCOBE	{ light Meatballlite3 }
+	frame CCOBF	{ light Meatballlite3 }
+	frame CCOBG	{ light Meatballlite2 }
+	frame CCOBH	{ light Meatballlite2 }
 }
 
 pointlight meatballlite1
@@ -9193,11 +9193,11 @@ pointlight Normimpball4
 
 Object Doomimpball1
 {
-	frame BAL1A	{ Light Normimpball1 }
-	frame BAL1B { Light Normimpball1 }
-	frame BAL1C { Light Normimpball2 }
-	frame BAL1D { Light Normimpball3 }
-	frame BAL1E { Light Normimpball4 }
+	frame IBALA	{ Light Normimpball1 }
+	frame IBALB { Light Normimpball1 }
+	frame IBALC { Light Normimpball2 }
+	frame IBALD { Light Normimpball3 }
+	frame IBALE { Light Normimpball4 }
 }
 
 BrightMap Sprite MEDPA0

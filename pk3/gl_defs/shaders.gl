@@ -595,6 +595,13 @@ HardwareShader texture LFALL2
 	Speed 1.0
 }
 
+// --- MAYhem 2019 ---
+HardwareShader texture ALAVA01
+{
+	Shader "shaders/lava.fp"
+	Speed 1.0
+}
+
 // Model Shaders
 // -------------
 HardwareShader texture POWBUBBL

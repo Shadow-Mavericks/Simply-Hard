@@ -1,5 +1,6 @@
-ACTOR N_Cacodemon_Base : Monster_Base 
+actor N_Cacodemon_Base : SH_BaseMonster
 {
+	Tag "Cacodemon"
 	Health 500
 	Radius 31
 	Height 56
@@ -86,39 +87,39 @@ ACTOR N_Cacodemon_Base : Monster_Base
 
 ACTOR CacodemonBall_Base : Projectile_Base
 {
-  Radius 6
-  Height 8
-  Speed 15
-  Damage (18)
-  SeeSound "caco/attack"
-  DeathSound "caco/shotx"
-  States
-  {
-  Spawn:
-    BAL2 AB 4 Bright
-    Loop
-  Death:
-    BAL2 A 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 B 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 C 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 D 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 E 2 Bright A_SetScale(scalex-0.1, scaley-0.1) 
-    BAL2 F 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 G 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-    BAL2 H 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-	Stop
-   Stop
-  }
+	Radius 6
+	Height 8
+	Speed 15
+	Damage (18)
+	SeeSound "caco/attack"
+	DeathSound "caco/shotx"
+	States
+	{
+		Spawn:
+			CCOB AB 4 Bright
+			Loop
+		Death:
+			CCOB A 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB B 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB C 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB D 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB E 2 Bright A_SetScale(scalex-0.1, scaley-0.1) 
+			CCOB F 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB G 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			CCOB H 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			Stop
+	}
 }
 
 // Acid Cacodemon
 actor CacodemonBall_Acid : CacodemonBall_Base 
 { 
-	DamageType "Acid" 
+	DamageType "Acid"
 }
 
 actor N_Cacodemon_Acid : N_Cacodemon_Base 
 {
+	Tag "Acid Caco"
 //	Scale 1.1
 	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "16:47=[192, 255, 192]:[64, 96, 64]", "166:167=[192, 255, 192]:[128, 160, 128]", "223:223=[32, 64, 32]:[32, 64, 32]"
 	States
@@ -137,12 +138,13 @@ actor N_Cacodemon_Acid : N_Cacodemon_Base
 
 // Void Cacodemon
 actor CacodemonBall_Void : CacodemonBall_Base 
-{ 
+{
 	DamageType "Void" 
 }
 
 actor N_Cacodemon_Void : N_Cacodemon_Base 
 {
+	Tag "Void Caco"
 //	Scale 1.1
 	Translation "168:191=[192, 128, 255]:[16, 0, 32]", "16:47=[255, 192, 255]:[64, 32, 96]", "166:167=[255, 192, 255]:[128, 64, 192]", "223:223=[32, 64, 32]:[32, 64, 32]"
 	States
@@ -166,6 +168,7 @@ actor CacodemonBall_Fire : CacodemonBall_Base
 
 actor N_Cacodemon_Fire : N_Cacodemon_Base 
 {
+	Tag "Fire Caco"
 //	Scale 1.1
 	Translation "168:191=[255, 128, 0]:[64, 32, 0]", "16:47=[255, 192, 0]:[128, 64, 0]", "166:167=[255, 192, 0]:[192, 128, 64]", "223:223=[32, 64, 32]:[32, 64, 32]"
 	States
@@ -190,10 +193,10 @@ actor CacodemonBall_Electric : CacodemonBall_Base
 	States
 	{
 		Spawn:
-			BAL2 AB 3 Bright A_SpawnItemEx("Particle_Lightning5")
+			CCOB AB 3 Bright A_SpawnItemEx("Particle_Lightning5")
 			Loop
 		Death:
-			BAL2 CDE 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			CCOB CDE 1 Bright A_SpawnItemEx("Particle_Lightning5")
 			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
 			Stop
 	}
@@ -201,6 +204,7 @@ actor CacodemonBall_Electric : CacodemonBall_Base
 
 actor N_Cacodemon_Electric : N_Cacodemon_Base 
 {
+	Tag "Electric Caco"
 //	Scale 1.1
 	Translation "168:191=[255, 255, 96]:[64, 64, 32]", "16:47=[255, 255, 96]:[64, 64, 32]", "166:167=[255, 255, 96]:[64, 64, 32]", "223:223=[255, 255, 96]:[64, 64, 32]"
 	States
@@ -225,6 +229,7 @@ actor CacodemonBall_Ice : CacodemonBall_Base
 
 actor N_Cacodemon_Ice : N_Cacodemon_Base 
 {
+	Tag "Ice Caco"
 //	Scale 1.1
 	+Noicedeath
 	Translation "168:191=[128, 192, 255]:[32, 48, 64]", "16:47=[128, 192, 255]:[64, 96, 128]", "166:167=[128, 192, 255]:[128, 128, 192]", "223:223=[32, 64, 32]:[32, 64, 32]"
@@ -249,8 +254,9 @@ actor CacodemonBall_HeavyMetal : CacodemonBall_Base
 
 actor N_Cacodemon_HeavyMetal : N_Cacodemon_Base 
 {
+	Tag "Heavy Metal Caco"
 //	Scale 1.1
-  PainChance 0
+	PainChance 0
 	Translation "168:191=[255, 255, 255]:[0, 0, 0]", "16:47=[255, 255, 255]:[0, 0, 0]", "166:167=[255, 255, 255]:[0, 0, 0]", "223:223=[255, 255, 255]:[0, 0, 0]"
 	States
 	{

@@ -53,6 +53,7 @@ actor SH_BaseMonster
 	
 	var int user_extralife_chance;
 	var int user_manncobox_chance;
+	var int user_hpbar_offset;
 }
 
 actor SH_BaseMonsterRandomSpawner : RandomSpawner
