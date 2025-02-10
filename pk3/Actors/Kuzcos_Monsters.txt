@@ -1854,7 +1854,7 @@ See:
 	goto see
 Missile:
 Melee:
-	RBTL A 0 A_playsound("MONSTER/WHTRATT")
+	RBTL A 0 A_playsound("MONSTER/WHTRCHOM")
     RBTL A 2 A_Facetarget
 	RBTL A 5 A_skullattack
     RBTL A 2 A_Facetarget

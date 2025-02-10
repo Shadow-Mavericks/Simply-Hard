@@ -174,8 +174,10 @@ actor EnemySentryGun
 	}
 }
 
-ACTOR Hardimp : DoomImp
+ACTOR Hardimp : SH_BaseMonster
 {
+	Tag "Imp"
+	Species "Imp"
 	Health 60
 	Radius 20
 	Height 56
@@ -257,7 +259,7 @@ ACTOR Hardimp : DoomImp
 	}
 }
 
-ACTOR Critimp : DoomImp
+ACTOR Critimp : Hardimp
 {
 	Game Doom
 	Health 60
@@ -353,6 +355,7 @@ ACTOR Critimp : DoomImp
 ACTOR HardRevenant : SH_BaseMonster
 {
 	Tag "Revenant"
+	Species "Revenant"
 	Health 300
 	Radius 20
 	Height 56
@@ -443,7 +446,7 @@ ACTOR TryhardRevenant : HardRevenant
 }
 
 
-ACTOR FastDemon
+ACTOR FastDemon : SH_BaseMonster
 {
 	Species "Demon"
 	Health 150
@@ -453,14 +456,13 @@ ACTOR FastDemon
 	Height 56
 	PainChance "Mightyboot", 255
 	Mass 400
-	Monster
-	+FLOORCLIP
 	SeeSound "demon/sight"
 	AttackSound "demon/melee"
 	PainSound "demon/pain"
 	DeathSound "demon/death"
 	ActiveSound "demon/active"
 	Obituary "$OB_DEMONHIT" // "%o was bit by a demon."
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -1123,6 +1125,7 @@ ACTOR HardArachnotron
 
 actor HardFatso : SH_BaseMonster
 {
+	Species "Fatass"
 	Health 600
 	Radius 48
 	Height 64
@@ -1303,81 +1306,83 @@ Ice:
 
 // Monsters [Decorate Only] Created by GIN < Garrett Nixdorf >
 
-ACTOR Cacomother :Painelemental//Caco spawn
+ACTOR Cacomother : SH_BaseMonster //Caco spawn
 {
-  Health 400
-  Radius 31
-  Height 56
-  Mass 400
-  Speed 8
-  PainChance 128
-  Monster
-  +FLOAT
-  +NOGRAVITY
-  PainChance "Mightyboot", 255
-  SeeSound "cacomom/sight"
-  PainSound "cacomom/pain"
-  DeathSound "cacomom/death"
-  ActiveSound "cacomom/wander"
-  AttackSound "cacomom/attack"
-  Obituary "$OB_CACO"
-  BloodColor "black"
-  HitObituary "$OB_CACOHIT"
-   States
-   {
-   Spawn:
-      CMOM A 10 A_Look
-      goto see
-   See:
-      CMOM A 5 A_Chase
-	  CMOM B 5 A_Chase
-	  CMOM C 5 A_Chase
-	  CMOM D 5 A_Chase
-      Loop
-   Missile:
-      CMOM A 0 A_Jumpifcloser(256,"missile2")
-      CMOM EF 5 A_FaceTarget
-      CMOM G 5 bright A_PainAttack("cacobaby",0,PAF_NOSKULLATTACK,15)
-      CMOM D 5 A_FaceTarget
-      CMOM A 35
-      Goto See
-Missile2:
-      CMOM EF 5 A_FaceTarget
-      CMOM G 5 bright A_Headattack
-      CMOM D 5 A_FaceTarget
-      CMOM A 35
-      Goto See
-   Melee:
-      CMOM EF 5 A_FaceTarget
-      CMOM G 5 bright A_MELEEATTACK
-	  CMOM D 5 A_FaceTarget
-	  goto see
-  Pain.Mightyboot:
-	TNT1 A 0 A_Facetarget
-	TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
-	Goto See
-   Pain:
-      CMOM D 3
-      CMOM D 6 A_Pain
-      Goto See
-   Death:
-      CMOM H 5 A_Scream
-	  CMOM I 5
-	  CMOM J 5
-	  CMOM K 5 A_NoBlocking
-	  CMOM L 5
-	  CMOM M -1 a_setfloorclip
-      Stop
-	Raise:
-	  CACB M 8 A_UnSetFloorClip
-	  CACB LKJIHA 8
-	  Goto See
-   }
+	Tag "Cacomother"
+	Species "CacoMom"
+	Health 400
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 8
+	PainChance 128
+	PainChance "Mightyboot", 255
+	SeeSound "cacomom/sight"
+	PainSound "cacomom/pain"
+	DeathSound "cacomom/death"
+	ActiveSound "cacomom/wander"
+	AttackSound "cacomom/attack"
+	Obituary "$OB_CACO"
+	BloodColor "Red"
+	HitObituary "$OB_CACOHIT"
+	+FLOAT
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			CMOM A 0 NoDelay A_SetUserVar("user_hpbar_offset", 24)
+			goto SpawnLoop
+		SpawnLoop:
+			CMOM A 10 A_Look
+			goto see
+		See:
+			CMOM AABBCCDD 5 A_Chase
+			Loop
+		Missile:
+			CMOM A 0 A_JumpIfCloser(256, "Missile2")
+			CMOM EF 5 A_FaceTarget
+			CMOM G 5 bright A_SpawnItemEx("CacoBaby", 0, 0, 28, 5, 0, 0, 0, SXF_TRANSFERPOINTERS, 0)
+			CMOM D 5 A_FaceTarget
+			CMOM A 35
+			Goto See
+		Missile2:
+			CMOM EF 5 A_FaceTarget
+			CMOM G 5 bright A_CustomMissile("CacoMomBall", 48, 0, 0.0, 0)
+			CMOM D 5 A_FaceTarget
+			CMOM A 35
+			Goto See
+		Melee:
+			CMOM EF 5 A_FaceTarget
+			CMOM G 5 bright A_MeleeAttack
+			CMOM D 5 A_FaceTarget
+			goto see
+		Pain.Mightyboot:
+			TNT1 A 0 A_Facetarget
+			TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
+			Goto See
+		Pain:
+			CMOM D 3
+			CMOM D 6 A_Pain
+			Goto See
+		Death:
+			CMOM H 5 A_Scream
+			CMOM I 5
+			CMOM J 5
+			CMOM K 5 A_NoBlocking
+			CMOM L 5
+			CMOM M -1 A_SetFloorClip
+			Stop
+		Raise:
+			CACB M 8 A_UnsetFloorClip
+			CACB LKJIHA 8
+			Goto See
+	}
 }
 
-ACTOR cacobaby
+ACTOR CacoBaby
 {
 	Tag "Baby Cacodemon"
+	Species "CacoMom"
 	Health 10
 	Radius 18
 	Height 36
@@ -1390,7 +1395,6 @@ ACTOR cacobaby
 	DeathSound "cacobaby/death"
 	ActiveSound "cacobaby/wander"
 	AttackSound "ball/attack"
-	BloodColor "black"
 	Obituary "%o underestimated a Baby Cacodemon."
 	HitObituary "%o was nibbled to death by a Baby Cacodemon."
 	MONSTER
@@ -1398,16 +1402,14 @@ ACTOR cacobaby
 	+FLOAT
 	+DONTHURTSPECIES
 	+NOINFIGHTING
+	+THRUSPECIES
 	States
 	{
 		Spawn:
 			CMOM A 10 A_Look
 			Loop
 		See:
-			CMOM A 5 A_Chase
-			CMOM B 5 A_Chase
-			CMOM C 5 A_Chase
-			CMOM D 5 A_Chase
+			CMOM ABCD 5 A_Chase
 			Loop
 		Melee:
 			CMOM EF 5 A_FaceTarget
@@ -1415,8 +1417,9 @@ ACTOR cacobaby
 			CMOM D 5 A_FaceTarget
 			goto see
 		Missile:
+			CMOM E 0 A_Stop
 			CMOM EF 5 A_FaceTarget
-			CMOM G 5 Bright A_custommissile("babyball",15,0)
+			CMOM G 5 Bright A_CustomMissile("BabyBall",15,0)
 			Goto See
 		Pain:
 			CMOM D 3
@@ -1828,6 +1831,7 @@ ACTOR KunaisGasterBlaster : GasterBlasterFollower
 ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Fiend"
+	Species "Corrupted"
 	Health 2500
 	Radius 16
 	Height 56
@@ -1936,6 +1940,7 @@ ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Gosimer"
+	Species "Corrupted"
 	Health 2500
 	Radius 16
 	Height 56
@@ -2057,6 +2062,7 @@ ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Son
 ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic Doom, if there are any complaints it will be re-worked D:
 {
 	Tag "Corrupted Kunai"
+	Species "Corrupted"
 	Health 2500
 	Radius 16
 	Height 56
@@ -2413,6 +2419,8 @@ ACTOR FemalePlasma
 
 ACTOR whiterabbit : SH_BaseMonster
 {
+	Tag "White Rabbit of Caerbannog"
+	Species "Rabbit"
 	Health 1000
 	PainChance 224
 	Speed 12
@@ -2422,6 +2430,8 @@ ACTOR whiterabbit : SH_BaseMonster
 	Scale 0.5
 	BloodColor "red"
 	Seesound "monster/HGTO"
+	PainSound "monster/whtrpain"
+	ActiveSound "monster/whtract"
 	MaxTargetRange 256
 	MinMissileChance 192
 	ReactionTime 10
@@ -2452,13 +2462,14 @@ ACTOR whiterabbit : SH_BaseMonster
 			WHTR DD 1 A_Chase
 			loop
 		Missile:
+			WHTR A 0 A_Playsound("monster/whtrattk")
 			WHTR A 3 A_Facetarget
-			WHTR A 0 A_Playsound("monster/whtratt")
+			WHTR A 0 A_Playsound("monster/whtrchom", CHAN_AUTO)
 			WHTR BCD 5 A_Skullattack
 			WHTR A 5 A_Facetarget
 			Goto see
 		Pain:
-			WHTR F 3
+			WHTR F 3 A_Pain
 			Goto See
 		Death:
 			TNT1 A 0 A_Scream

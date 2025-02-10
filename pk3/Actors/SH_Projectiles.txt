@@ -1380,8 +1380,32 @@ Actor critballtrail : Particle_Base
 
 //Projectiles by Garrett / ZDwiki as base
 
+ACTOR CacoMomBall
+{
+	Radius 8
+	Height 16
+	Speed 30
+	FastSpeed 40
+	Damage (40)
+	Scale 1.0
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "ball/attack"
+	DeathSound "ball/death"
+	Projectile
+	+RANDOMIZE
+	States
+	{
+		Spawn:
+			BBAL AB 4 Bright
+			Loop
+		Death:
+			BBAL CDE 6 Bright
+			Stop
+	}
+}
 
-ACTOR babyball //Small Cacoball
+ACTOR BabyBall //Small Cacoball
 {
 	Radius 6
 	Height 8

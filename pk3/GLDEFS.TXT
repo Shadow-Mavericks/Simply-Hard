@@ -1088,24 +1088,44 @@ object dragoonsoul
     frame DGNSJ { light dragoon }
 }
 
-pointlight redball
+pointlight bigredball
 {
     color 1.0 0.25 0.0
-    size 32}
+    size 64
+}
+
+pointlight smallredball
+{
+    color 1.0 0.25 0.0
+    size 32
+}
+
+object cacomomball
+{
+	frame BBALA { light bigredball }
+	frame BBALB { light bigredball }
+	frame BBALC { light bigredball }
+	frame BBALD { light bigredball }
+	frame BBALE { light bigredball }
+	frame BBALF { light bigredball }
+	frame BBALG { light bigredball }
+    frame BBALH { light bigredball }
+    frame BBALI { light bigredball }
+    frame BBALJ { light bigredball }
+}
 
 object babyball
 {
-    frame BBAL { light redball }
-	frame BBALA { light redball }
-	frame BBALB { light redball }
-	frame BBALC { light redball }
-	frame BBALD { light redball }
-	frame BBALE { light redball }
-	frame BBALF { light redball }
-	frame BBALG { light redball }
-    frame BBALH { light redball }
-    frame BBALI { light redball }
-    frame BBALJ { light redball }
+	frame BBALA { light smallredball }
+	frame BBALB { light smallredball }
+	frame BBALC { light smallredball }
+	frame BBALD { light smallredball }
+	frame BBALE { light smallredball }
+	frame BBALF { light smallredball }
+	frame BBALG { light smallredball }
+    frame BBALH { light smallredball }
+    frame BBALI { light smallredball }
+    frame BBALJ { light smallredball }
 }
 
 

@@ -1,6 +1,7 @@
 actor N_Cacodemon_Base : SH_BaseMonster
 {
 	Tag "Cacodemon"
+	Species "Cacodemon"
 	Health 500
 	Radius 31
 	Height 56

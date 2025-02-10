@@ -1063,13 +1063,20 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("ChaingunZambles", "Mayhem19EliteCultist", 256);
 						actor_swap("WolfensteinSS", "Mayhem19PistolCultist", 256);
 						actor_swap("Hardrev", "Mayhem19Vampire", 256);
+						actor_swap("Fastdemon", "Mayhem19Skellie", 256);
 						actor_swap("JIHADReplacer", "Mayhem19Skellie", 256);
 						actor_swap("StealthynessDemon", "Mayhem19ShadowImp", 256);
 						actor_swap("Masterpainisspawner", "ArachnorbQueen", 256);
+						actor_swap("Hardsoul", "Mayhem19BallOfLightning", 256);
 						actor_swap("Lostpainis", "Mayhem19BallOfLightning", 256);
 						actor_swap("FatsoSpawner", "Mayhem19SludgeMonster", 256);
 						actor_swap("Speedorspawner", "Mayhem19DeathCube", 256);
 						actor_swap("Stalagtite", "Mayhem19Satyr", 256);
+						actor_swap("DeadLostSoul", "Mayhem19Bat", 256);
+						actor_swap("PainisElementalSpawner", "Mayhem19ArmlessElemental", 256);
+						actor_swap("HangTSkull", "Mayhem19Shadowhound", 256);
+						actor_swap("HangTLookingUp", "Mayhem19TeslaCoil", 256);
+						actor_swap("MeatballSpawner", "Mayhem19CacoSpawner", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:

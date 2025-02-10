@@ -10199,6 +10199,7 @@ ACTOR HomRocket1
 
 ACTOR SuperFlyingImp : SH_BaseMonster
 {
+	Species "Imp"
 	OBITUARY "%o was blasted by a super flying imp."
 	HITOBITUARY "%o was slashed by a super flying imp."
 	Health 60
@@ -10337,6 +10338,8 @@ ACTOR Terror 3124
 
 ACTOR RocketImp : SH_BaseMonster //20128
 {
+	Species "Imp"
+
 	Health 60
 	Radius 20
 	Height 56
@@ -10567,6 +10570,8 @@ ACTOR ImpRocket
 
 Actor BruiserDemon : SH_BaseMonster
 {
+	Species "Bruiser"
+
 	//$Category Monsters
 	Health 5000
 	Radius 24

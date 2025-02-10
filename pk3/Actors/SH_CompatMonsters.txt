@@ -150,17 +150,16 @@ actor MayhemImmolator
 	}
 }
 
-actor Mayhem19ShotgunCultist
+actor Mayhem19ShotgunCultist : SH_BaseMonster
 {
 	Tag "Shotgun Cultist"
+	Species "Cultist"
 	Health 50
 	Radius 20
 	Height 56
 	Mass 100
 	Speed 9
 	PainChance 150
-	Monster
-	+FLOORCLIP
 	SeeSound "shotguy/sight"
 	AttackSound "shotguy/attack"
 	PainSound "shotguy/pain"
@@ -168,6 +167,7 @@ actor Mayhem19ShotgunCultist
 	ActiveSound "shotguy/active"
 	Obituary "$OB_SHOTGUY"
 	DropItem "Shotgun"
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -205,17 +205,16 @@ actor Mayhem19ShotgunCultist
 	}
 }
 
-actor Mayhem19EliteCultist
+actor Mayhem19EliteCultist : SH_BaseMonster
 {
 	Tag "Elite Cultist"
+	Species "Cultist"
 	Health 70
 	Radius 20
 	Height 56
 	Mass 100
 	Speed 11
 	PainChance 170
-	Monster
-	+FLOORCLIP
 	SeeSound "chainguy/sight"
 	PainSound "chainguy/pain"
 	DeathSound "chainguy/death"
@@ -223,6 +222,7 @@ actor Mayhem19EliteCultist
 	AttackSound "depisto"
 	Obituary "$OB_CHAINGUY"
 	Dropitem "ClipBox"
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -297,9 +297,10 @@ ACTOR Mayhem19VampireBat
 	}
 }
 
-actor Mayhem19Vampire
+actor Mayhem19Vampire : SH_BaseMonster
 {
 	Tag "Vampire"
+	Species "Vampire"
 	Health 300
 	Radius 20
 	Height 56
@@ -308,8 +309,6 @@ actor Mayhem19Vampire
 	PainChance 100
 	Monster
 	MeleeThreshold 196
-	+MISSILEMORE 
-	+FLOORCLIP
 	SeeSound "DSPOSIT3"
 	PainSound "DSPOPAIN"
 	DeathSound "DSBGDTH2"
@@ -320,6 +319,8 @@ actor Mayhem19Vampire
 	DropItem "HealthBonus"
 	DropItem "HealthBonus"
 	DropItem "HealthBonus"
+	+MISSILEMORE 
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -365,11 +366,11 @@ ACTOR Mayhem19Funnybone
 	FastSpeed 20
 	Damage (8)
 	Projectile
-	+RANDOMIZE
 	RenderStyle Normal
 	Alpha 1
 	SeeSound "DSSKESWG"
 	DeathSound "DSPUNCH"
+	+RANDOMIZE
 	States
 	{
 		Spawn:
@@ -385,20 +386,20 @@ ACTOR Mayhem19Funnybone
 actor Mayhem19Skellie : SH_BaseMonster
 {
 	Tag "Skellie"
+	Species "Skellie"
 	Health 120
 	PainChance 180
 	Speed 14
 	Radius 20
 	Height 56
 	Mass 400
-	Monster
-	+FLOORCLIP
 	SeeSound "DSSKESIT"
 	AttackSound "demon/melee"
 	PainSound "DSPOPAIN"
 	DeathSound "DSSKEDTH"
 	ActiveSound "DSSKEACT"
 	Obituary "%o took a funnyboner to the butt."
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -443,6 +444,7 @@ actor Mayhem19ShadowImp : Hardimp
 ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 {
 	Tag "Ball of Lightning"
+	Species "Electricity"
 	Health 40
 	Radius 16
 	Height 56
@@ -452,14 +454,6 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 	DamageType "Electric"
 	PainChance 0
 	ReactionTime 16
-	+FLOAT
-	+FLOATBOB
-	+NOGRAVITY
-	+MISSILEMORE
-	+DONTFALL
-	+NOICEDEATH
-	+NOBLOOD
-	+QUICKTORETALIATE
 	SeeSound "DSBSPWLK"
 	AttackSound "DSBSPWLK"
 	PainSound "DSFIRXPL"
@@ -468,6 +462,16 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 	RenderStyle Add
 	Alpha 1.0
 	Obituary "%o was electro-cocksuckered by a ball of lightning."
+	+FLOAT
+	+FLOATBOB
+	+NOGRAVITY
+	+MISSILEMORE
+	+DONTFALL
+	+NOICEDEATH
+	+NOBLOOD
+	+QUICKTORETALIATE
+	+LOOKALLAROUND
+	+THRUSPECIES
 	States
 	{
 		Spawn:
@@ -476,8 +480,10 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 		See:
 			PLSS AA 1 Bright A_Wander
 			PLSS AA 1 Bright A_Chase
+			PLSS AA 0 Bright A_SpawnItemEx("Particle_Lightning5", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(24.0, 48.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
 			PLSS BB 1 Bright A_Wander
 			PLSS BB 1 Bright A_Chase
+			PLSS BB 0 Bright A_SpawnItemEx("Particle_Lightning5", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(24.0, 48.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
 			Loop
 		Melee:
 			PLSS A 1 Bright A_Die
@@ -487,14 +493,14 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 			PLSS B 4 Bright A_SkullAttack
 			goto MissileLoop
 		MissileLoop:
-			PLSS AB 4 Bright
+			PLSS AB 4 Bright A_SpawnItemEx("Particle_Lightning5", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(24.0, 48.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
 			loop
 		Death:
 			PLSS A 0 Bright A_ChangeFlag("FLOATBOB", false)
 			PLSS C 0 Bright A_Stop
 			PLSS C 4 Bright A_ScreamAndUnblock
 			PLSS D 4 Bright A_Explode
-			PLSS EFG 4 Bright
+			PLSS EFG 4 Bright A_SpawnItemEx("Particle_Lightning10", frandom(-32.0, 32.0), frandom(-32.0, 32.0), frandom(8.0, 64.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}
 }
@@ -519,11 +525,11 @@ actor Mayhem19SludgeShot
 	Speed 20
 	Damage (32)
 	Projectile 
-	+RANDOMIZE
 	RenderStyle Add
 	Alpha 0.75
 	SeeSound "fatso/attack"
 	DeathSound "fatso/shotx"
+	+RANDOMIZE
 	States
 	{
 		Spawn:
@@ -538,19 +544,20 @@ actor Mayhem19SludgeShot
 actor Mayhem19SludgeMonster : SH_BaseMonster
 {
 	Tag "Sludge Monster"
+	Species "SludgeMonster"
 	Health 600
 	Radius 40
 	Height 64
 	Mass 1000
 	Speed 8
 	PainChance 80
-	+FLOORCLIP
-	+BOSSDEATH
 	SeeSound "fatso/sight"
 	PainSound "fatso/pain"
 	DeathSound "fatso/death"
 	ActiveSound "fatso/active"
 	Obituary "%o was slimed by a sludge monster."
+	+FLOORCLIP
+	+BOSSDEATH
 	States
 	{
 		Spawn:
@@ -593,12 +600,18 @@ actor Mayhem19SludgeMonster : SH_BaseMonster
 actor Mayhem19DeathCube : SH_BaseMonster
 {
 	Tag "Deathcube"
+	Species "Deathcube"
 	Health 520
 	Radius 16
 	Height 56
 	Mass 100000
 	Speed 0
 	PainChance 50
+	SeeSound "DSBOSCUB"
+	PainSound ""
+	DeathSound "DSBAREXP"
+	ActiveSound "DSBOSCUB"
+	Obituary "%o was cubed."
 	+FLOORCLIP
 	+BOSSDEATH
 	+NOBLOOD
@@ -606,11 +619,6 @@ actor Mayhem19DeathCube : SH_BaseMonster
 	+FLOATBOB
 	+NOINFIGHTING
 	+QUICKTORETALIATE
-	SeeSound "DSBOSCUB"
-	PainSound ""
-	DeathSound "DSBAREXP"
-	ActiveSound "DSBOSCUB"
-	Obituary "%o was cubed."
 	States
 	{
 		Spawn:
@@ -644,6 +652,7 @@ actor Mayhem19DeathCube : SH_BaseMonster
 actor Mayhem19Satyr: SH_BaseMonster
 {
 	Tag "Satyr"
+	Species "Satyr"
 	Health 320
 	Speed 14
 	Radius 24
@@ -682,5 +691,286 @@ actor Mayhem19Satyr: SH_BaseMonster
 		Raise:
 			KEEN NMLKJI 6
 			goto See
+	}
+}
+
+actor Mayhem19Bat : SH_BaseMonster
+{
+	Tag "Bat"
+	Species "Bat"
+	Health 10
+	Speed 24
+	Radius 20
+	Height 32
+	Damage 3
+	ReactionTime 8
+	PainChance 256
+	Mass 1000
+	Obituary "%o became batman."
+	SeeSound "DSSKLATK"
+	AttackSound "DSSKLATK"
+	PainSound "DSRADIO"
+	DeathSound "DSCHGUN"
+	ActiveSound "DSSKLATK"
+	+FLOAT
+	+NOGRAVITY
+	+SPAWNCEILING
+	-COUNTKILL
+	States
+	{
+		Spawn:
+			SKUL K 10 A_Look
+			loop
+		See:
+			SKUL A 0 A_ChangeFlag("FLOATBOB", true)
+			goto SeeLoop
+		SeeLoop:
+			SKUL ABCB 3 A_Chase
+			loop
+		Melee:
+			SKUL C 8 A_FaceTarget
+			SKUL B 8 A_CustomMeleeAttack(8, "DSCLAW", "", "Melee", true)
+			goto SeeLoop
+		Pain:
+			SKUL D 6 A_Pain
+			goto SeeLoop
+		Death:
+			SKUL D 0 A_ChangeFlag("FLOATBOB", false)
+			SKUL D 4 A_ScreamAndUnblock
+			SKUL EFG 4
+			SKUL H 2
+			stop
+	}
+}
+
+actor Mayhem19ArmlessElemental : SH_BaseMonster
+{
+	Tag "Pain Elemental?"
+	Species "PainElemental"
+	Health 150
+	Radius 31
+	Height 56
+	Mass 400
+	Speed 8
+	PainChance 128
+	SeeSound "pain/sight"
+	PainSound "pain/pain"
+	DeathSound "pain/death"
+	ActiveSound "pain/active"
+	+FLOAT
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			PAIN A 10 A_Look
+			Loop
+		See:
+			PAIN A 3 A_Chase
+			Loop
+		Missile:
+			PAIN B 8 A_FaceTarget
+			PAIN C 5 Bright A_FaceTarget
+			PAIN D 0 Bright A_Jump(128, "Missile2")
+			goto Missile1
+		Missile1:
+			PAIN D 8 Bright A_FatAttack2 
+			Goto See
+		Missile2:
+			PAIN D 8 Bright A_FatAttack1 
+			Goto See
+		Pain:
+			PAIN E 6
+			PAIN E 6 A_Pain
+			Goto See
+		Death:
+			PAIN G 8 Bright
+			PAIN H 8 Bright A_Scream
+			PAIN J 8 Bright
+			PAIN K 7 Bright A_Explode
+			Stop
+	}
+}
+
+actor Mayhem19Hellhound : SH_BaseMonster
+{
+	Tag "Hellhound"
+	Species "Hound"
+	Health 140
+	Speed 25
+	Radius 24
+	Height 56
+	Damage 25
+	ReactionTime 8
+	PainChance 50
+	Mass 300
+	SeeSound "DSDGSIT"
+	AttackSound "DSDGATK"
+	PainSound "DSDGPAIN"
+	DeathSound "DSDGDTH"
+	ActiveSound "DSDGACT"
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			HDB4 AI 10 A_Look
+			loop
+		See:
+			HDB4 ABCDEF 3 A_Chase
+			loop
+		Melee:
+			HDB4 GH 3 A_FaceTarget
+			HDB4 I 8 A_SargAttack
+			goto See
+		Pain:
+			HDB4 J 10 A_Pain
+			goto See
+		Death:
+			HDB4 K 4
+			HDB4 L 4 A_ScreamAndUnblock
+			HDB4 MNOP 4
+			HDB4 Q -1
+			stop
+		Raise:
+			HDB4 PONMLK 4
+			goto See
+	}
+}
+
+actor Mayhem19Shadowhound : Mayhem19Hellhound
+{
+	Tag "Shadowhound"
+	Renderstyle Fuzzy
+	+SHADOW
+}
+
+ACTOR Mayhem19CacolanternBall
+{
+	Radius 6
+	Height 8
+	Speed 14
+	FastSpeed 28
+	Damage (20)
+	Projectile
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "caco/attack"
+	DeathSound "caco/shotx"
+	States
+	{
+		Spawn:
+			BAL2 AB 4 Bright
+			Loop
+		Death:
+			BAL2 CDE 6 Bright
+			Stop
+	}
+}
+
+actor Mayhem19Cacolantern : SH_BaseMonster
+{
+	Species "Cacodemon"
+	Health 400
+	Speed 8
+	Radius 31
+	Height 56
+	Damage 0
+	ReactionTime 8
+	PainChance 128
+	Mass 400
+	SeeSound "DSCACSIT"
+	PainSound "DSDMPAIN"
+	DeathSound "DSCACDTH"
+	ActiveSound "DSDMACT"
+	+NOGRAVITY
+	+FLOAT
+	States
+	{
+		Spawn:
+			HEAD A 10 A_Look
+			loop
+		See:
+			HEAD A 3 A_Chase
+			loop
+		Missile:
+			HEAD BC 5 A_FaceTarget
+			HEAD DCD 6 Bright A_CustomComboAttack("Mayhem19CacolanternBall", 32, 20)
+			HEAD C 2 Bright A_FaceTarget
+			HEAD B 2 A_FaceTarget
+			goto See
+		Pain:
+			HEAD E 3
+			HEAD E 3 A_Pain
+			HEAD F 6
+			goto See
+		Death:
+			HEAD G 8
+			HEAD H 8 A_ScreamAndUnblock
+			HEAD IJ 8
+			HEAD K 8 A_Fall
+			HEAD L -1
+			stop
+		Raise:
+			HEAD KJIHG 8
+			goto See
+	}
+}
+
+actor Mayhem19CacoSpawner : SH_BaseMonsterRandomSpawner
+{
+	Radius 31
+	Height 56
+	Dropitem "Mayhem19Cacolantern"			255 10
+	Dropitem "Cacomother"					255 1
+	Dropitem "GasterBlaster"				255 1
+	Dropitem "Poe"							255 1
+	Dropitem "Crackodemon"					255 2
+	Dropitem "CCCDroid"						255 1
+	Dropitem "Maludemon"					255 4
+	Dropitem "Duke3D_SentryDrone"			255 1
+	Dropitem "Chiller"						255 1
+}
+
+actor Mayhem19TeslaCoil : SH_BaseMonster
+{
+	Tag "Tesla Coil"
+	Species "Electricity"
+	Health 150
+	Speed 0
+	Radius 20
+	Height 64
+	Damage 0
+	ReactionTime 8
+	PainChance 0
+	Mass 100000
+	DeathSound "DSBAREXP"
+	+QUICKTORETALIATE
+	+LOOKALLAROUND
+	+NOBLOOD
+	+NODAMAGETHRUST
+	-COUNTKILL
+	States
+	{
+		Spawn:
+			PLS1 A 10 A_Look
+			loop
+		See:
+			PLS1 A 6 A_Chase
+			loop
+		Missile:
+			PLS1 AAAAAA 1 A_SpawnItemEx("Particle_Lightning8", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(48.0, 56.0), 5, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			PLS1 D 4 Bright A_FaceTarget
+			PLS1 DD 0 A_SpawnItemEx("Particle_Lightning8", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(56.0, 64.0), 5, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			PLS1 E 4 Bright A_FaceTarget
+			PLS1 EE 0 A_SpawnItemEx("Particle_Lightning8", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(56.0, 64.0), 5, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			PLS1 C 4 Bright A_SpawnItemEx("Mayhem19BallOfLightning", 0, 0, 48, 5, 0, 0, 0, SXF_TRANSFERPOINTERS, 0)
+			PLS1 C 0 A_SpawnItemEx("Particle_Lightning8", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(56.0, 64.0), 5, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			goto See
+		Death:
+			PLS1 F 6 Bright A_Scream
+			PLS1 G 5 Bright
+			PLS1 H 4 Bright
+			PLS1 B -1
+			stop
 	}
 }

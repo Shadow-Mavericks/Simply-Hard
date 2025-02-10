@@ -1055,8 +1055,15 @@ $Musicvolume S4_METAL	 0.75
 
 //Totally harmless little bunneh ain't it? BUT HEY, WE WARNED YOU!
 
-monster/whtratt whtratt point 9.9
+monster/whtrattk whtrattk
+monster/whtrpain whtrpain
+monster/whtrchom whtrchom point 9.9
 monster/HGTO HGTO world 9.9
+monster/whtract1 whtract1
+monster/whtract2 whtract2
+monster/whtract3 whtract3
+monster/whtract4 whtract4
+$random monster/whtract { monster/whtract1 monster/whtract2 monster/whtract3 monster/whtract4 }
 
 // Cryobow
 Weapon/Cryobow/Charge	BowChrgd
