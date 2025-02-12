@@ -11865,21 +11865,17 @@ Actor GhoulDeathCloud : GhoulCloud
   }
 }
 
-ACTOR Maludemon
+ACTOR Maludemon : SH_BaseMonster
 {
   //$Category Monsters
   //$Title "Maludemon"
+  Species "Cacodemon"
   Health 500
   Radius 31
   Height 56
   Mass 400
   Speed 16
   PainChance 64
-  Monster
-  +MISSILEEVENMORE
-  +FLOAT
-  +NOGRAVITY
-  +DONTHURTSPECIES
   SeeSound "MALSEE"
   PainSound "MALPAIN"
   DeathSound "MALDEATH"
@@ -11887,6 +11883,10 @@ ACTOR Maludemon
   Obituary "%o was smitten by a Maludemon"
   HitObituary "%o got too close to a Maludemon"
   MissileType MaludemonBall
+  +MISSILEEVENMORE
+  +FLOAT
+  +NOGRAVITY
+  +DONTHURTSPECIES
   States
   {
   Spawn:

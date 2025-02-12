@@ -499,7 +499,7 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 			PLSS A 0 Bright A_ChangeFlag("FLOATBOB", false)
 			PLSS C 0 Bright A_Stop
 			PLSS C 4 Bright A_ScreamAndUnblock
-			PLSS D 4 Bright A_Explode
+			PLSS D 4 Bright A_Explode(64, 128)
 			PLSS EFG 4 Bright A_SpawnItemEx("Particle_Lightning10", frandom(-32.0, 32.0), frandom(-32.0, 32.0), frandom(8.0, 64.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}
@@ -556,6 +556,7 @@ actor Mayhem19SludgeMonster : SH_BaseMonster
 	DeathSound "fatso/death"
 	ActiveSound "fatso/active"
 	Obituary "%o was slimed by a sludge monster."
+	BloodColor "17 36 16"
 	+FLOORCLIP
 	+BOSSDEATH
 	States
@@ -869,6 +870,7 @@ ACTOR Mayhem19CacolanternBall
 
 actor Mayhem19Cacolantern : SH_BaseMonster
 {
+	Tag "Cacolantern"
 	Species "Cacodemon"
 	Health 400
 	Speed 8
@@ -882,6 +884,7 @@ actor Mayhem19Cacolantern : SH_BaseMonster
 	PainSound "DSDMPAIN"
 	DeathSound "DSCACDTH"
 	ActiveSound "DSDMACT"
+	Obituary "%o was torched by a cacolantern."
 	+NOGRAVITY
 	+FLOAT
 	States
@@ -972,5 +975,54 @@ actor Mayhem19TeslaCoil : SH_BaseMonster
 			PLS1 H 4 Bright
 			PLS1 B -1
 			stop
+	}
+}
+
+actor Mayhem19Mummy : SH_BaseMonster
+{
+	Tag "Mummy"
+	Species "Mummy"
+	Health 440
+	Speed 7
+	Radius 24
+	Height 64
+	Damage 0
+	ReactionTime 8
+	PainChance 50
+	Mass 1000
+	SeeSound "DSSGTSIT"
+	PainSound "DSPEDTH"
+	DeathSound "DSSGTDTH"
+	BloodColor "Black"
+	+FLOORCLIP
+	States
+	{
+		Spawn:
+			BOS2 AB 10 A_Look
+			loop
+		See:
+			BOS2 AABBCCDD 2 A_Chase
+			loop
+		Missile:
+			BOS2 E 8 A_FaceTarget
+			BOS2 F 4 A_FaceTarget
+			BOS2 G 4 A_CustomComboAttack("Mayhem19CacolanternBall", 32, 10 * random(1, 6))
+			BOS2 H 8 A_FaceTarget
+			BOS2 I 4 A_FaceTarget
+			BOS2 J 4 A_CustomComboAttack("Mayhem19CacolanternBall", 32, 10 * random(1, 6))
+			goto See
+		Pain:
+			BOS2 K 2
+			BOS2 L 2 A_Pain
+			goto See
+		Death:
+			BOS2 O 6
+			BOS2 P 6
+			BOS2 QRSTUV 6
+			BOS2 W -1
+			stop
+		Raise:
+			BOS2 VUTSRQPO 6
+			goto See
 	}
 }

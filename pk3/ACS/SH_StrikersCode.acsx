@@ -1077,6 +1077,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("HangTSkull", "Mayhem19Shadowhound", 256);
 						actor_swap("HangTLookingUp", "Mayhem19TeslaCoil", 256);
 						actor_swap("MeatballSpawner", "Mayhem19CacoSpawner", 256);
+						actor_swap("HangBNoBrain", "Mayhem19Mummy", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
