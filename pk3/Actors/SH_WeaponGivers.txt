@@ -117,7 +117,7 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 	States
 	{
 		Base:
-			FCGN A -1
+			MGUN A -1
 			loop
 			
 		Kunai:
