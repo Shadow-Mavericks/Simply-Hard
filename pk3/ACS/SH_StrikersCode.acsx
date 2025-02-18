@@ -631,7 +631,9 @@ function void actor_swap(str replace, str with, int chance)
 				log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorProperty(0, APROP_Species), s:")");
 
 			// These must be last!
-			SetActorProperty(0, APROP_Species, "NullHax"); // Stops RandomSpawners from doing anything.
+			// Stops RandomSpawners from doing anything.
+			// NEVER REMOVE THIS, THE CONSEQUENCES ARE SEVERE IF YOU DO. (IE: Memory rape and potential system freeze and/or BSOD.)
+			SetActorProperty(0, APROP_Species, "NullHax"); 
 			Thing_Remove(0);
 
 			SetActivator(uTID);
@@ -1066,7 +1068,6 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("Fastdemon", "Mayhem19Skellie", 256);
 						actor_swap("JIHADReplacer", "Mayhem19Skellie", 256);
 						actor_swap("StealthynessDemon", "Mayhem19ShadowImp", 256);
-						actor_swap("Masterpainisspawner", "ArachnorbQueen", 256);
 						actor_swap("Hardsoul", "Mayhem19BallOfLightning", 256);
 						actor_swap("Lostpainis", "Mayhem19BallOfLightning", 256);
 						actor_swap("FatsoSpawner", "Mayhem19SludgeMonster", 256);
@@ -1078,6 +1079,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("HangTLookingUp", "Mayhem19TeslaCoil", 256);
 						actor_swap("MeatballSpawner", "Mayhem19CacoSpawner", 256);
 						actor_swap("HangBNoBrain", "Mayhem19Mummy", 256);
+						actor_swap("Hellpainis", "Mayhem19FlyingBrain", 256);
+						actor_swap("HangTNoBrain", "Mayhem19DeepOne", 256);
+						actor_swap("BaronSpawner", "AracnorbQueen", 256);
+						actor_swap("UnholyBible", "Mayhem19Lich", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:

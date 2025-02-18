@@ -548,6 +548,7 @@ actor AracnorbQueen
 {
 	//$Category Monsters
 	//$Title "Aracnorb Queen"
+	Species "Brain"
 	MONSTER
 	+NOGRAVITY
 	+FLOAT

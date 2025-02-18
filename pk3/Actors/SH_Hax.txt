@@ -9,6 +9,7 @@ ACTOR NullArmorHack : BasicArmorPickup // Needed for Max's energy shield.
 // Hack to stop randomspawners from
 // shitting absolute fucking dick online and
 // causing a memory leak & infinite recursion.
+// NEVER REMOVE THIS.
 actor NullHax
 {
 	Radius 0

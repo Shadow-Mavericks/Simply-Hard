@@ -309,6 +309,7 @@ actor Mayhem19Vampire : SH_BaseMonster
 	PainChance 100
 	Monster
 	MeleeThreshold 196
+	BloodColor "Gold"
 	SeeSound "DSPOSIT3"
 	PainSound "DSPOPAIN"
 	DeathSound "DSBGDTH2"
@@ -393,8 +394,9 @@ actor Mayhem19Skellie : SH_BaseMonster
 	Radius 20
 	Height 56
 	Mass 400
+	BloodColor "DarkGray"
 	SeeSound "DSSKESIT"
-	AttackSound "demon/melee"
+	AttackSound "DSSKESWG"
 	PainSound "DSPOPAIN"
 	DeathSound "DSSKEDTH"
 	ActiveSound "DSSKEACT"
@@ -1016,7 +1018,7 @@ actor Mayhem19Mummy : SH_BaseMonster
 			BOS2 L 2 A_Pain
 			goto See
 		Death:
-			BOS2 O 6
+			BOS2 O 6 A_ScreamAndUnblock
 			BOS2 P 6
 			BOS2 QRSTUV 6
 			BOS2 W -1
@@ -1024,5 +1026,166 @@ actor Mayhem19Mummy : SH_BaseMonster
 		Raise:
 			BOS2 VUTSRQPO 6
 			goto See
+	}
+}
+
+actor Mayhem19DeepOne : SH_BaseMonster
+{
+	Tag "Deep One"
+	Species "DeepOne"
+	Health 800
+	Speed 9
+	Radius 24
+	Height 64
+	ReactionTime 8
+	PainChance 40
+	Mass 100
+	BloodColor "28 44 b5"
+	SeeSound "DSBRSSIT"
+	PainSound "DSDMPAIN"
+	DeathSound "DSBRSDTH"
+	ActiveSound "DSDMACT"
+	+FLOORCLIP
+	+BOSSDEATH
+	States
+	{
+		Spawn:
+			BOSS AB 10 A_Look
+			loop
+		See:
+			BOSS AABBCCDD 2 A_Chase
+			loop
+		Melee:
+			BOSS E 4 A_FaceTarget
+			BOSS F 3 A_FaceTarget
+			BOSS G 3 A_CustomMeleeAttack(66, "DSSKEPCH", "DSSKESWG", "Melee", true)
+			BOSS HI 2
+			goto See
+		Missile:
+			BOSS J 12 A_FaceTarget
+			BOSS K 2 Bright A_CustomMissile("BaronBall", 40, 12, frandom(-2.0, 2.0))
+			BOSS J 2 A_FaceTarget
+			BOSS K 2 Bright A_CustomMissile("BaronBall", 40, 12, frandom(-2.0, 2.0))
+			BOSS J 2 A_FaceTarget
+			BOSS K 2 Bright A_CustomMissile("BaronBall", 40, 12, frandom(-2.0, 2.0))
+			BOSS J 2 A_FaceTarget
+			BOSS K 2 Bright A_CustomMissile("BaronBall", 40, 12, frandom(-2.0, 2.0))
+			BOSS J 2 A_FaceTarget
+			goto See
+		Pain:
+			BOSS L 2
+			BOSS L 8 A_Pain
+			goto See
+		Death:
+			BOSS M 8 A_ScreamAndUnblock
+			BOSS NOP 8
+			BOSS Q 0 A_BossDeath
+			BOSS Q -1
+			stop
+		Raise:
+			BOSS PONM 8
+			goto See
+	}
+}
+
+actor Mayhem19FlyingBrain : SH_BaseMonster
+{
+	Tag "Flying Brain"
+	Species "Brain"
+	Health 80
+	Speed 10
+	Radius 16
+	Height 54
+	Damage 0
+	ReactionTime 8
+	PainChance 128
+	Mass 100
+	SeeSound "DSBSPSIT"
+	DeathSound "DSBSPDTH"
+	ActiveSound "DSBSPACT"
+	+NOGRAVITY
+	+FLOAT
+	+FLOATBOB
+	-FLOORCLIP
+	States
+	{
+		Spawn:
+			HDB6 A 8 A_Look
+			loop
+		See:
+			HDB6 A 4 A_Chase
+			loop
+		Missile:
+			HDB6 B 12 A_FaceTarget
+			goto MissileLoop
+		MissileLoop:
+			HDB6 C 4 Bright A_BspiAttack
+			HDB6 B 4 A_FaceTarget
+			HDB6 B 4 A_SpidRefire
+			goto MissileLoop
+		Pain:
+			HDB6 I 6
+			HDB6 I 6 A_Pain
+			goto See
+		Death:
+			HDB6 D 6 A_ChangeFlag("FLOATBOB", false)
+			HDB6 E 6 A_Scream
+			HDB6 F 6 A_Fall
+			HDB6 G 6 A_UnsetFloorClip
+			HDB6 H -1
+			stop
+		Raise:
+			HDB6 GFED 6
+			goto See
+	}
+}
+
+actor Mayhem19Lich : SH_BaseMonster
+{
+	Tag "Lich"
+	Species "Lich"
+	Health 500
+	Speed 14
+	Radius 24
+	Height 64
+	Damage 2
+	ReactionTime 8
+	PainChance 10
+	Mass 200
+	SeeSound "DSBOSPIT"
+	AttackSound "DSFLAMST"
+	PainSound "DSSKLDTH"
+	DeathSound "DSSSDTH"
+	States
+	{
+		Spawn:
+			BON4 A 10 A_Look
+			loop
+		See:
+			BON4 A 4 A_Chase
+			loop
+		Missile:
+			BON4 A 5 A_PlaySound("DSSSSIT", CHAN_AUTO)
+			BON4 BC 14 A_FaceTarget
+			BON4 P 14 Bright A_FaceTarget
+			BON4 P 0 Bright A_CPosRefire
+			goto MissileLoop
+		MissileLoop:
+			BON4 O 3 Bright A_BetaSkullAttack
+			BON4 D 3 Bright A_CPosRefire
+			loop
+		Pain:
+			BON4 E 4
+			BON4 E 16 A_Pain
+			goto See
+		Death:
+			BON4 E 8 A_Scream
+			BON4 F 4 Bright
+			BON4 GH 5 Bright
+			BON4 IJ 5 Bright
+			BON4 K 5 bright A_Fall
+			BON4 LM 4
+			BON4 N -1
+			stop
 	}
 }
