@@ -482,9 +482,11 @@ ACTOR SSGZombie
 	}
 }
 
-actor NamiDarkImp : DoomImp
+actor NamiDarkImp : SH_BaseMonster
 {
-	//$Category Monsters
+	Tag "Nami Dark Imp"
+	Species "Imp"
+
     Health 100
     Radius 20
     Height 56
@@ -503,44 +505,44 @@ actor NamiDarkImp : DoomImp
     MeleeDamage 3
     States
     {
-    Spawn:
-        DRKI AB 10 A_Look
-        Loop
-    See:
-        DRKI AABBCCDD 3 A_Chase
-        Loop
-    Melee:
-    Missile:
-        DRKI EF 8 A_FaceTarget
-        DRKI G 6 A_ComboAttack
-        Goto See
-    Pain:
-        DRKI H 2
-        DRKI H 2 A_Pain
-        Goto See
-    Death:
-        DRKI I 8
-        DRKI J 8 A_Scream
-        DRKI K 6
-        DRKI L 6 A_Fall
-        DRKI M -1
-        Stop
-    XDeath:
-        DRKI N 5
-        DRKI O 5 A_XScream
-        DRKI P 5
-        DRKI Q 5 A_Fall
-        DRKI RST 5
-        DRKI U -1
-        Stop
-	Ice:
-		DRKI H 5 A_GenericFreezeDeath
-		DRKI H 1 A_FreezeDeathchunks
-		wait
-    Raise:
-        DRKI ML 8
-        DRKI KJI 6
-        Goto See
+		Spawn:
+			DRKI AB 10 A_Look
+			Loop
+		See:
+			DRKI AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+		Missile:
+			DRKI EF 8 A_FaceTarget
+			DRKI G 6 A_ComboAttack
+			Goto See
+		Pain:
+			DRKI H 2
+			DRKI H 2 A_Pain
+			Goto See
+		Death:
+			DRKI I 8
+			DRKI J 8 A_Scream
+			DRKI K 6
+			DRKI L 6 A_Fall
+			DRKI M -1
+			Stop
+		XDeath:
+			DRKI N 5
+			DRKI O 5 A_XScream
+			DRKI P 5
+			DRKI Q 5 A_Fall
+			DRKI RST 5
+			DRKI U -1
+			Stop
+		Ice:
+			DRKI H 5 A_GenericFreezeDeath
+			DRKI H 1 A_FreezeDeathchunks
+			wait
+		Raise:
+			DRKI ML 8
+			DRKI KJI 6
+			Goto See
     }
 }
 
@@ -4331,133 +4333,134 @@ ACTOR Rocketzombie
    }
 }
 
-ACTOR cyberImp
+ACTOR CyberImp : SH_BaseMonster
 {
-  Health 100
-  Radius 20
-  Height 56
-  Mass 200
-  Speed 8
-  PainChance 150
-  Monster
-  +FLOORCLIP
-  SeeSound "cyberimp/see"
-  PainSound "CIMPPAIN"
-  DeathSound "CIMPDTH"
-  ActiveSound "CIMPACT"
+	Species "Imp"
 
-  HitObituary "%o was torn apart by a cyber imp"
-  Obituary "%o was fried by a cyber imp"
-  States
-  {
-  Spawn:
-    CIMP AB 10 A_Look
-    Loop
-  See:
-    CIMP AABBCCDD 3 A_Chase
-    Loop
-  Melee:
-    CIMP EF 8 A_FaceTarget
-    CIMP F 6 A_Custommeleeattack(3 * random(3, 10), "imp/melee")
-    Goto See
-  Missile:
-  	CIMP E 1 A_playsound("Weapon/PropulsionCHARGE", Chan_7)
-    CIMP E 8 A_FaceTarget
-	CIMP E 8 A_FaceTarget
-    CIMP F 8 A_FaceTarget
-    CIMP F 7 A_FaceTarget
-	CIMP F 1 A_playsound("Weapon/PropulsionFire", Chan_7)
-    CIMP G 6 A_Custommissile("Fiendsplasma2",36,4)
-    Goto See
-  Pain:
-    CIMP H 2
-    CIMP H 2 A_Pain
-    Goto See
-  Death:
-    CIMP I 8
-    CIMP J 8 A_Scream
-    CIMP K 6
-    CIMP L 6 A_NoBlocking
-    CIMP M -1
-    Stop
-  XDeath:
-    CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
-    CIMP O 5 A_XScream
-    CIMP P 5
-    CIMP Q 5 A_NoBlocking
-    CIMP RST 5
-    CIMP U -1
-    Stop
-	Ice:
-    CIMP H 5 A_GenericFreezeDeath
-    CIMP H 1 A_FreezeDeathchunks
-    wait
-  Raise:
-    CIMP MLKJI 8
-    Goto See
-  }
+	Health 100
+	Radius 20
+	Height 56
+	Mass 200
+	Speed 8
+	PainChance 150
+
+	SeeSound "cyberimp/see"
+	PainSound "CIMPPAIN"
+	DeathSound "CIMPDTH"
+	ActiveSound "CIMPACT"
+	
+	HitObituary "%o was torn apart by a cyber imp"
+	Obituary "%o was fried by a cyber imp"
+	States
+	{
+		Spawn:
+			CIMP AB 10 A_Look
+			Loop
+		See:
+			CIMP AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			CIMP EF 8 A_FaceTarget
+			CIMP F 6 A_Custommeleeattack(3 * random(3, 10), "imp/melee")
+			Goto See
+		Missile:
+			CIMP E 1 A_playsound("Weapon/PropulsionCHARGE", Chan_7)
+			CIMP E 8 A_FaceTarget
+			CIMP E 8 A_FaceTarget
+			CIMP F 8 A_FaceTarget
+			CIMP F 7 A_FaceTarget
+			CIMP F 1 A_playsound("Weapon/PropulsionFire", Chan_7)
+			CIMP G 6 A_Custommissile("Fiendsplasma2",36,4)
+			Goto See
+		Pain:
+			CIMP H 2
+			CIMP H 2 A_Pain
+			Goto See
+		Death:
+			CIMP I 8
+			CIMP J 8 A_Scream
+			CIMP K 6
+			CIMP L 6 A_NoBlocking
+			CIMP M -1
+			Stop
+		XDeath:
+			CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
+			CIMP O 5 A_XScream
+			CIMP P 5
+			CIMP Q 5 A_NoBlocking
+			CIMP RST 5
+			CIMP U -1
+			Stop
+		Ice:
+			CIMP H 5 A_GenericFreezeDeath
+			CIMP H 1 A_FreezeDeathchunks
+			wait
+		Raise:
+			CIMP MLKJI 8
+			Goto See
+	}
 }
 
-ACTOR DarkcyberImp
+ACTOR DarkcyberImp : SH_BaseMonster
 {
-  Health 100
-  Radius 20
-  Height 56
-  Mass 200
-  Speed 8
-  PainChance 150
-  Monster
-  +FLOORCLIP
-  SeeSound "Darkcyberimp/see"
-  PainSound "CIMPPAIN"
-  DeathSound "Darkcyberimp/Die"
-  ActiveSound "CIMPACT"
-  Translation "61:79=[255, 255, 255]:[0, 0, 0]"
-  HitObituary "%o was torn apart by a Dark cyber imp"
-  Obituary "%o was fried by a Dark cyber imp"
-  States
-  {
-  Spawn:
-    CIMP AB 10 A_Look
-    Loop
-  See:
-    CIMP AABBCCDD 3 A_Chase
-    Loop
-  Melee:
-    CIMP EF 8 A_FaceTarget
-    CIMP F 6 A_Custommeleeattack(3 * random(3, 10), "imp/melee")
-    Goto See
-  Missile:
-    CIMP EF 20 A_FaceTarget
-    CIMP G 12 A_CustomRailgun(35, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "Devistaterblast")
-    Goto See
-  Pain:
-    CIMP H 2
-    CIMP H 2 A_Pain
-    Goto See
-  Death:
-    CIMP I 8
-    CIMP J 8 A_Scream
-    CIMP K 6
-    CIMP L 6 A_NoBlocking
-    CIMP M -1
-    Stop
-  XDeath:
-    CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
-    CIMP O 5 A_XScream
-    CIMP P 5
-    CIMP Q 5 A_NoBlocking
-    CIMP RST 5
-    CIMP U -1
-    Stop
-	Ice:
-    CIMP H 5 A_GenericFreezeDeath
-    CIMP H 1 A_FreezeDeathchunks
-    wait
-  Raise:
-    CIMP MLKJI 8
-    Goto See
-  }
+	Species "Imp"
+	Health 100
+	Radius 20
+	Height 56
+	Mass 200
+	Speed 8
+	PainChance 150
+	+FLOORCLIP
+	SeeSound "Darkcyberimp/see"
+	PainSound "CIMPPAIN"
+	DeathSound "Darkcyberimp/Die"
+	ActiveSound "CIMPACT"
+	Translation "61:79=[255, 255, 255]:[0, 0, 0]"
+	HitObituary "%o was torn apart by a Dark cyber imp"
+	Obituary "%o was fried by a Dark cyber imp"
+	States
+	{
+		Spawn:
+			CIMP AB 10 A_Look
+			Loop
+		See:
+			CIMP AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			CIMP EF 8 A_FaceTarget
+			CIMP F 6 A_Custommeleeattack(3 * random(3, 10), "imp/melee")
+			Goto See
+		Missile:
+			CIMP EF 20 A_FaceTarget
+			CIMP G 12 A_CustomRailgun(35, 0, 0, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT, 0, "none", 0, 0, 0, 35, 10.0, 1.0, "Devistaterblast")
+			Goto See
+		Pain:
+			CIMP H 2
+			CIMP H 2 A_Pain
+			Goto See
+		Death:
+			CIMP I 8
+			CIMP J 8 A_Scream
+			CIMP K 6
+			CIMP L 6 A_NoBlocking
+			CIMP M -1
+			Stop
+		XDeath:
+			CIMP N 5 A_CustomMissile("cyberArm",32,-10,270)
+			CIMP O 5 A_XScream
+			CIMP P 5
+			CIMP Q 5 A_NoBlocking
+			CIMP RST 5
+			CIMP U -1
+			Stop
+			Ice:
+			CIMP H 5 A_GenericFreezeDeath
+			CIMP H 1 A_FreezeDeathchunks
+			wait
+		Raise:
+			CIMP MLKJI 8
+			Goto See
+	}
 }
 
 ACTOR CyberArm
@@ -10359,6 +10362,7 @@ ACTOR RocketImp : SH_BaseMonster //20128
 	Monster
 	+FLOORCLIP
 	+DONTHARMCLASS
+	+DONTHARMSPECIES
 	+MISSILEMORE
 	+MISSILEEVENMORE
 	States
@@ -14482,8 +14486,11 @@ Actor EttinMaceProjectile
   }
 }
 
-actor SH_Vulgar : DoomImp
+actor SH_Vulgar : SH_BaseMonster
 {
+	Tag "Vulgar"
+	Species "Imp"
+
 	obituary "%o was poisoned by a vulgar."
 	hitobituary "A Vulgar had %o for lunch."
 	health 70
@@ -14498,7 +14505,6 @@ actor SH_Vulgar : DoomImp
 	deathsound "monster/vuldth"
 	activesound "monster/vulact"
 	meleesound "monster/vulhit"
-	MONSTER
 	+DONTHURTSPECIES
 	+FLOORCLIP
 	States
@@ -14751,8 +14757,11 @@ ACTOR FodderSoul
   }
 }
 
-ACTOR BlackHoleImp : DoomImp
+ACTOR BlackHoleImp : SH_BaseMonster
 {
+	Tag "Black Hole Imp"
+	Species "Imp"
+	
 	Health 60
 	Radius 20
 	Height 42
@@ -14761,7 +14770,8 @@ ACTOR BlackHoleImp : DoomImp
 	PainChance 80
 	BloodColor Black
 	MeleeRange 64
-	Monster
+	+DONTHARMSPECIES
+	+DONTHARMCLASS
 	+FLOAT
 	+NOGRAVITY
 	+FLOATBOB

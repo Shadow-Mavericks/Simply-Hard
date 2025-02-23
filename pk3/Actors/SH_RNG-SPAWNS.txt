@@ -39,8 +39,8 @@ Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 	DropItem "hardimp"				255 100
 	DropItem "Critimp"				255 25
 	DropItem "NamiDarkimp"			255 5
-	Dropitem "Cyberimp"				255 5
-	Dropitem "DarkCyberimp"			255 5
+	Dropitem "CyberImp"				255 5
+	Dropitem "DarkCyberImp"			255 5
 	Dropitem "SuperFlyingImp"		255 5
 	Dropitem "N_Imp_Acid"			255 5
 	Dropitem "N_Imp_Void"			255 5

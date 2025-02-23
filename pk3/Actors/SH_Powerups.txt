@@ -607,7 +607,7 @@ Actor GosimersAmmoSphere : PowerupGiver
 	}
 }
 
-Actor Chainsawpowerdrop : Randomspawner Replaces Chainsaw
+Actor RandomInventoryItems : Randomspawner
 {
 	Dropitem "Joy" 255 5
 }
@@ -623,13 +623,14 @@ Actor Joy : Custominventory
 	Inventory.Icon "I_FJOY"
 	Inventory.PickupSound "Joy/Pickup"
 	+INVENTORY.INVBAR
+	+INVENTORY.BIGPOWERUP
 	+DONTGIB
 	States
 	{
 		Spawn:
 			FJOY A 4 BRIGHT
 			Loop
-		use:
+		Use:
 			TNT1 A 0 ACS_NamedExecuteWithResult("UsedJoy",0,0,0,0)
 			TNT1 A 0 A_Giveinventory("SoulsphereSilent")
 			TNT1 A 0 A_Giveinventory("SoulsphereSilent")

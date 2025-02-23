@@ -493,13 +493,42 @@ function void hit_marker(int soundType, bool friendly)
 	return;
 }
 
+function bool checkEvenGround(int x, int y, int radius, int maxDiff)
+{
+	int centerFloorZ = GetSectorFloorZ(0, x >> 16, y >> 16);
+	int diffs[8];
+	
+	diffs[0] = abs(centerFloorZ - GetSectorFloorZ(0, (x + radius) >> 16, (y) >> 16));
+	diffs[1] = abs(centerFloorZ - GetSectorFloorZ(0, (x - radius) >> 16, (y) >> 16));
+	
+	diffs[2] = abs(centerFloorZ - GetSectorFloorZ(0, (x) >> 16, (y + radius) >> 16));
+	diffs[3] = abs(centerFloorZ - GetSectorFloorZ(0, (x) >> 16, (y - radius) >> 16));
+	
+	diffs[4] = abs(centerFloorZ - GetSectorFloorZ(0, (x - radius) >> 16, (y - radius) >> 16));
+	diffs[5] = abs(centerFloorZ - GetSectorFloorZ(0, (x + radius) >> 16, (y - radius) >> 16));
+	
+	diffs[6] = abs(centerFloorZ - GetSectorFloorZ(0, (x - radius) >> 16, (y + radius) >> 16));
+	diffs[7] = abs(centerFloorZ - GetSectorFloorZ(0, (x + radius) >> 16, (y + radius) >> 16));
+	
+	for(int i = 0; i < 8; i++)
+	{
+		if(diffs[i] > maxDiff)
+			return false;
+	}
+	
+	return true;
+}
+
 function void multiply_actor(int mult)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		return;
 
-	int radius = GetActorProperty(0, APROP_Radius)*2;
-	int pos[4] = { GetActorX(0), GetActorY(0), GetActorZ(0), GetActorAngle(0)>>8 };
+	vec3_t pos = { GetActorX(0), GetActorY(0), GetActorZ(0) };
+	int floorZ = GetSectorFloorZ(0, pos.x >> 16, pos.y >> 16);
+	int radius = GetActorProperty(0, APROP_Radius);
+	int angle = GetActorAngle(0)>>8;
+	
 	bool ambush = CheckFlag(0, "AMBUSH");
 	bool friendly = CheckFlag(0, "FRIENDLY");
 	bool stealth = CheckFlag(0, "STEALTH");
@@ -525,30 +554,33 @@ function void multiply_actor(int mult)
 			iter++;
 			switch (dir)
 			{
-				case 0: pos[1] += radius; break;
-				case 1: pos[0] += radius; break;
-				case 2: pos[1] -= radius; break;
-				case 3: pos[0] -= radius; break;
+				case 0: pos.y += radius*2; break;
+				case 1: pos.x += radius*2; break;
+				case 2: pos.y -= radius*2; break;
+				case 3: pos.x -= radius*2; break;
 			}
 
-			int newFloorZ = GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16);
-			int floorZDiff = abs(pos[2] - newFloorZ);
+			int newFloorZ = GetSectorFloorZ(0, pos.x >> 16, pos.y >> 16);
+			int floorZDiff = abs(floorZ - newFloorZ);
 			int beaconTID = UniqueTID(0);
 
-			bool floorZPassed = (floorZDiff <= 64.0);
+			bool floorZPassed = (floorZDiff < 24.0);
 			bool sightPassed = false;
 			int spawnPassed = 0;
-
+			
+			if(!checkEvenGround(pos.x, pos.y, radius, 16.0))
+				floorZPassed = 0;
+				
 			if(floorZPassed)
 			{
-				if(Spawn("SightCheckBeacon", pos[0], pos[1], newFloorZ, beaconTID, 0))
+				if(Spawn("SightCheckBeacon", pos.x, pos.y, newFloorZ, beaconTID, 0))
 				{
 					sightPassed = CheckSight(0, beaconTID, 0);
 					if(sightPassed)
 					{
 						int uTID = UniqueTID(0);
 
-						spawnPassed = Spawn(GetActorClass(0), pos[0], pos[1], newFloorZ, uTID, pos[3]);
+						spawnPassed = Spawn(GetActorClass(0), pos.x, pos.y, newFloorZ, uTID, angle);
 
 						if(spawnPassed)
 						{
@@ -570,7 +602,7 @@ function void multiply_actor(int mult)
 			if(!floorZPassed || !sightPassed || !spawnPassed)
 			{
 				spawnAttempts++;
-				if(spawnAttempts >= 25)
+				if(spawnAttempts >= 50)
 				{
 					if(GetCVar("sh_debug_spawns"))
 						log(s:"Giving up after too many attempts to spawn.");
@@ -586,7 +618,7 @@ function void multiply_actor(int mult)
 			enemyCount++;
 
 			if(GetCVar("sh_debug_spawns"))
-				log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos[2], s:" floorz: ", f:GetSectorFloorZ(0, pos[0]>>16, pos[1]>>16));
+				log(s:"count: ", d:enemyCount, s:" iter: ", d:iter, s:" stride: ", d:stride, s:" z: ", f:pos.z, s:" floorz: ", f:GetSectorFloorZ(0, pos.x>>16, pos.y>>16));
 		} while((iter < stride) && enemyCount < mult);
 
 		dir = (dir+1)%4;
@@ -1038,7 +1070,14 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		}
 		case GAMEEVENT_ACTOR_SPAWNED:
 		{
-			bool canMultiply = ((arg1 == GAMEEVENT_SPAWN_LEVELSPAWNED) && CheckFlag(0, "ISMONSTER"));
+			bool isMapSpawned = (arg1 == GAMEEVENT_SPAWN_LEVELSPAWNED);
+			bool canMultiply = (isMapSpawned && CheckFlag(0, "ISMONSTER"));
+			
+			if(isMapSpawned)
+			{
+				// Exchange map-placed chainsaws for random inventory item spawner.
+				actor_swap("ChainsawGiver", "RandomInventoryItems", 256);
+			}
 
 			if(GetCVar("sh_compat_swaps"))
 			{
@@ -1083,6 +1122,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("HangTNoBrain", "Mayhem19DeepOne", 256);
 						actor_swap("BaronSpawner", "AracnorbQueen", 256);
 						actor_swap("UnholyBible", "Mayhem19Lich", 256);
+						actor_swap("Cyberpainis", "Mayhem19Minotaur", 256);
+						actor_swap("Masterpainisspawner", "Mayhem19Spooklord", 256);
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
@@ -1102,8 +1143,28 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 
 			}
 
-			if((GetCVar("sh_enemy_mult") > 1) && canMultiply)
-				multiply_actor(clamp(GetCVar("sh_enemy_mult"), 2, 100));
+			if(canMultiply)
+			{
+				int multiplier = GetCVar("sh_enemy_mult");
+					
+				switch(GameSkill())
+				{
+					case SHSKILL_DEMONIC:
+					{
+						if(multiplier < 2)
+							multiplier = 2;
+						break;
+					}
+					case SHSKILL_OKUPLOK:
+					{
+						multiplier = 100;
+						break;
+					}
+				}
+				
+				if(multiplier > 1)
+					multiply_actor(clamp(multiplier, 2, 100));
+			}
 
 			break;
 		}
@@ -1143,9 +1204,15 @@ function int add_ammo(str ammo_class, int amount, int droptype)
 	if(amount == 0)
 		return 0;
 
-	if(GetCvar("sh_ammo_mult") > 1)
-		amount *= GetCvar("sh_ammo_mult");
-	else if((GameSkill() == 0) || (GameSkill() == 4) || GetCvar("sv_doubleammo"))
+	if((GetCvar("sh_ammo_mult") > 1) || (GameSkill() == SHSKILL_OKUPLOK))
+	{
+		int multiplier = GetCvar("sh_ammo_mult");
+		if((GameSkill() == SHSKILL_OKUPLOK) && (multiplier < 4))
+			multiplier = 4;
+		
+		amount *= multiplier;
+	}
+	else if((GameSkill() == SHSKILL_VERYEASY) || (GameSkill() == SHSKILL_NIGHTMARE) || GetCvar("sv_doubleammo"))
 		amount *= 2;
 
 	switch(droptype)
@@ -1975,13 +2042,16 @@ script "SUPERCHARGE_CHECK" (void)
 
 script "UNSTICK_PLAYER" (str who)
 {
-	for(int p = 0; p < MAX_PLAYERS; p++)
+	if(!StrIcmp(who, "all") || !StrIcmp(who, "everyone"))
 	{
-		if(!PlayerInGame(p))
-			continue;
+		for(int p = 0; p < MAX_PLAYERS; p++)
+		{
+			if(!PlayerInGame(p))
+				continue;
 
-		SetActivatorToPlayer(p);
+			SetActivatorToPlayer(p);
 
-		GiveInventory("TeleportHax", 1);
+			GiveInventory("TeleportHax", 1);
+		}
 	}
 }

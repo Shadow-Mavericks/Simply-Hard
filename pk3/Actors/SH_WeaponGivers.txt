@@ -11,7 +11,7 @@ const int WEAPON_RAILGUN	= 8;
 const int WEAPON_FLAME		= 9;
 const int WEAPON_NUKE		= 10;
 
-actor ChainsawGiver : WeaponGiver_Base
+actor ChainsawGiver : WeaponGiver_Base replaces Chainsaw
 {
 	//$Sprite 2SAWA0
 	States

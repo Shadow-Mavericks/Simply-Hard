@@ -4,6 +4,14 @@
 #libdefine MAX_PLAYERS 64
 #libdefine PICKUP_SPRITE_TAG 69069
 
+#libdefine SHSKILL_VERYEASY 0
+#libdefine SHSKILL_EASY 1
+#libdefine SHSKILL_NORMAL 2
+#libdefine SHSKILL_HARD 3
+#libdefine SHSKILL_DEMONIC 4
+#libdefine SHSKILL_NIGHTMARE 5
+#libdefine SHSKILL_OKUPLOK 6
+
 struct PlayerData_t
 {
 	int alarm_volume;
@@ -14,6 +22,13 @@ struct PlayerData_t
 };
 
 PlayerData_t p_status[MAX_PLAYERS];
+
+struct vec3_t
+{
+	int x;
+	int y;
+	int z;
+};
 
 function bool startsWithVowel(str string)
 {

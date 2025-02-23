@@ -1,8 +1,85 @@
 gameinfo
 {
+	dimcolor = "00 00 00"
+	dimamount = 0.2
+	menufontcolor_title = "ElecViolet"
+	menufontcolor_highlight = "Yellow" 
+	menufontcolor_selection = "Gold"
+	menufontcolor_header = "Cyan"
+	SwapMenu = false
 	ForceKillScripts = true
 	ForceDamageEventScripts = true
 	ForceSpawnEventScripts = true
+	ForceTextInMenus = true
+}
+
+clearskills
+
+skill baby
+{
+	AutoUseHealth
+	AmmoFactor = 2
+	DoubleAmmoFactor = 2
+	EasyKey 
+	EasyBossBrain
+	SpawnFilter = Baby
+	Name = "I'm Too Young To Die."
+	Key = "i"
+}
+
+skill easy
+{
+	EasyKey 
+	EasyBossBrain
+	SpawnFilter = Easy
+	Name = "Hey, Not Too Rough."
+	Key = "h"
+}
+
+skill normal
+{
+	EasyKey 
+	SpawnFilter = Normal
+	Name = "Hurt Me Plenty."
+	Key = "p"
+}
+
+skill hard
+{
+	EasyKey 
+	SpawnFilter = Hard
+	Name = "Ultra-Violence."
+	Key = "u"
+}
+
+skill hardplus
+{
+	EasyKey
+	SpawnFilter = Nightmare
+	Name = "Demonic Onslaught!"
+	MustConfirm = "This is Ultra-Violence with additional enemy spawns."
+	Key = "d"
+}
+
+skill nightmare
+{
+	FastMonsters
+	AmmoFactor = 2
+	DoubleAmmoFactor = 2
+	RespawnTime = 30
+	RespawnLimit = 2
+	SpawnFilter = Nightmare
+	Name = "Nightmare!"
+	MustConfirm = "Are you sure? This difficulty level isn't even remotely fair."
+	Key = "n"
+}
+
+skill okuplok
+{
+	Name = "Okuplok Be Thy Name."
+	SpawnFilter = Nightmare
+	MustConfirm = "Are you sure? This difficulty level will break you. 100x Enemies, 4x Ammo."
+	Key = "o"
 }
 
 map SH01 "Hunted?"

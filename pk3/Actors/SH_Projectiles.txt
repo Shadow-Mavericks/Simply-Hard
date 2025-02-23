@@ -1589,7 +1589,7 @@ ACTOR DroidLaserTrail : Particle_Base
 	States
 	{
 		Spawn:
-			DLRL A 1 Bright A_Fadeout(0.0625)
+			DLRL A 1 Bright A_Fadeout(0.125)
 			loop
 	}
 }
