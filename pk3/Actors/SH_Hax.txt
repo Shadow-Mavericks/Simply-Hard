@@ -68,6 +68,8 @@ actor SpecialHax : Inventory // General purpose hack for monsters & items.
 	-INVENTORY.INTERHUBSTRIP
 }
 
+actor DualFireHax : SH_BaseToken { } // Used for dual wielding fire.
+
 actor TeleportHax : ArtiTeleport
 {
 	Inventory.Amount 1

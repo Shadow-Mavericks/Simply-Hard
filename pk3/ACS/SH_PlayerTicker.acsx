@@ -133,6 +133,18 @@ script "SV_PLAYERTICKER" OPEN
 				else if(CheckFlag(0, "NOBLOOD"))
 					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
 			}
+			
+			// Dual Wielding Hax
+			int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+			int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+			if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
+			{
+				GiveInventory("DualFireHax", 1);
+			}
+			else if(!(buttons & BT_ALTATTACK) && (oldbuttons & BT_ALTATTACK))
+			{
+				TakeInventory("DualFireHax", 1);
+			}
 		}
 
 		SetActivator(-1);
@@ -200,6 +212,18 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			else
 			{
 				p_status[p].alarm_volume = 1.0;
+			}
+			
+			// Dual Wielding Hax
+			int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+			int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+			if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
+			{
+				GiveInventory("DualFireHax", 1);
+			}
+			else if(!(buttons & BT_ALTATTACK) && (oldbuttons & BT_ALTATTACK))
+			{
+				TakeInventory("DualFireHax", 1);
 			}
 		}
 

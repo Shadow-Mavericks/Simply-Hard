@@ -97,88 +97,91 @@ ACTOR RenettiM9 : SH_Weapon
 			RLGG A 1 Offset ( -25, 60 )
 			RLGG A 1 Offset ( -26, 70 )
 			goto Ready
-/*		Reload:
-		ReloadBegin:
-			NULL A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldReady")
-			NULL A 0 A_TakeInventory("Reload",1)
-			NULL A 0 A_JumpIfInventory("PistolClip",0,"Ready")
-			NULL A 0 A_JumpIfInventory("peastolclip",1,1)
-			Goto Ready
-			NULL A 0 A_PlaySoundEx("weapons/pistol/clipout","SoundSlot5")
-			PISG R 3 A_WeaponReady(WRF_NOFIRE)
-			PISG F 3 A_WeaponReady(WRF_NOFIRE)
-			PISG GH 2 A_WeaponReady(WRF_NOFIRE)
-			PISG H 16 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/clipin","SoundSlot6")
-			PISG IJK 4 A_WeaponReady(WRF_NOFIRE)
-			PISG LMNML 2 A_WeaponReady(WRF_NOFIRE)
-		ReloadAmmoLoop:
-			NULL A 0 A_TakeInventory("peastolclip",1)
-			NULL A 0 A_GiveInventory("PistolClip",1)
-			NULL A 0 A_JumpIfInventory("peastolclip",1,1) // if not out of ammo, countinue reloading
-			goto ReloadEnd
-			NULL A 0 A_JumpIfInventory("PistolClip",0,"ReloadEnd") // if clip full, finish reload
-			goto ReloadAmmoLoop // otherwise continue
-		ReloadEnd:
-			PISG OPQ 2 A_WeaponReady(WRF_NOFIRE)
-			Goto ready
-*/
-		DryFire:
-			NULL A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldReady")
-			FR9G A 1 A_WeaponReady(WRF_NOFIRE)
-			FR9G D 2 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			FR9G A 1 A_WeaponReady(WRF_NOFIRE)
-			FR9G D 2 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			FR9G A 1 A_WeaponReady(WRF_NOFIRE)
-			FR9G D 2 A_WeaponReady(WRF_NOFIRE)
-			FR9G A 3
-			Goto Ready
-		GoldDryFire:
-			FGPL A 1 A_WeaponReady(WRF_NOFIRE)
-			FGPL A 2 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
-			FGPL A 2 A_WeaponReady(WRF_NOFIRE)
-			Goto GoldReady
+
 		Flash:
 			TNT1 A 2 A_Light1
 			TNT1 A 0 A_Light0
 			Goto LightDone
+
 		GoldReady:
-			FGPL A 1 A_WeaponReady
-			Wait
+			FGP2 A 0 A_GunFlash("GoldReadyRight", GFF_NOEXTCHANGE)
+			goto GoldReadyLeft
+		GoldReadyLeft:
+			FGP2 A 1 A_WeaponReady(WRF_NOSECONDARY)
+			loop
+		GoldReadyRight:
+			FGPL A 1 A_JumpIfInventory("DualFireHax", 1, "GoldFireRight")
+			loop
+			
 		GoldDeselect:
+			TNT1 A 0 A_GunFlash("GoldSelectRight", GFF_NOEXTCHANGE)
 			TNT1 AA 0 A_Lower
-			FGPL A 1 A_Lower
-			Loop
+			FGP2 A 1 A_Lower
+			Loop		
 		GoldSelect:
-			TNT1 A 0 A_giveinventory("Tier1upgradetoken", 1)
-			TNT1 AA 0 A_raise
-			FGPL A 1 A_Raise
+			TNT1 A 0 A_GunFlash("GoldSelectRight", GFF_NOEXTCHANGE)
+			TNT1 AA 0 A_Raise
+			FGP2 A 1 A_Raise
 			Loop
+		GoldSelectRight: // Used for both select and deselect.
+			FGPL A 1
+			stop
+		
 		GoldFire:
-			FGPL A 0 A_Jumpifinventory("Leftpistolshot", 1, "Leftfire")
-			FGPL A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_NOSWITCH | WRF_NOPRIMARY)
-			FGPL A 0 A_FireBullets (2.5, 2.5, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
-			FGPL A 0 A_GunFlash
-			FGPL A 0 A_PlaySound("Dukepistol", CHAN_WEAPON)
-			FGPL B 1 Bright A_giveinventory("Leftpistolshot", 1)
-			FGPL C 1
-			FGPL D 1
-			FGPL A 1 A_Refire
-			Goto Ready
-		Leftfire:
-			FGPL A 0 A_Takeinventory("Leftpistolshot", 1)
-			FGPL A 0 A_WeaponReady(WRF_NOFIRE | WRF_NOBOB | WRF_NOSWITCH | WRF_NOPRIMARY)
-			FGPL A 0 A_FireBullets (2.5, 2.5, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
-			FGPL A 0 A_GunFlash
-			FGPL A 0 bright A_PlaySound("Dukepistol", CHAN_6)
-			FGPL E 1 Bright
-			FGPL F 1
-			FGPL G 1
-			FGPL A 1 A_Refire
-			Goto Ready
+			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 D 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 E 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 FG 2
+			FGP2 A 2
+			FGP2 A 0 A_Refire
+			Goto GoldReadyLeft
+			
+		GoldFireRight:
+			FGPL A 0 A_JumpIfNoAmmo("GoldDryFireRight")
+			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
+			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL D 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL E 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL FG 2
+			FGPL A 2
+			goto GoldReadyRight
+			
+		GoldDryFireRight:
+			FGPL A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
+			FGPL A 8 
+			goto GoldReadyRight
+			
 		Spawn:
 			PIST A -1
 			Stop
