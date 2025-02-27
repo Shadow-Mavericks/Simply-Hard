@@ -123,6 +123,7 @@ script "REVIVEPLAYER" (void) NET
 	int pNum = PlayerNumber();
 	int dead_longest = -1;
 	int earliest_death_time = 0x7FFFFFFF;
+	int i = 0;
 	
 	int current_lives = GetPlayerLivesLeft(pNum);
 	if(current_lives <= 0)
@@ -131,7 +132,7 @@ script "REVIVEPLAYER" (void) NET
 		terminate;
 	}
 	
-	for(int i = 0; i < MAX_PLAYERS; i++)
+	for(i = 0; i < MAX_PLAYERS; i++)
 	{
 		if(PlayerIsSpectator(i) == 2)
 		{
@@ -155,6 +156,21 @@ script "REVIVEPLAYER" (void) NET
 	}
 	else
 	{
+		bool playerfound = false;
+		for(i = 0; i < MAX_PLAYERS; i++)
+		{
+			if(GetPlayerJoinQueuePosition(i) == 0)
+			{
+				SkipJoinQueue(i);
+				PrintBold(n:i+1, s:" was pulled into the game by ", n:0);
+				current_lives--;
+				update_lives(current_lives);
+				
+				// Bring this player in with no lives remaining.
+				SetPlayerLivesLeft(i, 0);
+				terminate;
+			}
+		}
 		Print(s:"Couldn't find anyone to revive!");
 	}
 }

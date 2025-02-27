@@ -530,6 +530,9 @@ special
    int   -166:LumpGetInfo(2, int, int),
    str   -166:LumpGetInfoString(2, int, int),
    int   -167:LumpClose(1, int),
+   
+   int   -180:GetPlayerJoinQueuePosition(1, int),
+   int   -181:SkipJoinQueue(1, int),
 
    // ZDoom's (continued)
    int   -200:CheckClass(1, str, int, int),
