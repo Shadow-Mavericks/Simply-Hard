@@ -1,4 +1,4 @@
-#Library "SH_ClassAbilities"
+#Library "SH_Abilities"
 #Include "Zcommon.acs"
 
 Script "ClassAbility" (Void) NET

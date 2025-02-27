@@ -1,4 +1,4 @@
-#Library "SH_StrikersCode"
+#Library "SH_StrikerCode"
 #include "zcommon.acs"
 #import "SH_GlobalData.acsx"
 

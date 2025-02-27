@@ -1,4 +1,4 @@
-#library "SH_PlayerTicker"
+#library "SH_PlayerTick"
 #include "Zcommon.acs"
 #import "SH_GlobalData.acsx"
 

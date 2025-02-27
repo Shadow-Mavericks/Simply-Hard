@@ -1,4 +1,4 @@
-#library "SH_LivesSystem"
+#library "SH_LivesSys"
 #include "zcommon.acs"
 #import "SH_GlobalData.acsx"
 

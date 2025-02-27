@@ -1,4 +1,4 @@
-#library "SH_SoundAndMusic"
+#library "SH_SoundMusic"
 #include "zcommon.acs"
 
 #define NUM_DEATH_SOUNDS 90

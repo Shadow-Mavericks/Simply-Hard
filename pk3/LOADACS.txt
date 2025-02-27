@@ -1,9 +1,9 @@
 SH_GlobalData
-SH_PlayerTicker
-SH_LivesSystem
+SH_PlayerTick
+SH_LivesSys
 SH_Backpack
 SH_MonsterCode
-SH_ClassAbilities
-SH_SoundAndMusic
-SH_StrikersCode
+SH_Abilities
+SH_SoundMusic
+SH_StrikerCode
 SH_MannCoBox
