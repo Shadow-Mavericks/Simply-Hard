@@ -1094,7 +1094,7 @@ Actor PDW : SH_Weapon
 	States
 	{
 		Ready:
-			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Goldready")
+			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldReady")
 			KPDW A 1 A_WeaponReady
 			Loop
 		Deselect:
@@ -1103,13 +1103,13 @@ Actor PDW : SH_Weapon
 			KPDW A 1 A_Lower
 			loop
 		Select:
-			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Goldselect")
+			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldSelect")
 			KPDW AA 0 A_Raise
 			KPDW A 1 A_Raise
 			Loop
 		Fire:
-			KPDW A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "Goldfire")
-			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			"####" A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldFire")
+			KPDW A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			KPDW A 0 A_PlaySound("PDWFire", CHAN_WEAPON)
 			KPDW B 1 Bright A_GunFlash("Shoot")
 			KPDW C 1 Bright
@@ -1147,32 +1147,106 @@ Actor PDW : SH_Weapon
 		//Gold state
 
 		GoldReady:
-			KPDG A 1 A_WeaponReady
-			Loop
+			KPL1 A 0 A_GunFlash("GoldReadyRight", GFF_NOEXTCHANGE)
+			goto GoldReadyLeft
+		GoldReadyLeft:
+			KPL1 A 1 A_WeaponReady
+			loop
+		GoldReadyRight:
+			KPR1 A 1 A_JumpIfInventory("DualFireHax", 1, "GoldFireRight")
+			loop
+		
 		GoldDeselect:
-			KPDG AA 0 A_Lower
-			KPDG A 1 A_Lower
+			KPL1 A 0 A_GunFlash("GoldSelectRight", GFF_NOEXTCHANGE)
+			KPL1 AA 0 A_Lower
+			KPL1 A 1 A_Lower
 			loop
 		GoldSelect:
-			TNT1 A 0 A_giveinventory("Tier4upgradetoken", 1)
-			KPDG AA 0 A_Raise
-			KPDG A 1 A_Raise
+			KPL1 A 0 A_GunFlash("GoldSelectRight", GFF_NOEXTCHANGE)
+			KPL1 AA 0 A_Raise
+			KPL1 A 1 A_Raise
 			Loop
+		GoldSelectRight: // Used by both select and deselect.
+			KPR1 A 1
+			stop
+			
 		GoldFire:
-			KPDG B 0 BRIGHT A_PlaySound("PDWFire", CHAN_WEAPON)
-			KPDG B 2 BRIGHT A_GunFlash("GoldShoot")
-			KPDG C 0 BRIGHT A_PlaySound("PDWFire", CHAN_6)
-			KPDG C 2 BRIGHT A_GunFlash("GoldShoot")
-			KPDG A 0 A_ReFire
-			Goto Ready
-		GoldShoot:
-			TNT1 A 0 A_Jump(16, "GoldCrit")
-			TNT1 A 0 A_FireBullets(5, 5, -1, random(6,7), "Bulletpuff")
-			goto Flash
+			"####" B 0 BRIGHT A_PlaySound("PDWFire", CHAN_WEAPON)
+			"####" B 0 A_Jump(32, "GoldCrit")
+			goto GoldFire2
+		GoldFire2:
+			"####" B 1 BRIGHT A_FireBullets(5, 5, -1, random(6,7), "Bulletpuff")
+			goto GoldFireDone
 		GoldCrit:
-			TNT1 A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
-			TNT1 A 0 A_FireBullets(5, 5, -1, 10, "KunaisLifeStealingPuff")
-			goto Flash
+			"####" B 0 A_PlaySound("GenericCrit", CHAN_AUTO)
+			"####" B 1 BRIGHT A_FireBullets(5, 5, -1, 10, "KunaisLifeStealingPuff")
+			goto GoldFireDone
+		GoldFireDone:
+			"####" C 1
+			"####" A 2
+			"####" A 0 A_ReFire("GoldHold")
+			Goto GoldReadyLeft
+		GoldHold:
+			"####" A 0 A_Jump(256, "RattleLeft1", "RattleLeft2", "RattleLeft3", "RattleLeft4", "RattleLeft5")
+			goto GoldFire
+		RattleLeft1:
+			KPL1 A 0
+			goto GoldFire
+		RattleLeft2:
+			KPL2 A 0
+			goto GoldFire
+		RattleLeft3:
+			KPL3 A 0
+			goto GoldFire	
+		RattleLeft4:
+			KPL4 A 0
+			goto GoldFire
+		RattleLeft5:
+			KPL4 A 0
+			goto GoldFire
+			
+		GoldFireRight:
+			"####" B 0 A_JumpIfNoAmmo("GoldDryFireRight")
+			"####" B 0 BRIGHT A_PlaySound("PDWFire", CHAN_WEAPON)
+			"####" B 0 A_Jump(32, "GoldCritRight")
+			goto GoldFireRight2
+		GoldFireRight2:
+			"####" B 1 BRIGHT A_FireBullets(5, 5, -1, random(6,7), "Bulletpuff")
+			goto GoldFireDoneRight
+		GoldCritRight:
+			"####" B 0 A_PlaySound("GenericCrit", CHAN_AUTO)
+			"####" B 1 BRIGHT A_FireBullets(5, 5, -1, 10, "KunaisLifeStealingPuff")
+			goto GoldFireDoneRight
+		GoldFireDoneRight:
+			"####" C 1
+			"####" A 2
+			"####" A 0 A_JumpIfInventory("DualFireHax", 1, "GoldHoldRight")
+			Goto GoldReadyRight
+			
+		GoldHoldRight:
+			"####" A 0 A_Jump(256, "RattleRight1", "RattleRight2", "RattleRight3", "RattleRight4", "RattleRight5")
+			goto GoldFireRight
+		RattleRight1:
+			KPR1 A 0
+			goto GoldFireRight
+		RattleRight2:
+			KPR2 A 0
+			goto GoldFireRight
+		RattleRight3:
+			KPR3 A 0
+			goto GoldFireRight
+		RattleRight4:
+			KPR4 A 0
+			goto GoldFireRight
+		RattleRight5:
+			KPR5 A 0
+			goto GoldFireRight
+			
+		GoldDryFireRight:
+			KPR1 A 0 A_PlaySoundEx("weapons/pistol/dry","Weapon")
+			KPR1 A 8 
+			goto GoldReadyRight
+			
 		Flash:
 			TNT1 A 1 A_Light1
 			TNT1 A 1 A_Light0

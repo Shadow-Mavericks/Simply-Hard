@@ -1306,9 +1306,13 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_amount = 45;
 			}
-			else if(CheckActorClass(0, "Fiend"))
+			else
 			{
-				extrasound = "Jim/taunt10";
+				if(CheckActorClass(0, "Fiend"))
+					extrasound = "Jim/taunt10";
+				
+				ammo2_class = "PeastolClip";
+				ammo2_amount = 24;
 			}
 
 			pickupsound = "AMMO/CLIP";
