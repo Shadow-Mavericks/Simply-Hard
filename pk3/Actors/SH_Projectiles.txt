@@ -809,21 +809,21 @@ Actor Healgunshottrail
 			NULL A 3
 		Loopy:
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST A 1 Bright A_FadeOut(0.025)
+			HPST A 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST B 1 Bright A_FadeOut(0.025)
+			HPST B 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST A 1 Bright A_FadeOut(0.025)
+			HPST A 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST B 1 Bright A_FadeOut(0.025)
+			HPST B 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST A 1 Bright A_FadeOut(0.025)
+			HPST A 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST B 1 Bright A_FadeOut(0.025)
+			HPST B 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST A 1 Bright A_FadeOut(0.025)
+			HPST A 1 Bright A_FadeOut(0.1)
 			TNT1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			HPST B 1 Bright A_FadeOut(0.025)
+			HPST B 1 Bright A_FadeOut(0.1)
 			loop
 	}
 }
