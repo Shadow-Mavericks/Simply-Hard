@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 //
-// Copyright(C) 2015-2023 David Hill
+// Copyright(C) 2015-2024 David Hill
 //
 // See COPYLIB for license information.
 //
@@ -518,7 +518,18 @@ special
    int   -149:GetMapRotationSize(0),
    int   -150:GetMapRotationInfo(2, int, int),
    str   -150:GetMapRotationInfoString(2, int, int),
-
+   int   -151:GetCurrentMapPosition(0, void),
+   int   -152:GetEventResult(0, void),
+   str   -153:GetActorSectorLocation(2, int, int),
+   int   -154:ChangeTeamScore(3, int, int, int, int),
+   int   -155:SetGameplaySetting(2, str, int),
+   int   -156:SetCustomPlayerValue(3, str, int, int),
+   int   -156:SetCustomPlayerValueFixed(3, str, int, fixed),
+   int   -156:SetCustomPlayerValueString(3, str, int, str),
+   int   -157:GetCustomPlayerValue(2, str, int),
+   fixed -157:GetCustomPlayerValueFixed(2, str, int),
+   int   -157:GetCustomPlayerValueString(2, str, int),
+   int   -158:ResetCustomDataToDefault(2, str, int),
    int   -159:LumpOpen(1, str, int, int),
    int   -160:LumpRead(2, int, int, int),
    fixed -160:LumpReadFixed(2, int, int, int),
@@ -530,7 +541,16 @@ special
    int   -166:LumpGetInfo(2, int, int),
    str   -166:LumpGetInfoString(2, int, int),
    int   -167:LumpClose(1, int),
-   
+   int   -168:AddBot(0, str, int),
+   int   -169:RemoveBot(0, str),
+   int   -170:OpenMenu(1, str),
+   int   -171:CloseMenu(0, void),
+   int   -172:BanFromGame(2, int, int, str),
+   int   -173:GetPlayerStatus(1, int),
+   int   -174:SetPlayerWeaponZoomFactor(2, int, fixed, int),
+   int   -175:SetPlayerSkin(2, int, str, int),
+   str   -176:GetPlayerSkin(2, int, int),
+   str   -177:GetPlayerCountry(2, int, int),
    int   -180:GetPlayerJoinQueuePosition(1, int),
    int   -181:SkipJoinQueue(1, int),
 
@@ -557,10 +577,28 @@ special
    fixed -300:GetLineX(3, int, fixed, fixed),
    fixed -301:GetLineY(3, int, fixed, fixed),
    int   -302:SetAirFriction(1, fixed),
+   int   -303:SetPolyobjXY(3, int, fixed, fixed),
 
    // GZDoom's
    int   -400:SetSectorGlow(6, int, int, int, int, int, int),
    int   -401:SetFogDensity(2, int, int),
+
+   // K8Vavoom's
+   int	 -800:Polyobj_MoveEx(7, int, int, int, int, int, int, int),
+   int   -801:Polyobj_MoveToEx(6, int, int, int, int, int, int),
+   int   -802:Polyobj_MoveToSpotEx(4, int, int, int, int),
+   fixed -803:GetPolyobjZ(1, int),
+   int   -804:Polyobj_GetFlagsEx(1, int),
+   int   -805:Polyobj_SetFlagsEx(3, int, int, int),
+   int   -806:Polyobj_IsBusy(1, int),
+   fixed -807:Polyobj_GetAngle(1, int),
+   int   -808:Polyobj_MoveRotateEx(8, int, int, int, int, int, int, fixed, int),
+   int   -809:Polyobj_MoveToRotateEx(7, int, int, int, int, int, fixed, int),
+   int   -810:Polyobj_MoveToSpotRotateEx(5, int, int, int, fixed, int),
+   int   -811:Polyobj_RotateEx(4, int, int, fixed, int),
+
+   int   -860:CalcActorLight(3, int, int, int),
+   int   -861:CalcPlayerLight(1, int),
 
    // ZDaemon's
    int -19260:GetTeamScore(1),
