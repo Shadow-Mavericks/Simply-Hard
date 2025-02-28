@@ -3,9 +3,9 @@
 
 #include "zcommon.acs"
 
-//////////////////////
+// *******************
 // Player Tick Handler
-//////////////////////
+// *******************
 #define INVUL_NONE 0
 #define INVUL_NORMAL 1
 #define INVUL_ULT 2
@@ -75,9 +75,9 @@ script "SV_PLAYERTICKER" OPEN
 				p_status[p].last_invul_type = p_status[p].invul_type;
 			}
 
-			//////////////////////////////////////////////
+			// ******************
 			// Heavy Metal Effect
-			//////////////////////////////////////////////
+			// ******************
 			// does a player have the heavy metal effect?
 			if(CheckInventory("Debuff_HeavyMetal") && p_status[p].debuff_gravity == false)
 			{
@@ -93,9 +93,9 @@ script "SV_PLAYERTICKER" OPEN
 					SetActorProperty(0, APROP_Gravity, 1.0);
 			}
 
-			//////////////////////////////////////////////
+			// ****************
 			// Damage Over Time
-			//////////////////////////////////////////////
+			// ****************
 			// does a player have the burn debuff?
 			if(CheckInventory("Debuff_Burn"))
 			{
@@ -192,9 +192,9 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;
 
-			/////////////////////////////////////////////
+			// *****************************
 			// Blinded Lightning Bolt Effect
-			/////////////////////////////////////////////
+			// *****************************
 			if(CheckInventory("Debuff_Blind"))
 			{
 				if(!(tickNum % 3))
