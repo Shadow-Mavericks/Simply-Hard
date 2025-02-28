@@ -635,9 +635,12 @@ ACTOR micro_Devistator : SH_Weapon
 	Height 20
 	Weapon.SelectionOrder 8
 	Weapon.slotnumber 8
-	Weapon.AmmoUse 1
-	Weapon.AmmoGive 0 // Handled in ACS
-	Weapon.AmmoType "DevastatorAmmo"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive1 0 // Handled in ACS
+	Weapon.AmmoGive2 0 // Handled in ACS
+	Weapon.AmmoType1 "DevastatorAmmo"
+	Weapon.AmmoType2 "DevastatorAmmo"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
