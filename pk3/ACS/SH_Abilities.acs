@@ -1,5 +1,5 @@
-#Library "SH_Abilities"
-#Include "Zcommon.acs"
+#library "SH_Abilities"
+#Include "zcommon.acs"
 
 Script "ClassAbility" (Void) NET
 {

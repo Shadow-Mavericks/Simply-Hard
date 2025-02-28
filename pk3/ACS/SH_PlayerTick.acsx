@@ -1,6 +1,7 @@
 #library "SH_PlayerTick"
-#include "Zcommon.acs"
 #import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
 
 //////////////////////
 // Player Tick Handler
@@ -9,18 +10,19 @@
 #define INVUL_NORMAL 1
 #define INVUL_ULT 2
 
-str inv_music_list[] = {
+#define NUM_INVUL_SONGS 11
+str inv_music_list[NUM_INVUL_SONGS] = {
 	"FP_INVUL",
-	"UT_Asgor",
+	"UT_ASGOR",
 	"UT_DANCE",
 	"UT_BTIME",
-	"E2_Tange",
-	"E1_Buttv",
+	"E2_TANGE",
+	"E1_BUTTV",
 	"CB1_MASK",
-	"S&k_star",
+	"SK_STAR",
 	"S3_STAR",
-	"SM_Super",
-	"SMG_STAR"
+	"SM_SUPER",
+	"SMG_STAR",
 };
 
 script "SV_PLAYERTICKER" OPEN
@@ -61,8 +63,9 @@ script "SV_PLAYERTICKER" OPEN
 						LocalSetMusic("S4_METAL");
 						break;
 					case INVUL_NORMAL:
-						int list_size = sizeof(inv_music_list)-1;
-						LocalSetMusic(inv_music_list[random(0, list_size)]);
+						int choice = random(0, NUM_INVUL_SONGS-1);
+						str music = inv_music_list[choice];
+						LocalSetMusic(music);
 						break;
 					case INVUL_NONE:
 						LocalSetMusic("*");

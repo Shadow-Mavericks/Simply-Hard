@@ -1,6 +1,7 @@
-#Library "SH_MannCoBox"
-#include "zcommon.acs"
+#library "SH_MannCoBox"
 #import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
 
 // -----------------------------------------
 // MannCo Boxes - Code by StrikerTheHedgefox

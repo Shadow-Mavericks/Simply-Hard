@@ -124,6 +124,7 @@ goto MENU
 cd pk3
 cd ACS
 del *.err
+del *.o
 echo Compiling ACS Scripts...
 for %%f in (*.acs) do (
 	echo %%~nf

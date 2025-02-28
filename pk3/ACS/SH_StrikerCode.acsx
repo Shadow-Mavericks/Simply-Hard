@@ -1,6 +1,7 @@
-#Library "SH_StrikerCode"
-#include "zcommon.acs"
+#library "SH_StrikerCode"
 #import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
 
 // All code in this file is by StrikerTheHedgefox.
 // Please ask permission if you want to use this!
