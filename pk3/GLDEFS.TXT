@@ -11026,112 +11026,371 @@ BrightMap Sprite FRGFJ0
 map "brightmaps/Weapon/FRGFJ0.png"
 }
 
-Brightmap Sprite BFKNA0
+//---------------------------------------------------
+//FIENDS BFG
+//---------------------------------------------------
+
+//Un-upgraded
+Brightmap sprite BFDMA0
 {
-  Map "Brightmaps/Weapon/BMBFKNA0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFGA0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNB0
+Brightmap sprite BFDCA0
 {
-  Map "Brightmaps/Weapon/BMBFKNB0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCA0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNC0
+Brightmap sprite BFDCB0
 {
-  Map "Brightmaps/Weapon/BMBFKNC0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCB0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKND0
+Brightmap sprite BFDCC0
 {
-  Map "Brightmaps/Weapon/BMBFKND0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCC0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNE0
+Brightmap sprite BFDCD0
 {
-  Map "Brightmaps/Weapon/BMBFKNE0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCD0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNF0
+Brightmap sprite BFDCE0
 {
-  Map "Brightmaps/Weapon/BMBFKNF0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCE0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNG0
+Brightmap sprite BFDCF0
 {
-  Map "Brightmaps/Weapon/BMBFKNG0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCF0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNH0
+Brightmap sprite BFDCG0
 {
-  Map "Brightmaps/Weapon/BMBFKNH0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCG0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNI0
+Brightmap sprite BFDCH0
 {
-  Map "Brightmaps/Weapon/BMBFKNI0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCH0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNJ0
+Brightmap sprite BFDCI0
 {
-  Map "Brightmaps/Weapon/BMBFKNJ0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCI0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNK0
+Brightmap sprite BFDCJ0
 {
-  Map "Brightmaps/Weapon/BMBFKNK0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCJ0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNL0
+Brightmap sprite BFDCK0
 {
-  Map "Brightmaps/Weapon/BMBFKNL0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCK0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNM0
+Brightmap sprite BFDCL0
 {
-  Map "Brightmaps/Weapon/BMBFKNM0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCL0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNN0
+Brightmap sprite BFDCM0
 {
-  Map "Brightmaps/Weapon/BMBFKNN0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCM0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNO0
+Brightmap sprite BFDCN0
 {
-  Map "Brightmaps/Weapon/BMBFKNO0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCN0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNP0
+Brightmap sprite BFDCO0
 {
-  Map "Brightmaps/Weapon/BMBFKNP0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCO0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNQ0
+Brightmap sprite BFDCP0
 {
-  Map "Brightmaps/Weapon/BMBFKNQ0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCP0.png"
+	DisableFullBright
 }
 
-Brightmap Sprite BFKNR0
+Brightmap sprite BFDFA0
 {
-  Map "Brightmaps/Weapon/BMBFKNR0.png"
-  DisableFullBright
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFA0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFB0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFB0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFC0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFC0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFD0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFD0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFE0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFE0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFF0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFF0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFG0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFG0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFH0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFH0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFI0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFI0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFJ0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFJ0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFK0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFK0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFL0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFL0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BFDFM0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFM0.png"
+	DisableFullBright
+}
+
+//upgraded-------------------------------------------------
+
+Brightmap sprite BFKGA0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFGA0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCA0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCA0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCB0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCB0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCC0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCC0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCD0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCD0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCE0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCE0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCF0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCF0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCG0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCG0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCH0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCH0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCI0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCI0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCJ0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCJ0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCK0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCK0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCL0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCL0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCM0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCM0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCN0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCN0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCO0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCO0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFCP0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFCP0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFA0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFA0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFB0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFB0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFC0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFC0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFD0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFD0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFE0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFE0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFF0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFF0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFG0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFG0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFH0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFH0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFI0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFI0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFJ0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFJ0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFK0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFK0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFL0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFL0.png"
+	DisableFullBright
+}
+
+Brightmap sprite BKFFM0
+{
+	Map "brightmaps/Weapon/Fiend/BFG/BKFFM0.png"
+	DisableFullBright
 }
 
 Brightmap Sprite RPGXA2A8
