@@ -2437,7 +2437,7 @@ ACTOR whiterabbit : SH_BaseMonster
 	ReactionTime 10
 	Damage 250
 
-	Dropitem "Allupgradetokens" 128
+	Dropitem "Allupgradetokens", 128
 
 	+NOBLOCKMONST
 	+QUICKTORETALIATE

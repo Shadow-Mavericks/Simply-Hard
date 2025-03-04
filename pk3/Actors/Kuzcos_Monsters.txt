@@ -1827,45 +1827,45 @@ ACTOR ResurrectionPulse
    }
 }
 
-ACTOR RabbitLord 
+ACTOR RabbitLord : WhiteRabbit
 {
-Health 4000 
-PainChance 50
-Speed 15
-Radius 72
-Height 72 
-Mass 300 
-MONSTER
-Scale 3.0
-Damage 10
-BloodColor "red"
-Seesound"Monster/Evildead"
-+ALWAYSFAST
-+QUICKTORETALIATE
-+Floorclip
-+BOSS
-states
+	Health 8000 
+	PainChance 50
+	Speed 15
+	Radius 56
+	Height 72 
+	Mass 300 
+	MONSTER
+	Scale 3.0
+	BloodColor "Red"
+	Seesound "Monster/Evildead"
+	+ALWAYSFAST
+	+QUICKTORETALIATE
+	+FLOORCLIP
+	+BOSS
+	states
 	{
-	spawn:
-	RBTL A 5 A_Look
-	Loop
-See:
-	RBTL ABCD 5 A_Chase
-	goto see
-Missile:
-Melee:
-	RBTL A 0 A_playsound("MONSTER/WHTRCHOM")
-    RBTL A 2 A_Facetarget
-	RBTL A 5 A_skullattack
-    RBTL A 2 A_Facetarget
-	goto see
-Pain:
-	RBTL F 3
-	Goto See
-Death:
-	RBTL GHIJKLM 3
-	stop
-}
+		Spawn:
+			RBTL A 5 A_Look
+			Loop
+		See:
+			RBTL ABCD 5 A_Chase
+			goto see
+		Missile:
+		Melee:
+			RBTL A 0 A_PlaySound("monster/whtrattk", CHAN_VOICE)
+			RBTL A 2 A_Facetarget
+			RBTL A 0 A_PlaySound("monster/whtrchom", CHAN_AUTO)
+			RBTL A 5 A_SkullAttack
+			RBTL A 2 A_Facetarget
+			goto see
+		Pain:
+			RBTL F 3
+			Goto See
+		Death:
+			RBTL GHIJKLM 3
+			stop
+	}
 }
 
 ACTOR bunny 
