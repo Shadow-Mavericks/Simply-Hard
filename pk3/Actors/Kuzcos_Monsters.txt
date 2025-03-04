@@ -1829,13 +1829,14 @@ ACTOR ResurrectionPulse
 
 ACTOR RabbitLord : WhiteRabbit
 {
+	Tag "Rabbit Lord"
 	Health 8000 
 	PainChance 50
 	Speed 15
 	Radius 56
 	Height 72 
 	Mass 300 
-	MONSTER
+	Monster
 	Scale 3.0
 	BloodColor "Red"
 	Seesound "Monster/Evildead"
@@ -1849,21 +1850,30 @@ ACTOR RabbitLord : WhiteRabbit
 			RBTL A 5 A_Look
 			Loop
 		See:
+			RBTL AA 1 A_Wander
+			RBTL BB 1 A_Chase
+			RBTL CC 1 A_Wander
+			RBTL DD 1 A_Chase
+			RBTL D 0 A_Jump(32, "SlowSee")
+			loop
+		SlowSee:
 			RBTL ABCD 5 A_Chase
-			goto see
+			RBTL D 0 A_Jump(32, "See")
+			loop
 		Missile:
 		Melee:
 			RBTL A 0 A_PlaySound("monster/whtrattk", CHAN_VOICE)
-			RBTL A 2 A_Facetarget
+			RBTL A 2 A_FaceTarget
 			RBTL A 0 A_PlaySound("monster/whtrchom", CHAN_AUTO)
 			RBTL A 5 A_SkullAttack
-			RBTL A 2 A_Facetarget
+			RBTL A 2 A_FaceTarget
 			goto see
 		Pain:
 			RBTL F 3
 			Goto See
 		Death:
-			RBTL GHIJKLM 3
+			RBTL GHIJKL 3
+			RTBL M -1
 			stop
 	}
 }

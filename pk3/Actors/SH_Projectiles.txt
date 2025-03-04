@@ -1693,7 +1693,7 @@ Actor Healgunblast : SH_BaseParticle
 			TBAL D 1 Bright
 			TBAL C 1 Bright
 		Death:
-			TBAL ABCD 1 A_FadeOut(0.01)
+			TBAL ABCD 1 A_FadeOut(0.0125)
 			Loop
 	}
 }
