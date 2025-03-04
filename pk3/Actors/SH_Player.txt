@@ -49,11 +49,6 @@ ACTOR Fiend : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Acid:
-			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
-			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Void:
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
@@ -183,11 +178,6 @@ ACTOR Kunai : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Acid:
-			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
-			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Void:
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
@@ -314,11 +304,6 @@ ACTOR Gosimer : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Acid:
-			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
-			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Void:
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
 			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
@@ -441,11 +426,6 @@ actor MaximusPrime : SH_BasePlayer
 			PLAY G 0 A_Pain
 			PLAY G 8
 			Goto Spawn
-		
-		Pain.Acid:
-			PLAY G 0 A_GiveInventory("DebuffItem_Weak", 1)
-			PLAY G 0 A_SetBlend("80FF80", 0.3, 35*5)
-			Goto Pain
 		
 		Pain.Void:
 			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)

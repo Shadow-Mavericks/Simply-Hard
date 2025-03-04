@@ -2,6 +2,29 @@
 //----< Pistol replacer >----
 //---------------------------
 
+actor FiendsAcidPuff : BulletPuff
+{
+	VSpeed 0
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Acid"
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	States
+	{
+		XDeath:
+			APUF AB 2 Bright
+			stop
+		Spawn:
+			APUF AB 2 Bright
+			APUF C 0 A_ChangeVelocity(0, frandom(-0.5, 0.5), frandom(1.0, 1.5), CVF_REPLACE)
+			APUF C 0 A_SetTranslucent(0.5, 0)
+			APUF CCCC 1 A_SetScale(scalex+0.0625)
+			APUF DDDD 1 A_SetScale(scalex+0.0625)
+			stop
+	}
+}
+
 Actor Leftpistolshot : Inventory
 {
 	Inventory.MaxAmount 1
@@ -130,23 +153,23 @@ ACTOR RenettiM9 : SH_Weapon
 		GoldFire:
 			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
-			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
-			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGP2 A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGP2 A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, -4, 2)
-			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGP2 B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGP2 B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGP2 C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGP2 D 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
-			FGP2 E 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGP2 E 1
 			FGP2 FG 2
 			FGP2 A 2
 			FGP2 A 0 A_Refire
@@ -154,25 +177,26 @@ ACTOR RenettiM9 : SH_Weapon
 			
 		GoldFireRight:
 			FGPL A 0 A_JumpIfNoAmmo("GoldDryFireRight")
+			FGPL A 0 A_AlertMonsters
 			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
-			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 12, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
-			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 12, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGPL A 0 A_Playsound("Dukepistol",Chan_weapon)
 			FGPL A 0 A_FireCustomMissile("PistolCasingSpawner", 0, 0, 10, 2)
-			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 10, "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FGPL B 0 BRIGHT A_FireBullets(4, 3, -1, 12, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			FGPL B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			FGPL C 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			FGPL D 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
-			FGPL E 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			FGPL E 1
 			FGPL FG 2
 			FGPL A 2
 			goto GoldReadyRight
@@ -294,7 +318,7 @@ Actor D3shotgun : SH_Weapon
 			Goto goldSelect+1
 		GoldFire:
 			FGSG F 1 Bright
-			FGSG F 0 A_FireBullets (8, 5, 16, 3, "BulletPuff")
+			FGSG F 0 A_FireBullets (5.6, 3, 8, 5, "FiendsAcidPuff")
 			goto FireAnim
 		Flash:
 			TNT1 A 1 Bright A_Light1
@@ -568,14 +592,14 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			goto Ready
 		GoldFire:
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(2.0, 1.5, 3, 5, "BulletPuff")
+			COLT B 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			FGF4 C 1
 			FGF4 D 1
 			FGN4 C 1
 			FGN4 D 1
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(2.0, 1.5, 3, 5, "BulletPuff")
+			COLT B 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
 			FGF4 A 1
 			FGF4 B 1
@@ -585,14 +609,14 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			goto GoldFireDone
 		GoldHold:
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(5, 5, 3, 5, "BulletPuff")
+			COLT B 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			FGF4 C 1
 			FGF4 D 1
 			FGN4 C 1
 			FGN4 D 1
 			NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			COLT B 0 A_FireBullets(5, 5, 3, 5, "BulletPuff")
+			COLT B 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
 			COLT B 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
 			FGF4 A 1
 			FGF4 B 1

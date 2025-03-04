@@ -1,98 +1,118 @@
 Base Doom;
 CompleteBorder true;
-Resolution 320, 240;
+Resolution 480, 360;
 height 0;
-InterpolateHealth true, 8;
-InterpolateArmor true, 8;
+//InterpolateHealth true, 8;
+//InterpolateArmor true, 8;
 
 statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 {
 	playertype "Fiend"
 	{
-		//Hud Overlay
-		drawimage "CMHUD1", 0, 0;
-		drawimage "FHUDICON", 4, 5;
-		//health / armor barsz
-		DrawBar "HPB100A", "HPBNULL1", health (100), horizontal, 74, 20;
-		DrawBar "SHLDF100", "FSHLD1NL", Armor (100), Horizontal, 68, 27;
-		DrawBar "HPB200A", "HPBNULL2", health (200), horizontal, 11, 20;
-		DrawBar "SHLDF200", "FSHLD2NL", Armor (200), Horizontal, 5, 27;
-		//DrawGem  interpolate(1), "HPFLRCAP", "HPGCAPA", 0, 0, 0, 72, 13;
+		// Left Half
+		// ---------
+		DrawImage "FIENDBRL", 8, -32;
+		DrawBar "FIENDHP", "FIENDHPB", health (300), horizontal, interpolate(8), 41, -24;
+		DrawBar "FIENDSHL", "FIENDSHB", armor (300), horizontal, interpolate(8), 39, -26;
+		DrawKeyBar 6, Horizontal, 8, 59, -10;
 		
-		//health zdoom style
-		DrawNumber 3, INDEXFONT, untranslated, Health, 54, 18;
+		// Health
+		DrawImage "FIENDHLT", 17, -39;
+		Alpha 0.5
+		{
+			DrawNumber 3, TINYFONT, PitchBlack, Health, alignment(left), 24, -39, 1;
+		}
+		DrawNumber 3, TINYFONT, PeppermintCream, Health, alignment(left), 23, -40, 1;
 
 		//armor zdoom style
-		Drawnumber 3, INDEXFONT, untranslated, Armor, 54, 28;
-
-		//ammo
-		drawnumber 3, INDEXFONT, untranslated, ammo1, 176, 18;
-		drawKeyBar 6, Horizontal, 8, 34, 6;
-		
-		Drawimage "UlTBARF", -96, -46;   // <- This bit right here Tribeam!
-		DrawBar "DENGFBAR", "DENGNUFN", Abilitycharge, Horizontal, Reverse, -94, -10;
-		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
-		
-		InInventory "UltimateAbilityCharge", 2000
+		DrawImage "FIENDSHD", 37, -39;
+		Alpha 0.5
 		{
-			Drawimage "ULTRDY", -73, -6;
+			Drawnumber 3, TINYFONT, PitchBlack, Armor, alignment(left), 44, -39, 1;
 		}
+		Drawnumber 3, TINYFONT, PeppermintCream, Armor, alignment(left), 43, -40, 1;
 		
-		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
-		InInventory LifeTrackerHack, 1 
+		DrawBar "FIENDULT", "FIENDULB", UltimateAbilityCharge, Vertical, 18, -28;
+		InInventory "UltimateAbilityCharge", 2000 { Drawimage "FIENDULR", 15, -31; }
+		
+		InInventory LifeTrackerHack, 6
 		{
-			drawimage "REZTANK1", 0, 0;
-		}
-		InInventory LifeTrackerHack, 2 
-		{
-			Drawimage "REZTANK2", 0, 0;
-		}
-		InInventory LifeTrackerHack, 3 
-		{
-			Drawimage "REZTANK3", 0, 0;
-		}
-		
-		//AMMO XP BAR - Sorry for the hacky method, I Got lazy and figured this was the easiest way lol -Fiendzy
-		
-		Drawimage	 "AMXPBR00",	0,	-20;
-		InInventory Ammoexpansioncheck,	1		{	Drawimage	 "AMXPBR01",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 2		{	Drawimage	 "AMXPBR02",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 3		{	Drawimage	 "AMXPBR03",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 4		{	Drawimage	 "AMXPBR04",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 5		{	Drawimage	 "AMXPBR05",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 6		{	Drawimage	 "AMXPBR06",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 7		{	Drawimage	 "AMXPBR07",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 8		{	Drawimage	 "AMXPBR08",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 9		{	Drawimage	 "AMXPBR09",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 10		{	Drawimage	 "AMXPBR10",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
-		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
-		
+			DrawImage "FIENDLIF", 59, -36;
+			Alpha 0.5
+			{
+				DrawString TINYFONT, PitchBlack, "x", 67, -36, 1, alignment(left);
+				Drawnumber 3, TINYFONT, PitchBlack, LifeTrackerHack, alignment(left), 71, -36, 1;
+			}
+			DrawString TINYFONT, PeppermintCream, "x", 66, -37, 1, alignment(left);
+			Drawnumber 3, TINYFONT, PeppermintCream, LifeTrackerHack, alignment(left), 70, -37, 1;
 			
-		usesammo
-		{
-			inventorybarnotvisible
-			{
-				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-			}
 		}
-			usesammo Not
+		else
 		{
-			inventorybarnotvisible
-			{
-				 drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
-			}
+			InInventory LifeTrackerHack, 1 { DrawImage "FIENDLIF", 59, -36; }
+			InInventory LifeTrackerHack, 2 { DrawImage "FIENDLIF", 65, -36; }
+			InInventory LifeTrackerHack, 3 { DrawImage "FIENDLIF", 71, -36; }
+			InInventory LifeTrackerHack, 4 { DrawImage "FIENDLIF", 77, -36; }
+			InInventory LifeTrackerHack, 5 { DrawImage "FIENDLIF", 83, -36; }
 		}
 		
-			UsesSecondaryAmmo
+		// Right Half
+		// ----------
+		DrawImage "FIENDBRR", -131, -32;
+
+		// Primary Ammo
+		UsesAmmo
 		{
-			drawimage "CMHUD1B", 0, 0;
-			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;
-			inventorybarnotvisible
+			DrawBar "FIENDAMO", "FIENDHPB", ammo1, horizontal, reverse, interpolate(8), -221, -24;
+			
+			Alpha 0.5
 			{
-				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
+				DrawNumber 3, TINYFONT, PitchBlack, Ammo1Capacity, alignment(left), -71, -36, 1;
+				DrawNumber 3, TINYFONT, PitchBlack, Ammo1, alignment(right), -75, -36, 1;
+				DrawString TINYFONT, PitchBlack, "/", -71, -36;
 			}
+			DrawNumber 3, TINYFONT, PeppermintCream, Ammo1Capacity, alignment(left), -72, -37, 1;
+			DrawNumber 3, TINYFONT, PeppermintCream, Ammo1, alignment(right), -76, -37, 1;
+			DrawString TINYFONT, NeonYellow, "/", -72, -37;
 		}
+		
+		/* // Unfinished
+		UsesSecondaryAmmo
+		{
+			DrawNumber 3, TINYFONT, untranslated, ammo2, 200, 18, 1;
+		}
+		*/
+		
+		inventorybarnotvisible
+		{
+			DrawSelectedInventory alwaysshowcounter, center, INDEXFONT, -30, -49, -18, -40, untranslated;
+		}
+		
+		// Backpack Level
+		InInventory AmmoExpansionCheck,	1
+		{
+			Alpha 0.5
+			{
+				DrawString TINYFONT, PitchBlack, "BP LVL.", -101, -34, 1;
+				DrawNumber 3, TINYFONT, PitchBlack, AmmoExpansionCheck, alignment(left), -101, -34, 1;
+			}
+			
+			DrawString TINYFONT, PeppermintCream, "BP LVL.", -102, -35, 1;
+			DrawNumber 3, TINYFONT, PeppermintCream, AmmoExpansionCheck, alignment(left), -102, -35, 1;
+			//Drawimage	 "AMXPBR01",	0,	-20;
+		}
+		
+		// Ability Bar
+		DrawBar "FIENDABL", "FIENDABB", AbilityCharge, horizontal, Reverse, interpolate(8), -131, -14;
+		Alpha 0.5
+		{
+				DrawString TINYFONT, PitchBlack, "1000", -75, -8, 1, alignment(left);
+				DrawNumber 4, TINYFONT, PitchBlack, AbilityCharge, alignment(right), -79, -8, 1;
+				DrawString TINYFONT, PitchBlack, "/", -75, -8;
+		}
+		DrawString TINYFONT, ElecViolet, "1000", -76, -9, 1, alignment(left);
+		DrawNumber 4, TINYFONT, ElecViolet, AbilityCharge, alignment(right), -80, -9, 1;
+		DrawString TINYFONT, Cyan, "/", -76, -9;
 	}
 	
 	playertype "Kunai"
@@ -152,7 +172,6 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		InInventory Ammoexpansioncheck, 11		{	Drawimage	 "AMXPBR11",	0,	-20;	}
 		InInventory Ammoexpansioncheck, 12		{	Drawimage	 "AMXPBR12",	0,	-20;	}
 		
-			
 		usesammo
 		{
 			inventorybarnotvisible
@@ -160,7 +179,8 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 				drawselectedinventory alwaysshowcounter, center, HUDFONT_DOOM, -18, -22, -36, -29, untranslated;
 			}
 		}
-			usesammo Not
+		
+		usesammo Not
 		{
 			inventorybarnotvisible
 			{
@@ -168,7 +188,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 			}
 		}
 		
-			UsesSecondaryAmmo
+		UsesSecondaryAmmo
 		{
 			drawimage "CMHUD2B", 0, 0;
 			drawnumber 3, INDEXFONT, untranslated, ammo2, 200, 18;

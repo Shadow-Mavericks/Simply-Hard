@@ -78,30 +78,19 @@ actor TeleportHax : ArtiTeleport
 	+INVENTORY.AUTOACTIVATE
 }
 
-actor SentryHealth : Inventory // Used to track how much health a picked up sentry has left.
+actor SentryHealth : SH_BaseToken // Used to track how much health a picked up sentry has left.
 {
 	Inventory.Amount 1
 	Inventory.MaxAmount 500
 	Inventory.InterHubAmount 500
 	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
 }
 
-actor PlayerCheckHax : Inventory // Useful for A_JumpIfInTargetInventory
+actor PlayerCheckHax : SH_BaseToken // Useful for A_JumpIfInTargetInventory
 {
 	Inventory.Amount 1
 	Inventory.MaxAmount 1
 	Inventory.InterHubAmount 1
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
 }
 
 actor SightCheckBeacon // Used for sight checks on enemy multiplier.

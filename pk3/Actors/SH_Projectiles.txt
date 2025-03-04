@@ -851,7 +851,7 @@ ACTOR CRITImpBall
 	}
 }
 
-Actor impballtrail : Particle_Base
+Actor impballtrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -875,7 +875,7 @@ Actor impballtrail : Particle_Base
 	}
 }
 
-Actor impballtrailGreen : Particle_Base
+Actor impballtrailGreen : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -900,7 +900,7 @@ Actor impballtrailGreen : Particle_Base
 	}
 }
 
-Actor impballtrailRed : Particle_Base
+Actor impballtrailRed : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -925,7 +925,7 @@ Actor impballtrailRed : Particle_Base
 	}
 }
 
-Actor impballtrailYellow : Particle_Base
+Actor impballtrailYellow : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -950,7 +950,7 @@ Actor impballtrailYellow : Particle_Base
 	}
 }
 
-Actor impballtrailPurple : Particle_Base
+Actor impballtrailPurple : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -977,7 +977,7 @@ Actor impballtrailPurple : Particle_Base
 
 
 
-Actor impballtrailBlue : Particle_Base
+Actor impballtrailBlue : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1002,7 +1002,7 @@ Actor impballtrailBlue : Particle_Base
 	}
 }
 
-Actor  IMPballtrailWhite : Particle_Base
+Actor  IMPballtrailWhite : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1027,7 +1027,7 @@ Actor  IMPballtrailWhite : Particle_Base
 	}
 }
 
-Actor BaronballtrailRed : Particle_Base
+Actor BaronballtrailRed : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1052,7 +1052,7 @@ Actor BaronballtrailRed : Particle_Base
 	}
 }
 
-Actor BaronballtrailGreen : Particle_Base
+Actor BaronballtrailGreen : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1076,7 +1076,7 @@ Actor BaronballtrailGreen : Particle_Base
 	}
 }
 
-Actor BaronballtrailYellow : Particle_Base
+Actor BaronballtrailYellow : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1101,7 +1101,7 @@ Actor BaronballtrailYellow : Particle_Base
 	}
 }
 
-Actor BaronballtrailPurple : Particle_Base
+Actor BaronballtrailPurple : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1128,7 +1128,7 @@ Actor BaronballtrailPurple : Particle_Base
 
 
 
-Actor  BaronballtrailBlue : Particle_Base
+Actor  BaronballtrailBlue : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1153,7 +1153,7 @@ Actor  BaronballtrailBlue : Particle_Base
 	}
 }
 
-Actor  BaronballtrailWhite : Particle_Base
+Actor  BaronballtrailWhite : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1180,7 +1180,7 @@ Actor  BaronballtrailWhite : Particle_Base
 
 //fATTY TRAILS
 
-Actor Redfattrail : Particle_Base
+Actor Redfattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1205,7 +1205,7 @@ Actor Redfattrail : Particle_Base
 	}
 }
 
-Actor Orangefattrail : Particle_Base
+Actor Orangefattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1230,7 +1230,7 @@ Actor Orangefattrail : Particle_Base
 	}
 }
 
-Actor Greenfattrail : Particle_Base
+Actor Greenfattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1254,7 +1254,7 @@ Actor Greenfattrail : Particle_Base
 	}
 }
 
-Actor Yellowfattrail : Particle_Base
+Actor Yellowfattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1279,7 +1279,7 @@ Actor Yellowfattrail : Particle_Base
 	}
 }
 
-Actor Purplefattrail : Particle_Base
+Actor Purplefattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1306,7 +1306,7 @@ Actor Purplefattrail : Particle_Base
 
 
 
-Actor Bluefattrail : Particle_Base
+Actor Bluefattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1331,7 +1331,7 @@ Actor Bluefattrail : Particle_Base
 	}
 }
 
-Actor Whitefattrail : Particle_Base
+Actor Whitefattrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
@@ -1356,7 +1356,7 @@ Actor Whitefattrail : Particle_Base
 	}
 }
 
-Actor critballtrail : Particle_Base
+Actor critballtrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.2
@@ -1580,7 +1580,7 @@ ACTOR GasterLaser
 	}
 }
 
-ACTOR DroidLaserTrail : Particle_Base
+ACTOR DroidLaserTrail : SH_BaseParticle
 {
 	Radius 1
 	Height 1
@@ -1626,7 +1626,7 @@ Actor DroidLaser : FastProjectile
 	}
 }
 
-ACTOR Devistaterblast : Particle_Base
+ACTOR Devistaterblast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -1646,7 +1646,7 @@ ACTOR Devistaterblast : Particle_Base
 	}
 }
 
-Actor LightRailBlast : Particle_Base
+Actor LightRailBlast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -1662,7 +1662,7 @@ Actor LightRailBlast : Particle_Base
 	}
 }
 
-Actor LightninggunBlast : Particle_Base
+Actor LightninggunBlast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -1679,7 +1679,7 @@ Actor LightninggunBlast : Particle_Base
 }
 
 
-Actor Healgunblast : Particle_Base
+Actor Healgunblast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -1698,7 +1698,7 @@ Actor Healgunblast : Particle_Base
 	}
 }
 
-Actor REDLightRailBlast : Particle_Base
+Actor REDLightRailBlast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -1713,7 +1713,7 @@ Actor REDLightRailBlast : Particle_Base
 	}
 }
 
-Actor REDLightninggunBlast : Particle_Base
+Actor REDLightninggunBlast : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.75
@@ -2772,7 +2772,7 @@ ACTOR ChannelerSeductor
    }
 }
 
-ACTOR ChannelerTrail : Particle_Base
+ACTOR ChannelerTrail : SH_BaseParticle
 {
 	Radius 2
 	Height 2
@@ -2918,7 +2918,7 @@ ACTOR REDChannelerSeductor
    }
 }
 
-ACTOR REDChannelerTrail : Particle_Base
+ACTOR REDChannelerTrail : SH_BaseParticle
 {
 	Radius 2
 	Height 2

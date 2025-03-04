@@ -457,6 +457,8 @@ script "GENERATE_DMG_TRANSLATIONS" OPEN
 	CreateTranslation(6005, 160:160=[0, 255, 255]:[0, 255, 255]); // Cyan
 	CreateTranslation(6006, 160:160=[255, 0, 255]:[255, 0, 255]); // Magenta
 	CreateTranslation(6007, 160:160=[255, 255, 255]:[255, 255, 255]); // White
+	
+	CreateTranslation(7000, 0:255=%[0.00,0.00,0.00]:[0.02,1.23,0.44]); // Acid
 }
 
 #define HIT_OTHER 0
@@ -740,7 +742,24 @@ script "KUNAI_GIVE_HEALTH" (int type)
 	}
 }
 
-function int handle_damage_event(int type, int arg1, int arg2)
+function int canDrawBar(void)
+{
+	if(!GetCVar("sh_healthbars"))
+		return false;
+		
+	if(CheckFlag(0, "SHADOW") || CheckFlag(0, "INVISIBLE") || CheckFlag(0, "STEALTH"))
+		return false;
+		
+	// Don't spawn HP bars for enemies with these renderstyles.
+	if (GetActorProperty(0, APROP_RenderStyle) == STYLE_Fuzzy ||
+		GetActorProperty(0, APROP_RenderStyle) == STYLE_OptFuzzy ||
+		GetActorProperty(0, APROP_RenderStyle) == STYLE_Shadow)
+		return false;
+	
+	return true;
+}
+
+function int handle_damage_event(int type, int arg1, int damagetype)
 {
 	// -------------
 	int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
@@ -756,7 +775,7 @@ function int handle_damage_event(int type, int arg1, int arg2)
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
 	bool wasConcussed = false;
-	bool wasTelefrag = (!StrIcmp(arg2, "spawntelefrag") || !StrIcmp(arg2, "telefrag"));
+	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));
 
 	str inflictorClass = "Unknown";
 
@@ -951,17 +970,24 @@ function int handle_damage_event(int type, int arg1, int arg2)
 			}
 		}
 		
-		if(GetCVar("sh_healthbars"))
-		{
-			if (victimIsMonster && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)))
-			{		
-				if(!CheckInventory("HasHealthBar") && !CheckFlag(0, "SHADOW") && !CheckFlag(0, "INVISIBLE") && !CheckFlag(0, "STEALTH"))
-				{
-					GiveInventory("HasHealthBar", 1);
-					
-					ACS_NamedExecuteWithResult("CREATE_HP_BAR", 0);
-				}
+		if (victimIsMonster && canDrawBar() && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)))
+		{		
+			if(!CheckInventory("HasHealthBar"))
+			{
+				ACS_NamedExecuteWithResult("CREATE_HP_BAR", 0);
 			}
+		}
+	}
+	
+	if(CheckInventory("PowerAcidStatus"))
+	{
+		if(!StrIcmp(damagetype, "Acid"))
+		{
+			arg1 = fixedmul(arg1<<16, 1.25)>>16;
+		}
+		else
+		{
+			arg1 = fixedmul(arg1<<16, 1.5)>>16;
 		}
 	}
 
@@ -970,14 +996,10 @@ function int handle_damage_event(int type, int arg1, int arg2)
 
 script "CREATE_HP_BAR" (void)
 {
-	if(!GetCVar("sh_healthbars"))
+	if(!canDrawBar())
 		terminate;
-	
-	// Don't spawn HP bars for enemies with these renderstyles.
-	if(GetActorProperty(0, APROP_RenderStyle) == STYLE_Fuzzy ||
-	   GetActorProperty(0, APROP_RenderStyle) == STYLE_OptFuzzy ||
-	   GetActorProperty(0, APROP_RenderStyle) == STYLE_Shadow)
-		terminate;
+		
+	GiveInventory("HasHealthBar", 1);
 		
 	int barTID = UniqueTID();
 	SpawnForced("HealthBar", GetActorX(0), GetActorY(0), GetActorZ(0)+GetActorProperty(0, AProp_Height), barTID, GetActorAngle(0));
@@ -1033,6 +1055,81 @@ script "HPBAR_LOGIC" (void) // CLIENTSIDE // NOPE, CAN'T DO CLIENTSIDE BECAUSE Z
 	}
 }
 
+script "ACID_TICKER" (void)
+{
+	int radius = GetActorProperty(0, APROP_Radius);
+	Thing_SetTranslation(0, 7000);
+	
+	while(CheckInventory("PowerAcidStatus"))
+	{
+		SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
+		Delay(1);
+	}
+	
+	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER)) // If died while under effect of acid.
+	{
+		int timer = 105;
+		bool meltstarted = false;
+		while(1)
+		{
+			if(timer > 0)
+			{
+				timer--;
+				SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
+			}
+			else
+			{
+				int scaley = GetActorProperty(0, APROP_ScaleY);
+				int alpha = GetActorProperty(0, APROP_Alpha);
+				int numSplashes = (radius/16)>>16;
+				if(numSplashes <= 0)
+					numSplashes = 1;
+				scaley -= 0.025;
+				alpha -= 0.025;
+				
+				if(!meltstarted)
+				{
+					PlaySound (0, "AcidMelt", CHAN_AUTO, 1.0, false, ATTN_NORM, false);
+					
+					int uTID = UniqueTID();
+					int maxScale = radius/32;
+					if(maxScale < 0.5)
+						maxScale = 0.5;
+					
+					SpawnForced("AcidPuddle", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, 0);
+					SetUserVariable(uTID, "user_maxscale", maxScale);
+					meltstarted = true;
+				}
+				
+				if(alpha < 0.0) // Clamp alpha
+					alpha = 0;
+				
+				for(int i = 0; i < numSplashes; i++)
+				{
+					SpawnForced("AcidSplash", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0), 0, 0);
+				}
+					
+				if(scaley <= 0.0)
+				{
+					Thing_Remove(0);
+					break;
+				}
+				else
+				{
+					SetActorProperty(0, APROP_ScaleY, scaley);
+					SetActorProperty(0, APROP_Alpha, alpha);
+				}
+			}
+			
+			Delay(1);
+		}
+	}
+	else
+	{
+		Thing_SetTranslation(0, 0);
+	}
+}
+
 #define GAMEEVENT_LEVEL_INIT 16
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
 #define GAMEEVENT_SPAWN_RANDOMSPAWNED 2
@@ -1041,7 +1138,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	switch (type)
 	{
-		case GAMEEVENT_ACTOR_ARMORDAMAGED:
+		case GAMEEVENT_ACTOR_DAMAGED_PREMOD:
 		{
 			arg1 = handle_damage_event(type, arg1, arg2);
 			SetResultValue(arg1);
@@ -1050,11 +1147,60 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		case GAMEEVENT_ACTOR_DAMAGED:
 		{
 			bool attackerIsEnemy = false;
+			bool victimIsPlayer = (ClassifyActor(0) & ACTOR_PLAYER);
+			int victimHealth = GetActorProperty(0, APROP_Health);
+			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
+			
+			if(victimIsPlayer && (GameType() == GAME_SINGLE_PLAYER))
+			{
+				int pNum = PlayerNumber();
+				if(arg1 >= victimHealth && GetPlayerLivesLeft(pNum) > 0)
+				{
+					arg1 = 0; // Cancel out the damage.
+					ACS_NamedExecuteAlways("USELIFE_SINGLEPLAYER", 0);
+				}
+			}
+			
 			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 			{
 				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
 			}
 
+			// Handle damage types (Acid/Fire/Electric/Etc)	
+			if(!StrIcmp(arg2, "Acid"))
+			{
+				if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+				{
+					int acidThreshold = min(victimSpawnHealth/2, 200);
+					
+					if(!CheckInventory("PowerAcidBuildTimer")) // If acid build timer has expired or hasn't yet started, reset.
+						TakeInventory("AcidAccumulation", 200);
+					
+					GiveInventory("AcidAccumulation", arg1);
+					GiveInventory("AcidBuildTimer", 1);
+					
+					if(CheckInventory("AcidAccumulation") >= acidThreshold)
+					{
+						int alreadyAcid = CheckInventory("PowerAcidStatus");
+						TakeInventory("AcidAccumulation", 200);
+						GiveInventory("AcidStatus", 1);
+						
+						if(!alreadyAcid)
+						{
+							ACS_NamedExecuteWithResult("ACID_TICKER", 0);
+						}
+						
+						if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+						{
+							SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
+						}
+					}
+				}
+			}
+
+			// ****** ALWAYS KEEP THIS SHIT LAST! *********
+			SetResultValue(arg1);
+			
 			SetActivator(0, AAPTR_DAMAGE_TARGET);
 			if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
 			{
@@ -1067,6 +1213,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					TakeInventory("DamageTallyHack", 9999);
 				}
 			}
+			
 			break;
 		}
 		case GAMEEVENT_ACTOR_SPAWNED:
@@ -1313,7 +1460,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 					extrasound = "Jim/taunt10";
 				
 				ammo2_class = "PeastolClip";
-				ammo2_amount = 24;
+				ammo2_amount = 48;
 			}
 
 			pickupsound = "AMMO/CLIP";

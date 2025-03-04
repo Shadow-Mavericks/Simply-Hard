@@ -5270,7 +5270,7 @@ actor BoulderSmall
   }
 }
 
-Actor FireParticleFloat : Particle_Base
+Actor FireParticleFloat : SH_BaseParticle
 {
  Scale 0.125
  States
@@ -14956,7 +14956,7 @@ actor StarGrabber : FastProjectile
 	}
 }
 
-actor StarParticle : Particle_Base
+actor StarParticle : SH_BaseParticle
 {
 	scale 0.029
 	States

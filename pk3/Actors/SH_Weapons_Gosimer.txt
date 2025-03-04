@@ -25,7 +25,7 @@ ACTOR GosimersExplosivepuff
 	}
 }
 
-actor CritNadeFireTrail : Particle_Base
+actor CritNadeFireTrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 1.0
@@ -40,7 +40,7 @@ actor CritNadeFireTrail : Particle_Base
 	}
 }
 
-actor NadeSmoke : Particle_Base
+actor NadeSmoke : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5

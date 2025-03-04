@@ -159,7 +159,7 @@ actor Hyper_Follower
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 
-actor Star : Particle_Base
+actor Star : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -172,7 +172,7 @@ actor Star : Particle_Base
 	}
 }
 
-actor Ring_Star : Particle_Base
+actor Ring_Star : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -185,7 +185,7 @@ actor Ring_Star : Particle_Base
 	}
 }
 
-actor Super_Star : Particle_Base
+actor Super_Star : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -198,7 +198,7 @@ actor Super_Star : Particle_Base
 	}
 }
 
-actor Hyper_Star_Green : Particle_Base
+actor Hyper_Star_Green : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -211,7 +211,7 @@ actor Hyper_Star_Green : Particle_Base
 	}
 }
 
-actor Hyper_Star_Red : Particle_Base
+actor Hyper_Star_Red : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -224,7 +224,7 @@ actor Hyper_Star_Red : Particle_Base
 	}
 }
 
-actor Hyper_Star_Purple : Particle_Base
+actor Hyper_Star_Purple : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -237,7 +237,7 @@ actor Hyper_Star_Purple : Particle_Base
 	}
 }
 
-actor Hyper_Star_Blue : Particle_Base
+actor Hyper_Star_Blue : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -250,7 +250,7 @@ actor Hyper_Star_Blue : Particle_Base
 	}
 }
 
-actor Hyper_Star_Yellow : Particle_Base
+actor Hyper_Star_Yellow : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -263,7 +263,7 @@ actor Hyper_Star_Yellow : Particle_Base
 	}
 }
 
-actor Star_NoRise : Particle_Base
+actor Star_NoRise : SH_BaseParticle
 {
 	-CLIENTSIDEONLY
 	Scale 0.05
@@ -275,7 +275,7 @@ actor Star_NoRise : Particle_Base
 	}
 }
 
-actor Red_Star_NoRise : Particle_Base
+actor Red_Star_NoRise : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -291,7 +291,7 @@ actor Red_Star_NoRise : Particle_Base
 // The Lights
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
-actor Super_Trail : Particle_Base
+actor Super_Trail : SH_BaseParticle
 {
 	States
 	{

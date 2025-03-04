@@ -6,9 +6,6 @@
 // *******************
 // Player Tick Handler
 // *******************
-#define INVUL_NONE 0
-#define INVUL_NORMAL 1
-#define INVUL_ULT 2
 
 #define NUM_INVUL_SONGS 11
 str inv_music_list[NUM_INVUL_SONGS] = {
@@ -63,8 +60,12 @@ script "SV_PLAYERTICKER" OPEN
 						LocalSetMusic("S4_METAL");
 						break;
 					case INVUL_NORMAL:
-						int choice = random(0, NUM_INVUL_SONGS-1);
-						str music = inv_music_list[choice];
+						// Commented out because this is shitting dicks for some unknown reason.
+						//int choice = random(0, NUM_INVUL_SONGS-1);
+						//str music = inv_music_list[choice];
+						
+						str keyname = StrParam(s:"INVMUS", d:random(1,NUM_INVUL_SONGS));
+						str music = StrParam(l:keyname);
 						LocalSetMusic(music);
 						break;
 					case INVUL_NONE:

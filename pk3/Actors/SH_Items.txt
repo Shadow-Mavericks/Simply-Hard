@@ -1968,10 +1968,11 @@ actor RedBShieldSpawner2
   }
 }
 
-actor ExtraLifeTrail : Particle_Base
+actor ExtraLifeTrail : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.5
+	YScale 0.8
 	States
 	{
 		Spawn:
@@ -1990,6 +1991,7 @@ actor ExtraLifeThingy : CustomInventory
 	Inventory.InterHubAmount 9999
 	Inventory.PickupMessage "EXTRA LIIIIIIFE"
 	Inventory.PickupSound "oneman"
+	YScale 0.8
 	+INVENTORY.UNDROPPABLE
 	+INVENTORY.UNTOSSABLE
 	+INVENTORY.NEVERRESPAWN

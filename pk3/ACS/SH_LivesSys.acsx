@@ -47,6 +47,31 @@ script "LIFEUSED" RESPAWN
 	update_lives(-1);
 }
 
+script "USELIFE_SINGLEPLAYER" (void)
+{
+	int pNum = PlayerNumber();
+	
+	int current_lives = GetPlayerLivesLeft(pNum);
+	current_lives--;
+	update_lives(current_lives);
+	
+	if(current_lives == 1)
+		print(s:"You have ", d:current_lives, s:" life remaining!");
+	else
+		print(s:"You have ", d:current_lives, s:" lives remaining!");
+		
+	SetActorPosition(0, p_status[pNum].spawn_x, p_status[pNum].spawn_y, p_status[pNum].spawn_z, true);
+	SetActorAngle(0, p_status[pNum].spawn_angle);
+	SetActorVelocity(0, 0.0, 0.0, 0.0, false, true);
+	
+	FadeRange(0, 255, 0, 1.0, 0, 0, 0, 0.0, 1.0);
+	
+	SetActorProperty(0, APROP_Health, 100);
+	
+	Ambientsound("oneman/usedup", 127);
+	GiveInventory("Res_protection", 1);
+}
+
 script "STORELIVES" UNLOADING
 {
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
@@ -66,12 +91,20 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
 	p_status[pNum].time_of_death = 0x7FFFFFFF;
+	p_status[pNum].invul_type = INVUL_NONE;
 
 	if(lives_at_end[pNum] > current_lives)
 		update_lives(lives_at_end[pNum]);
 
 	lives_at_end[pNum] = 0; // Clear it.
+	
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
+	
+	// Record player's starting position for various uses.
+	p_status[pNum].spawn_x = GetActorX(0);
+	p_status[pNum].spawn_y = GetActorY(0);
+	p_status[pNum].spawn_z = GetActorZ(0);
+	p_status[pNum].spawn_angle = GetActorAngle(0);
 }
 
 script "ADDLIFE" (void)

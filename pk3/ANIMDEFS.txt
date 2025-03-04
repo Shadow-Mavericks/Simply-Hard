@@ -469,15 +469,7 @@ Texture FHUDICON
 	Pic	FHUDG0 tics 2
 	Pic	FHUDH0 tics 2
 	Pic	FHUDI0 tics 2
-	Pic	FHUDJ0 tics 2
-	
-
-Texture HPB100A
-	Pic	HPB100A Tics 1
-	Pic	HPB100B Tics 1
-	Pic	HPB100C Tics 1
-	Pic	HPB100D Tics 1
-	Pic	HPB100E Tics 1
+	Pic	FHUDJ0 tics 2	
 
 Texture HPB200A
 	Pic	HPB200A Tics 2
@@ -491,13 +483,6 @@ Texture HPB200A
 
 Texture HP300
 	Pic	HPB300	Tics 4
-
-Texture HPGCAPA
-	Pic	HPGCAPA Tics 2
-	Pic	HPGCAPB Tics 2
-	Pic	HPGCAPC Tics 2
-	Pic	HPGCAPB Tics 2
-
 
 Texture GHPB100A
 	Pic	GHPB100A Tics 2

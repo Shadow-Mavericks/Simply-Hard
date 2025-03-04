@@ -16,3 +16,22 @@ Console:
 Flat:
 	#6400FF
 }
+
+PitchBlack
+{
+	#000000 #000000
+Console:
+	#000000 #000000     0 127
+Flat:
+	#000000
+}
+
+NeonYellow
+{
+	#696900 #FFFF00
+Console:
+	#000000 #696900     0 127
+	#696900 #FFFF00   128 256
+Flat:
+	#FFFF00
+}

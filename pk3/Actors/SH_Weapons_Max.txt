@@ -205,7 +205,7 @@ actor Mortarnade
 	}
 }
 
-actor FlakParticle : Particle_Base
+actor FlakParticle : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.25

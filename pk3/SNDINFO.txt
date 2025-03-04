@@ -1914,3 +1914,13 @@ $playersound 	MaximusPrime	male	*pain25		HEALTH1
 Pop Pop
 FuckThis FuckThis
 SpyWhistle SpyWhstl
+
+AcidMelt acidmelt
+$limit AcidMelt 0
+
+AcidBurst1 BIOBRST1
+AcidBurst2 BIOBRST2
+$limit AcidBurst1 0
+$limit AcidBurst2 0
+$random AcidBurst { AcidBurst1 AcidBurst2 }
+$limit AcidBurst 0

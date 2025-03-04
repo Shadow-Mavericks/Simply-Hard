@@ -214,7 +214,7 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 	}
 }
 
-actor RailgunGiver : WeaponGiver_Base
+actor RailgunGiver : WeaponGiver_Base 5012
 {
 	//$Sprite RAILA0
 	States

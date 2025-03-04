@@ -507,7 +507,7 @@ ACTOR Mayhem19BallOfLightning : SH_BaseMonster
 	}
 }
 
-actor Mayhem19SludgeShotTrail : Particle_Base
+actor Mayhem19SludgeShotTrail : SH_BaseParticle
 {
 	Renderstyle Add
 	Alpha 0.75

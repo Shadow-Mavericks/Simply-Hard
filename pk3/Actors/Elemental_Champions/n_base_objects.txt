@@ -13,15 +13,6 @@ actor Monster_Base
 }
 
 //////////////////////////////////////////////////////////////////
-// Debuffs / Elemental Damge factors
-//////////////////////////////////////////////////////////////////
-actor Debuff_Weak : PowerProtection
-{
-	powerup.duration -3
-	damagefactor "Normal", 1.5
-}
-
-//////////////////////////////////////////////////////////////////
 // Debuff timers
 //////////////////////////////////////////////////////////////////
 //actor PowerupTimer_Perm  : PowerupItem_Base 		{ powerup.duration -999999 	}
@@ -51,8 +42,6 @@ actor Debuff_Blind 		: PowerDamage
  powerup.duration -5
 }
 
-//actor Debuff_Weak 	: PowerDamage 		{ damagefactor "Normal", 1}
-//actor Debuff_Magic 		: PowerDamage 		{ damagefactor "Normal", 1 } // dummy powerup
 actor Debuff_Burn 		: PowerSpeed 		
 { 
 	Speed 1.3
@@ -80,15 +69,6 @@ actor Debuff_HeavyMetal : PowerSpeed
 //////////////////////////////////////////////////////////////////
 // Debuff item definitions
 //////////////////////////////////////////////////////////////////
-actor DebuffItem_Weak 		: PowerupGiver
-	{
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.QUIET
-	+INVENTORY.UNDROPPABLE
-	-INVENTORY.KEEPDEPLETED
-	powerup.type "Debuff_Weak"
-	}
 	
 actor DebuffItem_Confuse	: PowerupGiver	
 	{
@@ -141,7 +121,7 @@ actor DebuffItem_HeavyMetal : PowerupGiver
 // Lightning element particle effects
 //////////////////////////////////////////////////////////////////
 
-ACTOR Particle_Lightning_Base : Particle_Base
+ACTOR Particle_Lightning_Base : SH_BaseParticle
 {
 	RenderStyle Add
 	States

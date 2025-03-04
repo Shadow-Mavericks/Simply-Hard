@@ -1,0 +1,34 @@
+// This file is for defining damage type related effects.
+// Code by StrikerTheHedgefox
+
+actor AcidAccumulation : SH_BaseToken // Used to track acid damage accumulation.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 200
+	Inventory.InterHubAmount 0
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.INTERHUBSTRIP
+	-INVENTORY.PERSISTENTPOWER
+	-INVENTORY.UNDROPPABLE
+}
+
+Actor PowerAcidBuildTimer : Powerup { }
+ACTOR AcidBuildTimer : PowerupGiver
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "AcidBuildTimer"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+Actor PowerAcidStatus : Powerup { }
+ACTOR AcidStatus : PowerupGiver
+{
+	Inventory.PickupMessage "Splashed with acid!"
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "AcidStatus"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}

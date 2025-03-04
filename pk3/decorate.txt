@@ -1,6 +1,8 @@
 #include "actors/SH_BaseActors.txt"
 #include "actors/SH_Hax.txt"
 
+#include "actors/SH_DamageTypes.txt"
+
 #include "actors/Elemental_Champions/n_base_objects.txt"
 
 #include "actors/SH_Items.txt"
@@ -13,6 +15,7 @@
 #include "actors/SH_Decorations.txt"
 #include "actors/SH_Monsters.txt"
 #include "actors/SH_CompatMonsters.txt"
+#include "actors/SH_Particles.txt"
 #include "actors/SH_Player.txt"
 #include "actors/SH_Powerups.txt"
 #include "actors/SH_Dispensers.txt"
