@@ -1832,18 +1832,17 @@ ACTOR RabbitLord : WhiteRabbit
 	Tag "Rabbit Lord"
 	Health 8000 
 	PainChance 50
-	Speed 15
-	Radius 56
+	Speed 16
+	Radius 48
 	Height 72 
 	Mass 300 
+	Damage 300
 	Monster
 	Scale 3.0
 	BloodColor "Red"
 	Seesound "Monster/Evildead"
-	+ALWAYSFAST
-	+QUICKTORETALIATE
-	+FLOORCLIP
 	+BOSS
+	-LOWGRAVITY
 	states
 	{
 		Spawn:
@@ -1878,7 +1877,7 @@ ACTOR RabbitLord : WhiteRabbit
 	}
 }
 
-ACTOR bunny 
+ACTOR Bunny 
 {
 	Health 15 
 	PainChance 500
@@ -1889,24 +1888,24 @@ ACTOR bunny
 	Mass 2 
 	MONSTER
 	BloodColor "red"
-	+Friendly
+	+FRIENDLY
 	+FRIGHTENED
 	Dropitem "RabbitLord" 96
-	states
-		{
-		spawn:
-		DASY A 5 A_Look
-		Loop
-	See:
-		DASY ABCD 5 A_Wander
-		loop
-	Pain:
-		DASY F 3
-		Goto See
-	Death:
-		DASY HIJKLM 3
-		DASY N -1
-		stop
+	States
+	{
+		Spawn:
+			DASY A 5 A_Look
+			Loop
+		See:
+			DASY ABCD 5 A_Wander
+			loop
+		Pain:
+			DASY F 3
+			Goto See
+		Death:
+			DASY HIJKLM 3
+			DASY N -1
+			stop
 	}
 }
 

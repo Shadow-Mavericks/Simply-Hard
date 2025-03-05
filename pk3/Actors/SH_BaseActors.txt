@@ -24,6 +24,8 @@ actor SH_BaseParticle
 	+NOTELEPORT
 	+NOTIMEFREEZE
 	+DONTSPLASH
+	+NOTRIGGER
+	+THRUACTORS
 }
 
 //////////////////////////////////////////////////////////////////

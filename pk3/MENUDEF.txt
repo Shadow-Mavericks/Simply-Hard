@@ -102,6 +102,7 @@ OptionMenu "Credits"
 	Title "Simply Hard Credits"
 	Submenu "Sprites", "CreditSprites"
 	Submenu "Models", "CreditModels"
+	Submenu "Textures", "CreditTextures"
 	StaticText ""
 	StaticText "Credits can be scrolled through", 1
 	StaticText "with the mouse wheel.", 1
@@ -131,5 +132,21 @@ OptionMenu "CreditModels"
 	
 	StaticText "StrikerTheHedgefox", 1
 	StaticText "Bullet Tracers"
+	StaticText ""
+}
+
+OptionMenu "CreditTextures"
+{
+	Title "SH Credits - Textures"
+	
+	StaticText "StrikerTheHedgefox", 1
+	StaticText "Water/Blood/Lava Shaders"
+	StaticText "Cracked Rock Shaders (CRACKLE1, etc)"
+	StaticText ""
+	StaticText "Cage", 1
+	StaticText "CAGETEX texture pack"
+	StaticText ""
+	StaticText "Virtue", 1
+	StaticText "Improved IWAD Brightmaps"
 	StaticText ""
 }

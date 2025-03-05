@@ -1,7 +1,7 @@
 // This is for various particle effects.
 // Code by StrikeTheHedgefox
 
-ACTOR TinyAcid
+ACTOR TinyAcid : SH_BaseParticle
 {
 	scale 0.2
 	radius 1
@@ -9,12 +9,13 @@ ACTOR TinyAcid
 	Translation "0:255=%[0.00,0.13,0.00]:[0.25,2.00,0.63]"
 	Gravity 0.7
 	+MISSILE
-	+NOTELEPORT
-	+NOBLOCKMAP
 	+FORCEYBILLBOARD
 	+DONTSPLASH
 	+CLIENTSIDEONLY
+	-NOCLIP
+	-NOGRAVITY
 	-EXPLODEONWATER
+	-NOINTERACTION
 	States
 	{
 		Spawn:

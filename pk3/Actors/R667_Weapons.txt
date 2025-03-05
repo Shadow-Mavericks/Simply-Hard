@@ -126,7 +126,6 @@ ACTOR Flashlightcentered : Weapon
 
 Actor Fiends-Medigun : SH_Weapon
 {
-	Weapon.PreferredSkin "Railgun-Marine"
 	Radius 20
 	Height 16
 	Weapon.Selectionorder 100
@@ -221,7 +220,6 @@ Actor SH_Flameshot : SH_Weapon
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "Smooth"
-	Weapon.PreferredSkin "Flamethrower-Marine"
 	+WEAPON.NOAUTOAIM
 	+WEAPON.EXPLOSIVE
 	States

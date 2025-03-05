@@ -151,7 +151,6 @@ Actor CritImpactNadez : CritNadez_Base
 
 ACTOR BoomToob : SH_Weapon //Sprites from Serghei → Typical.SF / Gosimer did gold frames
 {
-	Weapon.PreferredSkin "Grenade-Marine"
 	Weapon.SelectionOrder 2500
 	Weapon.SlotNumber 6
 	Weapon.AmmoType1 "Roketammo"
@@ -300,7 +299,6 @@ ACTOR GosimersHandgun : SH_Weapon
 	Inventory.Pickupmessage "Pistol."
 	Obituary "%o killed %k"
 
-	Weapon.PreferredSkin "Pistol-Marine"
 	Weapon.AmmoType1 "DookiClip"
 	Weapon.AmmoType2 "peastolClip"
 	Weapon.AmmoGive1 32
@@ -478,7 +476,6 @@ ACTOR Lightning_Rifle: SH_Weapon
 	Weapon.BobStyle "Smooth"
 	Weapon.SwayStyle "HorizontalOnly"
 	Weapon.ViewSwaySpeed 1.0
-	Weapon.PreferredSkin "Plasma-Marine"
 	Inventory.Respawntics"4200"
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupSound "Weapon/devistatorget"
@@ -653,7 +650,6 @@ ACTOR micro_Devistator : SH_Weapon
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupSound "Weapon/devistatorget"
-	Weapon.PreferredSkin "BFG-Marine"
 	+WEAPON.NOAUTOFIRE
 	Inventory.PickupMessage "Devastator"
 	Tag "Devastator"
@@ -741,7 +737,6 @@ ACTOR micro_Devistator : SH_Weapon
 ACTOR HMachinegun : SH_Weapon
 {
 	Tag "Ripper"
-	Weapon.PreferredSkin "Minigun-Marine"
 	Weapon.SelectionOrder 3
 	Weapon.SlotNumber 5
 	Weapon.AmmoUse 1
@@ -862,7 +857,6 @@ ACTOR HMachinegun : SH_Weapon
 ACTOR CombatShotgun : SH_Weapon
 {
 	Tag "Combat Shotgun"
-	Weapon.PreferredSkin "Shotgun-Marine"
 	Weapon.SelectionOrder 2
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 0 // Handled in ACS
@@ -999,7 +993,6 @@ ACTOR CombatShotgun : SH_Weapon
 // Burst shotgun
 Actor BurstShotgun : SH_Weapon
 {
-	Weapon.PreferredSkin "SSG-Marine"
 	radius 20
 	height 16
 	Weapon.SelectionOrder 3
@@ -1243,7 +1236,6 @@ Actor BurstShotgun : SH_Weapon
 Actor Propulsion_Rifle : SH_Weapon
 {
 	Tag "Propulsion Rifle"
-	Weapon.PreferredSkin "Carbine-Marine"
 	Radius 20
 	Height 16
 	Weapon.Selectionorder 100
@@ -1265,7 +1257,6 @@ Actor Propulsion_Rifle : SH_Weapon
 	Inventory.ForbiddenTo "Fiend"
 	Inventory.RestrictedTo "Gosimer"
 	Inventory.PickupSound "Weapon/railget"
-	Weapon.PreferredSkin "BFG-Marine"
 	Inventory.PickupMessage "Gosimers propulsion cannon"
 	+WEAPON.NOAUTOAIM
 	+WEAPON.NOAUTOFIRE

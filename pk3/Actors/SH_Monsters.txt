@@ -2,9 +2,10 @@
 #include "actors/monsters/Doom2016Cyber.txt"
 #include "actors/monsters/Zyberdemon.txt"
 
-ACTOR SH_Zombieman
+ACTOR SH_Zombieman : SH_BaseMonster
 {
 	Tag "Zombieman"
+	Species "Zombieman"
 	Health 20
 	Radius 20
 	Height 56
