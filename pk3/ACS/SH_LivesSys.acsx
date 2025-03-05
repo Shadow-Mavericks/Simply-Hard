@@ -8,6 +8,8 @@
 global int 1:lives_at_end[];
 bool justRevived;
 
+// This function sets the lives count and updates the tracker hack simultaneously.
+// If lives is set to less than 0, it just updates the tracker alone.
 function void update_lives(int lives)
 {
 	int pNum = PlayerNumber();
@@ -44,7 +46,7 @@ script "LIFEUSED" RESPAWN
 	Ambientsound("oneman/usedup", 127);
 	GiveInventory("Res_protection", 1);
 	
-	update_lives(-1);
+	update_lives(-1); // Refresh the tracker value.
 }
 
 script "USELIFE_SINGLEPLAYER" (void)
@@ -94,9 +96,11 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 	p_status[pNum].invul_type = INVUL_NONE;
 
 	if(lives_at_end[pNum] > current_lives)
-		update_lives(lives_at_end[pNum]);
+		current_lives = lives_at_end[pNum];
 
 	lives_at_end[pNum] = 0; // Clear it.
+	
+	update_lives(current_lives); // Update current lives count.
 	
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 	
