@@ -973,6 +973,7 @@ Kunaikankan	Kunkan
 Burpkankan	Burpcan
 
 Shield/Break	SHLDBRK
+Shield/Hit 		SHLDHIT
 
 
 //Music limiter
@@ -1726,7 +1727,7 @@ implord/macehit2 macehit2
 implord/maceswing maceswng
 implord/shieldshot shldshot
 
-implord/shieldshothit shldhit
+implord/shieldshothit ishldhit
 
 Manco/IDKFA D_IDKFA
 
@@ -1911,6 +1912,7 @@ $playersound 	MaximusPrime	male	*pain75		HEALTH1
 $playersound 	MaximusPrime	male	*pain50		HEALTH1
 $playersound 	MaximusPrime	male	*pain25		HEALTH1
 
+// Misc
 Pop Pop
 FuckThis FuckThis
 SpyWhistle SpyWhstl

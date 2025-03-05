@@ -968,6 +968,14 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 					}
 				}
 			}
+			else
+			{
+				if(CheckInventory("BasicArmor") > 0)
+				{
+					ActivatorSound("Shield/Hit", 127);
+					FadeRange (8, 255, 48, min(fixedmul(arg1<<16, 0.01), 1.0), 8, 255, 48, 0.0, 0.5);
+				}
+			}
 		}
 		
 		if (victimIsMonster && canDrawBar() && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)))
