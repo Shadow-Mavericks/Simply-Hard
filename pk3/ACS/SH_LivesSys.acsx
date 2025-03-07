@@ -118,14 +118,13 @@ script "ADDLIFE" (void)
 
 	int pNum = PlayerNumber();
 	int current_lives = GetPlayerLivesLeft(pNum);
+	int lifeCap = GetCVar("sh_extralife_hardcap");
 
-/*
-	if(current_lives >= 3)
+	if(current_lives >= lifeCap)
 	{
 		SetResultValue(0);
 		terminate;
 	}
-*/
 
 	current_lives++; // 1 UP!
 	update_lives(current_lives);

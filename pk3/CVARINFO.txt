@@ -4,6 +4,7 @@ server bool sh_compat_swaps = true;
 server bool sh_healthbars = true;
 server noarchive int sh_enemy_mult = 1;
 server noarchive int sh_ammo_mult = 1;
+server noarchive int sh_extralife_hardcap = 10;
 server noarchive int sh_compat_mode = 0;
 server noarchive int sh_vote_unstick_disabled = 0;
 local bool sh_debug_spawns = false;
