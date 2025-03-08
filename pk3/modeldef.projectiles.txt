@@ -60,7 +60,7 @@ model Bullet
 	Path "models/Projectiles"
 	Model 0 "Tracer.md3"
 	Skin 0 "BlueTracer.png"
-	Scale 1.0 3.0 3.0
+	Scale 1.5 3.0 3.0
 	PITCHFROMMOMENTUM
 
 	FrameIndex BULL A 0 0
