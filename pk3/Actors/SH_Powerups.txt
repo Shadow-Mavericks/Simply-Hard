@@ -296,7 +296,7 @@ Actor Gastersummon : CustomInventory // Sprites from Kunai / Good time sans
 {
 	Radius 32
 	Height 18
-	scale 0.025
+	scale 0.05
 	+INVENTORY.INVBAR
 	+DONTGIB
 	Inventory.MaxAmount 3
@@ -321,7 +321,7 @@ Actor KunaiGastersummon : CustomInventory // Sprites from Kunai / Good time sans
 {
 	Radius 12
 	Height 18
-	scale 0.025
+	scale 0.05
 	+INVENTORY.INVBAR
 	+DONTGIB
 	Inventory.MaxAmount 3

@@ -124,6 +124,9 @@ OptionMenu "CreditSprites"
 	StaticText "Gosimer's Backpack"
 	StaticText "Dispenser Backpack"
 	StaticText ""
+	StaticText "DBThanatos", 1
+	StaticText "Doom4Doom Armor Pickups"
+	StaticText ""
 }
 
 OptionMenu "CreditModels"

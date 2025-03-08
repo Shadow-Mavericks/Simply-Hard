@@ -1299,7 +1299,7 @@ actor Mayhem19Spooklord : SH_BaseMonster
 		Missile2:
 			SMIT I 10 Bright A_FaceTarget
 			SMIT J 4 Bright A_FaceTarget
-			SMIT J 8 Bright A_PainAttack("Mayhem19LightningBall")
+			SMIT J 8 Bright A_PainAttack("Mayhem19BallOfLightning")
 			goto See
 		Missile3:
 			SMIT E 12 Bright A_FaceTarget

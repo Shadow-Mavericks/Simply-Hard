@@ -321,7 +321,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto AlertAndDespawn
 			
 		FriendlyZyberRabbits:
-			"####" D 0 A_SpawnItemEx ("FreddyTheFriendlyZyberdemon", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 0 A_SpawnItemEx ("FreddieTheFriendlyZyberdemon", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), 0, SXF_NOCHECKPOSITION, 0)
 			"####" D 60 A_AlertMonsters(256)
 			"####" DDD 20 A_SpawnItemEx ("whiterabbit", 0, 0, 12, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 0)
 			goto AlertAndDespawn
