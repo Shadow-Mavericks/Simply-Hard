@@ -16,6 +16,9 @@
 #libdefine INVUL_NORMAL 1
 #libdefine INVUL_ULT 2
 
+#libdefine STATUS_NONE 0
+#libdefine STATUS_ACID 1
+
 struct vec3_t
 {
 	int x;

@@ -444,11 +444,6 @@ Object ChannelerBeam4
 	frame TBALA { Light FPLAS1 }
 }
 
-Object FiendsPlasma
-{
-	frame TBALB { Light FPLAS2 }
-}
-
 Object FiendsPlasma3
 {
 	frame TBALA { Light FPLAS1 }
@@ -471,17 +466,12 @@ object ChannelerSeducer
 	frame TBALA { Light FPLAS1 }
 }	
 
-Object FiendsPlasma2
+Object GreenPlasma
 {
 	frame TBALB { Light FPLAS2 }
 }
 
 Object FiendsPlasma4
-{
-	frame TBALB { Light FPLAS2 }
-}
-
-Object FiendsPlasma6
 {
 	frame TBALB { Light FPLAS2 }
 }
@@ -1151,35 +1141,34 @@ Frame PLABG { Light plas1 }
 
 Pointlight bfg01
 {
-Color 0.3 0.9 0.3
-size 64
+	Color 0.3 0.9 0.3
+	size 64
 }
 
-Pointlight bfg02
+
+Object KewlBFG
 {
-Color 0.9 0.3 0.0
-size 64
+	Frame BFGBA { Light bfg01 }
+	Frame BFGBB { Light bfg01 }
+	Frame BFGBC { Light bfg01 }
+	Frame BFGBD { Light bfg01 }
+	Frame BFGBE { Light bfg01 }
 }
 
-Object KEWLPLASMA2
+Pointlight bluebfg01
 {
-Frame BFGBA { Light bfg01 }
-Frame BFGBB { Light bfg01 }
-Frame BFGBC { Light bfg01 }
-Frame BFGBD { Light bfg01 }
-Frame BFGBE { Light bfg01 }
+	Color 0.0 0.5 1.0
+	size 64
 }
 
-Object Kewlbfg
+Object BlueKewlBFG
 {
-Frame BFGBA { Light bfg01 }
-Frame BFGBB { Light bfg01 }
-Frame BFGBC { Light bfg01 }
-Frame BFGBD { Light bfg01 }
-Frame BFGBE { Light bfg01 }
+	Frame CFGBA { Light bluebfg01 }
+	Frame CFGBB { Light bluebfg01 }
+	Frame CFGBC { Light bluebfg01 }
+	Frame CFGBD { Light bluebfg01 }
+	Frame CFGBE { Light bluebfg01 }
 }
-
-
 
 pointlight Plasexplosion1
 {

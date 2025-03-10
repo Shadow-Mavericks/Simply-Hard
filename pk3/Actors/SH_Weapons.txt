@@ -356,9 +356,7 @@ ACTOR FiendsRailgun : SH_Weapon
 		FRGB A 1
 		FRGF E 2
 		FRGF J 2
-		//FRGF J 0 A_RailAttack(500, 0, 1, "", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING, 1, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "Greenlitningzap")
 		FRGF J 0 A_RailAttack(250, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "healgunblast")
-		//FRGF J 0 A_RailAttack(0, 0, 0, "FF FF FF", "", RGF_FULLBRIGHT|RGF_SILENT|RGF_NOPIERCING , 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "Bluerailcoil")
 		FRGF J 0 A_PlaySound("Weapon/PropulsionFire", chan_Weapon)
 		FRGB G 1
 		FRGG G 1

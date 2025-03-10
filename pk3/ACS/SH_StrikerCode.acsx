@@ -768,6 +768,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 	int victimPlayerNum = PlayerNumber();
 	int victimHealth = GetActorProperty(0, APROP_Health);
+	int victimStatus = STATUS_NONE;
 	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 	bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
 	bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
@@ -778,6 +779,12 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));
 
 	str inflictorClass = "Unknown";
+	
+	if(CheckInventory("PowerAcidStatus"))
+		victimStatus |= STATUS_ACID;
+		
+	if(!StrIcmp(damagetype, "AcidLaser") && (victimStatus & STATUS_ACID))
+		return 0;
 
 	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 	{
@@ -823,8 +830,14 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			}
 		}
 
+		// Keep LAST!
 		if(GetCVar("sh_debug_damage"))
-			log(s:"DEBUG: Entity damaged by ", s:GetActorClass(0));
+		{
+			str sourceClass = "Unknown";
+			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+				sourceClass = GetActorClass(0);
+			log(s:"DEBUG: Entity damaged by ", s:inflictorClass, s:" Source: ", s:sourceClass);
+		}
 	}
 
 	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
@@ -835,6 +848,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 		if(attackerPlayerNum != -1) // Source is player
 		{
+			// Todo: Make marker not trigger if AcidLaser and target has acid status.
 			if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
 				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 
@@ -883,6 +897,11 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 		if(wasConcussed)
 			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+			
+		if(!StrIcmp(damagetype, "AcidBFGExtra"))
+			SpawnForced("AcidBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
+		else if(!StrIcmp(damagetype, "BFGExtra"))
+			SpawnForced("BlueBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
 
 		if(victimIsMonster && victimCanBleed)
 		{
@@ -987,9 +1006,9 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		}
 	}
 	
-	if(CheckInventory("PowerAcidStatus"))
+	if((arg1 > 0) && victimStatus & STATUS_ACID)
 	{
-		if(!StrIcmp(damagetype, "Acid"))
+		if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
 		{
 			arg1 = fixedmul(arg1<<16, 1.25)>>16;
 		}
@@ -1166,6 +1185,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				{
 					arg1 = 0; // Cancel out the damage.
 					ACS_NamedExecuteAlways("USELIFE_SINGLEPLAYER", 0);
+					SetResultValue(arg1);
+					terminate;
 				}
 			}
 			
@@ -1175,8 +1196,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			}
 
 			// Handle damage types (Acid/Fire/Electric/Etc)	
-			if(!StrIcmp(arg2, "Acid"))
+			if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
 			{
+				bool isLaser = !StrIcmp(arg2, "AcidLaser");
 				if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 				{
 					int acidThreshold = min(victimSpawnHealth/2, 200);
@@ -1187,21 +1209,43 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					GiveInventory("AcidAccumulation", arg1);
 					GiveInventory("AcidBuildTimer", 1);
 					
+					if(isLaser)
+						arg1 = 0;
+					
 					if(CheckInventory("AcidAccumulation") >= acidThreshold)
 					{
+						bool isExtra = !StrIcmp(arg2, "AcidBFGExtra");
 						int alreadyAcid = CheckInventory("PowerAcidStatus");
 						TakeInventory("AcidAccumulation", 200);
 						GiveInventory("AcidStatus", 1);
 						
 						if(!alreadyAcid)
 						{
-							ACS_NamedExecuteWithResult("ACID_TICKER", 0);
+							if(isLaser)
+							{
+								arg1 = 20;
+								
+								int oldTID = ActivatorTID();
+								int targetTID = UniqueTID();
+								Thing_ChangeTID(0, targetTID);
+								if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+								{
+									//printbold(s:GetActorClass(0)); // Debug shid
+									int laserTID = UniqueTID();
+									SpawnForced("BFG_Laser_Firer", GetActorX(0), GetActorY(0), GetActorZ(0), laserTID, 0);
+									SetActivator(laserTID);
+									SetPointer(AAPTR_TARGET, targetTID);
+								}
+								Thing_ChangeTID(targetTID, oldTID);
+							}
+							
+							// Keep this last, because for some fucking reason ACS_NamedExecuteAlways/WithResult completely bunglefucks the AAPTR_DAMAGE_
+							SetActivator(0, AAPTR_DAMAGE_TARGET);
+							ACS_NamedExecuteAlways("ACID_TICKER", 0);
 						}
 						
-						if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
-						{
+						if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR) && !isLaser && !isExtra)
 							SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
-						}
 					}
 				}
 			}
@@ -1209,16 +1253,19 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			// ****** ALWAYS KEEP THIS SHIT LAST! *********
 			SetResultValue(arg1);
 			
-			SetActivator(0, AAPTR_DAMAGE_TARGET);
-			if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
+			if(arg1 > 0)
 			{
-				GiveInventory("DamageTallyHack", arg1);
-				delay(1);
-				int damage = CheckInventory("DamageTallyHack");
-				if(damage > 0)
+				SetActivator(0, AAPTR_DAMAGE_TARGET);
+				if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
 				{
-					PrintDamage(damage);
-					TakeInventory("DamageTallyHack", 9999);
+					GiveInventory("DamageTallyHack", arg1);
+					delay(1);
+					int damage = CheckInventory("DamageTallyHack");
+					if(damage > 0)
+					{
+						PrintDamage(damage);
+						TakeInventory("DamageTallyHack", 9999);
+					}
 				}
 			}
 			

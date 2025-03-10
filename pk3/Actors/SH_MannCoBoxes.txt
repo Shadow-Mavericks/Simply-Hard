@@ -371,7 +371,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 
 		BFGTrap:
-			"####" D 1 A_SpawnItemEx ("Manncobfgtrap", 0, 0, 12, 0, 0, -10, 180, 1)
+			"####" D 1 A_SpawnItemEx ("KewlBFG", 0, 0, 12, 0, 0, 20, frandom(-180,180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		BombingRun: // DELAY_LAUGH

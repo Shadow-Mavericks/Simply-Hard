@@ -127,6 +127,9 @@ OptionMenu "CreditSprites"
 	StaticText "DBThanatos", 1
 	StaticText "Doom4Doom Armor Pickups"
 	StaticText ""
+	StaticText "BlueShadow", 1
+	StaticText "BFG Ball Sprite"
+	StaticText ""
 }
 
 OptionMenu "CreditModels"

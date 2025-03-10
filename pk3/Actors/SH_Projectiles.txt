@@ -227,29 +227,6 @@ Actor Rockettrail2
 	}
 }
 
-Actor Manncobfgtrap : BFGBall
-{
-	DeathSound "weapons/bfgx"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.5
-	States
-	{
-	Spawn:
-		BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
-		Loop
-	Death:
-		NULL A 0 A_Explode(100, 1000)
-		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-		NULL A 0 //A_SpawnItem("PlasmaExplosion")
-		NULL A 10 A_BFGSPRAY
-		stop
-	}
-}
-
 ACTOR CryoSmoke3
 {
 	Radius 2
@@ -315,31 +292,6 @@ Actor KewlPlasma : Plasmaball //Sprites by Kunai Kitsune
 	}
 }
 
-Actor KewlPlasma2 : plasmaball //Sprites by Blueshadow?
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.5
-	Scale .1
-	Speed 30
-	Damage (Random(30,40))
-	//MissileType "PlasmaVapor"
-	States
-	{
-		Spawn:
-			BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
-			Loop
-		Death:
-			NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL A 0 //A_SpawnItem("PlasmaExplosion")
-			Stop
-	}
-}
-
 Actor PlasmaVapour
 {
 	+CLIENTSIDEONLY
@@ -399,53 +351,133 @@ Actor PlasmaExplosion
 
 Actor KewlBFG : BFGBall
 {
+	Damage (1000)
 	DeathSound "weapons/bfgx"
 	RenderStyle Add
-	Damagetype "PlayerDynamite"
+	DamageType "Acid"
 	Alpha 0.8
 	Scale 0.5
+	+FORCERADIUSDMG
 	States
 	{
 		Spawn:
-			BFGB ABCDE 1 bright A_SpawnItemEx ("BFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+			BFGB A 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			
+			BFGB A 0 A_SetDamageType("AcidLaser")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+			BFGB A 0 A_Explode(200, 256, 0, false, 256) 
+			BFGB A 0 A_SetDamageType("Acid")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+			
+			BFGB B 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			
+			BFGB A 0 A_SetDamageType("AcidLaser")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+			BFGB A 0 A_Explode(200, 256, 0, false, 256) 
+			BFGB A 0 A_SetDamageType("Acid")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+			
+			BFGB C 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			
+			BFGB A 0 A_SetDamageType("AcidLaser")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+			BFGB A 0 A_Explode(200, 256, 0, false, 256) 
+			BFGB A 0 A_SetDamageType("Acid")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+			
+			BFGB D 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			
+			BFGB A 0 A_SetDamageType("AcidLaser")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+			BFGB A 0 A_Explode(200, 256, 0, false, 256) 
+			BFGB A 0 A_SetDamageType("Acid")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+			
+			BFGB E 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			
+			BFGB A 0 A_SetDamageType("AcidLaser")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", true)
+			BFGB A 0 A_Explode(200, 256, 0, false, 256) 
+			BFGB A 0 A_SetDamageType("Acid")
+			BFGB A 0 A_ChangeFlag("NODAMAGETHRUST", false)
+			
 			Loop
 		Death:
-			NULL A 0 A_SpawnItemEX("BFGZAP",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL A 0 //A_SpawnItem("PlasmaExplosion")
-			NULL A 0 A_BFGSPRAY
+			TNT1 A 0 A_SpawnItemEX("BFGZap",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEX("BFGWave",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 AAAA 0 A_SpawnItemEx ("BFGVapour", frandom(-16.0,16.0), frandom(-16.0,16.0), frandom(-16.0,16.0), 0, 0, 0, 0, SXF_ABSOLUTEMOMENTUM)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SetDamageType("AcidBFGExtra")
+			TNT1 A 0 A_Explode(600, 384, 0, true, 128)
 			stop
 	}
 }
 
-Actor REDKEWLBFG : BFGBall
+actor BlueKewlBFG : KewlBFG
 {
-	Damagetype "PlayerDynamite"
-	DeathSound "weapons/bfgx"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.5
+	DamageType "PlayerBFG"
 	States
 	{
 		Spawn:
-			CFGB ABCDE 1 bright A_SpawnItemEx ("CRITBFGStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+			CFGB ABCDE 1 bright A_SpawnItemEx("BlueBFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
 			Loop
 		Death:
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("CRITBFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-			NULL A 0 //A_SpawnItem("PlasmaExplosion")
-			NULL A 0 A_BFGSPRAY
-			NULL A 0 A_BFGSPRAY
+			TNT1 A 0 A_SpawnItemEX("BlueBFGZap",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEX("BlueBFGWave",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 AAAA 0 A_SpawnItemEx ("BlueBFGVapour", frandom(-16.0,16.0), frandom(-16.0,16.0), frandom(-16.0,16.0), 0, 0, 0, 0, SXF_ABSOLUTEMOMENTUM)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BlueBFGParticle2", 0, 0, 0,  (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SetDamageType("BFGExtra")
+			TNT1 A 0 A_Explode(600, 384, 0, true, 128)
 			stop
 	}
 }
 
+actor MonsterBFG : KewlBFG
+{
+	Damage (150)
+	DamageType "MonsterBFG"
+	States
+	{
+		Spawn:
+			BFGB A 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)		
+			BFGB B 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			BFGB C 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			BFGB D 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)		
+			BFGB E 1 bright A_SpawnItemEx("BFGStuffSpawner", 0, 0, 0, velx, vely, velz, 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)	
+			Loop
+		Death:
+			TNT1 A 0 A_SpawnItemEX("BFGZap",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEX("BFGWave",0,0,0,0,0,0,0,SXF_CLIENTSIDE, 0)
+			TNT1 AAAA 0 A_SpawnItemEx ("BFGVapour", frandom(-16.0,16.0), frandom(-16.0,16.0), frandom(-16.0,16.0), 0, 0, 0, 0, SXF_ABSOLUTEMOMENTUM)
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
+			TNT1 A 0 A_SetDamageType("AcidBFGExtra")
+			TNT1 A 0 A_Explode(150, 256, 0, true, 128)
+			stop
+	}
+}
 
+ACTOR AcidBFGExtra : SH_BaseParticle
+{
+	RenderStyle Add
+	scale 0.5
+	States
+	{
+		Spawn:
+			BFE1 A 0 NoDelay A_PlaySound("AcidBurst", CHAN_AUTO, 0.5, false, 0.5)
+			BFE1 ABCDEF 4 Bright
+			Stop
+	}
+}
+
+ACTOR BlueBFGExtra : AcidBFGExtra
+{
+	States
+	{
+		Spawn:
+			CFE1 ABCDEF 4 Bright
+			Stop
+	}
+}
 
 Actor BFGStuffSpawner
 {
@@ -455,64 +487,28 @@ Actor BFGStuffSpawner
 	States
 	{
 		Spawn:
-			NULL A 0
-			NULL A 0 A_SpawnItemEx ("BFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 0 A_Jump(128,2)
-			NULL A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 1
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx ("BFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM)
+			TNT1 A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(frandom(-2.1,2.1))), (momy+(frandom(-2.1,2.1))), (momz+(frandom(-2.1,2.1))), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			TNT1 A 0 A_SpawnItemEx ("BFGParticle1", 0, 0, 0,  (momx+(frandom(-2.1,2.1))), (momy+(frandom(-2.1,2.1))), (momz+(frandom(-2.1,2.1))), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 128)
+			TNT1 A 1
 			stop
 	}
 }
 
-Actor BFGStuffSpawner2
+actor BlueBFGStuffSpawner : BFGStuffSpawner
 {
-	RenderStyle None
-	Projectile
-	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:
-			NULL A 0
-			NULL A 0 A_SpawnItemEx ("BFGVapour2", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 1
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx ("BlueBFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM)
+			TNT1 A 0 A_SpawnItemEx ("BlueBFGParticle1", 0, 0, 0,  (momx+(frandom(-2.1,2.1))), (momy+(frandom(-2.1,2.1))), (momz+(frandom(-2.1,2.1))), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 0)
+			TNT1 A 0 A_SpawnItemEx ("BlueBFGParticle1", 0, 0, 0,  (momx+(frandom(-2.1,2.1))), (momy+(frandom(-2.1,2.1))), (momz+(frandom(-2.1,2.1))), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM, 128)
+			TNT1 A 1
 			stop
 	}
 }
-
-Actor CRITBFGStuffSpawner2
-{
-	RenderStyle None
-	Projectile
-	+CLIENTSIDEONLY
-	States
-	{
-		Spawn:
-			NULL A 0
-			NULL A 0 A_SpawnItemEx ("CRITBFGVapour2", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 1
-			stop
-	}
-}
-
-Actor CRITBFGStuffSpawner
-{
-	RenderStyle None
-	Projectile
-	+CLIENTSIDEONLY
-	States
-	{
-		Spawn:
-			NULL A 0
-			NULL A 0 A_SpawnItemEx ("CRITBFGVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 0 A_Jump(128,2)
-			NULL A 0 A_SpawnItemEx ("CRITBFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 0 A_SpawnItemEx ("CRITBFGParticle1", 0, 0, 0,  (momx+(Random(-2.1,2.1))), (momy+(Random(-2.1,2.1))), (momz+(Random(-2.1,2.1))), 0, SXF_ABSOLUTEMOMENTUM)
-			NULL A 1
-			stop
-	}
-}
-
 
 Actor BFGVapour
 {
@@ -531,13 +527,8 @@ Actor BFGVapour
 	}
 }
 
-Actor CRITBFGVapour
+Actor BlueBFGVapour : BFGVapour
 {
-	RenderStyle Add
-	Alpha 0.2
-	Scale 0.5
-	Projectile
-	+CLIENTSIDEONLY
 	States
 	{
 		Spawn:
@@ -548,65 +539,40 @@ Actor CRITBFGVapour
 	}
 }
 
-Actor BFGVapour2
+Actor BFGWave : SH_BaseParticle
 {
 	RenderStyle Add
-	Alpha 0.2
-	Scale 0.1
-	Projectile
-	+CLIENTSIDEONLY
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			BFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
-			loop
-	}
-}
-
-Actor CRITBFGVapour2
-{
-	RenderStyle Add
-	Alpha 0.2
-	Scale 0.1
-	Projectile
-	+CLIENTSIDEONLY
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			CFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
-			loop
-	}
-}
-
-Actor BFGWave
-{
-	RenderStyle Add
-	Alpha 0.6
+	Alpha 1.0
 	Scale 0.4
-	Projectile
-	+CLIENTSIDEONLY
-	//+DOOMBOUNCE
-	//+BOUNCEONACTORS
 	States
 	{
 		Spawn:
-			NULL A 3
-			BBBT A 1 bright A_FadeOut(0.01)
-			goto Spawn+1
+			BBBT A 1 bright A_FadeOut(0.075)
+			BBBT A 0 bright A_SetScale(scalex+0.25)
+			loop
 	}
 }
 
-Actor BFGParticle1
+Actor BlueBFGWave : BFGWave
+{
+	States
+	{
+		Spawn:
+			CBBT A 1 bright A_FadeOut(0.075)
+			CBBT A 0 bright A_SetScale(scalex+0.25)
+			loop
+	}
+}
+
+Actor BFGParticle1 : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 0.7
 	Scale 0.1
 	Projectile
 	+CLIENTSIDEONLY
+	-NOCLIP
+	-NOINTERACTION
 	//+DOOMBOUNCE
 	//+BOUNCEONACTORS
 	States
@@ -619,15 +585,8 @@ Actor BFGParticle1
 	}
 }
 
-Actor critBFGParticle1
+Actor BlueBFGParticle1 : BFGParticle1
 {
-	RenderStyle Add
-	Alpha 0.7
-	Scale 0.1
-	Projectile
-	+CLIENTSIDEONLY
-	//+DOOMBOUNCE
-	//+BOUNCEONACTORS
 	States
 	{
 		Spawn:
@@ -638,18 +597,12 @@ Actor critBFGParticle1
 	}
 }
 
-Actor BFGParticle2
+Actor BFGParticle2 : BFGParticle1
 {
-	RenderStyle Add
 	Alpha 0.6
 	Scale 0.1
-	//BounceCount 1
-	Projectile
-	+CLIENTSIDEONLY
 	+NOBLOCKMAP
 	+NOINTERACTION
-	//+DOOMBOUNCE
-	//+BOUNCEONACTORS
 	States
 	{
 		Spawn:
@@ -658,27 +611,17 @@ Actor BFGParticle2
 	}
 }
 
-Actor CRITBFGParticle2
+Actor BlueBFGParticle2 : BFGParticle2
 {
-	RenderStyle Add
-	Alpha 0.6
-	Scale 0.1
-	//BounceCount 1
-	Projectile
-	+CLIENTSIDEONLY
-	+NOBLOCKMAP
-	+NOINTERACTION
-	//+DOOMBOUNCE
-	//+BOUNCEONACTORS
 	States
 	{
-	Spawn:
-		CFGP A 1 bright A_FadeOut(0.01)
-		loop
+		Spawn:
+			CFGP A 1 bright A_FadeOut(0.01)
+			loop
 	}
 }
 
-ACTOR BFGZAP
+ACTOR BFGZap : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 1.0
@@ -689,10 +632,106 @@ ACTOR BFGZAP
 	States
 	{
 		Spawn:
-			GZAP DCBABABABABABCD 1 Bright A_Fadeout(0.05)
+			GZAP DCBABABABAB 1 Bright A_Fadeout(0.05)
+			GZAP A 0 Bright A_SetScale(scalex+0.1)
+			GZAP A 1 Bright A_Fadeout(0.05)
+			GZAP A 0 Bright A_SetScale(scalex+0.1)
+			GZAP B 1 Bright A_Fadeout(0.05)
+			GZAP A 0 Bright A_SetScale(scalex+0.1)
+			GZAP C 1 Bright A_Fadeout(0.05)
+			GZAP A 0 Bright A_SetScale(scalex+0.1)
+			GZAP D 1 Bright A_Fadeout(0.05)
 			Stop
 	}
 }
+
+actor BlueBFGZap : BFGZap
+{
+	States
+	{
+		Spawn:
+			CZAP DCBABABABAB 1 Bright A_Fadeout(0.05)
+			CZAP A 0 Bright A_SetScale(scalex+0.1)
+			CZAP A 1 Bright A_Fadeout(0.05)
+			CZAP A 0 Bright A_SetScale(scalex+0.1)
+			CZAP B 1 Bright A_Fadeout(0.05)
+			CZAP A 0 Bright A_SetScale(scalex+0.1)
+			CZAP C 1 Bright A_Fadeout(0.05)
+			CZAP A 0 Bright A_SetScale(scalex+0.1)
+			CZAP D 1 Bright A_Fadeout(0.05)
+			Stop
+	}
+}
+
+Actor AcidZapper
+{
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.05
+	Obituary "%o was zapped by %k's BFG."
+	Damagetype "Acid"
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+ALLOWPARTICLES
+	+RANDOMIZE
+	+ALWAYSPUFF
+	+PUFFGETSOWNER
+	+FORCEXYBILLBOARD
+	+NOINTERACTION
+	+NOTIMEFREEZE
+	States
+	{
+		Spawn:
+			TBAL B 1 Bright
+			TBAL D 1 Bright
+			goto Death
+		Death:
+			TBAL B 1 BRIGHT
+			Stop
+	}
+}
+
+actor AcidZapperTrail : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.75
+	Scale 0.05
+	States
+	{
+		Spawn:
+			TBAL B 1 Bright
+			TBAL D 1 Bright
+			goto Death
+		Death:
+			TBAL B 1 BRIGHT
+			Stop
+	}
+}
+
+ACTOR BFG_Laser_Firer
+{
+	Projectile
+	+FRIENDLY
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOTIMEFREEZE
+	+NOCLIP
+	-SOLID
+	Health 100000000
+	Mass 1000000000
+	Radius 1
+	Height 1
+	Species "Player"
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_FaceTarget
+			TNT1 A 0 A_CustomRailgun(0, 0, "none", "green", RGF_SILENT | RGF_CENTERZ, 0, 40, "AcidZapper", 0, 0, 720, 2, 2, 0, "AcidZapperTrail")
+			stop
+	}
+}
+
 
 ACTOR RedBaronBall
 {
@@ -1724,33 +1763,6 @@ Actor REDLightninggunBlast : SH_BaseParticle
 			TBAL C 1 Bright
 		End:
 			TBAL C 1 Bright
-			Stop
-	}
-}
-
-
-Actor Greenlitningzap
-{
-	RenderStyle Add
-	Alpha 0.75
-	Scale 0.05
-	Obituary "%o was zapped by %k's BFG."
-	Damagetype "laser"
-	+NOBLOCKMAP
-	+NOGRAVITY
-	+ALLOWPARTICLES
-	+RANDOMIZE
-	+ALWAYSPUFF
-	+FORCEXYBILLBOARD
-	+NOINTERACTION
-	+NOTIMEFREEZE
-	States
-	{
-		Spawn:
-			TBAL B 1 Bright
-			TBAL D 1 Bright
-		Death:
-			TBAL B 1 BRIGHT
 			Stop
 	}
 }
@@ -2935,31 +2947,6 @@ ACTOR REDChannelerTrail : SH_BaseParticle
 
 //Quake 2 Grenade  //CodeBase from HFC2X
 
-Actor FiendsPlasma : Plasmaball //Sprites by Kunai Kitsune
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.3
-	Speed 60
-	+NOTIMEFREEZE
-	Damage (Random(20,40))
-	//MissileType "PlasmaVapor"
-	States
-	{
-	Spawn:
-		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
-		Loop
-	Death:
-		NULL AAAAAAAAAA 0 A_CustomMissile("PlasmaExplosion",0,0,(Random(0,360)),2,(Random(0,360)))
-		//A_SpawnItemEx ("PlasmaExplosion", 0, 0, 0,  (Random(-1,1)), (Random(-1,1)), (Random(-1,1)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
-		//NULL A 0 A_SpawnItem("PlasmaExplosion")
-		NULL A 10
-		stop
-	}
-}
-
 Actor Lisaplasma
 {
 	SeeSound ""
@@ -3003,7 +2990,7 @@ Actor Kewlplasma6 : Plasmaball //Sprites by Kunai Kitsune
 }
 
 
-Actor FiendsPlasma2 : Plasmaball //Sprites by Kunai Kitsune
+Actor GreenPlasma : Plasmaball //Sprites by Kunai Kitsune
 {
 	SeeSound ""
 	DeathSound "weapons/plasma/impact"
@@ -3017,7 +3004,7 @@ Actor FiendsPlasma2 : Plasmaball //Sprites by Kunai Kitsune
 	States
 	{
 	Spawn:
-		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
+		TBAL B 1 bright A_SpawnItemEx ("GreenPlasmaStuffSpawner", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
 		Loop
 	Death:
 		NULL AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (Random(-5,5)), (Random(-5,5)), (Random(-5,5)), 0, SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
@@ -3029,6 +3016,37 @@ Actor FiendsPlasma2 : Plasmaball //Sprites by Kunai Kitsune
 	}
 }
 
+Actor GreenPlasmaStuffSpawner
+{
+	RenderStyle None
+	Projectile
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			NULL A 0
+			NULL A 0 A_SpawnItemEx ("GreenPlasmaVapour", 0, 0, 0,  (momx*0.2), (momy*0.2), (momz*0.2), 0, SXF_ABSOLUTEMOMENTUM)
+			NULL A 1
+			stop
+	}
+}
+
+Actor GreenPlasmaVapour
+{
+	RenderStyle Add
+	Alpha 0.2
+	Scale 0.1
+	Projectile
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			BFGV ABCDEFGHIJKL 1 bright A_FadeOut(0.01)
+			loop
+	}
+}
 
 Actor FiendsPlasma3 : Plasmaball //Sprites by Kunai Kitsune
 {
@@ -3079,29 +3097,6 @@ Actor FiendsPlasma5 : Plasmaball //Sprites by Kunai Kitsune
 		//NULL A 0 A_SpawnItem("PlasmaExplosion")
 		NULL A 10
 		stop
-	}
-}
-
-Actor FiendsPlasma6 : Plasmaball //Sprites by Kunai Kitsune
-{
-	SeeSound ""
-	DeathSound "weapons/plasma/impact"
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.5
-	Speed 10
-	+ripper
-	+NOTIMEFREEZE
-	Damage (Random(10,14))
-	//MissileType "PlasmaVapor"
-	States
-	{
-	Spawn:
-		TBAL B 1 bright A_SpawnItemEx ("BFGStuffSpawner2", 0, 0, 0,  (momx), (momy), (momz), 0, SXF_ABSOLUTEMOMENTUM)
-		Loop
-	Death:
-		NULL A 0 //A_SpawnItem("PlasmaExplosion")
-	Stop
 	}
 }
 
@@ -3522,138 +3517,4 @@ Actor EriMissileTrail
 	}
 }
 
-//OSJC BFG STOOF
-
-actor bfgvisualFLASH : CustomInventory
-{
-  states
-  {
-  Pickup:
-    TNT1 A 0 A_SetBlend("green", .4,15)
-    stop
-  }
-}
-
-ACTOR bfgsmoke
-{
-	Game Doom
-	RenderStyle add
-	Alpha 0.4
-	+ NOGRAVITY
-	+DONTSPLASH
-	States
-	{
-	Spawn:
-		GSMK ABC 4 A_FadeOut(0.05)
-		Stop
-	}
-}
-
-ACTOR osjc_BFGExtra : BFGExtra replaces BFGExtra
-{
-	+NOBLOCKMAP
-	+NOGRAVITY
-	+NOTIMEFREEZE
-	+EXTREMEDEATH
-	+FOILINVUL
-	+MTHRUSPECIES
-	RenderStyle Add
-	scale 0.5
-	Alpha 0.75
-	DamageType "BFGSplash"
-	Obituary "%o just couldn't hide from %k's BFG."
-	States
-	{
-	Spawn:
-		BFE1 ABCDEF 8 Bright
-		Stop
-	}
-}
-
-ACTOR bfg_laser_firer
-{
-	+FRIENDLY
-	+NOBLOCKMAP
-	+nogravity
-	+NOTIMEFREEZE
-	+FLOORCLIP
-	Alpha .75
-	Health 100000000
-	Mass 1000000000
-	Radius 1
-	Height 4
-	Speed 8
-	Monster
-	RenderStyle Translucent
-	PainChance 200
-	Species "Player"
-	translation "16:47=112:127","168:191=112:127"
-	States
-	{
-		Spawn:
-			tnt1 a 1 A_Jumpifcloser(1600, "spawn2")
-			tnt1 a 1 A_Look
-			goto missile
-		Spawn2:
-			tnt1 a 1 A_Look
-			loop
-		Pain:
-			Goto See
-		See:
-			tnt1 a 2
-		Missile:
-			tnt1 a 2 a_FACETARGET
-			tnt1 a 2 A_customRailgun( 100, 0, "none", "green", RGF_SILENT, 1, 40,"Greenlitningzap", 0, 0, 720, 2, 10, 0,"Greenlitningzap")
-		Death:
-			TNT1 A 0 A_DIE
-			TNT1 A -1
-			Stop
-	}
-}
-
-ACTOR BFG_laserPuff
-{
-	Game Doom
-	+NOBLOCKMAP
-	+NOTIMEFREEZE
-	+NOGRAVITY
-	+ALLOWPARTICLES
-	+RANDOMIZE
-	+alwayspuff
-	RenderStyle Translucent
-	Alpha 0.75
-	Mass 5
-	Scale		.5
-	Obituary "%o was zapped by %k's BFG."
-	Damagetype "laser"
-	States
-	{
-		Spawn:
-			tnt1 a 0
-			Stop
-	}
-}
-
-ACTOR bfgSmokeshot
-{
-	Radius 1
-	Height 1
-	Scale 0.2
-	vspeed 1
-	Speed 4
-	RENDERSTYLE add
-	ALPHA 0.6
-	PROJECTILE
-	+NOTIMEFREEZE
-	+NOCLIP
-	+DONTSPLASH
-	-RANDOMIZE
-	States
-	{
-		Spawn:
-			TNT1 A 5
-			BFE1 ABCDEF 4 Bright A_FadeOut(0.1)
-			Stop
-	}
-}
 
