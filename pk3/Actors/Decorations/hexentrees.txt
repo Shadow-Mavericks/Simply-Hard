@@ -1,0 +1,52 @@
+ACTOR HexenN64Tree1 : ZTreeLarge1 16821
+{
+  //$Category "Obstacles"
+  //$Title "N64 Tree 1"
+  States
+  {
+  Spawn:
+    64T1 A -1
+    Stop
+  }
+}
+
+ACTOR HexenN64Tree2 : ZTreeLarge2 16822
+{
+  //$Category "Obstacles"
+  //$Title "N64 Tree 2"
+  States
+  {
+  Spawn:
+    64T2 A -1
+    Stop
+  }
+}
+Actor LeaflessTree2 16824
+{
+	//$Category "Obstacles"
+	//$Title "Lanky Leafless Tree"
+	Radius 15
+	Height 160
+	+SOLID
+	States
+	{
+		Spawn:
+			TRE8 A -1
+			Stop
+	}
+}
+
+Actor GnarledTree3 16825
+{
+	//$Category "Obstacles"
+	//$Title "Short Gnarled Tree"
+	Radius 15
+	Height 100
+	+SOLID
+	States
+	{
+		Spawn:
+			TRE9 A -1
+			Stop
+	}
+}

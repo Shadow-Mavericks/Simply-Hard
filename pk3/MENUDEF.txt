@@ -99,8 +99,10 @@ ListMenu "SkillMenu"
 
 OptionMenu "Credits"
 {
-	Title "Simply Hard Credits"
+	Title "Simply Hard Credits (WIP!)"
+	Submenu "Code",	"CreditCode"
 	Submenu "Sprites", "CreditSprites"
+	SubMenu "Sounds", "CreditSounds"
 	Submenu "Models", "CreditModels"
 	Submenu "Textures", "CreditTextures"
 	StaticText ""
@@ -115,22 +117,82 @@ OptionMenu "Credits"
 	StaticText "to ShadowMavrks@gmail.com.", 1
 }
 
+OptionMenu "CreditCode"
+{
+	Title "SH Credits - Code"
+	
+	StaticText "Fiendzy", 1
+	StaticText "Original MannCo Box"
+	StaticText "Death Sound ACS"
+	StaticText "Crit Imp"
+	StaticText ""
+	
+	StaticText "StrikerTheHedgefox", 1
+	StaticText "Class Item/Weapon Givers"
+	StaticText "Damage Numbers"
+	StaticText "Hitmarkers"
+	StaticText "Lives System"
+	StaticText "Event Code"
+	StaticText "Enemy Multiplier"
+	StaticText "MannCo Box Rewrite"
+	StaticText "Dispenser Rewrite"
+	StaticText "WAD Compatibility Swapper"
+	StaticText "Kunai's Life Sap Ability"
+	StaticText "Kunai's Shield Burst/Damage Gate"
+	StaticText "Max's Weapon Rewrites"
+	StaticText "Misc Code Cleanup/Maintenance"
+	StaticText ""
+	
+	StaticText "Mor'ladim", 1
+	StaticText "Crow Actor"
+	StaticText ""
+	
+	StaticText "CaptainToenail", 1
+	StaticText "Small Trees & Bushes"
+	StaticText ""
+}
+
 OptionMenu "CreditSprites"
 {
 	Title "SH Credits - Sprites"
+	
+	StaticText "Fiendzy", 1
+	StaticText "Crit Rocket"
+	StaticText ""
 	
 	StaticText "KunaiKitsune", 1
 	StaticText "Ammo Upgrade"
 	StaticText "Gosimer's Backpack"
 	StaticText "Dispenser Backpack"
 	StaticText ""
+	
 	StaticText "DBThanatos", 1
 	StaticText "Doom4Doom Armor Pickups"
 	StaticText ""
+	
 	StaticText "BlueShadow", 1
-	StaticText "BFG Ball Sprite"
+	StaticText "BFG Ball"
+	StaticText ""
+	
+	StaticText "Mor'ladim", 1
+	StaticText "Crow"
+	StaticText ""
+	
+	StaticText "Necrodome", 1
+	StaticText "Small Trees & Bushes"
 	StaticText ""
 }
+
+OptionMenu "CreditSounds"
+{
+	Title "SH Credits - Sounds"
+	
+	StaticText "Mor'ladim & Jojikiba", 1
+	StaticText "Crow Sounds"
+	StaticText ""
+}
+
+
 
 OptionMenu "CreditModels"
 {
@@ -138,6 +200,8 @@ OptionMenu "CreditModels"
 	
 	StaticText "StrikerTheHedgefox", 1
 	StaticText "Bullet Tracers"
+	StaticText "Explosion Sphere"
+	StaticText "Shockwave Ring"
 	StaticText ""
 }
 
@@ -149,9 +213,11 @@ OptionMenu "CreditTextures"
 	StaticText "Water/Blood/Lava Shaders"
 	StaticText "Cracked Rock Shaders (CRACKLE1, etc)"
 	StaticText ""
+	
 	StaticText "Cage", 1
 	StaticText "CAGETEX texture pack"
 	StaticText ""
+	
 	StaticText "Virtue", 1
 	StaticText "Improved IWAD Brightmaps"
 	StaticText ""

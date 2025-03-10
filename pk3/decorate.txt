@@ -40,8 +40,6 @@
 #include "actors/R667_Weapons.txt"
 #include "actors/R667_SFX_Spawners.txt"
 
-//#include "actors/ST_Drops.txt" // Temp disabled.
-
 #include "actors/Elemental_Champions/n_archviles.txt"
 #include "actors/Elemental_Champions/n_barons.txt"
 #include "actors/Elemental_Champions/n_cyberdemons.txt"
@@ -52,5 +50,9 @@
 #include "actors/Elemental_Champions/n_revenant.txt"
 
 #include "actors/Kuzcos_Monsters.txt"
+
+#include "actors/decorations/crow.txt"
+#include "actors/decorations/hexentrees.txt"
+#include "actors/decorations/smalltreesandbushes.txt"
 
 #include "actors/damagedigits.txt"

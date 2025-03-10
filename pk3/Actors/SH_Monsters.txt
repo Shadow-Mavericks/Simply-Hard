@@ -1842,12 +1842,13 @@ ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 
 	Seesound "Jim/Taunt1"
 	AttackSound " "
-	Dropitem "Berserk"
-	Dropitem "Dispenser"
 	PainSound "Jim/Pain"
 	DeathSound "DSJIMDIE"
 	Obituary "%o was put down by Fiendzy?"
 	MeleeDamage 25
+	
+	Dropitem "Berserk"
+	Dropitem "Dispenser"
 
 	+NOBLOCKMONST
 	+BOSS
@@ -1950,15 +1951,16 @@ ACTOR Corrupt_Gosimer : SH_BaseMonster // Code is borrowed/Edited from Super Son
 	PainChance 120
 	Translation "112:127=208:223"
 	Seesound "Cyberimp/see"
+	
 	AttackSound " "
-
-	Dropitem "Backpack"
-	Dropitem "Backpack"
-	Dropitem "Backpack"
 	PainSound "CIMPDTH2"
 	DeathSound "CIMPDTH1"
 	Obituary "%o was sent to the penal zone by Gosimer?"
 	MeleeDamage 25
+	
+	Dropitem "Backpack"
+	Dropitem "Backpack"
+	Dropitem "Backpack"
 
 	+NOBLOCKMONST
 	+BOSS
