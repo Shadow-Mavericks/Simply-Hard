@@ -99,7 +99,7 @@ del .\pk3\*.tmp /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
-7za a -y -tzip -mx=0 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp ..\builds\Simply-Hard_DEV.pk3 .\
+7za a -y -tzip -mx=0 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* ..\builds\Simply-Hard_DEV.pk3 .\
 
 pause
 goto MENU
@@ -115,7 +115,7 @@ del .\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
-7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp ..\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 .\
+7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.backup* -xr^^!*.tmp ..\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 .\
 
 pause
 goto MENU
