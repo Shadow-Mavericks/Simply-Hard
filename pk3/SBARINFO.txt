@@ -365,7 +365,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		
 		DrawNumber 4, JKMSGFNT, Untranslated, AbilityCharge, alignment(center), -31, -21;
 		
-		InInventory PowerDoubleFiringSpeed, 1 // SUPERCHARGE!
+		InInventory PowerSupercharge, 1 // SUPERCHARGE!
 		{
 			UsesAmmo
 			{

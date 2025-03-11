@@ -109,6 +109,15 @@ script "SV_PLAYERTICKER" OPEN
 				// Ability Charge Regen
 				if(CheckInventory("PowerStrength") && !(tickNum % 52))
 					GiveInventory("AbilityCharge", 1);
+					
+				if(CheckInventory("PowerSupercharge"))
+				{
+					int chargeTics = GetActorPowerupTics(0, "PowerSupercharge");
+					if(chargeTics > 0 && chargeTics <= 105 && !(chargeTics % 35))
+					{
+						LocalAmbientSound("PowerupAlarm", 127);
+					}
+				}
 
 				if(!(tickNum % 105))
 				{

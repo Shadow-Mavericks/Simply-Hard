@@ -1,5 +1,6 @@
 gameinfo
 {
+	translator = "xlat/simplyhard.txt"
 	dimcolor = "00 00 00"
 	dimamount = 0.2
 	menufontcolor_title = "ElecViolet"

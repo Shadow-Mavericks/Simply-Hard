@@ -95,7 +95,6 @@ actor HealingSeeker
 	Alpha 1.0
 
 	var int user_healamt;
-	var int user_type;
 
 	Projectile
 	+SEEKERMISSILE

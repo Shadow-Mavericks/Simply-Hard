@@ -1916,6 +1916,7 @@ $playersound 	MaximusPrime	male	*pain25		HEALTH1
 Pop Pop
 FuckThis FuckThis
 SpyWhistle SpyWhstl
+PowerupAlarm QUARTER
 
 AcidMelt acidmelt
 $limit AcidMelt 0

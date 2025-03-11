@@ -714,13 +714,13 @@ function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int spaw
 	SetActivator(0, AAPTR_DAMAGE_INFLICTOR); // Revert pointer to inflictor so we don't interfere with subsequent code. Be very mindful of this!
 }
 
-script "KUNAI_GIVE_HEALTH" (int type)
+script "KUNAI_GIVE_HEALTH" (void)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	int healAmt = GetUserVariable(0, "user_healamt");
-	int type = GetUserVariable(0, "user_type");
+	//int type = GetUserVariable(0, "user_type"); // Unused
 	
 	if(SetActivator(0, AAPTR_TARGET))
 	{
@@ -1097,7 +1097,7 @@ script "ACID_TICKER" (void)
 		Delay(1);
 	}
 	
-	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER)) // If died while under effect of acid.
+	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER) && !CheckActorState(0, "NoAcidMelt", true)) // If died while under effect of acid.
 	{
 		int timer = 105;
 		bool meltstarted = false;
@@ -2239,7 +2239,7 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 
 script "SUPERCHARGE_CHECK" (void)
 {
-	if(CheckInventory("PowerDoubleFiringSpeed"))
+	if(CheckInventory("PowerSupercharge"))
 	{
 		SetUserVariable(0, "user_supercharge_useammo", (GetUserVariable(0, "user_supercharge_useammo")+1) & 1);
 		SetResultValue(GetUserVariable(0, "user_supercharge_useammo"));

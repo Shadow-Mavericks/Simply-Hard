@@ -1769,6 +1769,7 @@ actor Lightsaber : SH_Weapon
 	}
 }
 
+actor PowerSupercharge : PowerDoubleFiringSpeed { }
 actor DF_SuperCharge : PowerupGiver
 {
 	Game Doom
@@ -1778,7 +1779,7 @@ actor DF_SuperCharge : PowerupGiver
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.AUTOACTIVATE
-	Powerup.Type PowerDoubleFiringSpeed
+	Powerup.Type Supercharge
 	Inventory.PickupMessage "Weapon Super Charge"
 	powerup.duration -45
 	States
