@@ -277,74 +277,73 @@ ACTOR ZombieDropFire
 
 actor BFGGuy
 {
-  obituary "%o was vapourized by a zombie's BFG9000."
-  health 30
-  radius 20
-  height 56
-  mass 100
-  speed 8
-  painchance 170
-  seesound "chainguy/sight"
-  painsound "chainguy/pain"
-  deathsound "chainguy/death"
-  activesound "chainguy/active"
-  Dropitem "Clip"
-  Dropitem "Shotgun"
-  Dropitem "Chaingun"
-  Dropitem "Cell"
-  Dropitem "bfg9000" 20
-  missiletype KewlBFG
-  MONSTER
-  +FLOORCLIP
-  states
-  {
-  Spawn:
-    BFGZ AB 10 A_Look
-    loop
-  See:
-    BFGZ AABBCCDD 3 A_Chase
-    loop
-  Missile:
-    BFGZ E 0 A_FaceTarget
-    BFGZ E 35 A_PlaySound ("9kbfg")
-    BFGZ F 10 Bright
-    BFGZ F 10 Bright A_MissileAttack
-    BFGZ E 20
-    goto See
-  Pain:
-    BFGZ G 3
-    BFGZ G 3 A_Pain
-    goto See
-  Death:
-    BFGZ H 5
-    BFGZ I 5 A_Scream
-    BFGZ J 5 A_NoBlocking
-    BFGZ KLM 5
-    BFGZ N -1
-    stop
-  XDeath:
-    BFGZ O 5
-	TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AA 0 A_CustomMissile ("XDeath2", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AA 0 A_CustomMissile ("XDeath3", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 A 0 A_CustomMissile ("XDeath4", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AAAAAAAA 0 A_CustomMissile ("SuperWallRedBlood", 40, 0, random (0, 360), 2, random (-5, 5))
-	TNT1 AAAA 0 A_CustomMissile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("Brutal_FlyingBlood", 35, 0, random (0, 360), 2, random (0, 160))
-	TNT1 AAAAAA 0 bright A_CustomMissile ("SuperGoreSpawner", 32, 0, random (0, 360), 2, random (50, 130))
-    BFGZ P 5 A_XScream
-    BFGZ Q 5 A_NoBlocking
-    BFGZ RS 5
-    BFGZ T -1
-    stop
-	Ice:
-    BFGZ G 5 A_GenericFreezeDeath
-	BFGZ G 1 A_FreezeDeathchunks
-    wait
-  Raise:
-    BFGZ NMLKJIH 5
-    goto See
-  }
+	obituary "%o was vapourized by a zombie's BFG9000."
+	health 30
+	radius 20
+	height 56
+	mass 100
+	speed 8
+	painchance 170
+	seesound "chainguy/sight"
+	painsound "chainguy/pain"
+	deathsound "chainguy/death"
+	activesound "chainguy/active"
+	Dropitem "Clip"
+	Dropitem "Shotgun"
+	Dropitem "Chaingun"
+	Dropitem "Cell"
+	Dropitem "bfg9000" 20
+	MONSTER
+	+FLOORCLIP
+	states
+	{
+		Spawn:
+			BFGZ AB 10 A_Look
+			loop
+		See:
+			BFGZ AABBCCDD 3 A_Chase
+			loop
+		Missile:
+			BFGZ E 0 A_FaceTarget
+			BFGZ E 35 A_PlaySound ("9kbfg")
+			BFGZ F 10 Bright
+			BFGZ F 10 Bright A_CustomMissile("MonsterBFG", 32, 0, 0)
+			BFGZ E 20
+			goto See
+		Pain:
+			BFGZ G 3
+			BFGZ G 3 A_Pain
+			goto See
+		Death:
+			BFGZ H 5
+			BFGZ I 5 A_Scream
+			BFGZ J 5 A_NoBlocking
+			BFGZ KLM 5
+			BFGZ N -1
+			stop
+		XDeath:
+			BFGZ O 5
+			TNT1 AA 0 A_CustomMissile ("XDeath1", 32, 0, random (0, 360), 2, random (0, 160))
+			TNT1 AA 0 A_CustomMissile ("XDeath2", 32, 0, random (0, 360), 2, random (0, 160))
+			TNT1 AA 0 A_CustomMissile ("XDeath3", 32, 0, random (0, 360), 2, random (0, 160))
+			TNT1 A 0 A_CustomMissile ("XDeath4", 32, 0, random (0, 360), 2, random (0, 160))
+			TNT1 AAAAAAAA 0 A_CustomMissile ("SuperWallRedBlood", 40, 0, random (0, 360), 2, random (-5, 5))
+			TNT1 AAAA 0 A_CustomMissile ("Instestin", 32, 0, random (0, 360), 2, random (0, 160))
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("Brutal_FlyingBlood", 35, 0, random (0, 360), 2, random (0, 160))
+			TNT1 AAAAAA 0 bright A_CustomMissile ("SuperGoreSpawner", 32, 0, random (0, 360), 2, random (50, 130))
+			BFGZ P 5 A_XScream
+			BFGZ Q 5 A_NoBlocking
+			BFGZ RS 5
+			BFGZ T -1
+			stop
+		Ice:
+			BFGZ G 5 A_GenericFreezeDeath
+			BFGZ G 1 A_FreezeDeathchunks
+			wait
+		Raise:
+			BFGZ NMLKJIH 5
+			goto See
+	}
 }
 
 ACTOR RailArachnotron
