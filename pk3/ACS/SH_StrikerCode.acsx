@@ -679,34 +679,39 @@ function void actor_swap(str replace, str with, int chance)
 	return;
 }
 
-function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int ptr)
+function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int spawn_ptr)
 {
-	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+	if(SetActivator(0, AAPTR_DAMAGE_SOURCE)) // Set activator to player doing damage.
 	{
+		// Assign TID to player.
 		int oldTID = ActivatorTID();
 		int srcUTID = UniqueTID();
 		Thing_ChangeTID(0, srcUTID);
-		SetActivator(0, ptr);
+		
+		// Set activator to damage event pointer that shall spawn the orbs.
+		SetActivator(0, spawn_ptr);
 
 		int actualDmg = arg1;
-		if(victimHealth < arg1)
+		if(victimHealth < arg1) // If health is lower than damage, only sap the remainder.
 			actualDmg = victimHealth;
 
-		int numOrbs = clamp(actualDmg >> 4, 1, 10);
-		int healAmt = max(max(actualDmg/healDiv, 1)/numOrbs, 1);
+		int numOrbs = clamp(actualDmg >> 4, 1, 10);					// Number of orbs is damage divided by 16 (rightshift by 4), clamped to 1 orb min, 10 orbs max.
+		int healAmt = max(max(actualDmg/healDiv, 1)/numOrbs, 1);	// Divvy up health given amongst the number of orbs.
 		for(int i = 0; i < numOrbs; i++)
 		{
 			int uTID = UniqueTID();
 			SpawnProjectile(0, "HealingSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
-			SetActivator(uTID);
-			SetPointer(AAPTR_TRACER, srcUTID);
-			SetPointer(AAPTR_TARGET, srcUTID);
-			SetUserVariable(uTID, "user_healamt", healAmt);
-			SetActivator(0, ptr);
+			SetActivator(uTID);								// Set activator to orb.
+			SetPointer(AAPTR_TRACER, srcUTID);				// Set orb tracer to player.
+			SetPointer(AAPTR_TARGET, srcUTID);				// Set orb target to player.
+			SetUserVariable(uTID, "user_healamt", healAmt);	// Tell orb how much it heals.
+			SetActivator(0, spawn_ptr);						// Reset activator to spawner for next orb.
 		}
 
-		Thing_ChangeTID(srcUTID, oldTID);
+		Thing_ChangeTID(srcUTID, oldTID); // We're finished. Revert player's TID.
 	}
+	
+	SetActivator(0, AAPTR_DAMAGE_INFLICTOR); // Revert pointer to inflictor so we don't interfere with subsequent code. Be very mindful of this!
 }
 
 script "KUNAI_GIVE_HEALTH" (int type)
@@ -776,9 +781,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
 	bool wasConcussed = false;
-	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));
-
-	str inflictorClass = "Unknown";
+	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));	
 	
 	if(CheckInventory("PowerAcidStatus"))
 		victimStatus |= STATUS_ACID;
@@ -789,7 +792,6 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 	{
 		directMonsterDamage = CheckFlag(0, "ISMONSTER");
-		inflictorClass = GetActorClass(0);
 
 		// Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
 		int falloffAmt = GetUserVariable(0, "user_falloff");
@@ -828,14 +830,21 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			{
 				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_INFLICTOR);
 			}
+			else if(CheckActorClass(0, "GoldCryoShot"))
+			{
+				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_TARGET);
+			}
 		}
 
 		// Keep LAST!
 		if(GetCVar("sh_debug_damage"))
 		{
+			str inflictorClass = GetActorClass(0);	
+			
 			str sourceClass = "Unknown";
 			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 				sourceClass = GetActorClass(0);
+				
 			log(s:"DEBUG: Entity damaged by ", s:inflictorClass, s:" Source: ", s:sourceClass);
 		}
 	}
@@ -848,7 +857,6 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 		if(attackerPlayerNum != -1) // Source is player
 		{
-			// Todo: Make marker not trigger if AcidLaser and target has acid status.
 			if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
 				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 
@@ -897,17 +905,13 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 		if(wasConcussed)
 			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
-			
+		
 		if(!StrIcmp(damagetype, "AcidBFGExtra"))
 			SpawnForced("AcidBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
 		else if(!StrIcmp(damagetype, "BFGExtra"))
 			SpawnForced("BlueBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
-
-		if(victimIsMonster && victimCanBleed)
-		{
-			if(!StrIcmp(inflictorClass, "GoldCryoShot"))
-				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_TARGET);
-		}
+		else if(!StrIcmp(damagetype, "MonsterBFGExtra"))
+			SpawnForced("MonsterBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
 
 		if(victimPlayerNum != -1)
 		{
@@ -997,7 +1001,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			}
 		}
 		
-		if (victimIsMonster && canDrawBar() && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)))
+		if (victimIsMonster && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)) && canDrawBar())
 		{		
 			if(!CheckInventory("HasHealthBar"))
 			{
