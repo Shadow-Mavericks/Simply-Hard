@@ -1,0 +1,6 @@
+include "xlat/doom.txt"
+
+// MBF21 extensions
+1024 = 0,	Scroll_Texture_Offsets(0, tag, 0, 8)
+1025 = 0,	Scroll_Texture_Offsets(0, tag, 1, 8)
+1026 = 0,	Scroll_Texture_Offsets(0, tag, 2, 8)
