@@ -1,0 +1,202 @@
+#library "SH_Votes"
+#import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
+
+// Various votes that can be called in Simply Hard.
+// Code by StrikerTheHedgefox.
+
+// Sends all players back to spawn.
+script "UNSTICK_PLAYER" (str who)
+{
+	if(!StrIcmp(who, "all") || !StrIcmp(who, "everyone"))
+	{
+		for(int p = 0; p < MAX_PLAYERS; p++)
+		{
+			if(!PlayerInGame(p))
+				continue;
+
+			SetActivatorToPlayer(p);
+
+			GiveInventory("TeleportHax", 1);
+		}
+	}
+}
+
+enum
+{
+	TAGSTATE_UNKNOWN,
+	TAGSTATE_OPENED,
+	TAGSTATE_CLOSED,
+};
+
+enum
+{
+	D_SLOW		= 16,
+	D_NORMAL	= 32,
+	D_FAST		= 64,
+	D_TURBO		= 128
+};
+
+enum
+{
+	F_SLOW		= 8,
+	F_NORMAL	= 16,
+	F_FAST		= 32,
+	F_TURBO		= 64
+};
+
+struct tagTracker_t
+{
+	int tag;
+	int type;
+	int state;
+	int portal_tag;
+};
+tagTracker_t tagtrackers[256];
+
+function int find_tagtracker(int tag)
+{
+	for(int i = 0; i < 256; i++)
+	{
+		if(tagtrackers[i].tag == tag)
+			return i;
+	}
+	
+	return -1;
+}
+
+function int find_freetagslot(int tag)
+{
+	for(int i = 0; i < 256; i++)
+	{
+		if(tagtrackers[i].tag == 0)
+			return i;
+	}
+	return -1;
+}
+
+script 13400 (int tag, int type)
+{
+	int slot = find_tagtracker(tag);
+	if(slot == -1)
+		slot = find_freetagslot(tag);
+		
+	if(slot != -1)
+	{
+		tagtrackers[slot].tag = tag;
+		tagtrackers[slot].type = type;
+	}
+	
+	switch(type)
+	{
+		case 3: //3 = WALK,		Door_Close (tag, D_SLOW)
+		{
+			Door_Close(tag, D_SLOW);
+			
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state == TAGSTATE_OPENED)
+				{
+					HudMessageBold(s:"A door has locked behind ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
+				
+			break;
+		}
+		case 5: //5 = WALK,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
+		{
+			Floor_RaiseToLowestCeiling (tag, F_SLOW);
+			
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state == TAGSTATE_OPENED)
+				{
+					HudMessageBold(s:"A passage has closed behind ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
+				
+			break;
+		}
+		case 23: //23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
+		{
+			TagWait(tag);
+			Floor_LowerToLowest(tag, F_SLOW);
+			
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
+				{
+					HudMessageBold(s:"A passage has been re-opened by ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_OPENED;
+			}
+				
+			break;
+		}
+		case 56:
+		{
+			Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2);
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state == TAGSTATE_OPENED)
+				{
+					HudMessageBold(s:"A passage has slammed shut behind ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
+			
+			break;
+		}
+		case 103: // 103 = USE,		Door_Open (tag, D_SLOW)
+		{
+			TagWait(tag);
+			Door_Open(tag, D_SLOW);
+			
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
+				{
+					HudMessageBold(s:"A door has been re-opened by ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_OPENED;
+			}
+				
+			break;
+		}
+	}
+}
+
+script "OPEN_ALL" (void)
+{	
+	for(int i = 0; i < 256; i++)
+	{
+		if(tagtrackers[i].tag != 0 && tagtrackers[i].state == TAGSTATE_CLOSED)
+		{
+			int tag = tagtrackers[i].tag;
+			switch(tagtrackers[i].type)
+			{
+				case 3:
+				{
+					Door_Open(tag, D_SLOW);
+					tagtrackers[i].state = TAGSTATE_OPENED;
+					break;
+				}
+				case 5:
+				case 56:
+				{
+					Floor_LowerToLowest(tag, F_SLOW);
+					tagtrackers[i].state = TAGSTATE_OPENED;
+					break;
+				}
+			}
+		}
+	}
+}

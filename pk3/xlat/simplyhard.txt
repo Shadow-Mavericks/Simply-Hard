@@ -4,3 +4,10 @@ include "xlat/doom.txt"
 1024 = 0,	Scroll_Texture_Offsets(0, tag, 0, 8)
 1025 = 0,	Scroll_Texture_Offsets(0, tag, 1, 8)
 1026 = 0,	Scroll_Texture_Offsets(0, tag, 2, 8)
+
+// Simply Hard replacements:
+3 = WALK, ACS_ExecuteAlways(13400, 0, tag, 3, 0) //3 = WALK,		Door_Close (tag, D_SLOW)
+5 = WALK, ACS_ExecuteAlways(13400, 0, tag, 5, 0) //5 = WALK,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
+23 = USE, ACS_ExecuteAlways(13400, 0, tag, 23, 0) //23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
+56 = WALK, ACS_ExecuteAlways(13400, 0, tag, 56, 0) //56 = WALK,		Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2)
+103 = USE, ACS_ExecuteAlways(13400, 0, tag, 103, 0) // 103 = USE,		Door_Open (tag, D_SLOW)

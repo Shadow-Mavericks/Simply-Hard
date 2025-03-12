@@ -46,6 +46,10 @@ OptionMenu "SimplyHardOptions"
 	NumberField "Enemy Multiplier", "sh_enemy_mult", 1, 100, 1
 	NumberField "Ammo Multiplier", "sh_ammo_mult", 1, 100, 1
 	StaticText 	""
+	StaticText "Special Votes", 1
+	SafeCommand "Respawn All Players", "callvote Unstick all"
+	SafeCommand "DOOR STUCK! PLEASE! I BEG YOU!", "callvote DoorStuck"
+	StaticText 	""
 	StaticText "Key Bindings", 1
 	Control "Soul Ability", "UseAbility"
 	Control "Ultimate Ability", "ClassUltimates"

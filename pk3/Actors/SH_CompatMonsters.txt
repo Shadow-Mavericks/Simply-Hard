@@ -1319,3 +1319,55 @@ actor Mayhem19Spooklord : SH_BaseMonster
 			stop
 	}
 }
+
+actor PUSS22_Ghoul : SH_BaseMonster
+{
+	Tag "Ghoul"
+	Species "Zombieman"
+	Health 20
+	Speed 8
+	Radius 20
+	Height 56
+	Damage 0
+	ReactionTime 8
+	PainChance 200
+	Mass 100
+	SeeSound "DSPOSIT"
+	AttackSound "DSSKESWG"
+	PainSound "DSPOPAIN"
+	DeathSound "DSPODTH"
+	ActiveSound "DSPOSACT"
+	States
+	{
+		Spawn:
+			POSS AB 10 A_Look
+			loop
+		See:
+			POSS AABBCCDD 4 A_Chase
+			loop
+		Melee:
+			POSS E 10 A_FaceTarget
+			POSS F 4 A_SargAttack
+			goto See
+		Pain:
+			POSS G 6 A_Pain
+			goto See
+		Death:
+			POSS H 5
+			POSS I 5 A_Scream
+			POSS J 5 A_Fall
+			POSS K 5
+			POSS L -1
+			stop
+		XDeath:
+			POSS G 5
+			POSS N 5 A_XScream
+			POSS O 5 A_Fall
+			POSS PQRST 5
+			POSS U -1
+			stop
+		Raise:
+			POSS KJIH 5
+			goto See
+	}
+}

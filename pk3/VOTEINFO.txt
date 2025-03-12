@@ -4,3 +4,9 @@ VoteType Unstick
 	Action = CallACS ("UNSTICK_PLAYER");
 	ForbidCVar = sh_vote_unstick_disabled;
 }
+
+VoteType DoorStuck
+{
+	Action = CallACS ("OPEN_ALL");
+	ForbidCVar = sh_vote_doorstuck_disabled;
+}

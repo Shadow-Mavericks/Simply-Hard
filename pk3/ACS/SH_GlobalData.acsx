@@ -92,6 +92,39 @@ function int clamp(int in, int min, int max)
 	return (out > max) ? max : out;
 }
 
+function int seek_string(str string, str substring, int startPos)
+{
+	int stringLength = StrLen(string);
+	int substringLength = StrLen(substring);
+	int firstMatchPos = -1;
+	int i,j;
+
+	if(startPos < 0)
+		return -1;
+
+	for(i = startPos; i < stringLength; i++)
+	{
+		if(GetChar(string, i) != GetChar(substring, 0))
+			continue;
+
+		firstMatchPos = i;
+		for(j = 0; j < substringLength; j++)
+		{
+			int char1 = GetChar(string, i+j);
+			int char2 = GetChar(substring, j);
+			if(char1 != char2)
+				break;
+		}
+
+		if(j < substringLength)
+			continue;
+
+		return firstMatchPos;
+	}
+
+	return -1;
+}
+
 function str GetClassTag(str className)
 {
 	int uTID = UniqueTID();

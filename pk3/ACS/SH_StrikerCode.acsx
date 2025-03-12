@@ -8,39 +8,6 @@
 
 #define ONE_16 (1<<16)
 
-function int seek_string(str string, str substring, int startPos)
-{
-	int stringLength = StrLen(string);
-	int substringLength = StrLen(substring);
-	int firstMatchPos = -1;
-	int i,j;
-
-	if(startPos < 0)
-		return -1;
-
-	for(i = startPos; i < stringLength; i++)
-	{
-		if(GetChar(string, i) != GetChar(substring, 0))
-			continue;
-
-		firstMatchPos = i;
-		for(j = 0; j < substringLength; j++)
-		{
-			int char1 = GetChar(string, i+j);
-			int char2 = GetChar(substring, j);
-			if(char1 != char2)
-				break;
-		}
-
-		if(j < substringLength)
-			continue;
-
-		return firstMatchPos;
-	}
-
-	return -1;
-}
-
 enum
 {
 	WADCOMPAT_UNINITIALIZED = 0,
@@ -50,6 +17,7 @@ enum
 	WADCOMPAT_MAYHEM19,
 	WADCOMPAT_STRANGEAEONS,
 	WADCOMPAT_BTSXE2,
+	WADCOMPAT_PUSS22,
 };
 
 function void detect_wads(void)
@@ -62,6 +30,8 @@ function void detect_wads(void)
 		return;
 
 	int startIndex;
+	int size;
+	int find_pos;
 	str mapinfo_data;
 
 	while(true)
@@ -74,8 +44,8 @@ function void detect_wads(void)
 		}
 		Log(s:"Next MAPINFO lump was found at index ", d:startIndex, s:".");
 
-		int size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
-		int find_pos = 0;
+		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
+		find_pos = 0;
 		mapinfo_data = LumpReadString(startIndex, 0, size);
 
 		find_pos = seek_string(mapinfo_data, "map map01 \"Sundowning\"", 0);
@@ -121,6 +91,40 @@ function void detect_wads(void)
 		{
 			Log(s:"Back To Saturn X: Episode 2 Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_BTSXE2);
+			return;
+		}
+
+		// Make sure to close the lump again to free the handle.
+		LumpClose(startIndex);
+	}
+	
+	// Try ZMAPINFO lumps.
+	// Clear everything.
+	startIndex = 0;
+	size = 0;
+	find_pos = 0;
+	mapinfo_data = "None";
+	
+	while(true)
+	{
+		startIndex = LumpOpen("ZMAPINFO", startIndex + 1);
+		if (startIndex == -1)
+		{
+			Log(s:"No more ZMAPINFO lumps found.");
+			break;
+		}
+		Log(s:"Next ZMAPINFO lump was found at index ", d:startIndex, s:".");
+
+		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
+		find_pos = 0;
+		mapinfo_data = LumpReadString(startIndex, 0, size);
+
+		find_pos = seek_string(mapinfo_data, "map TITLEMAP \"Chilling Winds\"", 0);
+		find_pos = seek_string(mapinfo_data, "map map01 \"In Suffering is Death\"", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"PUSS22: The Chilling Winds of Dis Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_PUSS22);
 			return;
 		}
 
@@ -1346,6 +1350,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("SlimeWorm", "JIHADReplacer", 64);
 						break;
 					}
+					case WADCOMPAT_PUSS22:
+					{
+						actor_swap("Zamble", "PUSS22_Ghoul", 256);
+						break;
+					}
 				}
 
 			}
@@ -2251,18 +2260,3 @@ script "SUPERCHARGE_CHECK" (void)
 		SetResultValue(1);
 }
 
-script "UNSTICK_PLAYER" (str who)
-{
-	if(!StrIcmp(who, "all") || !StrIcmp(who, "everyone"))
-	{
-		for(int p = 0; p < MAX_PLAYERS; p++)
-		{
-			if(!PlayerInGame(p))
-				continue;
-
-			SetActivatorToPlayer(p);
-
-			GiveInventory("TeleportHax", 1);
-		}
-	}
-}
