@@ -90,15 +90,17 @@ script 13400 (int tag, int type)
 	
 	switch(type)
 	{
+		// CLOSING TYPES
+		// -------------
 		case 3: //3 = WALK,		Door_Close (tag, D_SLOW)
 		{
 			Door_Close(tag, D_SLOW);
 			
 			if(slot != -1)
 			{
-				if(tagtrackers[slot].state == TAGSTATE_OPENED)
+				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
 				{
-					HudMessageBold(s:"A door has locked behind ", n:PlayerNumber() + 1;
+					HudMessageBold(s:"A door has locked near ", n:PlayerNumber() + 1;
 					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
@@ -112,9 +114,9 @@ script 13400 (int tag, int type)
 			
 			if(slot != -1)
 			{
-				if(tagtrackers[slot].state == TAGSTATE_OPENED)
+				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
 				{
-					HudMessageBold(s:"A passage has closed behind ", n:PlayerNumber() + 1;
+					HudMessageBold(s:"A passage has closed near ", n:PlayerNumber() + 1;
 					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
@@ -122,6 +124,24 @@ script 13400 (int tag, int type)
 				
 			break;
 		}
+		case 56:
+		{
+			Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2);
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
+				{
+					HudMessageBold(s:"A passage has slammed shut near ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
+			
+			break;
+		}
+		
+		// OPENING TYPES
+		// -------------
 		case 23: //23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
 		{
 			TagWait(tag);
@@ -137,21 +157,6 @@ script 13400 (int tag, int type)
 				tagtrackers[slot].state = TAGSTATE_OPENED;
 			}
 				
-			break;
-		}
-		case 56:
-		{
-			Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2);
-			if(slot != -1)
-			{
-				if(tagtrackers[slot].state == TAGSTATE_OPENED)
-				{
-					HudMessageBold(s:"A passage has slammed shut behind ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
-				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
-			
 			break;
 		}
 		case 103: // 103 = USE,		Door_Open (tag, D_SLOW)
