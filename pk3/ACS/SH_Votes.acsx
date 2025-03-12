@@ -88,6 +88,8 @@ script 13400 (int tag, int type)
 		tagtrackers[slot].type = type;
 	}
 	
+	TagWait(tag);
+	
 	switch(type)
 	{
 		// CLOSING TYPES
@@ -147,7 +149,7 @@ script 13400 (int tag, int type)
 		// -------------
 		case 23: // 23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
 		{
-			TagWait(tag);
+			//TagWait(tag);
 			Floor_LowerToLowest(tag, F_SLOW);
 			
 			if(slot != -1)
@@ -167,7 +169,7 @@ script 13400 (int tag, int type)
 		case 109: // 109 = WALK,		Door_Open (tag, D_FAST)
 		case 112: // 112 = USE,		Door_Open (tag, D_FAST)
 		{
-			TagWait(tag);
+			//TagWait(tag);
 			Door_Open(tag, ((type == 109) || (type == 112)) ? D_FAST : D_SLOW);
 			
 			if(slot != -1)
