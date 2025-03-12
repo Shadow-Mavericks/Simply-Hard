@@ -1337,6 +1337,7 @@ actor PUSS22_Ghoul : SH_BaseMonster
 	PainSound "DSPOPAIN"
 	DeathSound "DSPODTH"
 	ActiveSound "DSPOSACT"
+	DropItem Clip
 	States
 	{
 		Spawn:
