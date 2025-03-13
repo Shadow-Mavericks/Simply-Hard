@@ -15,6 +15,8 @@ include "xlat/doom.txt"
 110 = WALK,	ACS_ExecuteWithResult(13400, tag, 110, 0, 0)// 110 = WALK,		Door_Close (tag, D_FAST)
 113 = USE, ACS_ExecuteWithResult(13400, tag, 113, 0, 0) // 113 = USE,		Door_Close (tag, D_FAST)
 
+//16984 Generic_Ceiling (tag, C_TURBO, 0, 5, 0)
+
 // Openers
 2 = WALK, ACS_ExecuteWithResult(13400, tag, 2, 0, 0) // 2 = WALK,		Door_Open (tag, D_SLOW)
 23 = USE, ACS_ExecuteWithResult(13400, tag, 23, 0, 0) // 23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
