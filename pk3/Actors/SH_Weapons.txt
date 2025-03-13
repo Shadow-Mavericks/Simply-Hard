@@ -1,42 +1,31 @@
-
-
-//---------------------------
-//----< -Fistsy  cuffs- >----
-//---------------------------
-
-
-ACTOR Fists : fist replaces Fist
+actor SH_BulletPuff : BulletPuff replaces BulletPuff
 {
-	Tag "Fisticuffs"
-	Weapon.SelectionOrder 9
-	Weapon.SlotNumber 1
-	Inventory.RestrictedTo "Fiend"
-	Weapon.Kickback 100
-	Obituary "$OB_MPFIST"
-	+WEAPON.WIMPY_WEAPON
-	+WEAPON.MELEEWEAPON
-	+WEAPON.CHEATNOTWEAPON
-	+WEAPON.NOALERT
+	Decal BulletChip
+	VSpeed 0
+	
+	RenderStyle Translucent
+	Alpha 0.8
+	
+	+PUFFGETSOWNER
 	States
 	{
-	Ready:
-		PUNG A 1 A_WeaponReady
-		Loop
-	Deselect:
-		PUNG AA 0 A_Lower
-		PUNG A 1 A_Lower
-		Loop
-	Select:
-		PUNG AA 0 A_Raise
-		PUNG A 1 A_Raise
-		Loop
-	Fire:
-		PUNG B 2
-		PUNG C 3 A_Punch
-		PUNG D 4
-		PUNG C 3
-		PUNG B 4 A_ReFire
-		Goto Ready
+		XDeath:
+			PUFF A 2 Bright Light("BPUFF1")
+			PUFF B 2 Bright Light("BPUFF2")
+			stop
+		Spawn:
+			PUFF A 2 Bright Light("BPUFF1")
+			PUFF B 2 Bright Light("BPUFF2")
+			goto Melee
+		Melee:
+			PUFF C 0 A_ChangeVelocity(0, frandom(-0.5, 0.5), frandom(1.0, 1.5), CVF_REPLACE)
+			PUFF C 0 A_SetTranslucent(0.5, 0)
+			PUFF CCCC 1 A_SetScale(scalex+0.0625)
+			goto Fade
+		Fade:
+			PUFF D 1 A_SetScale(scalex+0.03125)
+			PUFF D 0 A_FadeOut(0.025)
+			loop
 	}
 }
 
@@ -305,165 +294,5 @@ Actor Allupgradetokens : CustomInventory
 			TNT1 A 0 A_Giveinventory("Tier7upgradetoken",1)
 			TNT1 A 0 A_Giveinventory("Tier8upgradetoken",1)
 			Stop
-	}
-}
-
-actor Railclip : Ammo
-{
-	+INVENTORY.IGNORESKILL
-	inventory.maxamount 5
-}
-
-ACTOR FiendsRailgun : SH_Weapon
-{
-	Weapon.SelectionOrder 700
-	Weapon.AmmoUse 2
-	Weapon.AmmoGive 0 // Handled in ACS.
-	Weapon.AmmoType "Railslugs"
-	Weapon.BobSpeed 1.5
-	Weapon.BobRangeX .5
-	Weapon.SlotNumber 6
-	Weapon.Slotpriority 1
-	Inventory.Forbiddento "Maximusprime"
-	Weapon.BobStyle "InverseSmooth"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Gosimer"
-	Inventory.RestrictedTo "Fiend"
-	Inventory.PickupMessage "Fiends Lazer gun"
-	Obituary "(%K got gibbed by Fiend's Lazer gun"
-	Tag "Fiend's Railgun"
-	States
-	{
-	Ready:
-		FRGB A 1 A_weaponready
-		FRGN A 0 A_playsound("Weapon/PropulsionIDLE", Chan_weapon)
-		FRGG A 1 A_weaponready
-		FRGY A 1 A_weaponready
-		FRGR A 1 A_weaponready
-		FRGP A 1 A_weaponready
-		FRGB A 1 A_weaponready
-		FRGG A 1 A_weaponready
-		FRGY A 1 A_weaponready
-		FRGR A 1 A_weaponready
-		FRGP A 1 A_weaponready
-		Loop
-	Select:
-		FRGB A 1 A_Raise
-		Loop
-	Deselect:
-		FRGB A 1 A_Lower
-		Loop
-	Fire:
-		FRGB A 1
-		FRGF E 2
-		FRGF J 2
-		FRGF J 0 A_RailAttack(250, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "healgunblast")
-		FRGF J 0 A_PlaySound("Weapon/PropulsionFire", chan_Weapon)
-		FRGB G 1
-		FRGG G 1
-		FRGY G 1
-		FRGR G 1
-		FRGP G 1
-		FRGB G 1
-		FRGG G 1
-		FRGY G 1
-		FRGR G 1
-		FRGP G 1
-		FRGB F 1
-		FRGG F 1
-		FRGY F 1
-		FRGR F 1
-		FRGP F 1
-		FRGB F 1
-		FRGG F 1
-		FRGY F 1
-		FRGR F 1
-		FRGP F 1
-		FRGB E 1
-		FRGG E 1
-		FRGY E 1
-		FRGR E 1
-		FRGP E 1
-		FRGB E 1
-		FRGG E 1
-		FRGY E 1
-		FRGR E 1
-		FRGP E 1
-		FRGB D 1
-		FRGG D 1
-		FRGY D 1
-		FRGR D 1
-		FRGP D 1
-		FRGB D 1
-		FRGG D 1
-		FRGY D 1
-		FRGR D 1
-		FRGP D 1
-		FRGB C 1
-		FRGG C 1
-		FRGY C 1
-		FRGR C 1
-		FRGP C 1
-		FRGB C 1
-		FRGG C 1
-		FRGY C 1
-		FRGR C 1
-		FRGP C 1
-		FRGB B 1
-		FRGG B 1
-		FRGY B 1
-		FRGR B 1
-		FRGP B 1
-		FRGB B 1
-		FRGG B 1
-		FRGY B 1
-		FRGR B 1
-		FRGP B 1
-		FRGB A 1
-		FRGG A 1
-		FRGY A 1
-		FRGR A 1
-		FRGP A 1
-		FRGB A 1
-		FRGG A 1
-		FRGY A 1
-		FRGR A 1
-		FRGP A 1
-		Goto Ready
-	Altfire:
-		RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
-		Goto Ready
-		RLGG A 1 Offset ( -26, 70 )
-		RLGG A 1 Offset ( -25, 60 )
-		RLGG A 2 Offset ( -23, 52 )
-		RLGG A 2 Offset ( -20, 47 )
-		RLGG A 3 Offset ( -15, 42 )
-		RLGG A 3 Offset ( -10, 37 )
-		RLGG A 4 Offset ( -5, 34 )
-		RLGG A 4 Offset ( 0, 32 )
-	ALTHOLD:
-		RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
-		Goto ALTFirestop
-		RLGF A 1 Bright
-		RLGG B 1 Bright
-		RLGG C 1 Bright
-		RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
-		RLGG D 1 A_Takeinventory("AbilityCharge",2)
-		RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
-		RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "BulletPuff", 0, 0, 256, 35, 1.0, 4.0, "Healgunblast")
-		RLGG A 1 A_Refire
-	ALTFirestop:
-		RLGG A 4 Offset ( 0, 32 )
-		RLGG A 4 Offset ( -5, 34 )
-		RLGG A 3 Offset ( -10, 37 )
-		RLGG A 3 Offset ( -15, 42 )
-		RLGG A 2 Offset ( -20, 47 )
-		RLGG A 2 Offset ( -23, 52 )
-		RLGG A 1 Offset ( -25, 60 )
-		RLGG A 1 Offset ( -26, 70 )
-		goto Ready
-	Spawn:
-		RAIL A -1
-		Stop
 	}
 }
