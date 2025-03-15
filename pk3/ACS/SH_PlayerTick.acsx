@@ -116,6 +116,7 @@ script "SV_PLAYERTICKER" OPEN
 					if(chargeTics > 0 && chargeTics <= 105 && !(chargeTics % 35))
 					{
 						LocalAmbientSound("PowerupAlarm", 127);
+						GiveInventory("MaxHUDBlink", 1);
 					}
 				}
 

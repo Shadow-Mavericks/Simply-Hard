@@ -367,13 +367,27 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		
 		InInventory PowerSupercharge, 1 // SUPERCHARGE!
 		{
-			UsesAmmo
+			InInventory Not PowerMaxHUDBlinkHax
 			{
-				DrawNumber 3, JKSUPFNT, Untranslated, ammo1, fillzeros, -12, -40;
+				UsesAmmo
+				{
+					DrawNumber 3, JKSUPFNT, Untranslated, ammo1, fillzeros, -12, -40;
+				}
+				else
+				{
+					DrawString JKSUPFNT, Untranslated, "---", -12, -40, 0;
+				}
 			}
 			else
 			{
-				DrawString JKSUPFNT, Untranslated, "---", -12, -40, 0;
+				UsesAmmo
+				{
+					DrawNumber 3, JKAMOFNT, Untranslated, ammo1, fillzeros, -12, -40;
+				}
+				else
+				{
+					DrawString JKAMOFNT, Untranslated, "---", -12, -40, 0;
+				}
 			}
 		}
 		else
