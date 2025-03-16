@@ -28,6 +28,42 @@ pointlight BigBlueBolt
 	size 56
 }
 
+pointlight BlueExplosion1
+{
+	color 0.0 0.25 1.0
+	size 80
+}
+
+pointlight BlueExplosion2
+{
+	color 0.0 0.22 0.90
+	size 75
+}
+
+pointlight BlueExplosion3
+{
+	color 0.0 0.15 0.60
+	size 70
+}
+
+pointlight BlueExplosion4
+{
+	color 0.0 0.12 0.48
+	size 65
+}
+
+pointlight BlueExplosion5
+{
+	color 0.0 0.10 0.40
+	size 60
+}
+
+pointlight BlueExplosion6
+{
+	color 0.0 0.05 0.20
+	size 56
+}
+
 pointlight OrangeBolt
 {
 	color 1.0 0.25 0.0
@@ -38,4 +74,96 @@ pointlight BigYellowBolt
 {
 	color 1.0 0.75 0.0
 	size 56
+}
+
+pointlight YellowExplosion1
+{
+	color 1.0 0.75 0.0
+	size 80
+}
+
+pointlight YellowExplosion2
+{
+	color 0.90 0.65 0.0
+	size 75
+}
+
+pointlight YellowExplosion3
+{
+	color 0.80 0.55 0.0
+	size 70
+}
+
+pointlight YellowExplosion4
+{
+	color 0.70 0.45 0.0
+	size 65
+}
+
+pointlight YellowExplosion5
+{
+	color 0.60 0.35 0.0
+	size 60
+}
+
+pointlight YellowExplosion6
+{
+	color 0.50 0.25 0.0
+	size 56
+}
+
+pointlight ACMissileFront
+{
+	Color 1.0 0.0 0.0
+	Offset 32 0 0
+	Size 32
+}
+
+pointlight ACMissileBack1
+{
+	Color 0.0 0.35 1.0
+	Offset -32 0 0
+	Size 48
+}
+
+pointlight ACMissileBack2
+{
+	Color 0.0 0.35 1.0
+	Offset -32 0 0
+	Size 56
+}
+
+object AssaultCannonMissile
+{
+	frame ACMI { light ACMissileFront }
+	frame ACMIA { light ACMissileBack1 }
+	frame ACMIB { light ACMissileBack2 }
+}
+
+pointlight BWMissileFront
+{
+	Color 0.0 0.0 1.0
+	Offset 32 0 0
+	Size 32
+}
+
+pointlight BWMissileBack1
+{
+	Color 1.0 0.0 0.0
+	Offset -32 0 0
+	Size 48
+}
+
+pointlight BWMissileBack2
+{
+	Color 1.0 0.0 0.0
+	Offset -32 0 0
+	Size 56
+}
+
+object GoldAssaultCannonMissile
+{
+	frame WMSL { light BWMissileFront }
+	frame WMSLA { light BWMissileBack1 }
+	frame WMSLB { light BWMissileBack2 }
 }

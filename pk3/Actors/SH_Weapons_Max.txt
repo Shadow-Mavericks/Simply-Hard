@@ -358,7 +358,12 @@ actor AssaultCannonPlasma
 		Death:
 			ACBL A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			ACBL A 0 A_Explode(5 * DARKFORCES_DMG_MULT, 48, 0, false, 48)
-			ACBL ABCDEF 3 BRIGHT
+			ACBL A 3 BRIGHT Light("BlueExplosion1")
+			ACBL B 3 BRIGHT Light("BlueExplosion2")
+			ACBL C 3 BRIGHT Light("BlueExplosion3")
+			ACBL D 3 BRIGHT Light("BlueExplosion4")
+			ACBL E 3 BRIGHT Light("BlueExplosion5")
+			ACBL F 3 BRIGHT Light("BlueExplosion6")
 			Stop
 	}
 }
@@ -380,7 +385,12 @@ actor GoldAssaultCannonPlasma : AssaultCannonPlasma
 		Death:
 			WEXP A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			WEXP A 0 A_Explode(10 * DARKFORCES_DMG_MULT, 48, 0, false, 48)
-			WEXP ABCDEF 3 Bright
+			WEXP A 3 Bright Light("YellowExplosion1")
+			WEXP B 3 Bright Light("YellowExplosion2")
+			WEXP C 3 Bright Light("YellowExplosion3")
+			WEXP D 3 Bright Light("YellowExplosion4")
+			WEXP E 3 Bright Light("YellowExplosion5")
+			WEXP F 3 Bright Light("YellowExplosion6")
 			stop
 	}
 }

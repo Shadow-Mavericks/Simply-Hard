@@ -19,6 +19,12 @@
 #libdefine STATUS_NONE 0
 #libdefine STATUS_ACID 1
 
+struct vec2_t
+{
+	int x;
+	int y;
+};
+
 struct vec3_t
 {
 	int x;
@@ -90,6 +96,30 @@ function int clamp(int in, int min, int max)
 {
 	int out = (in < min) ? min : in;
 	return (out > max) ? max : out;
+}
+
+function int VectorLength3D(int x, int y, int z)
+{
+	int len = VectorLength(x, y);
+	len = VectorLength(z, len);
+	return len;
+}
+
+function int GetDistance2D(vec2_t pos1, vec2_t pos2)
+{
+	int x = pos1.x - pos2.x;
+	int y = pos1.y - pos2.y;
+	
+	return VectorLength(x, y);
+}
+
+function int GetDistance3D(vec3_t pos1, vec3_t pos2)
+{
+	int x = pos1.x - pos2.x;
+	int y = pos1.y - pos2.y;
+	int z = pos1.z - pos2.z;
+	
+	return VectorLength3D(x, y, z);
 }
 
 function int seek_string(str string, str substring, int startPos)

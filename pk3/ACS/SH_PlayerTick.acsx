@@ -178,7 +178,7 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 		tickNum++;
 		for(int p = 0; p < MAX_PLAYERS; p++)
 		{
-			if(p == consolePlayer)
+			if(p == consolePlayer) // If the local client
 			{
 				SetActivatorToPlayer(p);
 				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
@@ -186,6 +186,7 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 					int pCam = PlayerNumber();
 					if(pCam != -1)
 					{
+						// If we're spectating someone with a different class than the last, force a sprite update.
 						if(PlayerClass(pCam) != lastCameraPlayerClass)
 						{
 							SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
