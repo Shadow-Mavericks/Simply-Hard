@@ -3,6 +3,8 @@
 
 #libdefine MAX_PLAYERS 64
 #libdefine PICKUP_SPRITE_TAG 69069
+#libdefine PINGMARKER_TEMP_HAX_TAG 666669
+#libdefine PINGMARKER_BASE_TAG 78000
 
 #libdefine SHSKILL_VERYEASY 0
 #libdefine SHSKILL_EASY 1
@@ -167,6 +169,52 @@ function str GetClassTag(str className)
 	return tag;
 }
 
+//Original code by Isle
+function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOffset, int yOffset, int range, str sprite, str text, int holdTime, int colour) 
+{		
+	int dist, angle, vang, pitch, x, y;
+	
+	if (holdTime == 0) { holdTime = 0.1; }	
+	if (hudX == 0) { hudX = 640; }
+	if (hudY == 0) { hudY = 480; }
+	
+	if(StrIcmp(sprite, "None") != 0)
+	{	
+		SetFont(sprite);
+		text = "A";		
+	}
+	
+	SetHudSize(hudX, hudY, 1);
+	x = GetActorX(tid) - GetActorX(0);
+	y = GetActorY(tid) - GetActorY(0);
+	
+	vang = VectorAngle(x,y);
+	angle = (vang - GetActorAngle(0) + 1.0) % 1.0;
+	
+	if(((vang+0.125)%0.5) > 0.25) dist = FixedDiv(y, sin(vang));
+	else dist = FixedDiv(x, cos(vang));
+	
+	if ((angle < 0.23 || angle > 0.85) && (dist >> 16) < range)
+	{	
+		if (GetActorPitch(0) >= -0.5 && GetActorPitch(0) <= 0.5)
+		{
+			pitch = VectorAngle(dist, GetActorZ(tid) - (GetActorZ(0) + GetActorViewHeight(0)));
+			pitch += FixedMul(GetActorPitch(0), 1.2) % 1.0;
+ 
+			if ((hudX/2) * sin(angle) != 0 && cos(angle) != 0 && (hudX/2) * sin(pitch) != 0 && cos(pitch) != 0)
+			{			
+				x = hudX/2 - ((hudX/2) * sin(angle) / cos(angle));
+				y = hudY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+				
+				x+=xOffset;
+				y+=yOffset;
+				
+				HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16), (y << 16), holdTime);	
+			}	
+		}	
+	}	
+}
+
 // Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
 // to have basic, important functions that have existed since 2016.
 function str ACSUtils_ChangeFlagName(str flag, bool value)
@@ -183,3 +231,26 @@ function void ChangeActorFlag(int tid, str flag, bool value)
 {
 	GiveActorInventory(tid, ACSUtils_ChangeFlagName(flag, value), 1);
 }
+
+//=====================================
+// INTEGER PACKING - Also from ACSUtils
+//=====================================
+
+// Pack unsigned 8-bit values. ========================================
+function int PackBytes(int a, int b, int c, int d)
+{
+	return (a<<24) | (b<<16) | (c<<8) | d;
+}
+function int UnpackByte1(int x) { return (x>>24) & 0x000000FF; }
+function int UnpackByte2(int x) { return (x>>16) & 0x000000FF; }
+function int UnpackByte3(int x) { return (x>>8)  & 0x000000FF; }
+function int UnpackByte4(int x) { return (x>>0)  & 0x000000FF; }
+
+
+// Pack signed 16-bit values. =========================================
+function int PackShorts(int a, int b)
+{
+	return ((a + 0x8000)<<16) | ((b + 0x8000) & 0x0000FFFF);
+}
+function int UnpackShort1(int x) { return ((x>>16) & 0x0000FFFF) - 0x8000; }
+function int UnpackShort2(int x) { return ((x    ) & 0x0000FFFF) - 0x8000; }

@@ -142,3 +142,39 @@ actor SigilHitscanHax : BulletPuff // Also needed.
 			stop
 	}
 }
+
+actor PingMarker : MapMarker
+{
+	Species "Player"
+	
+	RenderStyle Add
+	Alpha 1.0
+	
+	var int user_timer;
+	
+	+PUFFGETSOWNER
+	+PUFFONACTORS
+	+BLOODLESSIMPACT
+	+NOBLOCKMAP
+	+NOCLIP
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+NOTRIGGER
+	+NOTELEPORT
+	-INVISIBLE
+	States
+	{
+		Spawn:
+			SHK1 A 0 NoDelay ACS_NamedExecuteWithResult("SET_PING_TID_HACK") // HACK BECAUSE ZANDRONUM'S ZDOOM BASE IS AS OLD AS SATAN'S CRUSTY ASSHOLE, & IS MISSING PUFFTID FOR LINEATTACK.
+			SHK1 A 0 A_PlaySound("ping", CHAN_AUTO, 1.0, false, 0.1)
+			goto SpawnLoop
+		SpawnLoop:
+			SHK1 ABCDEDCB 1 BRIGHT
+			SHK1 A 0 A_SetUserVar("user_timer", user_timer+1)
+			SHK1 A 0 A_JumpIf(user_timer > 25, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}

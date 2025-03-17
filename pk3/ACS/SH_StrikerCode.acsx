@@ -2260,3 +2260,57 @@ script "SUPERCHARGE_CHECK" (void)
 		SetResultValue(1);
 }
 
+int lastPingRequestTime;
+bool pingedOnce;
+script "REQUEST_PING" (void) NET CLIENTSIDE
+{
+	if(pingedOnce && ((timer() - lastPingRequestTime) < 175))
+		terminate;
+	
+	int x = GetActorX(0);
+	int y = GetActorY(0);
+	int z = GetActorZ(0);
+	int angle = GetActorAngle(0);
+	int pitch = GetActorPitch(0);
+	int packedangles = PackShorts(angle, pitch);
+	
+	NamedRequestScriptPuke("PING_SPOT", x, y, z, packedangles);
+	
+	lastPingRequestTime = timer();
+	pingedOnce = true;
+}
+
+int pingSpotPlayerNumber;
+script "PING_SPOT" (int x, int y, int z, int packedangles) NET
+{
+	int playerNum = PlayerNumber();
+	int angle = UnpackShort1(packedangles);
+	int pitch = UnpackShort2(packedangles);
+	
+	int srcTID = 0;
+	
+	if(PlayerIsSpectator(playerNum) != 0)
+	{
+		z += 24.0;
+		srcTID = UniqueTID();
+		SpawnForced("MapSpot", x, y, z, srcTID, angle);
+	}
+	
+	int puffTID = PINGMARKER_BASE_TAG + playerNum;
+	Thing_Remove(puffTID); // If we already have one, delete it.
+	
+	pingSpotPlayerNumber = playerNum; // HACK BECAUSE ZANDRONUM'S ZDOOM BASE IS AS OLD AS SATAN'S CRUSTY ASSHOLE, & IS MISSING PUFFTID FOR LINEATTACK.
+	LineAttack(srcTID, angle, pitch, 0, "PingMarker", "None", 65536.0, FHF_NORANDOMPUFFZ | FHF_NOIMPACTDECAL, puffTID);
+	
+	if(PlayerIsSpectator(playerNum) != 0)
+	{
+		Thing_Remove(srcTID);
+	}
+}
+
+script "SET_PING_TID_HACK" (void)
+{
+	Thing_ChangeTID(0, PINGMARKER_BASE_TAG + pingSpotPlayerNumber);
+	SetActivatorToPlayer(pingSpotPlayerNumber);
+	Thing_SetTranslation(PINGMARKER_BASE_TAG + pingSpotPlayerNumber, -1);
+}

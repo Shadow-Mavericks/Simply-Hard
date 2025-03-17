@@ -1927,3 +1927,6 @@ $limit AcidBurst1 0
 $limit AcidBurst2 0
 $random AcidBurst { AcidBurst1 AcidBurst2 }
 $limit AcidBurst 0
+
+ping01 ping01
+$random ping { ping01 }

@@ -55,6 +55,7 @@ OptionMenu "SimplyHardOptions"
 	Control "Ultimate Ability", "ClassUltimates"
 	Control "Toss Flare", "Flares"
 	Control "Revive Player", "RevivePlayer"
+	Control "Ping Location", "PingLocation"
 }
 
 ListMenu "PlayerclassMenu"
