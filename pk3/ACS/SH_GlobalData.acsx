@@ -209,7 +209,7 @@ function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOff
 				x+=xOffset;
 				y+=yOffset;
 				
-				HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16), (y << 16), holdTime);	
+				HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16)+0.4, (y << 16), holdTime);	
 			}	
 		}	
 	}	

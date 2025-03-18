@@ -199,7 +199,10 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			SetActivatorToPlayer(consolePlayer);
 			if(ThingCount(T_NONE, PINGMARKER_BASE_TAG + p) > 0)
 			{
-				HudMessageOnActor(PINGMARKER_BASE_TAG + p, (-200)-p, 1024, 768, 0, -16, 65536, "None", StrParam(n:p+1, s:"\cc's ping"), 1873, CR_PURPLE);
+				vec3_t pingPos = { GetActorX(PINGMARKER_BASE_TAG + p), GetActorY(PINGMARKER_BASE_TAG + p), GetActorZ(PINGMARKER_BASE_TAG + p) };
+				vec3_t playerPos = { GetActorX(0), GetActorY(0), GetActorZ(0) };
+				int distance = GetDistance3D(pingPos, playerPos);
+				HudMessageOnActor(PINGMARKER_BASE_TAG + p, (-200)-p, 1024, 768, 0, -24, 65536, "None", StrParam(n:p+1, s:"\cc's ping\n\cb(\ccDistance: \cd", d:distance>>16, s:"\cb)"), 1873, CR_PURPLE);
 				HudMessageOnActor(PINGMARKER_BASE_TAG + p, (-100)-p, 1024, 768, 0, 0, 65536, "None", "X", 1873, CR_RED);
 			}
 
