@@ -1075,12 +1075,6 @@ weapons/cryobowreload   DSBOWREL
 weapons/cryobowhit      DSBOWHIT
 weapons/cryobowflyby    DSBOWFLY
 
-// Super Baron
-superbaron/scream dssbsit
-superbaron/pain dssbpain
-superbaron/death dssbdth
-superbaron/act dssbact
-
 Segway/Go	DSSEGGO
 $Random BOOSTER/DEATH { bostdth1 bostdth2 }
 
