@@ -234,7 +234,7 @@ script "ON_KILL" KILL
 			else
 			{
 				lifeRandom = Random(1, 10000);
-				if(lifeRandom <= 1)
+				if(lifeRandom <= 1) // 0.0001%
 					doLifeSpawn = 2;
 			}
 		}
