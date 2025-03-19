@@ -208,7 +208,7 @@ script "ON_KILL" KILL
 	// ----------------
 	if(GetUserVariable(0, "user_extralife_chance") != -1) // -1 = No spawn
 	{
-		bool doLifeSpawn = false;
+		int doLifeSpawn = 0;
 		int lifeRandom = Random(1, 200);
 		if(GetUserVariable(0, "user_extralife_chance") > 0)
 		{
@@ -218,19 +218,25 @@ script "ON_KILL" KILL
 		else
 		{
 			if(Health >= 6000) // 100%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 5000 && lifeRandom <= 150) // 75%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 4000 && lifeRandom <= 100) // 50%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 3000 && lifeRandom <= 80) // 40%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 2500 && lifeRandom <= 20) // 10%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 1000 && lifeRandom <= 2) // 1%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
 			else if(Health >= 500 && lifeRandom <= 1) // 0.5%
-				doLifeSpawn = true;
+				doLifeSpawn = 1;
+			else
+			{
+				lifeRandom = Random(1, 10000);
+				if(lifeRandom <= 1)
+					doLifeSpawn = 2;
+			}
 		}
 
 		if(doLifeSpawn)
@@ -250,8 +256,17 @@ script "ON_KILL" KILL
 			}
 			else
 			{
-				HudMessageBold(s:"An extra life was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
-				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
+				if(doLifeSpawn == 2)
+				{
+					AmbientSound("SuperLuck", 127);
+					HudMessageBold(s:"\c[LimeGreen]STUPID LUCK! \c[Cyan]An extra life was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
+				}
+				else
+				{
+					HudMessageBold(s:"An extra life was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
+					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
+				}
 			}
 		}
 	}

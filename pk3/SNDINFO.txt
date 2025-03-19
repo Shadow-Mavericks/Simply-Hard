@@ -1911,6 +1911,7 @@ Pop Pop
 FuckThis FuckThis
 SpyWhistle SpyWhstl
 PowerupAlarm QUARTER
+SuperLuck suprluck
 
 AcidMelt acidmelt
 $limit AcidMelt 0
