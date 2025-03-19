@@ -176,32 +176,33 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 	while(1)
 	{
 		tickNum++;
-		for(int p = 0; p < MAX_PLAYERS; p++)
+		int pCam = consolePlayer;
+		SetActivatorToPlayer(consolePlayer);
+		if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
 		{
-			if(p == consolePlayer) // If the local client
+			pCam = PlayerNumber();
+			if(pCam != -1)
 			{
-				SetActivatorToPlayer(p);
-				if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
+				// If we're spectating someone with a different class than the last, force a sprite update.
+				if(PlayerClass(pCam) != lastCameraPlayerClass)
 				{
-					int pCam = PlayerNumber();
-					if(pCam != -1)
-					{
-						// If we're spectating someone with a different class than the last, force a sprite update.
-						if(PlayerClass(pCam) != lastCameraPlayerClass)
-						{
-							SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
-							lastCameraPlayerClass = PlayerClass(pCam);
-						}
-					}
+					SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
+					lastCameraPlayerClass = PlayerClass(pCam);
 				}
 			}
-			
-			SetActivatorToPlayer(consolePlayer);
+		}
+		
+		for(int p = 0; p < MAX_PLAYERS; p++)
+		{
 			if(ThingCount(T_NONE, PINGMARKER_BASE_TAG + p) > 0)
 			{
+				if(pCam != -1)
+					SetActivatorToPlayer(pCam); // Set to local player or whoever they are co-op spying.
+
 				vec3_t pingPos = { GetActorX(PINGMARKER_BASE_TAG + p), GetActorY(PINGMARKER_BASE_TAG + p), GetActorZ(PINGMARKER_BASE_TAG + p) };
 				vec3_t playerPos = { GetActorX(0), GetActorY(0), GetActorZ(0) };
 				int distance = GetDistance3D(pingPos, playerPos);
+				
 				HudMessageOnActor(PINGMARKER_BASE_TAG + p, (-200)-p, 1024, 768, 0, -24, 65536, "None", StrParam(n:p+1, s:"\cc's ping\n\cb(\ccDistance: \cd", d:distance>>16, s:"\cb)"), 1873, CR_PURPLE);
 				HudMessageOnActor(PINGMARKER_BASE_TAG + p, (-100)-p, 1024, 768, 0, 0, 65536, "None", "X", 1873, CR_RED);
 			}
@@ -209,7 +210,7 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 			if(!PlayerInGame(p))
 				continue;
 
-			SetActivatorToPlayer(p);
+			SetActivatorToPlayer(p); // Now let's do stuff with this other player.
 
 			if(GetActorProperty(0, APROP_Health) <= 0)
 				continue;

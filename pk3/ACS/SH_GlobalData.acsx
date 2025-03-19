@@ -169,7 +169,8 @@ function str GetClassTag(str className)
 	return tag;
 }
 
-//Original code by Isle
+// Original code by Isle - Modified by StrikerTheHedgefox.
+// HudMessageOnActor will clobber the selected activator, so make sure to set the activator to the desired player afterwards if you need to do something else.
 function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOffset, int yOffset, int range, str sprite, str text, int holdTime, int colour) 
 {		
 	int dist, angle, vang, pitch, x, y;
@@ -178,41 +179,46 @@ function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOff
 	if (hudX == 0) { hudX = 640; }
 	if (hudY == 0) { hudY = 480; }
 	
+	SetActivatorToPlayer(ConsolePlayerNumber());
+	SetHudSize(hudX, hudY, 1);
 	if(StrIcmp(sprite, "None") != 0)
 	{	
 		SetFont(sprite);
 		text = "A";		
 	}
 	
-	SetHudSize(hudX, hudY, 1);
-	x = GetActorX(tid) - GetActorX(0);
-	y = GetActorY(tid) - GetActorY(0);
+	if(SetActivator(0, AAPTR_PLAYER_GETCAMERA))
+	{
+		x = GetActorX(tid) - GetActorX(0);
+		y = GetActorY(tid) - GetActorY(0);
+		
+		vang = VectorAngle(x,y);
+		angle = (vang - GetActorAngle(0) + 1.0) % 1.0;
+		
+		if(((vang+0.125)%0.5) > 0.25) dist = FixedDiv(y, sin(vang));
+		else dist = FixedDiv(x, cos(vang));
+		
+		if ((angle < 0.23 || angle > 0.85) && (dist >> 16) < range)
+		{	
+			if (GetActorPitch(0) >= -0.5 && GetActorPitch(0) <= 0.5)
+			{
+				pitch = VectorAngle(dist, GetActorZ(tid) - (GetActorZ(0) + GetActorViewHeight(0)));
+				pitch += FixedMul(GetActorPitch(0), 1.2) % 1.0;
 	
-	vang = VectorAngle(x,y);
-	angle = (vang - GetActorAngle(0) + 1.0) % 1.0;
-	
-	if(((vang+0.125)%0.5) > 0.25) dist = FixedDiv(y, sin(vang));
-	else dist = FixedDiv(x, cos(vang));
-	
-	if ((angle < 0.23 || angle > 0.85) && (dist >> 16) < range)
-	{	
-		if (GetActorPitch(0) >= -0.5 && GetActorPitch(0) <= 0.5)
-		{
-			pitch = VectorAngle(dist, GetActorZ(tid) - (GetActorZ(0) + GetActorViewHeight(0)));
-			pitch += FixedMul(GetActorPitch(0), 1.2) % 1.0;
- 
-			if ((hudX/2) * sin(angle) != 0 && cos(angle) != 0 && (hudX/2) * sin(pitch) != 0 && cos(pitch) != 0)
-			{			
-				x = hudX/2 - ((hudX/2) * sin(angle) / cos(angle));
-				y = hudY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
-				
-				x+=xOffset;
-				y+=yOffset;
-				
-				HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16)+0.4, (y << 16), holdTime);	
+				//if ((hudX/2) * sin(angle) != 0 && cos(angle) != 0 && (hudX/2) * sin(pitch) != 0 && cos(pitch) != 0)
+				{			
+					x = hudX/2 - ((hudX/2) * sin(angle) / cos(angle));
+					y = hudY/2 - ((HUDX/2) * sin(pitch) / cos(pitch));
+					
+					x+=xOffset;
+					y+=yOffset;
+					
+					SetActivatorToPlayer(ConsolePlayerNumber());
+					HudMessage(s:text; HUDMSG_PLAIN, msgID, colour, (x << 16)+((x < 0) ? -0.4 : 0.4), (y << 16), holdTime);	
+				}	
 			}	
-		}	
-	}	
+		}
+	}
 }
 
 // Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
