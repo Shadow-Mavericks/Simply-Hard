@@ -2326,6 +2326,9 @@ script "PING_SPOT" (int x, int y, int z, int packedangles) NET
 script "SET_PING_TID_HACK" (void)
 {
 	Thing_ChangeTID(0, PINGMARKER_BASE_TAG + pingSpotPlayerNumber);
+	
+	PlaySound(PINGMARKER_BASE_TAG + pingSpotPlayerNumber, StrParam(s:"Ping", d:Random(1, 24)), CHAN_AUTO, 1.0, false, 0.1, false); 
+	
 	SetActivatorToPlayer(pingSpotPlayerNumber);
 	Thing_SetTranslation(PINGMARKER_BASE_TAG + pingSpotPlayerNumber, -1);
 }

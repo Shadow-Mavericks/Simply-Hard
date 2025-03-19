@@ -471,16 +471,6 @@ Object GreenPlasma
 	frame TBALB { Light FPLAS2 }
 }
 
-Object FiendsPlasma4
-{
-	frame TBALB { Light FPLAS2 }
-}
-
-Object FiendsPlasma5
-{
-	frame TBALA { Light FPLAS1 }
-}
-
 /*Object Devistaterblast
 {
 	frame TBALB { Light FPLAS2 }

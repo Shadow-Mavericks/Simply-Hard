@@ -1923,15 +1923,15 @@ $limit AcidBurst2 0
 $random AcidBurst { AcidBurst1 AcidBurst2 }
 $limit AcidBurst 0
 
-ping01 ping01
-ping02 ping02
-ping03 ping03
-ping04 ping04
-ping05 ping05
-ping06 ping06
-ping07 ping07
-ping08 ping08
-ping09 ping09
+ping1 ping1
+ping2 ping2
+ping3 ping3
+ping4 ping4
+ping5 ping5
+ping6 ping6
+ping7 ping7
+ping8 ping8
+ping9 ping9
 ping10 ping10
 ping11 ping11
 ping12 ping12
@@ -1947,29 +1947,3 @@ ping21 ping21
 ping22 ping22
 ping23 ping23
 ping24 ping24
-$random ping {
-	ping01
-	ping02
-	ping03
-	ping04
-	ping05
-	ping06
-	ping07
-	ping08
-	ping09
-	ping10
-	ping11
-	ping12
-	ping13
-	ping14
-	ping15
-	ping16
-	ping17
-	ping18
-	ping19
-	ping20
-	ping21
-	ping22
-	ping23
-	ping24
-}
