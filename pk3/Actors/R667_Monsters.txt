@@ -14657,7 +14657,6 @@ ACTOR QuakeFodder : ZombieFodder
 {
 	Health 20
 	GibHealth 15
-	+DONTRIP
 	+DontHurtSpecies
 	+THRUSPECIES
 	Obituary "%o joins the zombies."
