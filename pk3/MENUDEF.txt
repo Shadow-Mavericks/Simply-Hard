@@ -82,7 +82,7 @@ ListMenu "EpisodeMenu"
 	StaticTextCentered 160, 32, "Select an Episode:"
 	
 	Font "SmallFont", "Red", "Gold"
-	Linespacing 200 // Force it into list mode
+	Linespacing 16
 	Position 48, 63
 	Selector "-", -9, -1
 	

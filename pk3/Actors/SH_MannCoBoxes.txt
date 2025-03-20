@@ -346,7 +346,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			Goto AlertAndDespawn
 
 		SuicideBomber:
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			Goto AlertAndDespawn
 
 		WhiteRabbit:
@@ -376,23 +376,23 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			goto Despawn
 
 		BombingRun: // DELAY_LAUGH
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
 			"####" A 60
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
 			"####" A 60
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("suicidebomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, 32, 1, 0, 0, 0, 45, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 0, -32, 1, 0, 0, 0, 90,	SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", 32, 0, 1, 0, 0, 0, 135, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SH_SuicideBomber", -32, 0, 1, 0, 0, 0, 180, SXF_NOCHECKPOSITION, 0)
 			Goto Despawn
 
 		BIGSUCC:

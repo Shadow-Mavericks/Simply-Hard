@@ -18,6 +18,7 @@ enum
 	WADCOMPAT_STRANGEAEONS,
 	WADCOMPAT_BTSXE2,
 	WADCOMPAT_PUSS22,
+	WADCOMPAT_VALIANT,
 };
 
 function void detect_wads(void)
@@ -91,6 +92,15 @@ function void detect_wads(void)
 		{
 			Log(s:"Back To Saturn X: Episode 2 Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_BTSXE2);
+			return;
+		}
+		
+		find_pos = seek_string(mapinfo_data, "map MAP01 \"Bad Reception\"", 0);
+		find_pos = seek_string(mapinfo_data, "map MAP02 \"No Rush\"", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"Valiant Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_VALIANT);
 			return;
 		}
 
@@ -1318,7 +1328,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 					case WADCOMPAT_MAYHEM18P:
 					{
-						actor_swap("CommanderKeen", "SuicideBomber", 256);
+						actor_swap("CommanderKeen", "SH_SuicideBomber", 256);
 						actor_swap("WolfensteinSS", "MayhemPlasmaMarine", 256);
 						actor_swap("BaronSpawner", "MayhemGrell", 256);
 						actor_swap("Masterpainisspawner", "MayhemImmolator", 256);
@@ -1368,6 +1378,13 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					case WADCOMPAT_PUSS22:
 					{
 						actor_swap("Zamble", "PUSS22_Ghoul", 256);
+						break;
+					}
+					case WADCOMPAT_VALIANT:
+					{
+						actor_swap("SuicideBomber", "SH_SuicideBomber", 256);
+						actor_swap("Hellpainis", "Valiant_PyroDemonSpawner", 256);
+						actor_swap("Masterpainisspawner", "Valiant_CybruiserSpawner", 256);
 						break;
 					}
 				}

@@ -114,7 +114,7 @@ Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALA
 	DropItem "N_Demon_Ice"				255 5
 	DropItem "N_Demon_Electric"			255 5
 	DropItem "N_Demon_Heavymetal"		255 5
-	DropItem "SuicideBomber" 			255 5
+	DropItem "SH_SuicideBomber" 		255 5
 	Dropitem "Kagohive"					255 5
 	Dropitem "MeleeRevenant"			255 5
 	//Dropitem "Flemmeteorite"			255 5
@@ -126,7 +126,7 @@ Actor StealthynessDemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 	Height 56
 	Dropitem "fastSpectre" 					255 100
 	Dropitem "Stealthdemon" 				255 25
-	Dropitem "Suicidebomber" 				255 5
+	Dropitem "SH_SuicideBomber" 			255 5
 	Dropitem "fastDemon" 					255 5
 	DropItem "N_Demonghost_Acid"			255 5
 	DropItem "N_Demonghost_Fire"			255 5

@@ -799,7 +799,7 @@ Color 0.3 0.1 0.0
 Size 35
 }
 
-Object SuicideBomber
+Object SH_SuicideBomber
 {
 Frame BMBEM { Light SuicideBomberDeath1 }
 Frame BMBEN { Light SuicideBomberDeath2 }

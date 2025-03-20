@@ -1372,3 +1372,21 @@ actor PUSS22_Ghoul : SH_BaseMonster
 			goto See
 	}
 }
+
+actor Valiant_PyroDemonSpawner : SH_BaseMonsterRandomSpawner
+{
+	Radius 24
+	Height 64
+	Dropitem "ValiantPyrodemon"			255 50
+	Dropitem "Cybruiser"				255 5
+	Dropitem "Afrit"					255 5
+	DropItem "HellsFury"				255 5
+}
+
+actor Valiant_CybruiserSpawner : SH_BaseMonsterRandomSpawner
+{
+	Radius 24
+	Height 64
+	DropItem "Cybruiser"			255 10
+	DropItem "Cyberbaron"			255 3
+}
