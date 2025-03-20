@@ -3462,7 +3462,7 @@ ACTOR Haedexebus : Hardfatso
 	PAINSOUND "UNMNPAIN"
 	DEATHSOUND "UNMNDYIN"
 	Decal "RedPlasmaScorch"
-	Obituary "%o was unmade by an UnMancubus."
+	Obituary "%o was subjected to the hatred of a Haedexebus."
 	States
 	{
 		Spawn:
@@ -3550,7 +3550,7 @@ ACTOR FatMace
 	Radius 8
 	Height 8
 	Speed 30
-	Damage 2
+	Damage (8)
 	RENDERSTYLE Normal
 	Damagetype fire
 	PROJECTILE
@@ -3565,7 +3565,7 @@ ACTOR FatMace
 			loop
 		Death:
 			RIP1 D 0 Bright A_SetTranslucent (0.75,1)
-			RIP1 D 1 Bright A_Explode(64,64,1)
+			RIP1 D 1 Bright A_Explode(50,64,1)
 			RIP1 D 0 Bright A_SpawnItemEx("FatMace2",0,0,0,40,0,0,0,0,0)
 			RIP1 D 0 Bright A_SpawnItemEx("FatMace2",0,0,0,40,0,0,60,0,0)
 			RIP1 D 0 Bright A_SpawnItemEx("FatMace2",0,0,0,40,0,0,120,0,0)
@@ -3581,7 +3581,7 @@ ACTOR FatMace2
 {
 	Radius 5
 	Height 5
-	Damage 1
+	Damage (1)
 	PROJECTILE
 	RENDERSTYLE Normal
 	Damagetype Normal

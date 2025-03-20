@@ -127,21 +127,21 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 		// Good Results
 		// ------------
 		DISPENSER:
-			"####" D 1 A_SpawnItemEx ("Dispenser", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Dispenser", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		SENTREH:
-			"####" D 1 A_SpawnItemEx ("SentryBox", 0, 0, 12, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SentryBox", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Shield:
-			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("DeployableShield", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		Bundle:
-			"####" D 1 A_SpawnItemEx ("SentryBox",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("Dispenser",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			"####" D 1 A_SpawnItemEx ("DeployableShield",  0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("SentryBox", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Dispenser", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("DeployableShield", 0, 0, 4.0*scaley, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180.0, 180), SXF_NOCHECKPOSITION, 0)
 			goto Despawn
 
 		MedBag:

@@ -559,12 +559,12 @@ actor MortarGun : SH_Weapon
 		Deselect:
 			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldDeselect")
 			MORT A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		Select:
 			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldSelect")
 			MORT A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		Fire:
 			MORT B 0 A_JumpIfNoAmmo("DryFire")
@@ -806,12 +806,12 @@ actor AssaultCannon : SH_Weapon
 		Select:
 			TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldSelect")
 			ASAU A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		Deselect:
 			TNT1 A 0 A_JumpIfInventory("Tier7upgradetoken", 1, "GoldDeselect")
 			ASAU A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		Fire:
 			TNT1 A 0 A_JumpIfNoAmmo("DryFire")
@@ -855,11 +855,11 @@ actor AssaultCannon : SH_Weapon
 			loop
 		GoldSelect:
 			BLWH A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		GoldDeselect:
 			BLWH A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		GoldFire:		
 			BLWH B 0 A_PlaySound ("Max/BWPlasma")
@@ -919,11 +919,11 @@ actor DisruptorRifle : SH_Weapon
 	States
 	{
 		Select:
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			DRIF A 1 A_Raise
 			Goto Select+1
 		Deselect:
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			DRIF A 1 A_Lower
 			Goto Deselect+1
 		Ready:
@@ -991,12 +991,12 @@ actor FusionCutter : SH_Weapon
 		Select:
 			TNT1 A 0 A_JumpIfInventory ("Tier3upgradetoken", 1, "GoldSelect")
 			FUSI A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		Deselect:
 			TNT1 A 0 A_JumpIfInventory ("Tier3upgradetoken", 1, "GoldDeselect")
 			FUSI A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		Ready:
 			TNT1 A 0 A_JumpIfInventory ("Tier3upgradetoken", 1, "GoldReady")
@@ -1086,11 +1086,11 @@ actor FusionCutter : SH_Weapon
 			goto LightDone
 		GoldSelect:
 			FUS2 A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		GoldDeselect:
 			FUS2 A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		GoldReady:
 			FUS2 A 1 A_WeaponReady
@@ -1202,13 +1202,13 @@ actor Autogun : SH_Weapon
 		Select:
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldSelect")
 			AUTO A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			Loop
 		Deselect:
-			NULL A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldDeselect")
 			AUTO A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			Loop
 		DryFire:
 			AUTO A 0 A_PlaySound("Max/RepeaterDryFire", CHAN_WEAPON)
@@ -1228,13 +1228,13 @@ actor Autogun : SH_Weapon
 		Hold:
 			TNT1 A 0 A_Jumpifnoammo("DryFire")
 			TNT1 A 0 A_JumpIfInventory ("Tier4upgradetoken", 1, "GoldHold")
-			NULL A 0 A_PlaySound ("Max/autoloop", CHAN_WEAPON, 1, 1)
+			TNT1 A 0 A_PlaySound ("Max/autoloop", CHAN_WEAPON, 1, 1)
 			AUTO C 2	
 			AUTO B 0 Bright A_FireCustomMissile ("Bullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			AUTO B 2 Bright A_GunFlash
 			AUTO C 2
-			NULL C 0 A_ReFire
-			NULL A 0 A_StopSound(CHAN_WEAPON)
+			TNT1 C 0 A_ReFire
+			TNT1 A 0 A_StopSound(CHAN_WEAPON)
 			Goto Ready
 		AltFire:
 			TNT1 A 0 A_Jumpifnoammo("DryFire")
@@ -1265,11 +1265,11 @@ actor Autogun : SH_Weapon
 			Loop
 		GoldSelect:
 			GYRO A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			Loop
 		GoldDeselect:
 			GYRO A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			Loop
 		GoldDryFire:
 			GYRO A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
@@ -1283,7 +1283,7 @@ actor Autogun : SH_Weapon
 			GYRO C 0 A_ReFire
 			Goto Ready
 		GoldHold:		
-			NULL A 0 A_PlaySound ("Max/GAutoloop", CHAN_WEAPON, 1, 1)
+			TNT1 A 0 A_PlaySound ("Max/GAutoloop", CHAN_WEAPON, 1, 1)
 			GYRO B 0 Bright A_FireCustomMissile ("GoldBullet", frandom(-0.5, 0.5), CallACS("SUPERCHARGE_CHECK"), 10, 0, 0, frandom(-0.5, 0.5))
 			GYRO B 2 Bright A_GunFlash
 			GYRO C 3
@@ -1431,12 +1431,12 @@ actor DFBlaster : SH_Weapon
 		Deselect:
 			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldDeselect")
 			BLRF A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			Loop
 		Select:
 			TNT1 A 0 A_JumpIfInventory("Tier2upgradetoken", 1, "GoldSelect")
 			BLRF A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			Loop
 		DryFire:
 			BLRF A 0 A_PlaySound("Max/E-11DryFire", CHAN_WEAPON)
@@ -1463,11 +1463,11 @@ actor DFBlaster : SH_Weapon
 			TTN1 AA 1 Bright A_SetPitch(pitch+0.25)
 			Goto LightDone
 		GoldDeselect:
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			EE11 A 1 A_Lower
 			Loop
 		GoldSelect:
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			EE11 A 1 A_Raise
 			Loop
 		GoldReady:
@@ -1577,11 +1577,11 @@ actor DFFist : SH_Weapon
 			loop
 		Deselect:
 			FIST A 1 A_Lower
-			NULL AA 0 A_Lower
+			TNT1 AA 0 A_Lower
 			loop
 		Select:
 			FIST A 1 A_Raise
-			NULL AA 0 A_Raise
+			TNT1 AA 0 A_Raise
 			loop
 		Fire:
 			FIST B 4
