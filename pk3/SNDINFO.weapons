@@ -7,6 +7,9 @@ Weapon/Machinegunfire	DEMGFIRE
 $limit Weapon/Machinegunfire 0
 $volume Weapon/Machinegunfire 0.5
 
+AcidChaingun ACIDCHNG
+$limit AcidChaingun 0
+
 // ---------------
 // Kunai's Weapons
 // ---------------

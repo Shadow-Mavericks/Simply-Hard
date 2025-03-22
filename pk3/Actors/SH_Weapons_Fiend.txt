@@ -647,14 +647,14 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 		GoldFire:
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
 			GGF4 C 1
 			GGF4 D 1
 			GGN4 C 1
 			GGN4 D 1
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
 			GGF4 A 1
 			GGF4 B 1
 			GGN4 C 1
@@ -664,14 +664,14 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 		GoldHold:
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
 			GGF4 C 1
 			GGF4 D 1
 			GGN4 C 1
 			GGN4 D 1
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
 			GGF4 A 1
 			GGF4 B 1
 			GGN4 C 1
