@@ -419,10 +419,10 @@ ACTOR SuperShawtgun : SH_Weapon
 			SHT2 A 3
 			// A 7
 			SHT2 A 0 A_FireShotgun2
-			SHT2 A 1 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			SHT2 A 0 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
 			SH2F A 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			SH2F B 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
-			SHT2 AA 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
+			SHT2 AAA 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			SHT2 B 2
 			goto SSGAnim
 		
@@ -518,10 +518,10 @@ ACTOR SuperShawtgun : SH_Weapon
 			// A 7
 			SHT2 S 0 A_FireBullets (16, 11, 40, 3, "BulletPuff")
 			SHT2 S 0 A_PlaySound ("weapons/sshotf", CHAN_WEAPON)
-			SHT2 S 1 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			SHT2 S 0 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
 			SH2F Q 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			SH2F R 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
-			SHT2 SS 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
+			SHT2 SSS 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			SHT2 B 2
 			goto SSGAnim
 		GoldClose:
