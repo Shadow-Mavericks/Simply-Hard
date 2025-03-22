@@ -2440,6 +2440,8 @@ ACTOR whiterabbit : SH_BaseMonster
 	MinMissileChance 192
 	ReactionTime 10
 	Damage 250
+	DamageType "RabbitBite"
+	DamageFactor "RabbitBite", 0.0
 
 	Dropitem "Allupgradetokens", 128
 
