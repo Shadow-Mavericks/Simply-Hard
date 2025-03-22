@@ -1390,3 +1390,12 @@ actor Valiant_CybruiserSpawner : SH_BaseMonsterRandomSpawner
 	DropItem "Cybruiser"			255 10
 	DropItem "Cyberbaron"			255 3
 }
+
+actor Valiant_SuperMancubusSpawner : SH_BaseMonsterRandomSpawner
+{
+	Radius 48
+	Height 64
+	Dropitem "ValiantSuperMancubus"		255 50
+	Dropitem "Chainguncubus"			255 5
+	Dropitem "Cryocubus"				255 5
+}
