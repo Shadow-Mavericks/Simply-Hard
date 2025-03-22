@@ -8,19 +8,30 @@ include "xlat/doom.txt"
 // Simply Hard replacements:
 
 // Closers
-3 = WALK, ACS_ExecuteWithResult(13400, tag, 3, 0, 0) // 3 = WALK,		Door_Close (tag, D_SLOW)
-5 = WALK, ACS_ExecuteWithResult(13400, tag, 5, 0, 0) // 5 = WALK,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
-50 = USE, ACS_ExecuteWithResult(13400, tag, 50, 0, 0) // 50 = USE,		Door_Close (tag, D_SLOW)
-56 = WALK, ACS_ExecuteWithResult(13400, tag, 56, 0, 0) // 56 = WALK,		Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2)
-110 = WALK,	ACS_ExecuteWithResult(13400, tag, 110, 0, 0)// 110 = WALK,		Door_Close (tag, D_FAST)
-113 = USE, ACS_ExecuteWithResult(13400, tag, 113, 0, 0) // 113 = USE,		Door_Close (tag, D_FAST)
+// 3 = WALK,		Door_Close (tag, D_SLOW)
+// 5 = WALK,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
+// 50 = USE,		Door_Close (tag, D_SLOW)
+// 56 = WALK,		Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2)
+// 110 = WALK,		Door_Close (tag, D_FAST)
+// 113 = USE,		Door_Close (tag, D_FAST)
+3 = WALK, ACS_ExecuteWithResult (13400, tag, 3, 0, 0)
+5 = WALK, ACS_ExecuteWithResult (13400, tag, 5, 0, 0)
+50 = USE, ACS_ExecuteWithResult (13400, tag, 50, 0, 0)
+56 = WALK, ACS_ExecuteWithResult (13400, tag, 56, 0, 0)
+110 = WALK,	ACS_ExecuteWithResult (13400, tag, 110, 0, 0)
+113 = USE, ACS_ExecuteWithResult (13400, tag, 113, 0, 0)
 
 //16984 Generic_Ceiling (tag, C_TURBO, 0, 5, 0)
 //25176 W1 floor up to ceiling turbo
 
 // Openers
-2 = WALK, ACS_ExecuteWithResult(13400, tag, 2, 0, 0) // 2 = WALK,		Door_Open (tag, D_SLOW)
-23 = USE, ACS_ExecuteWithResult(13400, tag, 23, 0, 0) // 23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
-103 = USE, ACS_ExecuteWithResult(13400, tag, 103, 0, 0) // 103 = USE,		Door_Open (tag, D_SLOW)
-109 = WALK,	ACS_ExecuteWithResult(13400, tag, 109, 0, 0) // 109 = WALK,		Door_Open (tag, D_FAST)
-112 = USE, ACS_ExecuteWithResult(13400, tag, 112, 0, 0) // 112 = USE,		Door_Open (tag, D_FAST)
+// 2 = WALK,		Door_Open (tag, D_SLOW)
+// 23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
+// 103 = USE,		Door_Open (tag, D_SLOW)
+// 109 = WALK,		Door_Open (tag, D_FAST)
+// 112 = USE,		Door_Open (tag, D_FAST)
+2 = WALK, ACS_ExecuteWithResult (13400, tag, 2, 0, 0)
+23 = USE, ACS_ExecuteWithResult (13400, tag, 23, 0, 0) 
+103 = USE, ACS_ExecuteWithResult (13400, tag, 103, 0, 0) 
+109 = WALK, ACS_ExecuteWithResult (13400, tag, 109, 0, 0)
+112 = USE, ACS_ExecuteWithResult (13400, tag, 112, 0, 0)
