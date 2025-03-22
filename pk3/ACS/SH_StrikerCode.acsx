@@ -19,6 +19,7 @@ enum
 	WADCOMPAT_BTSXE2,
 	WADCOMPAT_PUSS22,
 	WADCOMPAT_VALIANT,
+	WADCOMPAT_SARGASSO,
 };
 
 function void detect_wads(void)
@@ -33,7 +34,7 @@ function void detect_wads(void)
 	int startIndex;
 	int size;
 	int find_pos;
-	str mapinfo_data;
+	str lump_data;
 
 	while(true)
 	{
@@ -47,10 +48,10 @@ function void detect_wads(void)
 
 		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
 		find_pos = 0;
-		mapinfo_data = LumpReadString(startIndex, 0, size);
+		lump_data = LumpReadString(startIndex, 0, size);
 
-		find_pos = seek_string(mapinfo_data, "map map01 \"Sundowning\"", 0);
-		find_pos = seek_string(mapinfo_data, "map map02 \"Asterion\"", find_pos);
+		find_pos = seek_string(lump_data, "map map01 \"Sundowning\"", 0);
+		find_pos = seek_string(lump_data, "map map02 \"Asterion\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"MAYhem 2018: Orange Edition Detected");
@@ -59,8 +60,8 @@ function void detect_wads(void)
 		}
 		
 
-		find_pos = seek_string(mapinfo_data, "map map01 \"Failed Mining Operation\"", 0);
-		find_pos = seek_string(mapinfo_data, "map map02 \"Vasiliki Thalassa\"", find_pos);
+		find_pos = seek_string(lump_data, "map map01 \"Failed Mining Operation\"", 0);
+		find_pos = seek_string(lump_data, "map map02 \"Vasiliki Thalassa\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"MAYhem 2018: Purple Edition Detected");
@@ -68,8 +69,8 @@ function void detect_wads(void)
 			return;
 		}
 		
-		find_pos = seek_string(mapinfo_data, "map map01 \"Spiteful Hall\"", 0);
-		find_pos = seek_string(mapinfo_data, "map map02 \"Murskville\"", find_pos);
+		find_pos = seek_string(lump_data, "map map01 \"Spiteful Hall\"", 0);
+		find_pos = seek_string(lump_data, "map map02 \"Murskville\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"MAYhem 2019: Blood for the Doom God Detected");
@@ -77,8 +78,8 @@ function void detect_wads(void)
 			return;
 		}
 
-		find_pos = seek_string(mapinfo_data, "map E1M1 \"The Traveler\"", 0);
-		find_pos = seek_string(mapinfo_data, "map E1M2 \"Resident Evil\"", find_pos);
+		find_pos = seek_string(lump_data, "map E1M1 \"The Traveler\"", 0);
+		find_pos = seek_string(lump_data, "map E1M2 \"Resident Evil\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"Strange Aeons Detected");
@@ -86,8 +87,8 @@ function void detect_wads(void)
 			return;
 		}
 
-		find_pos = seek_string(mapinfo_data, "map MAP01 \"Shadow Port\"", 0);
-		find_pos = seek_string(mapinfo_data, "map MAP02 \"Underwater Explosions\"", find_pos);
+		find_pos = seek_string(lump_data, "map MAP01 \"Shadow Port\"", 0);
+		find_pos = seek_string(lump_data, "map MAP02 \"Underwater Explosions\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"Back To Saturn X: Episode 2 Detected");
@@ -95,8 +96,17 @@ function void detect_wads(void)
 			return;
 		}
 		
-		find_pos = seek_string(mapinfo_data, "map MAP01 \"Bad Reception\"", 0);
-		find_pos = seek_string(mapinfo_data, "map MAP02 \"No Rush\"", find_pos);
+		find_pos = seek_string(lump_data, "map MAP01 \"Bad Reception\"", 0);
+		find_pos = seek_string(lump_data, "map MAP02 \"No Rush\"", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"Valiant Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_VALIANT);
+			return;
+		}
+		
+		find_pos = seek_string(lump_data, "map MAP01 \"Bad Reception\"", 0);
+		find_pos = seek_string(lump_data, "map MAP02 \"No Rush\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"Valiant Detected");
@@ -113,7 +123,7 @@ function void detect_wads(void)
 	startIndex = 0;
 	size = 0;
 	find_pos = 0;
-	mapinfo_data = "None";
+	lump_data = "None";
 	
 	while(true)
 	{
@@ -127,14 +137,49 @@ function void detect_wads(void)
 
 		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
 		find_pos = 0;
-		mapinfo_data = LumpReadString(startIndex, 0, size);
+		lump_data = LumpReadString(startIndex, 0, size);
 
-		find_pos = seek_string(mapinfo_data, "map TITLEMAP \"Chilling Winds\"", 0);
-		find_pos = seek_string(mapinfo_data, "map map01 \"In Suffering is Death\"", find_pos);
+		find_pos = seek_string(lump_data, "map TITLEMAP \"Chilling Winds\"", 0);
+		find_pos = seek_string(lump_data, "map map01 \"In Suffering is Death\"", find_pos);
 		if(find_pos != -1)
 		{
 			Log(s:"PUSS22: The Chilling Winds of Dis Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_PUSS22);
+			return;
+		}
+
+		// Make sure to close the lump again to free the handle.
+		LumpClose(startIndex);
+	}
+	
+	// Try DEHACKED lumps.
+	// Clear everything.
+	startIndex = 0;
+	size = 0;
+	find_pos = 0;
+	lump_data = "None";
+	
+	while(true)
+	{
+		startIndex = LumpOpen("DEHACKED", startIndex + 1);
+		if (startIndex == -1)
+		{
+			Log(s:"No more DEHACKED lumps found.");
+			break;
+		}
+		Log(s:"Next DEHACKED lump was found at index ", d:startIndex, s:".");
+
+		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);
+		find_pos = 0;
+		lump_data = LumpReadString(startIndex, 0, size);
+
+		find_pos = seek_string(lump_data, "Thing 2 (Clone)", 0);
+		find_pos = seek_string(lump_data, "Thing 4 (Sinister Overlord)", find_pos);
+		find_pos = seek_string(lump_data, "Thing 5 (Lock-on Attack)", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"Sargasso Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_SARGASSO);
 			return;
 		}
 
@@ -1387,6 +1432,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("BaronSpawner", "Valiant_SuperMancubusSpawner", 256);
 						actor_swap("Masterpainisspawner", "Valiant_CybruiserSpawner", 256);
 						actor_swap("TallBluetorch", "ValiantFinalBoss", 256);
+						break;
+					}
+					case WADCOMPAT_SARGASSO:
+					{
+						actor_swap("WolfensteinSS", "Sargasso_PlasmaMarine", 256);
 						break;
 					}
 				}

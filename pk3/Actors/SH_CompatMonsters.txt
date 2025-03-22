@@ -150,6 +150,9 @@ actor MayhemImmolator
 	}
 }
 
+// MAYhem 2019: Blood for the Doom God
+// -----------------------------------
+
 actor Mayhem19ShotgunCultist : SH_BaseMonster
 {
 	Tag "Shotgun Cultist"
@@ -1320,6 +1323,9 @@ actor Mayhem19Spooklord : SH_BaseMonster
 	}
 }
 
+// PUSS22: The Chilling Winds of Dis
+// ---------------------------------
+
 actor PUSS22_Ghoul : SH_BaseMonster
 {
 	Tag "Ghoul"
@@ -1373,6 +1379,9 @@ actor PUSS22_Ghoul : SH_BaseMonster
 	}
 }
 
+// Valiant
+// -------
+
 actor Valiant_PyroDemonSpawner : SH_BaseMonsterRandomSpawner
 {
 	Radius 24
@@ -1398,4 +1407,68 @@ actor Valiant_SuperMancubusSpawner : SH_BaseMonsterRandomSpawner
 	Dropitem "ValiantSuperMancubus"		255 50
 	Dropitem "Chainguncubus"			255 5
 	Dropitem "Cryocubus"				255 5
+}
+
+// Sargasso
+// --------
+
+actor Sargasso_PlasmaMarine : SH_BaseMonster
+{
+	Tag "Plasma Marine"
+	Species "Ruffian"
+	Health 100
+	Speed 11
+	Radius 20
+	Height 56
+	ReactionTime 8
+	PainChance 170
+	Mass 100
+	Translation "208:223=112:127", "160:167=112:127"
+	BloodColor Blue
+	SeeSound "DSPOSIT2"
+	PainSound "DSPOPAIN"
+	DeathSound "DSPODTH2"
+	ActiveSound "DSPOSACT"
+	States
+	{
+		Spawn:
+			SSWV AB 10 A_Look
+			loop
+		See:
+			SSWV AABBCCDD 3 A_Chase
+			loop
+		Missile:
+			SSWV E 4 A_FaceTarget
+			SSWV F 2 A_FaceTarget
+			SSWV G 2 Bright A_CustomMissile ("ArachnotronPlasma", 32, 0, frandom(-6.0, 6.0), CMF_OFFSETPITCH, frandom(-4.0, 4.0)) 
+			SSWV F 2 A_FaceTarget
+			SSWV G 2 Bright A_CustomMissile ("ArachnotronPlasma", 32, 0, frandom(-6.0, 6.0), CMF_OFFSETPITCH, frandom(-4.0, 4.0)) 
+			SSWV F 2 A_FaceTarget
+			SSWV G 2 Bright A_CustomMissile ("ArachnotronPlasma", 32, 0, frandom(-6.0, 6.0), CMF_OFFSETPITCH, frandom(-4.0, 4.0)) 
+			SSWV F 2 A_FaceTarget
+			SSWV G 2 Bright A_CustomMissile ("ArachnotronPlasma", 32, 0, frandom(-6.0, 6.0), CMF_OFFSETPITCH, frandom(-4.0, 4.0)) 
+			SSWV F 2 A_FaceTarget
+			goto See
+		Pain:
+			SSWV H 3
+			SSWV H 3 A_Pain
+			goto See
+		Death:
+			SSWV I 5
+			SSWV J 5 A_Scream
+			SSWV K 5 A_Fall
+			SSWV L 5
+			SSWV M -1
+			stop
+		XDeath:
+			SSWV N 5
+			SSWV O 5 A_XScream
+			SSWV P 5 A_Fall
+			SSWV QRSTU 5
+			SSWV V -1
+			stop
+		Raise:
+			SSWV MLKIJ 5
+			goto See
+	}
 }
