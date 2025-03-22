@@ -2574,7 +2574,7 @@ ACTOR Kago : SwarmFly
 {
 	Health 5
 	Radius 10
-	Height 10
+	Height 12
 	Speed 2
 	Monster
 	Damage (2)
