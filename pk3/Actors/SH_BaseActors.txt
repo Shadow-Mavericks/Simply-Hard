@@ -29,6 +29,25 @@ actor SH_BaseParticle
 }
 
 //////////////////////////////////////////////////////////////////
+// Projectiles
+//////////////////////////////////////////////////////////////////
+
+actor SH_BaseProjectile
+{
+	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	Projectile
+	+NOTIMEFREEZE
+	+RANDOMIZE
+}
+
+actor SH_BaseFastProjectile
+{
+	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	+NOTIMEFREEZE
+	+RANDOMIZE
+}
+
+//////////////////////////////////////////////////////////////////
 // Player Classes
 //////////////////////////////////////////////////////////////////
 

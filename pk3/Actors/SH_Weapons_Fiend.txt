@@ -1,11 +1,11 @@
-actor FiendsAcidPuff : BulletPuff
+actor FiendsAcidPuff : SH_BulletPuff
 {
-	VSpeed 0
 	RenderStyle Add
 	Alpha 1.0
 	DamageType "Acid"
 	+PUFFONACTORS
 	+PUFFGETSOWNER
+	+NOTIMEFREEZE
 	States
 	{
 		XDeath:

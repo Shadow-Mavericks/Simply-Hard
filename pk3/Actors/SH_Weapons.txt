@@ -7,6 +7,7 @@ actor SH_BulletPuff : BulletPuff replaces BulletPuff
 	Alpha 0.8
 	
 	+PUFFGETSOWNER
+	+NOTIMEFREEZE
 	States
 	{
 		XDeath:

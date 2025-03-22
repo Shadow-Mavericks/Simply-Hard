@@ -2,6 +2,7 @@ actor KunaisLifeStealingPuff : BulletPuff
 {
 	Radius 1
 	Height 1
+	+NOTIMEFREEZE
 	+EXTREMEDEATH
 	+PUFFONACTORS
 	+PUFFGETSOWNER
@@ -100,6 +101,7 @@ actor HealingSeeker
 	+SEEKERMISSILE
 	+NOCLIP
 	+NOINTERACTION
+	+NOTIMEFREEZE
 	States
 	{
 		Spawn:
