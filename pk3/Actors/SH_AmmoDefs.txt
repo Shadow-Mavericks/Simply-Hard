@@ -15,12 +15,12 @@ ACTOR PeastolClip : Ammo
 	Tag "Pistol Round"
 	Inventory.PickupMessage "$GOTCLIP" // "Picked up a clip."
 	Inventory.Amount 12
-	Inventory.MaxAmount 100
+	Inventory.MaxAmount 150
 	Inventory.Icon "CLIPA0"
 	Inventory.Respawntics"2100"
 	Inventory.PickupSound "AMMO/CLIP"
 	Ammo.BackpackAmount 24
-	Ammo.BackpackMaxAmount 250
+	Ammo.BackpackMaxAmount 400
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
 	States
 	{
@@ -78,7 +78,7 @@ ACTOR MGRounds : Ammo
 	Inventory.Icon "AMMOA0"
 	Inventory.PickupSound "AMMO/AKMAG"
 	Ammo.BackpackAmount 75
-	Ammo.BackpackMaxAmount 500
+	Ammo.BackpackMaxAmount 750
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
 	States
 	{
@@ -96,7 +96,7 @@ ACTOR RoketAmmo : Ammo
 	Inventory.MaxAmount 50
 	Inventory.Respawntics 6300
 	Ammo.BackpackAmount 1
-	Ammo.BackpackMaxAmount 100
+	Ammo.BackpackMaxAmount 150
 	Inventory.Icon "ROCKA0"
 	Inventory.PickupSound "AMMO/ROKET"
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
@@ -139,7 +139,7 @@ ACTOR Railslugs : AMMO
 	Inventory.Respawntics"4200"
 	Inventory.PickupSound "AMMO/BATTERY"
 	Ammo.BackpackAmount 10
-	Ammo.BackpackMaxAmount 50
+	Ammo.BackpackMaxAmount 75
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
 	States
 	{
