@@ -103,6 +103,32 @@ actor AcidPuddle : SH_BaseParticle
 	}
 }
 
+actor RedShockwave : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			NULL A 0 NoDelay A_SetPitch(frandom(-22.5, 22.5))
+			NULL ABCDEFGH 1 Bright A_Fadeout(0.1)
+			stop
+	}
+}
+
+actor GreenShockwave : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			NULL A 0 NoDelay A_SetPitch(frandom(-22.5, 22.5))
+			NULL ABCDEFGH 1 Bright A_Fadeout(0.1)
+			stop
+	}
+}
+
 actor Shrapnel1
 {
 	Radius 2
