@@ -102,3 +102,126 @@ actor AcidPuddle : SH_BaseParticle
 			loop
 	}
 }
+
+actor Shrapnel1
+{
+	Radius 2
+	Damage 4
+	mass 5
+	BounceFactor 0.5
+	SeeSound "darkinquisitor/shrapnel"
+	Speed 25
+	PROJECTILE
+	+DOOMBOUNCE   
+	+NOBLOCKMAP
+	+CANNOTPUSH
+	+GRENADETRAIL
+	-NOGRAVITY
+	-NOTELEPORT
+	-SOLID
+	States
+	{
+	Spawn:
+		SHRP L 0
+		SHRP L 0 A_Jump(64,"Alt")
+		SHRP L 0 ThrustThingZ (0, (Random (20, 100)), 0, 1)
+		goto See
+	Alt:
+		SHRP M 0 ThrustThingZ (0, (Random (40, 130)), 0, 1)
+		Stop
+	See:
+		SHRP L 5
+		SHRP L 5 ThrustThingZ(0,(Random (6, 20)),1,1)
+		SHRP L 5
+		SHRP L 5
+		loop
+	Death:
+		SHRP L 0
+		SHRP L 0
+		SHRP L 0
+		SHRP L 70
+		Stop
+	}
+}
+
+actor Shrapnel2
+{
+	Radius 2
+	Damage 4
+	mass 5
+	BounceFactor 0.4
+	SeeSound "darkinquisitor/shrapnel"
+	Speed 20
+	PROJECTILE
+	+DOOMBOUNCE   
+	+NOBLOCKMAP
+	+CANNOTPUSH
+	+GRENADETRAIL
+	-NOGRAVITY
+	-NOTELEPORT
+	-SOLID
+	States
+	{
+	Spawn:
+		SHRP M 0
+		SHRP M 0 A_Jump(64,"Alt")
+		SHRP M 0 ThrustThingZ (0, (Random (20, 100)), 0, 1)
+		goto See
+	Alt:
+		SHRP N 0 ThrustThingZ (0, (Random (40, 130)), 0, 1)
+		Stop
+	See:
+		SHRP M 5
+		SHRP M 5 ThrustThingZ(0,(Random (6, 20)),1,1)
+		SHRP M 5
+		SHRP M 5
+		loop
+	Death:
+		SHRP M 0
+		SHRP M 0
+		SHRP M 0
+		SHRP M 70
+		Stop
+	}
+}
+
+actor Shrapnel3
+{
+	Radius 2
+	Damage 4
+	mass 5
+	BounceFactor 0.6
+	SeeSound "darkinquisitor/shrapnel"
+	Speed 23
+	PROJECTILE
+	+DOOMBOUNCE   
+	+NOBLOCKMAP
+	+CANNOTPUSH
+	+GRENADETRAIL
+	-NOGRAVITY
+	-NOTELEPORT
+	-SOLID
+	States
+	{
+		Spawn:
+			SHRP N 0
+			SHRP N 0 A_Jump(64,"Alt")
+			SHRP N 0 ThrustThingZ (0, (Random (20, 100)), 0, 1)
+			goto See
+		Alt:
+			SHRP L 0 ThrustThingZ (0, (Random (40, 130)), 0, 1)
+			Stop
+		See:
+			SHRP N 5
+			SHRP N 5 ThrustThingZ(0,(Random (6, 20)),1,1)
+			SHRP N 5
+			SHRP N 5
+			loop
+		Death:
+			SHRP N 0
+			SHRP N 0
+			SHRP N 0
+			SHRP N 70
+			Stop
+	}
+}

@@ -40,7 +40,7 @@ actor SH_BaseProjectile
 	+RANDOMIZE
 }
 
-actor SH_BaseFastProjectile
+actor SH_BaseFastProjectile : FastProjectile
 {
 	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	+NOTIMEFREEZE

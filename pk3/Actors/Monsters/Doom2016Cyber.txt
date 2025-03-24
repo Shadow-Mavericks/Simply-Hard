@@ -25,6 +25,7 @@ Actor D16Cyberdemon 31050
 	+BOSSDEATH
 	States
 	{
+		NoAcidMelt: // !HACK! - State works like a custom flag to tell ACS not to melt this actor.
 		Spawn:
 			CYBI A 20 A_Look
 			Loop

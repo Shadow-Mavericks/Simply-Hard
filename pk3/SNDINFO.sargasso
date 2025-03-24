@@ -1,0 +1,6 @@
+SF64PulseLaser SFLASER4
+SF64HyperLaser SFLASER3
+SF64DoubleLaser SFLASER2
+$limit SF64PulseLaser 0
+$limit SF64HyperLaser 0
+$limit SF64DoubleLaser 0

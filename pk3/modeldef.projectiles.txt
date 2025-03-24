@@ -98,3 +98,36 @@ model UberTracer
 
 	FrameIndex PUFF A 0 0
 }
+
+model Sargasso_GreenLaser
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "SFLaserGreen.png"
+	Scale 16.0 1.0 1.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex APLS A 0 0
+}
+
+model Sargasso_YellowLaser
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "SFLaserYellow.png"
+	Scale 16.0 1.0 1.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex PUFF A 0 0
+}
+
+model Sargasso_CyanLaser
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "SFLaserCyan.png"
+	Scale 16.0 1.0 1.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex PLSS A 0 0
+}

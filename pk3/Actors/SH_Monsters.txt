@@ -2091,7 +2091,7 @@ ACTOR Corrupt_Kunai : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 	//+DONTTHRUST
 	States
 	{
-		NoAcidMelt: // !HACK! - Tells ACS not to melt this actor.
+		NoAcidMelt: // !HACK! - State works like a custom flag to tell ACS not to melt this actor.
 		Spawn:
 			PLAY A 0 NoDelay A_SetUserVar("user_extralife_chance", -1)
 			PLAY A 0 A_SetUserVar("user_manncobox_chance", -1)
