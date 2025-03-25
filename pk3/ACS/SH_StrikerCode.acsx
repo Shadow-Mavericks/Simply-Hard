@@ -919,7 +919,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 				sourceClass = GetActorClass(0);
 				
-			log(s:"DEBUG: Entity damaged by ", s:inflictorClass, s:" Source: ", s:sourceClass);
+			log(s:"DEBUG: Entity damaged by ", s:inflictorClass, s:" Source: ", s:sourceClass, s:" Type: ", s:damagetype);
 		}
 	}
 
@@ -1170,8 +1170,8 @@ script "ACID_TICKER" (void)
 		SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
 		Delay(1);
 	}
-	
-	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER) && !CheckActorState(0, "NoAcidMelt", true)) // If died while under effect of acid.
+
+	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER) && !custom_checkactorstate_because_zandronum_sucks(0, "NoAcidMelt", true)) // If died while under effect of acid.
 	{
 		int timer = 105;
 		bool meltstarted = false;
@@ -1253,6 +1253,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		{
 			bool attackerIsEnemy = false;
 			bool victimIsPlayer = (ClassifyActor(0) & ACTOR_PLAYER);
+			bool instantStatusEffect = false;
+			bool inflictorIsMissile = false;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
 			
@@ -1269,8 +1271,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			}
 			
 			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
-			{
 				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
+				
+			if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+			{
+				inflictorIsMissile = CheckFlag(0, "MISSILE");
+				instantStatusEffect = custom_checkactorstate_because_zandronum_sucks(0, "InstantStatus", true);
 			}
 
 			// Handle damage types (Acid/Fire/Electric/Etc)	
@@ -1283,6 +1289,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					
 					if(!CheckInventory("PowerAcidBuildTimer")) // If acid build timer has expired or hasn't yet started, reset.
 						TakeInventory("AcidAccumulation", 200);
+						
+					if(instantStatusEffect)
+						GiveInventory("AcidAccumulation", 200);
 					
 					GiveInventory("AcidAccumulation", arg1);
 					GiveInventory("AcidBuildTimer", 1);
@@ -1317,13 +1326,21 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 								Thing_ChangeTID(targetTID, oldTID);
 							}
 							
-							// Keep this last, because for some fucking reason ACS_NamedExecuteAlways/WithResult completely bunglefucks the AAPTR_DAMAGE_
+							// Keep this last, because for some fucking reason ACS_NamedExecuteAlways/WithResult completely bunglefucks the AAPTR_DAMAGE_X pointers.
 							SetActivator(0, AAPTR_DAMAGE_TARGET);
 							ACS_NamedExecuteAlways("ACID_TICKER", 0);
 						}
 						
-						if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR) && !isLaser && !isExtra)
-							SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
+						if(!inflictorIsMissile)
+						{
+							if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+								SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
+						}
+						else if(!isLaser && !isExtra && ((instantStatusEffect && !alreadyAcid) || !instantStatusEffect))
+						{
+							if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+								SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0)+random(0.0, GetActorProperty(0, APROP_Height)), 0, 0);
+						}
 					}
 				}
 			}

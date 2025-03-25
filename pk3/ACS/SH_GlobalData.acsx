@@ -169,6 +169,24 @@ function str GetClassTag(str className)
 	return tag;
 }
 
+function bool custom_checkactorstate_because_zandronum_sucks(int tid, str statename, bool exact)
+{
+	str className = GetActorClass(tid);
+
+	int uTID = UniqueTID();
+
+	if(!SpawnForced(className, 0, 0, 0, uTID, 0))
+		return false;
+
+	int hasState = SetActorState(uTID, statename, true);
+	Thing_Remove(uTID);
+	
+	if(hasState)
+		return true;
+	
+	return false;
+}
+
 // Original code by Isle - Modified by StrikerTheHedgefox.
 // HudMessageOnActor will clobber the selected activator, so make sure to set the activator to the desired player afterwards if you need to do something else.
 function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOffset, int yOffset, int range, str sprite, str text, int holdTime, int colour) 
