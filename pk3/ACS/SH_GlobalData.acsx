@@ -5,6 +5,7 @@
 #libdefine PICKUP_SPRITE_TAG 69069
 #libdefine PINGMARKER_TEMP_HAX_TAG 666669
 #libdefine PINGMARKER_BASE_TAG 78000
+#libdefine PINGMARKER_LIGHT_BASE_TAG 79000
 
 #libdefine SHSKILL_VERYEASY 0
 #libdefine SHSKILL_EASY 1
@@ -20,6 +21,12 @@
 
 #libdefine STATUS_NONE 0
 #libdefine STATUS_ACID 1
+
+#libdefine CLASS_FIEND 0
+#libdefine CLASS_KUNAI 1
+#libdefine CLASS_GOSIMER 2
+#libdefine CLASS_MAX 3
+#libdefine CLASS_STRIKER 4
 
 struct vec2_t
 {
@@ -68,6 +75,21 @@ function bool startsWithVowel(str string)
 	}
 
 	return false;
+}
+
+function int extract_red(int hex)
+{
+	return (hex >> 16) & 0xFF;
+}
+
+function int extract_green(int hex)
+{
+	return (hex >> 8) & 0xFF;
+}
+
+function int extract_blue(int hex)
+{
+	return (hex) & 0xFF;
 }
 
 function int min (int a, int b)

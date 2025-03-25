@@ -2400,7 +2400,9 @@ script "PING_SPOT" (int x, int y, int z, int packedangles) NET
 	}
 	
 	int puffTID = PINGMARKER_BASE_TAG + playerNum;
+	int lightTID = PINGMARKER_LIGHT_BASE_TAG + playerNum;
 	Thing_Remove(puffTID); // If we already have one, delete it.
+	Thing_Remove(lightTID); // The light too.
 	
 	pingSpotPlayerNumber = playerNum; // HACK BECAUSE ZANDRONUM'S ZDOOM BASE IS AS OLD AS SATAN'S CRUSTY ASSHOLE, & IS MISSING PUFFTID FOR LINEATTACK.
 	LineAttack(srcTID, angle, pitch, 0, "PingMarker", "None", 65536.0, FHF_NORANDOMPUFFZ | FHF_NOIMPACTDECAL, puffTID);
@@ -2413,10 +2415,26 @@ script "PING_SPOT" (int x, int y, int z, int packedangles) NET
 
 script "SET_PING_TID_HACK" (void)
 {
-	Thing_ChangeTID(0, PINGMARKER_BASE_TAG + pingSpotPlayerNumber);
+	int markerTID = PINGMARKER_BASE_TAG + pingSpotPlayerNumber;
+	int lightTID = PINGMARKER_LIGHT_BASE_TAG + pingSpotPlayerNumber;
+	Thing_ChangeTID(0, markerTID);
 	
-	PlaySound(PINGMARKER_BASE_TAG + pingSpotPlayerNumber, StrParam(s:"Ping", d:Random(1, 24)), CHAN_AUTO, 1.0, false, 0.1, false); 
+	PlaySound(markerTID, StrParam(s:"Ping", d:Random(1, 24)), CHAN_AUTO, 1.0, false, 0.1, false); 
 	
 	SetActivatorToPlayer(pingSpotPlayerNumber);
-	Thing_SetTranslation(PINGMARKER_BASE_TAG + pingSpotPlayerNumber, -1);
+	Thing_SetTranslation(markerTID, -1);
+	
+	// Spawn a light that's colored the same as the player.
+	SpawnForced("PingLight", GetActorX(markerTID), GetActorY(markerTID), GetActorZ(markerTID), lightTID, 8);
+	int color = GetPlayerInfo(pingSpotPlayerNumber, PLAYERINFO_COLOR);
+	SetThingSpecial(lightTID, 0, extract_red(color), extract_green(color), extract_blue(color), 64, 80);
+	Thing_Activate(lightTID);
+}
+
+script "KILL_PING_LIGHT" (void)
+{
+	// We can get the player number by subtracting the base tag.
+	int playerNum = ActivatorTID() - PINGMARKER_BASE_TAG;
+	int lightTID = PINGMARKER_LIGHT_BASE_TAG + playerNum;
+	Thing_Remove(lightTID);
 }

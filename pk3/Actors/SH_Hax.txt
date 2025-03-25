@@ -161,6 +161,8 @@ actor PingMarker : MapMarker
 	+FORCEXYBILLBOARD
 	+NOTRIGGER
 	+NOTELEPORT
+	+NOGRAVITY
+	+NOTIMEFREEZE
 	-INVISIBLE
 	States
 	{
@@ -173,7 +175,14 @@ actor PingMarker : MapMarker
 			SHK1 A 0 A_JumpIf(user_timer > 25, "Death")
 			loop
 		Death:
-			TNT1 A 0
+			TNT1 A 0 ACS_NamedExecuteWithResult("KILL_PING_LIGHT")
 			stop
 	}
+}
+
+actor PingLight : DynamicLight
+{
+	DynamicLight.Type "Pulse"
+	Args 255, 0, 0, 64, 80
+	-DORMANT
 }
