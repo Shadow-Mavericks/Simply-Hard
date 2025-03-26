@@ -101,7 +101,7 @@ script "SV_PLAYERTICKER" OPEN
 			if(CheckInventory("Debuff_Burn"))
 			{
 				if(!(tickNum % 17))
-					Thing_Damage2(0, random(2, 4), "Burn");
+					Thing_Damage2(0, random(1, 3), "Burn");
 			}
 
 			if(CheckActorClass(0, "MaximusPrime"))
@@ -146,6 +146,16 @@ script "SV_PLAYERTICKER" OPEN
 				}
 				else if(CheckFlag(0, "NOBLOOD"))
 					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
+			}
+			
+			// Shield break sound.
+			int cur_armor = CheckInventory("Armor");
+			if(cur_armor != p_status[p].last_armor)
+			{
+				if(cur_armor == 0 && p_status[p].last_armor != 0)
+					PlaySound(0, "Shield/break");
+
+				p_status[p].last_armor = cur_armor;
 			}
 			
 			// Dual Wielding Hax

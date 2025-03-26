@@ -43,13 +43,13 @@ struct vec3_t
 
 struct PlayerData_t
 {
-	int spawn_x;
-	int spawn_y;
-	int spawn_z;
+	vec3_t spawn;
+	vec3_t dc_pos;
 	int spawn_angle;
 	int alarm_volume;
 	int invul_type;
 	int last_invul_type;
+	int last_armor;
 	int time_of_death;
 	bool debuff_gravity;
 };

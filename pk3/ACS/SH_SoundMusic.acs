@@ -108,43 +108,6 @@ Script "gosimerkankan" (Void)
 	Ambientsound("Burpkankan",127);
 }
 
-script "SV_ArmorDing" enter
-{
-    bool dinged = false;
-    int armor_cur = 0;
-    int armor_prev = 0;
-   
-    while(1)
-    {
-        armor_cur = CheckInventory("Armor");
-   
-        if(dinged == false)
-        {
-            if(armor_cur != armor_prev)
-            {
-                if(armor_cur == 0)
-                {
-                    dinged = true;
-                    PlaySound(ActivatorTID(), "Shield/break");
-                }
-            }
-        }
-        else
-        {
-            if(armor_cur != armor_prev)
-            {
-                if(armor_cur > 0)
-                {
-                    dinged = false;
-                }
-            }
-        }
-       
-        armor_prev = armor_cur;
-        delay(1);
-    }
-}
-
 Script "SV_SKELYDRIVER" (Void)
 {
 	Setmusic("D_mycar");

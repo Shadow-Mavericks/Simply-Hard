@@ -1847,8 +1847,6 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 #define WEAPON_FLAME		9
 #define WEAPON_NUKE			10
 
-// Unfinished...
-
 script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 {
 	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
@@ -2227,6 +2225,64 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 }
 
 // --------------------------------
+// Clientside Pickup Transformation
+// --------------------------------
+
+script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
+{
+	if(ConsolePlayerNumber() == -1)
+		terminate;
+
+	int oldTID = ActivatorTID();
+	int newTID = UniqueTID();
+	Thing_ChangeTID(0, newTID);
+
+	SetActivatorToPlayer(ConsolePlayerNumber());
+	SetActivator(0, AAPTR_PLAYER_GETCAMERA);
+	str playerClassName = GetActorClass(0);
+	str scaleVar = StrParam(s:"user_scale_", s:playerClassName);
+
+	SetActivator(newTID);
+	SetActorState(0, "SetScale", false);
+
+	bool stateSet = false;
+	if(CheckFlag(0, "DROPPED"))
+	{
+		str droppedState = StrParam(s:playerClassName, s:"Dropped");
+		stateSet = SetActorState(0, droppedState, false);
+	}
+
+	if(!stateSet)
+		stateSet = SetActorState(0, playerClassName, false);
+
+	if(!stateSet)
+		SetActorState(0, "Base", false);
+
+	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
+	if(GetUserVariable(0, scaleVar) > 0)
+	{
+		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, scaleVar)*0.01);
+		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, scaleVar)*0.01);
+	}
+	else if(GetUserVariable(0, "user_scale_Base") > 0)
+	{
+		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, "user_scale_Base")*0.01);
+		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, "user_scale_Base")*0.01);
+	}
+
+	Thing_ChangeTID(0, oldTID);
+}
+
+script "REFRESH_PICKUP_SPRITES" ENTER CLIENTSIDE
+{
+	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
+}
+
+// -----------------------------
+
+// ----------------------
+// SENTRY GUN PICKUP CODE
+// ----------------------
 
 script 13238 (void) // "PICK_UP_SENTRY"
 {
@@ -2298,56 +2354,7 @@ script "DROP_SENTRY" (bool used)
 	SetResultValue(success);
 }
 
-// --------------------------------
-// Clientside Pickup Transformation
-// --------------------------------
-
-script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
-{
-	if(ConsolePlayerNumber() == -1)
-		terminate;
-
-	int oldTID = ActivatorTID();
-	int newTID = UniqueTID();
-	Thing_ChangeTID(0, newTID);
-
-	SetActivatorToPlayer(ConsolePlayerNumber());
-	SetActivator(0, AAPTR_PLAYER_GETCAMERA);
-	str playerClassName = GetActorClass(0);
-	str scaleVar = StrParam(s:"user_scale_", s:playerClassName);
-
-	SetActivator(newTID);
-	SetActorState(0, "SetScale", false);
-
-	bool stateSet = false;
-	if(CheckFlag(0, "DROPPED"))
-	{
-		str droppedState = StrParam(s:playerClassName, s:"Dropped");
-		stateSet = SetActorState(0, droppedState, false);
-	}
-
-	if(!stateSet)
-		stateSet = SetActorState(0, playerClassName, false);
-
-	if(!stateSet)
-		SetActorState(0, "Base", false);
-
-	// Hack to bypass the fact that Zan can't use A_SetScale from the client side on non-clientsided actors.
-	if(GetUserVariable(0, scaleVar) > 0)
-	{
-		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, scaleVar)*0.01);
-		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, scaleVar)*0.01);
-	}
-	else if(GetUserVariable(0, "user_scale_Base") > 0)
-	{
-		SetActorProperty(0, APROP_ScaleX, GetUserVariable(0, "user_scale_Base")*0.01);
-		SetActorProperty(0, APROP_ScaleY, GetUserVariable(0, "user_scale_Base")*0.01);
-	}
-
-	Thing_ChangeTID(0, oldTID);
-}
-
-// -----------------------------
+// ----------------------
 
 script "SUPERCHARGE_CHECK" (void)
 {
@@ -2362,6 +2369,10 @@ script "SUPERCHARGE_CHECK" (void)
 	else
 		SetResultValue(1);
 }
+
+// ---------------------
+// LOCATION PINGING CODE
+// ---------------------
 
 int lastPingRequestTime;
 bool pingedOnce;
@@ -2438,3 +2449,7 @@ script "KILL_PING_LIGHT" (void)
 	int lightTID = PINGMARKER_LIGHT_BASE_TAG + playerNum;
 	Thing_Remove(lightTID);
 }
+
+// ---------------------
+
+

@@ -62,7 +62,7 @@ script "USELIFE_SINGLEPLAYER" (void)
 	else
 		print(s:"You have ", d:current_lives, s:" lives remaining!");
 		
-	SetActorPosition(0, p_status[pNum].spawn_x, p_status[pNum].spawn_y, p_status[pNum].spawn_z, true);
+	SetActorPosition(0, p_status[pNum].spawn.x, p_status[pNum].spawn.y, p_status[pNum].spawn.z, true);
 	SetActorAngle(0, p_status[pNum].spawn_angle);
 	SetActorVelocity(0, 0.0, 0.0, 0.0, false, true);
 	
@@ -105,9 +105,9 @@ script "CARRYLIVES" ENTER // Carries lives over to the next level.
 	GiveInventory("Res_protection", 1); // Some spawn protection for those BS maps that have enemies in your face the second you enter.
 	
 	// Record player's starting position for various uses.
-	p_status[pNum].spawn_x = GetActorX(0);
-	p_status[pNum].spawn_y = GetActorY(0);
-	p_status[pNum].spawn_z = GetActorZ(0);
+	p_status[pNum].spawn.x = GetActorX(0);
+	p_status[pNum].spawn.y = GetActorY(0);
+	p_status[pNum].spawn.z = GetActorZ(0);
 	p_status[pNum].spawn_angle = GetActorAngle(0);
 }
 
