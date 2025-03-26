@@ -9,6 +9,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 	var int user_tier;
 
 	+DONTGIB
+	+NOTIMEFREEZE
 	States
 	{
 		Spawn:
