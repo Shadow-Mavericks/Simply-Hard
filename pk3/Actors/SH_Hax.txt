@@ -168,6 +168,7 @@ actor PingMarker : MapMarker
 	{
 		Spawn:
 			SHK1 A 0 NoDelay ACS_NamedExecuteWithResult("SET_PING_TID_HACK") // HACK BECAUSE ZANDRONUM'S ZDOOM BASE IS AS OLD AS SATAN'S CRUSTY ASSHOLE, & IS MISSING PUFFTID FOR LINEATTACK.
+			SHK1 A 0 A_ClientsideACSExecute("SETUP_PING_LIGHT")
 			goto SpawnLoop
 		SpawnLoop:
 			SHK1 ABCDEDCB 1 BRIGHT
@@ -175,7 +176,7 @@ actor PingMarker : MapMarker
 			SHK1 A 0 A_JumpIf(user_timer > 25, "Death")
 			loop
 		Death:
-			TNT1 A 0 ACS_NamedExecuteWithResult("KILL_PING_LIGHT")
+			TNT1 A 0 A_ClientsideACSExecute("KILL_PING_LIGHT")
 			stop
 	}
 }
@@ -184,5 +185,7 @@ actor PingLight : DynamicLight
 {
 	DynamicLight.Type "Pulse"
 	Args 255, 0, 0, 64, 80
+	+CLIENTSIDEONLY
+	+ALLOWCLIENTSPAWN
 	-DORMANT
 }
