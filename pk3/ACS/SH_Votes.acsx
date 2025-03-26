@@ -23,6 +23,12 @@ script "UNSTICK_PLAYER" (str who)
 	}
 }
 
+// TAG TRACKER!
+// ------------
+// This code tracks one-time triggers in Doom/Boom format maps, in hopes to allow re-opening them with a vote, in cases
+// where some dumbfuck mapper doesn't bother to put a simple goddamn 64x64 square in their map that opens after
+// going through a point of return... to... you know, ALLOW FUCKING CO-OP WITHOUT BREAKING IRREVERSIBLY.
+
 enum
 {
 	TAGSTATE_UNKNOWN,
@@ -44,6 +50,14 @@ enum
 	F_NORMAL	= 16,
 	F_FAST		= 32,
 	F_TURBO		= 64
+};
+
+enum
+{
+	C_SLOW		= 8,
+	C_NORMAL	= 16,
+	C_FAST		= 32,
+	C_TURBO		= 64
 };
 
 struct tagTracker_t
@@ -113,7 +127,10 @@ script 13400 (int tag, int type)
 				
 			break;
 		}
+		
 		case 5: // 5 = WALK,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
+		case 24: // 24 = SHOOT,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
+		case 101: // 101 = USE,		Floor_RaiseToLowestCeiling (tag, F_SLOW)
 		{
 			Floor_RaiseToLowestCeiling (tag, F_SLOW);
 			
@@ -129,10 +146,11 @@ script 13400 (int tag, int type)
 				
 			break;
 		}
-		case 19: // 19 = WALK,		Floor_LowerToHighest (tag, F_SLOW, 128)
+		
+		case 41: // 41 = USE,		Ceiling_LowerToFloor (tag, C_SLOW)
+		case 145: // 145 = WALK,		Ceiling_LowerToFloor (tag, C_SLOW)
 		{
-			Floor_LowerToHighest (tag, F_SLOW, 128);
-			
+			Ceiling_LowerToFloor (tag, C_SLOW);
 			if(slot != -1)
 			{
 				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
@@ -142,7 +160,25 @@ script 13400 (int tag, int type)
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
 			}
+			
+			break;
 		}
+		
+		case 44: // 44 = WALK,		Ceiling_LowerAndCrush (tag, C_SLOW, 0, 2)
+		{
+			Ceiling_LowerAndCrush (tag, C_SLOW, 0, 2);
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
+				{
+					HudMessageBold(s:"A crusher has jammed shut near ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
+			break;
+		}
+		
 		case 56: // 56 = WALK,		Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2)
 		{
 			Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2);
@@ -223,10 +259,21 @@ script "OPEN_ALL" (void)
 					break;
 				}
 				case 5:
-				case 19:
+				//case 19:
+				case 24:
 				case 56:
+				case 101:
 				{
 					Floor_LowerToLowest(tag, F_SLOW);
+					tagtrackers[i].state = TAGSTATE_OPENED;
+					break;
+				}
+				
+				case 41:
+				case 44:
+				case 145:
+				{
+					Ceiling_RaiseToNearest(tag, F_SLOW);
 					tagtrackers[i].state = TAGSTATE_OPENED;
 					break;
 				}
