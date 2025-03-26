@@ -96,7 +96,7 @@ script 13400 (int tag, int type)
 		// -------------
 		case 3: // 3 = WALK,		Door_Close (tag, D_SLOW)
 		case 50: // 50 = USE,		Door_Close (tag, D_SLOW)
-		case 110: // 110 = WALK,		Door_Close (tag, D_FAST)
+		case 110: // 110 = WALK,	Door_Close (tag, D_FAST)
 		case 113: // 113 = USE,		Door_Close (tag, D_FAST)
 		{
 			Door_Close(tag, ((type == 110) || (type == 113)) ? D_FAST : D_SLOW);
@@ -106,7 +106,7 @@ script 13400 (int tag, int type)
 				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
 				{
 					HudMessageBold(s:"A door has locked near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
 			}
@@ -122,12 +122,26 @@ script 13400 (int tag, int type)
 				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
 				{
 					HudMessageBold(s:"A passage has closed near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
 			}
 				
 			break;
+		}
+		case 19: // 19 = WALK,		Floor_LowerToHighest (tag, F_SLOW, 128)
+		{
+			Floor_LowerToHighest (tag, F_SLOW, 128);
+			
+			if(slot != -1)
+			{
+				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
+				{
+					HudMessageBold(s:"A passage has closed near ", n:PlayerNumber() + 1;
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+				}
+				tagtrackers[slot].state = TAGSTATE_CLOSED;
+			}
 		}
 		case 56: // 56 = WALK,		Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2)
 		{
@@ -137,7 +151,7 @@ script 13400 (int tag, int type)
 				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
 				{
 					HudMessageBold(s:"A passage has slammed shut near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
 			}
@@ -148,6 +162,7 @@ script 13400 (int tag, int type)
 		// OPENING TYPES
 		// -------------
 		case 23: // 23 = USE,		Floor_LowerToLowest (tag, F_SLOW)
+		case 38: // 38 = WALK,		Floor_LowerToLowest (tag, F_SLOW)
 		{
 			//TagWait(tag);
 			Floor_LowerToLowest(tag, F_SLOW);
@@ -157,7 +172,7 @@ script 13400 (int tag, int type)
 				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
 				{
 					HudMessageBold(s:"A passage has been re-opened by ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_OPENED;
 			}
@@ -177,7 +192,7 @@ script 13400 (int tag, int type)
 				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
 				{
 					HudMessageBold(s:"A door has been re-opened by ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
+					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
 				}
 				tagtrackers[slot].state = TAGSTATE_OPENED;
 			}
@@ -207,6 +222,7 @@ script "OPEN_ALL" (void)
 					break;
 				}
 				case 5:
+				case 19:
 				case 56:
 				{
 					Floor_LowerToLowest(tag, F_SLOW);
