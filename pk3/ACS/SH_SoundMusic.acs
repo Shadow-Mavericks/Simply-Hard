@@ -1,7 +1,7 @@
 #library "SH_SoundMusic"
 #include "zcommon.acs"
 
-#define NUM_DEATH_SOUNDS 91
+#define NUM_DEATH_SOUNDS 92
 
 script "DEATH_SOUNDS" DEATH
 {
