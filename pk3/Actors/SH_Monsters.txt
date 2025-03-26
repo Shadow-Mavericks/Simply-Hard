@@ -2442,6 +2442,8 @@ ACTOR whiterabbit : SH_BaseMonster
 	Damage 250
 	DamageType "RabbitBite"
 	DamageFactor "RabbitBite", 0.0
+	
+	Obituary "%o got his cock knobbled off by a white rabbit."
 
 	Dropitem "Allupgradetokens", 128
 
