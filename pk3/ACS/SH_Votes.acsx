@@ -203,7 +203,8 @@ script 13400 (int tag, int type)
 }
 
 script "OPEN_ALL" (void)
-{	
+{
+	AmbientSound("DoorStuck", 127);
 	for(int i = 0; i < 256; i++)
 	{
 		if(tagtrackers[i].tag != 0 && tagtrackers[i].state == TAGSTATE_CLOSED)

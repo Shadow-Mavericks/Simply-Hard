@@ -1912,6 +1912,7 @@ FuckThis FuckThis
 SpyWhistle SpyWhstl
 PowerupAlarm QUARTER
 SuperLuck suprluck
+DoorStuck doorstuk
 
 AcidMelt acidmelt
 $limit AcidMelt 0
