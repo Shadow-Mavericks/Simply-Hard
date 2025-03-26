@@ -1419,7 +1419,7 @@ actor Sargasso_GreenLaser : SH_BaseFastProjectile
 	Radius 2
 	Height 4
 	Speed 75
-	Damage (25)
+	Damage (20)
 	SeeSound "SF64HyperLaser"
 	DeathSound "Max/LZHIT"
 	-NOTIMEFREEZE
@@ -1461,7 +1461,7 @@ actor Sargasso_CyanLaser : SH_BaseFastProjectile
 	Radius 2
 	Height 4
 	Speed 64
-	Damage (20)
+	Damage (16)
 	SeeSound "SF64HyperLaser"
 	DeathSound "Max/LZHIT"
 	-NOTIMEFREEZE
