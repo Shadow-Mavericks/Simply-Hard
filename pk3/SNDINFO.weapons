@@ -59,7 +59,7 @@ Gosimer/GrenadeL_Close	GNTGCLS
 // Concussion Rifle
 Max/ConcDryFire CONCUSS1
 Max/ConcProj CONCUSS6
-Max/ConcRifle DFCONCU
+Max/ConcRifle CONCUSS5
 
 // Mortar Launcher
 Max/MortarDryFire MORTAR9
@@ -87,8 +87,8 @@ Max/FusionDryFire FUSION2
 Max/Goob DFGOOB
 
 // Repeater
-Max/autogun DFREPEAT
-Max/autoloop DFRELOOP
+Max/autogun REPEAT-1
+Max/autoloop REPEATER
 Max/RepeaterDryFire REP-EMP
 
 Max/GAutogun DFGREP
