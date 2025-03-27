@@ -75,6 +75,7 @@ Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 	Dropitem "TryhardRevenant"			255 25
 	Dropitem "Papyrus"					255 5
 	Dropitem "Beamrevenant"				255 5
+	DropItem "RevGhoul"					255 5
 	DropItem "N_Revenant_Acid"			255 5
 	DropItem "N_Revenant_Fire"			255 5
 	DropItem "N_Revenant_Ice"			255 5
@@ -82,7 +83,6 @@ Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
 	DropItem "N_Revenant_Electric"		255 5
 	DropItem "N_Revenant_Heavymetal"	255 5
 	//DropItem "GhostSkeleton"	255 5
-	//DropItem "RevGhoul"	255 5
 }
 
 Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul

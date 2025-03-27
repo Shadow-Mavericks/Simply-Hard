@@ -9,10 +9,10 @@ flickerlight2 GhoulFire
 }
 object RevGhoul
 {
-	frame GHULG { light GhoulFire }
-	frame GHULH { light GhoulFire }
-	frame GHULI { light GhoulFire }
-    frame GHULJ { light GhoulFire }
+	frame RGHLG { light GhoulFire }
+	frame RGHLH { light GhoulFire }
+	frame RGHLI { light GhoulFire }
+    frame RGHLJ { light GhoulFire }
 }
 //projectile is borrowed from the one used by the Brown Chaos Serpent
 pointlight GasTrail
@@ -123,163 +123,163 @@ object GhoulDeathCloud
 	frame GHCLI { light GhoulCloud6 }
 }
 //BRIGHTMAPS
-BrightMap Sprite GHULG1
+BrightMap Sprite RGHLG1
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG1.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG2
+BrightMap Sprite RGHLG2
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG2.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG3
+BrightMap Sprite RGHLG3
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG3.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG4
+BrightMap Sprite RGHLG4
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG4.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG5
+BrightMap Sprite RGHLG5
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG5.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG6
+BrightMap Sprite RGHLG6
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG6.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG7
+BrightMap Sprite RGHLG7
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG7.png"
 DisableFullBright
 }
-BrightMap Sprite GHULG8
+BrightMap Sprite RGHLG8
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULG8.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH1
+BrightMap Sprite RGHLH1
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH1.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH2
+BrightMap Sprite RGHLH2
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH2.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH3
+BrightMap Sprite RGHLH3
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH3.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH4
+BrightMap Sprite RGHLH4
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH4.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH5
+BrightMap Sprite RGHLH5
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH5.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH6
+BrightMap Sprite RGHLH6
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH6.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH7
+BrightMap Sprite RGHLH7
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH7.png"
 DisableFullBright
 }
-BrightMap Sprite GHULH8
+BrightMap Sprite RGHLH8
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULH8.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI1
+BrightMap Sprite RGHLI1
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI1.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI2
+BrightMap Sprite RGHLI2
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI2.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI3
+BrightMap Sprite RGHLI3
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI3.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI4
+BrightMap Sprite RGHLI4
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI4.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI5
+BrightMap Sprite RGHLI5
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI5.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI6
+BrightMap Sprite RGHLI6
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI6.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI7
+BrightMap Sprite RGHLI7
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI7.png"
 DisableFullBright
 }
-BrightMap Sprite GHULI8
+BrightMap Sprite RGHLI8
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULI8.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ1
+BrightMap Sprite RGHLJ1
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ1.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ2
+BrightMap Sprite RGHLJ2
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ2.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ3
+BrightMap Sprite RGHLJ3
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ3.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ4
+BrightMap Sprite RGHLJ4
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ4.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ5
+BrightMap Sprite RGHLJ5
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ5.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ6
+BrightMap Sprite RGHLJ6
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ6.png"
 DisableFullBright
 }
 
-BrightMap Sprite GHULJ7
+BrightMap Sprite RGHLJ7
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ7.png"
 DisableFullBright
 }
-BrightMap Sprite GHULJ8
+BrightMap Sprite RGHLJ8
 {
 Map "brightmaps/Realm667/Monsters/RevGhoul/BMGHULJ8.png"
 DisableFullBright
