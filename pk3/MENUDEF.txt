@@ -145,7 +145,8 @@ OptionMenu "CreditCode"
 	StaticText "Kunai's Life Sap Ability"
 	StaticText "Kunai's Shield Burst/Damage Gate"
 	StaticText "Max's Weapon Rewrites"
-	StaticText "Misc Code Cleanup/Maintenance"
+	StaticText "Location Pinging"
+	StaticText "Misc Code Cleanup & Maintenance"
 	StaticText ""
 	
 	StaticText "Mor'ladim", 1
@@ -185,6 +186,10 @@ OptionMenu "CreditSprites"
 	
 	StaticText "Necrodome", 1
 	StaticText "Small Trees & Bushes"
+	StaticText ""
+	
+	StaticText "IMX, MagicWazard, DBJ87"
+	StaticText "Revenant Ghoul"
 	StaticText ""
 }
 
