@@ -92,6 +92,11 @@ function int extract_blue(int hex)
 	return (hex) & 0xFF;
 }
 
+function bool isBitSet(int bitfield, int bit)
+{
+	return !!(bitfield & (1 << bit));
+}
+
 function int min (int a, int b)
 {
 	if (a < b)
