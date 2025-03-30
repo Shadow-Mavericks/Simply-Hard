@@ -1235,10 +1235,62 @@ script "ACID_TICKER" (void)
 	}
 }
 
-#define GAMEEVENT_LEVEL_INIT 16
+#define MAX_PLASMA_LOCS 32
+int num_plasma_locations;
+vec2_t plasma_locations[MAX_PLASMA_LOCS];
+
+function void addPlasmaLocation(void)
+{
+	if(!CheckActorClass(0, "PlasmaRifleGiver"))
+		return;
+	
+	if(!GetUserVariable(0, "user_locationtracked") && num_plasma_locations < MAX_PLASMA_LOCS)
+	{
+		SetUserVariable(0, "user_locationtracked", 1);
+		plasma_locations[num_plasma_locations].x = GetActorX(0);
+		plasma_locations[num_plasma_locations].y = GetActorY(0);
+		num_plasma_locations++;
+	}
+}
+
+function bool isNearPlasmaRifle(void)
+{
+	if(!(CheckActorClass(0, "CellGiver") || CheckActorClass(0, "CellBoxGiver")))
+		return false; // Actor is irrelevant.
+		
+	if(GetUserVariable(0, "user_nearplasma") != 0)
+		return true; // Already true, return without extra check.
+
+	vec2_t location = { GetActorX(0), GetActorY(0) };	
+	for(int i = 0; i < num_plasma_locations; i++)
+	{
+		if(GetDistance2D(plasma_locations[i], location) <= 256.0)
+		{
+			SetUserVariable(0, "user_nearplasma", 1);
+			return true;
+		}
+	}
+		
+	return false;
+}
+
+script "CLIENTSIDE_ADD_PLASMA_LOCATION" (void) CLIENTSIDE
+{
+	addPlasmaLocation();
+}
+
+script "GET_PLASMA_POSITIONS" OPEN CLIENTSIDE
+{
+	if(!isNetworkGame()) // Only need to do this hacky horsefuckery in online play.
+		terminate;
+
+	GiveActorInventory(PICKUP_SPRITE_TAG, "PlasmaLocatorHax", 1);
+	Delay(1);
+	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
+}
+
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
 #define GAMEEVENT_SPAWN_RANDOMSPAWNED 2
-
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 {
 	switch (type)
@@ -1375,6 +1427,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				// Exchange map-placed chainsaws for random inventory item spawner.
 				actor_swap("ChainsawGiver", "RandomInventoryItems", 256);
+				
+				addPlasmaLocation(); // This checks if it is a plasma rifle, and if so, cache location.
 			}
 
 			if(GetCVar("sh_compat_swaps"))
@@ -1490,6 +1544,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		case GAMEEVENT_LEVEL_INIT:
 		{
 			detect_wads();
+			
+			num_plasma_locations = 0;
 			break;
 		}
 	}
@@ -1569,7 +1625,7 @@ function int add_ammo(str ammo_class, int amount, int droptype)
 	return 0;
 }
 
-script 13236 (int type, int dropped) // "AMMO_PICKUP"
+script 13236 (int type) // "AMMO_PICKUP"
 {
 	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -1590,6 +1646,12 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 	int droptype = DROPTYPE_HALVED;
 
 	int fade_rgb[3] = { 255, 192, 0 };
+	
+	bool dropped = CheckFlag(0, "DROPPED");
+	bool nearPlasma = isNearPlasmaRifle();
+	
+	if(!SetActivatorToTarget(0))
+		terminate;
 
 	if(CheckActorClass(0, "MaximusPrime"))
 		droptype = DROPTYPE_FULL;
@@ -1601,6 +1663,8 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 		{
 			ammo1_class = "PeastolClip";
 			ammo1_amount = 12;
+			
+			pickupsound = "AMMO/CLIP";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1611,14 +1675,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			{
 				droptype = DROPTYPE_RANDOM;
 			}
-
-			pickupsound = "AMMO/CLIP";
 			break;
 		}
 		case AMMO_CLIPBOX:
 		{
 			ammo1_class = "MGRounds";
 			ammo1_amount = 75;
+			
+			pickupsound = "AMMO/CLIP";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1633,14 +1697,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 				ammo2_class = "PeastolClip";
 				ammo2_amount = 48;
 			}
-
-			pickupsound = "AMMO/CLIP";
 			break;
 		}
 		case AMMO_SHELLS:
 		{
 			ammo1_class = "Shellz";
 			ammo1_amount = 2;
+			
+			pickupsound = "AMMO/SHEL";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1652,14 +1716,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 				ammo2_class = "Supershellz";
 				ammo2_amount = 2;
 			}
-
-			pickupsound = "AMMO/SHEL";
 			break;
 		}
 		case AMMO_SHELLBOX:
 		{
 			ammo1_class = "Shellz";
 			ammo1_amount = 10;
+			
+			pickupsound = "AMMO/SHELBAWX";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1671,14 +1735,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 				ammo2_class = "Supershellz";
 				ammo2_amount = 10;
 			}
-
-			pickupsound = "AMMO/SHELBAWX";
 			break;
 		}
 		case AMMO_ROCKET:
 		{
 			ammo1_class = "Roketammo";
 			ammo1_amount = 1;
+			
+			pickupsound = "AMMO/ROKET";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1688,14 +1752,14 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			{
 				ammo1_name = "Grenade";
 			}
-
-			pickupsound = "AMMO/ROKET";
 			break;
 		}
 		case AMMO_ROCKETBOX:
 		{
 			ammo1_class = "Roketammo";
 			ammo1_amount = 5;
+			
+			pickupsound = "AMMO/ROKETBAWX";
 
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -1704,9 +1768,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			else if(CheckActorClass(0, "Gosimer"))
 			{
 				ammo1_name = "Grenade";
-			}
-
-			pickupsound = "AMMO/ROKETBAWX";
+			}		
 			break;
 		}
 		case AMMO_CELL:
@@ -1716,6 +1778,8 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 
 			ammo2_class = "RailSLUGS";
 			ammo2_amount = 6;
+			
+			pickupsound = "AMMO/BATTERY";
 
 			if(CheckActorClass(0, "Fiend"))
 			{
@@ -1723,17 +1787,23 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
-				ammo1_class = "DF_PlasmaCartridge";
-				ammo1_amount = 20;
-
-				ammo2_name = "Disruptor Cell";
+				if(!nearPlasma)
+				{
+					ammo1_class = "DF_PlasmaCartridge";
+					ammo1_amount = 20;
+					ammo2_name = "Disruptor Cell";
+				}
+				else
+				{
+					ammo1_class = "DF_PowerCell";
+					ammo1_amount = 40;
+					pickupsound = "AMMO/SHEL";
+				}
 			}
 			else if(CheckActorClass(0, "Kunai"))
 			{
 				ammo2_name = "7.92x57mm Mauser Round";
-			}
-
-			pickupsound = "AMMO/BATTERY";
+			}		
 			break;
 		}
 		case AMMO_CELLBOX:
@@ -1741,8 +1811,13 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			ammo1_class = "Battery";
 			ammo1_amount = 100;
 
-			ammo2_class = "BFGCHARGE";
-			ammo2_amount = 2;
+			if(!CheckActorClass(0, "MaximusPrime"))
+			{
+				ammo2_class = "BFGCHARGE";
+				ammo2_amount = 2;
+			}
+			
+			pickupsound = "AMMO/BATTERYPAK";
 
 			// Todo: Lightning Ammo.
 
@@ -1752,19 +1827,26 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
-				ammo1_class = "DF_Missile";
-				ammo1_amount = 5;
+				if(!nearPlasma)
+				{
+					ammo1_class = "DF_Missile";
+					ammo1_amount = 5;
 
-				ammo2_class = "DF_PlasmaCartridge";
-				ammo2_amount = 60;
+					ammo2_class = "DF_PlasmaCartridge";
+					ammo2_amount = 60;
+				}
+				else
+				{	
+					ammo1_class = "DF_PowerCell";
+					ammo1_amount = 120;
+					pickupsound = "AMMO/SHELBAWX";
+				}
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
 				ammo2_class = "DevastatorAmmo";
 				ammo2_amount = 50;
 			}
-
-			pickupsound = "AMMO/BATTERYPAK";
 			break;
 		}
 	}
@@ -1847,7 +1929,7 @@ script 13236 (int type, int dropped) // "AMMO_PICKUP"
 #define WEAPON_FLAME		9
 #define WEAPON_NUKE			10
 
-script 13237 (int type, int dropped) // "WEAPON_PICKUP"
+script 13237 (int type) // "WEAPON_PICKUP"
 {
 	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -1874,6 +1956,12 @@ script 13237 (int type, int dropped) // "WEAPON_PICKUP"
 	int tier = 0;
 
 	int fade_rgb[3] = { 255, 192, 0 };
+	
+	// Stuff from pickup itself.
+	bool dropped = CheckFlag(0, "DROPPED");
+	
+	if(!SetActivatorToTarget(0))
+		terminate;
 
 	if(CheckActorClass(0, "MaximusPrime"))
 	{
@@ -2248,8 +2336,12 @@ script "SET_PICKUP_SPRITE" (void) CLIENTSIDE
 	bool stateSet = false;
 	if(CheckFlag(0, "DROPPED"))
 	{
-		str droppedState = StrParam(s:playerClassName, s:"Dropped");
-		stateSet = SetActorState(0, droppedState, false);
+		stateSet = SetActorState(0, StrParam(s:playerClassName, s:"_Dropped"), false);
+	}
+	else
+	{
+		if(isNearPlasmaRifle())
+			stateSet = SetActorState(0, StrParam(s:playerClassName, s:"_NearPlasmaRifle"), false);
 	}
 
 	if(!stateSet)

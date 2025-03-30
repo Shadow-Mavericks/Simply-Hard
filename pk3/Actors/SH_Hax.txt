@@ -143,6 +143,22 @@ actor SigilHitscanHax : BulletPuff // Also needed.
 	}
 }
 
+actor PlasmaLocatorHax : CustomInventory
+{
+	Inventory.MaxAmount 0
+	+ALLOWCLIENTSPAWN
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+		Pickup:
+			TNT1 A 0 A_ClientsideACSExecute("CLIENTSIDE_ADD_PLASMA_LOCATION")
+			TNT1 A 0 A_RailWait
+			stop
+	}
+}
+
 actor PingMarker : MapMarker
 {
 	Species "Player"

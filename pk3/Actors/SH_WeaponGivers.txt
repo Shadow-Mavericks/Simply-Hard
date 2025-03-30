@@ -63,7 +63,7 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 			AGUN A -1
 			loop
 
-		MaximusPrimeDropped:
+		MaximusPrime_Dropped:
 			BRIF A -1
 			loop
 
@@ -132,7 +132,7 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 			BRIF A -1
 			loop
 			
-		MaximusPrimeDropped:
+		MaximusPrime_Dropped:
 			AGUN A -1
 			loop
 
@@ -184,6 +184,7 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 {
 	//$Sprite DEPGA0
+	var int user_locationtracked;
 	States
 	{
 		Base:

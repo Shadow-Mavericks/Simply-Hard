@@ -178,6 +178,7 @@ actor RocketBoxGiver : AmmoGiver_Base replaces RocketBox
 actor CellGiver : AmmoGiver_Base replaces Cell
 {
 	//$Sprite CELLA0
+	var int user_nearplasma;
 	States
 	{
 		Base:
@@ -186,6 +187,9 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 		
 		MaximusPrime:
 			ACAM A -1
+			loop
+		MaximusPrime_NearPlasmaRifle:
+			PCEL C -1
 			loop
 			
 		Init:
@@ -201,6 +205,7 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 {
 	//$Sprite CELPA0
+	var int user_nearplasma;
 	States
 	{
 		Base:
@@ -209,6 +214,9 @@ actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 		
 		MaximusPrime:
 			ACAM B -1
+			loop
+		MaximusPrime_NearPlasmaRifle:
+			PCEL D -1
 			loop
 			
 		Gosimer:
