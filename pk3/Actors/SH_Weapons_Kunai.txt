@@ -365,6 +365,9 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 	Weapon.SwayStyle "HorizontalOnly"
 	Weapon.ViewSwaySpeed 1.0
 	
+	Weapon.SisterWeapon "HighNoonPython"
+	Weapon.PowerupItem "Tier1upgradetoken"
+	
 	Inventory.RestrictedTo "Kunai"
 	Inventory.PickupSound "misc/w_pkup"
 	
@@ -374,23 +377,19 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 	States
 	{
 		Ready:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Goldready")
 			NULL A 0 A_JumpIfInventory("Reload",0,"Reload")
 			COLT A 1 A_WeaponReady(WRF_ALLOWRELOAD)
 			Loop
 		Deselect:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Golddeselect")
 			COLT A 0 A_TakeInventory("Reload",1)
 			COLT AA 0 A_Lower
 			COLT A 1 A_Lower
 			loop
 		Select:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldSelect")
 			COLT AA 0 A_Raise
 			COLT A 1 A_Raise
 			Loop
 		Fire:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldFire")
 			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
 			Goto Dryfire
 			COLT A 1 A_TakeInventory("REV_SHOT",1)
@@ -405,7 +404,6 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			COLT A 1 A_refire
 			Goto Ready
 		DryFire:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GolddryFire")
 			COLT A 3 A_WeaponReady(WRF_NOFIRE)
 			COLT A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
 			COLT B 2 A_WeaponReady(WRF_NOFIRE)
@@ -413,7 +411,6 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 
 		AltFire:
 			COLT A 0 A_TakeInventory("FanCount", 6)
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldAltFire")
 			NULL A 0 A_JumpIfInventory("REV_SHOT",1,"AltStart")
 			Goto AltFireDry
 		AltStart:
@@ -450,11 +447,11 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			Goto Reload
 
 		Reload:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"Goldreload")
 			NULL A 0 A_TakeInventory("Reload",1)
 			NULL A 0 A_JumpIfInventory("REV_SHOT",0,"Ready")
-			NULL A 0 A_JumpIfInventory("Peastolclip",1,1)
+			NULL A 0 A_JumpIfInventory("Peastolclip",1,"ReloadStart")
 			Goto Ready
+		ReloadStart:
 			NULL A 0 A_PlaySound("REVOPEN",chan_5)
 			COLT FGHIJ 2 A_WeaponReady(WRF_NOFIRE)
 			NULL A 0 A_PlaySound("REVEJECT",chan_5)
@@ -480,12 +477,145 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			NULL A 0 A_JumpIfInventory("REV_SHOT",0,"ReloadEnd") // if clip full, finish reload
 			goto ReloadAmmoLoop // otherwise continue
 		ReloadEnd:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"GoldReloadend")
 			COLT A 1 A_WeaponReady(WRF_NOFIRE)
 			COLT A 1 A_weaponready
-			COLT A 0 A_Jump(25,"Highnooncheck")
 			Goto Ready
-		GoldReload:
+
+		Flash:
+			TNT1 A 2 A_Light1
+			TNT1 A 0 A_Light0
+			Goto LightDone
+		
+		Spawn:
+			PIST A -1
+			Stop
+	}
+}
+
+actor HighNoonPython : Kunaisrevolver
+{
+	Tag "Kunai's High Noon Python (Tier 1 Upgrade)"
+	
+	Weapon.SisterWeapon "Kunaisrevolver"	
+	+WEAPON.POWERED_UP
+	
+	States
+	{
+		Ready:
+			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNReady")
+			GOLT A 0 A_JumpIfInventory("Reload", 0, "Reload")
+			GOLT A 1 A_WeaponReady (WRF_ALLOWRELOAD)
+			Loop
+			
+		Select:
+			GOLT AA 0 A_Raise
+			GOLT A 1 A_Raise
+			Loop
+			
+		Deselect:
+			GOLT A 0 A_JumpIfInventory("Highnoon",1,"HNDeselect")
+			GOLT A 0 A_TakeInventory("Reload",1)
+			GOLT AA 0 A_Lower
+			GOLT A 1 A_Lower
+			loop
+
+		Fire:
+			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNFire")
+			GOLT A 0 A_JumpIfInventory("REV_SHOT",1,1)
+			Goto Dryfire
+			GOLT A 1 A_TakeInventory("REV_SHOT",1)
+			GOLT B 1 A_Playsound("REVFIRE", CHAN_WEAPON)
+			GOLT C 0 A_GUNFLASH
+			GOLT C 0 A_Jump(64, "FireCrit")
+			GOLT C 0 BRIGHT A_FireBullets(2, 2, -1, 25,"BulletPuff", FBF_USEAMMO)
+			goto FireEnd
+		FireCrit:
+			GOLT C 0 BRIGHT A_PlaySound("GenericCrit", CHAN_AUTO)
+			GOLT C 0 BRIGHT A_FireBullets(2, 2, -1, 100,"KunaisLifeStealingPuff", FBF_USEAMMO | FBF_NORANDOM)
+			goto FireEnd
+		FireEnd:
+			GOLT C 1 BRIGHT
+			GOLT D 1
+			GOLT E 4
+			GOLT D 5
+			GOLT A 1 A_refire
+			Goto Ready
+		DryFire:
+			GOLT A 3 A_WeaponReady(WRF_NOFIRE)
+			GOLT B 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			GOLT B 2 A_WeaponReady(WRF_NOFIRE)
+			Goto Reload
+
+		
+		AltFire:
+			COLT A 0 A_TakeInventory("FanCount", 6)
+			GOLT A 0 A_JumpIfInventory("REV_SHOT",1, "AltStart")
+			Goto AltDry
+		AltStart:
+			HGLT A 4
+			HGLT B 4
+			goto AltLoop
+		AltLoop:
+			HGLT C 2
+			HGLT D 2 BRIGHT A_PlaySound("REVFIRE", CHAN_WEAPON)
+			HGLT D 0 BRIGHT A_GunFlash
+			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff", FBF_USEAMMO)
+			NULL A 0 A_GiveInventory("FanCount", 1)
+			NULL A 0 A_JumpIfInventory("FanCount", 6, "AltEnd")
+			NULL A 0 A_JumpIfInventory("REV_SHOT", 1, "AltLoop")
+			Goto AltLoopDry
+		AltEnd:
+			HGLT F 4
+			HGLT G 4
+			goto Reload
+		AltDry:
+			HGLT A 4
+			HGLT B 4
+			HGLT C 4
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			HGLT F 4
+			HGLT G 4
+			GOLT A 4
+			Goto Reload
+		AltLoopDry:
+			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
+			HGLT F 4
+			HGLT G 4
+			GOLT A 4
+			Goto Reload
+
+		HNReady:
+			HGLT B 4
+			goto HNReadyLoop
+		HNReadyLoop:
+			HGLT C 1 A_WeaponReady(WRF_NOSECONDARY)
+			loop
+		HNDeselect:
+			HGLT A 0 A_TakeInventory("Reload",1)
+			HGLT F 4
+			HGLT G 4
+			GOLT AA 0 A_Lower
+			GOLT A 1 A_Lower
+			Goto HNDeselect+3
+		HNFire:
+			NULL A 0 A_TakeInventory("Highnoon",1)
+			NULL A 0 A_TakeInventory("FanCount", 6)
+			goto HNFireLoop
+		HNFireLoop:
+			HGLT C 2 A_TakeInventory("REV_SHOT",1)
+			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
+			HGLT E 0 BRIGHT A_gunflash
+			HGLT E 0 BRIGHT A_PlaySound("GenericCrit", CHAN_AUTO)
+			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"KunaisLifeStealingPuff", 0)
+			HGLT E 0 A_GiveInventory("FanCount", 1)
+			HGLT E 0 A_JumpIfInventory("FanCount", 6, "HNFireEnd")
+			loop
+		HNFireEnd:
+			HGLT F 4
+			HGLT G 4
+			goto Reload
+			
+		Reload:
 			NULL A 0 A_TakeInventory("Reload",1)
 			NULL A 0 A_JumpIfInventory("REV_SHOT",0,"Ready")
 			NULL A 0 A_JumpIfInventory("Peastolclip",1,1)
@@ -508,133 +638,17 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			NULL A 0 A_PlaySound("REVCLOSE",chan_5)
 			GOLT A 2 A_WeaponReady(WRF_NOFIRE)
 			Goto ReloadAmmoLoop
-		GoldReloadEnd:
+		ReloadEnd:
 			GOLT A 1 A_WeaponReady(WRF_NOFIRE)
 			GOLT A 1 A_weaponready
-			GOLT A 0 A_Jump(25,"Highnooncheck")
-			Goto Ready
-		Highnooncheck:
-			COLT A 0 A_JumpIfInventory("Tier1upgradetoken",1,"ItsHighnoon")
+			GOLT A 0 A_Jump(25, "ItsHighnoon")
 			Goto Ready
 		ItsHighnoon:
 			NULL A 0 A_Giveinventory("Highnoon",1)
 			HGLT A 4 ACS_Namedexecutewithresult("sv_highnoon")
 			HGLT B 4
 			HGLT C 70
-			HGLT C 4 A_WeaponReady(WRF_NOSECONDARY)
-			Goto ItsHighnoon+4
-
-		Flash:
-			TNT1 A 2 A_Light1
-			TNT1 A 0 A_Light0
-			Goto LightDone
-		
-		GoldReady:
-			GOLT A 0 A_GiveInventory("Tier1upgradetoken", 1)
-			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNReady")
-			GOLT A 0 A_JumpIfInventory("Reload", 0, "Reload")
-			GOLT A 1 A_WeaponReady (WRF_ALLOWRELOAD)
-			Loop
-			
-		GoldSelect:
-			GOLT AA 0 A_Raise
-			GOLT A 1 A_Raise
-			Loop
-			
-		GoldDeselect:
-			GOLT A 0 A_JumpIfInventory("Highnoon",1,"HNDeselect")
-			GOLT A 0 A_TakeInventory("Reload",1)
-			GOLT AA 0 A_Lower
-			GOLT A 1 A_Lower
-			loop
-
-		GoldFire:
-			GOLT A 0 A_JumpIfInventory("Highnoon", 1,"HNFire")
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1,1)
-			Goto Dryfire
-			GOLT A 1 A_TakeInventory("REV_SHOT",1)
-			GOLT B 1 A_Playsound("REVFIRE", CHAN_WEAPON)
-			TNT1 A 0 A_GUNFLASH
-			GOLT C 1 BRIGHT A_FireBullets(2, 2, -1, 25,"BulletPuff",1)
-			GOLT D 1
-			GOLT E 4
-			GOLT D 5
-			GOLT A 1 A_refire
-			Goto Ready
-		GoldDryFire:
-			GOLT A 3 A_WeaponReady(WRF_NOFIRE)
-			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
-			GOLT B 2 A_WeaponReady(WRF_NOFIRE)
-			Goto Reload
-
-		
-		GoldAltFire:
-			GOLT A 0 A_JumpIfInventory("Highnoon", 1, "HNFire")
-			NULL A 0 A_JumpIfInventory("REV_SHOT",1, "GoldAltStart")
-			Goto GoldAltDry
-		GoldAltStart:
-			HGLT A 4
-			HGLT B 4
-			goto GoldAltLoop
-		GoldAltLoop:
-			HGLT C 2
-			HGLT D 2 BRIGHT A_PlaySound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 BRIGHT A_GunFlash
-			HGLT E 2 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff", FBF_USEAMMO)
-			NULL A 0 A_GiveInventory("FanCount", 1)
-			NULL A 0 A_JumpIfInventory("FanCount", 6, "GoldAltEnd")
-			NULL A 0 A_JumpIfInventory("REV_SHOT", 1, "GoldAltLoop")
-			Goto GoldAltLoopDry
-		GoldAltEnd:
-			HGLT F 4
-			HGLT G 4
-			goto Reload
-		GoldAltDry:
-			HGLT A 4
-			HGLT B 4
-			HGLT C 4
-			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
-			HGLT F 4
-			HGLT G 4
-			GOLT A 4
-			Goto Reload
-		GoldAltLoopDry:
-			NULL A 0 A_PlaySound("weapons/pistol/dry", CHAN_AUTO)
-			HGLT F 4
-			HGLT G 4
-			GOLT A 4
-			Goto Reload
-
-		HNReady:
-			HGLT B 4
-			HGLT C 1 A_WeaponReady
-			Goto HNReady+1
-		HNDeselect:
-			HGLT A 0 A_TakeInventory("Reload",1)
-			HGLT F 4
-			HGLT G 4
-			GOLT AA 0 A_Lower
-			GOLT A 1 A_Lower
-			Goto HNDeselect+3
-		HNFire:
-			NULL A 0 A_TakeInventory("Highnoon",1)
-			NULL A 0 A_TakeInventory("FanCount", 6)
-			goto HNFireLoop
-		HNFireLoop:
-			HGLT C 2 A_TakeInventory("REV_SHOT",1)
-			HGLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HGLT D 0 BRIGHT A_gunflash
-			HGLT E 2 BRIGHT A_FireBullets(1, 1, -1, 150,"KunaisLifeStealingPuff", 0)
-			HGLT E 0 A_GiveInventory("FanCount", 1)
-			HGLT E 0 A_JumpIfInventory("FanCount", 6, "HNFireEnd")
-			loop
-		HNFireEnd:
-			HGLT F 4
-			HGLT G 4
-			goto Reload
-		Spawn:
-			PIST A -1
-			Stop
+			goto HNReadyLoop
 	}
 }
 
@@ -660,91 +674,248 @@ ACTOR HelltechShotgun : SH_Weapon //Weapon from Laundry
 	Weapon.SwayStyle "HorizontalOnly"
 	Weapon.ViewSwaySpeed 1.0
 	
+	Weapon.SisterWeapon "HelltechShotgunWithFrostShot"
+	Weapon.PowerupItem "Tier2upgradetoken"
+	
 	+WEAPON.NOAUTOAIM
 	States
 	{
-	Ready:
-		SNGL A 0 A_Jumpifinventory("tier2upgradetoken",1,"GoldReady")
-		SNGL A 1 A_WeaponReady
-		Loop
-	Deselect:
-		SNGL A 0 A_Jumpifinventory("tier2upgradetoken",1,"GoldDeselect")
-		SNGL AA 0 A_Lower
-		SNGL A 1 A_Lower
-		Loop
-	Select:
-		SNGL A 0 A_Jumpifinventory("tier2upgradetoken",1,"GoldSelect")
-		SNGL AA 0 A_Raise
-		SNGL A 1 A_Raise
-		Loop
-	Fire:
-		SNGL A 0 A_Jumpifinventory("tier2upgradetoken",1,"GoldFire")
-		SNGL A 1 A_Playsound("Kunaishotgun_FIRE",Chan_weapon)
-		SNGL A 0 A_GUNFLASH
-		SNGL A 0 A_FireBullets (3, 3, 10, 5, "BulletPuff")
-		goto FireAnim
-	FireAnim:
-		"####" B 1 BRIGHT
-		"####" C 1 BRIGHT
-		"####" D 1 BRIGHT
-		"####" E 1
-		"####" F 1
-		"####" G 2
-		"####" H 3
-		"####" A 4
-		"####" I 3
-		"####" J 3
-		"####" K 3 A_playsound("Kunaishotgun_Pump",Chan_6)
-		"####" K 2 Offset(2, 34)
-		"####" L 2 Offset(1, 32)
-		"####" L 3 Offset(2, 38)
-		"####" L 2 Offset(1, 36)
-		"####" K 2 Offset(1, 34)
-		"####" K 2 Offset(-1, 32)
-		"####" J 1 Offset(-4, 34)
-		"####" I 1 Offset(4, 32)
-		"####" I 2 Offset(1, 32)
-		"####" H 0 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
-		"####" H 2
-		"####" A 1
-		"####" A 0 A_ReFire
-		Goto Ready
-	Altfire:
-		SNGL A 0 A_Jumpifinventory("tier2upgradetoken",1,"Goldaltfire")
-		SNGL A 0 A_Print("Missing Hellshot attachment!")
-		Goto ready
-	Goldaltfire:
-		KSGG A 0 A_Print("Function not yet complete!")
-		Goto Goldfire
-	GoldReady:
-		KSGG A 1 A_WeaponReady
-		Loop
-	GoldDeselect:
-		KSGG AA 0 A_Lower
-		KSGG A 1 A_Lower
-		Loop
-	GoldSelect:
-		KSGG AA 0 A_Raise
-		KSGG A 1 A_Raise
-		Loop
-	GoldFire:
-		KSGG A 1 A_Playsound("Kunaishotgun_FIRE",Chan_weapon)
-		KSGG A 0 A_GUNFLASH
-		KSGG A 0 A_Jump(64, "GoldCritFire")
-		KSGG A 0 A_FireBullets (3, 3, 10, 6, "BulletPuff")
-		goto FireAnim
-	GoldCritFire:
-		KSGG A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
-		KSGG A 0 A_FireBullets (3, 3, 10, 10, "KunaisLifeStealingPuff")
-		goto FireAnim
-	Flash:
-		TNT1 A 1 Bright A_Light1
-		TNT1 A 1 Bright A_Light2
-		TNT1 A 1 Bright A_Light1
-		Goto LightDone
-	Spawn:
-		SHOT A -1
-		Stop
+		Ready:
+			SNGL A 1 A_WeaponReady
+			Loop
+		Deselect:
+			SNGL AA 0 A_Lower
+			SNGL A 1 A_Lower
+			Loop
+		Select:
+			SNGL AA 0 A_Raise
+			SNGL A 1 A_Raise
+			Loop
+		Fire:
+			SNGL A 1 A_Playsound("Kunaishotgun_FIRE",Chan_weapon)
+			SNGL A 0 A_GUNFLASH
+			SNGL A 0 A_FireBullets (3, 3, 10, 5, "BulletPuff")
+			goto FireAnim
+		FireAnim:
+			"####" B 1 BRIGHT
+			"####" C 1 BRIGHT
+			"####" D 1 BRIGHT
+			"####" E 1
+			"####" F 1
+			"####" G 2
+			"####" H 3
+			"####" A 4
+			"####" I 3
+			"####" J 3
+			"####" K 3 A_playsound("Kunaishotgun_Pump",Chan_6)
+			"####" K 2 Offset(2, 34)
+			"####" L 2 Offset(1, 32)
+			"####" L 3 Offset(2, 38)
+			"####" L 2 Offset(1, 36)
+			"####" K 2 Offset(1, 34)
+			"####" K 2 Offset(-1, 32)
+			"####" J 1 Offset(-4, 34)
+			"####" I 1 Offset(4, 32)
+			"####" I 2 Offset(1, 32)
+			"####" H 0 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+			"####" H 2
+			"####" A 1
+			"####" A 0 A_ReFire
+			"####" A 0 A_JumpIf(1, "Ready") // Used to jump to descendant actor's ready state instead of this one's.
+			wait
+		Flash:
+			TNT1 A 1 Bright A_Light1
+			TNT1 A 1 Bright A_Light2
+			TNT1 A 1 Bright A_Light1
+			Goto LightDone
+		Spawn:
+			SHOT A -1
+			Stop
+	}
+}
+
+ACTOR HelltechShotgunWithFrostShot : HelltechShotgun
+{
+	Tag "HellTech Shotgun w/ FrostShot (Tier 2 Upgrade)"
+	
+	Weapon.AmmoType1 "Shellz"
+	Weapon.AmmoType2 "Shellz"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 1
+	
+	Weapon.SisterWeapon "HelltechShotgun"
+	+WEAPON.POWERED_UP
+	
+	States
+	{
+		Ready:
+			KSGG A 1 A_WeaponReady
+			Loop
+		Deselect:
+			KSGG AA 0 A_Lower
+			KSGG A 1 A_Lower
+			Loop
+		Select:
+			KSGG AA 0 A_Raise
+			KSGG A 1 A_Raise
+			Loop
+		Fire:
+			KSGG A 1 A_Playsound("Kunaishotgun_FIRE", CHAN_WEAPON)
+			KSGG A 0 A_GUNFLASH
+			KSGG A 0 A_Jump(64, "CritFire")
+			KSGG A 0 A_FireBullets (3, 3, 10, 6, "BulletPuff")
+			goto FireAnim
+		AltFire:
+			KSGG A 1 A_Playsound("FrostShot", CHAN_WEAPON)
+			KSGG A 0 A_GUNFLASH
+			KSGG A 0 A_FireCustomMissile("FrostShotGrenade", frandom(-1.0, 1.0), true, 0, 0, 0, frandom(2.0, 3.0))
+			goto FireAnim
+		CritFire:
+			KSGG A 0 A_PlaySound("GenericCrit", CHAN_AUTO)
+			KSGG A 0 A_FireBullets (3, 3, 10, 10, "KunaisLifeStealingPuff")
+			goto FireAnim
+	}
+}
+
+actor FrostShotTrail : CryoSmoke
+{
+	RenderStyle Shaded
+	StencilColor "64 A0 A0"
+	Scale 0.25
+}
+
+actor FrostShotBallTrail : CryoSmoke
+{
+	RenderStyle Shaded
+	StencilColor "64 A0 A0"
+	Scale 0.1
+}
+
+actor FrostShotExplosionMist : CryoSmoke4
+{
+	StencilColor "64 A0 A0"
+}
+
+actor FrostShotGrenade : SH_BaseProjectile
+{
+	Radius 4
+	Height 8
+	Scale 0.5
+	Speed 30
+	Gravity 0.125
+	Damage (1)
+	BounceType "Doom"
+	BounceFactor 1.0
+	BounceCount 2
+	ReactionTime 15
+	+FORCERADIUSDMG
+	+BOUNCEAUTOOFFFLOORONLY
+	+SKYEXPLODE
+	-NOGRAVITY
+	
+	var int user_last_velx;
+	var int user_last_vely;
+	var int user_last_velz;
+	
+	States
+	{
+		Spawn:
+			KGRN A 1 A_SpawnItemEx("FrostShotTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			KGRN A 0 A_SetUserVar("user_last_velx", velx)
+			KGRN A 0 A_SetUserVar("user_last_vely", vely)
+			KGRN A 0 A_SetUserVar("user_last_velz", velz)
+			KGRN A 0 A_CountDown
+			loop
+		Death:
+			FX02 F 0 A_PlaySound("FrostShotExplode", CHAN_AUTO)
+			FX02 FFFFFFFFFF 0 A_SpawnItemEx("FrostShotBallBig", 0, 0, 0, user_last_velx+frandom[frostnade1](-4.0, 4.0), user_last_vely+frandom[frostnade1](-4.0, 4.0), user_last_velz+frandom[frostnade1](-4.0, 4.0), 0, SXF_NOCHECKPOSITION | SXF_ABSOLUTEVELOCITY, 0)
+			FX02 F 0 A_SpawnItemEx("FrostShotExplosionMist", 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FX02 F 0 A_SetScale(1.5)
+			FX02 F 0 A_SetTranslucent(1.0, 1)
+			FX02 F 0 A_SetDamageType("Ice")
+			FX02 F 0 A_Explode(49, 64, 0, false, 32)
+			FX02 FGHIJ 2 Bright
+			stop
+	}
+}
+
+actor FrostShotBallBig : FrostShotGrenade
+{
+	Radius 2
+	Height 4
+	Damage (10)
+	DamageType "Ice"
+	BounceSound "FrostBallRicochet"
+	+BOUNCEONACTORS
+	States
+	{
+		Spawn:
+			FX02 C 1
+			FX02 C 0 A_ChangeFlag("BOUNCEONACTORS", false)
+			goto SpawnLoop
+		SpawnLoop:
+			FX02 C 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 C 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 C 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 C 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 D 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 D 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 D 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			FX02 D 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 A_SetUserVar("user_last_velx", velx)
+			"####" "#" 0 A_SetUserVar("user_last_vely", vely)
+			"####" "#" 0 A_SetUserVar("user_last_velz", velz)
+			loop
+		Death:
+			FX02 F 0 A_PlaySound("FrostBallExplode", CHAN_AUTO)
+			FX02 FF 0 A_SpawnItemEx("FrostShotBallSmall", 0, 0, 0, user_last_velx+frandom[frostnade2](-4.0, 4.0), user_last_vely+frandom[frostnade2](-4.0, 4.0), user_last_velz+frandom[frostnade2](-4.0, 4.0), 0, SXF_NOCHECKPOSITION | SXF_ABSOLUTEVELOCITY, 0)
+			FX02 F 0 A_SetScale(1.0)
+			FX02 F 0 A_SetTranslucent(1.0, 1)
+			FX02 FGHIJ 2 Bright
+			stop
+	}
+}
+
+actor FrostShotBallSmall : FrostShotBallBig
+{
+	Radius 2
+	Height 2
+	Damage (5)
+	States
+	{
+		Spawn:
+			FX02 A 1
+			FX02 A 0 A_ChangeFlag("BOUNCEONACTORS", false)
+			goto SpawnLoop
+		SpawnLoop:
+			FX02 AAAABBBB 1 A_SpawnItemEx("FrostShotBallTrail", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			loop
+		Death:
+			FX02 F 0 A_SetScale(0.75)
+			FX02 F 0 A_SetTranslucent(1.0, 1)
+			FX02 FGHIJ 2 Bright
+			stop
 	}
 }
 

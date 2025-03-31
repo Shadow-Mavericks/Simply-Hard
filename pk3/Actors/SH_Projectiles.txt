@@ -206,44 +206,6 @@ Actor Rockettrail2
 	}
 }
 
-ACTOR CryoSmoke3
-{
-	Radius 2
-	Height 2
-	RenderStyle Shaded
-	StencilColor "A0 A0 A0"
-	Alpha 0.2
-	Scale 0.05
-	+NOTIMEFREEZE
-	+CLIENTSIDEONLY
-	+NOINTERACTION
-	+FORCEXYBILLBOARD
-	States
-	{
-		Spawn:
-			IMST A 0
-			IMST A 2 A_FadeOut (0.05)
-			Wait
-	}
-}
-
-Actor CryoSmoke4 : CryoSmoke3
-{
-	StencilColor "DD DD DD"
-	Scale 0.1
-	Alpha 0.25
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	+NOINTERACTION
-	States
-	{
-		Spawn:
-			TNT1 A 0
-			IMST A 6 A_FadeOut(0.04)
-			Wait
-	}
-}
-
 
 //-----------------------------<plasma ball projectile(s) [Blue and Green]
 
@@ -2331,45 +2293,6 @@ ACTOR AutoaimTrail
 		Spawn:
 			GSHT AABBCDEFG 1 Bright
 			Stop
-	}
-}
-
-ACTOR CryoSmoke
-{
-	Radius 2
-	Height 2
-	RenderStyle Shaded
-	StencilColor "A0 A0 A0"
-	Alpha 1.0
-	Scale 0.4
-	+NOTIMEFREEZE
-	+CLIENTSIDEONLY
-	+NOINTERACTION
-	+FORCEXYBILLBOARD
-	States
-	{
-		Spawn:
-			SMOK A 0
-			SMOK A 2 A_FadeOut (0.05)
-			Wait
-	}
-}
-
-Actor CryoSmoke2 : CryoSmoke
-{
-	StencilColor "DD DD DD"
-	Scale 0.7
-	Alpha 0.5
-	VSpeed 2.5
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	+NOINTERACTION
-	States
-	{
-		Spawn:
-			TNT1 A 0
-			SMOK A 6 A_FadeOut(0.04)
-			Wait
 	}
 }
 

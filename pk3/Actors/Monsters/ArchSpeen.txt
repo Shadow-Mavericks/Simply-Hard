@@ -149,6 +149,7 @@ ACTOR ArchspeenWind : CustomInventory
 		Use:
 			TNT1 A 0 A_CheckFlag("DONTBLAST", "Nope")
 			TNT1 A 0 A_CheckFlag("NODAMAGETHRUST", "Nope")
+			TNT1 A 0 A_CheckFlag("DORMANT", "Nope")
 			TNT1 A 0 A_ChangeVelocity(velx, vely, velz+1.0, CVF_REPLACE)
 			TNT1 A 0 A_CheckFlag("ISMONSTER", "Speen")
 			TNT1 A 0 A_RailWait
