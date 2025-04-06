@@ -1181,7 +1181,7 @@ script "ACID_TICKER" (void)
 	int radius = GetActorProperty(0, APROP_Radius);
 	Thing_SetTranslation(0, 7000);
 	
-	if(PlayerNumber() == ConsolePlayerNumber())
+	if(PlayerNumber() != -1)
 	{
 		SetCameraToTexture(0, "ACIDFX", 90);
 
@@ -1256,7 +1256,7 @@ script "ACID_TICKER" (void)
 	}
 	else
 	{
-		if(PlayerNumber() == ConsolePlayerNumber())
+		if(PlayerNumber() != -1)
 		{
 			SetCameraToTexture(0, "ACIDFX", 90);
 
