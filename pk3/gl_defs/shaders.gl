@@ -615,3 +615,11 @@ HardwareShader texture REDBUBBL
 	Shader "shaders/bubbleshield.fp"
 	Speed 1.0
 }
+
+// Screen Shaders
+// --------------
+HardwareShader texture ACIDFX
+{
+	Shader "shaders/acidfx.fp"
+	Speed 1.0
+}

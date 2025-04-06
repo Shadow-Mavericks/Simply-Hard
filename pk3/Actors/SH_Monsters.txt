@@ -205,11 +205,11 @@ ACTOR Hardimp : SH_BaseMonster
 		Melee:
 		Missile:
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			Goto See
 		Pain.Mightyboot:
 			TNT1 A 0 A_Facetarget
@@ -291,11 +291,11 @@ ACTOR Critimp : Hardimp
 		Missile:
 			TROO A 0 A_Jump(60, "Critattack")
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			TROO EF 6 A_FaceTarget
-			TROO G 4 A_CustomMissile ("Doomimpball1",38,0,0)
+			TROO G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
 			Goto See
 		Critattack:
 			TROO E 6 A_FaceTarget

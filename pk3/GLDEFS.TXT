@@ -9190,7 +9190,7 @@ pointlight Normimpball4
     offset 0 16 0
 }
 
-Object Doomimpball1
+Object ImpBall_Base
 {
 	frame IBALA	{ Light Normimpball1 }
 	frame IBALB { Light Normimpball1 }

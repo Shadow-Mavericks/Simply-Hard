@@ -1,14 +1,25 @@
-
-actor ImpBall_Base : DoomImpBall1 
+actor ImpBall_Base
 { 
 	Radius 6
 	Height 8
-	Speed 12
-	Alpha 0.75
-	Damage (18)
-	Renderstyle add
+	Speed 15
+	FastSpeed 20
+	Damage (15)
+	Renderstyle Add
+	Alpha 1.0
 	SeeSound "imp/attack"
 	DeathSound "imp/shotx"
+	Projectile
+	+RANDOMIZE
+	States
+	{
+		Spawn:
+			IBAL A 1 Bright
+			Loop
+		Death:
+			IBAL CDE 6 Bright
+			Stop
+	}
 }
 
 // Acid Imp
@@ -16,17 +27,15 @@ actor ImpBall_Acid : ImpBall_Base
 {
 	Scale 0.8
 	DamageType "Acid"
-//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
-  States
-  {
-  Spawn:
-    ACD1 A 1 Bright A_SpawnItemEx ("impballtrailGreen")
-	ACD1 B 1 Bright A_SpawnItemEx ("impballtrailGreen")
-    Loop
-  Death:
-    ACD1 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			ACD1 AB 1 Bright
+			Loop
+		Death:
+			ACD1 CDE 6 Bright
+			Stop
+	}
 }
 actor N_Imp_Acid : Hardimp 
 {
@@ -35,7 +44,7 @@ actor N_Imp_Acid : Hardimp
 	States
 	{
 		Melee:
-		  TROO EF 5 A_FaceTarget
+			TROO EF 5 A_FaceTarget
 			TROO G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Acid")
 			Goto See
 			
@@ -43,7 +52,6 @@ actor N_Imp_Acid : Hardimp
 			TROO EF 5 A_FaceTarget
 			TROO G 4 A_CustomMissile("ImpBall_Acid") 
 			Goto See
-			
 	}
 }
 
@@ -52,17 +60,15 @@ actor ImpBall_Void 	: ImpBall_Base
 { 
 	Scale 0.8
 	DamageType "Void" 
-//	Translation "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "231:231=[192, 128, 255]:[16, 0, 32]", "233:233=[192, 128, 255]:[16, 0, 32]"
-  States
-  {
-  Spawn:
-    CNF1 A 1 Bright A_SpawnItemEx ("impballtrailPurple")
-    CNF1 B 1 Bright A_SpawnItemEx ("impballtrailPurple")
-    Loop
-  Death:
-    CNF1 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			CNF1 AB 1 Bright
+			Loop
+		Death:
+			CNF1 CDE 6 Bright
+			Stop
+	}
 }
 actor N_Imp_Void : Hardimp 
 {
@@ -89,8 +95,7 @@ actor ImpBall_Fire 	: ImpBall_Base
 	States
 	{
 		Spawn:
-			FIR1 A 1 Bright A_SpawnItemEx ("impballtrailRed")
-			FIR1 B 1 Bright A_SpawnItemEx ("impballtrailRed")
+			FIR1 AB 1 Bright
 			Loop
 		Death:
 			FIR1 CDE 6 Bright
@@ -119,16 +124,12 @@ actor ImpBall_Electric	: ImpBall_Base
 {
 	Scale 0.8
 	DamageType "Electric"
-//	Translation "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]", "233:233=[255, 255, 96]:[64, 64, 32]"
 	+FORCEPAIN
 	+PIERCEARMOR
 	States
 	{
 		Spawn:
-			SHK1 A 1 Bright A_SpawnItemEx("Particle_Lightning5")
-			SHK1 B 1 Bright A_SpawnItemEx ("impballtrailYellow")
-		    SHK1 A 1 Bright A_SpawnItemEx("Particle_Lightning5")
-			SHK1 B 1 Bright A_SpawnItemEx ("impballtrailYellow")
+			SHK1 AB 1 Bright A_SpawnItemEx("Particle_Lightning5")
 			Loop
 		Death:
 			SHK1 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
@@ -159,17 +160,15 @@ actor ImpBall_Ice : ImpBall_Base
 	Scale 0.8
 	Damage (7) 
 	DamageType "Ice" 
-//		Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
-  States
-  {
-  Spawn:
-    ICE1 A 1 Bright A_SpawnItemEx ("impballtrailBlue")
-	ICE1 A 1 Bright A_SpawnItemEx ("impballtrailBlue")
-    Loop
-  Death:
-    ICE1 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			ICE1 AB 1 Bright
+			Loop
+		Death:
+			ICE1 CDE 6 Bright
+			Stop
+	}
 }
 actor N_Imp_Ice: Hardimp 
 {
@@ -195,22 +194,20 @@ actor ImpBall_Metal : ImpBall_Base
 	Scale 0.8
 	Damage (15) 
 	DamageType "HeavyMetal" 
-//	Translation "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]", "233:233=[255, 255, 255]:[0, 0, 0]"
-  States
-  {
-  Spawn:
-    MET1 A 1 Bright A_SpawnItemEx ("impballtrailWhite")
-    MET1 B 1 Bright A_SpawnItemEx ("impballtrailWhite")
-	Loop
-  Death:
-    MET1 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			MET1 AB 1 Bright
+			Loop
+		Death:
+			MET1 CDE 6 Bright
+			Stop
+	}
 }
 actor N_Imp_HeavyMetal: Hardimp 
 {
-//	Scale 1.1
-  PainChance 0
+	//	Scale 1.1
+	PainChance 0
 	Translation "61:79=[255, 255, 255]:[0, 0, 0]"
 	States
 	{

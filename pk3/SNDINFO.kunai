@@ -1,32 +1,3 @@
-//Kunai helltech shotgun
-Kunaishotgun_FIRE1	KHTS_FR1
-Kunaishotgun_FIRE2	KHTS_FR2
-Kunaishotgun_Pump	KHTS_RL
-
-$random Kunaishotgun_FIRE { Kunaishotgun_FIRE1 Kunaishotgun_FIRE2 }
-
-FrostShot FROSTSHT
-$limit FROSTSHT 0
-
-FrostShotExplode1 FRSTSEX1
-FrostShotExplode2 FRSTSEX2
-FrostShotExplode3 FRSTSEX3
-$random FrostShotExplode { FrostShotExplode1 FrostShotExplode2 FrostShotExplode3 }
-$limit FrostShotExplode 0
-
-FrostBallExplode1 FRSTBEX1
-FrostBallExplode2 FRSTBEX2
-FrostBallExplode3 FRSTBEX3
-$random FrostBallExplode { FrostBallExplode1 FrostBallExplode2 FrostBallExplode3 }
-$limit FrostBallExplode 0
-
-FrostBallRicochet1 FRSTRIC1
-FrostBallRicochet2 FRSTRIC2
-FrostBallRicochet3 FRSTRIC3
-$random FrostBallRicochet { FrostBallRicochet1 FrostBallRicochet2 FrostBallRicochet3 }
-$limit FrostBallRicochet 0
-$volume FrostBallRicochet 0.5
-
 SOTNHeartbeat sv_hrtbt
 $limit SOTNHeartbeat 0
 

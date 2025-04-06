@@ -11,11 +11,11 @@
 //
 //=================================================================================================
 
-ACTOR RageRune : PowerupGiver
+ACTOR FastShootyBangBang : PowerupGiver
 {
 	Inventory.PickupMessage ""
 	Inventory.PickupAnnouncerEntry ""
-	Powerup.Duration 210
+	Powerup.Duration -15
 	Powerup.Type DoubleFiringSpeed
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
@@ -566,26 +566,6 @@ Actor Gosimerbag
 			GBAG A 1 A_FADEOUT(0.005)
 			loop
 	}
-}
-
-Actor bagspawnerGosimersAmmoSphere : Custominventory
-{
-	Game Doom
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.FANCYPICKUPSOUND
-	Inventory.PickupMessage "Infinite Ammo!"
-	Inventory.PickupSound "misc/p_pkup"
-	States
-	{
-		Spawn:
-			SOUL A 4 BRIGHT
-			Loop
-		pickup:
-			TNT1 A 0 A_GIVEINVENTORY("GosimersBackpack")
-			TNT1 A 0 A_GIVEINVENTORY("GosimersAmmoSphere")
-			Stop
-    }
 }
 
 Actor GosimersAmmoSphere : PowerupGiver

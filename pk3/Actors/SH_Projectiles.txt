@@ -736,31 +736,6 @@ ACTOR GreenBaronBall
 	}
 }
 
-
-ACTOR DoomImpBall1
-{
-	Radius 6
-	Height 8
-	Speed 15
-	FastSpeed 20
-	Damage 3
-	RenderStyle Add
-	Alpha 1
-	SeeSound "imp/attack"
-	DeathSound "imp/shotx"
-	Projectile
-	+RANDOMIZE
-	States
-	{
-		Spawn:
-			IBAL A 1 Bright A_SpawnItemEx ("impballtrail")
-			Loop
-		Death:
-			IBAL CDE 6 Bright
-			Stop
-	}
-}
-
 ACTOR Healgunshot
 {
 	Radius 6
@@ -838,182 +813,6 @@ ACTOR CRITImpBall
 		Death:
 			KDED ABCD 4 Bright
 			Stop
-	}
-}
-
-Actor impballtrail : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			IBAL A 1 Bright A_FadeOut(0.025)
-			IBAL A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			IBAL A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			IBAL B 1 Bright A_FadeOut(0.025)
-			IBAL B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			IBAL B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor impballtrailGreen : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			ACD1 A 1 Bright A_FadeOut(0.025)
-			ACD1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			ACD1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			ACD1 B 1 Bright A_FadeOut(0.025)
-			ACD1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			ACD1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor impballtrailRed : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-//	Translation "168:191=[128, 255, 128]:[32, 64, 32]", "208:223=[128, 255, 128]:[64, 128, 64]", "231:231=[128, 255, 128]:[64, 128, 64]", "233:233=[128, 255, 128]:[64, 128, 64]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			FIR1 A 1 Bright A_FadeOut(0.025)
-			FIR1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			FIR1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			FIR1 B 1 Bright A_FadeOut(0.025)
-			FIR1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			FIR1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor impballtrailYellow : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-	//Translation "168:191=[255, 255, 96]:[64, 64, 32]", "208:223=[255, 255, 96]:[64, 64, 32]", "231:231=[255, 255, 96]:[64, 64, 32]", "233:233=[255, 255, 96]:[64, 64, 32]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			SHK1 A 1 Bright A_FadeOut(0.025)
-			SHK1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			SHK1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			SHK1 B 1 Bright A_FadeOut(0.025)
-			SHK1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			SHK1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor impballtrailPurple : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-	//Translation "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "231:231=[192, 128, 255]:[16, 0, 32]", "233:233=[192, 128, 255]:[16, 0, 32]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			CNF1 A 1 Bright A_FadeOut(0.025)
-			CNF1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			CNF1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			CNF1 B 1 Bright A_FadeOut(0.025)
-			CNF1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			CNF1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-
-
-Actor impballtrailBlue : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-	//Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			ICE1 A 1 Bright A_FadeOut(0.025)
-			ICE1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			ICE1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			ICE1 B 1 Bright A_FadeOut(0.025)
-			ICE1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			ICE1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor  IMPballtrailWhite : SH_BaseParticle
-{
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.5
-	//Translation "168:191=[255, 255, 255]:[0, 0, 0]", "208:223=[255, 255, 255]:[0, 0, 0]", "231:231=[255, 255, 255]:[0, 0, 0]", "233:233=[255, 255, 255]:[0, 0, 0]"
-	States
-	{
-		Spawn:
-			NULL A 3
-		Loopy:
-			MET1 A 1 Bright A_FadeOut(0.025)
-			MET1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			MET1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-
-			MET1 B 1 Bright A_FadeOut(0.025)
-			MET1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			MET1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
-			loop
-		Death:
-			TNT1 A 0
-			stop
 	}
 }
 
@@ -2659,14 +2458,14 @@ ACTOR ChannelerBeam4 : ChannelerBeamHoming //this is to nerf the effect of shoot
 
 ACTOR ChannelerSeducer : ChannelerBeam
 {
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("ChannelerSeductor",0,0,0,4,0)
-    TBAL A 2 bright
-    stop
-  }
+	+NOTIMEFREEZE
+	states
+	{
+		Death:
+			TBAL A 0 A_CustomMissile("ChannelerSeductor", 0, 0, 0, CMF_TRACKOWNER, 0)
+			TBAL A 2 bright
+			stop
+	}
 }
 
 ACTOR ChannelerSeductor
@@ -2674,25 +2473,31 @@ ACTOR ChannelerSeductor
    Radius 0
    Height 0
    Scale 0.5
-   +ISMONSTER
+   Projectile
    +FRIENDLY
    +LOOKALLAROUND
-   +NOBLOCKMONST
-   +NOGRAVITY
    +NOTIMEFREEZE
    +NOINTERACTION
+   +NOCLIP
    Obituary "%o was burned by %k's volatile plasma."
    RenderStyle None
    States
    {
-   Spawn:
-     TNT1 A 0 A_Look
-   See:
-      TNT1 A 0 A_Chase
-   Missile:
-      TNT1 A 0 A_FaceTarget
-      TNT1 A 1 A_CustomMissile("ChannelerBeam4",0,0,0)
-      Stop
+		Spawn:
+			TNT1 A 0 NoDelay A_RearrangePointers (AAPTR_TARGET, AAPTR_TARGET, AAPTR_TARGET, PTROP_NOSAFEGUARDS) 
+			TNT1 A 0 A_Look
+		See:
+		Missile:
+			TNT1 A 0 A_FaceTarget(0.0, 0.0)
+			TNT1 A 0 A_RearrangePointers (AAPTR_TRACER, AAPTR_TRACER, AAPTR_TRACER, PTROP_NOSAFEGUARDS) 
+			TNT1 A 0 A_JumpTo("Shoot")
+			stop
+		Shoot:
+			TNT1 A 1 A_CustomMissile("ChannelerBeam4", 0, 0, 0, CMF_TRACKOWNER | CMF_AIMDIRECTION, pitch)
+			Stop
+		Death:
+			TNT1 A 0
+			Stop
    }
 }
 
@@ -2733,7 +2538,7 @@ Actor REDChannelerBeam : FastProjectile
 	states
 	{
 		Death:
-			TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
+			TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
 			TBAL C 2 bright
 			stop
 	}
@@ -2759,7 +2564,7 @@ Actor REDChannelerBeamHoming : FastProjectile
   states
   {
   Death:
-    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),4,random(0,360))
+    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
     TBAL C 2 bright
     stop
   }
@@ -2771,7 +2576,7 @@ ACTOR REDChannelerBeam2 : REDChannelerBeam
   states
   {
   Death:
-    TBAL A 0 A_CustomMissile("REDChannelerBeam3",0,0,random(0,360),4,random(0,360))
+    TBAL A 0 A_CustomMissile("REDChannelerBeam3",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
     TBAL C 2 bright
     stop
   }
@@ -2783,7 +2588,7 @@ ACTOR REDChannelerBeam3 : REDChannelerBeamHoming
   states
   {
   Death:
-    TBAL A 0 A_CustomMissile("REDChannelerBeam4",0,0,random(0,360),4,random(0,360))
+    TBAL A 0 A_CustomMissile("REDChannelerBeam4",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
     TBAL C 2 bright
     stop
   }
@@ -2809,37 +2614,22 @@ ACTOR REDChannelerSeducer : REDChannelerBeam
   states
   {
   Death:
-    TBAL A 0 A_CustomMissile("REDChannelerSeductor",0,0,0,4,0)
+    TBAL A 0 A_CustomMissile("REDChannelerSeductor",0,0,0,CMF_TRACKOWNER,0)
     TBAL C 2 bright
     stop
   }
 }
 
-ACTOR REDChannelerSeductor
+ACTOR REDChannelerSeductor : ChannelerSeductor
 {
-   Radius 0
-   Height 0
-   Scale 0.5
-   +NOTIMEFREEZE
-   +ISMONSTER
-   +FRIENDLY
-   +LOOKALLAROUND
-   +NOBLOCKMONST
-   +NOGRAVITY
-   +NOINTERACTION
    Obituary "%o was burned by %k's OVERCHARGED plasma."
    RenderStyle None
    States
    {
-   Spawn:
-     TNT1 A 0 A_Look
-   See:
-      TNT1 A 0 A_Chase
-   Missile:
-      TNT1 A 0 A_FaceTarget
-      TNT1 A 1 A_CustomMissile("REDChannelerBeam4",0,0,0)
-      Stop
-   }
+		Shoot:
+			TNT1 A 1 A_CustomMissile("REDChannelerBeam4",0,0,0, CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			Stop
+	}
 }
 
 ACTOR REDChannelerTrail : SH_BaseParticle
@@ -3278,6 +3068,55 @@ actor FlameshotICE2 : Projectile_Base
 	}
 }
 
+Actor DarkSeekerTrailPurple: SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.5
+	//Translation "168:191=[192, 128, 255]:[16, 0, 32]", "208:223=[192, 128, 255]:[16, 0, 32]", "231:231=[192, 128, 255]:[16, 0, 32]", "233:233=[192, 128, 255]:[16, 0, 32]"
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			CNF1 A 1 Bright A_FadeOut(0.025)
+			CNF1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			CNF1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			CNF1 B 1 Bright A_FadeOut(0.025)
+			CNF1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			CNF1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor DarkSeekerTrailBlue : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.5
+	//Translation "168:191=[128, 192, 255]:[32, 48, 64]", "208:223=[128, 192, 255]:[32, 48, 64]", "231:231=[128, 192, 255]:[32, 48, 64]", "233:233=[128, 192, 255]:[32, 48, 64]"
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			ICE1 A 1 Bright A_FadeOut(0.025)
+			ICE1 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ICE1 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			ICE1 B 1 Bright A_FadeOut(0.025)
+			ICE1 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ICE1 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
 
 actor DarkSeeker
 {
@@ -3296,9 +3135,9 @@ actor DarkSeeker
     {
     Spawn:
 		CNF1 A 1 Bright A_SeekerMissile (5,5)
-		CNF1 A 0 Bright A_SpawnItemEx("IMPballtrailpurple")
+		CNF1 A 0 Bright A_SpawnItemEx("DarkSeekerTrailPurple")
 		ICE1 B 1 Bright A_SeekerMissile (5,5)
-		ICE1 A 0 Bright A_SpawnItemEx("IMPballtrailblue")
+		ICE1 A 0 Bright A_SpawnItemEx("DarkSeekerTrailBlue")
         Loop
     Death:
         CNF1 C 1 Bright

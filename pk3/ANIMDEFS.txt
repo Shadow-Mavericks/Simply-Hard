@@ -522,3 +522,5 @@ Texture SHLDK200
 	PIC SHLDK20A tics 4
 	pic SHLDK20B tics 4
 	pic SHLDK20c tics 4
+	
+cameratexture ACIDFX 640 360

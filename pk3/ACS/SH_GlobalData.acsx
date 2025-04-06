@@ -7,6 +7,10 @@
 #libdefine PINGMARKER_BASE_TAG 78000
 #libdefine PINGMARKER_LIGHT_BASE_TAG 79000
 
+#libdefine ONE_SECOND 35
+#libdefine ONE_MINUTE 2100
+#libdefine ONE_HOUR 126000
+
 #libdefine SHSKILL_VERYEASY 0
 #libdefine SHSKILL_EASY 1
 #libdefine SHSKILL_NORMAL 2
@@ -127,6 +131,11 @@ function int clamp(int in, int min, int max)
 	return (out > max) ? max : out;
 }
 
+function int round_zan(int fixedNumber)
+{
+	return (fixedNumber + 0.5) >> 16;
+}
+
 function int VectorLength3D(int x, int y, int z)
 {
 	int len = VectorLength(x, y);
@@ -149,6 +158,28 @@ function int GetDistance3D(vec3_t pos1, vec3_t pos2)
 	int z = pos1.z - pos2.z;
 	
 	return VectorLength3D(x, y, z);
+}
+
+#libdefine SUBTRACT_OFFSET 1
+#libdefine SCREEN_RATIO 2
+
+function int get_widescreen_xoffset(int width, int height, int basex, int option)
+{
+	int scr_width = GetScreenWidth() << 16;
+	int scr_height = GetScreenHeight() << 16;
+
+	int x_difference = (FixedDiv(scr_width, scr_height) * height)-(width << 16);
+
+	if(option == SUBTRACT_OFFSET)
+	{
+		return round_zan((basex << 16)-FixedDiv(x_difference, 2.0)) << 16;
+	}
+	else if (option == SCREEN_RATIO)
+	{
+		return round_zan((basex << 16)-x_difference) << 16;
+	}
+
+	return round_zan((basex << 16)+FixedDiv(x_difference, 2.0)) << 16;
 }
 
 function int seek_string(str string, str substring, int startPos)

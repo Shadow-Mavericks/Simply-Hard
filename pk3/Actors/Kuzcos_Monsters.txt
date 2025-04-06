@@ -2525,6 +2525,7 @@ ACTOR Kagohive
 	Scale 1.5
 	PainChance 256
 	Meleethreshold 384
+	BloodColor "aed433"
 	Species "Kago"
 	Monster
 	+FLOORCLIP
@@ -2579,7 +2580,7 @@ ACTOR Kago : SwarmFly
 	Monster
 	Damage (2)
 	Scale 1.0
-	BloodColor "Green"
+	BloodColor "aed433"
 	Species "Kago"
 	ActiveSound "KagoIdle"
 	-SOLID

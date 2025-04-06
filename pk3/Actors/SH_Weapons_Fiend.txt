@@ -553,7 +553,10 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
 	Weapon.slotnumber 4
-	//+WEAPON.NOAUTOAIM
+	
+	Weapon.SisterWeapon "AcidMinigun"
+	Weapon.PowerupItem "Tier4upgradetoken"
+	
 	Inventory.Respawntics"4200"
 	Inventory.PickupSound "weapon/Miniget"
 	Inventory.RestrictedTo "Fiend"
@@ -563,51 +566,56 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 	States
 	{
 		Ready:
-			FGN4 A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldReady")
 			FGN4 A 1 A_WeaponReady
 			Loop
 		Deselect:
-			FGN4 A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldDeselect")
 			TNT1 AA 0 A_Lower
 			FGN4 A 1 A_Lower
 			Loop
 		Select:
-			FGN4 A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldSelect")
 			TNT1 AA 0 A_Raise
 			FGN4 A 1 A_Raise
 			Loop
 		Fire:
-			TNT1 A 0 A_Jumpifinventory("Tier4upgradetoken", 1, "GoldFire")
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "BulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
-			FGF4 C 1
-			FGF4 D 1
-			FGN4 C 1
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			FGF4 C 1 A_WeaponOffset(0, 2, WOF_ADD)
+			FGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "BulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-			FGF4 A 1
-			FGF4 B 1
-			FGN4 C 1
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			FGF4 A 1 A_WeaponOffset(0, 2, WOF_ADD)
+			FGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
 			FGN4 A 2 A_ReFire("Hold")
 			goto FireDone
+		DoRecoil:
+			TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 1 A_SetPitch(pitch+0.25)
+			TNT1 A 1 A_SetPitch(pitch+0.25)
+			goto LightDone
 		Hold:
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "BulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
-			FGF4 C 1
-			FGF4 D 1
-			FGN4 C 1
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			FGF4 C 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			FGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
 			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "BulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
-			FGF4 A 1
-			FGF4 B 1
-			FGN4 C 1
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			FGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			FGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
 			FGN4 A 2 A_ReFire("Hold")
 			goto FireDone
@@ -632,74 +640,10 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGN4 C 9 A_WeaponReady
 			FGN4 D 9 A_WeaponReady
 			goto Ready
+		Spawn:
+			MGUN A -1
+			Stop
 			
-		GoldReady:
-			GGN4 A 1 A_WeaponReady
-			Loop
-		GoldDeselect:
-			TNT1 AA 0 A_Lower
-			GGN4 A 1 A_Lower
-			Loop
-		GoldSelect:
-			TNT1 AA 0 A_Raise
-			GGN4 A 1 A_Raise
-			Loop
-		GoldFire:
-			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
-			GGF4 C 1
-			GGF4 D 1
-			GGN4 C 1
-			GGN4 D 1
-			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
-			GGF4 A 1
-			GGF4 B 1
-			GGN4 C 1
-			GGN4 D 1
-			GGN4 A 2 A_ReFire("GoldHold")
-			goto GoldFireDone
-		GoldHold:
-			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
-			GGF4 C 1
-			GGF4 D 1
-			GGN4 C 1
-			GGN4 D 1
-			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
-			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
-			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
-			GGF4 A 1
-			GGF4 B 1
-			GGN4 C 1
-			GGN4 D 1
-			GGN4 A 2 A_ReFire("GoldHold")
-			goto GoldFireDone
-		GoldFireDone:
-			GGN4 B 3 A_WeaponReady
-			GGN4 C 3 A_WeaponReady
-			GGN4 D 3 A_WeaponReady
-			GGN4 A 4 A_WeaponReady
-			GGN4 B 4 A_WeaponReady
-			GGN4 C 4 A_WeaponReady
-			GGN4 D 5 A_WeaponReady
-			GGN4 A 5 A_WeaponReady
-			GGN4 B 5 A_WeaponReady
-			GGN4 C 6 A_WeaponReady
-			GGN4 D 6 A_WeaponReady
-			GGN4 A 7 A_WeaponReady
-			GGN4 B 7 A_WeaponReady
-			GGN4 C 7 A_WeaponReady
-			GGN4 D 7 A_WeaponReady
-			GGN4 A 8 A_WeaponReady
-			GGN4 B 8 A_WeaponReady
-			GGN4 C 9 A_WeaponReady
-			GGN4 D 9 A_WeaponReady
-			goto Ready
-	
 		Altfire:
 			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
 			Goto Ready
@@ -731,10 +675,88 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			RLGG A 2 Offset ( -23, 52 )
 			RLGG A 1 Offset ( -25, 60 )
 			RLGG A 1 Offset ( -26, 70 )
+			RLGG A 0 A_JumpTo("Ready")
 			goto Ready
-		Spawn:
-			MGUN A -1
-			Stop
+	}
+}
+
+actor AcidMinigun : D3Chaingun
+{
+	Tag "Acid Minigun (Tier 4 Upgrade)"
+	Weapon.SisterWeapon "D3Chaingun"
+	+WEAPON.POWERED_UP
+	States
+	{
+		Ready:
+			GGN4 A 1 A_WeaponReady
+			Loop
+		Deselect:
+			TNT1 AA 0 A_Lower
+			GGN4 A 1 A_Lower
+			Loop
+		Select:
+			TNT1 AA 0 A_Raise
+			GGN4 A 1 A_Raise
+			Loop
+		Fire:
+			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 C 1 A_WeaponOffset(0, 2, WOF_ADD)
+			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
+			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 A 1 A_WeaponOffset(0, 2, WOF_ADD)
+			GGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			GGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		Hold:
+			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 C 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			TNT1 A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
+			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
+			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			GGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			GGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		FireDone:
+			GGN4 B 3 A_WeaponReady
+			GGN4 C 3 A_WeaponReady
+			GGN4 D 3 A_WeaponReady
+			GGN4 A 4 A_WeaponReady
+			GGN4 B 4 A_WeaponReady
+			GGN4 C 4 A_WeaponReady
+			GGN4 D 5 A_WeaponReady
+			GGN4 A 5 A_WeaponReady
+			GGN4 B 5 A_WeaponReady
+			GGN4 C 6 A_WeaponReady
+			GGN4 D 6 A_WeaponReady
+			GGN4 A 7 A_WeaponReady
+			GGN4 B 7 A_WeaponReady
+			GGN4 C 7 A_WeaponReady
+			GGN4 D 7 A_WeaponReady
+			GGN4 A 8 A_WeaponReady
+			GGN4 B 8 A_WeaponReady
+			GGN4 C 9 A_WeaponReady
+			GGN4 D 9 A_WeaponReady
+			goto Ready
 	}
 }
 

@@ -202,6 +202,8 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 	}
 }
 
+int timeOfLastLifeDrop;
+int numLivesSpawned;
 // Kill script, for things like orbs, lives, and box drops.
 script "ON_KILL" KILL
 {
@@ -293,6 +295,12 @@ script "ON_KILL" KILL
 					doLifeSpawn = 2;
 			}
 		}
+		
+		if((doLifeSpawn == 1) && (numLivesSpawned >= (PlayerCount()*2)))
+		{
+			if((timer()-timeOfLastLifeDrop) < (5 * ONE_MINUTE))
+				doLifeSpawn = 0;
+		}
 
 		if(doLifeSpawn)
 		{
@@ -300,7 +308,10 @@ script "ON_KILL" KILL
 			SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
 			SetActorVelocity(lifeTID, random(-HOrbSpeed/2, HOrbSpeed/2), random(-HOrbSpeed/2, HOrbSpeed/2), random(2.0, VOrbSpeed), false, false);
 
-			if(Health >= 8000) // Spawn another if health pool is massive.
+			numLivesSpawned++;
+			timeOfLastLifeDrop = timer();
+			
+			if(Health >= 8000 && random(0,1)) // Maybe spawn another if health pool is massive.
 			{
 				lifeTID = UniqueTID (0, 0);
 				SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
@@ -308,6 +319,8 @@ script "ON_KILL" KILL
 
 				HudMessageBold(s:"Two extra lives were dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0;
 				HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
+				
+				numLivesSpawned++;
 			}
 			else
 			{
@@ -323,6 +336,9 @@ script "ON_KILL" KILL
 					HUDMSG_TYPEON | HUDMSG_LOG, 69, CR_CYAN, 320.0, 120.0, 5.0, 0.01, 0.5);
 				}
 			}
+			
+			if(numLivesSpawned > (PlayerCount()*2))
+				numLivesSpawned = PlayerCount()*2;
 		}
 	}
 
@@ -1165,6 +1181,15 @@ script "ACID_TICKER" (void)
 	int radius = GetActorProperty(0, APROP_Radius);
 	Thing_SetTranslation(0, 7000);
 	
+	if(PlayerNumber() == ConsolePlayerNumber())
+	{
+		SetCameraToTexture(0, "ACIDFX", 90);
+
+		SetFont("ACIDFX");
+		SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
+		HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.0, 1.0);
+	}
+	
 	while(CheckInventory("PowerAcidStatus"))
 	{
 		SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
@@ -1231,6 +1256,15 @@ script "ACID_TICKER" (void)
 	}
 	else
 	{
+		if(PlayerNumber() == ConsolePlayerNumber())
+		{
+			SetCameraToTexture(0, "ACIDFX", 90);
+
+			SetFont("ACIDFX");
+			SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
+			HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_LAYER_UNDERHUD, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.1, 1.0, 1.0);
+		}
+	
 		Thing_SetTranslation(0, 0);
 	}
 }
@@ -1748,6 +1782,10 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				ammo1_name = "Mortar Shell";
 			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				ammo1_name = "Cryo Cell";
+			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
 				ammo1_name = "Grenade";
@@ -1764,6 +1802,10 @@ script 13236 (int type) // "AMMO_PICKUP"
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
 				ammo1_name = "Mortar Shell";
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				ammo1_name = "Cryo Cell";
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
@@ -2551,4 +2593,35 @@ script "KILL_PING_LIGHT" (void) CLIENTSIDE
 
 // ---------------------
 
+// Weapon Helpers
+// --------------
+script "SET_RECOIL_VALUE" (int x, int y) CLIENTSIDE
+{
+	SetUserVariable(0, "user_recoil_x", x);
+	SetUserVariable(0, "user_recoil_y", y);
+}
+
+script "GET_RECOIL_X" (int tics) CLIENTSIDE
+{
+	int x = GetUserVariable(0, "user_recoil_x") << 16;
+	if(tics <= 0)
+	{
+		SetResultValue(x);
+		terminate;
+	}
+	
+	SetResultValue(x / tics);
+}
+
+script "GET_RECOIL_Y" (int tics) CLIENTSIDE
+{
+	int y = GetUserVariable(0, "user_recoil_y") << 16;
+	if(tics <= 0)
+	{
+		SetResultValue(y);
+		terminate;
+	}
+	
+	SetResultValue(y / tics);
+}
 
