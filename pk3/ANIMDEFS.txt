@@ -127,35 +127,35 @@ texture optional SFALL4
 
 // Sludge animation ------------------------------------------------------------
 
-flat SLIME01
+flat optional SLIME01
 	pic SLIME01 tics 8
 	pic SLIME01 tics 8
 
-flat SLIME02
+flat optional SLIME02
 	pic SLIME02 tics 8
 	pic SLIME02 tics 8
 
-flat SLIME03
+flat optional SLIME03
 	pic SLIME03 tics 8
 	pic SLIME03 tics 8
 
-flat SLIME04
+flat optional SLIME04
 	pic SLIME04 tics 8
 	pic SLIME04 tics 8
 
-flat SLIME05
+flat optional SLIME05
 	pic SLIME05 tics 8
 	pic SLIME05 tics 8
 
-flat SLIME06
+flat optional SLIME06
 	pic SLIME06 tics 8
 	pic SLIME06 tics 8
 
-flat SLIME07
+flat optional SLIME07
 	pic SLIME07 tics 8
 	pic SLIME07 tics 8
 
-flat SLIME08
+flat optional SLIME08
 	pic SLIME08 tics 8
 	pic SLIME08 tics 8
 
