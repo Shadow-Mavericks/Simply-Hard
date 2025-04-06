@@ -62,8 +62,6 @@ DecalGroup RedRailScorchLower
 	RedRailScorchLower2 1
 }
 
-
-
 Decal RedRailScorch1
 {
 	Pic CBALSCR1
@@ -92,10 +90,178 @@ DecalGroup RedRailScorch
 	RedRailScorch2 1
 }
 
-//Ketchup Gore
+decal Crack1
+{
+	pic BFGLITE1
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+}
+
+decal Crack2
+{
+	pic BFGLITE2
+	shade "00 00 00"
+	randomflipy
+	randomflipx
+}
+
+decalgroup Crack
+{
+	Crack1	1
+	Crack2	1
+}
+
+decal GiantScorch
+{
+	pic SCORCH1
+	shade "00 00 00"
+	x-scale 5.75
+	y-scale 5.75
+	randomflipx
+	randomflipy
+}
+
+decal SkullScorch1 
+{ 
+   pic PLASMA1 
+   shade "00 00 00" 
+   x-scale 0.6 
+   y-scale 0.6 
+   randomflipx 
+   randomflipy 
+} 
+
+decal SkullScorch2 
+{ 
+   pic PLASMA2 
+   shade "00 00 00" 
+   x-scale 0.6 
+   y-scale 0.6 
+   randomflipx 
+   randomflipy 
+} 
+
+decalgroup SkullScorch 
+{ 
+   SkullScorch1   1 
+   SkullScorch2   1 
+} 
+
+decal DevScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decal LiteScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	x-scale 0.50
+        y-scale 0.50
+}
+
+decal LiteScorch
+{
+	pic BFGLITE1
+	shade "ff 00 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+        x-scale 0.50
+        y-scale 0.50
+}
+
+decal BFGLightning3
+{
+	pic BFGLITE1
+	shade "00 ff 00"
+	fullbright
+	randomflipx
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decal BFGLightning4
+{
+	pic BFGLITE2
+	shade "00 ff 00"
+	fullbright
+	randomflipy
+	animator GoAway2
+	lowerdecal BFGScorch
+}
+
+decalgroup DEBFGLightning
+{
+	BFGLightning3	1
+	BFGLightning4	1
+}
+
+Generator DevastatorBall                DevScorch
+Generator DevastatorBall2               DoomImpScorch
+Generator LiteShot                      LiteScorch
+
+
+decal PoeBallScorch
+{
+	pic POBLE0
+	add 1.0
+	fullbright
+	animator GoAway2
+	lowerdecal BigScorch
+}
+Generator PoeBall PoeBallScorch
+Generator PoeTracer PoeBallScorch
+
+
+generator CrackodemonBall CacoScorch
+generator Blusoul CacoScorch
+
+
+decal RocketImpScorch
+{
+	pic SCORCH2
+	shade "00 00 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal FreezeBlastMelt
+{
+	pic BSMEAR1
+	x-scale 1.1
+	y-scale 1.1
+	shade "DD DD FF"
+	randomflipx
+	animator BloodSmearer
+}
+
+decal FreezeBlastMelt
+{
+	pic BSMEAR1
+	x-scale 1.1
+	y-scale 1.1
+	shade "DD DD FF"
+	randomflipx
+	animator BloodSmearer
+}
 
 /// +++++++++++++++++////
-/// Blood Base
+/// +++++++++++++++++////
+/// BLOOD DECALS
+/// +++++++++++++++++////
 /// +++++++++++++++++////
 
 /// +++++++++++++++++////
@@ -148,13 +314,6 @@ decalgroup BrutalBloodSmear
 	BrutalBloodSmear1	1
 	BrutalBloodSmear2	1
 }
-
-
-
-
-/// +++++++++++++++++////
-/// Red Blood
-/// +++++++++++++++++////
 
 decal BrutalBloodSplat01
 {
@@ -310,206 +469,6 @@ decal BrutalBloodSuper04
 	lowerdecal BrutalBloodSmear
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/// +++++++++++++++++////
-/// Blue Blood
-/// +++++++++++++++++////
-
-
-decal BlueBloodSplat01
-{
-//lowerdecal BloodSplat02
-pic BSPLAT01
-shade "00 00 48"
-x-scale 0.2
-y-scale 0.2
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSplat02
-{
-//lowerdecal BloodSplat01
-pic BSPLAT02
-shade "00 00 48"
-x-scale 0.15
-y-scale 0.15
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSplat03
-{
-//lowerdecal BloodSplat04
-pic BSPLAT03
-shade "00 00 48"
-x-scale 0.2
-y-scale 0.2
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSplat04
-{
-//lowerdecal BloodSplat03
-pic BSPLAT04
-shade "00 00 48"
-x-scale 0.15
-y-scale 0.15
-randomflipx
-randomflipy
-}
-
-decalgroup BlueBloodSplat
-{
-BlueBloodSplat01 6
-BlueBloodSplat02 6
-BlueBloodSplat03 6
-BlueBloodSplat04 6
-}
-
-
-
-
-
-
-decal BlueBloodSuper01
-{
-//lowerdecal BloodSplat02
-pic BSPLAT01
-shade "00 00 48"
-x-scale 0.4
-y-scale 0.4
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSuper02
-{
-//lowerdecal BloodSplat01
-pic BSPLAT02
-shade "00 00 48"
-x-scale 0.75
-y-scale 0.75
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSuper03
-{
-//lowerdecal BloodSplat04
-pic BSPLAT03
-shade "00 00 48"
-x-scale 0.3
-y-scale 0.3
-randomflipx
-randomflipy
-}
-
-decal BlueBloodSuper04
-{
-//lowerdecal BloodSplat03
-pic BSPLAT04
-shade "00 00 48"
-x-scale 0.4
-y-scale 0.4
-randomflipx
-randomflipy
-}
-
-decalgroup BlueBloodSuper
-{
-BlueBloodSuper01 6
-BlueBloodSuper02 6
-BlueBloodSuper03 6
-BlueBloodSuper04 6
-}
-
-
-
-
-
-
-
-
-decal Crack1
-{
-	pic BFGLITE1
-	shade "00 00 00"
-	randomflipy
-	randomflipx
-}
-
-decal Crack2
-{
-	pic BFGLITE2
-	shade "00 00 00"
-	randomflipy
-	randomflipx
-}
-
-decalgroup Crack
-{
-	Crack1	1
-	Crack2	1
-}
-
-decal GiantScorch
-{
-	pic SCORCH1
-	shade "00 00 00"
-	x-scale 5.75
-	y-scale 5.75
-	randomflipx
-	randomflipy
-}
-
-decal SkullScorch1 
-{ 
-   pic PLASMA1 
-   shade "00 00 00" 
-   x-scale 0.6 
-   y-scale 0.6 
-   randomflipx 
-   randomflipy 
-} 
-
-decal SkullScorch2 
-{ 
-   pic PLASMA2 
-   shade "00 00 00" 
-   x-scale 0.6 
-   y-scale 0.6 
-   randomflipx 
-   randomflipy 
-} 
-
-decalgroup SkullScorch 
-{ 
-   SkullScorch1   1 
-   SkullScorch2   1 
-} 
-
-/// +++++++++++++++++////
-/// +++++++++++++++++////
-/// BLOOD DECALS
-/// +++++++++++++++++////
-/// +++++++++++++++++////
-
 /// +++++++++++++++++////
 /// Blood Animators
 /// +++++++++++++++++////
@@ -517,178 +476,58 @@ decalgroup SkullScorch
 
 slider BSlide1
 {
-DistY -26
-SlideStart 0
-SlideTime 9
+	DistY -26
+	SlideStart 0
+	SlideTime 9
 }
 
 stretcher BrutalBStretch1
 {
-GoalX 1.0
-GoalY 3.5
-StretchStart 0
-StretchTime 9
+	GoalX 1.0
+	GoalY 3.5
+	StretchStart 0
+	StretchTime 9
 }
 
 slider BSlide2
 {
-DistY -20
-SlideStart 0
-SlideTime 12
+	DistY -20
+	SlideStart 0
+	SlideTime 12
 }
 
 stretcher BrutalBStretch2
 {
-GoalX 1.0
-GoalY 3.2
-StretchStart 0
-StretchTime 12
+	GoalX 1.0
+	GoalY 3.2
+	StretchStart 0
+	StretchTime 12
 }
 
 combiner BrutalBloodSlide1
 {
-BSlide1
-BrutalBStretch1
+	BSlide1
+	BrutalBStretch1
 }
 
 combiner BrutalBloodSlide2
 {
-BSlide2
-BrutalBStretch2
-}
-
-decalgroup BloodSplat
-{
-BrutalBloodSuper01 6
-BrutalBloodSuper02 6
-BrutalBloodSuper03 6
-BrutalBloodSuper04 6
+	BSlide2
+	BrutalBStretch2
 }
 
 decalgroup BrutalBloodSplat
 {
-BrutalBloodSuper01 6
-BrutalBloodSuper02 6
-BrutalBloodSuper03 6
-BrutalBloodSuper04 6
+	BrutalBloodSuper01 6
+	BrutalBloodSuper02 6
+	BrutalBloodSuper03 6
+	BrutalBloodSuper04 6
 }
-
-
 
 decalgroup BrutalBloodSuper
 {
-BrutalBloodSuper01 6
-BrutalBloodSuper02 6
-BrutalBloodSuper03 6
-BrutalBloodSuper04 6
-}
-
-decal DevScorch
-{
-	pic BFGLITE1
-	shade "ff 00 00"
-	fullbright
-	randomflipx
-	animator GoAway2
-	lowerdecal BFGScorch
-}
-
-decal LiteScorch
-{
-	pic BFGLITE1
-	shade "ff 00 00"
-	fullbright
-	randomflipx
-	animator GoAway2
-	x-scale 0.50
-        y-scale 0.50
-}
-
-decal LiteScorch
-{
-	pic BFGLITE1
-	shade "ff 00 00"
-	fullbright
-	randomflipx
-	animator GoAway2
-	lowerdecal BFGScorch
-        x-scale 0.50
-        y-scale 0.50
-}
-
-decal BFGLightning3
-{
-	pic BFGLITE1
-	shade "00 ff 00"
-	fullbright
-	randomflipx
-	animator GoAway2
-	lowerdecal BFGScorch
-}
-
-decal BFGLightning4
-{
-	pic BFGLITE2
-	shade "00 ff 00"
-	fullbright
-	randomflipy
-	animator GoAway2
-	lowerdecal BFGScorch
-}
-
-decalgroup DEBFGLightning
-{
-	BFGLightning3	1
-	BFGLightning4	1
-}
-
-Generator DevastatorBall                DevScorch
-Generator DevastatorBall2               DoomImpScorch
-Generator LiteShot                      LiteScorch
-
-
-decal PoeBallScorch
-{
-	pic POBLE0
-	add 1.0
-	fullbright
-	animator GoAway2
-	lowerdecal BigScorch
-}
-Generator PoeBall PoeBallScorch
-Generator PoeTracer PoeBallScorch
-
-
-generator CrackodemonBall CacoScorch
-generator Blusoul CacoScorch
-
-
-decal RocketImpScorch
-{
-	pic SCORCH2
-	shade "00 00 00"
-	x-scale 0.75
-	y-scale 0.75
-	randomflipx
-	randomflipy
-}
-
-decal FreezeBlastMelt
-{
-	pic BSMEAR1
-	x-scale 1.1
-	y-scale 1.1
-	shade "DD DD FF"
-	randomflipx
-	animator BloodSmearer
-}
-
-decal FreezeBlastMelt
-{
-	pic BSMEAR1
-	x-scale 1.1
-	y-scale 1.1
-	shade "DD DD FF"
-	randomflipx
-	animator BloodSmearer
+	BrutalBloodSuper01 6
+	BrutalBloodSuper02 6
+	BrutalBloodSuper03 6
+	BrutalBloodSuper04 6
 }

@@ -172,6 +172,10 @@ OptionMenu "CreditSprites"
 	StaticText "Dispenser Backpack"
 	StaticText ""
 	
+	StaticText "HDoomGuy/Mike12", 1
+	StaticText "NightmareGore Blood Spurts & Wall Decals"
+	StaticText ""
+	
 	StaticText "DBThanatos", 1
 	StaticText "Doom4Doom Armor Pickups"
 	StaticText ""
@@ -188,7 +192,7 @@ OptionMenu "CreditSprites"
 	StaticText "Small Trees & Bushes"
 	StaticText ""
 	
-	StaticText "IMX, MagicWazard, DBJ87"
+	StaticText "IMX, MagicWazard, DBJ87", 1
 	StaticText "Revenant Ghoul"
 	StaticText ""
 }

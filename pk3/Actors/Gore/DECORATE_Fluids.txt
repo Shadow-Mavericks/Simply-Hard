@@ -32,12 +32,11 @@ ACTOR TinyBlood
 	}
 }
 
-actor Brutal_Blood : Blood Replaces Blood
+actor Brutal_Blood : Blood
 {
 	Decal BrutalBloodSplat
 	game Doom
 	+FORCEXYBILLBOARD
-	+GHOST
 	+NOBLOCKMAP
 	+NOGRAVITY
 	+NOCLIP

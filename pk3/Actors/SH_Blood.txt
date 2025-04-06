@@ -1,0 +1,105 @@
+// New blood for Simply Hard
+// Code By: StrikerTheHedgefox
+
+actor SH_Blood : Blood Replaces Blood
+{
+	Radius 2
+	Height 4
+	Gravity 0.25
+	Scale 0.75
+	+THRUACTORS
+	+NOTRIGGER
+	+NOTELEPORT
+	+DROPOFF
+	+NOTIMEFREEZE
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_ChangeVelocity(frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), CVF_REPLACE)
+			TNT1 A 0 A_SetScale(scalex+frandom(-0.5, 0.25))
+			TNT1 A 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, 0, frandom(1.25, 2.5), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION | SXF_TRANSFERSCALE, 0)
+			TNT1 A 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, 0, frandom(1.25, 2.5), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION | SXF_TRANSFERSCALE, 128)
+			TNT1 A 0 A_SpawnItemEx("SH_BloodDroplet", 0, 0, 0, frandom(0.25, 3.0), 0, frandom(1.0, 5.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_TRANSFERTRANSLATION | SXF_TRANSFERSCALE, 128)
+			BLUD CBA 3
+			stop
+	}
+}
+
+actor SH_BloodSpurt : SH_Blood
+{
+	Decal BloodDrip
+	+MISSILE
+	+CLIENTSIDEONLY
+	+DECALUSESTRANSLATION
+	States
+	{
+		Spawn:
+			BLDR A 2 A_JumpIf(velz < 0, "Fall")
+			loop
+		Fall:
+			BLDR BCDEFG 2
+			stop
+	}
+}
+
+actor SH_BloodDroplet : SH_Blood
+{
+	Decal BloodDrip
+	BounceFactor 0.0
+	+MISSILE
+	+CLIENTSIDEONLY
+	+DECALUSESTRANSLATION
+	+DOOMBOUNCE
+	+USEBOUNCESTATE
+	+BOUNCEONCEILINGS
+	+BOUNCEONFLOORS
+	-BOUNCEONWALLS
+	States
+	{
+		Spawn:
+			BLDD A 1 A_SpawnItemEx("SH_BloodDropletTrail", 0, 0, 0, frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE | SXF_TRANSFERTRANSLATION, 0)
+			loop
+		Bounce.Floor:
+			BSQ1 A_Jump(128, "Splat")
+			BSQ1 A_SetScale(scalex*-1, scaley)
+			goto Splat
+		Bounce.Ceiling: // To-do!
+			TNT1 A 1
+			stop
+		Splat:
+			BSQ1 EFGHI 3
+			stop
+		Death:
+			TNT1 A 1
+			stop
+	}
+}
+
+actor SH_BloodDropletTrail : SH_Blood
+{
+	+MISSILE
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			BLD1 A 0 NoDelay A_Jump(128, "DoJump")
+			BLD1 A 0 A_SetScale(scalex*-1, scaley)
+			goto DoJump
+		DoJump:
+			BLD1 A 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3")
+			goto Spawn1
+		Spawn1:
+			BLD2 ABCDEFG 2
+			stop
+		Spawn2:
+			BLD3 ABCDEF 2
+			stop
+		Spawn3:
+			BLD4 ABCDEFG 2
+			stop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
