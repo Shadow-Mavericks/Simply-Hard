@@ -4,7 +4,7 @@ actor ImpBall_Base
 	Height 8
 	Speed 15
 	FastSpeed 20
-	Damage (15)
+	Damage (12)
 	Renderstyle Add
 	Alpha 1.0
 	SeeSound "imp/attack"

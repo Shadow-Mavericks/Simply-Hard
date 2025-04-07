@@ -86,7 +86,7 @@ actor N_Cacodemon_Base : SH_BaseMonster
 }
 
 
-ACTOR CacodemonBall_Base : Projectile_Base
+ACTOR CacodemonBall_Base : SH_BaseEnemyProjectile
 {
 	Radius 6
 	Height 8

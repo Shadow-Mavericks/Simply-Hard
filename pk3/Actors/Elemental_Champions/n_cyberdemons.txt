@@ -1,5 +1,6 @@
-ACTOR N_Cyberdemon_Base : Monster_Base 
+ACTOR N_Cyberdemon_Base : SH_BaseMonster 
 {
+	Species "Cyberdemon"
 	Health 4000
 	Radius 40
 	Height 110

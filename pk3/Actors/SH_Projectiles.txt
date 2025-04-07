@@ -2760,22 +2760,7 @@ Actor ActiveFlareGreen //You can give this a DoomEdNum, to place it in a map edi
 
 //Tribeams Code
 
-actor Projectile_Base
-{
-	Projectile
-	+FORCEXYBILLBOARD
-	+FORCERADIUSDMG
-	+SPAWNSOUNDSOURCE
-	+DONTSEEKINVISIBLE
-	+THRUGHOST
-	+NOBOSSRIP
-	+RANDOMIZE
-	-NOTELEPORT			// lets make things different
-	-FORCEPAIN
-	//$Category Tribeam's particles
-}
-
-actor Flameshotfire: Projectile_Base
+actor Flameshotfire: SH_BaseEnemyProjectile
 {
 	Radius 6
 	Height 8

@@ -1535,21 +1535,21 @@ Actor Rockshadow
 
 ACTOR Papyrus : HardRevenant
 {
-	+NOICEDEATH
 	Health 300
 	Radius 20
 	Height 56
 	Mass 500
 	Speed 10
 	Monster
-	+Boss
+	
 	SCALE 2.0
 	MeleeThreshold 196
 	pain 0
 	+MISSILEMORE 
 	+FLOORCLIP
 	+NOPAIN
-	+Noicedeath
+	+NOICEDEATH
+	+BOSS
 	Activesound ""
 	DeathSound "UNDER/DEATH"
 	MeleeSound "skeleton/melee"
@@ -1581,7 +1581,7 @@ ACTOR Papyrus : HardRevenant
 		PAPY T 5 A_Pain
 		PAPY T 2
 		Goto See
-		Ice:
+	Ice:
 		PAPY S 5 A_GenericFreezeDeath
 		PAPY S 1 A_FreezeDeathChunks
 		wait

@@ -1,5 +1,5 @@
 
-ACTOR MancubusBall_Base : Projectile_Base
+ACTOR MancubusBall_Base : SH_BaseEnemyProjectile
 {
   Radius 6
   Height 8

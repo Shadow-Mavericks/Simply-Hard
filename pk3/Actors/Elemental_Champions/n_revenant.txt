@@ -1,5 +1,6 @@
-ACTOR N_Revenant_Base : Monster_Base 
+ACTOR N_Revenant_Base : SH_BaseMonster 
 {
+	Species "Revenant"
 	Health 300
 	Radius 20
 	Height 56
@@ -54,7 +55,7 @@ ACTOR N_Revenant_Base : Monster_Base
 }
 
 
-ACTOR RevenantTracer_Base : Projectile_Base replaces RevenantTracer
+ACTOR RevenantTracer_Base : SH_BaseEnemyProjectile replaces RevenantTracer
 {
 	Radius 11
 	Height 8
