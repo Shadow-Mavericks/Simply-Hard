@@ -256,7 +256,7 @@ actor BaronSpawner : SH_BaseMonsterRandomSpawner replaces Baronofhell
 {
 	Radius 24
 	Height 64
-	DropItem "Hardbaron"			255 10
+	DropItem "HardBaron"			255 10
 	DropItem "Warlordofhell"		255 3
 	DropItem "Cyberbaron"			255 1
 	DropItem "N_Baron_Acid"			255 1

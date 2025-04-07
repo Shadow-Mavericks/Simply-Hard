@@ -476,12 +476,6 @@ Object GreenPlasma
 	frame TBALB { Light FPLAS2 }
 }*/
 
-Object RedBaronBall
-{
-	frame BNBLA { Light Redlite1 }
-	frame BNBLB { Light Redlite2 }
-}
-
 Object GasterLaser
 {
 	frame PARTA { Light GasterBlast1 }
@@ -503,12 +497,6 @@ PointLight Redlite2
 {
 Color 1.0 0.1 0.0
 Size 72
-}
-
-Object GreenBaronBall
-{
-	frame KNBLA { Light GNLite1 }
-	frame KNBLB { Light GNlite2 }
 }
 
 PointLight GNlite1

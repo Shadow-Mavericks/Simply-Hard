@@ -1,19 +1,25 @@
-ACTOR N_Baron_Base : Monster_Base 
+ACTOR N_Baron_Base : SH_BaseMonster
 {
+	Tag "Baron of Hell"
+	Species "Hellknight"
 	Health 1000
-	+BOSSDEATH
-	+FLOORCLIP
 	Radius 24
 	Height 64
 	Mass 1000
-	Speed 15
+	Speed 8
+	PainChance 50
 	BloodColor Green
+	
 	SeeSound "baron/sight"
 	PainSound "baron/pain"
 	DeathSound "baron/death"
 	ActiveSound "baron/active"
+	
 	Obituary "$OB_BARON"
 	HitObituary "$OB_BARONHIT"
+	
+	+BOSSDEATH
+	+FLOORCLIP
 	States
 	{
 		Spawn:
@@ -52,44 +58,82 @@ ACTOR N_Baron_Base : Monster_Base
 	}
 }
 
-
-ACTOR BaronBall_Base : Projectile_Base
+ACTOR BaronBall_Base : SH_BaseEnemyProjectile
 {
-  Radius 6
-  Height 16
-  Speed 15
-  Damage (18)
-  Alpha 0.75
-  Renderstyle Add
-  SeeSound "baron/attack"
-  DeathSound "baron/shotx"
-  Decal "BaronScorch"
-  States
-  {
-  Spawn:
-    BAL7 AB 4 Bright
-    Loop
-  Death:
-    BAL7 CDE 6 Bright
-    Stop
-  }
+	Radius 6
+	Height 16
+	Speed 15
+	Damage (30)
+	Alpha 1.0
+	Renderstyle Add
+	SeeSound "baron/attack"
+	DeathSound "baron/shotx"
+	Decal "BaronScorch"
+	+RANDOMIZE
+	States
+	{
+		Spawn:
+			KNBL A 4 Bright Light("GNLite1")
+			KNBL B 4 Bright Light("GNLite2")
+			Loop
+		Death:
+			KNBL CDE 6 Bright
+			Stop
+	}
 }
 
+actor BelphegorBall : BaronBall_Base
+{
+	Speed 20
+	Damage (40)
+}
+
+ACTOR RedBaronBall : BaronBall_Base
+{
+	RenderStyle Add
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			BNBL A 4 Bright Light("Redlite1")
+			BNBL B 4 Bright Light("Redlite2")
+			Loop
+		Death:
+			BNBL CDE 6 Bright
+			Stop
+	}
+}
+
+ACTOR HardBaron : N_Baron_Base
+{
+	Translation "112:127=32:47"
+	BloodColor "Red"
+	States
+	{
+		Melee:
+		Missile:
+			BOSS EF 6 A_FaceTarget
+			BOSS G 0 A_CustomMissile ("Redbaronball", 48, 0, 0)
+			BOSS G 0 A_CustomMissile ("Redbaronball", 48, 0, random(-45, -15))
+			BOSS G 6 A_CustomMissile ("Redbaronball", 48, 0, random(15, 45))
+			Goto See
+	}
+}
 
 // Acid Baron
 actor BaronBall_Acid : BaronBall_Base 
 { 
 	DamageType "Acid" 
-	  States
-  {
-  Spawn:
-    ACD7 A 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-	ACD7 B 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-    Loop
-  Death:
-    ACD7 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			ACD7 A 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			ACD7 B 1 Bright A_SpawnItemEx ("BaronballtrailGreen", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			Loop
+		Death:
+			ACD7 CDE 6 Bright
+			Stop
+	}
 }
 
 actor BaronBall_Acid_Gravity : BaronBall_Acid
@@ -123,23 +167,21 @@ actor N_Baron_Acid : N_Baron_Base
 // Void Baron
 actor BaronBall_Void : BaronBall_Base 
 { 
-//	Translation "112:127=[192, 128, 255]:[16, 0, 32]"
 	DamageType "Void"
-	  States
-  {
-  Spawn:
-    CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
-    CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
-    Loop
-  Death:
-    CNF7 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
+			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
+			Loop
+		Death:
+			CNF7 CDE 6 Bright
+			Stop
+	}
 }
 
 actor N_Baron_Void : N_Baron_Base 30055
 {
-//	Scale 1.1
 	Translation "16:47=[192, 128, 255]:[16, 0, 32]"
 	States
 	{
@@ -161,25 +203,23 @@ actor N_Baron_Void : N_Baron_Base 30055
 // Fire Baron
 actor BaronBall_Fire : BaronBall_Base 
 { 
-//	Translation "112:127=[255, 128, 0]:[64, 32, 0]"
 	DamageType "Fire"
-	  States
-  {
-  Spawn:
-    FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed")
-    FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed")
-    Loop
-  Death:
-    FIR7 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed")
+			FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed")
+			Loop
+		Death:
+			FIR7 CDE 6 Bright
+			Stop
+	}
 }
 
 
 actor N_Baron_Fire : N_Baron_Base 
 {
-//	Scale 1.1
-  PainChance 50
+	PainChance 50
 	Translation "16:47=[255, 128, 0]:[64, 32, 0]"
 	States
 	{
@@ -199,9 +239,7 @@ actor N_Baron_Fire : N_Baron_Base
 
 // Electric Baron
 actor BaronBall_Electric : BaronBall_Base 
-{ 
-	
-//	Translation "112:127=[255, 255, 96]:[64, 64, 32]"
+{
 	DamageType "Electric"
 	+FORCEPAIN
 	+PIERCEARMOR
@@ -222,8 +260,7 @@ actor BaronBall_Electric : BaronBall_Base
 
 actor N_Baron_Electric : N_Baron_Base 
 {
-//	Scale 1.1
-  PainChance 50
+	PainChance 50
 	Translation "16:47=[255, 255, 96]:[64, 64, 32]"
 	States
 	{
@@ -244,25 +281,22 @@ actor N_Baron_Electric : N_Baron_Base
 // Ice Baron
 actor BaronBall_Ice : BaronBall_Base 
 { 
-	Damage (4)
-//	Translation "112:127=[128, 192, 255]:[32, 48, 64]"
 	DamageType "Ice"
-	  States
-  {
-  Spawn:
-    ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-    ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-    Loop
-  Death:
-    ICE7 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			ICE7 A 1 Bright A_SpawnItemEx("BaronballtrailBlue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			Loop
+		Death:
+			ICE7 CDE 6 Bright
+			Stop
+	}
 }
 
 actor N_Baron_Ice : N_Baron_Base 
 {
-//	Scale 1.1
-  PainChance 50
+	PainChance 50
 	Translation "16:47=[128, 192, 255]:[32, 48, 64]"
 	States
 	{
@@ -283,26 +317,24 @@ actor N_Baron_Ice : N_Baron_Base
 // Metal Baron
 actor BaronBall_Metal : BaronBall_Base 
 { 
-	Damage (4)
-//	Translation "112:127=[255, 255, 255]:[0, 0, 0]"
 	DamageType "HeavyMetal"
-	  States
-  {
-  Spawn:
-    MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-	MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-    Loop
-  Death:
-    MET7 CDE 6 Bright
-    Stop
-  }
+	States
+	{
+		Spawn:
+			MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			MET7 A 1 Bright A_SpawnItemEx("BaronballtrailWhite", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			Loop
+		Death:
+			MET7 CDE 6 Bright
+			Stop
+	}
 }
 
 
 actor N_Baron_HeavyMetal : N_Baron_Base 
 {
 //	Scale 1.1
-  PainChance 0
+	PainChance 0
 	Translation "16:47=[255, 255, 255]:[0, 0, 0]"
 	States
 	{
@@ -320,3 +352,148 @@ actor N_Baron_HeavyMetal : N_Baron_Base
 	}
 }
 
+Actor BaronballtrailRed : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.75
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			FIR7 A 1 Bright A_FadeOut(0.025)
+			FIR7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			FIR7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			FIR7 B 1 Bright A_FadeOut(0.025)
+			FIR7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			FIR7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor BaronballtrailGreen : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.75
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			ACD7 A 1 Bright A_FadeOut(0.025)
+			ACD7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ACD7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			ACD7 B 1 Bright A_FadeOut(0.025)
+			ACD7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ACD7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor BaronballtrailYellow : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.75
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			SHK7 A 1 Bright A_FadeOut(0.025)
+			SHK7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			SHK7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			SHK7 B 1 Bright A_FadeOut(0.025)
+			SHK7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			SHK7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor BaronballtrailPurple : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 1.0
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			CNF7 A 1 Bright A_FadeOut(0.025)
+			CNF7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			CNF7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			CNF7 B 1 Bright A_FadeOut(0.025)
+			CNF7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			CNF7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+
+
+Actor  BaronballtrailBlue : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.75
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			ICE7 A 1 Bright A_FadeOut(0.025)
+			ICE7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ICE7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			ICE7 B 1 Bright A_FadeOut(0.025)
+			ICE7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			ICE7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor  BaronballtrailWhite : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.75
+	States
+	{
+		Spawn:
+			NULL A 3
+		Loopy:
+			MET7 A 1 Bright A_FadeOut(0.025)
+			MET7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			MET7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+
+			MET7 B 1 Bright A_FadeOut(0.025)
+			MET7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			MET7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
+	}
+}

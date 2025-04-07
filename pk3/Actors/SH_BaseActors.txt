@@ -36,6 +36,7 @@ actor SH_BaseProjectile
 {
 	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	Projectile
+	+FORCEXYBILLBOARD
 	+NOTIMEFREEZE
 	+RANDOMIZE
 }
@@ -44,6 +45,15 @@ actor SH_BaseFastProjectile : FastProjectile
 {
 	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	+NOTIMEFREEZE
+	+RANDOMIZE
+}
+
+actor SH_BaseEnemyProjectile
+{
+	Obituary "%o was killed by an enemy projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	Projectile
+	+FORCEXYBILLBOARD
+	+DONTSEEKINVISIBLE
 	+RANDOMIZE
 }
 
