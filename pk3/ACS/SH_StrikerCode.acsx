@@ -1181,7 +1181,7 @@ script "ACID_TICKER" (void)
 	int radius = GetActorProperty(0, APROP_Radius);
 	Thing_SetTranslation(0, 7000);
 	
-	if(PlayerNumber() != -1)
+	if(PlayerNumber() != -1 && CheckInventory("PowerAcidStatus"))
 	{
 		SetCameraToTexture(0, "ACIDFX", 90);
 
