@@ -113,7 +113,7 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 
 actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 {
-	//$Sprite FCGNA0
+	//$Sprite MGUNA0
 	States
 	{
 		Base:
