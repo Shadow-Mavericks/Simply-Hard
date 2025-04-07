@@ -344,8 +344,6 @@ FREGEN FREGEN
 
 world/heart					BEEP
 
-blooddrop		bloddrop
-
 PeterVomit petervom
 
 
