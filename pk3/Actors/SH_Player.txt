@@ -25,6 +25,15 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "MEDBAG"
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
+	
+	Player.WeaponSlot 1, "Fists", "UAC-Chainsaw"
+	Player.WeaponSlot 2, "Renettim9"
+	Player.WeaponSlot 3, "D3shotgun", "SuperShawtgun"
+	Player.WeaponSlot 4, "D3Chaingun"
+	Player.WeaponSlot 5, "Rawketlawnchair"
+	Player.WeaponSlot 6, "DEPlasmaRifle"
+	Player.WeaponSlot 7, "Fiendsrailgun"
+	Player.WeaponSlot 8, "DEBFG9500", "NuclearMissileLauncher"
 
 	BounceSound "PlayerHP/Alarmfiend"
 	Player.JumpZ 9
@@ -140,6 +149,7 @@ ACTOR Kunai : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Bulk Bogan"
 	Player.CrouchSprite "PLYC"
+	
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "Kunaisrevolver"
 	Player.StartItem "Soulreaper"
@@ -149,6 +159,15 @@ ACTOR Kunai : SH_BasePlayer
 	Player.StartItem "KunaiToken"
 	Player.StartItem "KunaiGastersummon", 2
 	Player.StartItem "SentryBox"
+	
+	Player.WeaponSlot 1, "SoulReaper"
+	Player.WeaponSlot 2, "Kunaisrevolver"
+	Player.WeaponSlot 3, "HelltechShotgun"
+	Player.WeaponSlot 4, "Streetsweeper"
+	Player.WeaponSlot 5, "PDW"
+	Player.WeaponSlot 6, "Cryobow"
+	Player.WeaponSlot 7, "KunaisKar98", "Channeler"
+	Player.WeaponSlot 8, "Vortexgun", "NuclearMissileLauncher"
 
 	BounceSound "PlayerHP/AlarmKunai"
 
@@ -266,6 +285,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Dookie Nookie"
 	Player.CrouchSprite "PLYC"
+	
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "GosimersHandgun"
 	Player.StartItem "UAC-Chainsaw"
@@ -273,9 +293,19 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.StartItem "peastolClip", 250
 	Player.StartItem "DookiClip", 12
 	Player.StartItem "GosimerToken"
-	Player.StartItem "Flashlightcentered"
+	//Player.StartItem "Flashlight"
 	Player.StartItem "GosimersBackpack", 1
 	Player.StartItem "DeployableShield", 1
+	
+	Player.WeaponSlot 1, "UAC-Chainsaw"
+	Player.WeaponSlot 2, "GosimersHandgun"
+	Player.WeaponSlot 3, "CombatShotgun"
+	Player.WeaponSlot 4, "BurstShotgun"
+	Player.WeaponSlot 5, "Hmachinegun"
+	Player.WeaponSlot 6, "BoomToob"
+	Player.WeaponSlot 7, "Propulsion_Rifle", "SH_Flameshot", "Lightning_Rifle"
+	Player.WeaponSlot 8, "micro_Devistator", "NuclearMissileLauncher"
+	
 	BounceSound "PlayerHP/AlarmGosimer"
 
 	DamageFactor 0.75
@@ -398,13 +428,25 @@ actor MaximusPrime : SH_BasePlayer
 	Player.DisplayName "Rebel Scum"
 	Player.CrouchSprite "PLYC"
 	Player.SoundClass "MaximusPrime"
+	
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "DFPistol"
 	Player.StartItem "DFFist"
 	Player.StartItem "DF_EnergyUnit", 100
 	Player.StartItem "MaxToken"
 	Player.Startitem "MaxShield100", 1
+	
+	Player.WeaponSlot 1, "Lightsaber", "DFFist"
+	Player.WeaponSlot 2, "DFPistol"
+	Player.WeaponSlot 3, "DFBlaster"
+	Player.WeaponSlot 4, "Autogun"
+	Player.WeaponSlot 5, "FusionCutter"
+	Player.WeaponSlot 6, "MortarGun"
+	Player.WeaponSlot 7, "ConcRifle", "DisruptorRifle"
+	Player.WeaponSlot 8, "AssaultCannon", "NuclearMissileLauncher"
+	
 	BounceSound "PlayerHP/AlarmMax"
+	
 	Player.JumpZ 10
 	Player.AirCapacity 3
 

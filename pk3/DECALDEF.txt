@@ -26,16 +26,6 @@ Decal BHoleDecal
 
 //Railarachnotron
 
-Decal Nuffinkhere
-{
-	Pic Blank
-	Shade "00 00 00"
-	X-Scale 0.1
-	Y-Scale 0.1
-	RandomFlipX
-	RandomFlipY
-}
-
 Decal RedRailScorchLower1
 {
 	Pic CBALSCR1

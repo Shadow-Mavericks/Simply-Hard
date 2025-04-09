@@ -1,5 +1,6 @@
 Base Doom;
 CompleteBorder true;
+HideLives true;
 Resolution 480, 360;
 height 0;
 //InterpolateHealth true, 8;

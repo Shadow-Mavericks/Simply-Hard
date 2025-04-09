@@ -21,14 +21,3 @@ AddPlayerClass Fiend
 AddPlayerClass Kunai
 AddPlayerClass Gosimer
 AddPlayerClass MaximusPrime
-
-WeaponSection "Simply-Hard"
-SetSlot 1 Fists Lightsaber SoulReaper ShieldGun UAC-Chainsaw DFFist
-SetSlot 2 Renettim9 Kunaisrevolver GosimersHandgun DFPistol
-SetSlot 3 D3shotgun HelltechShotgun CombatShotgun SuperShawtgun DFBlaster
-SetSlot 4 Streetsweeper BurstShotgun D3Chaingun Autogun
-SetSlot 5 PDW Hmachinegun Rawketlawnchair FusionCutter
-SetSlot 6 Cryobow BoomToob DEPlasmaRifle MortarGun
-SetSlot 7 Propulsion_Rifle KunaisKar98 Fiendsrailgun SH_Flameshot Channeler Lightning_Rifle ConcRifle DisruptorRifle
-SetSlot 8 DEBFG9500 Vortexgun NuclearMissileLauncher micro_Devistator AssaultCannon
-//SetSlot 9 Flashlightcentered
