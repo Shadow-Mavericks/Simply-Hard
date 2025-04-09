@@ -267,3 +267,70 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 		delay(1);
 	}
 }
+
+script "DROP_TOKENS" (int gone) DISCONNECT
+{
+	int uTID;
+	bool dropped = false;
+
+	if(CheckInventory("Tier1UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier1UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier2UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier2UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier3UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier3UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier4UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier4UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier5UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier5UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier6UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier6UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+	}
+	if(CheckInventory("Tier7UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier7UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	if(CheckInventory("Tier8UpgradeToken"))
+	{
+		uTID = UniqueTID();
+		SpawnForced ("Tier8UpgradeToken", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		SetActorVelocity (uTID, random(-4.0, 4.0), random(-4.0, 4.0), random(1.0, 4.0), false, false);
+		dropped = true;
+	}
+	
+	if(dropped)
+	{
+		PrintBold(n:gone+1, s:" left the game and dropped all of their tokens!");
+	}
+}
