@@ -296,7 +296,7 @@ script "ON_KILL" KILL
 			}
 		}
 		
-		if((doLifeSpawn == 1) && (numLivesSpawned >= (PlayerCount()*2)))
+		if((doLifeSpawn == 1) && (numLivesSpawned >= (PlayerCount()+1)))
 		{
 			if((timer()-timeOfLastLifeDrop) < (5 * ONE_MINUTE))
 				doLifeSpawn = 0;
@@ -337,8 +337,8 @@ script "ON_KILL" KILL
 				}
 			}
 			
-			if(numLivesSpawned > (PlayerCount()*2))
-				numLivesSpawned = PlayerCount()*2;
+			if(numLivesSpawned > (PlayerCount()+1))
+				numLivesSpawned = PlayerCount()+1;
 		}
 	}
 
