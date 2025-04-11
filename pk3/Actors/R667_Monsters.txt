@@ -13135,9 +13135,7 @@ ACTOR Phantom
 	+FloorClip
 	+Float
 	+NoGravity
-	+Ghost
 	+VisibilityPulse
-	+NoClip
 	States
 	{
 		Spawn:
@@ -13185,11 +13183,10 @@ ACTOR MiniPhantom
 	+NoGravity
 	+Shootable
 	+NoBlood
-	+NoClip
 	Health 50
 	Radius 10
 	Height 20
-	Speed 15
+	Speed 10
 	MissileType "SoulSmoke"
 	states
 	{
@@ -13206,7 +13203,7 @@ ACTOR MiniPhantom
 	   GHO1 EFGHIJ 2 A_Die
 	   Stop
 	Death:
-	   SPIR E 0 A_Explode
+	   SPIR E 0 A_Explode(64, 64)
 	   SPIR E 0 A_PlaySound("phantom/explode")
 	   SPIR FGHIJ 2
 	   Stop
@@ -13262,7 +13259,6 @@ ACTOR GhostHatch2
 {
 	RENDERSTYLE ADD
 	+NOGRAVITY
-	+NOCLIP
 	States
 	{
 	Spawn:
@@ -13277,7 +13273,7 @@ ACTOR Ghost2
 	Radius 16
 	Height 32
 	Mass 500
-	Speed 16
+	Speed 12
 	PainChance 50
 	+LookAllAround
 	+Float
@@ -13287,7 +13283,6 @@ ACTOR Ghost2
 	+NoIceDeath
 	+NoBlockMonst
 	+NoBlood
-	+NoClip
 	RENDERSTYLE ADD
 	states
 	{
