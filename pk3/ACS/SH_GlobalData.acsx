@@ -23,8 +23,14 @@
 #libdefine INVUL_NORMAL 1
 #libdefine INVUL_ULT 2
 
-#libdefine STATUS_NONE 0
-#libdefine STATUS_ACID 1
+#libdefine STATUS_NONE		0
+#libdefine STATUS_ACID		(1 << 1)
+#libdefine STATUS_ICE		(1 << 2)
+#libdefine STATUS_FROZEN	(1 << 3)
+#libdefine STATUS_FIRE		(1 << 4)
+#libdefine STATUS_ELECTRIC	(1 << 5)
+#libdefine STATUS_METAL		(1 << 6)
+#libdefine STATUS_VOID		(1 << 7)
 
 #libdefine CLASS_FIEND 0
 #libdefine CLASS_KUNAI 1

@@ -286,6 +286,17 @@ actor Red_Star_NoRise : SH_BaseParticle
 	}
 }
 
+actor Blue_Star_NoRise : SH_BaseParticle
+{
+	Scale 0.05
+	States
+	{
+		Spawn:
+			STR6 FEDCBA 2 bright
+			stop
+	}
+}
+
 ////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////
 // The Lights

@@ -13,3 +13,19 @@ flickerlight KBPUFF2
     secondarySize 10
     chance 0.8
 }
+
+flickerlight KICEBPUFF1
+{
+    color 0.0 0.1 0.5
+    size 4
+    secondarySize 6
+    chance 0.8
+}
+
+flickerlight KICEBPUFF2
+{
+    color 0.0 0.1 0.5
+    size 8
+    secondarySize 10
+    chance 0.8
+}

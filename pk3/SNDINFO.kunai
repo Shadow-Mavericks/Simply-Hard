@@ -1,6 +1,9 @@
 SOTNHeartbeat sv_hrtbt
 $limit SOTNHeartbeat 0
 
+PSAmmo ps_ammo
+$limit PSAmmo 0
+
 // Hit sounds from Freedom Planet 2
 HitLight	HitLight
 HitMedium	HitMed

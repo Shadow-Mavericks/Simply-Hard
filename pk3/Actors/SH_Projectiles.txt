@@ -1126,45 +1126,6 @@ ACTOR dragoonpow
 	}
 }
 
-ACTOR GasterLaser
-{
-	RenderStyle Add
-	Scale 0.3
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	States
-	{
-		Spawn:
-			PART A 0 Bright A_JumpIf(scalex > 3.0, "Spawn2")
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-			Loop
-
-		Spawn2:
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
-
-		Spawn3:
-			PART A 0 Bright A_JumpIf(scalex < 0.1, "End")
-			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
-			Loop
-
-		End:
-			TNT1 A 0
-			stop
-	}
-}
-
 ACTOR DroidLaserTrail : SH_BaseParticle
 {
 	Radius 1
@@ -1366,7 +1327,7 @@ ACTOR CryoShot : FastProjectile
 		Death:
 			BXPL A 0 Bright A_StopSound(CHAN_BODY)
 			BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+			BXPL A 0 Bright A_SetDamageType("Ice")
 			BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1404,7 +1365,7 @@ ACTOR SlowCryoShot
 		Death:
 			BXPL A 0 Bright A_StopSound(CHAN_BODY)
 			BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+			BXPL A 0 Bright A_SetDamageType("Ice")
 			BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1442,7 +1403,6 @@ ACTOR GoldCryoShot : FastProjectile
 		Death:
 			GXPL A 0 Bright A_StopSound(CHAN_BODY)
 			GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
 			GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1481,41 +1441,11 @@ ACTOR SlowGoldCryoShot
 		Death:
 			GXPL A 0 Bright A_StopSound(CHAN_BODY)
 			GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
 			GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
 			GXPL AAAAAAAA 0 Bright A_SpawnItemEx("CryoSmoke", 0, 0, 0, random(10, 30)*0.1, 0, random(0, 10)*0.1, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION)
 			GXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
-			GXPL ABCDEFGH 1 Bright
-			GXPL IJKLLM 1 Bright A_FadeOut(0.1)
-			Stop
-	}
-}
-
-ACTOR Fiendsautoaimshot : FastProjectile
-{
-	Radius 4
-	Height 8
-	Speed 100
-	Damage 7
-	Scale 0.25
-	RenderStyle Add
-	Alpha 0.9
-//	DeathSound "weapons/cryobowhit"
-	MissileType "AutoaimTrail"
-	MissileHeight 8
-	Decal "scorch"
-	Projectile
-	+FORCERADIUSDMG
-	+NODAMAGETHRUST
-	+SEEKERMISSILE
-	States
-	{
-		Spawn:
-			GSHT A 1 bright A_SeekerMissile(9,6,SMF_LOOK|SMF_CURSPEED,75,10)
-			loop
-		Death:
 			GXPL ABCDEFGH 1 Bright
 			GXPL IJKLLM 1 Bright A_FadeOut(0.1)
 			Stop
@@ -1555,7 +1485,7 @@ ACTOR ChargeCryoShotBlue1
 		Death:
 			BXPL A 0 Bright A_StopSound(CHAN_BODY)
 			BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+			BXPL A 0 Bright A_SetDamageType("Ice")
 			BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1600,7 +1530,6 @@ ACTOR ChargeCryoShotGold1
 		Death:
 			GXPL A 0 Bright A_StopSound(CHAN_BODY)
 			GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
 			GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1649,7 +1578,6 @@ ACTOR ChargeCryoShotGold2
 		Death:
 			GXPL A 0 Bright A_StopSound(CHAN_BODY)
 			GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
 			GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1699,7 +1627,6 @@ ACTOR ChargeCryoShotGold3
 		Death:
 			GXPL A 0 Bright A_StopSound(CHAN_BODY)
 			GXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			GXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 0)
 			GXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			GXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			GXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1748,7 +1675,7 @@ ACTOR ChargeCryoShotBlue2
 		Death:
 			BXPL A 0 Bright A_StopSound(CHAN_BODY)
 			BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+			BXPL A 0 Bright A_SetDamageType("Ice")
 			BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -1797,7 +1724,7 @@ ACTOR ChargeCryoShotBlue3
 		Death:
 			BXPL A 0 Bright A_StopSound(CHAN_BODY)
 			BXPL A 0 Bright A_Explode(1, 128, 0) // Break frozen things.
-			BXPL A 0 Bright A_ChangeFlag("ICEDAMAGE", 1)
+			BXPL A 0 Bright A_SetDamageType("Ice")
 			BXPL A 0 Bright A_ChangeFlag("NODAMAGETHRUST", 0)
 			BXPL A 0 Bright A_Explode(50*random(1,4), 16, 0) // Simulated impact damage
 			BXPL A 0 Bright A_Explode(128, 128, 0) // Freezy radius damage.
@@ -2164,32 +2091,7 @@ Spawn:
 
 //Channeler
 
-Actor ChannelerBeam : FastProjectile
-{
-	Speed 100
-	Radius 13
-	Height 8
-	Damage (Random(10,15))
-	Decal DoomImpScorch
-	Renderstyle Add
-	SeeSound ""
-	Scale 0.5
-	MissileHeight 0
-	-CANNOTPUSH
-	+NOTIMEFREEZE
-	-NODAMAGETHRUST
-	+NOEXTREMEDEATH
-	MissileType "ChannelerTrail"
-	states
-	{
-		Death:
-			TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
-			TBAL A 2 bright
-			stop
-	}
-}
-
-Actor ChannelerBeamhoming : FastProjectile
+ACTOR ChannelerBeamBounce : FastProjectile //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
 {
 	Speed 100
 	Radius 13
@@ -2208,53 +2110,28 @@ Actor ChannelerBeamhoming : FastProjectile
 	states
 	{
 		Death:
-			TBA1 A 0 A_CustomMissile("ChannelerBeam2",0,0,random(0,360),4,random(0,360))
+			TBAL A 0
 			TBAL A 2 bright
 			stop
 	}
 }
 
-
-
-ACTOR ChannelerBeam2 : ChannelerBeam
+ACTOR ChannelerSeducer : FastProjectile
 {
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("ChannelerBeam3",0,0,random(0,360),4,random(0,360))
-    TBAL A 2 bright
-    stop
-  }
-}
-
-ACTOR ChannelerBeam3 : ChannelerBeamHoming
-{
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("ChannelerBeam4",0,0,random(0,360),4,random(0,360))
-    TBAL A 2 bright
-    stop
-  }
-}
-
-ACTOR ChannelerBeam4 : ChannelerBeamHoming //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
-{
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0
-    TBAL A 2 bright
-    stop
-  }
-}
-
-ACTOR ChannelerSeducer : ChannelerBeam
-{
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(10,15))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
 	+NOTIMEFREEZE
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	MissileType "ChannelerTrail"
 	states
 	{
 		Death:
@@ -2285,12 +2162,12 @@ ACTOR ChannelerSeductor
 			goto Death
 		See:
 		Missile:
-			TNT1 A 0 A_FaceTarget(0.0, 0.0)
+			TNT1 A 0 A_FaceTarget (0.0, 0.0, 0.0, 0.0, FAF_MIDDLE)
 			TNT1 A 0 A_RearrangePointers (AAPTR_TRACER, AAPTR_TRACER, AAPTR_TRACER, PTROP_NOSAFEGUARDS) // Reset target to owner.
 			TNT1 A 0 A_JumpTo("Shoot")
 			stop
 		Shoot:
-			TNT1 A 1 A_CustomMissile("ChannelerBeam4", 0, 0, 0, CMF_TRACKOWNER | CMF_AIMDIRECTION, pitch)
+			TNT1 A 1 A_CustomMissile("ChannelerBeamBounce", 0, 0, 0, CMF_TRACKOWNER | CMF_AIMDIRECTION, pitch)
 			Stop
 		Death:
 			TNT1 A 0
@@ -2335,86 +2212,65 @@ Actor REDChannelerBeam : FastProjectile
 	states
 	{
 		Death:
-			TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
+			TBA1 A 0 A_CustomMissile("REDChannelerBeamBounce2",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
 			TBAL C 2 bright
 			stop
 	}
 }
 
-
-Actor REDChannelerBeamHoming : FastProjectile
+ACTOR REDChannelerBeamBounce : FastProjectile //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
 {
-  Speed 100
-  Radius 13
-  Height 8
-  Damage (Random(5,10))
-  Decal DoomImpScorch
-  Renderstyle Add
-  SeeSound ""
-  Scale 0.5
-  MissileHeight 0
-  -CANNOTPUSH
-  -NODAMAGETHRUST
-  +NOEXTREMEDEATH
-  +NOTIMEFREEZE
-  MissileType "REDChannelerTrail"
-  states
-  {
-  Death:
-    TBA1 A 0 A_CustomMissile("REDChannelerBeam2",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
-    TBAL C 2 bright
-    stop
-  }
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(5,10))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	+NOTIMEFREEZE
+	MissileType "REDChannelerTrail"
+	states
+	{
+		Death:
+			TBAL A 0
+			TBAL C 2 bright
+			stop
+	}
 }
 
-ACTOR REDChannelerBeam2 : REDChannelerBeam
+actor REDChannelerBeamBounce2 : REDChannelerBeamBounce
 {
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("REDChannelerBeam3",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
-    TBAL C 2 bright
-    stop
-  }
+	Damage (Random(10,15))
 }
 
-ACTOR REDChannelerBeam3 : REDChannelerBeamHoming
+ACTOR REDChannelerSeducer : FastProjectile
 {
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("REDChannelerBeam4",0,0,random(0,360),CMF_TRACKOWNER,random(0,360))
-    TBAL C 2 bright
-    stop
-  }
-}
-
-ACTOR REDChannelerBeam4 : REDChannelerBeamHoming //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
-{
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0
-    TBAL C 2 bright
-    stop
-  }
-}
-
-
-
-ACTOR REDChannelerSeducer : REDChannelerBeam
-{
-+NOTIMEFREEZE
-  states
-  {
-  Death:
-    TBAL A 0 A_CustomMissile("REDChannelerSeductor",0,0,0,CMF_TRACKOWNER,0)
-    TBAL C 2 bright
-    stop
-  }
+	Speed 100
+	Radius 13
+	Height 8
+	Damage (Random(10,15))
+	Decal DoomImpScorch
+	Renderstyle Add
+	SeeSound ""
+	Scale 0.5
+	MissileHeight 0
+	-CANNOTPUSH
+	-NODAMAGETHRUST
+	+NOEXTREMEDEATH
+	+NOTIMEFREEZE
+	MissileType "REDChannelerTrail"
+	states
+	{
+		Death:
+			TBAL A 0 A_CustomMissile("REDChannelerSeductor",0,0,0,CMF_TRACKOWNER,0)
+			TBAL C 2 bright
+			stop
+	}
 }
 
 ACTOR REDChannelerSeductor : ChannelerSeductor
@@ -2424,7 +2280,7 @@ ACTOR REDChannelerSeductor : ChannelerSeductor
    States
    {
 		Shoot:
-			TNT1 A 1 A_CustomMissile("REDChannelerBeam4",0,0,0, CMF_TRACKOWNER | CMF_AIMDIRECTION)
+			TNT1 A 1 A_CustomMissile("REDChannelerBeamBounce", 0, 0, 0, CMF_TRACKOWNER | CMF_AIMDIRECTION, pitch)
 			Stop
 	}
 }

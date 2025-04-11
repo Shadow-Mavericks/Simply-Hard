@@ -30,7 +30,7 @@ $limit SSWFire1 0
 $limit SSWFire2 0
 $limit SSWFire 0
 
-//Kunai helltech shotgun
+// Helltech Shotgun
 Kunaishotgun_FIRE1	KHTS_FR1
 Kunaishotgun_FIRE2	KHTS_FR2
 Kunaishotgun_Pump	KHTS_RL
@@ -57,6 +57,11 @@ FrostBallRicochet3 FRSTRIC3
 $random FrostBallRicochet { FrostBallRicochet1 FrostBallRicochet2 FrostBallRicochet3 }
 $limit FrostBallRicochet 0
 $volume FrostBallRicochet 0.5
+
+// Channeler
+Channeler/Up dschanup
+Channeler/Fire dschanel
+Channeler/AltFire dschanfl
 
 // -----------------
 // Gosimer's Weapons

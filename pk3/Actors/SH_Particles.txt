@@ -326,3 +326,49 @@ actor Shrapnel3
 			Stop
 	}
 }
+
+actor GasterLaser : SH_BaseParticle
+{
+	RenderStyle Add
+	Scale 0.3
+	States
+	{
+		Spawn:
+			PART A 0 Bright A_JumpIf(scalex > 3.0, "Spawn2")
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			Loop
+
+		Spawn2:
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			PART A 1 Bright A_SetScale(scalex+1.0, scaley+1.0)
+
+		Spawn3:
+			PART A 0 Bright A_JumpIf(scalex < 0.1, "End")
+			PART A 1 Bright A_SetScale(scalex-1.0, scaley-1.0)
+			Loop
+
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+actor GasterLaserSmall : GasterLaser
+{
+	Scale 0.15
+	States
+	{
+		Spawn:
+			PART A 0 Bright A_JumpIf(scalex > 1.5, "Spawn2")
+			PART A 1 Bright A_SetScale(scalex+0.5, scaley+0.5)
+			Loop
+	}
+}

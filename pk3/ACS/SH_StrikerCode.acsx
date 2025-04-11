@@ -769,9 +769,11 @@ function void actor_swap(str replace, str with, int chance)
 	return;
 }
 
-function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int spawn_ptr)
+#define SAP_HEALTH 0
+#define SAP_AMMO 1
+function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int healDiv, int spawn_ptr, int type)
 {
-	if(SetActivator(0, AAPTR_DAMAGE_SOURCE)) // Set activator to player doing damage.
+	if(SetActivatorToPlayer(playerNum)) // Set activator to player doing damage.
 	{
 		// Assign TID to player.
 		int oldTID = ActivatorTID();
@@ -782,15 +784,26 @@ function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int spaw
 		SetActivator(0, spawn_ptr);
 
 		int actualDmg = arg1;
-		if(victimHealth < arg1) // If health is lower than damage, only sap the remainder.
+		
+		if((type == SAP_HEALTH) && (victimHealth < arg1)) // If health is lower than damage, only sap the remainder.
 			actualDmg = victimHealth;
+			
+		int dividedAmt = max(actualDmg/healDiv, 1);
 
-		int numOrbs = clamp(actualDmg >> 4, 1, 10);					// Number of orbs is damage divided by 16 (rightshift by 4), clamped to 1 orb min, 10 orbs max.
-		int healAmt = max(max(actualDmg/healDiv, 1)/numOrbs, 1);	// Divvy up health given amongst the number of orbs.
+		int numOrbs = clamp((dividedAmt >> 1), 1, 10);		// Number of orbs is divided damage halved, clamped to 10.
+		int healAmt = max(dividedAmt/numOrbs, 1);			// Divvy up health given amongst the number of orbs.
 		for(int i = 0; i < numOrbs; i++)
 		{
 			int uTID = UniqueTID();
-			SpawnProjectile(0, "HealingSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
+			if(type == SAP_AMMO)
+			{
+				SpawnProjectile(0, "AmmoSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
+			}
+			else
+			{
+				SpawnProjectile(0, "HealingSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
+			}
+			
 			SetActivator(uTID);								// Set activator to orb.
 			SetPointer(AAPTR_TRACER, srcUTID);				// Set orb tracer to player.
 			SetPointer(AAPTR_TARGET, srcUTID);				// Set orb target to player.
@@ -804,36 +817,56 @@ function void kunai_health_sap(int arg1, int victimHealth, int healDiv, int spaw
 	SetActivator(0, AAPTR_DAMAGE_INFLICTOR); // Revert pointer to inflictor so we don't interfere with subsequent code. Be very mindful of this!
 }
 
-script "KUNAI_GIVE_HEALTH" (void)
+script "KUNAI_SAP" (int type)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
-	int healAmt = GetUserVariable(0, "user_healamt");
+	int sapAmt = GetUserVariable(0, "user_healamt");
 	//int type = GetUserVariable(0, "user_type"); // Unused
 	
 	if(SetActivator(0, AAPTR_TARGET))
 	{
-		int curHealth = GetActorProperty(0, APROP_Health);
-		int armorAmt = 0;
-		
-		if(curHealth >= 100)
+		if(type == SAP_AMMO)
 		{
-			armorAmt = healAmt;
-			healAmt = 0;
+			str ammo_types[4] = { "Peastolclip", "Shellz", "SuperShellz", "MGRounds" };
+			int i = random(0, 3);
+			while(sapAmt > 0) // Iterate through ammo types, giving ammo until there's none left to give, with random amounts.
+			{
+				int giveAmt = random(0, sapAmt);
+				if(giveAmt > 0)
+				{
+					GiveInventory(ammo_types[i], giveAmt);
+					sapAmt -= giveAmt;
+				}
+				i = (i + 1) % 4;
+			}
+			
+			FadeRange(0, 64, 255, 0.25, 0, 64, 255, 0.0, 0.25); 
 		}
-		else if(curHealth+healAmt >= 100)
+		else
 		{
-			int oldHealAmt = healAmt;
-			healAmt = 100 - curHealth;
-			armorAmt = oldHealAmt - healAmt;
+			int curHealth = GetActorProperty(0, APROP_Health);
+			int armorAmt = 0;
+			
+			if(curHealth >= 100)
+			{
+				armorAmt = sapAmt;
+				sapAmt = 0;
+			}
+			else if(curHealth+sapAmt >= 100)
+			{
+				int oldHealAmt = sapAmt;
+				sapAmt = 100 - curHealth;
+				armorAmt = oldHealAmt - sapAmt;
+			}
+			
+			if(sapAmt > 0)
+				SetActorProperty(0, APROP_Health, curHealth+sapAmt);
+			
+			if(armorAmt > 0 && !CheckInventory("PowerShieldGate"))
+				GiveInventory("KunaisArmorStealBonus", armorAmt);
 		}
-		
-		if(healAmt > 0)
-			SetActorProperty(0, APROP_Health, curHealth+healAmt);
-		
-		if(armorAmt > 0 && !CheckInventory("PowerShieldGate"))
-			GiveInventory("KunaisArmorStealBonus", armorAmt);
 	}
 }
 
@@ -860,8 +893,13 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	int fixedDamage;	// Damage as a fixed-point value. Re-initialized and re-used in multiple places.
 	int yeetAmt;		// Vertical push.
 	// -------------
+	
+	int attackerPlayerNum = -1;
+	bool attackerIsMonster = false;
+	bool attackerIsFriendly = false;
 
 	int victimPlayerNum = PlayerNumber();
+	int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
 	int victimHealth = GetActorProperty(0, APROP_Health);
 	int victimStatus = STATUS_NONE;
 	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
@@ -873,11 +911,21 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	bool wasConcussed = false;
 	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));	
 	
+	if(CheckFlag(0, "ICECORPSE"))
+		victimStatus |= STATUS_FROZEN;
 	if(CheckInventory("PowerAcidStatus"))
 		victimStatus |= STATUS_ACID;
 		
 	if(!StrIcmp(damagetype, "AcidLaser") && (victimStatus & STATUS_ACID))
 		return 0;
+	
+	// Get source information early.
+	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+	{
+		attackerPlayerNum = PlayerNumber();
+		attackerIsMonster = CheckFlag(0, "ISMONSTER");
+		attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
+	}
 
 	if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 	{
@@ -908,24 +956,27 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
 		}
 
-		if(victimIsMonster && victimCanBleed)
+		if(victimIsMonster)
 		{
-			if(	CheckActorClass(0, "Beem_Slash") ||
-				CheckActorClass(0, "SoulreaperPuff") ||
-				CheckActorClass(0, "SoulreaperPuff_SweetSpot"))
+			if(victimCanBleed)
 			{
-				kunai_health_sap(arg1, victimHealth, 6, AAPTR_DAMAGE_INFLICTOR);
-			}
-			else if(CheckActorClass(0, "KunaisLifeStealingPuff"))
-			{
-				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_INFLICTOR);
-			}
-			else if(CheckActorClass(0, "GoldCryoShot"))
-			{
-				kunai_health_sap(arg1, victimHealth, 8, AAPTR_DAMAGE_TARGET);
+				if(	CheckActorClass(0, "Beem_Slash") ||
+					CheckActorClass(0, "SoulreaperPuff") ||
+					CheckActorClass(0, "SoulreaperPuff_SweetSpot"))
+				{
+					kunai_health_sap(attackerPlayerNum, arg1, victimHealth, 6, AAPTR_DAMAGE_INFLICTOR, SAP_HEALTH);
+				}
+				else if(CheckActorClass(0, "KunaisLifeStealingPuff"))
+				{
+					kunai_health_sap(attackerPlayerNum, arg1, victimHealth, 8, AAPTR_DAMAGE_INFLICTOR, SAP_HEALTH);
+				}
+				else if(CheckActorClass(0, "GoldCryoShot"))
+				{
+					kunai_health_sap(attackerPlayerNum, arg1, victimHealth, 8, AAPTR_DAMAGE_TARGET, SAP_HEALTH);
+				}
 			}
 		}
-
+		
 		// Keep LAST!
 		if(GetCVar("sh_debug_damage"))
 		{
@@ -941,10 +992,6 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 
 	if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 	{
-		int attackerPlayerNum = PlayerNumber();
-		bool attackerIsMonster = CheckFlag(0, "ISMONSTER");
-		bool attackerIsFriendly = (CheckFlag(0, "FRIENDLY") || (attackerPlayerNum != -1));
-
 		if(attackerPlayerNum != -1) // Source is player
 		{
 			if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
@@ -1091,27 +1138,43 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			}
 		}
 		
-		if (victimIsMonster && (arg1 > 0) && (arg1 < GetActorProperty(0, AProp_Health)) && canDrawBar())
-		{		
-			if(!CheckInventory("HasHealthBar"))
+		if(victimStatus & STATUS_FROZEN) // Note: arg1 can be 0 on a radius damage hit, but can still shatter ice, so don't check for it here.
+		{
+			if(CheckInventory("WhoFrozeMeHax"))
 			{
-				ACS_NamedExecuteWithResult("CREATE_HP_BAR", 0);
+				int playerWhoFrozeMe = CheckInventory("WhoFrozeMeHax")-1;
+				TakeInventory("WhoFrozeMeHax", 9999); // So it doesn't happen more than once per corpse. (Prevents shotguns giving tons of ammo)
+				
+				kunai_health_sap(playerWhoFrozeMe, victimSpawnHealth, 0, 40, AAPTR_DAMAGE_TARGET, SAP_AMMO);
+				SetActivator(0, AAPTR_DAMAGE_TARGET); // Unclobber activator after kunai_health_sap function.
+			}
+		}
+			
+		if(arg1 > 0) // Final checks, if damage isn't nullified.
+		{
+			if(victimStatus & STATUS_ACID)
+			{
+				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
+				{
+					arg1 = fixedmul(arg1<<16, 1.25)>>16;
+				}
+				else
+				{
+					arg1 = fixedmul(arg1<<16, 1.5)>>16;
+				}
+			}
+			
+			// Keep last, because this can clobber the VM state.
+			if (victimIsMonster && (arg1 < victimHealth) && canDrawBar())
+			{		
+				if(!CheckInventory("HasHealthBar"))
+				{
+					ACS_NamedExecuteWithResult("CREATE_HP_BAR", 0);
+				}
 			}
 		}
 	}
 	
-	if((arg1 > 0) && victimStatus & STATUS_ACID)
-	{
-		if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
-		{
-			arg1 = fixedmul(arg1<<16, 1.25)>>16;
-		}
-		else
-		{
-			arg1 = fixedmul(arg1<<16, 1.5)>>16;
-		}
-	}
-
 	return arg1;
 }
 
@@ -1343,6 +1406,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			bool inflictorIsMissile = false;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
+			int attackerPlayerNum = -1;
 			
 			if(victimIsPlayer && (GameType() == GAME_SINGLE_PLAYER))
 			{
@@ -1357,7 +1421,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			}
 			
 			if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+			{
+				attackerPlayerNum = PlayerNumber();
 				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
+			}
 				
 			if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 			{
@@ -1427,6 +1494,18 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							if(SetActivator(0, AAPTR_DAMAGE_TARGET))
 								SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0)+random(0.0, GetActorProperty(0, APROP_Height)), 0, 0);
 						}
+					}
+				}
+			}
+			else if(!StrIcmp(arg2, "Ice"))
+			{
+				if(arg1 >= victimHealth) // If this ice shot killed.
+				{
+					if(attackerPlayerNum != -1)
+					{
+						SetActivator(0, AAPTR_DAMAGE_TARGET);
+						TakeInventory("WhoFrozeMeHax", 9999);
+						GiveInventory("WhoFrozeMeHax", attackerPlayerNum+1);
 					}
 				}
 			}

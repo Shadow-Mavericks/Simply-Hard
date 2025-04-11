@@ -93,6 +93,19 @@ actor PlayerCheckHax : SH_BaseToken // Useful for A_JumpIfInTargetInventory
 	Inventory.InterHubAmount 1
 }
 
+actor WhoFrozeMeHax : Inventory // Hack to check who froze this actor.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 9999
+	Inventory.InterHubAmount 9999
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.UNDROPPABLE
+	+INVENTORY.UNTOSSABLE
+	+INVENTORY.HUBPOWER
+	+INVENTORY.PERSISTENTPOWER
+	-INVENTORY.INTERHUBSTRIP
+}
+
 actor PowerMaxHUDBlinkHax : Powerup { }
 actor MaxHUDBlink : PowerupGiver
 {

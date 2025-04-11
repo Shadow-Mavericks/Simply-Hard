@@ -11,6 +11,7 @@
 //////////////////////////////////////////////////////////////////
 actor SH_BaseParticle
 {
+	+NEVERADJUSTSPRITECLIPPING
 	+ALLOWCLIENTSPAWN
 	+NOSPAWNEVENTSCRIPT
 	+NODAMAGEEVENTSCRIPT
@@ -36,6 +37,7 @@ actor SH_BaseProjectile
 {
 	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	Projectile
+	+NEVERADJUSTSPRITECLIPPING
 	+FORCEXYBILLBOARD
 	+NOTIMEFREEZE
 	+RANDOMIZE
@@ -44,6 +46,7 @@ actor SH_BaseProjectile
 actor SH_BaseFastProjectile : FastProjectile
 {
 	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	+NEVERADJUSTSPRITECLIPPING
 	+NOTIMEFREEZE
 	+RANDOMIZE
 }
@@ -52,6 +55,7 @@ actor SH_BaseEnemyProjectile
 {
 	Obituary "%o was killed by an enemy projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	Projectile
+	+NEVERADJUSTSPRITECLIPPING
 	+FORCEXYBILLBOARD
 	+DONTSEEKINVISIBLE
 	+RANDOMIZE
@@ -164,6 +168,7 @@ actor SH_BaseToken : Inventory
 	+INVENTORY.HUBPOWER
 	+INVENTORY.PERSISTENTPOWER
 	-INVENTORY.INTERHUBSTRIP
+	+DONTGIB
 	States
 	{
 		Spawn:

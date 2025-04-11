@@ -124,7 +124,10 @@ ACTOR FlamerZombie : SH_BaseMonster
 		Loop
 	Melee:
 		FLMZ E 10 A_FaceTarget
-		FLMZ E 0 A_SetUserVar("user_flamecounter", 27)
+		goto StartAttack
+	StartAttack:
+		FLMZ E 10 A_FaceTarget
+		FLMZ E 0 A_SetUserVar("user_flamecounter", 25)
 		goto AttackLoop
 	AttackLoop:
 		FLMZ F 1 Bright A_CustomMissile("ZombieFire",32,0,random(-4,4),0)
@@ -133,7 +136,7 @@ ACTOR FlamerZombie : SH_BaseMonster
 		FLMZ F 0 Bright A_JumpIf(user_flamecounter <= 0, "AttackRecheck")
 		loop
 	AttackRecheck:
-		FLMZ E 0 A_JumpIfCloser(384, "Melee")
+		FLMZ E 0 A_JumpIfCloser(384, "StartAttack")
 		goto See
 	Pain:
 		FLMZ G 3
@@ -3453,23 +3456,23 @@ ACTOR Haedexebus : Hardfatso
 			UNMB CD 5 A_FaceTarget
 			UNMB D 0 A_Jump(128,"Missile2")
 			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
-			UNMB E 0 BRIGHT LIGHT(UNMNBALLR) A_CustomMissile("FatMace", 48, 32, random(-7,4))
+			UNMB E 0 BRIGHT LIGHT(UNMNBALLR) A_CustomMissile("FatMace", 16, 32, random(-7,4))
 			UNMB E 0 Bright A_PlaySound("UNMBWOSH")
-			UNMB E 5 BRIGHT LIGHT(UNMNBALLL) A_CustomMissile("FatMace", 48, -32, random(-4,7))
+			UNMB E 5 BRIGHT LIGHT(UNMNBALLL) A_CustomMissile("FatMace", 16, -32, random(-4,7))
 			UNMB CD 5 A_FaceTarget
 			Goto See
 		Missile2:
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
 			UNMB CD 5 A_FaceTarget
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
 			UNMB CD 5 A_FaceTarget
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", 0)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
 			UNMB CD 5 A_FaceTarget
 			Goto See
 		Pain:
@@ -10520,30 +10523,30 @@ ACTOR HungRocketImp  //20129
 
 ACTOR ImpRocket
 {
-  Radius 11
-  Height 8
-  Speed 40
-  Damage 3
-  Projectile
-  +RANDOMIZE
-  +DEHEXPLOSION
-  +ROCKETTRAIL
-  +NEVERFAST
-  SeeSound "Rocketimp/Fire"
-  DeathSound "Rocketimp/Explode"
-  Obituary "%o rode %k's rocket."
-  Decal RocketImpScorch
-  States
-  {
-  Spawn:
-	IMIS A 1 Bright
-	Loop
-  Death:
-	IMIS B 6 Bright A_Explode(10,64)
-	IMIS C 5 Bright
-	IMIS D 5 Bright
-	Stop
-  }
+	Radius 11
+	Height 8
+	Speed 35
+	Damage (5)
+	Projectile
+	+RANDOMIZE
+	+DEHEXPLOSION
+	+ROCKETTRAIL
+	+NEVERFAST
+	SeeSound "Rocketimp/Fire"
+	DeathSound "Rocketimp/Explode"
+	Obituary "%o rode %k's rocket."
+	Decal RocketImpScorch
+	States
+	{
+		Spawn:
+			IMIS A 1 Bright
+			Loop
+		Death:
+			IMIS B 6 Bright A_Explode(10,64)
+			IMIS C 5 Bright
+			IMIS D 5 Bright
+			Stop
+	}
 }
 
 Actor BruiserDemon : SH_BaseMonster
@@ -15200,8 +15203,9 @@ Actor ImpWarlord // Simply Hard ActiveBox version
 	}
 }
 
-ACTOR MeleeRevenant
+ACTOR MeleeRevenant : SH_BaseMonster
 {
+	Species "Revenant"
 	Health 150
 	Radius 20
 	Height 56
@@ -15222,6 +15226,9 @@ ACTOR MeleeRevenant
 	States
 	{
 		Spawn:
+			SARG A 0 NoDelay A_SetUserVar("user_hpbar_offset", 24)
+			goto SpawnLoop
+		SpawnLoop:
 			ZKEL AB 10 A_Look
 			Loop
 		See:

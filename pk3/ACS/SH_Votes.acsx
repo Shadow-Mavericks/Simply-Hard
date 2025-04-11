@@ -95,11 +95,13 @@ script 13400 (int tag, int type)
 	int slot = find_tagtracker(tag);
 	if(slot == -1)
 		slot = find_freetagslot(tag);
-		
+	
+	int oldState;
 	if(slot != -1)
 	{
 		tagtrackers[slot].tag = tag;
 		tagtrackers[slot].type = type;
+		oldState = tagtrackers[slot].state;
 	}
 	
 	TagWait(tag);
@@ -116,14 +118,7 @@ script 13400 (int tag, int type)
 			Door_Close(tag, ((type == 110) || (type == 113)) ? D_FAST : D_SLOW);
 			
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A door has locked near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
 				
 			break;
 		}
@@ -135,14 +130,7 @@ script 13400 (int tag, int type)
 			Floor_RaiseToLowestCeiling (tag, F_SLOW);
 			
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A passage has closed near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
 				
 			break;
 		}
@@ -152,14 +140,7 @@ script 13400 (int tag, int type)
 		{
 			Ceiling_LowerToFloor (tag, C_SLOW);
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A passage has closed near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
 			
 			break;
 		}
@@ -168,14 +149,7 @@ script 13400 (int tag, int type)
 		{
 			Ceiling_LowerAndCrush (tag, C_SLOW, 0, 2);
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A crusher has jammed shut near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
 			break;
 		}
 		
@@ -183,14 +157,7 @@ script 13400 (int tag, int type)
 		{
 			Floor_RaiseAndCrushDoom (tag, F_SLOW, 10, 2);
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state != TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A passage has slammed shut near ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_CLOSED;
-			}
 			
 			break;
 		}
@@ -204,14 +171,7 @@ script 13400 (int tag, int type)
 			Floor_LowerToLowest(tag, F_SLOW);
 			
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A passage has been re-opened by ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_OPENED;
-			}
 				
 			break;
 		}
@@ -224,16 +184,23 @@ script 13400 (int tag, int type)
 			Door_Open(tag, ((type == 109) || (type == 112)) ? D_FAST : D_SLOW);
 			
 			if(slot != -1)
-			{
-				if(tagtrackers[slot].state == TAGSTATE_CLOSED)
-				{
-					HudMessageBold(s:"A door has been re-opened by ", n:PlayerNumber() + 1;
-					HUDMSG_FADEOUT | HUDMSG_LOG, 0, CR_GREEN, 0.5, 0.2, 5.0, 1.0, 1.0);
-				}
 				tagtrackers[slot].state = TAGSTATE_OPENED;
-			}
 				
 			break;
+		}
+	}
+	
+	if(slot != -1 && (tagtrackers[slot].state != oldState))
+	{
+		if(tagtrackers[slot].state == TAGSTATE_CLOSED)
+		{
+			HudMessageBold(n:PlayerNumber() + 1, s:"\cg triggered a single-use action.";
+			HUDMSG_FADEOUT | HUDMSG_LOG, -420, CR_RED, 0.5, 0.1, 5.0, 1.0, 1.0);
+		}
+		else if(oldState == TAGSTATE_CLOSED && (tagtrackers[slot].state == TAGSTATE_OPENED))
+		{
+			HudMessageBold(n:PlayerNumber() + 1, s:"\cd re-opened a passage.";
+			HUDMSG_FADEOUT | HUDMSG_LOG, -421, CR_GREEN, 0.5, 0.125, 5.0, 1.0, 1.0);
 		}
 	}
 }

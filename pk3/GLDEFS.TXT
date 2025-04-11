@@ -423,23 +423,7 @@ pointlight FPLAS2
         size 64
 }
 
-
-Object ChannelerBeam
-{
-	frame TBALA { Light FPLAS1 }
-}
-
-Object ChannelerBeam2
-{
-	frame TBALA { Light FPLAS1 }
-}
-
-Object ChannelerBeam3
-{
-	frame TBALA { Light FPLAS1 }
-}
-
-Object ChannelerBeam4
+Object ChannelerBeamBounce
 {
 	frame TBALA { Light FPLAS1 }
 }
@@ -1410,24 +1394,6 @@ Frame GXPLJ { Light Fiendsrocket2 }
 Frame GXPLK { Light Fiendsrocket2 }
 Frame GXPLL { Light Fiendsrocket1 }
 Frame GXPLM { Light Fiendsrocket1 }
-}
-
-object Fiendsautoaimshot
-{
-Frame GSHTA { Light FiendsAASHOT1 }
-Frame GXPLA { Light FiendsAASHOT2 }
-Frame GXPLB { Light FiendsAASHOT2 }
-Frame GXPLC { Light FiendsAASHOT3 }
-Frame GXPLD { Light FiendsAASHOT3 }
-Frame GXPLE { Light FiendsAASHOT4 }
-Frame GXPLF { Light FiendsAASHOT4 }
-Frame GXPLG { Light FiendsAASHOT4 }
-Frame GXPLH { Light FiendsAASHOT4 }
-Frame GXPLI { Light FiendsAASHOT4 }
-Frame GXPLJ { Light FiendsAASHOT4 }
-Frame GXPLK { Light FiendsAASHOT4 }
-Frame GXPLL { Light FiendsAASHOT4 }
-Frame GXPLM { Light FiendsAASHOT4 }
 }
 
 //---------------------< BRIGHTMAPS Weapon

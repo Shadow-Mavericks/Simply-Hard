@@ -1,7 +1,3 @@
-$random Weapons/Bulletcasing { Bulletcasing1 Bulletcasing2 Bulletcasing3 }
-$random Weapons/Shellcasing { Shellcasing1 Shellcasing2 Shellcasing3 }
-$random Weapons/Chainguncasing { Chainguncasing1 Chainguncasing2 }
-
 Chainsaw/shutoff	DSSAWDN
 
 //HP Alarms
@@ -44,14 +40,18 @@ Shellcasing3	Scase3
 chainguncasing1	50cal1	
 chainguncasing2	50cal2
 
-$volume chainguncasing1 0.5
-$volume chainguncasing2 0.5
+$volume chainguncasing1 0.25
+$volume chainguncasing2 0.25
+$volume Bulletcasing1 0.25
+$volume Bulletcasing2 0.25
+$volume Bulletcasing3 0.25
+$volume Shellcasing1 0.25
+$volume Shellcasing2 0.25
+$volume Shellcasing3 0.25
 
-
-////Channeler
-Channeler/Up dschanup
-Channeler/Fire dschanel
-Channeler/AltFire dschanfl
+$random Weapons/Bulletcasing { Bulletcasing1 Bulletcasing2 Bulletcasing3 }
+$random Weapons/Shellcasing { Shellcasing1 Shellcasing2 Shellcasing3 }
+$random Weapons/Chainguncasing { Chainguncasing1 Chainguncasing2 }
 
 // Gosimers sniper 
 Weapon/Sniperrail_Fire1 GSNPFIR
