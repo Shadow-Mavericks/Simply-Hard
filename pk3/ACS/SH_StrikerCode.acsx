@@ -241,7 +241,7 @@ script "ON_KILL" KILL
 	if(CheckFlag(0, "MISSILEEVENMORE"))		NumOrbs += 1;
 	if(CheckFlag(0, "SPECTRAL"))			NumOrbs += 1;
 	if(CheckFlag(0, "DONTRIP"))				NumOrbs += 1;
-	if(CheckFlag(0, "NOICEDEATH"))			NumOrbs += 1;
+	if(CheckFlag(0, "GHOST"))				NumOrbs += 1;
 	if(CheckFlag(0, "STEALTH"))				NumOrbs += 2;
 	if(CheckFlag(0, "ALWAYSFAST"))			NumOrbs += 2;
 	if(CheckFlag(0, "NORADIUSDMG"))			NumOrbs += 2;
