@@ -2162,7 +2162,7 @@ ACTOR ChannelerSeductor
 			goto Death
 		See:
 		Missile:
-			TNT1 A 0 A_FaceTarget (0.0, 0.0, 0.0, 0.0, FAF_MIDDLE)
+			TNT1 A 0 A_FaceTarget (0.0, 0.0, 0.0, 0.0, FAF_MIDDLE | FAF_PITCHFROMORIGIN)
 			TNT1 A 0 A_RearrangePointers (AAPTR_TRACER, AAPTR_TRACER, AAPTR_TRACER, PTROP_NOSAFEGUARDS) // Reset target to owner.
 			TNT1 A 0 A_JumpTo("Shoot")
 			stop
