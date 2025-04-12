@@ -1404,16 +1404,6 @@ actor FrostStreetsweeper : StreetSweeper
 			STSG A 0 A_FireCustomMissile ("FrostShotBallBig", frandom(-4.0, 4.0), true, 0, 0, 0, frandom(-2.0, 6.0))
 			STSG AA 0 A_FireCustomMissile ("FrostShotBallBig", frandom(-4.0, 4.0), false, 0, 0, 0, frandom(-2.0, 6.0))
 			goto AltFireAnim		
-		AltFireShootHold:
-			STSG A 0 A_JumpIfNoAmmo("Ready")
-			STSG A 0 A_PlaySound("SSWFire", CHAN_WEAPON)
-			STSG A 0 A_FireCustomMissile ("FrostShotBallBig", frandom(-4.0, 4.0), true, 0, 0, 0, frandom(-2.0, 6.0))
-			STSG AA 0 A_FireCustomMissile ("FrostShotBallBig", frandom(-4.0, 4.0), false, 0, 0, 0, frandom(-2.0, 6.0))
-			STSG A 0 A_Jump(64, "AltGiveAmmoBack")
-			goto AltFireAnim
-		AltGiveAmmoBack:
-			STSG A 0 A_GiveInventory("SuperShellz", 1)
-			goto AltFireAnim
 		AltFireAnim:
 			"####" B 0 A_PlaySound("SSWSpin", CHAN_7, 1.0, true)
 			"####" B 0 BRIGHT A_Recoil(0.5)
@@ -1424,10 +1414,10 @@ actor FrostStreetsweeper : StreetSweeper
 			"####" F 0 A_FireCustomMissile("SingleShotgunCasingSpawner", 0, 0, 0, 1)
 			"####" F 1 A_WeaponOffset(CallACS("GET_RECOIL_X", 4)/FIXED, 32, 0)
 			"####" A 0 A_WeaponOffset(0, 32, 0)
-			"####" A 0 A_Refire("AltFireShootHold")
+			"####" A 0 A_Refire("AltFireShoot")
 			"####" A 0 A_PlaySound("SSWWindDown", CHAN_7, 1.0, false)
-			"####" AHI 1 A_Refire("AltFireShootHold")
-			"####" AGHI 1 A_Refire("AltFireShootHold")
+			"####" AHI 1 A_Refire("AltFireShoot")
+			"####" AGHI 1 A_Refire("AltFireShoot")
 			"####" AG 2
 			"####" HI 3
 			"####" AGHI 4
