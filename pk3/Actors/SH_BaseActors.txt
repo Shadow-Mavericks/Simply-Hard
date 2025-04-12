@@ -203,6 +203,8 @@ actor UpgradeToken_Base : SH_BaseToken
 	Inventory.PickupSound "Mannco/PLToken"
 	+SLIDESONWALLS
 	+CANBLAST
+	+NOBLOCKMONST
+	+DROPOFF
 }
 
 //////////////////////////////////////////////////////////////////
