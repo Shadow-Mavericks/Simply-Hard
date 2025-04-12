@@ -1,0 +1,237 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744339913 10800
+#      Thu Apr 10 23:51:53 2025 -0300
+# Node ID b68179cb69de4870475f063dcdf0175cc66b110c
+# Parent  afab3bf24fb9ad7bddd3356007a95ba3823f1f14
+# EXP-Topic strikers_stuff
+Backport FAF_* flags from ZDoom revision 53fd57d6, and add FAF_PITCHFROMORIGIN.
+
+diff -r afab3bf24fb9 -r b68179cb69de docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Thu Apr 10 14:48:21 2025 -0300
++++ b/docs/zandronum-history.txt	Thu Apr 10 23:51:53 2025 -0300
+@@ -20,6 +20,7 @@
+ *+	- Added +NEVERADJUSTSPRITECLIPPING, which sets an actor to never adjust the clipping of its sprites to the floor in OpenGL, regardless of the gl_spriteclip setting. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+++	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
+diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.cpp
+--- a/src/p_enemy.cpp	Thu Apr 10 14:48:21 2025 -0300
++++ b/src/p_enemy.cpp	Thu Apr 10 23:51:53 2025 -0300
+@@ -3104,7 +3104,15 @@
+ // A_FaceTracer
+ //
+ //=============================================================================
+-void A_Face (AActor *self, AActor *other, angle_t max_turn, angle_t max_pitch)
++enum FAF_Flags
++{
++	FAF_BOTTOM = 1,
++	FAF_MIDDLE = 2,
++	FAF_TOP = 4,
++	FAF_NODISTFACTOR = 8, // Deprecated
++	FAF_PITCHFROMORIGIN = 16, // [JM]
++};
++void A_Face(AActor* self, AActor* other, angle_t max_turn, angle_t max_pitch, angle_t ang_offset, angle_t pitch_offset, int flags)
+ {
+ 	// [BC] This is handled server-side.
+ 	if ( NETWORK_InClientMode() )
+@@ -3139,28 +3147,28 @@
+ 		{
+ 			if (self->angle - other_angle < ANGLE_180)
+ 			{
+-				self->angle -= max_turn;
++				self->angle -= max_turn + ang_offset;
+ 			}
+ 			else
+ 			{
+-				self->angle += max_turn;
++				self->angle += max_turn + ang_offset;
+ 			}
+ 		}
+ 		else
+ 		{
+ 			if (other_angle - self->angle < ANGLE_180)
+ 			{
+-				self->angle += max_turn;
++				self->angle += max_turn + ang_offset;
+ 			}
+ 			else
+ 			{
+-				self->angle -= max_turn;
++				self->angle -= max_turn + ang_offset;
+ 			}
+ 		}
+ 	}
+ 	else
+ 	{
+-		self->angle = other_angle;
++		self->angle = other_angle + ang_offset;
+ 	}
+ 
+ 	// [DH] Now set pitch. In order to maintain compatibility, this can be
+@@ -3171,18 +3179,32 @@
+ 		// result is only used in a ratio.
+ 		double dist_x = other->x - self->x;
+ 		double dist_y = other->y - self->y;
++
+ 		// Positioning ala missile spawning, 32 units above foot level
+ 		fixed_t source_z = self->z + 32*FRACUNIT + self->GetBobOffset();
+ 		fixed_t target_z = other->z + 32*FRACUNIT + other->GetBobOffset();
++
++		if (flags & FAF_PITCHFROMORIGIN) // [JM] Calculate pitch from the origin
++			source_z = self->z;
++
+ 		// If the target z is above the target's head, reposition to the middle of
+ 		// its body.
+ 		if (target_z >= other->z + other->height)
+ 		{
+-			target_z = other->z + other->height / 2;
++			target_z = other->z + (other->height / 2);
+ 		}
++
++		//Note there is no +32*FRACUNIT on purpose. This is for customization sake. 
++		//If one doesn't want this behavior, just don't use FAF_BOTTOM.
++		if (flags & FAF_BOTTOM)
++			target_z = other->z + other->GetBobOffset();
++		if (flags & FAF_MIDDLE)
++			target_z = other->z + (other->height / 2) + other->GetBobOffset();
++		if (flags & FAF_TOP)
++			target_z = other->z + (other->height) + other->GetBobOffset();
++
+ 		double dist_z = target_z - source_z;
+ 		double dist = sqrt(dist_x*dist_x + dist_y*dist_y + dist_z*dist_z);
+-
+ 		int other_pitch = (int)rad2bam(asin(dist_z / dist));
+ 
+ 		if (max_pitch != 0)
+@@ -3202,6 +3224,7 @@
+ 		{
+ 			self->pitch = other_pitch;
+ 		}
++		self->pitch += pitch_offset;
+ 	}
+ 
+ 	// This will never work well if the turn angle is limited.
+@@ -3215,46 +3238,55 @@
+ 		SERVERCOMMANDS_SetThingAngle( self );
+ }
+ 
+-void A_FaceTarget (AActor *self, angle_t max_turn, angle_t max_pitch)
++void A_FaceTarget(AActor* self, angle_t max_turn, angle_t max_pitch, angle_t ang_offset, angle_t pitch_offset, int flags)
+ {
+-	A_Face(self, self->target, max_turn, max_pitch);
++	A_Face(self, self->target, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+-void A_FaceMaster (AActor *self, angle_t max_turn, angle_t max_pitch)
++void A_FaceMaster(AActor* self, angle_t max_turn, angle_t max_pitch, angle_t ang_offset, angle_t pitch_offset, int flags)
+ {
+-	A_Face(self, self->master, max_turn, max_pitch);
++	A_Face(self, self->master, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+-void A_FaceTracer (AActor *self, angle_t max_turn, angle_t max_pitch)
++void A_FaceTracer(AActor* self, angle_t max_turn, angle_t max_pitch, angle_t ang_offset, angle_t pitch_offset, int flags)
+ {
+-	A_Face(self, self->tracer, max_turn, max_pitch);
++	A_Face(self, self->tracer, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+ DEFINE_ACTION_FUNCTION_PARAMS(AActor, A_FaceTarget)
+ {
+-	ACTION_PARAM_START(2);
++	ACTION_PARAM_START(5);
+ 	ACTION_PARAM_ANGLE(max_turn, 0);
+ 	ACTION_PARAM_ANGLE(max_pitch, 1);
+-
+-	A_FaceTarget(self, max_turn, max_pitch);
++	ACTION_PARAM_ANGLE(ang_offset, 2);
++	ACTION_PARAM_ANGLE(pitch_offset, 3);
++	ACTION_PARAM_INT(flags, 4);
++
++	A_FaceTarget(self, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+ DEFINE_ACTION_FUNCTION_PARAMS(AActor, A_FaceMaster)
+ {
+-	ACTION_PARAM_START(2);
++	ACTION_PARAM_START(5);
+ 	ACTION_PARAM_ANGLE(max_turn, 0);
+ 	ACTION_PARAM_ANGLE(max_pitch, 1);
+-
+-	A_FaceMaster(self, max_turn, max_pitch);
++	ACTION_PARAM_ANGLE(ang_offset, 2);
++	ACTION_PARAM_ANGLE(pitch_offset, 3);
++	ACTION_PARAM_INT(flags, 4);
++
++	A_FaceMaster(self, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+ DEFINE_ACTION_FUNCTION_PARAMS(AActor, A_FaceTracer)
+ {
+-	ACTION_PARAM_START(2);
++	ACTION_PARAM_START(5);
+ 	ACTION_PARAM_ANGLE(max_turn, 0);
+ 	ACTION_PARAM_ANGLE(max_pitch, 1);
+-
+-	A_FaceTracer(self, max_turn, max_pitch);
++	ACTION_PARAM_ANGLE(ang_offset, 2);
++	ACTION_PARAM_ANGLE(pitch_offset, 3);
++	ACTION_PARAM_INT(flags, 4);
++
++	A_FaceTracer(self, max_turn, max_pitch, ang_offset, pitch_offset, flags);
+ }
+ 
+ //===========================================================================
+diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.h
+--- a/src/p_enemy.h	Thu Apr 10 14:48:21 2025 -0300
++++ b/src/p_enemy.h	Thu Apr 10 23:51:53 2025 -0300
+@@ -71,7 +71,8 @@
+ DECLARE_ACTION(A_BossDeath)
+ 
+ void A_Chase(AActor *self);
+-void A_FaceTarget (AActor *actor, angle_t max_turn = 0, angle_t max_pitch = ANGLE_270);
++void A_FaceTarget(AActor* actor, angle_t max_turn = 0, angle_t max_pitch = ANGLE_270, angle_t ang_offset = 0, angle_t pitch_offset = 0, int flags = 0);
++void A_Face(AActor* self, AActor* other, angle_t max_turn = 0, angle_t max_pitch = ANGLE_270, angle_t ang_offset = 0, angle_t pitch_offset = 0, int flags = 0);
+ 
+ bool A_RaiseMobj (AActor *, fixed_t speed);
+ bool A_SinkMobj (AActor *, fixed_t speed);
+diff -r afab3bf24fb9 -r b68179cb69de wadsrc/static/actors/actor.txt
+--- a/wadsrc/static/actors/actor.txt	Thu Apr 10 14:48:21 2025 -0300
++++ b/wadsrc/static/actors/actor.txt	Thu Apr 10 23:51:53 2025 -0300
+@@ -75,9 +75,9 @@
+ 	action native A_XScream();
+ 	action native A_Look();
+ 	action native A_Chase(state melee = "*", state missile = "none", int flags = 0);
+-	action native A_FaceTarget(float max_turn = 0, float max_pitch = 270);
+-	action native A_FaceTracer(float max_turn = 0, float max_pitch = 270);
+-	action native A_FaceMaster(float max_turn = 0, float max_pitch = 270);
++	action native A_FaceTarget(float max_turn = 0, float max_pitch = 270, float ang_offset = 0, float pitch_offset = 0, int flags = 0);
++	action native A_FaceTracer(float max_turn = 0, float max_pitch = 270, float ang_offset = 0, float pitch_offset = 0, int flags = 0);
++	action native A_FaceMaster(float max_turn = 0, float max_pitch = 270, float ang_offset = 0, float pitch_offset = 0, int flags = 0);
+ 	action native A_PosAttack();
+ 	action native A_Scream();
+ 	action native A_SPosAttack();
+diff -r afab3bf24fb9 -r b68179cb69de wadsrc/static/actors/constants.txt
+--- a/wadsrc/static/actors/constants.txt	Thu Apr 10 14:48:21 2025 -0300
++++ b/wadsrc/static/actors/constants.txt	Thu Apr 10 23:51:53 2025 -0300
+@@ -362,6 +362,16 @@
+ const int AMF_TARGETNONPLAYER = 2;
+ const int AMF_EMITFROMTARGET = 4;
+ 
++// Flags for A_Face*
++enum
++{
++	FAF_BOTTOM = 1,
++	FAF_MIDDLE = 2,
++	FAF_TOP = 4,
++	FAF_NODISTFACTOR = 8, // Deprecated
++	FAF_PITCHFROMORIGIN = 16, // [JM]
++};
++
+ // Flags for A_WeaponOffset
+ // [JM] Backported from a later zdoom revision
+ enum

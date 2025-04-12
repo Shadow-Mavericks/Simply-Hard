@@ -1,0 +1,81 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744166240 10800
+#      Tue Apr 08 23:37:20 2025 -0300
+# Node ID e4fd760a64d755326a86beaef1277cfb5e0b3e9a
+# Parent  b48bf551b0d4258dc1d55ace3fad5e8951ade6bc
+# EXP-Topic strikers_stuff
+Make DISCONNECT scripts properly set activator, matching ZDoom behaviour.
+
+diff -r b48bf551b0d4 -r e4fd760a64d7 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Tue Apr 08 19:42:37 2025 -0300
++++ b/docs/zandronum-history.txt	Tue Apr 08 23:37:20 2025 -0300
+@@ -22,6 +22,7 @@
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
+ +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
+++	- Make DISCONNECT scripts set the activator to the player's pawn, like ZDoom does. [StrikerTheHedgefox]
+ -	- Fix a crash that can occur when using the "colors" DECALDEF token, when the decal's image was in the "graphics" folder. [StrikerTheHedgefox]
+ -	- Fix truncation of translation index in decals. [StrikerTheHedgefox]
+ 
+diff -r b48bf551b0d4 -r e4fd760a64d7 src/d_net.cpp
+--- a/src/d_net.cpp	Tue Apr 08 19:42:37 2025 -0300
++++ b/src/d_net.cpp	Tue Apr 08 23:37:20 2025 -0300
+@@ -633,6 +633,8 @@
+ 
+ 	// [RH] Make the player disappear
+ 	FBehavior::StaticStopMyScripts (players[netconsole].mo);
++	// [RH] Let the scripts know the player left
++	FBehavior::StaticStartTypedScripts(SCRIPT_Disconnect, players[netconsole].mo, true, netconsole, true);
+ 	if (players[netconsole].mo != NULL)
+ 	{
+ 		P_DisconnectEffect (players[netconsole].mo);
+@@ -646,8 +648,7 @@
+ 		players[netconsole].mo = NULL;
+ 		players[netconsole].camera = NULL;
+ 	}
+-	// [RH] Let the scripts know the player left
+-	FBehavior::StaticStartTypedScripts (SCRIPT_Disconnect, NULL, true, netconsole);
++	
+ 	if (netconsole == Net_Arbitrator)
+ 	{
+ 		// Pick a new network arbitrator
+diff -r b48bf551b0d4 -r e4fd760a64d7 src/p_interaction.cpp
+--- a/src/p_interaction.cpp	Tue Apr 08 19:42:37 2025 -0300
++++ b/src/p_interaction.cpp	Tue Apr 08 23:37:20 2025 -0300
+@@ -3418,7 +3418,7 @@
+ 	// Run the disconnect scripts now that the player is leaving.
+ 	if ( NETWORK_InClientMode() == false )
+ 	{
+-		FBehavior::StaticStartTypedScripts( SCRIPT_Disconnect, NULL, true, ulPlayer );
++		FBehavior::StaticStartTypedScripts( SCRIPT_Disconnect, players[ulPlayer].mo, true, ulPlayer, true );
+ 		PLAYER_RemoveFriends ( ulPlayer );
+ 		PLAYER_ClearEnemySoundFields( ulPlayer );
+ 	}
+diff -r b48bf551b0d4 -r e4fd760a64d7 src/sv_main.cpp
+--- a/src/sv_main.cpp	Tue Apr 08 19:42:37 2025 -0300
++++ b/src/sv_main.cpp	Tue Apr 08 23:37:20 2025 -0300
+@@ -3215,6 +3215,11 @@
+ 	// If this player was eligible to get an assist, cancel that.
+ 	TEAM_CancelAssistsOfPlayer ( ulClient );
+ 
++	// Run the disconnect scripts now that the player is leaving.
++	// [AK] Only do this if the client is already spawned.
++	if ((OldState >= CLS_SPAWNED_BUT_NEEDS_AUTHENTICATION) && ((players[ulClient].bSpectating == false) || (players[ulClient].bDeadSpectator)))
++		PLAYER_LeavesGame(ulClient);
++
+ 	// Destroy the actor attached to the player.
+ 	if ( players[ulClient].mo )
+ 	{
+@@ -3236,11 +3241,6 @@
+ 	g_aClients[ulClient].ulLastGameTic = 0;
+ 	playeringame[ulClient] = false;
+ 
+-	// Run the disconnect scripts now that the player is leaving.
+-	// [AK] Only do this if the client is already spawned.
+-	if (( OldState >= CLS_SPAWNED_BUT_NEEDS_AUTHENTICATION ) && (( players[ulClient].bSpectating == false ) || ( players[ulClient].bDeadSpectator )))
+-		PLAYER_LeavesGame( ulClient );
+-
+ 	// [SB] Fire event scripts indicating this client disconnected.
+ 	// GAMEEVENT_PLAYERCONNECT is only fired after their state reaches CLS_SPAWNED, so do the same here.
+ 	if ( OldState >= CLS_SPAWNED )

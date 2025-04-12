@@ -1,0 +1,115 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1743760105 10800
+#      Fri Apr 04 06:48:25 2025 -0300
+# Node ID 94eebddaec3745208b5d706abec69a24db748756
+# Parent  21a262028fd5e80a27ca5c9ebe06c93ebdc46f9b
+# EXP-Topic strikers_stuff
+Backport A_WeaponOffset from ZDoom revision 115dbd0, with necessary alterations for Zandronum's older codebase.
+
+diff -r 21a262028fd5 -r 94eebddaec37 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 11 00:19:57 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 04 06:48:25 2025 -0300
+@@ -14,6 +14,7 @@
+ 3.3
+ ---
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+++	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
+ 
+ 3.2
+ ---
+diff -r 21a262028fd5 -r 94eebddaec37 src/p_pspr.cpp
+--- a/src/p_pspr.cpp	Fri Apr 11 00:19:57 2025 -0300
++++ b/src/p_pspr.cpp	Fri Apr 04 06:48:25 2025 -0300
+@@ -1065,6 +1065,61 @@
+ 
+ //---------------------------------------------------------------------------
+ //
++// PROC A_WeaponOffset
++//
++//---------------------------------------------------------------------------
++enum WOFFlags
++{
++	WOF_KEEPX = 1,
++	WOF_KEEPY = 1 << 1,
++	WOF_ADD = 1 << 2,
++};
++
++DEFINE_ACTION_FUNCTION_PARAMS(AInventory, A_WeaponOffset) // [JM] Slightly modified version to fit Zandronum's current zdoom revision.
++{
++	ACTION_PARAM_START(3);
++	ACTION_PARAM_FLOAT(wx, 0);
++	ACTION_PARAM_FLOAT(wy, 1);
++	ACTION_PARAM_INT(flags, 2);
++
++	if ((flags & WOF_KEEPX) && (flags & WOF_KEEPY))
++		return;
++
++	player_t* player = self->player;
++	pspdef_t* psp;
++
++	if (player && (player->playerstate != PST_DEAD))
++	{
++		psp = &player->psprites[ps_weapon];
++		if (!(flags & WOF_KEEPX))
++		{
++			if (flags & WOF_ADD)
++			{
++				psp->sx += (fixed_t)(wx * FRACUNIT);
++			}
++			else
++			{
++				psp->sx = (fixed_t)(wx * FRACUNIT);
++			}
++		}
++		if (!(flags & WOF_KEEPY))
++		{
++			if (flags & WOF_ADD)
++			{
++				psp->sy += (fixed_t)(wy * FRACUNIT);
++			}
++			else
++			{
++				psp->sy = (fixed_t)(wy * FRACUNIT);
++			}
++		}
++	}
++
++	return;
++}
++
++//---------------------------------------------------------------------------
++//
+ // PROC A_Lower
+ //
+ //---------------------------------------------------------------------------
+diff -r 21a262028fd5 -r 94eebddaec37 wadsrc/static/actors/constants.txt
+--- a/wadsrc/static/actors/constants.txt	Fri Apr 11 00:19:57 2025 -0300
++++ b/wadsrc/static/actors/constants.txt	Fri Apr 04 06:48:25 2025 -0300
+@@ -362,6 +362,15 @@
+ const int AMF_TARGETNONPLAYER = 2;
+ const int AMF_EMITFROMTARGET = 4;
+ 
++// Flags for A_WeaponOffset
++// [JM] Backported from a later zdoom revision
++enum
++{
++	WOF_KEEPX =		1,
++	WOF_KEEPY =		1 << 1,
++	WOF_ADD =		1 << 2,
++};
++
+ 
+ // This is only here to provide one global variable for testing.
+ native int testglobalvar;
+diff -r 21a262028fd5 -r 94eebddaec37 wadsrc/static/actors/shared/inventory.txt
+--- a/wadsrc/static/actors/shared/inventory.txt	Fri Apr 11 00:19:57 2025 -0300
++++ b/wadsrc/static/actors/shared/inventory.txt	Fri Apr 04 06:48:25 2025 -0300
+@@ -48,6 +48,7 @@
+ 	action native A_RestoreSpecialDoomThing();
+ 	action native A_RestoreSpecialThing1();
+ 	action native A_RestoreSpecialThing2();
++	action native A_WeaponOffset(float wx = 0, float wy = 32, int flags = 0);
+ 	
+ 	// [BB] Skulltag specific code pointers
+ 	action native A_CheckRailReload();

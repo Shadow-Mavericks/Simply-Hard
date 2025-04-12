@@ -1,0 +1,34 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744249007 10800
+#      Wed Apr 09 22:36:47 2025 -0300
+# Node ID fdf62a7ec3e54bada6e4253db377777712e12c4a
+# Parent  e4fd760a64d755326a86beaef1277cfb5e0b3e9a
+# EXP-Topic strikers_stuff
+Trigger damage events for ice corpses.
+
+diff -r e4fd760a64d7 -r fdf62a7ec3e5 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Tue Apr 08 23:37:20 2025 -0300
++++ b/docs/zandronum-history.txt	Wed Apr 09 22:36:47 2025 -0300
+@@ -19,6 +19,7 @@
+ *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+++	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
+ +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
+diff -r e4fd760a64d7 -r fdf62a7ec3e5 src/p_interaction.cpp
+--- a/src/p_interaction.cpp	Tue Apr 08 23:37:20 2025 -0300
++++ b/src/p_interaction.cpp	Wed Apr 09 22:36:47 2025 -0300
+@@ -1183,6 +1183,10 @@
+ 		}
+ 		else if (target->flags & MF_ICECORPSE) // frozen
+ 		{
++			// [JM] Trigger this for ice corpses, so we can get information about the shattered actor or stop it from shattering.
++			if (GAMEMODE_HandleDamageEvent(target, inflictor, source, damage, mod, true) == false)
++				return -1;
++
+ 			target->tics = 1;
+ 			target->flags6 |= MF6_SHATTERING;
+ 			target->velx = target->vely = target->velz = 0;

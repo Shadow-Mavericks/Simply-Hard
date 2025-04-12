@@ -1,0 +1,271 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1743762922 10800
+#      Fri Apr 04 07:35:22 2025 -0300
+# Node ID c7b32bed1344b43e5e8d97dd1483bfc2db6ab283
+# Parent  a185a493aee32f605fd66bc3030aaa8cbee4c819
+# EXP-Topic strikers_stuff
+Added +DECALUSESTRANSLATION flag, allows actor to pass its translation down to its decal.
+
+diff -r a185a493aee3 -r c7b32bed1344 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 04 07:21:37 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 04 07:35:22 2025 -0300
+@@ -13,6 +13,7 @@
+ 
+ 3.3
+ ---
++*+	- Added +DECALUSESTRANSLATION, allowing an actor to pass its translation down to its decal. Useful to change decal color on the fly, or to pass the color of blood particles down to the decal. Pal index 255 is used set the color for shaded decals. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+diff -r a185a493aee3 -r c7b32bed1344 src/actor.h
+--- a/src/actor.h	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/actor.h	Fri Apr 04 07:35:22 2025 -0300
+@@ -483,6 +483,9 @@
+ 
+ 	// [BC] End of new ST flags.
+ 
++// [JM] StrikerTheHedgefox's flags
++	HFXF_DECALUSESTRANSLATION		= (1 << 0), // Decal will use actor's translation, or use the translation's pal index 255 color as the basis of its shade if untranslatable.
++
+ // --- mobj.renderflags ---
+ 
+ 	RF_XFLIP			= 0x0001,	// Flip sprite horizontally
+@@ -1018,6 +1021,9 @@
+ 	// [BC] A new set of flags that deal with network games.
+ 	unsigned int	NetworkFlags;
+ 
++	// [JM] Another set of flags for whatever shit I decide to implement.
++	unsigned int	HFXFlags;
++
+ 	int				special1;		// Special info
+ 	int				special2;		// Special info
+ 	int 			health;
+diff -r a185a493aee3 -r c7b32bed1344 src/cl_main.cpp
+--- a/src/cl_main.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/cl_main.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -5367,6 +5367,10 @@
+ 
+ 		actor->STFlags = flags;
+ 		break;
++	case FLAGSET_FLAGSHFX: // [JM]
++
++		actor->HFXFlags = flags;
++		break;
+ 	default:
+ 		CLIENT_PrintWarning( "client_SetThingFlags: Received an unknown flagset value: %d\n", static_cast<int>( flagset ) );
+ 		break;
+diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_decals.cpp
+--- a/src/g_shared/a_decals.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/g_shared/a_decals.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -561,6 +561,9 @@
+ 			decal->AlphaColor = AlphaColor;
+ 			decal->RenderFlags = (decal->RenderFlags & RF_DECALMASK) |
+ 								 (this->RenderFlags & ~RF_DECALMASK);
++
++			if(Translation != 0) // [JM]
++				decal->Translation = Translation;
+ 		}
+ 		else
+ 		{
+@@ -657,7 +660,7 @@
+ 	}
+ }
+ 
+-DImpactDecal *DImpactDecal::StaticCreate (const char *name, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color)
++DImpactDecal *DImpactDecal::StaticCreate (const char *name, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color, int32_t translation)
+ {
+ 	if (cl_maxdecals > 0)
+ 	{
+@@ -665,13 +668,13 @@
+ 
+ 		if (tpl != NULL && (tpl = tpl->GetDecal()) != NULL)
+ 		{
+-			return StaticCreate (tpl, x, y, z, wall, ffloor, color);
++			return StaticCreate (tpl, x, y, z, wall, ffloor, color, translation);
+ 		}
+ 	}
+ 	return NULL;
+ }
+ 
+-DImpactDecal *DImpactDecal::StaticCreate (const FDecalTemplate *tpl, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color)
++DImpactDecal *DImpactDecal::StaticCreate (const FDecalTemplate *tpl, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color, int32_t translation)
+ {
+ 	DImpactDecal *decal = NULL;
+ 	if (tpl != NULL && cl_maxdecals > 0 && !(wall->Flags & WALLF_NOAUTODECALS))
+@@ -685,7 +688,7 @@
+ 			// apply the custom color as well.
+ 			if (tpl->ShadeColor != tpl_low->ShadeColor) lowercolor=0;
+ 			else lowercolor = color;
+-			StaticCreate (tpl_low, x, y, z, wall, ffloor, lowercolor);
++			StaticCreate (tpl_low, x, y, z, wall, ffloor, lowercolor, translation);
+ 		}
+ 		DImpactDecal::CheckMax();
+ 		decal = new DImpactDecal (z);
+@@ -705,6 +708,9 @@
+ 			decal->SetShade (color.r, color.g, color.b);
+ 		}
+ 
++		if (translation != 0) // [JM]
++			decal->Translation = translation;
++
+ 		if (!cl_spreaddecals || !decal->PicNum.isValid())
+ 		{
+ 			return decal;
+@@ -733,6 +739,9 @@
+ 			decal->AlphaColor = AlphaColor;
+ 			decal->RenderFlags = (decal->RenderFlags & RF_DECALMASK) |
+ 								 (this->RenderFlags & ~RF_DECALMASK);
++
++			if (Translation != 0) // [JM]
++				decal->Translation = Translation;
+ 		}
+ 		else
+ 		{
+diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_sharedglobal.h
+--- a/src/g_shared/a_sharedglobal.h	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/g_shared/a_sharedglobal.h	Fri Apr 04 07:35:22 2025 -0300
+@@ -65,8 +65,8 @@
+ 	DImpactDecal (fixed_t z);
+ 	DImpactDecal (side_t *wall, const FDecalTemplate *templ);
+ 
+-	static DImpactDecal *StaticCreate (const char *name, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color=0);
+-	static DImpactDecal *StaticCreate (const FDecalTemplate *tpl, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color=0);
++	static DImpactDecal *StaticCreate (const char *name, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color=0, int32_t translation=0); // [JM] Added translation param
++	static DImpactDecal *StaticCreate (const FDecalTemplate *tpl, fixed_t x, fixed_t y, fixed_t z, side_t *wall, F3DFloor * ffloor, PalEntry color=0, int32_t translation=0); // [JM] Added translation param
+ 
+ 	void BeginPlay ();
+ 	void Destroy ();
+diff -r a185a493aee3 -r c7b32bed1344 src/network.h
+--- a/src/network.h	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/network.h	Fri Apr 04 07:35:22 2025 -0300
+@@ -203,7 +203,8 @@
+ 	FLAGSET_FLAGS5,
+ 	FLAGSET_FLAGS6,
+ 	FLAGSET_FLAGS7,
+-	FLAGSET_FLAGSST
++	FLAGSET_FLAGSST,
++	FLAGSET_FLAGSHFX,
+ };
+ 
+ enum ActorScaleFlag
+diff -r a185a493aee3 -r c7b32bed1344 src/p_map.cpp
+--- a/src/p_map.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/p_map.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -4683,8 +4683,10 @@
+ 			if (bleedtrace.HitType == TRACE_HitWall)
+ 			{
+ 				PalEntry bloodcolor = actor->GetBloodColor();
++				int32_t bloodtrans = 0;
+ 				if (bloodcolor != 0)
+ 				{
++					bloodtrans = TRANSLATION(TRANSLATION_Blood, bloodcolor.a);
+ 					bloodcolor.r >>= 1;	// the full color is too bright for blood decals
+ 					bloodcolor.g >>= 1;
+ 					bloodcolor.b >>= 1;
+@@ -4694,11 +4696,13 @@
+ 				// [BC] Servers don't need to spawn decals.
+ 				if ( NETWORK_GetState( ) != NETSTATE_SERVER )
+ 				{
+-					DImpactDecal::StaticCreate(bloodType,
++					// [JM] Pass translation down to decal, so solid/transparent decals get translated like later GZDoom builds.
++					DImpactDecal *decal = DImpactDecal::StaticCreate(bloodType,
+ 						bleedtrace.X, bleedtrace.Y, bleedtrace.Z,
+ 						bleedtrace.Line->sidedef[bleedtrace.Side],
+ 						bleedtrace.ffloor,
+-						bloodcolor);
++						bloodcolor,
++						bloodtrans);
+ 				}
+ 			}
+ 		}
+diff -r a185a493aee3 -r c7b32bed1344 src/p_mobj.cpp
+--- a/src/p_mobj.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/p_mobj.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -370,7 +370,8 @@
+ 		<< InvasionWave
+ 		<< pMonsterSpot
+ 		<< pPickupSpot
+-		<< Rune;
++		<< Rune
++		<< HFXFlags; // [JM]
+ 
+ 	{
+ 		FString tagstr;
+@@ -1643,8 +1644,26 @@
+ 					// [BC] Servers don't need to spawn decals.
+ 					if ( NETWORK_GetState( ) != NETSTATE_SERVER )
+ 					{
+-						DImpactDecal::StaticCreate (base->GetDecal (),
+-							x, y, z, line->sidedef[side], ffloor);
++						if (mo->HFXFlags & HFXF_DECALUSESTRANSLATION) // [JM] Transfer actor's translation to the decal.
++						{
++							FRemapTable* table = TranslationToTable(mo->Translation);
++							if (table != NULL)
++							{
++								PalEntry color = table->Palette[255]; // Use index 255 for shaded decals.
++								DImpactDecal::StaticCreate(base->GetDecal(),
++														   x, y, z, line->sidedef[side], ffloor, color, mo->Translation);
++							}
++							else
++							{
++								DImpactDecal::StaticCreate(base->GetDecal(),
++														   x, y, z, line->sidedef[side], ffloor);
++							}
++						}
++						else
++						{
++							DImpactDecal::StaticCreate(base->GetDecal(),
++													   x, y, z, line->sidedef[side], ffloor);
++						}
+ 					}
+ 				}
+ 			}
+diff -r a185a493aee3 -r c7b32bed1344 src/sv_commands.cpp
+--- a/src/sv_commands.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/sv_commands.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -1815,6 +1815,7 @@
+ 		case FLAGSET_FLAGS6:	actorFlags = pActor->flags6; break;
+ 		case FLAGSET_FLAGS7:	actorFlags = pActor->flags7; break;
+ 		case FLAGSET_FLAGSST:	actorFlags = pActor->STFlags; break;
++		case FLAGSET_FLAGSHFX:	actorFlags = pActor->HFXFlags; break; // [JM]
+ 		default: return;
+ 	}
+ 
+@@ -1858,6 +1859,11 @@
+ 		SERVERCOMMANDS_SetThingFlags( pActor, FLAGSET_FLAGS7, ulPlayerExtra, flags );
+ 	}
+ 	// [BB] STFlags is intentionally left out here.
++
++	if (pActor->HFXFlags != pActor->GetDefault()->HFXFlags) // [JM]
++	{
++		SERVERCOMMANDS_SetThingFlags(pActor, FLAGSET_FLAGSHFX, ulPlayerExtra, flags);
++	}
+ }
+ 
+ //*****************************************************************************
+diff -r a185a493aee3 -r c7b32bed1344 src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -4662,6 +4662,8 @@
+ 					flagset = FLAGSET_FLAGS7;
+ 				else if ( flagp == &self->STFlags )
+ 					flagset = FLAGSET_FLAGSST;
++				else if ( flagp == &self->HFXFlags ) // [JM]
++					flagset = FLAGSET_FLAGSHFX;
+ 
+ 				SERVERCOMMANDS_SetThingFlags( self, flagset );
+ 			}
+diff -r a185a493aee3 -r c7b32bed1344 src/thingdef/thingdef_data.cpp
+--- a/src/thingdef/thingdef_data.cpp	Fri Apr 04 07:21:37 2025 -0300
++++ b/src/thingdef/thingdef_data.cpp	Fri Apr 04 07:35:22 2025 -0300
+@@ -275,6 +275,9 @@
+ 	DEFINE_FLAG(STFL, USEDAMAGEEVENTSCRIPT, AActor, STFlags),
+ 	DEFINE_FLAG(STFL, NODAMAGEEVENTSCRIPT, AActor, STFlags),
+ 
++	// [JM] Striker's Flags
++	DEFINE_FLAG(HFXF, DECALUSESTRANSLATION, AActor, HFXFlags),
++
+ 	// [BB] New DECORATE network related flag defines here.
+ 	DEFINE_FLAG(NETFL, NONETID, AActor, NetworkFlags),
+ 	DEFINE_FLAG(NETFL, ALLOWCLIENTSPAWN, AActor, NetworkFlags),

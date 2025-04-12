@@ -1,0 +1,36 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1743760521 10800
+#      Fri Apr 04 06:55:21 2025 -0300
+# Node ID d70d465127cf5f397859567eeb223222d52d69a1
+# Parent  94eebddaec3745208b5d706abec69a24db748756
+# EXP-Topic strikers_stuff
+Send inventory that inherits from CustomInventory and Inventory on full update.
+Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change.
+
+diff -r 94eebddaec37 -r d70d465127cf docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 04 06:48:25 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 04 06:55:21 2025 -0300
+@@ -13,6 +13,7 @@
+ 
+ 3.3
+ ---
++*-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
+ 
+diff -r 94eebddaec37 -r d70d465127cf src/sv_main.cpp
+--- a/src/sv_main.cpp	Fri Apr 04 06:48:25 2025 -0300
++++ b/src/sv_main.cpp	Fri Apr 04 06:55:21 2025 -0300
+@@ -2587,6 +2587,11 @@
+ 				// [Dusk] Inform the client of weapon holders
+ 				SERVERCOMMANDS_GiveWeaponHolder( ulIdx, static_cast<AWeaponHolder *>( pInventory ), ulClient, SVCF_ONLYTHISCLIENT );
+ 			}
++			else if(pInventory->IsKindOf(RUNTIME_CLASS(ACustomInventory)) || pInventory->IsKindOf(RUNTIME_CLASS(AInventory)))
++			{
++				// [JM] Sync (custom)inventory, because weapons and player sprites can use these and they can desync if client doesn't have them.
++				SERVERCOMMANDS_GiveInventory(ulIdx, pInventory, ulClient, SVCF_ONLYTHISCLIENT);
++			}
+ 		}
+ 		// [BB] Now give the keys we just collected from the inventory in reverse order.
+ 		while ( keys.Size() )

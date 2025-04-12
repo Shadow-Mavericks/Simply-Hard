@@ -1,0 +1,457 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744424469 10800
+#      Fri Apr 11 23:21:09 2025 -0300
+# Node ID c71ed3d189fc24182b67fce2b37159c7a5d65c9b
+# Parent  b68179cb69de4870475f063dcdf0175cc66b110c
+# EXP-Topic strikers_stuff
+Backport ThruBits, +ALLOWTHRUBITS, and +ALLOWTHRUFLAGS.
+
+diff -r b68179cb69de -r c71ed3d189fc docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Thu Apr 10 23:51:53 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 11 23:21:09 2025 -0300
+@@ -20,6 +20,7 @@
+ *+	- Added +NEVERADJUSTSPRITECLIPPING, which sets an actor to never adjust the clipping of its sprites to the floor in OpenGL, regardless of the gl_spriteclip setting. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+++	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+diff -r b68179cb69de -r c71ed3d189fc src/actor.h
+--- a/src/actor.h	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/actor.h	Fri Apr 11 23:21:09 2025 -0300
+@@ -351,9 +351,15 @@
+ 	MF7_FORCEDECAL		= 0x00040000,	// [ZK] Forces P_LineAttack to use the puff's decal, even if the player's weapon has a decal defined
+ 
+ 	// [BB] Out of order ZDoom backport.
++	MF7_ALLOWTHRUFLAGS	= 0x00400000,	// [MC] Allow THRUACTORS and the likes on puffs to prevent mod breakage.
+ 	MF7_USEKILLSCRIPTS	= 0x00800000,	// [JM] Use "KILL" Script on death if not forced by GameInfo.
+ 	MF7_NOKILLSCRIPTS	= 0x01000000,	// [JM] No "KILL" Script on death whatsoever, even if forced by GameInfo.
+ 
++// --- mobj.flags8 ---
++
++	// Another out of order ZDoom backport.
++	MF8_ALLOWTHRUBITS = 0x00008000,		// [MC] Enable ThruBits property
++
+ 	// [BC] More object flags for Skulltag.
+ 
+ 	// Object can only be picked up by blue team members.
+@@ -968,6 +974,8 @@
+ 	// Triggers SECSPAC_Exit/SECSPAC_Enter and related events if oldsec != current sector
+ 	void CheckSectorTransition(sector_t *oldsec);
+ 
++	uint32_t GetThruBits(); // [JM] Needed to get ThruBits as an expression.
++
+ // info for drawing
+ // NOTE: The first member variable *must* be x.
+ 	fixed_t	 		x,y,z;
+@@ -1010,6 +1018,7 @@
+ 	DWORD			flags5;			// OMG! We need another one.
+ 	DWORD			flags6;			// Shit! Where did all the flags go?
+ 	DWORD			flags7;			// 
++	DWORD			flags8;			// I see your 8, and raise you a bet for 9.
+ 
+ 	// [BB] If 0, everybody can see the actor, if > 0, only members of team (VisibleToTeam-1) can see it.
+ 	DWORD			VisibleToTeam;
+@@ -1026,6 +1035,8 @@
+ 	// [JM] Another set of flags for whatever shit I decide to implement.
+ 	unsigned int	HFXFlags;
+ 
++	uint32_t		ThruBits;		// [JM] Thrubits backport
++
+ 	int				special1;		// Special info
+ 	int				special2;		// Special info
+ 	int 			health;
+diff -r b68179cb69de -r c71ed3d189fc src/cl_main.cpp
+--- a/src/cl_main.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/cl_main.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -5363,6 +5363,10 @@
+ 
+ 		actor->flags7 = flags;
+ 		break;
++	case FLAGSET_FLAGS8:
++
++		actor->flags8 = flags;
++		break;
+ 	case FLAGSET_FLAGSST:
+ 
+ 		actor->STFlags = flags;
+diff -r b68179cb69de -r c71ed3d189fc src/m_cheat.cpp
+--- a/src/m_cheat.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/m_cheat.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -355,6 +355,7 @@
+ 				player->mo->flags5 = player->mo->GetDefault()->flags5;
+ 				player->mo->flags6 = player->mo->GetDefault()->flags6;
+ 				player->mo->flags7 = player->mo->GetDefault()->flags7;
++				player->mo->flags8 = player->mo->GetDefault()->flags8; // [JM] Backport
+ 				player->mo->renderflags &= ~RF_INVISIBLE;
+ 				player->mo->height = player->mo->GetDefault()->height;
+ 				player->mo->radius = player->mo->GetDefault()->radius;
+diff -r b68179cb69de -r c71ed3d189fc src/network.h
+--- a/src/network.h	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/network.h	Fri Apr 11 23:21:09 2025 -0300
+@@ -203,6 +203,7 @@
+ 	FLAGSET_FLAGS5,
+ 	FLAGSET_FLAGS6,
+ 	FLAGSET_FLAGS7,
++	FLAGSET_FLAGS8, // [JM] Backport
+ 	FLAGSET_FLAGSST,
+ 	FLAGSET_FLAGSHFX,
+ };
+diff -r b68179cb69de -r c71ed3d189fc src/p_map.cpp
+--- a/src/p_map.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/p_map.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -408,6 +408,10 @@
+ 		if ((th->flags2 | tmf.thing->flags2) & MF2_THRUACTORS)
+ 			continue;
+ 
++		// [JM] Backport.
++		if ((th->GetThruBits() & tmf.thing->GetThruBits()) && ((th->flags8 | tmf.thing->flags8) & MF8_ALLOWTHRUBITS))
++			continue;
++
+ 		if (tmf.thing->flags6 & MF6_THRUSPECIES && tmf.thing->GetSpecies() == th->GetSpecies())
+ 			continue;
+ 
+@@ -918,6 +922,10 @@
+ 	if ((thing->flags2 | tm.thing->flags2) & MF2_THRUACTORS)
+ 		return true;
+ 
++	// [JM] Backport
++	if ((thing->GetThruBits() & tm.thing->GetThruBits()) && ((thing->flags8 | tm.thing->flags8) & MF8_ALLOWTHRUBITS))
++		return true;
++
+ 	// [BB] Adapted this for ZADF_UNBLOCK_PLAYERS.
+ 	if (P_CheckUnblock(tm.thing, thing) || ((tm.thing->flags6 & MF6_THRUSPECIES) && (tm.thing->GetSpecies() == thing->GetSpecies())))
+ 		return true;
+@@ -1699,6 +1707,11 @@
+ 		{
+ 			continue;
+ 		}
++		// [JM] Backport.
++		if ((actor->GetThruBits() & thing->GetThruBits()) && ((actor->flags8 | thing->flags8) & MF8_ALLOWTHRUBITS))
++		{
++			continue;
++		}
+ 		// [BB] Adapted this for ZADF_UNBLOCK_PLAYERS.
+ 		if (P_CheckUnblock(actor, thing) || ((actor->flags6 & MF6_THRUSPECIES) && (thing->GetSpecies() == actor->GetSpecies())))
+ 		{
+@@ -4119,8 +4132,13 @@
+ struct Origin
+ {
+ 	AActor *Caller;
++	FName PuffSpecies;
+ 	bool hitGhosts;
+-	bool hitSameSpecies;
++	bool MThruSpecies;
++	bool ThruSpecies;
++	bool ThruActors;
++	bool UseThruBits;
++	uint32_t ThruBits;
+ 
+ 	// [AK] Added hitscan puff and check for P_LinePickActor.
+ 	AActor *pPuff;
+@@ -4136,17 +4154,16 @@
+ 
+ 	Origin *data = (Origin *)userdata;
+ 
+-	// check for physical attacks on spectrals
+-	if (res.Actor->flags4 & MF4_SPECTRAL)
+-	{
+-		return TRACE_Skip;
+-	}
+-
+-	if (data->hitSameSpecies && res.Actor->GetSpecies() == data->Caller->GetSpecies()) 
+-	{
+-		return TRACE_Skip;
+-	}
+-	if (data->hitGhosts && res.Actor->flags3 & MF3_GHOST)
++	// Skip actors if the puff has:
++	// 1. THRUACTORS or SPECTRAL
++	// 2. MTHRUSPECIES on puff and the shooter has same species as the hit actor
++	// 3. THRUSPECIES on puff and the puff has same species as the hit actor
++	// 4. THRUGHOST on puff and the GHOST flag on the hit actor
++
++	if ((data->ThruActors) || (res.Actor->flags4 & MF4_SPECTRAL) ||
++		(data->MThruSpecies && res.Actor->GetSpecies() == data->Caller->GetSpecies()) ||
++		(data->ThruSpecies && res.Actor->GetSpecies() == data->PuffSpecies) ||
++		(data->hitGhosts && res.Actor->flags3 & MF3_GHOST))
+ 	{
+ 		return TRACE_Skip;
+ 	}
+@@ -4158,6 +4175,9 @@
+ 		return TRACE_Skip;
+ 	}
+ 
++	if (data->UseThruBits && (data->ThruBits & res.Actor->GetThruBits()))
++		return TRACE_Skip;
++
+ 	return TRACE_Stop;
+ }
+ 
+@@ -4240,7 +4260,39 @@
+ 		(t1->player->ReadyWeapon->flags2 & MF2_THRUGHOST)) ||
+ 		(puffDefaults && (puffDefaults->flags2 & MF2_THRUGHOST));
+ 
+-	TData.hitSameSpecies = (puffDefaults && (puffDefaults->flags6 & MF6_MTHRUSPECIES));
++	TData.MThruSpecies = (puffDefaults && (puffDefaults->flags6 & MF6_MTHRUSPECIES));
++	TData.PuffSpecies = NAME_None;
++
++	// [JM] Backport
++	// [MC] To prevent possible mod breakage, this flag is pretty much necessary.
++	// Somewhere, someone is relying on these to spawn on actors and move through them.
++
++	if ((puffDefaults->flags7 & MF7_ALLOWTHRUFLAGS))
++	{
++		TData.ThruSpecies = (puffDefaults && (puffDefaults->flags6 & MF6_THRUSPECIES));
++		TData.ThruActors = (puffDefaults && (puffDefaults->flags2 & MF2_THRUACTORS));
++
++		// [MC] Because this is a one-hit trace event, we need to spawn the puff, get the species
++		// and destroy it. Assume there is no species unless tempuff isn't NULL. We cannot get
++		// a proper species the same way as puffDefaults flags it appears...
++
++		AActor* tempuff = NULL;
++		if (pufftype != NULL)
++			tempuff = Spawn(pufftype, t1->x, t1->y, t1->z, ALLOW_REPLACE);
++		if (tempuff != NULL)
++		{
++			TData.PuffSpecies = tempuff->GetSpecies();
++			TData.UseThruBits = !!(puffDefaults->flags8 & MF8_ALLOWTHRUBITS);
++			TData.ThruBits = tempuff->GetThruBits();
++			tempuff->Destroy();
++		}
++	}
++	else
++	{
++		TData.ThruSpecies = false;
++		TData.ThruActors = false;
++		TData.UseThruBits = false;
++	}
+ 
+ 	// if the puff uses a non-standard damage type, this will override default, hitscan and melee damage type.
+ 	// All other explicitly passed damage types (currenty only MDK) will be preserved.
+@@ -4592,10 +4644,10 @@
+ 	TData.Caller = t1;
+ 	TData.hitGhosts = true;
+ 	
+-	// [AK] Explicity set hitSameSpecies to false. We are allowed to pick actors that are the
++	// [AK] Explicity set (M)ThruSpecies to false. We are allowed to pick actors that are the
+ 	// same species, but this isn't always the case if called by the server.
+ 	// This doesn't spawn a puff actor, but indicate that this is a line pick hitscan.
+-	TData.hitSameSpecies = false;
++	TData.MThruSpecies = TData.ThruSpecies = false;
+ 	TData.pPuff = NULL;
+ 	TData.bIsLinePick = true;
+ 
+@@ -4778,8 +4830,15 @@
+ struct RailData
+ {
+ 	TArray<SRailHit> RailHits;
++	FName PuffSpecies;
+ 	bool StopAtOne;
+ 	bool StopAtInvul;
++	bool ThruGhosts;
++	bool ThruSpecies;
++	bool MThruSpecies;
++	bool ThruActors;
++	bool UseThruBits;
++	uint32_t ThruBits;
+ 
+ 	// [AK] Added caller and hitscan puff actor pointers.
+ 	AActor *pCaller;
+@@ -4800,6 +4859,21 @@
+ 		return TRACE_Skip;
+ 	}
+ 
++	// Skip actors if the puff has:
++	// 1. THRUACTORS (This one did NOT include a check for spectral)
++	// 2. MTHRUSPECIES on puff and the shooter has same species as the hit actor
++	// 3. THRUSPECIES on puff and the puff has same species as the hit actor
++	// 4. THRUGHOST on puff and the GHOST flag on the hit actor
++
++	if ((data->ThruActors) ||
++		(data->UseThruBits && (data->ThruBits & res.Actor->GetThruBits())) ||
++		(data->MThruSpecies && res.Actor->GetSpecies() == data->pCaller->GetSpecies()) ||
++		(data->ThruSpecies && res.Actor->GetSpecies() == data->PuffSpecies) ||
++		(data->ThruGhosts && res.Actor->flags3 & MF3_GHOST))
++	{
++		return TRACE_Skip;
++	}
++
+ 	// Invulnerable things completely block the shot
+ 	if (data->StopAtInvul && res.Actor->flags2 & MF2_INVULNERABLE)
+ 	{
+@@ -4881,6 +4955,36 @@
+ 	rail_data.pCaller = source;
+ 	rail_data.pPuff = puffDefaults;
+ 
++	// [JM] Backport
++	// Prevent mod breakage as somewhere, someone is relying on these to spawn on an actor 
++	// and move through them...
++	if ((puffDefaults->flags7 & MF7_ALLOWTHRUFLAGS))
++	{
++		rail_data.ThruGhosts = !!(puffDefaults->flags2 & MF2_THRUGHOST);
++		rail_data.MThruSpecies = !!(puffDefaults->flags6 & MF6_MTHRUSPECIES);
++		rail_data.ThruSpecies = !!(puffDefaults->flags6 & MF6_THRUSPECIES);
++		rail_data.ThruActors = !!(puffDefaults->flags2 & MF2_THRUACTORS);
++		rail_data.UseThruBits = true;
++	}
++	else
++	{
++		rail_data.ThruGhosts = false;
++		rail_data.MThruSpecies = false;
++		rail_data.ThruActors = false;
++		rail_data.UseThruBits = false;
++	}
++	// used as damage inflictor
++	AActor* thepuff = NULL;
++
++	if (puffclass != NULL)
++	{
++		thepuff = Spawn(puffclass, source->x, source->y, source->z, ALLOW_REPLACE);
++		rail_data.PuffSpecies = (thepuff != NULL) ? thepuff->GetSpecies() : NAME_None;
++	}
++
++	if (thepuff)
++		rail_data.ThruBits = thepuff->GetThruBits();
++
+ 	Trace(x1, y1, shootz, source->Sector, vx, vy, vz,
+ 		distance, MF_SHOOTABLE, ML_BLOCKEVERYTHING, source, trace,
+ 		flags, ProcessRailHit, &rail_data);
+@@ -4892,11 +4996,6 @@
+ 	unsigned int i;
+ 	FName damagetype = (puffDefaults == NULL || puffDefaults->DamageType == NAME_None) ? FName(NAME_Railgun) : puffDefaults->DamageType;
+ 
+-	// used as damage inflictor
+-	AActor *thepuff = NULL;
+-
+-	if (puffclass != NULL) thepuff = Spawn(puffclass, source->x, source->y, source->z, ALLOW_REPLACE);
+-
+ 	// [Spleen] Don't do damage, don't award medals, don't spawn puffs,
+ 	// and don't spawn blood in clients on a network.
+ 	// [BB] Actually client spawn the puffs to draw decals / splashes.
+@@ -6207,6 +6306,11 @@
+ 		// [BB] Adapted this for ZADF_UNBLOCK_PLAYERS.
+ 		if (P_CheckUnblock(thing, intersect) || (thing->flags6 & MF6_THRUSPECIES && thing->GetSpecies() == intersect->GetSpecies()))
+ 			continue;
++
++		// [JM] Backport
++		if ((intersect->GetThruBits() & thing->GetThruBits()) && ((intersect->flags8 | thing->flags8) & MF8_ALLOWTHRUBITS))
++			continue;
++
+ 		if (!(intersect->flags2 & MF2_PASSMOBJ) ||
+ 			(!(intersect->flags3 & MF3_ISMONSTER) && intersect->Mass > mymass) ||
+ 			(intersect->flags4 & MF4_ACTLIKEBRIDGE)
+@@ -7038,3 +7142,13 @@
+ 	// Returns the result
+ 	return res;
+ }
++
++// [JM] TEMPORARY! (Until the scripting branch is merged)
++uint32_t AActor::GetThruBits() // [JM] Needed to get ThruBits as an expression.
++{
++	if ((ThruBits & 0xC0000000) == 0x40000000)
++		return EvalExpressionI(ThruBits & 0x3FFFFFFF, this);
++	if (ThruBits == 0)
++		return 0;
++	return ThruBits;
++}
+diff -r b68179cb69de -r c71ed3d189fc src/p_mobj.cpp
+--- a/src/p_mobj.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/p_mobj.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -7913,6 +7913,7 @@
+ 	flags5 = info->flags5;
+ 	flags6 = info->flags6;
+ 	flags7 = info->flags7;
++	flags8 = info->flags8;
+ 
+ 	// [BC] Apply new ST flags as well.
+ 	// [BB] The STFL_LEVELSPAWNED flag may not be removed by the default flags.
+diff -r b68179cb69de -r c71ed3d189fc src/sv_commands.cpp
+--- a/src/sv_commands.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/sv_commands.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -1814,6 +1814,7 @@
+ 		case FLAGSET_FLAGS5:	actorFlags = pActor->flags5; break;
+ 		case FLAGSET_FLAGS6:	actorFlags = pActor->flags6; break;
+ 		case FLAGSET_FLAGS7:	actorFlags = pActor->flags7; break;
++		case FLAGSET_FLAGS8:	actorFlags = pActor->flags8; break;
+ 		case FLAGSET_FLAGSST:	actorFlags = pActor->STFlags; break;
+ 		case FLAGSET_FLAGSHFX:	actorFlags = pActor->HFXFlags; break; // [JM]
+ 		default: return;
+@@ -1858,6 +1859,10 @@
+ 	{
+ 		SERVERCOMMANDS_SetThingFlags( pActor, FLAGSET_FLAGS7, ulPlayerExtra, flags );
+ 	}
++	if (pActor->flags8 != pActor->GetDefault()->flags8)
++	{
++		SERVERCOMMANDS_SetThingFlags(pActor, FLAGSET_FLAGS8, ulPlayerExtra, flags);
++	}
+ 	// [BB] STFlags is intentionally left out here.
+ 
+ 	if (pActor->HFXFlags != pActor->GetDefault()->HFXFlags) // [JM]
+diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -4660,6 +4660,8 @@
+ 					flagset = FLAGSET_FLAGS6;
+ 				else if ( flagp == &self->flags7 )
+ 					flagset = FLAGSET_FLAGS7;
++				else if ( flagp == &self->flags8 )
++					flagset = FLAGSET_FLAGS8;
+ 				else if ( flagp == &self->STFlags )
+ 					flagset = FLAGSET_FLAGSST;
+ 				else if ( flagp == &self->HFXFlags ) // [JM]
+diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_data.cpp
+--- a/src/thingdef/thingdef_data.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/thingdef/thingdef_data.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -250,9 +250,13 @@
+ 	DEFINE_FLAG(MF7, FORCEDECAL, AActor, flags7),
+ 
+ 	// [BB] Out of order ZDoom backport.
++	DEFINE_FLAG(MF7, ALLOWTHRUFLAGS, AActor, flags7),
+ 	DEFINE_FLAG(MF7, USEKILLSCRIPTS, AActor, flags7),
+ 	DEFINE_FLAG(MF7, NOKILLSCRIPTS, AActor, flags7),
+ 
++	// [JM] Another out of order backport
++	DEFINE_FLAG(MF8, ALLOWTHRUBITS, AActor, flags8),
++
+ 	// [BC] New DECORATE flag defines here.
+ 	DEFINE_FLAG(STFL, BLUETEAM, AActor, STFlags),
+ 	DEFINE_FLAG(STFL, REDTEAM, AActor, STFlags),
+diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_properties.cpp
+--- a/src/thingdef/thingdef_properties.cpp	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/thingdef/thingdef_properties.cpp	Fri Apr 11 23:21:09 2025 -0300
+@@ -1325,7 +1325,8 @@
+ 		defaults->flags4 =
+ 		defaults->flags5 =
+ 		defaults->flags6 =
+-		defaults->flags7 = 0;
++		defaults->flags7 =
++		defaults->flags8 = 0;
+ 	defaults->flags2 &= MF2_ARGSDEFINED;	// this flag must not be cleared
+ 
+ 	// [BC] Also zero out ST's flags.
+@@ -2941,3 +2942,12 @@
+ 	PROP_STRING_PARM(str, 0);
+ 	defaults->PowerupItem = FindClassTentative(str, "Inventory");
+ }
++
++//==========================================================================
++// [JM] Backport of ThruBits to a non-zscript ecosystem.
++//==========================================================================
++DEFINE_PROPERTY(thrubits, X, Actor)
++{
++	PROP_INT_PARM(id, 0);
++	defaults->ThruBits = id;
++}
+diff -r b68179cb69de -r c71ed3d189fc wadsrc/static/actors/actor.txt
+--- a/wadsrc/static/actors/actor.txt	Thu Apr 10 23:51:53 2025 -0300
++++ b/wadsrc/static/actors/actor.txt	Fri Apr 11 23:21:09 2025 -0300
+@@ -25,6 +25,7 @@
+ 	DesignatedTeam 255
+ 	PainType Normal
+ 	DeathType Normal
++	ThruBits 0 // [JM] Backport
+ 
+ 
+ 	// Variables for the expression evaluator

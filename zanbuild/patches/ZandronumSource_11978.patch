@@ -1,0 +1,366 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1743934851 10800
+#      Sun Apr 06 07:20:51 2025 -0300
+# Node ID 542ba703f26d388b64b2ec67459c7e7d6286bc21
+# Parent  2f35a1c108044066db864440e3e30b932aa3b4d8
+# EXP-Topic strikers_stuff
+Add Weapon.PowerupItem property.
+- Allows specifying what item should power a weapon to level 2, like a tome of power.
+
+diff -r 2f35a1c10804 -r 542ba703f26d docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 04 19:14:18 2025 -0300
++++ b/docs/zandronum-history.txt	Sun Apr 06 07:20:51 2025 -0300
+@@ -13,6 +13,7 @@
+ 
+ 3.3
+ ---
++*+	- Added the "Weapon.PowerupItem" property to weapons, allowing one to specify what item powers up a weapon to their SisterWeapon. Allows having multiple "Tome of Power" type items that affect different weapons. Can be any item, including another weapon! Just make sure both the SisterWeapon and the base weapon refer to the same powerup item, or problems can occur. [StrikerTheHedgefox]
+ *+	- Added the ability to apply hardware shaders to cameratextures. Must have a texture in the "textures" folder to replace with the cameratexture for this to work. [StrikerTheHedgefox]
+ *+	- Added +DECALUSESTRANSLATION, allowing an actor to pass its translation down to its decal. Useful to change decal color on the fly, or to pass the color of blood particles down to the decal. Pal index 255 is used set the color for shaded decals. [StrikerTheHedgefox]
+ *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
+diff -r 2f35a1c10804 -r 542ba703f26d src/g_game.cpp
+--- a/src/g_game.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/g_game.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -444,11 +444,14 @@
+ 	if ( players[consoleplayer].cheats2 & CF2_POSSESSIONARTIFACT )
+ 		return;
+ 
+-	SendItemUse = players[consoleplayer].weapons.PickNextWeapon (&players[consoleplayer]);
++	AWeapon* weapon = players[consoleplayer].weapons.PickNextWeapon(&players[consoleplayer]);
++	SendItemUse = weapon;
+  	// [BC] Option to display the name of the weapon being cycled to.
+  	if ((displaynametags & 2) && StatusBar && SmallFont && SendItemUse)
+  	{
+- 		StatusBar->AttachMessage(new DHUDMessageFadeOut(SmallFont, SendItemUse->GetTag(),
++		// [JM] Get tag of sister weapon if we have the powerup item for it.
++		const char* nametag = (weapon->SisterWeapon && (weapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP) && weapon->Owner->FindInventory(weapon->PowerupItem)) ? weapon->SisterWeapon->GetTag() : weapon->GetTag();
++ 		StatusBar->AttachMessage(new DHUDMessageFadeOut(SmallFont, nametag,
+ 			1.5f, 0.90f, 0, 0, (EColorRange)*nametagcolor, 2.f, 0.35f), MAKE_ID( 'W', 'E', 'P', 'N' ));
+  	}
+ }
+@@ -470,11 +473,14 @@
+ 	if ( players[consoleplayer].cheats2 & CF2_POSSESSIONARTIFACT )
+ 		return;
+ 
+-	SendItemUse = players[consoleplayer].weapons.PickPrevWeapon (&players[consoleplayer]);
++	AWeapon* weapon = players[consoleplayer].weapons.PickPrevWeapon(&players[consoleplayer]);
++	SendItemUse = weapon;
+  	// [BC] Option to display the name of the weapon being cycled to.
+  	if ((displaynametags & 2) && StatusBar && SmallFont && SendItemUse)
+  	{
+- 		StatusBar->AttachMessage(new DHUDMessageFadeOut(SmallFont, SendItemUse->GetTag(),
++		// [JM] Get tag of sister weapon if we have the powerup item for it.
++		const char* nametag = (weapon->SisterWeapon && (weapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP) && weapon->Owner->FindInventory(weapon->PowerupItem)) ? weapon->SisterWeapon->GetTag() : weapon->GetTag();
++ 		StatusBar->AttachMessage(new DHUDMessageFadeOut(SmallFont, nametag,
+ 			1.5f, 0.90f, 0, 0, (EColorRange)*nametagcolor, 2.f, 0.35f), MAKE_ID( 'W', 'E', 'P', 'N' ));
+  	}
+ }
+@@ -513,7 +519,9 @@
+ 		// [AK] Option to display the name of the weapon being switched to.
+  		if (( displaynametags & 2 ) && StatusBar && SmallFont )
+  		{
+- 			StatusBar->AttachMessage( new DHUDMessageFadeOut( SmallFont, SendItemUse->GetTag( ),
++			// [JM] Get tag of sister weapon if we have the powerup item for it.
++			const char* nametag = (swapweapon->SisterWeapon && (swapweapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP) && swapweapon->Owner->FindInventory(swapweapon->PowerupItem)) ? swapweapon->SisterWeapon->GetTag() : swapweapon->GetTag();
++ 			StatusBar->AttachMessage( new DHUDMessageFadeOut( SmallFont, nametag,
+ 				1.5f, 0.90f, 0, 0, (EColorRange)*nametagcolor, 2.f, 0.35f ), MAKE_ID( 'W', 'E', 'P', 'N' ));
+  		}
+ 	}
+diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_artifacts.cpp
+--- a/src/g_shared/a_artifacts.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/g_shared/a_artifacts.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -1116,9 +1116,10 @@
+ 
+ void APowerWeaponLevel2::InitEffect ()
+ {
+-	AWeapon *weapon, *sister;
++	Super::InitEffect();
+ 
+-	Super::InitEffect();
++#if 0 // [JM] Effects of this are now in P_CheckWeaponSwitch
++	AWeapon *weapon, *sister;
+ 
+ 	if (Owner->player == NULL)
+ 		return;
+@@ -1144,6 +1145,8 @@
+ 	{
+ 		P_SetPsprite (Owner->player, ps_weapon, sister->GetReadyState());
+ 	}
++#endif
++
+ }
+ 
+ //===========================================================================
+@@ -1154,9 +1157,11 @@
+ 
+ void APowerWeaponLevel2::EndEffect ()
+ {
++	Super::EndEffect();
++
++#if 0 // [JM] Effects of this are now in P_CheckWeaponSwitch
+ 	player_t *player = Owner != NULL ? Owner->player : NULL;
+ 
+-	Super::EndEffect();
+ 	if (player != NULL)
+ 	{
+ 		if (player->ReadyWeapon != NULL &&
+@@ -1171,6 +1176,7 @@
+ 			player->PendingWeapon = player->PendingWeapon->SisterWeapon;
+ 		}
+ 	}
++#endif
+ }
+ 
+ // Player Speed Trail (used by the Speed Powerup) ----------------------------
+diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_pickups.h
+--- a/src/g_shared/a_pickups.h	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/g_shared/a_pickups.h	Sun Apr 06 07:20:51 2025 -0300
+@@ -274,6 +274,7 @@
+ 	const PClass *SisterWeaponType;			// Another weapon to pick up with this one
+ 	const PClass *ProjectileType;			// Projectile used by primary attack
+ 	const PClass *AltProjectileType;		// Projectile used by alternate attack
++	const PClass *PowerupItem;				// Item used to upgrade the weapon to level 2 (aka. Tome of Power)
+ 	int SelectionOrder;						// Lower-numbered weapons get picked first
+ 	int MinSelAmmo1, MinSelAmmo2;			// Ignore in BestWeapon() if inadequate ammo
+ 	fixed_t MoveCombatDist;					// Used by bots, but do they *really* need it?
+@@ -326,6 +327,7 @@
+ 	virtual FState *GetZoomState ();
+ 
+ 	virtual void PostMorphWeapon ();
++	virtual void StartPowerup();
+ 	virtual void EndPowerup ();
+ 
+ 	enum
+diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_weapons.cpp
+--- a/src/g_shared/a_weapons.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/g_shared/a_weapons.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -157,7 +157,7 @@
+ 	// weapon, if one exists.
+ 	if (SisterWeapon != NULL &&
+ 		SisterWeapon->WeaponFlags & WIF_POWERED_UP &&
+-		Owner->FindInventory (RUNTIME_CLASS(APowerWeaponLevel2), true))
++		Owner->FindInventory (PowerupItem, true))
+ 	{
+ 		useweap = SisterWeapon;
+ 	}
+@@ -423,7 +423,7 @@
+ 			}
+ 			// [BB] Because of ST's special switchonpickup == 1 handling, we have to make sure here
+ 			// that we don't pick a powered up version, if we don't have a PowerWeaponLevel2 active.
+-			else if ( !( WeaponFlags & WIF_POWERED_UP ) || Owner->FindInventory( RUNTIME_CLASS( APowerWeaponLevel2 )))
++			else if ( !( WeaponFlags & WIF_POWERED_UP ) || Owner->FindInventory( PowerupItem ))
+ 			{
+ 				if ( pCompareWeapon == NULL )
+ 				{
+@@ -763,6 +763,51 @@
+ 
+ //===========================================================================
+ //
++// AWeapon :: StartPowerUp
++//
++// The Tome of Power just expired.
++//
++//===========================================================================
++
++void AWeapon::StartPowerup()
++{
++	if (SisterWeapon != NULL && SisterWeapon->WeaponFlags & WIF_POWERED_UP)
++	{
++		if (GetReadyState() != SisterWeapon->GetReadyState())
++		{
++			if (Owner->player->PendingWeapon == NULL ||
++				Owner->player->PendingWeapon == WP_NOCHANGE)
++			{
++				Owner->player->PendingWeapon = SisterWeapon;
++
++				// [BC] If we're a client, tell the server we're switching weapons.
++				if ((NETWORK_GetState() == NETSTATE_CLIENT) && ((Owner->player - players) == consoleplayer))
++				{
++					CLIENTCOMMANDS_WeaponSelect(SisterWeapon->GetClass());
++
++					if (CLIENTDEMO_IsRecording())
++						CLIENTDEMO_WriteLocalCommand(CLD_LCMD_INVUSE, SisterWeapon->GetClass()->TypeName.GetChars());
++				}
++			}
++		}
++		else
++		{
++			Owner->player->ReadyWeapon = SisterWeapon;
++
++			// [BC] If we're a client, tell the server we're switching weapons.
++			if ((NETWORK_GetState() == NETSTATE_CLIENT) && ((Owner->player - players) == consoleplayer))
++			{
++				CLIENTCOMMANDS_WeaponSelect(SisterWeapon->GetClass());
++
++				if (CLIENTDEMO_IsRecording())
++					CLIENTDEMO_WriteLocalCommand(CLD_LCMD_INVUSE, SisterWeapon->GetClass()->TypeName.GetChars());
++			}
++		}
++	}
++}
++
++//===========================================================================
++//
+ // AWeapon :: EndPowerUp
+ //
+ // The Tome of Power just expired.
+diff -r 2f35a1c10804 -r 542ba703f26d src/m_cheat.cpp
+--- a/src/m_cheat.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/m_cheat.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -207,6 +207,7 @@
+ 	case CHT_POWER:
+ 		if (player->mo != NULL && player->health >= 0)
+ 		{
++#if 0 // [JM] Old version
+ 			item = player->mo->FindInventory (RUNTIME_CLASS(APowerWeaponLevel2), true);
+ 			if (item != NULL)
+ 			{
+@@ -218,6 +219,37 @@
+ 				player->mo->GiveInventoryType (RUNTIME_CLASS(APowerWeaponLevel2));
+ 				msg = GStrings("TXT_CHEATPOWERON");
+ 			}
++#endif
++			bool didTakeAway = false;
++			bool didGive = false;
++
++			// [JM] Give or take powered up items away.
++			for (item = player->mo->Inventory; item != NULL; item = item->Inventory)
++			{
++				if (!item->IsKindOf(RUNTIME_CLASS(AWeapon)))
++					continue;
++
++				AWeapon* weap = static_cast<AWeapon*> (item);
++				AInventory* powerupitem = player->mo->FindInventory(weap->PowerupItem, true);
++				if (powerupitem != NULL && !didGive)
++				{
++					powerupitem->Destroy();
++
++					if (!didTakeAway)
++						msg = GStrings("TXT_CHEATPOWEROFF");
++
++					didTakeAway = true;
++				}
++				else if(!didTakeAway)
++				{
++					player->mo->GiveInventoryType(weap->PowerupItem);
++
++					if (!didGive)
++						msg = GStrings("TXT_CHEATPOWERON");
++
++					didGive = true;
++				}
++			}
+ 		}
+ 		break;
+ 
+diff -r 2f35a1c10804 -r 542ba703f26d src/p_pspr.cpp
+--- a/src/p_pspr.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/p_pspr.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -258,7 +258,7 @@
+ 	if (weapon != NULL &&
+ 		weapon->SisterWeapon &&
+ 		weapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP &&
+-		player->mo->FindInventory (RUNTIME_CLASS(APowerWeaponLevel2), true))
++		player->mo->FindInventory(weapon->PowerupItem, true))
+ 	{
+ 		weapon = weapon->SisterWeapon;
+ 	}
+@@ -941,6 +941,21 @@
+ 	{
+ 		P_DropWeapon(player);
+ 	}
++
++	// [JM] Check whether or not we should be switching to the powered-up version of this weapon.
++	AWeapon* weapon = player->ReadyWeapon;
++	if (weapon)
++	{
++		bool has_upgrade = !!(player->mo->FindInventory(weapon->PowerupItem));
++		if (has_upgrade && weapon->SisterWeapon && weapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP)
++		{
++			weapon->StartPowerup();
++		}
++		else if (!has_upgrade && weapon->SisterWeapon && !(weapon->SisterWeapon->WeaponFlags & WIF_POWERED_UP))
++		{
++			weapon->EndPowerup();
++		}
++	}
+ }
+ 
+ //---------------------------------------------------------------------------
+diff -r 2f35a1c10804 -r 542ba703f26d src/p_user.cpp
+--- a/src/p_user.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/p_user.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -1059,7 +1059,6 @@
+ 	int bestOrder = INT_MAX;
+ 	AInventory *item;
+ 	AWeapon *weap;
+-	bool tomed = NULL != FindInventory (RUNTIME_CLASS(APowerWeaponLevel2), true);
+ 	int bestWeight = INT_MIN; // [TP]
+ 
+ 	// Find the best weapon the player has.
+@@ -1069,6 +1068,7 @@
+ 			continue;
+ 
+ 		weap = static_cast<AWeapon *> (item);
++		bool tomed = NULL != FindInventory(weap->PowerupItem, true);
+ 
+ 		// [TP] If PWO is active, a weight check overrides the selection order one (unless the
+ 		// weights are the same)
+diff -r 2f35a1c10804 -r 542ba703f26d src/thingdef/thingdef_properties.cpp
+--- a/src/thingdef/thingdef_properties.cpp	Fri Apr 04 19:14:18 2025 -0300
++++ b/src/thingdef/thingdef_properties.cpp	Sun Apr 06 07:20:51 2025 -0300
+@@ -2932,3 +2932,12 @@
+ 	PROP_FIXED_PARM(i, 0);
+ 	defaults->ViewPitchOffset = i;
+ }
++
++//==========================================================================
++// [JM]
++//==========================================================================
++DEFINE_CLASS_PROPERTY(powerupitem, S, Weapon)
++{
++	PROP_STRING_PARM(str, 0);
++	defaults->PowerupItem = FindClassTentative(str, "Inventory");
++}
+diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/heretic/hereticweaps.txt
+--- a/wadsrc/static/actors/heretic/hereticweaps.txt	Fri Apr 04 19:14:18 2025 -0300
++++ b/wadsrc/static/actors/heretic/hereticweaps.txt	Sun Apr 06 07:20:51 2025 -0300
+@@ -748,6 +748,7 @@
+ 	Weapon.AmmoUse 5
+ 	Weapon.AmmoGive 0
+ 	Weapon.SisterWeapon "Blaster"
++	Tag "$TAG_BLASTERP"
+ 	States
+ 	{
+ 	Fire:
+diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/shared/inventory.txt
+--- a/wadsrc/static/actors/shared/inventory.txt	Fri Apr 04 19:14:18 2025 -0300
++++ b/wadsrc/static/actors/shared/inventory.txt	Sun Apr 06 07:20:51 2025 -0300
+@@ -374,6 +374,7 @@
+ 	Weapon.BobSpeed 1.0
+ 	Weapon.BobRangeX 1.0
+ 	Weapon.BobRangeY 1.0
++	Weapon.PowerupItem "PowerWeaponLevel2"
+ 	States
+ 	{
+ 	LightDone:
+diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/language.enu
+--- a/wadsrc/static/language.enu	Fri Apr 04 19:14:18 2025 -0300
++++ b/wadsrc/static/language.enu	Sun Apr 06 07:20:51 2025 -0300
+@@ -860,6 +860,15 @@
+ TAG_PHOENIXROD = "Phoenix Rod";
+ TAG_MACE = "Firemace";
+ 
++TAG_STAFFP = "Empowered Staff";
++TAG_GAUNTLETSP = "Empowered Gauntlets of the Necromancer";
++TAG_GOLDWANDP = "Empowered Elven Wand";
++TAG_CROSSBOWP = "Empowered Ethereal Crossbow";
++TAG_BLASTERP = "Empowered Dragon Claw";
++TAG_SKULLRODP = "Empowered Hellstaff";
++TAG_PHOENIXRODP = "Empowered Phoenix Rod";
++TAG_MACEP = "Empowered Firemace";
++
+ // Item tags: Heretic artifacts
+ TAG_ARTIEGG = "Morph Ovum";
+ TAG_ARTIFIREBOMB = "Timebomb of the Ancients";

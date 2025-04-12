@@ -1,0 +1,62 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744341597 10800
+#      Fri Apr 11 00:19:57 2025 -0300
+# Node ID 21a262028fd5e80a27ca5c9ebe06c93ebdc46f9b
+# Parent  8bd9f88b2ec4ed98919d7e45ebff111080f068fe
+# EXP-Topic strikers_stuff
+Add A_JumpTo codepointer. An instant, and predictable state jump.
+- Useful for jumping to child/ancestor actor states, which is something "goto"
+  cannot do, and doesn't run into the same issues that "A_Jump(256, "State")"
+  and A_JumpIf(1, "State") do.
+
+diff -r 8bd9f88b2ec4 -r 21a262028fd5 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Tue Apr 08 09:55:41 2025 -0400
++++ b/docs/zandronum-history.txt	Fri Apr 11 00:19:57 2025 -0300
+@@ -11,6 +11,9 @@
+ =
+ ===============================================================================================================
+ 
++3.3
++---
+++	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ 
+ 3.2
+ ---
+diff -r 8bd9f88b2ec4 -r 21a262028fd5 src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Tue Apr 08 09:55:41 2025 -0400
++++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 11 00:19:57 2025 -0300
+@@ -6067,3 +6067,22 @@
+ 
+ 	ACTION_SET_RESULT(res);
+ }
++
++//===========================================================================
++//
++// [JM] A_JumpTo - A predictable, 100% chance jump. Useful for jumping to states of ancestor classes.
++//
++//===========================================================================
++
++// Instantly jumps to the specified state.
++// Functions like a goto that can jump to the states of actors that inherit a state containing this function.
++
++DEFINE_ACTION_FUNCTION_PARAMS(AActor, A_JumpTo)
++{
++	ACTION_PARAM_START(1);
++	ACTION_PARAM_STATE(jump, 0);
++
++	ACTION_SET_RESULT(false);	// Jumps should never set the result for inventory state chains!
++
++	ACTION_JUMP(jump, 0);
++}
+diff -r 8bd9f88b2ec4 -r 21a262028fd5 wadsrc/static/actors/actor.txt
+--- a/wadsrc/static/actors/actor.txt	Tue Apr 08 09:55:41 2025 -0400
++++ b/wadsrc/static/actors/actor.txt	Fri Apr 11 00:19:57 2025 -0300
+@@ -188,6 +188,7 @@
+ 	action native A_FaceConsolePlayer(float MaxTurnAngle = 0); // [Dusk]
+ 	action native A_ClientsideACSExecute(string script, int arg1=0, int arg2=0, int arg3=0, int arg4=0); // [JM]
+ 	action native A_GivePlayerMedal(name medal, bool silent, int giveto = AAPTR_DEFAULT); // [AK]
++	action native A_JumpTo(state label); // [JM]
+ 
+ 	action native A_MissileAttack();
+ 	action native A_MeleeAttack();
