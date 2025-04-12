@@ -1716,7 +1716,7 @@ ACTOR GasterBlasterFollower : GasterBlaster
 			FSTH C 0 Bright A_Quake(2, 40, 0, 1024, "")
 			FSTH C 0 Bright A_PlaySound("GASTER/BLAST", CHAN_AUTO)
 			FSTH C 1 Bright A_PlaySound("GASTER/BLAST", CHAN_AUTO)
-			FSTH C 1 Bright A_CustomRailgun(400, 0, "00 00 FF", "ff ff ff", RGF_SILENT, 1, 0, "BulletPuff", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
+			FSTH C 1 Bright A_CustomRailgun(400, 0, "00 00 FF", "ff ff ff", RGF_SILENT, 1, 0, "SH_PlayerBulletPuff", 0, 0, 0, 35, 10.0, 1.0, "GasterLaser")
 			FSTH C 0 Bright A_AlertMonsters(1024)
 			Goto See
 		Pain:
@@ -1744,7 +1744,7 @@ ACTOR KunaisGasterBlaster : GasterBlasterFollower
 			FSTH C 0 Bright A_Quake(1, 35, 0, 1024, "")
 			FSTH C 0 Bright A_PlaySound("GASTER/BLAST", CHAN_AUTO)
 			FSTH C 1 Bright A_PlaySound("GASTER/BLAST", CHAN_AUTO)
-			FSTH C 1 Bright A_CustomRailgun(100, 0, "00 00 FF", "ff ff ff", RGF_SILENT, 1, 0, "BulletPuff", 0, 0, 0, 35, 10.0, 1.0, "GasterLaserSmall", -8)
+			FSTH C 1 Bright A_CustomRailgun(100, 0, "00 00 FF", "ff ff ff", RGF_SILENT, 1, 0, "SH_PlayerBulletPuff", 0, 0, 0, 35, 10.0, 1.0, "GasterLaserSmall", -8)
 			FSTH C 0 Bright A_AlertMonsters(1024)
 			Goto See
 	}

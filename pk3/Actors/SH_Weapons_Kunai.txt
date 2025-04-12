@@ -1,4 +1,4 @@
-actor KunaisLifeStealingPuff : BulletPuff
+actor KunaisLifeStealingPuff : SH_PlayerBulletPuff
 {
 	Radius 1
 	Height 1
@@ -57,7 +57,7 @@ ACTOR SoulreaperPuff_SweetSpot : KunaisLifeStealingPuff
 	}
 }
 
-actor KunaisIcyPuff : BulletPuff
+actor KunaisIcyPuff : SH_PlayerBulletPuff
 {
 	Radius 1
 	Height 1
@@ -588,7 +588,7 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 			Goto Dryfire
 			COLT A 1 A_TakeInventory("REV_SHOT",1)
 			COLT B 1 A_Playsound("REVFIRE", CHAN_WEAPON)
-			COLT C 1 BRIGHT A_FireBullets(0, 0, -1, 20, "BulletPuff",1)
+			COLT C 1 BRIGHT A_FireBullets(0, 0, -1, 20, "SH_PlayerBulletPuff",1)
 			TNT1 A 0 A_GunFlash
 			TNT1 A 0
 			COLT D 1
@@ -614,7 +614,7 @@ ACTOR Kunaisrevolver : SH_Weapon //Weapon base from Golden souls
 		AltLoop:
 			HCLT C 2
 			HCLT D 2 BRIGHT A_Playsound("REVFIRE", CHAN_WEAPON)
-			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"BulletPuff", FBF_USEAMMO)
+			HCLT E 2 BRIGHT A_FireBullets(3.5, 3.5, -1, 20,"SH_PlayerBulletPuff", FBF_USEAMMO)
 			HCLT E 0 BRIGHT A_GunFlash
 			NULL A 0 A_GiveInventory("FanCount", 1)
 			NULL A 0 A_JumpIfInventory("FanCount", 6, "AltEnd")
@@ -724,7 +724,7 @@ actor HighNoonPython : Kunaisrevolver
 			GOLT A 1 A_TakeInventory("REV_SHOT",1)
 			GOLT B 1 A_Playsound("REVFIRE", CHAN_WEAPON)
 			GOLT C 0 A_Jump(64, "FireCrit")
-			GOLT C 0 BRIGHT A_FireBullets(2, 2, -1, 25,"BulletPuff", FBF_USEAMMO)
+			GOLT C 0 BRIGHT A_FireBullets(2, 2, -1, 25,"SH_PlayerBulletPuff", FBF_USEAMMO)
 			goto FireEnd
 		FireCrit:
 			GOLT C 0 BRIGHT A_PlaySound("GenericCrit", CHAN_AUTO)
@@ -755,7 +755,7 @@ actor HighNoonPython : Kunaisrevolver
 		AltLoop:
 			HGLT C 2
 			HGLT D 2 BRIGHT A_PlaySound("REVFIRE", CHAN_WEAPON)
-			HGLT E 0 BRIGHT A_FireBullets(3, 3, -1, 25,"BulletPuff", FBF_USEAMMO)
+			HGLT E 0 BRIGHT A_FireBullets(3, 3, -1, 25,"SH_PlayerBulletPuff", FBF_USEAMMO)
 			HGLT E 2 BRIGHT A_GunFlash
 			NULL A 0 A_GiveInventory("FanCount", 1)
 			NULL A 0 A_JumpIfInventory("FanCount", 6, "AltEnd")
@@ -890,7 +890,7 @@ ACTOR HelltechShotgun : SH_Weapon //Weapon from Laundry
 			Loop
 		Fire:
 			SNGL A 1 A_Playsound("Kunaishotgun_FIRE",Chan_weapon)
-			SNGL A 0 A_FireBullets (3, 3, 10, 5, "BulletPuff")
+			SNGL A 0 A_FireBullets (3, 3, 10, 5, "SH_PlayerBulletPuff")
 			goto FireAnim
 		FireAnim:
 			"####" B 0 BRIGHT A_GunFlash
@@ -995,7 +995,7 @@ ACTOR HelltechShotgunWithFrostShot : HelltechShotgun
 		Fire:
 			KSGG A 1 A_Playsound("Kunaishotgun_FIRE", CHAN_WEAPON)
 			KSGG A 0 A_Jump(64, "CritFire")
-			KSGG A 0 A_FireBullets (3, 3, 10, 6, "BulletPuff")			
+			KSGG A 0 A_FireBullets (3, 3, 10, 6, "SH_PlayerBulletPuff")			
 			goto FireAnim
 		AltFire:
 			KSGG A 1 A_Playsound("FrostShot", CHAN_WEAPON)
@@ -1318,7 +1318,7 @@ ACTOR Streetsweeper : SH_Weapon
 		Fire:
 			STSW A 0 A_PlaySound("SSWFire", CHAN_WEAPON)
 			STSW B 0 A_Recoil(1)
-			STSW B 0 BRIGHT A_FireBullets(5, 5, 10, 4, "BulletPuff")
+			STSW B 0 BRIGHT A_FireBullets(5, 5, 10, 4, "SH_PlayerBulletPuff")
 			goto FireAnim
 		FireAnim:
 			"####" B 0 BRIGHT A_GunFlash
@@ -1381,7 +1381,7 @@ actor FrostStreetsweeper : StreetSweeper
 			STSG A 0 A_Jump(40, "Fire_Crit")
 			STSG A 0 A_PlaySound("SSWFire", CHAN_WEAPON)
 			STSG B 0 A_Recoil(2)
-			STSG B 0 A_FireBullets(4, 4, 10, 5, "BulletPuff")
+			STSG B 0 A_FireBullets(4, 4, 10, 5, "SH_PlayerBulletPuff")
 			goto FireAnim
 		Fire_Crit:
 			STSG A 0 A_PlaySound("SSWFire", CHAN_WEAPON)
@@ -1478,7 +1478,7 @@ Actor PDW : SH_Weapon
 			KPDW A 0 A_Refire
 			goto Ready
 		Shoot:
-			TNT1 A 0 A_FireBullets(4, 1, 1, random(6,7), "Bulletpuff")
+			TNT1 A 0 A_FireBullets(4, 1, 1, random(6,7), "SH_PlayerBulletPuff")
 			goto Flash
 		Hold:
 			KPDW A 0 A_WeaponOffset(random(-3, 3), random(32, 35), 0)
@@ -1534,7 +1534,7 @@ actor DualPDWs : PDW
 			"####" B 0 A_Jump(32, "Crit")
 			goto Fire2
 		Fire2:
-			"####" B 0 A_FireBullets(5, 5, -1, random(6,7), "Bulletpuff")
+			"####" B 0 A_FireBullets(5, 5, -1, random(6,7), "SH_PlayerBulletPuff")
 			goto FireDone
 		Crit:
 			"####" B 0 A_PlaySound("GenericCrit", CHAN_AUTO)
@@ -1572,7 +1572,7 @@ actor DualPDWs : PDW
 			"####" B 0 A_Jump(32, "CritRight")
 			goto FireRight2
 		FireRight2:
-			"####" B 0 A_FireBullets(5, 5, -1, random(6,7), "Bulletpuff")
+			"####" B 0 A_FireBullets(5, 5, -1, random(6,7), "SH_PlayerBulletPuff")
 			goto FireDoneRight
 		CritRight:
 			"####" B 0 A_PlaySound("GenericCrit", CHAN_AUTO)

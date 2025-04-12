@@ -8,8 +8,8 @@ const float FIXED = 65536.0;
 
 enum
 {
-	THRU_SHIELDS = (1 << 0),
-	THRU_FRIENDS = (1 << 1),
+	THRU_PLAYERS = (1 << 0),
+	THRU_SHIELDS = (1 << 1),
 	THRU_ENEMIES = (1 << 2),
 };
 

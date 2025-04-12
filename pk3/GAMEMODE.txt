@@ -4,7 +4,7 @@ Cooperative
 	{
 		// Stops the black hole launcher from giving teammates the succ.
 		sv_dontpushallies = true
-		sv_shootthroughallies = true
+		//sv_shootthroughallies = true
 	}
 }
 
@@ -14,7 +14,7 @@ Survival
 	{
 		// Stops the black hole launcher from giving teammates the succ.
 		sv_dontpushallies = true
-		sv_shootthroughallies = true
+		//sv_shootthroughallies = true
 	}
 	
 	LockedGameSettings

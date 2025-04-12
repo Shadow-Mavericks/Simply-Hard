@@ -35,26 +35,42 @@ actor SH_BaseParticle
 
 actor SH_BaseProjectile
 {
-	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	Obituary "%o was killed by a player projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	ThruBits (THRU_SHIELDS)
 	Projectile
 	+NEVERADJUSTSPRITECLIPPING
 	+FORCEXYBILLBOARD
 	+NOTIMEFREEZE
 	+RANDOMIZE
+	+ALLOWTHRUFLAGS
+	+ALLOWTHRUBITS
 }
 
 actor SH_BaseFastProjectile : FastProjectile
 {
-	Obituary "%o was killed by a projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	Obituary "%o was killed by a player projectile without an obituary. FIX THIS MOTHERFUCKER!"
+	ThruBits (THRU_SHIELDS)
 	+NEVERADJUSTSPRITECLIPPING
+	+FORCEXYBILLBOARD
 	+NOTIMEFREEZE
 	+RANDOMIZE
+	+ALLOWTHRUFLAGS
+	+ALLOWTHRUBITS
 }
 
 actor SH_BaseEnemyProjectile
 {
 	Obituary "%o was killed by an enemy projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	Projectile
+	+NEVERADJUSTSPRITECLIPPING
+	+FORCEXYBILLBOARD
+	+DONTSEEKINVISIBLE
+	+RANDOMIZE
+}
+
+actor SH_BaseEnemyFastProjectile : FastProjectile
+{
+	Obituary "%o was killed by an enemy projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	+NEVERADJUSTSPRITECLIPPING
 	+FORCEXYBILLBOARD
 	+DONTSEEKINVISIBLE
@@ -80,7 +96,8 @@ actor SH_BasePlayer : DoomPlayer
 	Player.DamageScreenColor "FF FF 00", 1.0, "Electric"
 	Player.DamageScreenColor "88 00 FF", 1.0, "Void"
 
-	//+THRUSPECIES
+	ThruBits (THRU_PLAYERS) // Allows actors with this bit to move through a player.
+	-ALLOWTHRUBITS // Don't want players to move through one another unless the sv_unblockplayers/allies flags are on.
 
 	var int user_supercharge_useammo;
 	var int user_recoil_x;

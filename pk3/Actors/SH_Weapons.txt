@@ -31,6 +31,13 @@ actor SH_BulletPuff : BulletPuff replaces BulletPuff
 	}
 }
 
+actor SH_PlayerBulletPuff : SH_BulletPuff
+{
+	ThruBits (THRU_SHIELDS)
+	+ALLOWTHRUFLAGS
+	+ALLOWTHRUBITS
+}
+
 // Mighty boot thing.
 ACTOR Shotgunmayray : Bulletpuff
 {

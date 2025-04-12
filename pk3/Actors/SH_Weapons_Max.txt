@@ -937,7 +937,7 @@ actor DisruptorRifle : SH_Weapon
 			DRIF A 1 A_WeaponReady
 			Loop
 		Fire:
-			DRIF A 1 A_RailAttack(400, 0, CallACS("SUPERCHARGE_CHECK"), "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+			DRIF A 1 A_RailAttack(400, 0, CallACS("SUPERCHARGE_CHECK"), "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "SH_PlayerBulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
 			TNT1 A 0 A_PlaySound("Max/Disrupt", CHAN_WEAPON)
 			DRIF B 1 bright A_GunFlash
 			DRIF C 1

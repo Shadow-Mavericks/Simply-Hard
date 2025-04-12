@@ -1,4 +1,4 @@
-ACTOR GosimersExplosivepuff
+ACTOR GosimersExplosivepuff : SH_PlayerBulletPuff
 {
 	+NOBLOCKMAP
 	+NOGRAVITY
@@ -352,7 +352,7 @@ ACTOR GosimersHandgun : SH_Weapon
 
 		DoFire:
 			"####" B 0 A_Playsound("GPistolFire", CHAN_WEAPON)
-			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			"####" B 0 A_FireBullets(1.25, 0.75, 1, 6+random(0, 6), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 			goto FireEnd
 		DoGoldFire:
 			"####" B 0 A_Playsound("GPistolFireGold", CHAN_WEAPON)
@@ -771,15 +771,15 @@ ACTOR HMachinegun : SH_Weapon
 		D3DF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(3, 2, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	Hold:
@@ -787,15 +787,15 @@ ACTOR HMachinegun : SH_Weapon
 		D3DF ABC 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF DEF 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DF GHI 1 Bright
 		NULL A 0 A_FireCustomMissile("ChaingunCasingSpawner", 0, 0, 0, 1)
 		MNGG A 0 A_PlaySound("Weapon/D3DAsscannon", CHAN_WEAPON)
-		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
+		MNGF A 0 Bright A_FireBullets(6, 4, -1, 9+Random(0,9), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 		D3DG A 0 A_ReFire("Hold")
 		Goto Ready
 	GoldReady:
@@ -893,8 +893,8 @@ ACTOR CombatShotgun : SH_Weapon
 			Loop
 		Fire:
 			GUN2 A 0 A_Jumpifinventory("Tier2upgradetoken",1,"Goldfire")
-			GUN2 A 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "Bulletpuff", FBF_USEAMMO | FBF_NORANDOM)
-			GUN2 AAAAAA 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "Bulletpuff", FBF_NORANDOM)
+			GUN2 A 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			GUN2 AAAAAA 0 A_FireBullets(5, 4, -1, 10+Random(0,10), "SH_PlayerBulletPuff", FBF_NORANDOM)
 			GUN2 A 0 A_GunFlash
 			GUN2 A 1 Offset(0, 48) A_PlaySound("GShotgunFire", CHAN_WEAPON)
 			SUN2 A 1 Offset(0, 47)
@@ -1046,7 +1046,7 @@ Actor BurstShotgun : SH_Weapon
 		ALTFire:
 			TNT1 A 0 A_Jumpifinventory("Tier3upgradetoken",1,"GoldALTFire")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
-			TNT1 A 0 A_FireBullets(3, 3, 10, 5.5, "BulletPuff")
+			TNT1 A 0 A_FireBullets(3, 3, 10, 5.5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_playsound("SSHTGN", CHAN_WEAPON)
 			STBE GF 2 BRIGHT
 			STBE A 8
@@ -1077,15 +1077,15 @@ Actor BurstShotgun : SH_Weapon
 		Fire:
 			TNT1 A 0 A_Jumpifinventory("Tier3upgradetoken",1,"GoldFire")
 			TNT1 A 0 A_Jumpifnoammo("Ready")
-			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "BulletPuff")
+			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_playsound("SSHTGN",Chan_weapon)
 			STBE GF 2 BRIGHT
 			TNT1 A 0 A_Jumpifnoammo("Ready")
-			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "BulletPuff")
+			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_playsound("SSHTGN",Chan_weapon)
 			STBE GF 2 BRIGHT
 			TNT1 A 0 A_Jumpifnoammo("Ready")
-			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "BulletPuff")
+			TNT1 A 0 A_FireBullets(8, 8, 10, 6.5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_playsound("SSHTGN",Chan_weapon)
 			STBE GF 2 BRIGHT
 		Reloading:
@@ -1272,7 +1272,7 @@ Actor Propulsion_Rifle : SH_Weapon
 			GSNP A 1 A_Raise
 			Loop
 		Fire:
-			GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "BulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
+			GSNF A 1 BRIGHT A_RailAttack(100, 0, 1, "FF FF FF", "FF FF FF", RGF_FULLBRIGHT|RGF_SILENT, 0, "SH_PlayerBulletPuff", 0, 0, 0, 35, 2.0, 4.0, "REDLightRailBlast")
 			GSNF A 0 A_playsound("Weapon/Sniperrail_Fire",Chan_Weapon)
 			GSNF B 1 BRIGHT
 			//GSNP B 1 A_playsound("Weapon/SniperRecharge", Chan_7)
