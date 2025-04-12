@@ -1950,7 +1950,7 @@ actor ExtraLifeTrail : SH_BaseParticle
 	}
 }
 
-actor ExtraLifeThingy : CustomInventory 78001
+actor ExtraLifeThingy : CustomInventory 7001
 {
 	Tag "Extra Life"
 	Speed 15

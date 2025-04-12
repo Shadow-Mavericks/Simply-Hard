@@ -1,4 +1,17 @@
+// Simply Hard DECORATE Scripts
+
+// NOTES:
+// Simply Hard editor numbers should start from 7000 and up, skipping numbers if conflicted.
+
+// Useful constants
 const float FIXED = 65536.0;
+
+enum
+{
+	THRU_SHIELDS = (1 << 0),
+	THRU_FRIENDS = (1 << 1),
+	THRU_ENEMIES = (1 << 2),
+};
 
 #include "actors/SH_BaseActors.txt"
 #include "actors/SH_Hax.txt"
