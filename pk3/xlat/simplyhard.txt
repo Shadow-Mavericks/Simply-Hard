@@ -5,6 +5,9 @@ include "xlat/doom.txt"
 1025 = 0,	Scroll_Texture_Offsets(0, tag, 1, 8)
 1026 = 0,	Scroll_Texture_Offsets(0, tag, 2, 8)
 
+// MBF21 Line Flags
+lineflag 13 = ML_BLOCK_PLAYERS;
+
 // Simply Hard replacements:
 
 // Closers
