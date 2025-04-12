@@ -1,5 +1,5 @@
 //Bouncing rail projectile for Fiendzy's class
-Actor Fiendzys_PlasmaBall : SH_BaseProjectile
+Actor Fiendzys_PlasmaBall : SH_BasePlayerProjectile
 {
 	Radius 13
 	Height 8
@@ -21,9 +21,26 @@ Actor Fiendzys_PlasmaBall : SH_BaseProjectile
 	}
 }
 
-actor SH_ArachnotronPlasma : Fiendzys_PlasmaBall
+actor SH_ArachnotronPlasma : SH_BaseEnemyProjectile
 {
+	Radius 13
+	Height 8
+	Speed 40
 	Damage (15)
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "weapons/plasmaf"
+	DeathSound "weapons/plasmax"
+	Obituary "$OB_MPPLASMARIFLE" // "%o was melted by %k's plasma gun."
+	States
+	{
+		Spawn:
+			FPBL AB 6 Bright
+			Loop
+		Death:
+			FPBL CDEF 4 Bright
+			Stop
+	}
 }
 
 Actor Rainbowrailshot
@@ -68,7 +85,7 @@ Actor Rainbowrailshot
 }
 
 
-ACTOR FiendsRawket : SH_BaseProjectile
+ACTOR FiendsRawket : SH_BasePlayerProjectile
 {
 	Radius 11
 	Height 8
@@ -1301,7 +1318,7 @@ Actor Bluerailcoil
 
 //CryoBow
 
-ACTOR CryoShot : FastProjectile
+ACTOR CryoShot : SH_BasePlayerFastProjectile
 {
 	Radius 4
 	Height 8
@@ -1315,7 +1332,6 @@ ACTOR CryoShot : FastProjectile
 	Decal "PlasmaScorchLower"
 	Projectile
 	+FORCERADIUSDMG
-	+NOTIMEFREEZE
 	+NODAMAGETHRUST
 	States
 	{
@@ -1339,7 +1355,7 @@ ACTOR CryoShot : FastProjectile
 	}
 }
 
-ACTOR SlowCryoShot
+ACTOR SlowCryoShot : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1378,7 +1394,7 @@ ACTOR SlowCryoShot
 }
 
 
-ACTOR GoldCryoShot : FastProjectile
+ACTOR GoldCryoShot : SH_BasePlayerFastProjectile
 {
 	Radius 4
 	Height 8
@@ -1415,7 +1431,7 @@ ACTOR GoldCryoShot : FastProjectile
 }
 
 
-ACTOR SlowGoldCryoShot
+ACTOR SlowGoldCryoShot : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1452,7 +1468,7 @@ ACTOR SlowGoldCryoShot
 	}
 }
 
-ACTOR ChargeCryoShotBlue1
+ACTOR ChargeCryoShotBlue1 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1497,7 +1513,7 @@ ACTOR ChargeCryoShotBlue1
 	}
 }
 
-ACTOR ChargeCryoShotGold1
+ACTOR ChargeCryoShotGold1 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1541,7 +1557,7 @@ ACTOR ChargeCryoShotGold1
 	}
 }
 
-ACTOR ChargeCryoShotGold2
+ACTOR ChargeCryoShotGold2 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1589,7 +1605,7 @@ ACTOR ChargeCryoShotGold2
 	}
 }
 
-ACTOR ChargeCryoShotGold3
+ACTOR ChargeCryoShotGold3 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1638,7 +1654,7 @@ ACTOR ChargeCryoShotGold3
 	}
 }
 
-ACTOR ChargeCryoShotBlue2
+ACTOR ChargeCryoShotBlue2 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1686,7 +1702,7 @@ ACTOR ChargeCryoShotBlue2
 			Stop
 	}
 }
-ACTOR ChargeCryoShotBlue3
+ACTOR ChargeCryoShotBlue3 : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8
@@ -1736,14 +1752,12 @@ ACTOR ChargeCryoShotBlue3
 	}
 }
 
-ACTOR CryoTrail
+ACTOR CryoTrail : SH_BaseParticle
 {
 	Radius 4
 	Height 8
 	Renderstyle Add
 	Alpha 0.5
-	+NOTIMEFREEZE
-	+NOINTERACTION
 	States
 	{
 		Spawn:
@@ -1752,14 +1766,12 @@ ACTOR CryoTrail
 	}
 }
 
-ACTOR GoldCryoTrail
+ACTOR GoldCryoTrail : SH_BaseParticle
 {
 	Radius 4
 	Height 8
 	Renderstyle Add
 	Alpha 0.5
-	+NOTIMEFREEZE
-	+NOINTERACTION
 	States
 	{
 		Spawn:
@@ -1768,14 +1780,12 @@ ACTOR GoldCryoTrail
 	}
 }
 
-ACTOR CryoTrail2
+ACTOR CryoTrail2 : SH_BaseParticle
 {
 	Radius 4
 	Height 8
 	Renderstyle Add
 	Alpha 0.5
-	+NOTIMEFREEZE
-	+NOINTERACTION
 	States
 	{
 		Spawn:
@@ -1784,14 +1794,12 @@ ACTOR CryoTrail2
 	}
 }
 
-ACTOR GoldCryoTrail2
+ACTOR GoldCryoTrail2 : SH_BaseParticle
 {
 	Radius 4
 	Height 8
 	Renderstyle Add
 	Alpha 0.5
-	+NOTIMEFREEZE
-	+NOINTERACTION
 	States
 	{
 		Spawn:
@@ -2091,7 +2099,7 @@ Spawn:
 
 //Channeler
 
-ACTOR ChannelerBeamBounce : FastProjectile //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
+ACTOR ChannelerBeamBounce : SH_BasePlayerFastProjectile //this is to nerf the effect of shooting at a corner and takeing care of all the monsters from afar.
 {
 	Speed 100
 	Radius 13
@@ -2116,7 +2124,7 @@ ACTOR ChannelerBeamBounce : FastProjectile //this is to nerf the effect of shoot
 	}
 }
 
-ACTOR ChannelerSeducer : FastProjectile
+ACTOR ChannelerSeducer : SH_BasePlayerFastProjectile
 {
 	Speed 100
 	Radius 13

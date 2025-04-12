@@ -1412,7 +1412,7 @@ actor Valiant_SuperMancubusSpawner : SH_BaseMonsterRandomSpawner
 // Sargasso
 // --------
 
-actor Sargasso_GreenLaser : SH_BaseFastProjectile
+actor Sargasso_GreenLaser : SH_BasePlayerFastProjectile
 {
 	Renderstyle Add
 	Alpha 1.0
@@ -1454,7 +1454,7 @@ actor Sargasso_YellowLaser : Sargasso_GreenLaser
 	}
 }
 
-actor Sargasso_CyanLaser : SH_BaseFastProjectile
+actor Sargasso_CyanLaser : SH_BasePlayerFastProjectile
 {
 	Renderstyle Add
 	Alpha 1.0

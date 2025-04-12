@@ -254,7 +254,7 @@ actor FrostShotExplosionMist : CryoSmoke4
 	Scale 0.5
 }
 
-actor FrostShotGrenade : SH_BaseProjectile
+actor FrostShotGrenade : SH_BasePlayerProjectile
 {
 	Radius 4
 	Height 8

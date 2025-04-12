@@ -4,7 +4,7 @@ const int DARKFORCES_DMG_MULT = 2;
 const int DARKFORCES_RAD_MULT = 6;
 const int DARKFORCES_TIC_SHIFT = 2;
 
-actor BlastBolt : FastProjectile
+actor BlastBolt : SH_BasePlayerFastProjectile
 {
 	RenderStyle Add
 	Alpha 1.0
@@ -18,9 +18,6 @@ actor BlastBolt : FastProjectile
 	DamageType "MaxBlasterBolt"
 	
 	PROJECTILE
-	+NEVERADJUSTSPRITECLIPPING
-	+FORCEXYBILLBOARD
-	+NOTIMEFREEZE
 	+FORCEPAIN
 	-ACTIVATEIMPACT // Hack below covers this.
 	
@@ -168,7 +165,7 @@ actor GoobBlast : CutBlast
 	}
 }
 
-actor Mortarnade
+actor Mortarnade : SH_BasePlayerProjectile
 {
 	DeathSound "Max/MedExplo"
 	Obituary "%k's Mortar blew %o away "
@@ -266,7 +263,7 @@ actor FlakBall : MortarNade
 	}
 }
 
-actor ConcussionBlast : FastProjectile
+actor ConcussionBlast : SH_BasePlayerFastProjectile
 {
 	SeeSound "Max/ConcProj"
 	Obituary "%o was unlucky to meet %k's Concussion Rifle"
@@ -281,9 +278,7 @@ actor ConcussionBlast : FastProjectile
 	DamageType "MaxExplosion"
 	
 	PROJECTILE
-	+NEVERADJUSTSPRITECLIPPING
 	+FORCERADIUSDMG
-	+NOTIMEFREEZE
 	+FORCEPAIN
 	-ACTIVATEIMPACT
 	
@@ -328,7 +323,7 @@ actor ConcussionExtra
 	}
 }
 
-actor AssaultCannonPlasma
+actor AssaultCannonPlasma : SH_BasePlayerProjectile
 {
 	Radius 6
 	Height 6
@@ -344,9 +339,6 @@ actor AssaultCannonPlasma
 	Scale 0.8
 
 	PROJECTILE
-	+NEVERADJUSTSPRITECLIPPING
-	+FORCEXYBILLBOARD
-	+NOTIMEFREEZE
 	+FORCEPAIN
 	+FORCERADIUSDMG
 	-ACTIVATEIMPACT
@@ -401,7 +393,7 @@ actor GoldAssaultCannonPlasma : AssaultCannonPlasma
 	}
 }
 
-actor AssaultCannonMissile
+actor AssaultCannonMissile : SH_BasePlayerProjectile
 {
 	Radius 6
 	Height 6
@@ -475,7 +467,7 @@ actor QuadConcBarrelTracker : Inventory
 	inventory.maxamount 1
 }
 
-actor Bullet : FastProjectile
+actor Bullet : SH_BasePlayerFastProjectile
 {
 	RenderStyle Add
 	Alpha 1.0
@@ -491,8 +483,6 @@ actor Bullet : FastProjectile
 	DamageType "MaxBlasterBolt"
 
 	PROJECTILE
-	+FORCEXYBILLBOARD
-	+NOTIMEFREEZE
 	-ACTIVATEIMPACT
 	
 	States

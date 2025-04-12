@@ -33,7 +33,7 @@ actor SH_BaseParticle
 // Projectiles
 //////////////////////////////////////////////////////////////////
 
-actor SH_BaseProjectile
+actor SH_BasePlayerProjectile
 {
 	Obituary "%o was killed by a player projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	ThruBits (THRU_SHIELDS)
@@ -46,7 +46,7 @@ actor SH_BaseProjectile
 	+ALLOWTHRUBITS
 }
 
-actor SH_BaseFastProjectile : FastProjectile
+actor SH_BasePlayerFastProjectile : FastProjectile
 {
 	Obituary "%o was killed by a player projectile without an obituary. FIX THIS MOTHERFUCKER!"
 	ThruBits (THRU_SHIELDS)
