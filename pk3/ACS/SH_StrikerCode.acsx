@@ -296,10 +296,18 @@ script "ON_KILL" KILL
 			}
 		}
 		
-		if((doLifeSpawn == 1) && (numLivesSpawned >= (PlayerCount()+1)))
+		if(doLifeSpawn == 1 && (PlayerCount() > 1))
 		{
-			if((timer()-timeOfLastLifeDrop) < (5 * ONE_MINUTE))
-				doLifeSpawn = 0;
+			if(numLivesSpawned >= (PlayerCount()+1))
+			{
+				if((timer()-timeOfLastLifeDrop) < (10 * ONE_MINUTE))
+					doLifeSpawn = 0;
+			}
+			else if(numLivesSpawned >= (PlayerCount()/2))
+			{
+				if((timer()-timeOfLastLifeDrop) < (5 * ONE_MINUTE))
+					doLifeSpawn = 0;
+			}
 		}
 
 		if(doLifeSpawn)
@@ -1148,6 +1156,8 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 				kunai_health_sap(playerWhoFrozeMe, victimSpawnHealth, 0, 40, AAPTR_DAMAGE_TARGET, SAP_AMMO);
 				SetActivator(0, AAPTR_DAMAGE_TARGET); // Unclobber activator after kunai_health_sap function.
 			}
+			
+			ChangeFlag("NOTIMEFREEZE", true); // Remove time freeze if we shatter an enemy during it.
 		}
 			
 		if(arg1 > 0) // Final checks, if damage isn't nullified.
