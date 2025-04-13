@@ -1445,8 +1445,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			// Handle damage types (Acid/Fire/Electric/Etc)	
 			if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
 			{
+				SetActivator(0, AAPTR_DAMAGE_TARGET);
+				
 				bool isLaser = !StrIcmp(arg2, "AcidLaser");
-				if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+				bool NoAcidStatus = !!(custom_checkactorstate_because_zandronum_sucks(0, "NoAcidStatus", true));
+					
+				if(!NoAcidStatus)
 				{
 					int acidThreshold = min(victimSpawnHealth/2, 200);
 					

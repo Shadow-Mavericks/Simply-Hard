@@ -7,7 +7,7 @@ ACTOR Fiend : SH_BasePlayer
 	Mass 100
 	
 	DamageFactor 1.0
-
+	DamageFactor "Acid", 0.5
 	DamageFactor "MaxBlasterBolt", 0.5
 	DamageFactor "MaxExplosion", 0.5
 	
@@ -40,6 +40,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.AirCapacity 1.5
 	States
 	{
+		NoAcidStatus: // Flag
 		Spawn:
 			PLAY A -1
 			Loop
