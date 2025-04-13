@@ -109,7 +109,6 @@ Weapon/Gpistol		GPistol
 Weapon/CRITSHOT  	CRITSHT
 Weapon/Critssg   	CSSHTGN
 weapon/LMGGIRE	 	LMGFIRE
-Weapon/Nadefire	 	dsglaun
 Weapon/Nadeboom  	nadedie
 Weapon/nadebounce	nadebnc
 
