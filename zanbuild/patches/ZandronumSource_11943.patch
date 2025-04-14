@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1744339913 10800
 #      Thu Apr 10 23:51:53 2025 -0300
-# Node ID b68179cb69de4870475f063dcdf0175cc66b110c
-# Parent  afab3bf24fb9ad7bddd3356007a95ba3823f1f14
+# Node ID 468ee87ab3db13abaf6596d4cc2cdb69372e4433
+# Parent  96c9c38ea708145d46d0e118bc9bd0ceb3ff868c
 # EXP-Topic strikers_stuff
 Backport FAF_* flags from ZDoom revision 53fd57d6, and add FAF_PITCHFROMORIGIN.
 
-diff -r afab3bf24fb9 -r b68179cb69de docs/zandronum-history.txt
+diff -r 96c9c38ea708 -r 468ee87ab3db docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Thu Apr 10 14:48:21 2025 -0300
 +++ b/docs/zandronum-history.txt	Thu Apr 10 23:51:53 2025 -0300
 @@ -20,6 +20,7 @@
@@ -18,7 +18,7 @@ diff -r afab3bf24fb9 -r b68179cb69de docs/zandronum-history.txt
  +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
  +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
  +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
-diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.cpp
+diff -r 96c9c38ea708 -r 468ee87ab3db src/p_enemy.cpp
 --- a/src/p_enemy.cpp	Thu Apr 10 14:48:21 2025 -0300
 +++ b/src/p_enemy.cpp	Thu Apr 10 23:51:53 2025 -0300
 @@ -3104,7 +3104,15 @@
@@ -186,7 +186,7 @@ diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.cpp
  }
  
  //===========================================================================
-diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.h
+diff -r 96c9c38ea708 -r 468ee87ab3db src/p_enemy.h
 --- a/src/p_enemy.h	Thu Apr 10 14:48:21 2025 -0300
 +++ b/src/p_enemy.h	Thu Apr 10 23:51:53 2025 -0300
 @@ -71,7 +71,8 @@
@@ -199,7 +199,7 @@ diff -r afab3bf24fb9 -r b68179cb69de src/p_enemy.h
  
  bool A_RaiseMobj (AActor *, fixed_t speed);
  bool A_SinkMobj (AActor *, fixed_t speed);
-diff -r afab3bf24fb9 -r b68179cb69de wadsrc/static/actors/actor.txt
+diff -r 96c9c38ea708 -r 468ee87ab3db wadsrc/static/actors/actor.txt
 --- a/wadsrc/static/actors/actor.txt	Thu Apr 10 14:48:21 2025 -0300
 +++ b/wadsrc/static/actors/actor.txt	Thu Apr 10 23:51:53 2025 -0300
 @@ -75,9 +75,9 @@
@@ -215,7 +215,7 @@ diff -r afab3bf24fb9 -r b68179cb69de wadsrc/static/actors/actor.txt
  	action native A_PosAttack();
  	action native A_Scream();
  	action native A_SPosAttack();
-diff -r afab3bf24fb9 -r b68179cb69de wadsrc/static/actors/constants.txt
+diff -r 96c9c38ea708 -r 468ee87ab3db wadsrc/static/actors/constants.txt
 --- a/wadsrc/static/actors/constants.txt	Thu Apr 10 14:48:21 2025 -0300
 +++ b/wadsrc/static/actors/constants.txt	Thu Apr 10 23:51:53 2025 -0300
 @@ -362,6 +362,16 @@

@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743761613 10800
 #      Fri Apr 04 07:13:33 2025 -0300
-# Node ID 16eaa6b2ef3a6b7a9a35d60077efb9721b622bf9
-# Parent  07412ac434ae6a4c0bb340152155695697829e69
+# Node ID 57041369f51ae8b3502c6a321cafff2aa44337aa
+# Parent  1d896309cd8588893a1fee07ce38e7081143e125
 # EXP-Topic strikers_stuff
 Let FakeInventory make use of the "Activation" thing property. Vastly increases its usefulness.
 
-diff -r 07412ac434ae -r 16eaa6b2ef3a docs/zandronum-history.txt
+diff -r 1d896309cd85 -r 57041369f51a docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 04 07:07:02 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 04 07:13:33 2025 -0300
 @@ -13,6 +13,7 @@
@@ -18,7 +18,7 @@ diff -r 07412ac434ae -r 16eaa6b2ef3a docs/zandronum-history.txt
  *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
  +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
  +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
-diff -r 07412ac434ae -r 16eaa6b2ef3a src/thingdef/olddecorations.cpp
+diff -r 1d896309cd85 -r 57041369f51a src/thingdef/olddecorations.cpp
 --- a/src/thingdef/olddecorations.cpp	Fri Apr 04 07:07:02 2025 -0300
 +++ b/src/thingdef/olddecorations.cpp	Fri Apr 04 07:13:33 2025 -0300
 @@ -88,7 +88,17 @@

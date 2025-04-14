@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1744166240 10800
 #      Tue Apr 08 23:37:20 2025 -0300
-# Node ID e4fd760a64d755326a86beaef1277cfb5e0b3e9a
-# Parent  b48bf551b0d4258dc1d55ace3fad5e8951ade6bc
+# Node ID b64fdd62ecb6791e7313e8e1f6fe949e3c749a79
+# Parent  9b5f13489e42eb09008e4f6fe09ace50179512e8
 # EXP-Topic strikers_stuff
 Make DISCONNECT scripts properly set activator, matching ZDoom behaviour.
 
-diff -r b48bf551b0d4 -r e4fd760a64d7 docs/zandronum-history.txt
+diff -r 9b5f13489e42 -r b64fdd62ecb6 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Tue Apr 08 19:42:37 2025 -0300
 +++ b/docs/zandronum-history.txt	Tue Apr 08 23:37:20 2025 -0300
 @@ -22,6 +22,7 @@
@@ -18,7 +18,7 @@ diff -r b48bf551b0d4 -r e4fd760a64d7 docs/zandronum-history.txt
  -	- Fix a crash that can occur when using the "colors" DECALDEF token, when the decal's image was in the "graphics" folder. [StrikerTheHedgefox]
  -	- Fix truncation of translation index in decals. [StrikerTheHedgefox]
  
-diff -r b48bf551b0d4 -r e4fd760a64d7 src/d_net.cpp
+diff -r 9b5f13489e42 -r b64fdd62ecb6 src/d_net.cpp
 --- a/src/d_net.cpp	Tue Apr 08 19:42:37 2025 -0300
 +++ b/src/d_net.cpp	Tue Apr 08 23:37:20 2025 -0300
 @@ -633,6 +633,8 @@
@@ -40,10 +40,10 @@ diff -r b48bf551b0d4 -r e4fd760a64d7 src/d_net.cpp
  	if (netconsole == Net_Arbitrator)
  	{
  		// Pick a new network arbitrator
-diff -r b48bf551b0d4 -r e4fd760a64d7 src/p_interaction.cpp
+diff -r 9b5f13489e42 -r b64fdd62ecb6 src/p_interaction.cpp
 --- a/src/p_interaction.cpp	Tue Apr 08 19:42:37 2025 -0300
 +++ b/src/p_interaction.cpp	Tue Apr 08 23:37:20 2025 -0300
-@@ -3418,7 +3418,7 @@
+@@ -3421,7 +3421,7 @@
  	// Run the disconnect scripts now that the player is leaving.
  	if ( NETWORK_InClientMode() == false )
  	{
@@ -52,7 +52,7 @@ diff -r b48bf551b0d4 -r e4fd760a64d7 src/p_interaction.cpp
  		PLAYER_RemoveFriends ( ulPlayer );
  		PLAYER_ClearEnemySoundFields( ulPlayer );
  	}
-diff -r b48bf551b0d4 -r e4fd760a64d7 src/sv_main.cpp
+diff -r 9b5f13489e42 -r b64fdd62ecb6 src/sv_main.cpp
 --- a/src/sv_main.cpp	Tue Apr 08 19:42:37 2025 -0300
 +++ b/src/sv_main.cpp	Tue Apr 08 23:37:20 2025 -0300
 @@ -3215,6 +3215,11 @@

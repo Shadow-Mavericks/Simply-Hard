@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743762097 10800
 #      Fri Apr 04 07:21:37 2025 -0300
-# Node ID a185a493aee32f605fd66bc3030aaa8cbee4c819
-# Parent  16eaa6b2ef3a6b7a9a35d60077efb9721b622bf9
+# Node ID 7f12f05ea1a8d89c2724daea329610cdba0b1513
+# Parent  57041369f51ae8b3502c6a321cafff2aa44337aa
 # EXP-Topic strikers_stuff
 Fix truncation of translation index in decals.
 
-diff -r 16eaa6b2ef3a -r a185a493aee3 docs/zandronum-history.txt
+diff -r 57041369f51a -r 7f12f05ea1a8 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 04 07:13:33 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 04 07:21:37 2025 -0300
 @@ -18,6 +18,7 @@
@@ -18,7 +18,7 @@ diff -r 16eaa6b2ef3a -r a185a493aee3 docs/zandronum-history.txt
  
  3.2
  ---
-diff -r 16eaa6b2ef3a -r a185a493aee3 src/decallib.cpp
+diff -r 57041369f51a -r 7f12f05ea1a8 src/decallib.cpp
 --- a/src/decallib.cpp	Fri Apr 04 07:13:33 2025 -0300
 +++ b/src/decallib.cpp	Fri Apr 04 07:21:37 2025 -0300
 @@ -96,7 +96,7 @@

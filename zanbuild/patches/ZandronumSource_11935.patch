@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743762922 10800
 #      Fri Apr 04 07:35:22 2025 -0300
-# Node ID c7b32bed1344b43e5e8d97dd1483bfc2db6ab283
-# Parent  a185a493aee32f605fd66bc3030aaa8cbee4c819
+# Node ID 480ea3e0b85a7124a82bed1761026463bf8a865d
+# Parent  7f12f05ea1a8d89c2724daea329610cdba0b1513
 # EXP-Topic strikers_stuff
 Added +DECALUSESTRANSLATION flag, allows actor to pass its translation down to its decal.
 
-diff -r a185a493aee3 -r c7b32bed1344 docs/zandronum-history.txt
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 04 07:21:37 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 04 07:35:22 2025 -0300
 @@ -13,6 +13,7 @@
@@ -18,7 +18,7 @@ diff -r a185a493aee3 -r c7b32bed1344 docs/zandronum-history.txt
  *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
  *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
  +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
-diff -r a185a493aee3 -r c7b32bed1344 src/actor.h
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/actor.h
 --- a/src/actor.h	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/actor.h	Fri Apr 04 07:35:22 2025 -0300
 @@ -483,6 +483,9 @@
@@ -41,7 +41,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/actor.h
  	int				special1;		// Special info
  	int				special2;		// Special info
  	int 			health;
-diff -r a185a493aee3 -r c7b32bed1344 src/cl_main.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/cl_main.cpp
 --- a/src/cl_main.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/cl_main.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -5367,6 +5367,10 @@
@@ -55,7 +55,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/cl_main.cpp
  	default:
  		CLIENT_PrintWarning( "client_SetThingFlags: Received an unknown flagset value: %d\n", static_cast<int>( flagset ) );
  		break;
-diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_decals.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/g_shared/a_decals.cpp
 --- a/src/g_shared/a_decals.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/g_shared/a_decals.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -561,6 +561,9 @@
@@ -122,7 +122,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_decals.cpp
  		}
  		else
  		{
-diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_sharedglobal.h
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/g_shared/a_sharedglobal.h
 --- a/src/g_shared/a_sharedglobal.h	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/g_shared/a_sharedglobal.h	Fri Apr 04 07:35:22 2025 -0300
 @@ -65,8 +65,8 @@
@@ -136,7 +136,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/g_shared/a_sharedglobal.h
  
  	void BeginPlay ();
  	void Destroy ();
-diff -r a185a493aee3 -r c7b32bed1344 src/network.h
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/network.h
 --- a/src/network.h	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/network.h	Fri Apr 04 07:35:22 2025 -0300
 @@ -203,7 +203,8 @@
@@ -149,7 +149,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/network.h
  };
  
  enum ActorScaleFlag
-diff -r a185a493aee3 -r c7b32bed1344 src/p_map.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/p_map.cpp
 --- a/src/p_map.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/p_map.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -4683,8 +4683,10 @@
@@ -179,7 +179,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/p_map.cpp
  				}
  			}
  		}
-diff -r a185a493aee3 -r c7b32bed1344 src/p_mobj.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/p_mobj.cpp
 --- a/src/p_mobj.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/p_mobj.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -370,7 +370,8 @@
@@ -221,7 +221,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/p_mobj.cpp
  					}
  				}
  			}
-diff -r a185a493aee3 -r c7b32bed1344 src/sv_commands.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/sv_commands.cpp
 --- a/src/sv_commands.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/sv_commands.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -1815,6 +1815,7 @@
@@ -244,7 +244,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/sv_commands.cpp
  }
  
  //*****************************************************************************
-diff -r a185a493aee3 -r c7b32bed1344 src/thingdef/thingdef_codeptr.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/thingdef/thingdef_codeptr.cpp
 --- a/src/thingdef/thingdef_codeptr.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -4662,6 +4662,8 @@
@@ -256,7 +256,7 @@ diff -r a185a493aee3 -r c7b32bed1344 src/thingdef/thingdef_codeptr.cpp
  
  				SERVERCOMMANDS_SetThingFlags( self, flagset );
  			}
-diff -r a185a493aee3 -r c7b32bed1344 src/thingdef/thingdef_data.cpp
+diff -r 7f12f05ea1a8 -r 480ea3e0b85a src/thingdef/thingdef_data.cpp
 --- a/src/thingdef/thingdef_data.cpp	Fri Apr 04 07:21:37 2025 -0300
 +++ b/src/thingdef/thingdef_data.cpp	Fri Apr 04 07:35:22 2025 -0300
 @@ -275,6 +275,9 @@

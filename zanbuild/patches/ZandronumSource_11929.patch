@@ -2,16 +2,16 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1744341597 10800
 #      Fri Apr 11 00:19:57 2025 -0300
-# Node ID 21a262028fd5e80a27ca5c9ebe06c93ebdc46f9b
-# Parent  8bd9f88b2ec4ed98919d7e45ebff111080f068fe
+# Node ID 84aeed09e092da39a3262ec5212184e912318651
+# Parent  90c8d2b24b3c2b749e60c1178bfbefbd23036916
 # EXP-Topic strikers_stuff
 Add A_JumpTo codepointer. An instant, and predictable state jump.
 - Useful for jumping to child/ancestor actor states, which is something "goto"
   cannot do, and doesn't run into the same issues that "A_Jump(256, "State")"
   and A_JumpIf(1, "State") do.
 
-diff -r 8bd9f88b2ec4 -r 21a262028fd5 docs/zandronum-history.txt
---- a/docs/zandronum-history.txt	Tue Apr 08 09:55:41 2025 -0400
+diff -r 90c8d2b24b3c -r 84aeed09e092 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Sat Apr 12 14:13:31 2025 -0400
 +++ b/docs/zandronum-history.txt	Fri Apr 11 00:19:57 2025 -0300
 @@ -11,6 +11,9 @@
  =
@@ -23,8 +23,8 @@ diff -r 8bd9f88b2ec4 -r 21a262028fd5 docs/zandronum-history.txt
  
  3.2
  ---
-diff -r 8bd9f88b2ec4 -r 21a262028fd5 src/thingdef/thingdef_codeptr.cpp
---- a/src/thingdef/thingdef_codeptr.cpp	Tue Apr 08 09:55:41 2025 -0400
+diff -r 90c8d2b24b3c -r 84aeed09e092 src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Sat Apr 12 14:13:31 2025 -0400
 +++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 11 00:19:57 2025 -0300
 @@ -6067,3 +6067,22 @@
  
@@ -49,8 +49,8 @@ diff -r 8bd9f88b2ec4 -r 21a262028fd5 src/thingdef/thingdef_codeptr.cpp
 +
 +	ACTION_JUMP(jump, 0);
 +}
-diff -r 8bd9f88b2ec4 -r 21a262028fd5 wadsrc/static/actors/actor.txt
---- a/wadsrc/static/actors/actor.txt	Tue Apr 08 09:55:41 2025 -0400
+diff -r 90c8d2b24b3c -r 84aeed09e092 wadsrc/static/actors/actor.txt
+--- a/wadsrc/static/actors/actor.txt	Sat Apr 12 14:13:31 2025 -0400
 +++ b/wadsrc/static/actors/actor.txt	Fri Apr 11 00:19:57 2025 -0300
 @@ -188,6 +188,7 @@
  	action native A_FaceConsolePlayer(float MaxTurnAngle = 0); // [Dusk]

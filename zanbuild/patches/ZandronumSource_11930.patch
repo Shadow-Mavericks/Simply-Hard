@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743760105 10800
 #      Fri Apr 04 06:48:25 2025 -0300
-# Node ID 94eebddaec3745208b5d706abec69a24db748756
-# Parent  21a262028fd5e80a27ca5c9ebe06c93ebdc46f9b
+# Node ID 910e27baf9d39dfb92e346876edd54f3fce712a7
+# Parent  84aeed09e092da39a3262ec5212184e912318651
 # EXP-Topic strikers_stuff
 Backport A_WeaponOffset from ZDoom revision 115dbd0, with necessary alterations for Zandronum's older codebase.
 
-diff -r 21a262028fd5 -r 94eebddaec37 docs/zandronum-history.txt
+diff -r 84aeed09e092 -r 910e27baf9d3 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 11 00:19:57 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 04 06:48:25 2025 -0300
 @@ -14,6 +14,7 @@
@@ -18,7 +18,7 @@ diff -r 21a262028fd5 -r 94eebddaec37 docs/zandronum-history.txt
  
  3.2
  ---
-diff -r 21a262028fd5 -r 94eebddaec37 src/p_pspr.cpp
+diff -r 84aeed09e092 -r 910e27baf9d3 src/p_pspr.cpp
 --- a/src/p_pspr.cpp	Fri Apr 11 00:19:57 2025 -0300
 +++ b/src/p_pspr.cpp	Fri Apr 04 06:48:25 2025 -0300
 @@ -1065,6 +1065,61 @@
@@ -83,7 +83,7 @@ diff -r 21a262028fd5 -r 94eebddaec37 src/p_pspr.cpp
  // PROC A_Lower
  //
  //---------------------------------------------------------------------------
-diff -r 21a262028fd5 -r 94eebddaec37 wadsrc/static/actors/constants.txt
+diff -r 84aeed09e092 -r 910e27baf9d3 wadsrc/static/actors/constants.txt
 --- a/wadsrc/static/actors/constants.txt	Fri Apr 11 00:19:57 2025 -0300
 +++ b/wadsrc/static/actors/constants.txt	Fri Apr 04 06:48:25 2025 -0300
 @@ -362,6 +362,15 @@
@@ -102,7 +102,7 @@ diff -r 21a262028fd5 -r 94eebddaec37 wadsrc/static/actors/constants.txt
  
  // This is only here to provide one global variable for testing.
  native int testglobalvar;
-diff -r 21a262028fd5 -r 94eebddaec37 wadsrc/static/actors/shared/inventory.txt
+diff -r 84aeed09e092 -r 910e27baf9d3 wadsrc/static/actors/shared/inventory.txt
 --- a/wadsrc/static/actors/shared/inventory.txt	Fri Apr 11 00:19:57 2025 -0300
 +++ b/wadsrc/static/actors/shared/inventory.txt	Fri Apr 04 06:48:25 2025 -0300
 @@ -48,6 +48,7 @@

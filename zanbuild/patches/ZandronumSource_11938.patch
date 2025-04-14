@@ -2,13 +2,13 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743934851 10800
 #      Sun Apr 06 07:20:51 2025 -0300
-# Node ID 542ba703f26d388b64b2ec67459c7e7d6286bc21
-# Parent  2f35a1c108044066db864440e3e30b932aa3b4d8
+# Node ID 99695749cc75692471255d6769981690c29a4ae0
+# Parent  6f2821774da3941ea788caa33c7d9d03e9edb4e2
 # EXP-Topic strikers_stuff
 Add Weapon.PowerupItem property.
 - Allows specifying what item should power a weapon to level 2, like a tome of power.
 
-diff -r 2f35a1c10804 -r 542ba703f26d docs/zandronum-history.txt
+diff -r 6f2821774da3 -r 99695749cc75 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 04 19:14:18 2025 -0300
 +++ b/docs/zandronum-history.txt	Sun Apr 06 07:20:51 2025 -0300
 @@ -13,6 +13,7 @@
@@ -19,7 +19,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d docs/zandronum-history.txt
  *+	- Added the ability to apply hardware shaders to cameratextures. Must have a texture in the "textures" folder to replace with the cameratexture for this to work. [StrikerTheHedgefox]
  *+	- Added +DECALUSESTRANSLATION, allowing an actor to pass its translation down to its decal. Useful to change decal color on the fly, or to pass the color of blood particles down to the decal. Pal index 255 is used set the color for shaded decals. [StrikerTheHedgefox]
  *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
-diff -r 2f35a1c10804 -r 542ba703f26d src/g_game.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/g_game.cpp
 --- a/src/g_game.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/g_game.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -444,11 +444,14 @@
@@ -67,7 +67,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/g_game.cpp
  				1.5f, 0.90f, 0, 0, (EColorRange)*nametagcolor, 2.f, 0.35f ), MAKE_ID( 'W', 'E', 'P', 'N' ));
   		}
  	}
-diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_artifacts.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/g_shared/a_artifacts.cpp
 --- a/src/g_shared/a_artifacts.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/g_shared/a_artifacts.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -1116,9 +1116,10 @@
@@ -113,7 +113,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_artifacts.cpp
  }
  
  // Player Speed Trail (used by the Speed Powerup) ----------------------------
-diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_pickups.h
+diff -r 6f2821774da3 -r 99695749cc75 src/g_shared/a_pickups.h
 --- a/src/g_shared/a_pickups.h	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/g_shared/a_pickups.h	Sun Apr 06 07:20:51 2025 -0300
 @@ -274,6 +274,7 @@
@@ -132,7 +132,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_pickups.h
  	virtual void EndPowerup ();
  
  	enum
-diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_weapons.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/g_shared/a_weapons.cpp
 --- a/src/g_shared/a_weapons.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/g_shared/a_weapons.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -157,7 +157,7 @@
@@ -205,7 +205,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/g_shared/a_weapons.cpp
  // AWeapon :: EndPowerUp
  //
  // The Tome of Power just expired.
-diff -r 2f35a1c10804 -r 542ba703f26d src/m_cheat.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/m_cheat.cpp
 --- a/src/m_cheat.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/m_cheat.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -207,6 +207,7 @@
@@ -254,7 +254,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/m_cheat.cpp
  		}
  		break;
  
-diff -r 2f35a1c10804 -r 542ba703f26d src/p_pspr.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/p_pspr.cpp
 --- a/src/p_pspr.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/p_pspr.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -258,7 +258,7 @@
@@ -288,7 +288,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/p_pspr.cpp
  }
  
  //---------------------------------------------------------------------------
-diff -r 2f35a1c10804 -r 542ba703f26d src/p_user.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/p_user.cpp
 --- a/src/p_user.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/p_user.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -1059,7 +1059,6 @@
@@ -307,7 +307,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/p_user.cpp
  
  		// [TP] If PWO is active, a weight check overrides the selection order one (unless the
  		// weights are the same)
-diff -r 2f35a1c10804 -r 542ba703f26d src/thingdef/thingdef_properties.cpp
+diff -r 6f2821774da3 -r 99695749cc75 src/thingdef/thingdef_properties.cpp
 --- a/src/thingdef/thingdef_properties.cpp	Fri Apr 04 19:14:18 2025 -0300
 +++ b/src/thingdef/thingdef_properties.cpp	Sun Apr 06 07:20:51 2025 -0300
 @@ -2932,3 +2932,12 @@
@@ -323,7 +323,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d src/thingdef/thingdef_properties.cpp
 +	PROP_STRING_PARM(str, 0);
 +	defaults->PowerupItem = FindClassTentative(str, "Inventory");
 +}
-diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/heretic/hereticweaps.txt
+diff -r 6f2821774da3 -r 99695749cc75 wadsrc/static/actors/heretic/hereticweaps.txt
 --- a/wadsrc/static/actors/heretic/hereticweaps.txt	Fri Apr 04 19:14:18 2025 -0300
 +++ b/wadsrc/static/actors/heretic/hereticweaps.txt	Sun Apr 06 07:20:51 2025 -0300
 @@ -748,6 +748,7 @@
@@ -334,7 +334,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/heretic/hereticweaps.t
  	States
  	{
  	Fire:
-diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/shared/inventory.txt
+diff -r 6f2821774da3 -r 99695749cc75 wadsrc/static/actors/shared/inventory.txt
 --- a/wadsrc/static/actors/shared/inventory.txt	Fri Apr 04 19:14:18 2025 -0300
 +++ b/wadsrc/static/actors/shared/inventory.txt	Sun Apr 06 07:20:51 2025 -0300
 @@ -374,6 +374,7 @@
@@ -345,7 +345,7 @@ diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/actors/shared/inventory.txt
  	States
  	{
  	LightDone:
-diff -r 2f35a1c10804 -r 542ba703f26d wadsrc/static/language.enu
+diff -r 6f2821774da3 -r 99695749cc75 wadsrc/static/language.enu
 --- a/wadsrc/static/language.enu	Fri Apr 04 19:14:18 2025 -0300
 +++ b/wadsrc/static/language.enu	Sun Apr 06 07:20:51 2025 -0300
 @@ -860,6 +860,15 @@

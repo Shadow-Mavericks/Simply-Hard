@@ -2,13 +2,13 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1743761222 10800
 #      Fri Apr 04 07:07:02 2025 -0300
-# Node ID 07412ac434ae6a4c0bb340152155695697829e69
-# Parent  d70d465127cf5f397859567eeb223222d52d69a1
+# Node ID 1d896309cd8588893a1fee07ce38e7081143e125
+# Parent  bf843d16812ce6a63b18c13722ea153427707831
 # EXP-Topic strikers_stuff
 In FCloneTexture::GetPixels, return the source texture's pixels instead of NULL.
 Prevents decals with their pic in the "graphics" folder from crashing the game when translated or using the "colors" DECALDEF token.
 
-diff -r d70d465127cf -r 07412ac434ae docs/zandronum-history.txt
+diff -r bf843d16812c -r 1d896309cd85 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 04 06:55:21 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 04 07:07:02 2025 -0300
 @@ -16,6 +16,7 @@
@@ -19,7 +19,7 @@ diff -r d70d465127cf -r 07412ac434ae docs/zandronum-history.txt
  
  3.2
  ---
-diff -r d70d465127cf -r 07412ac434ae src/gl/textures/gl_texture.cpp
+diff -r bf843d16812c -r 1d896309cd85 src/gl/textures/gl_texture.cpp
 --- a/src/gl/textures/gl_texture.cpp	Fri Apr 04 06:55:21 2025 -0300
 +++ b/src/gl/textures/gl_texture.cpp	Fri Apr 04 07:07:02 2025 -0300
 @@ -674,7 +674,7 @@

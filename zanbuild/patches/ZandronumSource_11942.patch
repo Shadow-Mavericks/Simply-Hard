@@ -2,14 +2,14 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1744307301 10800
 #      Thu Apr 10 14:48:21 2025 -0300
-# Node ID afab3bf24fb9ad7bddd3356007a95ba3823f1f14
-# Parent  fdf62a7ec3e54bada6e4253db377777712e12c4a
+# Node ID 96c9c38ea708145d46d0e118bc9bd0ceb3ff868c
+# Parent  d98e8382884e06fa550706add347ca1face3ef5e
 # EXP-Topic strikers_stuff
 Add +NEVERADJUSTSPRITECLIPPING actor flag.
 Prevents the OpenGL renderer from adjusting the sprite out of the floor, regardless of the gl_spriteclip cvar.
 Useful for projectiles and particle effects where the sprite adjustment looks terrible, but you still want it for everything else.
 
-diff -r fdf62a7ec3e5 -r afab3bf24fb9 docs/zandronum-history.txt
+diff -r d98e8382884e -r 96c9c38ea708 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Wed Apr 09 22:36:47 2025 -0300
 +++ b/docs/zandronum-history.txt	Thu Apr 10 14:48:21 2025 -0300
 @@ -17,6 +17,7 @@
@@ -20,7 +20,7 @@ diff -r fdf62a7ec3e5 -r afab3bf24fb9 docs/zandronum-history.txt
  *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
  *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
  +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
-diff -r fdf62a7ec3e5 -r afab3bf24fb9 src/actor.h
+diff -r d98e8382884e -r 96c9c38ea708 src/actor.h
 --- a/src/actor.h	Wed Apr 09 22:36:47 2025 -0300
 +++ b/src/actor.h	Thu Apr 10 14:48:21 2025 -0300
 @@ -486,6 +486,7 @@
@@ -31,7 +31,7 @@ diff -r fdf62a7ec3e5 -r afab3bf24fb9 src/actor.h
  
  // --- mobj.renderflags ---
  
-diff -r fdf62a7ec3e5 -r afab3bf24fb9 src/gl/scene/gl_sprite.cpp
+diff -r d98e8382884e -r 96c9c38ea708 src/gl/scene/gl_sprite.cpp
 --- a/src/gl/scene/gl_sprite.cpp	Wed Apr 09 22:36:47 2025 -0300
 +++ b/src/gl/scene/gl_sprite.cpp	Thu Apr 10 14:48:21 2025 -0300
 @@ -655,7 +655,7 @@
@@ -43,7 +43,7 @@ diff -r fdf62a7ec3e5 -r afab3bf24fb9 src/gl/scene/gl_sprite.cpp
  		{
  			bool smarterclip = false; // Set to true if one condition triggers the test below
  			if (((thing->player || thing->flags3&MF3_ISMONSTER ||
-diff -r fdf62a7ec3e5 -r afab3bf24fb9 src/thingdef/thingdef_data.cpp
+diff -r d98e8382884e -r 96c9c38ea708 src/thingdef/thingdef_data.cpp
 --- a/src/thingdef/thingdef_data.cpp	Wed Apr 09 22:36:47 2025 -0300
 +++ b/src/thingdef/thingdef_data.cpp	Thu Apr 10 14:48:21 2025 -0300
 @@ -278,6 +278,7 @@

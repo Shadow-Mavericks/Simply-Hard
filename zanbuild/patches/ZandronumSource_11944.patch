@@ -2,12 +2,12 @@
 # User StrikerTheHedgefox <mossj32@gmail.com>
 # Date 1744424469 10800
 #      Fri Apr 11 23:21:09 2025 -0300
-# Node ID c71ed3d189fc24182b67fce2b37159c7a5d65c9b
-# Parent  b68179cb69de4870475f063dcdf0175cc66b110c
+# Node ID 90d822bf8194ff94abe2b18ea780708018a964b7
+# Parent  468ee87ab3db13abaf6596d4cc2cdb69372e4433
 # EXP-Topic strikers_stuff
 Backport ThruBits, +ALLOWTHRUBITS, and +ALLOWTHRUFLAGS.
 
-diff -r b68179cb69de -r c71ed3d189fc docs/zandronum-history.txt
+diff -r 468ee87ab3db -r 90d822bf8194 docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Thu Apr 10 23:51:53 2025 -0300
 +++ b/docs/zandronum-history.txt	Fri Apr 11 23:21:09 2025 -0300
 @@ -20,6 +20,7 @@
@@ -18,7 +18,7 @@ diff -r b68179cb69de -r c71ed3d189fc docs/zandronum-history.txt
  +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
  +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
  +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
-diff -r b68179cb69de -r c71ed3d189fc src/actor.h
+diff -r 468ee87ab3db -r 90d822bf8194 src/actor.h
 --- a/src/actor.h	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/actor.h	Fri Apr 11 23:21:09 2025 -0300
 @@ -351,9 +351,15 @@
@@ -63,7 +63,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/actor.h
  	int				special1;		// Special info
  	int				special2;		// Special info
  	int 			health;
-diff -r b68179cb69de -r c71ed3d189fc src/cl_main.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/cl_main.cpp
 --- a/src/cl_main.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/cl_main.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -5363,6 +5363,10 @@
@@ -77,7 +77,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/cl_main.cpp
  	case FLAGSET_FLAGSST:
  
  		actor->STFlags = flags;
-diff -r b68179cb69de -r c71ed3d189fc src/m_cheat.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/m_cheat.cpp
 --- a/src/m_cheat.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/m_cheat.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -355,6 +355,7 @@
@@ -88,7 +88,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/m_cheat.cpp
  				player->mo->renderflags &= ~RF_INVISIBLE;
  				player->mo->height = player->mo->GetDefault()->height;
  				player->mo->radius = player->mo->GetDefault()->radius;
-diff -r b68179cb69de -r c71ed3d189fc src/network.h
+diff -r 468ee87ab3db -r 90d822bf8194 src/network.h
 --- a/src/network.h	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/network.h	Fri Apr 11 23:21:09 2025 -0300
 @@ -203,6 +203,7 @@
@@ -99,7 +99,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/network.h
  	FLAGSET_FLAGSST,
  	FLAGSET_FLAGSHFX,
  };
-diff -r b68179cb69de -r c71ed3d189fc src/p_map.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/p_map.cpp
 --- a/src/p_map.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/p_map.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -408,6 +408,10 @@
@@ -356,10 +356,22 @@ diff -r b68179cb69de -r c71ed3d189fc src/p_map.cpp
 +		return 0;
 +	return ThruBits;
 +}
-diff -r b68179cb69de -r c71ed3d189fc src/p_mobj.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/p_mobj.cpp
 --- a/src/p_mobj.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/p_mobj.cpp	Fri Apr 11 23:21:09 2025 -0300
-@@ -7913,6 +7913,7 @@
+@@ -251,6 +251,11 @@
+ 	{
+ 		arc << flags7;
+ 	}
++	if (SaveVersion >= 4507)
++	{
++		arc << flags8;
++		arc << ThruBits;
++	}
+ 	arc	<< special1
+ 		<< special2
+ 		<< health
+@@ -7913,6 +7918,7 @@
  	flags5 = info->flags5;
  	flags6 = info->flags6;
  	flags7 = info->flags7;
@@ -367,7 +379,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/p_mobj.cpp
  
  	// [BC] Apply new ST flags as well.
  	// [BB] The STFL_LEVELSPAWNED flag may not be removed by the default flags.
-diff -r b68179cb69de -r c71ed3d189fc src/sv_commands.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/sv_commands.cpp
 --- a/src/sv_commands.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/sv_commands.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -1814,6 +1814,7 @@
@@ -389,7 +401,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/sv_commands.cpp
  	// [BB] STFlags is intentionally left out here.
  
  	if (pActor->HFXFlags != pActor->GetDefault()->HFXFlags) // [JM]
-diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_codeptr.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/thingdef/thingdef_codeptr.cpp
 --- a/src/thingdef/thingdef_codeptr.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -4660,6 +4660,8 @@
@@ -401,7 +413,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_codeptr.cpp
  				else if ( flagp == &self->STFlags )
  					flagset = FLAGSET_FLAGSST;
  				else if ( flagp == &self->HFXFlags ) // [JM]
-diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_data.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/thingdef/thingdef_data.cpp
 --- a/src/thingdef/thingdef_data.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/thingdef/thingdef_data.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -250,9 +250,13 @@
@@ -418,7 +430,7 @@ diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_data.cpp
  	// [BC] New DECORATE flag defines here.
  	DEFINE_FLAG(STFL, BLUETEAM, AActor, STFlags),
  	DEFINE_FLAG(STFL, REDTEAM, AActor, STFlags),
-diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_properties.cpp
+diff -r 468ee87ab3db -r 90d822bf8194 src/thingdef/thingdef_properties.cpp
 --- a/src/thingdef/thingdef_properties.cpp	Thu Apr 10 23:51:53 2025 -0300
 +++ b/src/thingdef/thingdef_properties.cpp	Fri Apr 11 23:21:09 2025 -0300
 @@ -1325,7 +1325,8 @@
@@ -444,7 +456,19 @@ diff -r b68179cb69de -r c71ed3d189fc src/thingdef/thingdef_properties.cpp
 +	PROP_INT_PARM(id, 0);
 +	defaults->ThruBits = id;
 +}
-diff -r b68179cb69de -r c71ed3d189fc wadsrc/static/actors/actor.txt
+diff -r 468ee87ab3db -r 90d822bf8194 src/version.h
+--- a/src/version.h	Thu Apr 10 23:51:53 2025 -0300
++++ b/src/version.h	Fri Apr 11 23:21:09 2025 -0300
+@@ -108,7 +108,7 @@
+ 
+ // Use 4500 as the base git save version, since it's higher than the
+ // SVN revision ever got.
+-#define SAVEVER 4506
++#define SAVEVER 4507
+ 
+ #define SAVEVERSTRINGIFY2(x) #x
+ #define SAVEVERSTRINGIFY(x) SAVEVERSTRINGIFY2(x)
+diff -r 468ee87ab3db -r 90d822bf8194 wadsrc/static/actors/actor.txt
 --- a/wadsrc/static/actors/actor.txt	Thu Apr 10 23:51:53 2025 -0300
 +++ b/wadsrc/static/actors/actor.txt	Fri Apr 11 23:21:09 2025 -0300
 @@ -25,6 +25,7 @@
