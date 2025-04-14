@@ -2054,6 +2054,9 @@ ACTOR Mastersphere : SH_BaseMonster
 	DamageFactor "MaxBlasterBolt", 2.0
 	DamageFactor "Electric", 3.0
 	
+	DamageFactor "MiniSphereBoom", 0.5
+	
+	+NEVERADJUSTSPRITECLIPPING
 	+LOOKALLAROUND
 	+FLOAT
 	+NOGRAVITY
@@ -2081,60 +2084,54 @@ ACTOR Mastersphere : SH_BaseMonster
 			SPHM D 5 BRIGHT
 			SPHM E 5 BRIGHT
 			SPHM F 5 BRIGHT
-			SPHM A 0 A_playsound("steam")
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,0,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,20,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,40,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,60,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,80,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,100,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,120,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,140,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,160,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,180,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-20,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-40,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-60,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-80,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-100,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-120,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-140,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-160,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-180,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,10,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,30,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,50,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,70,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,90,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,110,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,130,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,150,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,170,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-10,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-30,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-50,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-70,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-90,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-110,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-130,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-150,0,210)
-			SPHM A 0 Bright A_CustomMissile("steam",32,16,-170,0,210)
-			SPHM G 14 BRIGHT
-			SPHM H 14 BRIGHT
-			SPHM I 14 BRIGHT
-			SPHM J 14 BRIGHT
-			SPHM K 14 BRIGHT
-			SPHM L 14 BRIGHT
-			SPHM M 14 BRIGHT
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,0,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,40,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,80,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,120,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,180,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-40,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-80,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-120,0,210)
-			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-180,0,210)
+			SPHM A 0 A_playsound("SteamHiss")
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,0,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,20,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,40,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,60,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,80,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,100,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,120,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,140,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,160,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,180,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-20,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-40,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-60,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-80,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-100,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-120,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-140,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-160,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-180,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,10,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,30,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,50,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,70,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,90,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,110,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,130,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,150,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,170,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-10,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-30,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-50,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-70,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-90,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-110,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-130,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-150,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",30,0,-170,0,210)
+			SPHM GHIJKLM 7 BRIGHT
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,0,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,40,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,80,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,120,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,180,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,-40,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,-80,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,-120,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",30,0,-180,0,210)
 			SPHM N 3 BRIGHT
 			SPHM O 3 BRIGHT
 			SPHM P 3 BRIGHT
@@ -2142,17 +2139,12 @@ ACTOR Mastersphere : SH_BaseMonster
 			SPHM R 3 BRIGHT
 			goto see
 		Death:
+			EXPL A 0 A_SetScale(1.5)
 			EXPL A 0 BRIGHT A_Stop
 			EXPL A 0 BRIGHT A_ChangeFlag("NOGRAVITY", true)
-			EXPL A 4 BRIGHT A_Scream
-			EXPL A 4 BRIGHT A_explode(64,100)
-			EXPL B 4 BRIGHT
-			EXPL C 4 BRIGHT
-			EXPL D 4 BRIGHT
-			EXPL E 4 BRIGHT
-			EXPL F 4 BRIGHT
-			EXPL G 4 BRIGHT
-			EXPL H 4 BRIGHT
+			EXPL A 3 BRIGHT A_Scream
+			EXPL A 3 BRIGHT A_explode(64,128)
+			EXPL BCDEFGH 3 BRIGHT
 			Stop
 	}
 }
@@ -2173,13 +2165,15 @@ ACTOR Spheredroid : SH_BaseMonster
 	DamageFactor "MaxBlasterBolt", 2.0
 	DamageFactor "Electric", 3.0
 	
-	Monster
+	DamageFactor "MiniSphereBoom", 0.25
+	
+	+NEVERADJUSTSPRITECLIPPING
 	+NOGRAVITY
 	+NOPAIN
-	-FRIGHTENED
 	+LOOKALLAROUND
 	+THRUSPECIES
 	+NOBLOOD
+	-FRIGHTENED
 	-COUNTKILL
 	States 
 	{ 
@@ -2192,47 +2186,45 @@ ACTOR Spheredroid : SH_BaseMonster
 		Missile:
 			SPHD A 4 A_Facetarget
 			SPHD A 2 A_Skullattack
-			Goto see
+			Goto See
 		Melee:
 			Goto death
 		Death:
 			TNT1 A 0 A_SetScale(0.5)
 			TNT1 A 0 A_Scream
 			TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
-			EXPL A 4 BRIGHT A_Stop
-			EXPL A 0 BRIGHT A_explode(50,100)
-			EXPL BCDEFGH 4 BRIGHT
+			EXPL A 3 BRIGHT A_Stop
+			EXPL A 0 BRIGHT A_SetDamageType("MiniSphereBoom")
+			EXPL A 0 BRIGHT A_explode(50,64)
+			EXPL BCDEFGH 3 BRIGHT
 			Stop 
    } 
 }
 
-ACTOR Steam
+ACTOR Steam : SH_BaseParticle
 {
-   Radius 32
-   Height 16
-   Speed 3
-   Projectile
-   renderstyle add
-   scale 0.5
-   alpha 0.1
-   +FLOAT
-   +NOGRAVITY
-   +clientsideonly
-   States
-   {
-   Spawn:
-      CRYO A 4
-	  CRYO B 4
-	  CRYO C 4
-	  CRYO D 4
-	  CRYO E 4
-	  CRYO F 4
-	  CRYO G 4
-	  CRYO H 4
-	  CRYO I 4
-	  CRYO J 4
-	  stop
-   }
+	Radius 32
+	Height 16
+	Speed 3
+	Projectile
+	renderstyle add
+	scale 0.5
+	alpha 0.1
+	States
+	{
+		Spawn:
+			CRYO A 4
+			CRYO B 4
+			CRYO C 4
+			CRYO D 4
+			CRYO E 4
+			CRYO F 4
+			CRYO G 4
+			CRYO H 4
+			CRYO I 4
+			CRYO J 4
+			stop
+	}
 }
 
 Actor LaserGunMajor : ChaingunGuy

@@ -89,6 +89,9 @@ actor SH_BasePlayer : DoomPlayer
 	DamageFactor "PlayerSucc", 0.25
 	DamageFactor "PlayerExplosivePuff", 0.0
 	
+	DamageFactor "MaxBlasterBolt", 0.5
+	DamageFactor "MaxExplosion", 0.5
+	
 	Player.DamageScreenColor "FF 00 00", 1.0
 	Player.DamageScreenColor "00 FF 00", 1.0, "Acid"
 	Player.DamageScreenColor "FF 64 00", 1.0, "Fire"

@@ -196,6 +196,7 @@ actor Mortarnade : SH_BasePlayerProjectile
 			MORS ABCDEF 4 BRIGHT
 			Loop
 		Death:
+			TNT1 A 0 A_SetTranslucent(1.0, 1)
 			TNT1 A 0 A_SetScale(2.0, 2.0)
 			TNT1 A 0 A_ChangeFlag("NOGRAVITY", TRUE)
 			TNT1 A 0 Bright A_Quake (1, 6, 0, 80 * DARKFORCES_RAD_MULT, "") 
@@ -420,6 +421,7 @@ actor AssaultCannonMissile : SH_BasePlayerProjectile
 			ACMI AB 4 BRIGHT A_LoopActiveSound
 			loop
 		Death:
+			ACMB A 0 A_SetTranslucent(1.0, 1)
 			ACMB A 0 A_StopSound(CHAN_VOICE)
 			ACMB A 0 Bright A_Quake (1, 8, 0, 100 * DARKFORCES_RAD_MULT, "") 
 			ACMB A 0 Bright A_Quake (2, 8, 0, 75 * DARKFORCES_RAD_MULT, "") 
@@ -442,6 +444,7 @@ actor GoldAssaultCannonMissile : AssaultCannonMissile
 			WMSL AB 4 BRIGHT A_LoopActiveSound
 			Loop
 		Death:
+			ACMB A 0 A_SetTranslucent(1.0, 1)
 			ACMB A 0 A_StopSound(CHAN_VOICE)
 			ACMB A 0 Bright A_Quake (1, 12, 0, 100 * DARKFORCES_RAD_MULT, "") 
 			ACMB A 0 Bright A_Quake (2, 8, 0, 75 * DARKFORCES_RAD_MULT, "") 

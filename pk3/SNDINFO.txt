@@ -1910,6 +1910,7 @@ SpyWhistle SpyWhstl
 PowerupAlarm QUARTER
 SuperLuck suprluck
 DoorStuck doorstuk
+SteamHiss steamhis
 
 AcidMelt acidmelt
 $limit AcidMelt 0

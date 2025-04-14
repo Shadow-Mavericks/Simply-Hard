@@ -7,9 +7,7 @@ ACTOR Fiend : SH_BasePlayer
 	Mass 100
 	
 	DamageFactor 1.0
-	DamageFactor "Acid", 0.5
-	DamageFactor "MaxBlasterBolt", 0.5
-	DamageFactor "MaxExplosion", 0.5
+	DamageFactor "Acid", 0.5 // Resistant to acid
 	
 	PainChance 255
 	Player.SoundClass "Fiendzy"
@@ -173,9 +171,7 @@ ACTOR Kunai : SH_BasePlayer
 	BounceSound "PlayerHP/AlarmKunai"
 
 	DamageFactor 1.25
-
-	DamageFactor "MaxBlasterBolt", 0.5
-	DamageFactor "MaxExplosion", 0.5
+	DamageFactor "Ice", 0.5 // Resistant to ice
 	
 	Player.JumpZ 10
 	Player.AirCapacity 1
@@ -310,9 +306,7 @@ ACTOR Gosimer : SH_BasePlayer
 	BounceSound "PlayerHP/AlarmGosimer"
 
 	DamageFactor 0.75
-
-	DamageFactor "MaxBlasterBolt", 0.5
-	DamageFactor "MaxExplosion", 0.5
+	DamageFactor "Fire", 0.5 // Resistant to fire
 
 	Player.JumpZ 7
 	Player.AirCapacity 0.5
@@ -424,7 +418,7 @@ actor MaximusPrime : SH_BasePlayer
 
 	DamageFactor "MaxBlasterBolt", 0.67
 	DamageFactor "MaxExplosion", 0.67
-	DamageFactor "Electric", 0.75 // Max's class resists lightning a bit.
+	DamageFactor "Electric", 0.5 // Max's class resists lightning a bit.
 
 	Player.DisplayName "Rebel Scum"
 	Player.CrouchSprite "PLYC"
