@@ -1923,8 +1923,11 @@ actor CCCDroid
 	Activesound "Droid/Active"
 	Deathsound "Droid/Death"
 	Painsound "Droid/Pain"
+	
 	DamageFactor "MaxExplosion", 1.5
 	DamageFactor "MaxBlasterBolt", 2.0
+	DamageFactor "Electric", 3.0
+
 	DropItem "Cell", 256
 	var int user_theta;
 	+QUICKTORETALIATE
@@ -2034,169 +2037,172 @@ Actor redlaser
 	}
 }
 
-ACTOR Mastersphere
+ACTOR Mastersphere : SH_BaseMonster
 {
-  Health 300
-  Radius 31
-  Height 56
-  Speed 24
-  Mass 1000
-  obituary "%o was killed by a Spheremaster"
-  deathsound "sfxexp1"
-  seesound "sfxitem"
-  Activesound ""
-  Monster
-  +LOOKALLAROUND
-  +FLOAT
-  +NOGRAVITY
-  +LOOKALLAROUND
-  +SOLID
-  +NOBLOOD
-  +NORADIUSDMG
-  +QUICKTORETALIATE
-  +BOSS
-  +NOPAIN
-  +THRUSPECIES
-  States
-  {
-  Spawn:
-    SPHM A 6 A_Look
-    Loop
-  See:
-    SPHM A 5 A_chase
-	SPHM A 0 A_AlertMonsters
-    Goto see
-  Melee:
-  Missile:
-    SPHM A 5 A_Facetarget
-	SPHM B 5 BRIGHT
-	SPHM C 5 BRIGHT
-	SPHM D 5 BRIGHT
-	SPHM E 5 BRIGHT
-	SPHM F 5 BRIGHT
-	SPHM A 0 A_playsound("steam")
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,0,0,210)
-    SPHM A 0 Bright A_CustomMissile("steam",32,16,20,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,40,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,60,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,80,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,100,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,120,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,140,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,160,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,180,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-20,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-40,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-60,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-80,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-100,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-120,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-140,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-160,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-180,0,210)
-    SPHM A 0 Bright A_CustomMissile("steam",32,16,10,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,30,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,50,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,70,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,90,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,110,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,130,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,150,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,170,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-10,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-30,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-50,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-70,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-90,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-110,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-130,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-150,0,210)
-	SPHM A 0 Bright A_CustomMissile("steam",32,16,-170,0,210)
-	SPHM G 14 BRIGHT
-	SPHM H 14 BRIGHT
-	SPHM I 14 BRIGHT
-	SPHM J 14 BRIGHT
-	SPHM K 14 BRIGHT
-	SPHM L 14 BRIGHT
-	SPHM M 14 BRIGHT
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,0,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,40,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,80,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,120,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,180,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-40,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-80,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-120,0,210)
-	SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-180,0,210)
-	SPHM N 3 BRIGHT
-	SPHM O 3 BRIGHT
-	SPHM P 3 BRIGHT
-	SPHM Q 3 BRIGHT
-	SPHM R 3 BRIGHT
-	goto see
-  Death:
-    EXPL A 4 BRIGHT A_Scream
-	EXPL A 4 BRIGHT A_explode(10,100)
-    EXPL B 4 BRIGHT A_explode(10,100)
-    EXPL C 4 BRIGHT A_explode(10,100)
-    EXPL D 4 BRIGHT A_explode(10,100)
-    EXPL E 4 BRIGHT A_explode(10,100)
-    EXPL F 4 BRIGHT
-    EXPL G 4 BRIGHT
-    EXPL H 4 BRIGHT
-    Stop
-  }
+	Species "SphereDroid"
+	Health 300
+	Radius 31
+	Height 56
+	Speed 24
+	Mass 1000
+	obituary "%o was killed by a Spheremaster"
+	deathsound "sfxexp1"
+	seesound "sfxitem"
+	Activesound ""
+	
+	DamageFactor "MaxExplosion", 1.5
+	DamageFactor "MaxBlasterBolt", 2.0
+	DamageFactor "Electric", 3.0
+	
+	+LOOKALLAROUND
+	+FLOAT
+	+NOGRAVITY
+	+SOLID
+	+NOBLOOD
+	+NORADIUSDMG
+	+QUICKTORETALIATE
+	+BOSS
+	+NOPAIN
+	+THRUSPECIES
+	States
+	{
+		Spawn:
+			SPHM A 6 A_Look
+			Loop
+		See:
+			SPHM A 5 A_chase
+			SPHM A 0 A_AlertMonsters
+			loop
+		Melee:
+		Missile:
+			SPHM A 5 A_Facetarget
+			SPHM B 5 BRIGHT
+			SPHM C 5 BRIGHT
+			SPHM D 5 BRIGHT
+			SPHM E 5 BRIGHT
+			SPHM F 5 BRIGHT
+			SPHM A 0 A_playsound("steam")
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,0,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,20,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,40,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,60,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,80,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,100,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,120,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,140,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,160,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,180,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-20,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-40,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-60,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-80,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-100,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-120,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-140,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-160,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-180,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,10,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,30,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,50,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,70,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,90,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,110,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,130,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,150,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,170,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-10,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-30,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-50,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-70,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-90,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-110,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-130,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-150,0,210)
+			SPHM A 0 Bright A_CustomMissile("steam",32,16,-170,0,210)
+			SPHM G 14 BRIGHT
+			SPHM H 14 BRIGHT
+			SPHM I 14 BRIGHT
+			SPHM J 14 BRIGHT
+			SPHM K 14 BRIGHT
+			SPHM L 14 BRIGHT
+			SPHM M 14 BRIGHT
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,0,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,40,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,80,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,120,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,180,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-40,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-80,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-120,0,210)
+			SPHM A 0 Bright A_CustomMissile("spheredroid",32,32,-180,0,210)
+			SPHM N 3 BRIGHT
+			SPHM O 3 BRIGHT
+			SPHM P 3 BRIGHT
+			SPHM Q 3 BRIGHT
+			SPHM R 3 BRIGHT
+			goto see
+		Death:
+			EXPL A 0 BRIGHT A_Stop
+			EXPL A 0 BRIGHT A_ChangeFlag("NOGRAVITY", true)
+			EXPL A 4 BRIGHT A_Scream
+			EXPL A 4 BRIGHT A_explode(64,100)
+			EXPL B 4 BRIGHT
+			EXPL C 4 BRIGHT
+			EXPL D 4 BRIGHT
+			EXPL E 4 BRIGHT
+			EXPL F 4 BRIGHT
+			EXPL G 4 BRIGHT
+			EXPL H 4 BRIGHT
+			Stop
+	}
 }
 
-ACTOR Spheredroid
+ACTOR Spheredroid : SH_BaseMonster
 {
-Health 38
-PainChance 1
-Speed 15
-Radius 20 
-Height 56 
-Mass 150 
-MONSTER
-obituary "%o was swarmed by the Spheredroids"
-deathsound "weapons/rocklx"
-+NOGRAVITY
-+NOPAIN
--Frightened
-+Thruspecies
-+Lookallaround
-+THRUACTORS
-+NOBLOOD
-States 
-   { 
-   Spawn: 
-    SPHD A 5 Bright A_Look
-    Loop 
-   See:
-    SPHD A 4 A_chase
-    goto see
-   Missile:
-   SPHD A 2 A_Facetarget
-   SPHD A 2 A_changeflag("thruactors", FALSE)
-   SPHD A 2 A_Skullattack
-   Goto see
-   Melee:
-   Goto death
-   Death:
-    NULL A 0 A_setscale(0.5)   
-	EXPL A 4 BRIGHT A_Scream
-	EXPL A 0 BRIGHT A_explode(10,100)
-    EXPL B 4 BRIGHT
-    EXPL A 0 BRIGHT A_explode(10,100)	
-    EXPL C 4 BRIGHT
-    EXPL A 0 BRIGHT A_explode(10,100)	
-    EXPL D 4 BRIGHT
-	EXPL A 0 BRIGHT A_explode(10,100)
-    EXPL E 4 BRIGHT
-	EXPL A 0 BRIGHT A_explode(10,100)
-    EXPL F 4 BRIGHT
-    EXPL G 4 BRIGHT
-    EXPL H 4 BRIGHT
-	 Stop 
+	Species "SphereDroid"
+	Health 38
+	PainChance 1
+	Speed 15
+	Radius 20 
+	Height 32 
+	Mass 150 
+	obituary "%o was swarmed by the Spheredroids"
+	deathsound "weapons/rocklx"
+	
+	DamageFactor "MaxExplosion", 1.5
+	DamageFactor "MaxBlasterBolt", 2.0
+	DamageFactor "Electric", 3.0
+	
+	Monster
+	+NOGRAVITY
+	+NOPAIN
+	-FRIGHTENED
+	+LOOKALLAROUND
+	+THRUSPECIES
+	+NOBLOOD
+	-COUNTKILL
+	States 
+	{ 
+		Spawn: 
+			SPHD A 5 Bright A_Look
+			Loop 
+		See:
+			SPHD A 4 A_chase
+			loop
+		Missile:
+			SPHD A 4 A_Facetarget
+			SPHD A 2 A_Skullattack
+			Goto see
+		Melee:
+			Goto death
+		Death:
+			TNT1 A 0 A_SetScale(0.5)
+			TNT1 A 0 A_Scream
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
+			EXPL A 4 BRIGHT A_Stop
+			EXPL A 0 BRIGHT A_explode(50,100)
+			EXPL BCDEFGH 4 BRIGHT
+			Stop 
    } 
 }
 

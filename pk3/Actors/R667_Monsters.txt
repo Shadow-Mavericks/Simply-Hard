@@ -14416,25 +14416,26 @@ ACTOR Barbtrail
 //Sprite Edit: Finalizer, Horror Movie Guy
 //Idea Base: Classic movie zombie, Doom 4's "possessed" enemy, Quake's Zombie
 
-
-
-ACTOR ZombieFodder
+ACTOR ZombieFodder : SH_BaseMonster
 {
+	Species "FodderZombie"
 	Health 15
 	GibHealth 20
 	Radius 20
 	Height 56
 	Speed 15
 	PainChance 256
-	Monster
-	+DontHurtSpecies
-	+THRUSPECIES
-	+FLOORCLIP
+
 	SeeSound "ZombieFodder/sight"
 	PainSound "ZombieFodder/pain"
 	DeathSound "ZombieFodder/death"
 	ActiveSound "ZombieFodder/active"
 	Obituary "%o joins the zombies."
+	
+	+DONTHURTSPECIES
+	+THRUSPECIES
+	+FLOORCLIP
+	-COUNTKILL
 	States
 	{
 		Spawn:
@@ -14474,10 +14475,9 @@ ACTOR ZombieFodder
 
 ACTOR QuakeFodder : ZombieFodder
 {
+	Species "FodderZombie"
 	Health 20
 	GibHealth 15
-	+DontHurtSpecies
-	+THRUSPECIES
 	Obituary "%o joins the zombies."
 	States
 	{
