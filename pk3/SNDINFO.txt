@@ -1912,6 +1912,9 @@ SuperLuck suprluck
 DoorStuck doorstuk
 SteamHiss steamhis
 
+DeepFry2 DeepFry2
+$limit DeepFry2 0
+
 AcidMelt acidmelt
 $limit AcidMelt 0
 

@@ -19,6 +19,7 @@ actor BlastBolt : SH_BasePlayerFastProjectile
 	
 	PROJECTILE
 	+FORCEPAIN
+	+BLOODSPLATTER
 	-ACTIVATEIMPACT // Hack below covers this.
 	
 	var int user_falloff;
@@ -43,8 +44,76 @@ actor BlastBolt : SH_BasePlayerFastProjectile
 		Death:
 			SPAR A 0 A_CustomBulletAttack(0, 0, 1, 0, "SigilHitscanHax", 32, CBAF_AIMFACING | CBAF_EXPLICITANGLE | CBAF_NORANDOM)
 			SPAR A 0 A_SetTranslucent(1.0, 0)
+			SPAR AAAAAA 0 A_SpawnItemEx("BlasterSpark", 0, 0, 0, frandom(2.0, 6.0), 0.0, frandom(1.0, 4.0), frandom(-180, 180), SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 128)
 			SPAR ABCDEF 2 BRIGHT
 			Stop
+	}
+}
+
+actor BlasterSpark
+{
+	Radius 2
+	Height 2
+	RenderStyle Add
+	Alpha 1.0
+	Gravity 0.5
+	
+	var int user_timer;
+	
+	Projectile
+	+NEVERADJUSTSPRITECLIPPING
+	+FORCEYBILLBOARD
+	+CLIENTSIDEONLY
+	+THRUACTORS
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			SPAR G 0 NoDelay A_SetScale(scalex+frandom(-0.25, 0.0))
+			SPAR G 0 A_SetUserVar("user_timer", 0)
+			SPAR G 0 A_Jump(128, "SparkAnim1", "SparkAnim2", "SparkAnim3")
+			goto Check
+		Recheck:
+			SPAR G 0 A_SetUserVar("user_timer", user_timer+1)
+			SPAR G 0 A_JumpIf(user_timer < 10, "Check")
+			SPAR G 0 A_SetScale(scalex*frandom(0.75, 1.0))
+			SPAR G 0 A_JumpIf(scalex <= 0.125, "Death")
+			goto Check
+		Check:
+			SPAR G 0 A_JumpIf(velz > 0.75, "SpawnG")
+			SPAR G 0 A_JumpIf(velz > 0.0, "SpawnH")
+			SPAR G 0 A_JumpIf(velz > -1.0, "SpawnI")
+			SPAR G 0 A_JumpIf(velz > -3.0, "SpawnJ")
+			goto SpawnK
+		
+		SpawnG:
+			SPAR G 1 Bright
+			goto Recheck
+		SpawnH:
+			SPAR H 1 Bright
+			goto Recheck
+		SpawnI:
+			SPAR I 1 Bright
+			goto Recheck
+		SpawnJ:
+			SPAR J 1 Bright
+			goto Recheck
+		SpawnK:
+			SPAR K 1 Bright
+			goto Recheck
+		
+		SparkAnim1:
+			SPAR LMNO 3 Bright
+			stop
+		SparkAnim2:
+			SPAR MNO 4 Bright
+			stop
+		SparkAnim3:
+			SPAR NO 5 Bright
+			stop
+		Death:
+			TNT1 A 0
+			stop
 	}
 }
 
@@ -279,6 +348,7 @@ actor ConcussionBlast : SH_BasePlayerFastProjectile
 	DamageType "MaxExplosion"
 	
 	PROJECTILE
+	+BLOODSPLATTER
 	+FORCERADIUSDMG
 	+FORCEPAIN
 	-ACTIVATEIMPACT
@@ -340,6 +410,7 @@ actor AssaultCannonPlasma : SH_BasePlayerProjectile
 	Scale 0.8
 
 	PROJECTILE
+	+BLOODSPLATTER
 	+FORCEPAIN
 	+FORCERADIUSDMG
 	-ACTIVATEIMPACT
@@ -486,6 +557,7 @@ actor Bullet : SH_BasePlayerFastProjectile
 	DamageType "MaxBlasterBolt"
 
 	PROJECTILE
+	+BLOODSPLATTER
 	-ACTIVATEIMPACT
 	
 	States

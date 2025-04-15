@@ -2592,6 +2592,7 @@ ACTOR Kago : SwarmFly
 	+NOTAUTOAIMED
 	States
 	{
+		NoHealthBar: // Flag
 		Spawn:
 			KAGO FGHG 1 A_Look
 			Goto See

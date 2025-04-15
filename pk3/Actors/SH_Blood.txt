@@ -7,6 +7,7 @@ actor SH_Blood : Blood Replaces Blood
 	Height 1
 	Gravity 0.25
 	Scale 0.75
+	+FORCEXYBILLBOARD
 	+THRUACTORS
 	+NOTRIGGER
 	+NOTELEPORT
@@ -87,18 +88,22 @@ actor SH_BloodDroplet : SH_Blood
 		Bounce.Floor:
 			BLDD A 0 A_SpawnItemEx("SH_BloodSplash", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_TRANSFERSCALE, 0)
 			BLDD A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
+			BLDD A 0 A_ChangeFlag("FORCEYBILLBOARD", true)
+			BLDD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
 			BLDD A 0 A_JumpTo("Splat")
 			stop
 			
 		Bounce.Ceiling:
 			CBLD A 0 A_SetUserVar("user_numdrips", random[drip](4, 10))
 			CBLD A 0 A_ChangeFlag("NOGRAVITY", true)
+			CBLD A 0 A_ChangeFlag("FORCEYBILLBOARD", true)
+			CBLD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
 			CBLD A 0 A_ChangeFlag("MISSILE", false)
 			CBLD A 0 A_ChangeFlag("BOUNCEONCEILINGS", false)
 			CBLD A 0 A_ChangeFlag("BOUNCEONFLOORS", false)
 			CBLD A 0 A_ChangeFlag("DOOMBOUNCE", false)
 			CBLD A 0 A_ChangeFlag("USEBOUNCESTATE", false)
-			BLDD A 0 A_PlaySound("BloodDrip", CHAN_AUTO)
+			CBLD A 0 A_PlaySound("BloodDrip", CHAN_AUTO)
 			CBLD A 0 A_Jump(256, "CeilingSplat1", "CeilingSplat2", "CeilingSplat3")
 			stop
 			
@@ -129,7 +134,9 @@ actor SH_BloodDroplet : SH_Blood
 			"####" LL 1 A_Warp(AAPTR_DEFAULT, 0, 0, (ceilingz-floorz), angle, WARPF_TOFLOOR | WARPF_ABSOLUTEANGLE | WARPF_STOP | WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE)
 			goto StartDripWait
 			
-		StartFall:		
+		StartFall:
+			"####" A 0 A_ChangeFlag("FORCEYBILLBOARD", false)
+			"####" A 0 A_ChangeFlag("FORCEXYBILLBOARD", true)
 			"####" A 0 A_ChangeFlag("NOGRAVITY", false)
 			"####" A 0 A_ChangeFlag("CORPSE", true)
 			"####" A 0 A_SetGravity(0.25) // Just in case...
@@ -221,6 +228,7 @@ actor SH_BloodSplash : SH_Blood
 
 actor SH_BloodDrip : SH_Blood
 {
+	+FORCEYBILLBOARD
 	+CORPSE
 	+MISSILE
 	+CLIENTSIDEONLY
@@ -229,8 +237,10 @@ actor SH_BloodDrip : SH_Blood
 		Spawn:
 			BDRP A 1
 			loop
+		Bounce.Floor:
 		Crash:
 		Death:
+			BDRP A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
 			BDRP A 0 A_PlaySound("BloodDrip", CHAN_AUTO, frandom(0.375, 0.5))
 			BDRP BCDE 2
 			stop
@@ -295,6 +305,36 @@ actor SH_GasterDustParticle : SH_Blood
 			stop
 		Spawn2:
 			BLD4 BCDEFG 3
+			stop
+	}
+}
+
+actor SH_BloodMist : BloodSplatter replaces BloodSplatter
+{
+	Radius 2
+	Height 2
+	RenderStyle Translucent
+	Alpha 0.25
+	+NOINTERACTION
+	+NOGRAVITY
+	+NOCLIP
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	+NEVERADJUSTSPRITECLIPPING
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_Stop
+			TNT1 A 0 A_SetScale(frandom(0.5, 1.0))
+			TNT1 A 0 A_Jump(128, "Animate")
+			TNT1 A 0 A_SetScale(scalex*-1)
+			TNT1 A 0 A_Jump(128, "Animate")
+			TNT1 A 0 A_SetScale(scalex, scaley*-1)
+			goto Animate
+		Animate:
+			PUF4 A 0 A_PlaySound("DeepFry2", CHAN_AUTO, 0.32)
+			PUF4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+			PUF5 A 1
 			stop
 	}
 }
