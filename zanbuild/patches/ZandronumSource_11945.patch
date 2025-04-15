@@ -1,0 +1,53 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744677557 10800
+#      Mon Apr 14 21:39:17 2025 -0300
+# Node ID 7f051ed88dd7f9f82015e7daf98b91d758b19d48
+# Parent  90d822bf8194ff94abe2b18ea780708018a964b7
+# EXP-Topic strikers_stuff
+Backport CheckActorState.
+
+diff -r 90d822bf8194 -r 7f051ed88dd7 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 11 23:21:09 2025 -0300
++++ b/docs/zandronum-history.txt	Mon Apr 14 21:39:17 2025 -0300
+@@ -20,6 +20,7 @@
+ *+	- Added +NEVERADJUSTSPRITECLIPPING, which sets an actor to never adjust the clipping of its sprites to the floor in OpenGL, regardless of the gl_spriteclip setting. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+++	- Backport "CheckActorState" ACS function. [StrikerTheHedgefox]
+ +	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+diff -r 90d822bf8194 -r 7f051ed88dd7 src/p_acs.cpp
+--- a/src/p_acs.cpp	Fri Apr 11 23:21:09 2025 -0300
++++ b/src/p_acs.cpp	Mon Apr 14 21:39:17 2025 -0300
+@@ -5435,6 +5435,9 @@
+ 	// [BB] Out of order ZDoom backport.
+ 	ACSF_Warp = 92,
+ 
++	// [JM] Another out of order backport
++	ACSF_CheckActorState = 99,
++
+ 	/* Zandronum's - these must be skipped when we reach 99!
+ 	-100:ResetMap(0),
+ 	-101 : PlayerIsSpectator(1),
+@@ -7082,6 +7085,19 @@
+ 			break;
+ 		}
+ 
++		// [JM] Out of order backport.
++		case ACSF_CheckActorState:
++		{
++			actor = SingleActorFromTID(args[0], activator);
++			const char* statename = FBehavior::StaticLookupString(args[1]);
++			bool exact = (argCount > 2) ? !!args[2] : false;
++			if (actor && statename)
++			{
++				return (actor->GetClass()->ActorInfo->FindStateByString(statename, exact) != nullptr);
++			}
++			return false;
++		}
++
+ 		// [BL] Skulltag function
+ 		case ACSF_AnnouncerSound:
+ 			if (args[1] == 0)
