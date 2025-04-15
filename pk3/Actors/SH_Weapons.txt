@@ -34,8 +34,15 @@ actor SH_BulletPuff : BulletPuff replaces BulletPuff
 actor SH_PlayerBulletPuff : SH_BulletPuff
 {
 	ThruBits (THRU_SHIELDS)
-	//+ALLOWTHRUFLAGS
-	//+ALLOWTHRUBITS
+	+ALLOWTHRUFLAGS
+	+ALLOWTHRUBITS
+}
+
+actor SH_MiniSentryBulletPuff : SH_BulletPuff
+{
+	ThruBits (THRU_SHIELDS | THRU_PLAYERS)
+	+ALLOWTHRUFLAGS
+	+ALLOWTHRUBITS
 }
 
 // Mighty boot thing.
