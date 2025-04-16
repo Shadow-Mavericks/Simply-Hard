@@ -110,6 +110,15 @@ $limit Max/FlakFire 0
 $limit Max/FlakAlt 0
 $limit Max/FlakBallExplosion 0
 
+Max/FlakShardFizzle FLAKDETH
+$limit Max/FlakShardFizzle 0
+
+Max/FlakShardBounce1 FLAKRIC1
+Max/FlakShardBounce2 FLAKRIC2
+$random Max/FlakShardBounce { Max/FlakShardBounce1 Max/FlakShardBounce2 }
+$limit Max/FlakShardBounce 0
+$volume Max/FlakShardBounce 0.5
+
 Max/FlakBallBounce1 FLAKRIC3
 Max/FlakBallBounce2 FLAKRIC4
 $limit Max/FlakBallBounce1 0

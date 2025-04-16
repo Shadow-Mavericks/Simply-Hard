@@ -327,8 +327,84 @@ actor FlakBall : MortarNade
 			TNT1 A 0 Bright A_Quake (1, 6, 0, 75 * DARKFORCES_RAD_MULT, "") 
 			TNT1 A 0 Bright A_Quake (2, 6, 0, 50 * DARKFORCES_RAD_MULT, "") 
 			TNT1 A 0 Bright A_Quake (4, 6, 0, 25 * DARKFORCES_RAD_MULT, "") 
-			PEXP A 3 bright A_Explode(64 * DARKFORCES_DMG_MULT, 25 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
+			PEXP A 3 bright A_Explode(75 * DARKFORCES_DMG_MULT, 25 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
 			PEXP BCDEFGHI 2 bright
+			stop
+	}
+}
+
+actor FlakShard
+{
+	Radius 2
+	Height 2
+	projectile
+	+NOGRAVITY
+	+SKYEXPLODE
+	+BLOODSPLATTER
+	+FORCEXYBILLBOARD
+	+EXTREMEDEATH
+	+USEBOUNCESTATE
+	+RIPPER
+	-BLOODLESSIMPACT
+	obituary "%o was ripped to shreds by %k's flak."
+	BounceType Hexen
+	BounceCount 3
+	ReactionTime 20
+	Speed 50
+	DamageType "MaxExplosion"
+	Damage (15 * DARKFORCES_DMG_MULT)
+	Gravity 0.5
+	Scale 0.4
+	BounceSound "Max/FlakShardBounce"
+	var int user_timer;
+	States
+	{
+	Spawn:
+		SHR1 A 0
+		SHR1 A 1 BRIGHT //A_SpawnItemEX("FlakTrail", 0, 0, 0, MOMX/4.0, MOMY/4.0, MOMZ/4.0, 0, SXF_CLIENTSIDE | SXF_ABSOLUTEMOMENTUM, 0)
+		SHR1 A 0 BRIGHT A_ChangeFlag("EXTREMEDEATH", 0)
+		SHR1 B 1 BRIGHT
+		SHR1 B 0 BRIGHT A_ChangeFlag("RIPPER", 0)
+		SHR1 CDEF 1 BRIGHT
+		goto Fly
+	Fly:
+		SHR1 ABCDEF 1 BRIGHT //A_SpawnItemEX("FlakTrail", 0, 0, 0, MOMX/4.0, MOMY/4.0, MOMZ/4.0, 0, SXF_CLIENTSIDE | SXF_ABSOLUTEMOMENTUM, 0)
+		loop
+	Bounce:
+		SHR1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+		SHR1 A 0 A_ChangeFlag("EXTREMEDEATH", 0)
+		SHR1 A 0 A_ChangeFlag("RIPPER", 0)
+		SHR1 A 0 A_ChangeFlag("USEBOUNCESTATE", 0)
+		SHR2 AABBCC 1 BRIGHT //A_SpawnItemEX("FlakPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+		SHR3 AABBCC 1
+		goto Cooled
+	Cooled:
+		SHRP LLLMMMNNN 1 //A_SpawnItemEX("FlakPuff", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+		METL E 0 A_SetUserVar("user_timer", user_timer+1)
+		METL E 0 A_JumpIf(user_timer >= 70, "Death")
+		loop
+	XDeath:
+		TNT1 A 0
+		TNT1 A 1
+		stop
+	Death:
+		TNT1 A 0 A_Stop
+		TNT1 A 0 A_NoGravity
+		TNT1 A 0 A_PlaySound("Max/FlakShardFizzle", CHAN_AUTO, 0.25)
+		TNT1 AAAAAAAAAA 2 A_SpawnItemEX("FlakFizzle", 0, 0, 0, frandom(-1.0,-1.0), frandom(-1.0,-1.0), frandom(-1.0,-1.0), frandom(-180.0,180.0), SXF_CLIENTSIDE, 0)
+		stop
+	}
+}
+
+actor FlakFizzle : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.16
+	States
+	{
+		Spawn:
+			PEXP ABCDEFGHI 1 Bright
 			stop
 	}
 }
@@ -600,8 +676,8 @@ actor MortarGun : SH_Weapon
 
 	Weapon.SelectionOrder 7
 	Weapon.AmmoUse1 1
-	Weapon.AmmoType "RoketAmmo"
-	Weapon.AmmoGive 0 // Handled in ACS
+	Weapon.AmmoType1 "RoketAmmo"
+	Weapon.AmmoGive1 0 // Handled in ACS
 	Weapon.UpSound "Max/WepRaise"
 	Weapon.Kickback 300
 	Weapon.BobStyle "InverseSmooth"
@@ -612,6 +688,9 @@ actor MortarGun : SH_Weapon
 	
 	Weapon.ViewPitchStyle "Centered"
 	Weapon.ViewPitchOffset 24
+	
+	Weapon.PowerupItem "Tier5upgradetoken"
+	Weapon.SisterWeapon "GolanArmsFC1"
 	
 	Inventory.Pickupmessage "Mortar Gun"
 	Inventory.ForbiddenTo "Fiend"
@@ -625,22 +704,18 @@ actor MortarGun : SH_Weapon
 	States
 	{
 		Ready:
-			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldReady")
-			MORT A 1 A_WeaponReady(WRF_NOSECONDARY)
+			MORT A 1 A_WeaponReady
 			loop
 		Deselect:
-			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldDeselect")
 			MORT A 1 A_Lower
 			TNT1 AA 0 A_Lower
 			loop
 		Select:
-			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldSelect")
 			MORT A 1 A_Raise
 			TNT1 AA 0 A_Raise
 			loop
 		Fire:
 			MORT B 0 A_JumpIfNoAmmo("DryFire")
-			MORT B 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldFire")
 			MORT B 0 A_PlaySound ("Max/MortarFire", CHAN_WEAPON)
 			MORT B 0 A_FireCustomMissile("Mortarnade", 0, CallACS("SUPERCHARGE_CHECK"), 5)
 			MORT B 12 bright A_GunFlash
@@ -649,54 +724,75 @@ actor MortarGun : SH_Weapon
 			MORT A 0 A_ReFire
 			Goto Ready
 		DryFire:
-			MORT A 0 A_JumpIfInventory("Tier5upgradetoken", 1, "GoldDryFire")
 			MORT A 0 A_PlaySound("Max/MortarDryFire", CHAN_WEAPON)
 			MORT A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 			MORT A 0 A_Refire
 			goto Ready
-	//	AltFire:
-	//		MORT B 0 A_PlaySound ("Max/mortarfire")
-	//		TNT1 A 0 A_FireCustomMissile("Mortarbouncenade",1,1,0)
-	//		MORT B 18 bright A_GunFlash
-	//		MORT C 6 A_PlaySound ("Max/mortarload")
-	//		MORT D 6
-	//		MORT A 12
-	//		MORT A 2 A_ReFire
-	//		Goto Ready
 		Flash:
 			TNT1 A 0 BRIGHT A_Light2
 			TNT1 A 6 A_SetPitch(pitch-2.0, 0)	
 			TNT1 A 0 BRIGHT A_Light1
 			TNT1 AAAAAAAA 1 bright A_SetPitch(pitch+0.25, 0)
 			goto LightDone
-		
-		GoldReady:
-			FC1G A 1 A_WeaponReady(WRF_NOSECONDARY)
+			
+		Spawn:
+			MOGU A -1
+			Stop
+	}
+}
+
+actor GolanArmsFC1 : MortarGun
+{
+	Tag "Golan Arms FC-1 (Tier 5 Upgrade)"
+	
+	Weapon.AmmoUse2 1
+	Weapon.AmmoType2 "RoketAmmo"
+	Weapon.AmmoGive2 0 // Handled in ACS
+	
+	Weapon.SisterWeapon "MortarGun"
+	+WEAPON.POWERED_UP
+	
+	States
+	{
+		Ready:
+			FC1G A 1 A_WeaponReady
 			loop
-		GoldDeselect:
+		Deselect:
 			FC1G A 1 A_Lower
 			FC1G AA 0 A_Lower
 			loop
-		GoldSelect:
+		Select:
 			FC1G A 1 A_Raise
 			FC1G AA 0 A_Raise
 			loop
-		GoldFire:
+		Fire:
+			FC1G A 0 A_JumpIfNoAmmo("DryFire")
+			FC1G A 0 A_PlaySound ("Max/FlakFire", CHAN_WEAPON)
+			FC1G AAAA 0 A_FireCustomMissile("FlakShard", frandom(-5.0, 5.0), false, 4, 0, 0, frandom(-2.0, 3.0))
+			FC1G A 0 A_FireCustomMissile("FlakShard", frandom(-5.0, 5.0), CallACS("SUPERCHARGE_CHECK"), 4, 0, 0, frandom(-2.0, 3.0))
+			FC1G A 0 A_Quake (1.0, 6, 0, 64, "")
+			FC1G A 3 bright	A_GunFlash("Flash")
+			FC1G BCDE 3
+			FC1G A 9 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+			FC1G A 0 A_ReFire
+			Goto Ready
+		AltFire:
+			FC1G A 0 A_JumpIfNoAmmo("DryFire")
 			FC1G A 0 A_PlaySound ("Max/FlakAlt", CHAN_WEAPON)
 			FC1G A 0 A_FireCustomMissile("FlakBall", frandom(1.0, 3.5), CallACS("SUPERCHARGE_CHECK"), 2)
 			FC1G A 0 A_FireCustomMissile("FlakBall", frandom(-1.0, -3.5), CallACS("SUPERCHARGE_CHECK"), 8)
 			FC1G A 0 A_Quake (1.0, 6, 0, 64, "")
-			FC1G A 3 bright	A_GunFlash("GoldFlash")
+			FC1G A 3 bright	A_GunFlash("Flash")
 			FC1G BCDE 3
 			FC1G A 9 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
 			FC1G A 0 A_ReFire
-			Goto GoldReady
-		GoldDryFire:
+			Goto Ready
+		DryFire:
 			FC1G A 0 A_PlaySound("Max/MortarDryFire", CHAN_WEAPON)
 			FC1G A 18 A_WeaponReady(WRF_NOBOB | WRF_NOFIRE)
 			FC1G A 0 A_Refire
-			goto GoldReady
-		GoldFlash:
+			goto Ready
+		Flash:
 			FC1F A 0 Bright A_SetPitch(pitch-3.0)
 			FC1F A 1 Bright A_Light1
 			FC1F B 1 Bright A_Light2
@@ -704,10 +800,6 @@ actor MortarGun : SH_Weapon
 			FC1F C 0 Bright A_Light0
 			TNT1 AAAAAAAAAAAA 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
 			goto LightDone
-			
-		Spawn:
-			MOGU A -1
-			Stop
 	}
 }
 
@@ -1206,14 +1298,14 @@ actor FusionCutter : SH_Weapon
 		GoldFire5:
 			TNT1 A 0 A_JumpIfInventory("CutterBarrelTracker", 5, "GoldFire6")
 			FUS2 D 0 A_PlaySound ("Max/Goob", CHAN_WEAPON)
-			FUS2 D 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
-			FUS2 D 0 bright A_GunFlash
+			FUS2 D 0 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), 4, -2, 0)
+			FUS2 D 4 bright A_GunFlash
 			FUS2 A 4 A_GiveInventory ("CutterBarrelTracker", 1)
 			FUS2 A 1 A_ReFire
 			Goto Ready
 		GoldFire6:
 			FUS2 C 0 A_PlaySound ("Max/Goob")
-			FUS2 C 4 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
+			FUS2 C 0 bright A_FireCustomMissile ("GoobBlast", 0, CallACS("SUPERCHARGE_CHECK"), -5, -1, 0)
 			FUS2 C 4 bright A_GunFlash
 			FUS2 A 4 A_TakeInventory ("CutterBarrelTracker", 5)
 			FUS2 A 1 A_ReFire
