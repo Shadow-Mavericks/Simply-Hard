@@ -1378,7 +1378,7 @@ actor Autogun : SH_Weapon
 	}
 }
 
-actor DFPistol : SH_Weapon
+actor BryarPistol : SH_Weapon
 {
 	Tag "K-16 Bryar Pistol"
 	obituary "%o couldn't handle %k's blaster pistol"
@@ -1445,12 +1445,12 @@ actor DFPistol : SH_Weapon
 	}
 }
 
-actor DL44 : DFPistol
+actor DL44 : BryarPistol
 {
 	Tag "BlasTech DL-44 (Tier 1 Upgrade)"
 	obituary "%o was Han Solo'd by %k."
 	
-	Weapon.SisterWeapon "DFPistol"
+	Weapon.SisterWeapon "BryarPistol"
 	
 	+WEAPON.POWERED_UP
 	
@@ -1483,7 +1483,7 @@ actor DL44 : DFPistol
 	}
 }
 
-actor DFBlaster : SH_Weapon
+actor E11 : SH_Weapon
 {
 	Tag "BlasTech E-11"
 	obituary "%o was blasted away by %k's E-11 rifle"
@@ -1548,11 +1548,11 @@ actor DFBlaster : SH_Weapon
 	}
 }
 
-actor E-11DCarbine : DFBlaster
+actor E-11DCarbine : E11
 {
 	Tag "BlasTech E-11D Carbine (Tier 2 Upgrade)"
 
-	Weapon.SisterWeapon "DFBlaster"
+	Weapon.SisterWeapon "E11"
 	
 	+WEAPON.POWERED_UP
 	States

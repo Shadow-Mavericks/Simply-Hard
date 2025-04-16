@@ -425,15 +425,15 @@ actor MaximusPrime : SH_BasePlayer
 	Player.SoundClass "MaximusPrime"
 	
 	Player.StartItem "PlayerCheckHax", 1
-	Player.StartItem "DFPistol"
+	Player.StartItem "BryarPistol"
 	Player.StartItem "DFFist"
 	Player.StartItem "DF_EnergyUnit", 100
 	Player.StartItem "MaxToken"
 	Player.Startitem "MaxShield100", 1
 	
 	Player.WeaponSlot 1, "Lightsaber", "DFFist"
-	Player.WeaponSlot 2, "DFPistol"
-	Player.WeaponSlot 3, "DFBlaster"
+	Player.WeaponSlot 2, "BryarPistol"
+	Player.WeaponSlot 3, "E11"
 	Player.WeaponSlot 4, "Autogun"
 	Player.WeaponSlot 5, "FusionCutter"
 	Player.WeaponSlot 6, "MortarGun"

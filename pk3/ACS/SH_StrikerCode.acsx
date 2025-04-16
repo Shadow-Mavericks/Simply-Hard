@@ -2157,7 +2157,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				}
 				else
 				{
-					weapon_class = "DFBlaster";
+					weapon_class = "E11";
 					ammo1_class = "DF_EnergyUnit";
 					ammo1_amount = 15;
 				}
@@ -2223,7 +2223,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			{
 				if(!dropped)
 				{
-					weapon_class = "DFBlaster";
+					weapon_class = "E11";
 					ammo1_class = "DF_EnergyUnit";
 					ammo1_amount = 15;
 				}
