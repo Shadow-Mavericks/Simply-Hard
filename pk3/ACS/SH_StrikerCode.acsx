@@ -202,9 +202,20 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 	}
 }
 
+
+// Kill script, for things like orbs, lives, and box drops.
 int timeOfLastLifeDrop;
 int numLivesSpawned;
-// Kill script, for things like orbs, lives, and box drops.
+
+script "QUEUE_FOR_DELETION" (void)
+{
+	if(PlayerNumber() != -1) // Don't do this to players.
+		terminate;
+
+	Delay(1);
+	Thing_Remove(0);
+}
+
 script "ON_KILL" KILL
 {
 	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
@@ -216,10 +227,12 @@ script "ON_KILL" KILL
 
 	// Get some properties of our monster.
 	str Class = GetActorClass(0);
-	int Health = GetActorProperty(0, APROP_SpawnHealth);
+	int SpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
+	int DeathHealth = GetActorProperty(0, APROP_Health);
 	int Height = GetActorProperty(0, APROP_Height);
 	int Damage = GetActorProperty(0, APROP_Damage);
-
+	str DamageType = GetActorProperty(0, APROP_DamageType);
+	
 	// Base velocities for Orbs
 	int HOrbSpeed = max(GetActorProperty(0, APROP_Radius) / 4, 6.0);
 	int VOrbSpeed = max(Height/6, 6.0);
@@ -229,11 +242,11 @@ script "ON_KILL" KILL
 	if(GetCVar("sh_orbs_logarithmic"))
 	{
 		// Base Multiplier * Health / (Health + Speed of Deminishing Return)
-		NumOrbs = 50 * Health / (Health + 1500); // Calculate number of Orbs.
+		NumOrbs = 50 * SpawnHealth / (SpawnHealth + 1500); // Calculate number of Orbs.
 	}
 	else
 	{
-		NumOrbs = Health/40;
+		NumOrbs = SpawnHealth/40;
 	}
 
 	// Certain flags add a bonus.
@@ -274,19 +287,19 @@ script "ON_KILL" KILL
 		}
 		else
 		{
-			if(Health >= 6000) // 100%
+			if(SpawnHealth >= 6000) // 100%
 				doLifeSpawn = 1;
-			else if(Health >= 5000 && lifeRandom <= 150) // 75%
+			else if(SpawnHealth >= 5000 && lifeRandom <= 150) // 75%
 				doLifeSpawn = 1;
-			else if(Health >= 4000 && lifeRandom <= 100) // 50%
+			else if(SpawnHealth >= 4000 && lifeRandom <= 100) // 50%
 				doLifeSpawn = 1;
-			else if(Health >= 3000 && lifeRandom <= 80) // 40%
+			else if(SpawnHealth >= 3000 && lifeRandom <= 80) // 40%
 				doLifeSpawn = 1;
-			else if(Health >= 2500 && lifeRandom <= 20) // 10%
+			else if(SpawnHealth >= 2500 && lifeRandom <= 20) // 10%
 				doLifeSpawn = 1;
-			else if(Health >= 1000 && lifeRandom <= 2) // 1%
+			else if(SpawnHealth >= 1000 && lifeRandom <= 2) // 1%
 				doLifeSpawn = 1;
-			else if(Health >= 500 && lifeRandom <= 1) // 0.5%
+			else if(SpawnHealth >= 500 && lifeRandom <= 1) // 0.5%
 				doLifeSpawn = 1;
 			else
 			{
@@ -319,7 +332,7 @@ script "ON_KILL" KILL
 			numLivesSpawned++;
 			timeOfLastLifeDrop = timer();
 			
-			if(Health >= 8000 && random(0,1)) // Maybe spawn another if health pool is massive.
+			if(SpawnHealth >= 8000 && random(0,1)) // Maybe spawn another if health pool is massive.
 			{
 				lifeTID = UniqueTID (0, 0);
 				SpawnForced("extralifethingy", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), lifeTID, random(0, 255));
@@ -356,7 +369,7 @@ script "ON_KILL" KILL
 	{
 		bool doBoxSpawn = false;
 		int boxRandom = Random(1, 400);
-		int boxChance = Health/40;
+		int boxChance = SpawnHealth/40;
 
 		if(CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))
 			boxChance += 10;
@@ -371,7 +384,7 @@ script "ON_KILL" KILL
 			if(boxRandom <= GetUserVariable(0, "user_manncobox_chance"))
 				doBoxSpawn = true;
 		}
-		else if(boxRandom <= boxChance && Health > 15)
+		else if(boxRandom <= boxChance && SpawnHealth > 15)
 			doBoxSpawn = true;
 
 		if(doBoxSpawn)
@@ -380,16 +393,16 @@ script "ON_KILL" KILL
 			int maxTier = 1;
 			int totalWeight = 0;
 
-			if(Health >= 500) // Tier 2
+			if(SpawnHealth >= 500) // Tier 2
 				maxTier++;
-			if(Health >= 1000) // Tier 3
+			if(SpawnHealth >= 1000) // Tier 3
 				maxTier++;
-			if(Health >= 2500) // Tier 4
+			if(SpawnHealth >= 2500) // Tier 4
 				maxTier++;
-			if(Health >= 4000) // Tier 5
+			if(SpawnHealth >= 4000) // Tier 5
 				maxTier++;
 
-			if(Health < 2500 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
+			if(SpawnHealth < 2500 && (CheckFlag(0, "BOSS") || CheckFlag(0, "BOSSDEATH"))) // If low health enemy is boss, boost.
 				maxTier++;
 
 			if(maxTier > 5)
@@ -398,7 +411,7 @@ script "ON_KILL" KILL
 			// This should make the weight exponentially higher for every 4000 health over 4000.
 			for(i = 0; i < maxTier; i++)
 			{
-				int scale = FixedDiv(Health << 16, 4000.0);
+				int scale = FixedDiv(SpawnHealth << 16, 4000.0);
 				int newWeight = FixedMul((tierWeights[i]*tierWeights[i]) << 16, scale) >> 16;
 				if(newWeight < 1)
 					newWeight = 1;
@@ -427,11 +440,20 @@ script "ON_KILL" KILL
 			}
 		}
 	}
+	
+	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "DONTGIB") && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
+	{
+		if((DeathHealth <= (-SpawnHealth)) || !StrIcmp(DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
+		{
+			GiveInventory("sh_gibspawner", 1);
+			ACS_NamedExecuteAlways("QUEUE_FOR_DELETION", 0);
+		}
+	}
 
 	SetActivatorToTarget(0); // Set activator to the one who killed this monster.
 
 	if(GetCVar("sh_debug_orbs"))
-		log(s:"DEBUG: ", n:0, s:" killed ", s:Class, s:" [", d:Health, s:"] ", s:"Orbs: ", d:NumOrbs);
+		log(s:"DEBUG: ", n:0, s:" killed ", s:Class, s:" [", d:SpawnHealth, s:"] ", s:"Orbs: ", d:NumOrbs);
 }
 
 // Damage Numbers
@@ -1396,6 +1418,26 @@ script "GET_PLASMA_POSITIONS" OPEN CLIENTSIDE
 	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
 }
 
+script "SET_SCALE_TO_OWNER_RADIUS" (void) CLIENTSIDE
+{
+	int oldTID = ActivatorTID();
+	int thisTID = UniqueTID();
+	int thisScaleX = GetActorProperty(0, APROP_ScaleX);
+	int thisScaleY = GetActorProperty(0, APROP_ScaleY);
+	Thing_ChangeTID(0, thisTID);
+	if(SetActivatorToTarget(thisTID))
+	{
+		int ownerRadius = GetActorProperty(0, APROP_Radius);
+		
+		thisScaleX = fixedmul(thisScaleX, ownerRadius);
+		thisScaleY = fixedmul(thisScaleY, ownerRadius);
+		SetActorProperty(thisTID, APROP_ScaleX, thisScaleX);
+		SetActorProperty(thisTID, APROP_ScaleY, thisScaleY);
+	}
+	SetActivator(thisTID);
+	Thing_ChangeTID(thisTID, oldTID);
+}
+
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
 #define GAMEEVENT_SPAWN_RANDOMSPAWNED 2
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
@@ -1414,6 +1456,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			bool victimIsPlayer = (ClassifyActor(0) & ACTOR_PLAYER);
 			bool instantStatusEffect = false;
 			bool inflictorIsMissile = false;
+			int extremeDeathType = 0;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
 			int attackerPlayerNum = -1;
@@ -1440,6 +1483,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				inflictorIsMissile = CheckFlag(0, "MISSILE");
 				instantStatusEffect = CheckActorState(0, "InstantStatus", true);
+				if(CheckFlag(0, "EXTREMEDEATH"))
+					extremeDeathType = 1;
+				else if(CheckFlag(0, "NOEXTREMEDEATH"))
+					extremeDeathType = 2;
 			}
 
 			// Handle damage types (Acid/Fire/Electric/Etc)	
@@ -1530,6 +1577,21 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			if(arg1 > 0)
 			{
 				SetActivator(0, AAPTR_DAMAGE_TARGET);
+				
+				if(arg1 >= victimHealth)
+				{
+					if(extremeDeathType == 1)
+					{
+						TakeInventory("ExtremeDeathHax", 9999);
+						GiveInventory("ExtremeDeathHax", 1);
+					}
+					else if(extremeDeathType == 2)
+					{
+						TakeInventory("ExtremeDeathHax", 9999);
+						GiveInventory("ExtremeDeathHax", 2);
+					}
+				}
+				
 				if(CheckFlag(0, "ISMONSTER") && !attackerIsEnemy)
 				{
 					GiveInventory("DamageTallyHack", arg1);

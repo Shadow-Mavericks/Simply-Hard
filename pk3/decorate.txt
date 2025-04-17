@@ -13,6 +13,12 @@ enum
 	THRU_ENEMIES = (1 << 2),
 };
 
+// Special state flags:
+// NoHealthBar:					// FLAG! - Disables health bars on this enemy.
+// NoGenericGibs:				// FLAG! - Disables generic gib deaths on this enemy.
+// NoAcidMelt:					// FLAG! - Disables acid element corpse melting on this enemy.
+// InstantStatus:				// FLAG! - Makes this projectile inflict status effects instantly, without need of buildup.
+
 #include "actors/SH_BaseActors.txt"
 #include "actors/SH_Hax.txt"
 

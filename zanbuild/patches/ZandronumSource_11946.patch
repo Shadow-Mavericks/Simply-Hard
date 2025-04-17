@@ -1,0 +1,31 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1744866537 10800
+#      Thu Apr 17 02:08:57 2025 -0300
+# Node ID ebc6cb0488eeb311f2e0512e293fa45dc5dc0e6c
+# Parent  7f051ed88dd7f9f82015e7daf98b91d758b19d48
+# EXP-Topic strikers_stuff
+Allow SXF_SETMASTER to work on non-monsters.
+
+diff -r 7f051ed88dd7 -r ebc6cb0488ee src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Mon Apr 14 21:39:17 2025 -0300
++++ b/src/thingdef/thingdef_codeptr.cpp	Thu Apr 17 02:08:57 2025 -0300
+@@ -2444,7 +2444,6 @@
+ 			{
+ 				// If this is a monster transfer all friendliness information
+ 				mo->CopyFriendliness(originator, true);
+-				if (flags & SIXF_SETMASTER) mo->master = originator;	// don't let it attack you (optional)!
+ 			}
+ 			else if (originator->player)
+ 			{
+@@ -2470,6 +2469,10 @@
+ 		// If this is a missile or something else set the target to the originator
+ 		mo->target = originator ? originator : self;
+ 	}
++	if (flags & SIXF_SETMASTER)
++	{
++		mo->master = originator;
++	}
+ 	if (flags & SIXF_TRANSFERSCALE)
+ 	{
+ 		mo->scaleX = self->scaleX;

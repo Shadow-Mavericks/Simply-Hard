@@ -29,7 +29,7 @@ actor NullHax
 	}
 }
 
-actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
+actor SH_BaseHax : Inventory
 {
 	Inventory.Amount 1
 	Inventory.MaxAmount 9999
@@ -42,30 +42,16 @@ actor LifeTrackerHack : Inventory // Hack to track lives in SBARINFO.
 	-INVENTORY.INTERHUBSTRIP
 }
 
-actor DamageTallyHack : Inventory // Hack to track damage for numbers.
+actor LifeTrackerHack : SH_BaseHax // Hack to track lives in SBARINFO.
 {
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
 }
 
-actor SpecialHax : Inventory // General purpose hack for monsters & items.
+actor DamageTallyHack : SH_BaseHax // Hack to track damage for numbers.
 {
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
+}
+
+actor SpecialHax : SH_BaseHax // General purpose hack for monsters & items.
+{
 }
 
 actor DualFireHax : SH_BaseToken { } // Used for dual wielding fire.
@@ -93,17 +79,12 @@ actor PlayerCheckHax : SH_BaseToken // Useful for A_JumpIfInTargetInventory
 	Inventory.InterHubAmount 1
 }
 
-actor WhoFrozeMeHax : Inventory // Hack to check who froze this actor.
+actor WhoFrozeMeHax : SH_BaseHax // Hack to check who froze this actor.
 {
-	Inventory.Amount 1
-	Inventory.MaxAmount 9999
-	Inventory.InterHubAmount 9999
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.UNDROPPABLE
-	+INVENTORY.UNTOSSABLE
-	+INVENTORY.HUBPOWER
-	+INVENTORY.PERSISTENTPOWER
-	-INVENTORY.INTERHUBSTRIP
+}
+
+actor ExtremeDeathHax : SH_BaseHax // Hack to pass EXTREMEDEATH flag to generic gib code.
+{
 }
 
 actor PowerMaxHUDBlinkHax : Powerup { }

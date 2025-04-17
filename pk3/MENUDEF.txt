@@ -174,6 +174,7 @@ OptionMenu "CreditSprites"
 	
 	StaticText "HDoomGuy/Mike12", 1
 	StaticText "NightmareGore Blood Spurts & Wall Decals"
+	StaticText "NightmareGore Gibs"
 	StaticText ""
 	
 	StaticText "DBThanatos", 1

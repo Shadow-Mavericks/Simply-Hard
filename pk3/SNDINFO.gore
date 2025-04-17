@@ -11,3 +11,19 @@ BloodDrip1 DSBLUD01
 BloodDrip2 DSBLUD02
 $random BloodDrip { BloodDrip1 BloodDrip2 }
 $limit BloodDrip 0
+
+GibBounce1 gibbnce1
+GibBounce2 gibbnce2
+GibBounce3 gibbnce3
+GibBounce4 gibbnce4
+$random GibBounce { GibBounce1 GibBounce2 GibBounce3 GibBounce4 }
+$limit GibBounce 0
+$volume GibBounce 0.25
+
+GibLand1 dsflesh1
+GibLand2 dsflesh2
+GibLand3 dsflesh3
+GibLand4 dsflesh4
+$random GibLand { GibLand1 GibLand2 GibLand3 GibLand4 }
+$limit GibLand 0
+$volume GibLand 0.5
