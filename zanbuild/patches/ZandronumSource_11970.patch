@@ -1,0 +1,35 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1744970669 10800
+#      Fri Apr 18 07:04:29 2025 -0300
+# Node ID 30e122fe991b5047090d50583033c0e5ec87d001
+# Parent  42ef7fed5946b8b7f967e0819d3e374d3cea8001
+# EXP-Topic strikers_stuff
+Pass AMBUSH, FRIENDLY, STEALTH, DORMANT, and STANDSTILL flags down to actors.
+
+diff -r 42ef7fed5946 -r 30e122fe991b docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 18 06:21:37 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 18 07:04:29 2025 -0300
+@@ -20,6 +20,7 @@
+ *+	- Added +NEVERADJUSTSPRITECLIPPING, which sets an actor to never adjust the clipping of its sprites to the floor in OpenGL, regardless of the gl_spriteclip setting. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+++	- Made RandomSpawners pass AMBUSH, FRIENDLY, STEALTH, DORMANT, and STANDSTILL flags down to the actor if set via scripts. [StrikerTheHedgefox]
+ +	- Backport "CheckActorState" ACS function. [StrikerTheHedgefox]
+ +	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+diff -r 42ef7fed5946 -r 30e122fe991b src/g_shared/a_randomspawner.cpp
+--- a/src/g_shared/a_randomspawner.cpp	Fri Apr 18 06:21:37 2025 -0300
++++ b/src/g_shared/a_randomspawner.cpp	Fri Apr 18 07:04:29 2025 -0300
+@@ -152,6 +152,11 @@
+ 		else newmobj = Spawn(cls, x, y, z, NO_REPLACE);
+ 		if (newmobj != NULL)
+ 		{
++			// [JM] Pass down certain flags if set on randomspawner via script.
++			newmobj->flags |= (flags & (MF_AMBUSH | MF_FRIENDLY | MF_STEALTH));
++			newmobj->flags2 |= (flags2 & (MF2_DORMANT));
++			newmobj->flags4 |= (flags4 & (MF4_STANDSTILL));
++
+ 			// copy everything relevant
+ 			newmobj->SpawnAngle = newmobj->angle = angle;
+ 			newmobj->SpawnPoint[2] = SpawnPoint[2];

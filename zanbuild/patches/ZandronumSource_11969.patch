@@ -1,0 +1,61 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1744968097 10800
+#      Fri Apr 18 06:21:37 2025 -0300
+# Node ID 42ef7fed5946b8b7f967e0819d3e374d3cea8001
+# Parent  790d5caff9455019c872942017064b830d45f51d
+# EXP-Topic strikers_stuff
+Backport APROP_DamageType.
+
+diff -r 790d5caff945 -r 42ef7fed5946 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 18 06:20:10 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 18 06:21:37 2025 -0300
+@@ -23,6 +23,7 @@
+ +	- Backport "CheckActorState" ACS function. [StrikerTheHedgefox]
+ +	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+++	- Backport APROP_DamageType. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+ +	- Added APROP_Special, and APROP_Args0-4 to Get/Set/CheckActorProperty. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+diff -r 790d5caff945 -r 42ef7fed5946 src/p_acs.cpp
+--- a/src/p_acs.cpp	Fri Apr 18 06:20:10 2025 -0300
++++ b/src/p_acs.cpp	Fri Apr 18 06:21:37 2025 -0300
+@@ -4899,6 +4899,10 @@
+ 			SERVERCOMMANDS_SetThingProperty( actor, APROP_StencilColor );
+ 		break;
+ 
++	case APROP_DamageType: // [JM] Backport
++		actor->DamageType = FBehavior::StaticLookupString(value);
++		break;
++
+ 	case APROP_Special: // [JM]
+ 		actor->special = value;
+ 		break;
+@@ -5009,6 +5013,7 @@
+ 	case APROP_Species:		return GlobalACSStrings.AddString(actor->GetSpecies());
+ 	case APROP_NameTag:		return GlobalACSStrings.AddString(actor->GetTag());
+ 	case APROP_StencilColor:return actor->fillcolor;
++	case APROP_DamageType:	return GlobalACSStrings.AddString(actor->DamageType.GetChars()); // [JM] Backport
+ 
+ 	case APROP_Special:		return actor->special; // [JM]
+ 	case APROP_Args0:		return actor->args[0]; // [JM]
+@@ -5092,6 +5097,7 @@
+ 		case APROP_ActiveSound:	string = actor->ActiveSound; break; 
+ 		case APROP_Species:		string = actor->GetSpecies(); break;
+ 		case APROP_NameTag:		string = actor->GetTag(); break;
++		case APROP_DamageType:	string = actor->DamageType.GetChars(); break; // [JM] Backport.
+ 	}
+ 	if (string == NULL) string = "";
+ 	return (!stricmp(string, FBehavior::StaticLookupString(value)));
+diff -r 790d5caff945 -r 42ef7fed5946 src/p_acs.h
+--- a/src/p_acs.h	Fri Apr 18 06:20:10 2025 -0300
++++ b/src/p_acs.h	Fri Apr 18 06:21:37 2025 -0300
+@@ -423,6 +423,7 @@
+ 	APROP_ViewHeight	= 39,
+ 	APROP_AttackZOffset	= 40,
+ 	APROP_StencilColor	= 41,
++	APROP_DamageType	= 46, // [JM] Backport
+ 	APROP_Special		= 200, // [JM] Reserving some space.
+ 	APROP_Args0			= 201, // [JM]
+ 	APROP_Args1			= 202, // [JM]

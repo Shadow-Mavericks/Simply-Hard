@@ -1,0 +1,85 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1744968010 10800
+#      Fri Apr 18 06:20:10 2025 -0300
+# Node ID 790d5caff9455019c872942017064b830d45f51d
+# Parent  17013ea1eae4ee3dc6ba535ef61f5f1fdc0f55b7
+# EXP-Topic strikers_stuff
+Add APROP_Special and APROP_Args0-4.
+
+diff -r 17013ea1eae4 -r 790d5caff945 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 18 03:32:43 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 18 06:20:10 2025 -0300
+@@ -24,6 +24,7 @@
+ +	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+++	- Added APROP_Special, and APROP_Args0-4 to Get/Set/CheckActorProperty. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
+ +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
+diff -r 17013ea1eae4 -r 790d5caff945 src/p_acs.cpp
+--- a/src/p_acs.cpp	Fri Apr 18 03:32:43 2025 -0300
++++ b/src/p_acs.cpp	Fri Apr 18 06:20:10 2025 -0300
+@@ -4899,6 +4899,18 @@
+ 			SERVERCOMMANDS_SetThingProperty( actor, APROP_StencilColor );
+ 		break;
+ 
++	case APROP_Special: // [JM]
++		actor->special = value;
++		break;
++
++	case APROP_Args0: // [JM]
++	case APROP_Args1: // [JM]
++	case APROP_Args2: // [JM]
++	case APROP_Args3: // [JM]
++	case APROP_Args4: // [JM]
++		actor->args[property - APROP_Args0] = value;
++		break;
++
+ 	default:
+ 		// do nothing.
+ 		break;
+@@ -4998,6 +5010,13 @@
+ 	case APROP_NameTag:		return GlobalACSStrings.AddString(actor->GetTag());
+ 	case APROP_StencilColor:return actor->fillcolor;
+ 
++	case APROP_Special:		return actor->special; // [JM]
++	case APROP_Args0:		return actor->args[0]; // [JM]
++	case APROP_Args1:		return actor->args[1]; // [JM]
++	case APROP_Args2:		return actor->args[2]; // [JM]
++	case APROP_Args3:		return actor->args[3]; // [JM]
++	case APROP_Args4:		return actor->args[4]; // [JM]
++
+ 	default:				return 0;
+ 	}
+ }
+@@ -5044,6 +5063,12 @@
+ 		case APROP_ViewHeight:
+ 		case APROP_AttackZOffset:
+ 		case APROP_StencilColor:
++		case APROP_Special: // [JM]
++		case APROP_Args0: // [JM]
++		case APROP_Args1: // [JM]
++		case APROP_Args2: // [JM]
++		case APROP_Args3: // [JM]
++		case APROP_Args4: // [JM]
+ 			return (GetActorProperty(tid, property) == value);
+ 
+ 		// Boolean values need to compare to a binary version of value
+diff -r 17013ea1eae4 -r 790d5caff945 src/p_acs.h
+--- a/src/p_acs.h	Fri Apr 18 03:32:43 2025 -0300
++++ b/src/p_acs.h	Fri Apr 18 06:20:10 2025 -0300
+@@ -423,6 +423,12 @@
+ 	APROP_ViewHeight	= 39,
+ 	APROP_AttackZOffset	= 40,
+ 	APROP_StencilColor	= 41,
++	APROP_Special		= 200, // [JM] Reserving some space.
++	APROP_Args0			= 201, // [JM]
++	APROP_Args1			= 202, // [JM]
++	APROP_Args2			= 203, // [JM]
++	APROP_Args3			= 204, // [JM]
++	APROP_Args4			= 205, // [JM]
+ };	
+ 
+ // [Dusk] Enumeration for GetTeamProperty

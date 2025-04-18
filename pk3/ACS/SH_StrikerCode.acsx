@@ -231,7 +231,6 @@ script "ON_KILL" KILL
 	int DeathHealth = GetActorProperty(0, APROP_Health);
 	int Height = GetActorProperty(0, APROP_Height);
 	int Damage = GetActorProperty(0, APROP_Damage);
-	str DamageType = GetActorProperty(0, APROP_DamageType);
 	
 	// Base velocities for Orbs
 	int HOrbSpeed = max(GetActorProperty(0, APROP_Radius) / 4, 6.0);
@@ -443,7 +442,7 @@ script "ON_KILL" KILL
 	
 	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "DONTGIB") && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
-		if((DeathHealth <= (-SpawnHealth)) || !StrIcmp(DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
+		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorProperty(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
 		{
 			GiveInventory("sh_gibspawner", 1);
 			ACS_NamedExecuteAlways("QUEUE_FOR_DELETION", 0);
@@ -652,11 +651,20 @@ function void multiply_actor(int mult)
 	int radius = GetActorProperty(0, APROP_Radius);
 	int angle = GetActorAngle(0)>>8;
 	
-	bool ambush = CheckFlag(0, "AMBUSH");
-	bool friendly = CheckFlag(0, "FRIENDLY");
-	bool stealth = CheckFlag(0, "STEALTH");
-	bool standstill = CheckFlag(0, "STANDSTILL");
-	bool dormant = CheckFlag(0, "DORMANT");
+	int thingSpecial = GetActorProperty(0, APROP_Special);
+	int thingArg0 = GetActorProperty(0, APROP_Args0);
+	int thingArg1 = GetActorProperty(0, APROP_Args1);
+	int thingArg2 = GetActorProperty(0, APROP_Args2);
+	int thingArg3 = GetActorProperty(0, APROP_Args3);
+	int thingArg4 = GetActorProperty(0, APROP_Args4);
+	
+	//bool ambush = CheckFlag(0, "AMBUSH");
+	//bool friendly = CheckFlag(0, "FRIENDLY");
+	//bool stealth = CheckFlag(0, "STEALTH");
+	//bool standstill = CheckFlag(0, "STANDSTILL");
+	//bool dormant = CheckFlag(0, "DORMANT");
+	
+	int spawnFlags = GetActorProperty(0, APROP_SpawnFlags);
 
 	int thisTID = ActivatorTID();
 	int enemyCount = 1;
@@ -666,7 +674,7 @@ function void multiply_actor(int mult)
 	int spawnAttempts = 0;
 
 	if(GetCVar("sh_debug_spawns"))
-		log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:ambush, s:")");
+		log(s:"Multiplying ", s:GetActorClass(0), s:" (Ambush: ", d:!!(spawnFlags & MTF_AMBUSH), s:")");
 
 	do
 	{
@@ -707,15 +715,13 @@ function void multiply_actor(int mult)
 
 						if(spawnPassed)
 						{
-							SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
-							SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
-							SetActorProperty(uTID, APROP_ReactionTime, random(8, 14));
+							SetActorProperty(uTID, APROP_ReactionTime, random(8, 16));
 
-							ChangeActorFlag(uTID, "FRIENDLY", friendly);
-							ChangeActorFlag(uTID, "STEALTH", stealth);
-							ChangeActorFlag(uTID, "STANDSTILL", standstill);
+							SetActorProperty(uTID, APROP_SpawnFlags, spawnFlags);
 							ChangeActorFlag(uTID, "DROPPED", 0);
 
+							SetThingSpecial(uTID, thingSpecial, thingArg0, thingArg1, thingArg2, thingArg3, thingArg4);
+	
 							Thing_ChangeTID(uTID, thisTID);
 						}
 					}
@@ -763,12 +769,20 @@ function void actor_swap(str replace, str with, int chance)
 		int xvel = GetActorVelX(0);
 		int yvel = GetActorVelY(0);
 		int zvel = GetActorVelZ(0);
+		int spawnFlags = GetActorProperty(0, APROP_SpawnFlags);
 		bool dropped = CheckFlag(0, "DROPPED");
 		bool ambush = CheckFlag(0, "AMBUSH");
 		bool friendly = CheckFlag(0, "FRIENDLY");
 		bool stealth = CheckFlag(0, "STEALTH");
 		bool standstill = CheckFlag(0, "STANDSTILL");
 		bool dormant = CheckFlag(0, "DORMANT");
+		
+		int thingSpecial = GetActorProperty(0, APROP_Special);
+		int thingArg0 = GetActorProperty(0, APROP_Args0);
+		int thingArg1 = GetActorProperty(0, APROP_Args1);
+		int thingArg2 = GetActorProperty(0, APROP_Args2);
+		int thingArg3 = GetActorProperty(0, APROP_Args3);
+		int thingArg4 = GetActorProperty(0, APROP_Args4);
 
 		int success = SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
 		if(success)
@@ -781,6 +795,9 @@ function void actor_swap(str replace, str with, int chance)
 			ChangeActorFlag(uTID, "FRIENDLY", friendly);
 			ChangeActorFlag(uTID, "STEALTH", stealth);
 			ChangeActorFlag(uTID, "STANDSTILL", standstill);
+			
+			SetActorProperty(uTID, APROP_SpawnFlags, spawnFlags);
+			SetThingSpecial(uTID, thingSpecial, thingArg0, thingArg1, thingArg2, thingArg3, thingArg4);
 
 			if(GetCVar("sh_debug_spawns"))
 				log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorProperty(0, APROP_Species), s:")");
