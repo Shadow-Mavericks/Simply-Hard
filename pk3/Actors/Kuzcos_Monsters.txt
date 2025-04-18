@@ -2582,6 +2582,7 @@ ACTOR Kago : SwarmFly
 	BloodColor "aed433"
 	Species "Kago"
 	ActiveSound "KagoIdle"
+	Obituary "%o was nibbled to death by a kago."
 	-SOLID
 	-COUNTKILL
 	+FLOAT
