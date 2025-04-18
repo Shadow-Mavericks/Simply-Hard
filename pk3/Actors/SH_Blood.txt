@@ -537,7 +537,7 @@ actor SH_BouncyGib9 : SH_BouncyGib1
 		Animate:
 			BGB9 ABCDEFG 3 A_SpawnItemEx("SH_BloodDropletTrail", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(0.0, 8.0), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE | SXF_TRANSFERTRANSLATION, 0)
 			loop
-		Death:
+		OnGround:
 			BGB9 A 2100
 			stop
 	}
