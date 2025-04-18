@@ -10336,7 +10336,7 @@ ACTOR RocketImp : SH_BaseMonster //20128
 			RIMP G 2
 			RIMP E 6 A_FaceTarget
 			RIMP W 2 BRIGHT A_CustomMissile("ImpRocket")
-			RIMP F 2
+			RIMP F 2 A_MonsterRefire(128, "See")
 			RIMP G 6 A_FaceTarget
 			RIMP V 2 BRIGHT A_CustomMissile("ImpRocket")
 			RIMP G 2
@@ -10366,7 +10366,7 @@ ACTOR RocketImp : SH_BaseMonster //20128
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,0,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,5,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,10,0,0)
-			RIMP F 2
+			RIMP F 2 
 			RIMP G 6 A_FaceTarget
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,-10,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,-5,0,0)
@@ -10380,7 +10380,7 @@ ACTOR RocketImp : SH_BaseMonster //20128
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,0,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,5,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,10,0,0)
-			RIMP F 2
+			RIMP F 2 A_MonsterRefire(128, "See")
 			RIMP G 6 A_FaceTarget
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,-10,0,0)
 			RIMP W 4 BRIGHT A_CustomMissile("ImpRocket",32,0,-5,0,0)
@@ -10490,7 +10490,7 @@ ACTOR ImpRocket
 {
 	Radius 11
 	Height 8
-	Speed 35
+	Speed 30
 	Damage (5)
 	Projectile
 	+RANDOMIZE
