@@ -443,6 +443,7 @@ ACTOR FastDemon : SH_BaseMonster
 			SARG H 2
 			SARG H 2 A_Pain
 			Goto See
+		XDeath: // Signal to ACS that this is a gibbable monster.
 		Death:
 			SARG I 8
 			SARG J 8 A_Scream
@@ -739,6 +740,7 @@ ACTOR HARDCyberdemon
 			CYBR E 12 A_FaceTarget
 			CYBR F 12 Bright A_CustomMissile ("Rawket",40,-27, random(-12, 12))
 			CYBR E 24 A_FaceTarget
+			CYBR E 0 A_MonsterRefire(64, "See")
 			CYBR F 6 Bright A_CustomMissile ("Crocket",40,-27, random(-12, 12))
 			CYBR E 6 A_FaceTarget
 			CYBR F 6 Bright A_CustomMissile ("Crocket",40,-27, random(-12, 12))
@@ -855,6 +857,7 @@ ACTOR HardHellKnight : BaronOfHell
 			BOS2 H 2
 			BOS2 H 2 A_Pain
 			Goto See
+		XDeath: // Signal to ACS code that we can gib this actor.
 		Death:
 			BOS2 I 8
 			BOS2 J 8 A_Scream
@@ -912,6 +915,7 @@ ACTOR HardArachnotron
 			BSPI I 3
 			BSPI I 3 A_Pain
 			Goto See+1
+		XDeath: // Signal to ACS code that we can gib this actor.
 		Death:
 			BSPI J 20 A_Scream
 			BSPI K 7 A_NoBlocking
@@ -972,6 +976,7 @@ actor HardFatso : SH_BaseMonster
 			FATT J 3
 			FATT J 3 A_Pain
 			Goto See
+		XDeath: // Signal to ACS code that we can gib this actor.
 		Death:
 			FATT K 6
 			FATT L 6 A_Scream

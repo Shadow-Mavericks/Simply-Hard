@@ -142,12 +142,13 @@ ACTOR FiendsCRocket : FiendsRawket //Recolor by Fiend Kitsune
 
 //-----------------------------< Crit Rocket
 
-ACTOR Rawket : Rocket
+ACTOR Rawket : SH_BaseEnemyProjectile
 {
 	Radius 11
 	Height 8
 	Speed 15
 	Damage (40)
+	DamageType "None"
 	Scale 1.5
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"
@@ -173,12 +174,13 @@ ACTOR Rawket : Rocket
 	}
 }
 
-ACTOR CRocket : Rocket //Recolor by Fiend Kitsune
+ACTOR CRocket : SH_BaseEnemyProjectile //Recolor by Fiend Kitsune
 {
 	Radius 11
 	Height 8
 	Speed 20
 	Damage (80)
+	DamageType "None"
 	Scale 1.5
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"

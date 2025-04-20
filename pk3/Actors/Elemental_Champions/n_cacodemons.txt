@@ -46,6 +46,7 @@ actor N_Cacodemon_Base : SH_BaseMonster
 			HEAD E 3 A_Pain
 			HEAD F 6
 			Goto See
+		XDeath: // Signal to ACS code that we can gib this actor.
 		Death:
 			HEAD G 8
 			HEAD H 8 A_Scream

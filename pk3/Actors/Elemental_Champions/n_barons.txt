@@ -39,6 +39,7 @@ ACTOR N_Baron_Base : SH_BaseMonster
 			BOSS H 2
 			BOSS H 2 A_Pain
 			Goto See
+		XDeath: // Signal to ACS code that we can gib this actor.
 		Death:
 			BOSS I 8
 			BOSS J 8 A_Scream

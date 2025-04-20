@@ -440,7 +440,7 @@ script "ON_KILL" KILL
 		}
 	}
 	
-	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "DONTGIB") && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
+	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
 		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorProperty(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
 		{
