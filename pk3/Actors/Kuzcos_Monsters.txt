@@ -2152,8 +2152,9 @@ ACTOR Mastersphere : SH_BaseMonster
 ACTOR Spheredroid : SH_BaseMonster
 {
 	Species "SphereDroid"
-	Health 38
-	PainChance 1
+	Health 32
+	Damage 0
+	PainChance 0
 	Speed 15
 	Radius 20 
 	Height 32 
@@ -2181,7 +2182,7 @@ ACTOR Spheredroid : SH_BaseMonster
 			SPHD A 5 Bright A_Look
 			Loop 
 		See:
-			SPHD A 4 A_chase
+			SPHD A 4 A_Chase
 			loop
 		Missile:
 			SPHD A 4 A_Facetarget
@@ -2194,10 +2195,10 @@ ACTOR Spheredroid : SH_BaseMonster
 			TNT1 A 0 A_SetScale(0.5)
 			TNT1 A 0 A_ScreamAndUnblock
 			TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
-			EXPL A 3 BRIGHT A_Stop
+			EXPL A 2 BRIGHT A_Stop
 			EXPL A 0 BRIGHT A_SetDamageType("MiniSphereBoom")
-			EXPL A 0 BRIGHT A_explode(50,64)
-			EXPL BCDEFGH 3 BRIGHT
+			EXPL A 0 BRIGHT A_explode(32,64)
+			EXPL BCDEFGH 2 BRIGHT
 			Stop 
    } 
 }

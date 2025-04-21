@@ -1661,3 +1661,44 @@ actor Sargasso_Sergeant : SH_BaseMonster
 			goto See
 	}
 }
+
+actor PUSS33_PsychImp : SH_BaseMonster
+{
+	Health 140
+	GibHealth 60
+	Speed 15
+	Radius 20
+	Height 56
+	ReactionTime 8
+	PainChance 90
+	Mass 100
+	BloodColor Green
+	Monster
+	States
+	{
+		Spawn:
+			IMPY A 10 A_Look
+			loop
+		See:
+			IMPY ABCD 3 A_Chase
+			loop
+		Missile:
+			IMPY E 7 A_FaceTarget
+			IMPY F 6
+			IMPY F 1 A_BspiAttack
+			IMPY F 8 A_BspiAttack
+			goto See
+		Pain:
+			IMPY H 3
+			IMPY H 3 A_Pain
+			goto See
+		XDeath: // Use ACS Gibbing
+		Death:
+			IMPY I 8
+			IMPY J 8 A_Scream
+			IMPY K 6 A_Fall
+			IMPY L 3
+			IMPY M -1
+			stop
+	}
+}

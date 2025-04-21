@@ -114,6 +114,9 @@ actor SH_BaseMonster
 {
 	//$Category Monsters
 	
+	Obituary "%o was killed by a monster with no obituary. FIX THIS SHIT!"
+	HitObituary "%o was melee-murdered by a monster with no hit obituary. FIX THIS SHIT!"
+	
 	MONSTER
 	
 	var int user_extralife_chance;

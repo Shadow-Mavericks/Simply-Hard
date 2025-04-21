@@ -172,10 +172,10 @@ Actor NewBlackHole
 	RenderStyle Translucent
 	ReactionTime 15
 	Obituary "%o was consumed by the darkness."
-	+NOCLIP
 	+NODAMAGETHRUST
 	+FORCEXYBILLBOARD
 	+FORCERADIUSDMG
+	+SLIDESONWALLS
 	States
 	{
 	Spawn:
@@ -333,10 +333,10 @@ Actor NewBlackHoleTrap
 	Speed 0
 	Projectile
 	Damagetype "Succ"
-	+NOCLIP
 	+NODAMAGETHRUST
 	+FORCEXYBILLBOARD
 	+FORCERADIUSDMG
+	+SLIDESONWALLS
 	RenderStyle Translucent
 	ReactionTime 7
 	Obituary "%o was consumed by the darkness."

@@ -18,6 +18,7 @@ enum
 	WADCOMPAT_STRANGEAEONS,
 	WADCOMPAT_BTSXE2,
 	WADCOMPAT_PUSS22,
+	WADCOMPAT_PUSS33,
 	WADCOMPAT_VALIANT,
 	WADCOMPAT_SARGASSO,
 };
@@ -180,6 +181,16 @@ function void detect_wads(void)
 		{
 			Log(s:"Sargasso Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_SARGASSO);
+			return;
+		}
+		
+		find_pos = seek_string(lump_data, "Thing 11 (MiniMaster)", 0);
+		find_pos = seek_string(lump_data, "Thing 14 (PlasGuy Spect)", find_pos);
+		find_pos = seek_string(lump_data, "Thing 18 (RocketMan HK)", find_pos);
+		if(find_pos != -1)
+		{
+			Log(s:"PUSS33: Die Rowdy Detected");
+			SetCVar("sh_compat_mode", WADCOMPAT_PUSS33);
 			return;
 		}
 
@@ -1702,6 +1713,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("Zamble", "PUSS22_Ghoul", 256);
 						break;
 					}
+					case WADCOMPAT_PUSS33:
+					{
+						actor_swap("SpeedorSpawner", "PUSS33_PsychImp", 256);
+						break;
+					}
 					case WADCOMPAT_VALIANT:
 					{
 						actor_swap("SuicideBomber", "SH_SuicideBomber", 256);
@@ -2797,3 +2813,9 @@ script "GET_RECOIL_Y" (int tics) CLIENTSIDE
 	SetResultValue(y / tics);
 }
 
+// Other code helpers
+// ------------------
+script "CHECK_SKY" (void) CLIENTSIDE
+{
+	SetResultValue(CheckActorCeilingTexture(0, "F_SKY1"));
+}
