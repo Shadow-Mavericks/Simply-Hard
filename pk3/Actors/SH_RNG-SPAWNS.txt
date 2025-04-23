@@ -253,7 +253,7 @@ Actor SH_RandomArachnotronSpawn : SH_BaseMonsterRandomSpawner
 	Dropitem "Arachnotronmk2"	255 1
 }
 
-actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
+actor SH_RandomFatsoSpawn : SH_BaseMonsterRandomSpawner// replaces Fatso
 {
 	Radius 48
 	Height 64
