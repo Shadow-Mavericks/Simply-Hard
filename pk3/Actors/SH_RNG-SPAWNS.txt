@@ -201,7 +201,7 @@ actor SH_RandomBaronSpawn : SH_BaseMonsterRandomSpawner
 //	DropItem "LordOfHeresy"			255 1  
 }
 
-Actor Cyberpainis : Randomspawner Replaces Cyberdemon
+Actor SH_RandomCyberdemonSpawn : Randomspawner
 {
 	+USESPAWNEVENTSCRIPT
 	Dropitem "Hardcyberdemon"			255 10
@@ -219,7 +219,7 @@ Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 	//Dropitem "FlyingCyberMind"		255 1
 }
 
-actor Painisvile : SH_BaseMonsterRandomSpawner Replaces archvile
+actor SH_RandomArchvileSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -253,7 +253,7 @@ Actor SH_RandomArachnotronSpawn : SH_BaseMonsterRandomSpawner
 	Dropitem "Arachnotronmk2"	255 1
 }
 
-actor SH_RandomFatsoSpawn : SH_BaseMonsterRandomSpawner// replaces Fatso
+actor SH_RandomFatsoSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 48
 	Height 64

@@ -23,7 +23,9 @@ server noarchive string sh_swap_fatso			= "SH_RandomFatsoSpawn";
 server noarchive string sh_swap_spectre			= "SH_RandomSpectreSpawn";
 server noarchive string sh_swap_arachnotron		= "SH_RandomArachnotronSpawn";
 server noarchive string sh_swap_revenant		= "SH_RandomRevenantSpawn";
+server noarchive string sh_swap_cyberdemon		= "SH_RandomCyberdemonSpawn";
 server noarchive string sh_swap_mastermind		= "SH_RandomSpiderMastermindSpawn";
+server noarchive string sh_swap_archvile		= "SH_RandomArchvileSpawn";
 server noarchive string sh_swap_wolfss			= "WolfensteinSS";
 
 local bool sh_debug_spawns = false;

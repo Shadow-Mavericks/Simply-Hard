@@ -96,6 +96,7 @@ function void detect_wads(void)
 			SetCVarString("sh_swap_fatso",			"Mayhem19SludgeMonster");
 			SetCVarString("sh_swap_arachnotron",	"Mayhem19DeathCube");
 			SetCVarString("sh_swap_revenant",		"Mayhem19Vampire");
+			SetCVarString("sh_swap_cyberdemon",		"Mayhem19Minotaur");	
 			SetCVarString("sh_swap_mastermind",		"Mayhem19Spooklord");
 			SetCVarString("sh_swap_hellknight",		"Mayhem19FlyingBrain");
 			SetCVarString("sh_swap_baron",			"AracnorbQueen");
@@ -1721,7 +1722,6 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("HangBNoBrain", "Mayhem19Mummy", 256);			
 						actor_swap("HangTNoBrain", "Mayhem19DeepOne", 256);
 						actor_swap("UnholyBible", "Mayhem19Lich", 256);
-						actor_swap("Cyberpainis", "Mayhem19Minotaur", 256);	
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
@@ -1770,6 +1770,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				actor_swap("BaronOfHell",		GetCVarString("sh_swap_baron"),			256);
 				actor_swap("Arachnotron",		GetCVarString("sh_swap_arachnotron"),	256);
 				actor_swap("Revenant",			GetCVarString("sh_swap_revenant"),		256);
+				actor_swap("Archvile",			GetCVarString("sh_swap_archvile"),		256);
+				actor_swap("Cyberdemon",		GetCVarString("sh_swap_cyberdemon"),	256);
 				actor_swap("SpiderMastermind",	GetCVarString("sh_swap_mastermind"),	256);
 				actor_swap("WolfensteinSS",		GetCVarString("sh_swap_wolfss"),		256);
 			}
