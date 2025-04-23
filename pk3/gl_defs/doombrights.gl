@@ -652,20 +652,6 @@ brightmap sprite pisfa0
 		disablefullbright
 }
 
-brightmap sprite sht2i0
-{
-	map "brightmaps/doom/sht2i0.png"
-	iwad
-		disablefullbright
-}
-
-brightmap sprite sht2j0
-{
-	map "brightmaps/doom/sht2j0.png"
-	iwad
-		disablefullbright
-}
-
 brightmap sprite plsfa0
 {
 	map "brightmaps/doom/plsfa0.png"
