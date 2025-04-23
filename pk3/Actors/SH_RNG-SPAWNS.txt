@@ -1,4 +1,4 @@
-Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
+Actor SH_RandomZombiemanSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -14,7 +14,7 @@ Actor Zamble : SH_BaseMonsterRandomSpawner Replaces zombieman
 	Dropitem "FemalePlasma"			255 5
 }
 
-Actor ShotgunZamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
+Actor SH_RandomShotgunGuySpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -32,7 +32,7 @@ Actor ShotgunZamble : SH_BaseMonsterRandomSpawner Replaces Shotgunguy
 	Dropitem "FemalePlasma"			255 5
 }
 
-Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
+Actor SH_RandomImpSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -54,7 +54,7 @@ Actor Imps : SH_BaseMonsterRandomSpawner Replaces Doomimp
 	Dropitem "BlackHoleImp"			255 2
 }
 
-Actor ChaingunZambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
+Actor SH_RandomChaingunGuySpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -67,7 +67,7 @@ Actor ChaingunZambles : SH_BaseMonsterRandomSpawner replaces Chaingunguy
 	//Dropitem "Uberchain"			255 5
 }
 
-Actor Hardrev : SH_BaseMonsterRandomSpawner replaces Revenant
+Actor SH_RandomRevenantSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
@@ -100,7 +100,7 @@ Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul
 	Dropitem "ForgottenOne"				255 25
 }
 
-Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALALA DED
+Actor SH_RandomDemonSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 30
 	Height 56
@@ -120,7 +120,7 @@ Actor JIHADReplacer : SH_BaseMonsterRandomSpawner Replaces Demon //ALALALALALALA
 	//Dropitem "Flemmeteorite"			255 5
 }
 
-Actor StealthynessDemon : SH_BaseMonsterRandomSpawner Replaces Spectre
+Actor SH_RandomSpectreSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 30
 	Height 56
@@ -139,7 +139,7 @@ Actor StealthynessDemon : SH_BaseMonsterRandomSpawner Replaces Spectre
 	//Dropitem "mawfulmole"					255 1
 }
 
-Actor MeatballSpawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
+Actor SH_RandomCacodemonSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 31
 	Height 56
@@ -159,7 +159,7 @@ Actor MeatballSpawner : SH_BaseMonsterRandomSpawner Replaces cacodemon
 	Dropitem "Chiller"						255 1
 }
 
-Actor PainisElementalSpawner : SH_BaseMonsterRandomSpawner Replaces PainElemental
+Actor SH_RandomPainElementalSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 31
 	Height 56
@@ -170,7 +170,7 @@ Actor PainisElementalSpawner : SH_BaseMonsterRandomSpawner Replaces PainElementa
 	//Dropitem "cacomother" 			255 1
 }
 
-Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
+Actor SH_RandomHellknightSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 24
 	Height 64
@@ -182,6 +182,24 @@ Actor Hellpainis : SH_BaseMonsterRandomSpawner Replaces Hellknight
 	//DropItem "Squire"					255 1
 }
 
+actor SH_RandomBaronSpawn : SH_BaseMonsterRandomSpawner
+{
+	Radius 24
+	Height 64
+	DropItem "HardBaron"			255 10
+	DropItem "Warlordofhell"		255 3
+	DropItem "Cyberbaron"			255 1
+	DropItem "N_Baron_Acid"			255 1
+	DropItem "N_Baron_Void"			255 1
+	DropItem "N_Baron_ice"			255 1
+	DropItem "N_Baron_Fire"			255 1
+	DropItem "N_Baron_Electric"		255 1
+	DropItem "N_Baron_HeavyMetal"	255 1
+	DropItem "Belphegorclone"		255 1
+	DropItem "Phantom"				255 1
+	DropItem "ProfaneOne"			255 1
+//	DropItem "LordOfHeresy"			255 1  
+}
 
 Actor Cyberpainis : Randomspawner Replaces Cyberdemon
 {
@@ -217,7 +235,7 @@ actor Painisvile : SH_BaseMonsterRandomSpawner Replaces archvile
 	//Dropitem "SphereMaster"			255 1
 }
 
-Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
+Actor SH_RandomSpiderMastermindSpawn : Randomspawner
 {
 	+USESPAWNEVENTSCRIPT
 	Dropitem "HardSpiderboss"	255 3
@@ -226,7 +244,7 @@ Actor Masterpainisspawner: Randomspawner Replaces Spidermastermind
 	Dropitem "Demolisher"		255 2
 }
 
-Actor Speedorspawner : SH_BaseMonsterRandomSpawner Replaces Arachnotron
+Actor SH_RandomArachnotronSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 64
 	Height 64
@@ -252,25 +270,6 @@ actor FatsoSpawner : SH_BaseMonsterRandomSpawner replaces Fatso
 	DropItem "Chainguncubus"			255 1
 }
 
-actor BaronSpawner : SH_BaseMonsterRandomSpawner replaces Baronofhell
-{
-	Radius 24
-	Height 64
-	DropItem "HardBaron"			255 10
-	DropItem "Warlordofhell"		255 3
-	DropItem "Cyberbaron"			255 1
-	DropItem "N_Baron_Acid"			255 1
-	DropItem "N_Baron_Void"			255 1
-	DropItem "N_Baron_ice"			255 1
-	DropItem "N_Baron_Fire"			255 1
-	DropItem "N_Baron_Electric"		255 1
-	DropItem "N_Baron_HeavyMetal"	255 1
-	DropItem "Belphegorclone"		255 1
-	DropItem "Phantom"				255 1
-	DropItem "ProfaneOne"			255 1
-//	DropItem "LordOfHeresy"			255 1
-    
-}
 //RailArachnotron
 
 //Random health

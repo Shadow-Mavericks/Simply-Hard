@@ -1,13 +1,30 @@
 server bool sh_orbs_logarithmic = false;
 server bool sh_friendly_scaledamage = true;
-server bool sh_compat_swaps = true;
 server bool sh_healthbars = true;
+
 server noarchive int sh_enemy_mult = 1;
 server noarchive int sh_ammo_mult = 1;
 server noarchive int sh_extralife_hardcap = 10;
 server noarchive int sh_compat_mode = 0;
 server noarchive bool sh_vote_unstick_disabled = false;
 server noarchive bool sh_vote_doorstuck_disabled = false;
+
+server noarchive bool sh_compat_swaps = true;
+server noarchive string sh_swap_zombieman		= "SH_RandomZombiemanSpawn";
+server noarchive string sh_swap_shotgunguy		= "SH_RandomShotgunGuySpawn";
+server noarchive string sh_swap_chaingunguy		= "SH_RandomChaingunGuySpawn";
+server noarchive string sh_swap_imp				= "SH_RandomImpSpawn";
+server noarchive string sh_swap_cacodemon		= "SH_RandomCacodemonSpawn";
+server noarchive string sh_swap_painelemental 	= "SH_RandomPainElementalSpawn";
+server noarchive string sh_swap_hellknight		= "SH_RandomHellknightSpawn";
+server noarchive string sh_swap_baron			= "SH_RandomBaronSpawn";
+server noarchive string sh_swap_demon			= "SH_RandomDemonSpawn";
+server noarchive string sh_swap_spectre			= "SH_RandomSpectreSpawn";
+server noarchive string sh_swap_arachnotron		= "SH_RandomArachnotronSpawn";
+server noarchive string sh_swap_revenant		= "SH_RandomRevenantSpawn";
+server noarchive string sh_swap_mastermind		= "SH_RandomSpiderMastermindSpawn";
+server noarchive string sh_swap_wolfss			= "WolfensteinSS";
+
 local bool sh_debug_spawns = false;
 local bool sh_debug_orbs = false;
 local bool sh_debug_damage = false;

@@ -57,6 +57,9 @@ function void detect_wads(void)
 		{
 			Log(s:"MAYhem 2018: Orange Edition Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_MAYHEM18O);
+			
+			// Monster Swaps
+			SetCVarString("sh_swap_mastermind", "Cybruiser");
 			return;
 		}
 		
@@ -67,6 +70,11 @@ function void detect_wads(void)
 		{
 			Log(s:"MAYhem 2018: Purple Edition Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_MAYHEM18P);
+			
+			// Monster Swaps
+			SetCVarString("sh_swap_mastermind",	"MayhemImmolator");
+			SetCVarString("sh_swap_wolfss",		"MayhemPlasmaMarine");
+			SetCVarString("sh_swap_baron",		"MayhemGrell");
 			return;
 		}
 		
@@ -76,6 +84,20 @@ function void detect_wads(void)
 		{
 			Log(s:"MAYhem 2019: Blood for the Doom God Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_MAYHEM19);
+			
+			// Monster swaps
+			SetCVarString("sh_swap_shotgunguy",		"Mayhem19ShotgunCultist");
+			SetCVarString("sh_swap_chaingunguy",	"Mayhem19EliteCultist");
+			SetCVarString("sh_swap_wolfss",			"Mayhem19PistolCultist");
+			SetCVarString("sh_swap_demon",			"Mayhem19Skellie");
+			SetCVarString("sh_swap_cacodemon",		"Mayhem19CacoSpawner");
+			SetCVarString("sh_swap_painelemental",	"Mayhem19ArmlessElemental");
+			SetCVarString("sh_swap_spectre",		"Mayhem19ShadowImp");
+			SetCVarString("sh_swap_arachnotron",	"Mayhem19DeathCube");
+			SetCVarString("sh_swap_revenant",		"Mayhem19Vampire");
+			SetCVarString("sh_swap_mastermind",		"Mayhem19Spooklord");
+			SetCVarString("sh_swap_hellknight",		"Mayhem19FlyingBrain");
+			SetCVarString("sh_swap_baron",			"AracnorbQueen");
 			return;
 		}
 
@@ -103,6 +125,11 @@ function void detect_wads(void)
 		{
 			Log(s:"Valiant Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_VALIANT);
+			
+			// Monster Swaps
+			SetCVarString("sh_swap_mastermind", "Valiant_CybruiserSpawner");
+			SetCVarString("sh_swap_hellknight",	"Valiant_PyroDemonSpawner");
+			SetCVarString("sh_swap_baron",		"Valiant_SuperMancubusSpawner");	
 			return;
 		}
 		
@@ -146,6 +173,9 @@ function void detect_wads(void)
 		{
 			Log(s:"PUSS22: The Chilling Winds of Dis Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_PUSS22);
+			
+			// Monster swaps
+			SetCVarString("sh_swap_zombieman", "PUSS22_Ghoul");
 			return;
 		}
 
@@ -181,6 +211,11 @@ function void detect_wads(void)
 		{
 			Log(s:"Sargasso Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_SARGASSO);
+			
+			// Monster swaps
+			SetCVarString("sh_swap_shotgunguy", "Sargasso_Sergeant");
+			SetCVarString("sh_swap_chaingunguy", "Sargasso_PulseLaserSergeant");
+			SetCVarString("sh_swap_wolfss", "Sargasso_PlasmaMarine");
 			return;
 		}
 		
@@ -191,6 +226,13 @@ function void detect_wads(void)
 		{
 			Log(s:"PUSS33: Die Rowdy Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_PUSS33);
+			
+			// Monster Swaps
+			SetCVarString("sh_swap_arachnotron", "PUSS33_PsychImp");
+			SetCVarString("sh_swap_chaingunguy", "None"); // Chaingun Spider.
+			SetCVarString("sh_swap_painelemental", "None"); // Orange Caco Ball Thingy.
+			SetCVarString("sh_swap_hellknight", "None"); // Rocket Marine Thing.
+			SetCVarString("sh_swap_mastermind", "None"); // Flying Mastermind.
 			return;
 		}
 
@@ -772,6 +814,9 @@ function void actor_swap(str replace, str with, int chance)
 {
 	if(!CheckActorClass(0, replace))
 		return;
+		
+	if(!StrCmp(replace, with)) // They are the same, no point in swapping it.
+		return;
 
 	if((chance >= 255) || (random(0, 255) < chance))
 	{
@@ -795,7 +840,7 @@ function void actor_swap(str replace, str with, int chance)
 		int thingArg3 = GetActorProperty(0, APROP_Args3);
 		int thingArg4 = GetActorProperty(0, APROP_Args4);
 
-		int success = SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		int success = SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0)>>8);
 		if(success)
 		{
 			SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
@@ -1654,45 +1699,29 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				{
 					case WADCOMPAT_MAYHEM18O:
 					{
-						actor_swap("Speedorspawner", "NamiDarkImp", 256);
-						actor_swap("Masterpainisspawner", "Cybruiser", 256);
 						actor_swap("DeadLostSoul", "ESoul", 256);
 						break;
 					}
 					case WADCOMPAT_MAYHEM18P:
 					{
 						actor_swap("CommanderKeen", "SH_SuicideBomber", 256);
-						actor_swap("WolfensteinSS", "MayhemPlasmaMarine", 256);
-						actor_swap("BaronSpawner", "MayhemGrell", 256);
-						actor_swap("Masterpainisspawner", "MayhemImmolator", 256);
 						break;
 					}
 					case WADCOMPAT_MAYHEM19:
-					{
-						actor_swap("ShotgunZamble", "Mayhem19ShotgunCultist", 256);
-						actor_swap("ChaingunZambles", "Mayhem19EliteCultist", 256);
-						actor_swap("WolfensteinSS", "Mayhem19PistolCultist", 256);
-						actor_swap("Hardrev", "Mayhem19Vampire", 256);
-						actor_swap("Fastdemon", "Mayhem19Skellie", 256);
-						actor_swap("JIHADReplacer", "Mayhem19Skellie", 256);
-						actor_swap("StealthynessDemon", "Mayhem19ShadowImp", 256);
+					{					
 						actor_swap("Hardsoul", "Mayhem19BallOfLightning", 256);
 						actor_swap("Lostpainis", "Mayhem19BallOfLightning", 256);
-						actor_swap("FatsoSpawner", "Mayhem19SludgeMonster", 256);
-						actor_swap("Speedorspawner", "Mayhem19DeathCube", 256);
+						actor_swap("FatsoSpawner", "Mayhem19SludgeMonster", 256);				
 						actor_swap("Stalagtite", "Mayhem19Satyr", 256);
 						actor_swap("DeadLostSoul", "Mayhem19Bat", 256);
-						actor_swap("PainisElementalSpawner", "Mayhem19ArmlessElemental", 256);
+						
 						actor_swap("HangTSkull", "Mayhem19Shadowhound", 256);
 						actor_swap("HangTLookingUp", "Mayhem19TeslaCoil", 256);
-						actor_swap("MeatballSpawner", "Mayhem19CacoSpawner", 256);
-						actor_swap("HangBNoBrain", "Mayhem19Mummy", 256);
-						actor_swap("Hellpainis", "Mayhem19FlyingBrain", 256);
+						
+						actor_swap("HangBNoBrain", "Mayhem19Mummy", 256);			
 						actor_swap("HangTNoBrain", "Mayhem19DeepOne", 256);
-						actor_swap("BaronSpawner", "AracnorbQueen", 256);
 						actor_swap("UnholyBible", "Mayhem19Lich", 256);
-						actor_swap("Cyberpainis", "Mayhem19Minotaur", 256);
-						actor_swap("Masterpainisspawner", "Mayhem19Spooklord", 256);
+						actor_swap("Cyberpainis", "Mayhem19Minotaur", 256);	
 						break;
 					}
 					case WADCOMPAT_STRANGEAEONS:
@@ -1700,42 +1729,48 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						actor_swap("AK47", "ChaingunGiver", 256);
 						actor_swap("Yithgun", "PlasmaRifleGiver", 256);
 						actor_swap("ImpalerXBow", "RailgunGiver", 256);
-						actor_swap("Devil", "Imps", 64);
-						actor_swap("RapidFireTrooper", "Zamble", 64);
-						actor_swap("UndeadHunter", "Shotgunzamble", 64);
+						actor_swap("Devil", "SH_RandomImpSpawn", 64);
+						actor_swap("RapidFireTrooper", "SH_RandomZombiemanSpawn", 64);
+						actor_swap("UndeadHunter", "SH_RandomShotgunGuySpawn", 64);
 						actor_swap("Skeleton", "MeleeRevenant", 64);
-						actor_swap("HellWarrior", "BaronSpawner", 64);
-						actor_swap("SlimeWorm", "JIHADReplacer", 64);
+						actor_swap("HellWarrior", "SH_RandomBaronSpawn", 64);
+						actor_swap("SlimeWorm", "SH_RandomDemonSpawn", 64);
 						break;
 					}
 					case WADCOMPAT_PUSS22:
 					{
-						actor_swap("Zamble", "PUSS22_Ghoul", 256);
 						break;
 					}
 					case WADCOMPAT_PUSS33:
 					{
-						actor_swap("SpeedorSpawner", "PUSS33_PsychImp", 256);
 						break;
 					}
 					case WADCOMPAT_VALIANT:
 					{
 						actor_swap("SuicideBomber", "SH_SuicideBomber", 256);
-						actor_swap("Hellpainis", "Valiant_PyroDemonSpawner", 256);
-						actor_swap("BaronSpawner", "Valiant_SuperMancubusSpawner", 256);
-						actor_swap("Masterpainisspawner", "Valiant_CybruiserSpawner", 256);
 						actor_swap("TallBluetorch", "ValiantFinalBoss", 256);
 						break;
 					}
 					case WADCOMPAT_SARGASSO:
 					{
-						actor_swap("WolfensteinSS", "Sargasso_PlasmaMarine", 256);
-						actor_swap("ChaingunZambles", "Sargasso_PulseLaserSergeant", 256);
-						actor_swap("ShotgunZamble", "Sargasso_Sergeant", 256);
 						break;
 					}
 				}
-
+			
+				actor_swap("Zombieman",			GetCVarString("sh_swap_zombieman"),		256);
+				actor_swap("ShotgunGuy",		GetCVarString("sh_swap_shotgunguy"),	256);
+				actor_swap("ChaingunGuy",		GetCVarString("sh_swap_chaingunguy"),	256);
+				actor_swap("Cacodemon",			GetCVarString("sh_swap_cacodemon"),		256);
+				actor_swap("PainElemental",		GetCVarString("sh_swap_painelemental"),	256);
+				actor_swap("DoomImp",			GetCVarString("sh_swap_imp"),			256);
+				actor_swap("Demon",				GetCVarString("sh_swap_demon"),			256);
+				actor_swap("Spectre",			GetCVarString("sh_swap_spectre"),		256);
+				actor_swap("Hellknight",		GetCVarString("sh_swap_hellknight"),	256);
+				actor_swap("BaronOfHell",		GetCVarString("sh_swap_baron"),			256);
+				actor_swap("Arachnotron",		GetCVarString("sh_swap_arachnotron"),	256);
+				actor_swap("Revenant",			GetCVarString("sh_swap_revenant"),		256);
+				actor_swap("SpiderMastermind",	GetCVarString("sh_swap_mastermind"),	256);
+				actor_swap("WolfensteinSS",		GetCVarString("sh_swap_wolfss"),		256);
 			}
 
 			if(canMultiply)

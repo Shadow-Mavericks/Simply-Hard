@@ -890,6 +890,7 @@ actor Mayhem19Cacolantern : SH_BaseMonster
 	DeathSound "DSCACDTH"
 	ActiveSound "DSDMACT"
 	Obituary "%o was torched by a cacolantern."
+	BloodColor "FF 80 00"
 	+NOGRAVITY
 	+FLOAT
 	States
@@ -999,6 +1000,7 @@ actor Mayhem19Mummy : SH_BaseMonster
 	PainSound "DSPEDTH"
 	DeathSound "DSSGTDTH"
 	BloodColor "Black"
+	Obituary "%o was maimed by a mummy."
 	+FLOORCLIP
 	States
 	{
@@ -1042,12 +1044,14 @@ actor Mayhem19DeepOne : SH_BaseMonster
 	Height 64
 	ReactionTime 8
 	PainChance 40
-	Mass 100
+	Mass 1000
 	BloodColor "28 44 b5"
 	SeeSound "DSBRSSIT"
 	PainSound "DSDMPAIN"
 	DeathSound "DSBRSDTH"
 	ActiveSound "DSDMACT"
+	Obituary "%o was ftaghn'd by a deep one."
+	HitObituary "%o was tentacle-whipped by a deep one."
 	+FLOORCLIP
 	+BOSSDEATH
 	States
@@ -1702,3 +1706,8 @@ actor PUSS33_PsychImp : SH_BaseMonster
 			stop
 	}
 }
+
+// PUSS33 To-Do:
+// Spider Mastermind
+// Baron
+// Hell knight
