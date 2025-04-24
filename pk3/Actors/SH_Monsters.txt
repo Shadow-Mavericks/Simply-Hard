@@ -982,7 +982,7 @@ actor HardFatso : SH_BaseMonster
 			FATT L 6 A_Scream
 			FATT M 6 A_NoBlocking
 			FATT NOPQRS 6
-			FATT T -1 A_KillMaster
+			FATT T -1 A_BossDeath
 			Stop
 		Ice:
 			FATT J 5 A_GenericFreezeDeath
