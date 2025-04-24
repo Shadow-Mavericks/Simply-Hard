@@ -1677,6 +1677,7 @@ actor PUSS33_PsychImp : SH_BaseMonster
 	PainChance 90
 	Mass 100
 	BloodColor Green
+	Obituary "%o was psyched by an psychimp."
 	Monster
 	States
 	{

@@ -137,6 +137,25 @@ Actor CryoSmoke4 : CryoSmoke3
 	}
 }
 
+Actor BigRocketSmoke : CryoSmoke3
+{
+	StencilColor "DD DD DD"
+	Scale 0.1
+	Alpha 0.5
+	+CLIENTSIDEONLY
+	+NOTIMEFREEZE
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetScale(frandom(0.05, 0.1))
+			goto SpawnLoop
+		SpawnLoop:
+			IMST A 3 A_FadeOut(0.04)
+			loop
+	}
+}
+
 actor AcidBurst : SH_BaseParticle
 {
 	RenderStyle Translucent
