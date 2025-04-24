@@ -23,6 +23,25 @@ enum
 	WADCOMPAT_SARGASSO,
 };
 
+str sh_swap_zombieman;
+str sh_swap_shotgunguy;
+str sh_swap_chaingunguy;
+str sh_swap_cacodemon;
+str sh_swap_painelemental;
+str sh_swap_imp;
+str sh_swap_demon;
+str sh_swap_spectre;
+str sh_swap_fatso;
+str sh_swap_hellknight;
+str sh_swap_baron;
+str sh_swap_arachnotron;
+str sh_swap_revenant;
+str sh_swap_archvile;
+str sh_swap_cyberdemon;
+str sh_swap_mastermind;
+str sh_swap_wolfss;
+str sh_swap_keen;
+
 function void detect_wads(void)
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -75,6 +94,7 @@ function void detect_wads(void)
 			SetCVarString("sh_swap_mastermind",	"MayhemImmolator");
 			SetCVarString("sh_swap_wolfss",		"MayhemPlasmaMarine");
 			SetCVarString("sh_swap_baron",		"MayhemGrell");
+			SetCVarString("sh_swap_keen",		"SH_SuicideBomber");
 			return;
 		}
 		
@@ -550,71 +570,16 @@ function void PrintDamage(int damage)
 	int TranslationNumber = Random(6000, 6007);
 
 	int NumberID = UniqueTID(6000, 500);
-	
-	switch(Digit1)
-	{
-		case 0: Spawn("Digit1Num0", x, y, z, NumberID, 0); break;
-		case 1: Spawn("Digit1Num1", x, y, z, NumberID, 0); break;
-		case 2: Spawn("Digit1Num2", x, y, z, NumberID, 0); break;
-		case 3: Spawn("Digit1Num3", x, y, z, NumberID, 0); break;
-		case 4: Spawn("Digit1Num4", x, y, z, NumberID, 0); break;
-		case 5: Spawn("Digit1Num5", x, y, z, NumberID, 0); break;
-		case 6: Spawn("Digit1Num6", x, y, z, NumberID, 0); break;
-		case 7: Spawn("Digit1Num7", x, y, z, NumberID, 0); break;
-		case 8: Spawn("Digit1Num8", x, y, z, NumberID, 0); break;
-		case 9: Spawn("Digit1Num9", x, y, z, NumberID, 0); break;
-	}
+	Spawn(strparam(s:"Digit1Num", d:Digit1), x, y, z, NumberID, 0);
 
 	if(damage >= 10)
-	{
-		switch(Digit2)
-		{
-			case 0: Spawn("Digit2Num0", x, y, z, NumberID, 0); break;
-			case 1: Spawn("Digit2Num1", x, y, z, NumberID, 0); break;
-			case 2: Spawn("Digit2Num2", x, y, z, NumberID, 0); break;
-			case 3: Spawn("Digit2Num3", x, y, z, NumberID, 0); break;
-			case 4: Spawn("Digit2Num4", x, y, z, NumberID, 0); break;
-			case 5: Spawn("Digit2Num5", x, y, z, NumberID, 0); break;
-			case 6: Spawn("Digit2Num6", x, y, z, NumberID, 0); break;
-			case 7: Spawn("Digit2Num7", x, y, z, NumberID, 0); break;
-			case 8: Spawn("Digit2Num8", x, y, z, NumberID, 0); break;
-			case 9: Spawn("Digit2Num9", x, y, z, NumberID, 0); break;
-		}
-	}
+		Spawn(strparam(s:"Digit2Num", d:Digit2), x, y, z, NumberID, 0);
 
 	if(damage >= 100)
-	{
-		switch(Digit3)
-		{
-			case 0: Spawn("Digit3Num0", x, y, z, NumberID, 0); break;
-			case 1: Spawn("Digit3Num1", x, y, z, NumberID, 0); break;
-			case 2: Spawn("Digit3Num2", x, y, z, NumberID, 0); break;
-			case 3: Spawn("Digit3Num3", x, y, z, NumberID, 0); break;
-			case 4: Spawn("Digit3Num4", x, y, z, NumberID, 0); break;
-			case 5: Spawn("Digit3Num5", x, y, z, NumberID, 0); break;
-			case 6: Spawn("Digit3Num6", x, y, z, NumberID, 0); break;
-			case 7: Spawn("Digit3Num7", x, y, z, NumberID, 0); break;
-			case 8: Spawn("Digit3Num8", x, y, z, NumberID, 0); break;
-			case 9: Spawn("Digit3Num9", x, y, z, NumberID, 0); break;
-		}
-	}
-
+		Spawn(strparam(s:"Digit3Num", d:Digit3), x, y, z, NumberID, 0);
+		
 	if(damage >= 1000)
-	{
-		switch(Digit4)
-		{
-			case 0: Spawn("Digit4Num0", x, y, z, NumberID, 0); break;
-			case 1: Spawn("Digit4Num1", x, y, z, NumberID, 0); break;
-			case 2: Spawn("Digit4Num2", x, y, z, NumberID, 0); break;
-			case 3: Spawn("Digit4Num3", x, y, z, NumberID, 0); break;
-			case 4: Spawn("Digit4Num4", x, y, z, NumberID, 0); break;
-			case 5: Spawn("Digit4Num5", x, y, z, NumberID, 0); break;
-			case 6: Spawn("Digit4Num6", x, y, z, NumberID, 0); break;
-			case 7: Spawn("Digit4Num7", x, y, z, NumberID, 0); break;
-			case 8: Spawn("Digit4Num8", x, y, z, NumberID, 0); break;
-			case 9: Spawn("Digit4Num9", x, y, z, NumberID, 0); break;
-		}
-	}
+		Spawn(strparam(s:"Digit4Num", d:Digit4), x, y, z, NumberID, 0);
 
 	Thing_SetTranslation(NumberID, TranslationNumber);
 	SetActorVelocity(NumberID, 0, 0, 0.25, 0, 0);
@@ -1706,7 +1671,6 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 					case WADCOMPAT_MAYHEM18P:
 					{
-						actor_swap("CommanderKeen", "SH_SuicideBomber", 256);
 						break;
 					}
 					case WADCOMPAT_MAYHEM19:
@@ -1757,23 +1721,24 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 				}
 			
-				actor_swap("Zombieman",			GetCVarString("sh_swap_zombieman"),		256);
-				actor_swap("ShotgunGuy",		GetCVarString("sh_swap_shotgunguy"),	256);
-				actor_swap("ChaingunGuy",		GetCVarString("sh_swap_chaingunguy"),	256);
-				actor_swap("Cacodemon",			GetCVarString("sh_swap_cacodemon"),		256);
-				actor_swap("PainElemental",		GetCVarString("sh_swap_painelemental"),	256);
-				actor_swap("DoomImp",			GetCVarString("sh_swap_imp"),			256);
-				actor_swap("Demon",				GetCVarString("sh_swap_demon"),			256);
-				actor_swap("Spectre",			GetCVarString("sh_swap_spectre"),		256);
-				actor_swap("Fatso",				GetCVarString("sh_swap_fatso"),			256);
-				actor_swap("Hellknight",		GetCVarString("sh_swap_hellknight"),	256);
-				actor_swap("BaronOfHell",		GetCVarString("sh_swap_baron"),			256);
-				actor_swap("Arachnotron",		GetCVarString("sh_swap_arachnotron"),	256);
-				actor_swap("Revenant",			GetCVarString("sh_swap_revenant"),		256);
-				actor_swap("Archvile",			GetCVarString("sh_swap_archvile"),		256);
-				actor_swap("Cyberdemon",		GetCVarString("sh_swap_cyberdemon"),	256);
-				actor_swap("SpiderMastermind",	GetCVarString("sh_swap_mastermind"),	256);
-				actor_swap("WolfensteinSS",		GetCVarString("sh_swap_wolfss"),		256);
+				actor_swap("Zombieman",			sh_swap_zombieman,		256);
+				actor_swap("ShotgunGuy",		sh_swap_shotgunguy,		256);
+				actor_swap("ChaingunGuy",		sh_swap_chaingunguy,	256);
+				actor_swap("Cacodemon",			sh_swap_cacodemon,		256);
+				actor_swap("PainElemental",		sh_swap_painelemental,	256);
+				actor_swap("DoomImp",			sh_swap_imp,			256);
+				actor_swap("Demon",				sh_swap_demon,			256);
+				actor_swap("Spectre",			sh_swap_spectre,		256);
+				actor_swap("Fatso",				sh_swap_fatso,			256);
+				actor_swap("Hellknight",		sh_swap_hellknight,		256);
+				actor_swap("BaronOfHell",		sh_swap_baron,			256);
+				actor_swap("Arachnotron",		sh_swap_arachnotron,	256);
+				actor_swap("Revenant",			sh_swap_revenant,		256);
+				actor_swap("Archvile",			sh_swap_archvile,		256);
+				actor_swap("Cyberdemon",		sh_swap_cyberdemon,		256);
+				actor_swap("SpiderMastermind",	sh_swap_mastermind,		256);
+				actor_swap("WolfensteinSS",		sh_swap_wolfss,			256);
+				actor_swap("CommanderKeen",		sh_swap_keen,			256);
 			}
 
 			if(canMultiply)
@@ -1806,6 +1771,26 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			detect_wads();
 			
 			num_plasma_locations = 0;
+			
+			// Cache swap vars for speed.
+			sh_swap_zombieman		= GetCVarString("sh_swap_zombieman");
+			sh_swap_shotgunguy		= GetCVarString("sh_swap_shotgunguy");
+			sh_swap_chaingunguy		= GetCVarString("sh_swap_chaingunguy");
+			sh_swap_cacodemon		= GetCVarString("sh_swap_cacodemon");
+			sh_swap_painelemental	= GetCVarString("sh_swap_painelemental");
+			sh_swap_imp 			= GetCVarString("sh_swap_imp");
+			sh_swap_demon 			= GetCVarString("sh_swap_demon");
+			sh_swap_spectre 		= GetCVarString("sh_swap_spectre");
+			sh_swap_fatso 			= GetCVarString("sh_swap_fatso");
+			sh_swap_hellknight 		= GetCVarString("sh_swap_hellknight");
+			sh_swap_baron 			= GetCVarString("sh_swap_baron");
+			sh_swap_arachnotron 	= GetCVarString("sh_swap_arachnotron");
+			sh_swap_revenant 		= GetCVarString("sh_swap_revenant");
+			sh_swap_archvile 		= GetCVarString("sh_swap_archvile");
+			sh_swap_cyberdemon 		= GetCVarString("sh_swap_cyberdemon");
+			sh_swap_mastermind 		= GetCVarString("sh_swap_mastermind");
+			sh_swap_wolfss 			= GetCVarString("sh_swap_wolfss");
+			sh_swap_keen			= GetCVarString("sh_swap_keen");
 			break;
 		}
 	}

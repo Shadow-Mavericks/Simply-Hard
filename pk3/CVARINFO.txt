@@ -27,6 +27,7 @@ server noarchive string sh_swap_cyberdemon		= "SH_RandomCyberdemonSpawn";
 server noarchive string sh_swap_mastermind		= "SH_RandomSpiderMastermindSpawn";
 server noarchive string sh_swap_archvile		= "SH_RandomArchvileSpawn";
 server noarchive string sh_swap_wolfss			= "WolfensteinSS";
+server noarchive string sh_swap_keen			= "CommanderKeen";
 
 local bool sh_debug_spawns = false;
 local bool sh_debug_orbs = false;
