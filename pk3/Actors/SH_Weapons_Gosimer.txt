@@ -595,13 +595,13 @@ ACTOR Devistator_shell
 			RPGX AAAAAA 1 bright
 			goto Fly
 		Fly:
-			RPGX A 0 A_playsound("weapon/D3DDEVFLY",6, 1.0, 1)
+			RPGX A 0 A_playsound("weapon/D3DDEVFLY", CHAN_6, 1.0, true)
 			RPGX A 0 A_Weave(3, 3, frandom[speen](0.0, 1.0), frandom[speen](0.0, 1.0))
 			RPGX A 1 Bright A_SeekerMissile(3,3,SMF_LOOK,50,5)
 			Loop
 		Death:
 			DEXP A 0 Bright A_Explode(50, 128)
-			DEXP A 0 Bright A_stopsound(6)
+			DEXP A 0 Bright A_stopsound(CHAN_6)
 			DEXP A 0 Bright A_SetScale(0.2, 0.2)
 			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
 			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright
