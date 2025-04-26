@@ -15,6 +15,7 @@ actor SH_Blood : Blood Replaces Blood
 	+NOTIMEFREEZE
 	+DECALUSESTRANSLATION
 	+DECALUSESSPRITESCALE
+	+NOSPAWNEVENTSCRIPT
 	States
 	{
 		Spawn:
@@ -93,14 +94,12 @@ actor SH_BloodDroplet : SH_Blood
 			BLDD A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
 			BLDD A 0 A_ChangeFlag("FORCEYBILLBOARD", true)
 			BLDD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
-			BLDD A 0 A_ChangeFlag("NOGRAVITY", false)
 			BLDD A 0 A_ChangeFlag("MISSILE", false)
 			BLDD A 0 A_JumpTo("Splat")
 			stop
 			
 		Bounce.Ceiling:
 			CBLD A 0 A_SetUserVar("user_numdrips", random[drip](4, 10))
-			CBLD A 0 A_ChangeFlag("NOGRAVITY", true)
 			CBLD A 0 A_ChangeFlag("LOCKEDTOCEILING", true)
 			CBLD A 0 A_ChangeFlag("FORCEYBILLBOARD", true)
 			CBLD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
@@ -141,7 +140,6 @@ actor SH_BloodDroplet : SH_Blood
 		StartFall:
 			"####" A 0 A_ChangeFlag("FORCEYBILLBOARD", false)
 			"####" A 0 A_ChangeFlag("FORCEXYBILLBOARD", true)
-			"####" A 0 A_ChangeFlag("NOGRAVITY", false)
 			"####" A 0 A_ChangeFlag("LOCKEDTOCEILING", false)
 			"####" A 0 A_ChangeFlag("CORPSE", true)
 			"####" A 0 A_SetGravity(0.25) // Just in case...
@@ -236,6 +234,7 @@ actor SH_BloodDrip : SH_Blood
 	+FORCEYBILLBOARD
 	+CORPSE
 	+CLIENTSIDEONLY
+	+NOCLIP
 	States
 	{
 		Spawn:
@@ -254,6 +253,7 @@ actor SH_BloodDropletTrail : SH_Blood
 {
 	+MISSILE
 	+CLIENTSIDEONLY
+	+NOCLIP
 	States
 	{
 		Spawn:
@@ -425,11 +425,11 @@ actor SH_BouncyGib1
 	DeathSound "GibLand"
 	Projectile
 	-NOGRAVITY
+	-CANPASS
 	+NOTRIGGER
 	+NOTELEPORT
 	+NOBLOCKMONST
 	+FORCEXYBILLBOARD
-	//+CANBLAST
 	+THRUACTORS
 	+BOUNCEAUTOOFFFLOORONLY
 	+SKYEXPLODE
