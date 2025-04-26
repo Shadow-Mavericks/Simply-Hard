@@ -1677,11 +1677,11 @@ ACTOR Corrupt_Fiend : SH_BaseMonster // Code is borrowed/Edited from Super Sonic
 			PLAY E 0 A_Jump (96, "Railattack")
 			PLAY E 0 A_Jump (96, "bfgattack")
 		SSGATTACK:
-			PLAY E 0 A_PlaySound ("SSHTGN")
+			PLAY E 0 A_PlaySound ("weapons/sshotf", CHAN_WEAPON)
 			PLAY F 14 A_CustomBulletAttack (11, 7, 15, 5, "BulletPuff")
-			PLAY E 14 A_PlaySound ("DBOPEN")
-			PLAY E 13 A_PlaySound ("DBLOAD")
-			PLAY E 11 A_PlaySound ("DBCLSE")
+			PLAY E 14 A_PlaySound ("weapons/sshoto", CHAN_AUTO)
+			PLAY E 13 A_PlaySound ("weapons/sshotl", CHAN_AUTO)
+			PLAY E 11 A_PlaySound ("weapons/sshotc", CHAN_AUTO)
 			Goto See
 		Chaingunattack:
 			PLAY F 2 A_CPosAttack
