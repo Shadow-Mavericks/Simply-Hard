@@ -1,0 +1,145 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1745640917 10800
+#      Sat Apr 26 01:15:17 2025 -0300
+# Node ID 49ac8ede91486a53df7d42d4de6d5f4b3c609e7f
+# Parent  b748d867b30f08d21d6606f971c94b8b6aac93e6
+# EXP-Topic strikers_stuff
+Add SpecialActorClass property.
+
+diff -r b748d867b30f -r 49ac8ede9148 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Sun Apr 20 22:53:52 2025 -0300
++++ b/docs/zandronum-history.txt	Sat Apr 26 01:15:17 2025 -0300
+@@ -19,6 +19,7 @@
+ *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
+ *+	- Added +NEVERADJUSTSPRITECLIPPING, which sets an actor to never adjust the clipping of its sprites to the floor in OpenGL, regardless of the gl_spriteclip setting. [StrikerTheHedgefox]
+ *+	- Added +LOCKEDTOCEILING, which locks an actor to the ceiling, even if the actor itself isn't moving. (Unlike CEILINGHUGGER) [StrikerTheHedgefox]
++*+	- Added "SpecialActionClass" property (and APROP_SpecialActionClass for Get/SetActorProperty) to actors, which lets you override what actor class an actor is seen as in A_BossDeath, so one can swap the actors out without utterly breaking map specials. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+ *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+ +	- Made RandomSpawners pass AMBUSH, FRIENDLY, STEALTH, DORMANT, and STANDSTILL flags down to the actor if set via scripts. [StrikerTheHedgefox]
+diff -r b748d867b30f -r 49ac8ede9148 src/actor.h
+--- a/src/actor.h	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/actor.h	Sat Apr 26 01:15:17 2025 -0300
+@@ -1038,6 +1038,8 @@
+ 
+ 	uint32_t		ThruBits;		// [JM] Thrubits backport
+ 
++	const PClass*	SpecialActionClass; // [JM] Class override for A_BossDeath.
++
+ 	int				special1;		// Special info
+ 	int				special2;		// Special info
+ 	int 			health;
+diff -r b748d867b30f -r 49ac8ede9148 src/g_shared/a_randomspawner.cpp
+--- a/src/g_shared/a_randomspawner.cpp	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/g_shared/a_randomspawner.cpp	Sat Apr 26 01:15:17 2025 -0300
+@@ -208,7 +208,7 @@
+ 			if ((newmobj->flags4 & MF4_BOSSDEATH) || (newmobj->flags2 & MF2_BOSS))
+ 				boss = true;
+ 			// If a replaced actor has either of those same flags, it's also a boss.
+-			AActor * rep = GetDefaultByType(GetClass()->ActorInfo->GetReplacee()->Class);
++			AActor * rep = GetDefaultByType((this->SpecialActionClass) ? this->SpecialActionClass : GetClass()->ActorInfo->GetReplacee()->Class);
+ 			if (rep && ((rep->flags4 & MF4_BOSSDEATH) || (rep->flags2 & MF2_BOSS)))
+ 				boss = true;
+ 
+diff -r b748d867b30f -r 49ac8ede9148 src/p_acs.cpp
+--- a/src/p_acs.cpp	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/p_acs.cpp	Sat Apr 26 01:15:17 2025 -0300
+@@ -4923,6 +4923,10 @@
+ 	case APROP_GibHealth: // [JM]
+ 		break; // Can't set this.
+ 
++	case APROP_SpecialActionClass: // [JM]
++		actor->SpecialActionClass = PClass::FindClass(FBehavior::StaticLookupString(value));
++		break;
++
+ 	default:
+ 		// do nothing.
+ 		break;
+@@ -5031,6 +5035,7 @@
+ 	case APROP_Args4:		return actor->args[4]; // [JM]
+ 	case APROP_SpawnFlags:	return actor->SpawnFlags; // [JM]
+ 	case APROP_GibHealth:	return actor->GibHealth();
++	case APROP_SpecialActionClass:	return GlobalACSStrings.AddString((actor->SpecialActionClass) ? actor->SpecialActionClass->TypeName : actor->GetClass()->ActorInfo->GetReplacee()->Class->TypeName);
+ 
+ 	default:				return 0;
+ 	}
+@@ -5112,6 +5117,7 @@
+ 		case APROP_Species:		string = actor->GetSpecies(); break;
+ 		case APROP_NameTag:		string = actor->GetTag(); break;
+ 		case APROP_DamageType:	string = actor->DamageType.GetChars(); break; // [JM] Backport.
++		case APROP_SpecialActionClass:	string = (actor->SpecialActionClass) ? actor->SpecialActionClass->TypeName : actor->GetClass()->ActorInfo->GetReplacee()->Class->TypeName; break; // [JM]
+ 	}
+ 	if (string == NULL) string = "";
+ 	return (!stricmp(string, FBehavior::StaticLookupString(value)));
+diff -r b748d867b30f -r 49ac8ede9148 src/p_acs.h
+--- a/src/p_acs.h	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/p_acs.h	Sat Apr 26 01:15:17 2025 -0300
+@@ -432,6 +432,7 @@
+ 	APROP_Args4			= 205, // [JM]
+ 	APROP_SpawnFlags	= 206, // [JM]
+ 	APROP_GibHealth		= 207, // [JM]
++	APROP_SpecialActionClass = 208, // [JM]
+ };	
+ 
+ // [Dusk] Enumeration for GetTeamProperty
+diff -r b748d867b30f -r 49ac8ede9148 src/p_enemy.cpp
+--- a/src/p_enemy.cpp	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/p_enemy.cpp	Sat Apr 26 01:15:17 2025 -0300
+@@ -3695,11 +3695,17 @@
+ 	TThinkerIterator<AActor> iterator;
+ 	AActor *other;
+ 
++	const PClass* actor_replacee = (actor->SpecialActionClass) ? actor->SpecialActionClass : actor->GetClass()->ActorInfo->GetReplacee()->Class;
++
+ 	while ( (other = iterator.Next ()) )
+ 	{
+-		if (other != actor &&
+-			(other->health > 0 || (other->flags & MF_ICECORPSE))
+-			&& other->GetClass() == actor->GetClass()
++		if (other == actor)
++			continue;
++
++		const PClass* other_replacee = (other->SpecialActionClass) ? other->SpecialActionClass : other->GetClass()->ActorInfo->GetReplacee()->Class;
++
++		if ((other->health > 0 || (other->flags & MF_ICECORPSE))
++			&& ((other->GetClass() == actor->GetClass()) || (other_replacee == actor_replacee))
+ 			// [BB] Don't count actors hidden by HideOrDestroyIfSafe()
+ 			&& !( other->STFlags & STFL_HIDDEN_INSTEAD_OF_DESTROYED ) )
+ 		{ // Found a living boss
+@@ -3726,7 +3732,7 @@
+ 	}
+ 
+ 	// Ugh...
+-	FName type = self->GetClass()->ActorInfo->GetReplacee()->Class->TypeName;
++	FName type = (self->SpecialActionClass) ? self->SpecialActionClass->TypeName : self->GetClass()->ActorInfo->GetReplacee()->Class->TypeName;
+ 	
+ 	// Do generic special death actions first
+ 	bool checked = false;
+diff -r b748d867b30f -r 49ac8ede9148 src/thingdef/thingdef_properties.cpp
+--- a/src/thingdef/thingdef_properties.cpp	Sun Apr 20 22:53:52 2025 -0300
++++ b/src/thingdef/thingdef_properties.cpp	Sat Apr 26 01:15:17 2025 -0300
+@@ -2951,3 +2951,12 @@
+ 	PROP_INT_PARM(id, 0);
+ 	defaults->ThruBits = id;
+ }
++
++//==========================================================================
++// [JM] Property to override what class this actor is considered to be for A_BossDeath
++//==========================================================================
++DEFINE_PROPERTY(SpecialActionClass, S, Actor)
++{
++	PROP_STRING_PARM(str, 0);
++	defaults->SpecialActionClass = PClass::FindClass(str);
++}
+diff -r b748d867b30f -r 49ac8ede9148 wadsrc/static/actors/actor.txt
+--- a/wadsrc/static/actors/actor.txt	Sun Apr 20 22:53:52 2025 -0300
++++ b/wadsrc/static/actors/actor.txt	Sat Apr 26 01:15:17 2025 -0300
+@@ -26,6 +26,7 @@
+ 	PainType Normal
+ 	DeathType Normal
+ 	ThruBits 0 // [JM] Backport
++	SpecialActionClass "None" // [JM] Class override for A_BossDeath
+ 
+ 
+ 	// Variables for the expression evaluator
