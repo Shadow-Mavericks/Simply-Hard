@@ -87,6 +87,28 @@ actor ExtremeDeathHax : SH_BaseHax // Hack to pass EXTREMEDEATH flag to generic 
 {
 }
 
+actor NeedsBossDeathHax : SH_BaseHax // Signals to the ON_KILL script that we need a bossdeath hack.
+{
+}
+
+ACTOR BossDeathHax : CustomInventory
+{
+	+NOTIMEFREEZE
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 1
+	Inventory.MaxAmount 0
+	Inventory.InterHubAmount 1
+	States
+	{
+		Use:
+			TNT1 A 0
+			TNT1 A 0 A_BossDeath
+			TNT1 A 0 A_RailWait
+			stop
+	}
+}
+
 actor PowerMaxHUDBlinkHax : Powerup { }
 actor MaxHUDBlink : PowerupGiver
 {

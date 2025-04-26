@@ -184,6 +184,7 @@ Actor SH_RandomHellknightSpawn : SH_BaseMonsterRandomSpawner
 
 actor SH_RandomBaronSpawn : SH_BaseMonsterRandomSpawner
 {
+	SpecialActionClass "BaronOfHell"
 	Radius 24
 	Height 64
 	DropItem "HardBaron"			255 10
@@ -203,6 +204,7 @@ actor SH_RandomBaronSpawn : SH_BaseMonsterRandomSpawner
 
 Actor SH_RandomCyberdemonSpawn : Randomspawner
 {
+	SpecialActionClass "Cyberdemon"
 	+USESPAWNEVENTSCRIPT
 	Dropitem "Hardcyberdemon"			255 10
 	Dropitem "N_Cyberdemon_Acid"		255 1
@@ -237,6 +239,7 @@ actor SH_RandomArchvileSpawn : SH_BaseMonsterRandomSpawner
 
 Actor SH_RandomSpiderMastermindSpawn : Randomspawner
 {
+	SpecialActionClass "SpiderMastermind"
 	+USESPAWNEVENTSCRIPT
 	Dropitem "HardSpiderboss"	255 3
 	Dropitem "AracnorbQueen"	255 1
@@ -246,6 +249,7 @@ Actor SH_RandomSpiderMastermindSpawn : Randomspawner
 
 Actor SH_RandomArachnotronSpawn : SH_BaseMonsterRandomSpawner
 {
+	SpecialActionClass "Arachnotron"
 	Radius 64
 	Height 64
 	Dropitem "Hardarachnotron"	255 10
@@ -255,6 +259,7 @@ Actor SH_RandomArachnotronSpawn : SH_BaseMonsterRandomSpawner
 
 actor SH_RandomFatsoSpawn : SH_BaseMonsterRandomSpawner
 {
+	SpecialActionClass "Fatso"
 	Radius 48
 	Height 64
 	DropItem "Hardfatso"				255 10

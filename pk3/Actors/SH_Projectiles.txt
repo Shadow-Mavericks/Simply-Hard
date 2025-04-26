@@ -315,6 +315,7 @@ Actor KewlBFG : BFGBall
 	Scale 0.5
 	+FORCERADIUSDMG
 	+NOTIMEFREEZE
+	+FORCEXYBILLBOARD
 	States
 	{
 		Spawn:
@@ -484,6 +485,7 @@ Actor BFGVapour
 	Scale 0.5
 	Projectile
 	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
 	States
 	{
 		Spawn:

@@ -274,6 +274,9 @@ script "QUEUE_FOR_DELETION" (void)
 
 script "ON_KILL" KILL
 {
+	if(CheckInventory("NeedsBossDeathHax"))
+		GiveInventory("BossDeathHax", 1);
+
 	if(!CheckFlag(0, "ISMONSTER")) // Not monster? Don't bother.
 		terminate;
 
@@ -498,7 +501,7 @@ script "ON_KILL" KILL
 	
 	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
-		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorProperty(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
+		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorPropertyString(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
 		{
 			GiveInventory("sh_gibspawner", 1);
 			ACS_NamedExecuteAlways("QUEUE_FOR_DELETION", 0);
@@ -528,6 +531,9 @@ function int GetDigit(int Num, int Digit)
 
 function void PrintDamage(int damage)
 {
+	if(!GetCVar("sh_damagenumbers"))
+		return;
+
 	if(damage > 9999)
 		damage = 9999;
 
@@ -780,6 +786,7 @@ function void actor_swap(str replace, str with, int chance)
 		bool stealth = CheckFlag(0, "STEALTH");
 		bool standstill = CheckFlag(0, "STANDSTILL");
 		bool dormant = CheckFlag(0, "DORMANT");
+		bool bossdeath = (CheckFlag(0, "BOSSDEATH") || CheckFlag(0, "BOSS"));
 		
 		int thingSpecial = GetActorProperty(0, APROP_Special);
 		int thingArg0 = GetActorProperty(0, APROP_Args0);
@@ -791,25 +798,30 @@ function void actor_swap(str replace, str with, int chance)
 		int success = SpawnForced(with, GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0)>>8);
 		if(success)
 		{
+			bool replacee_bossdeath = (CheckFlag(uTID, "BOSSDEATH") || CheckFlag(uTID, "BOSS"));
+			if(bossdeath && !replacee_bossdeath)
+				GiveActorInventory(uTID, "NeedsBossDeathHax", 1);
+			
 			SetActorVelocity(uTID, xvel, yvel, zvel, false, false);
-
 			SetActorProperty(uTID, APROP_Ambush, ambush); // ChangeActorFlag(uTID, "AMBUSH", ambush);
 			SetActorProperty(uTID, APROP_Dormant, dormant); // ChangeActorFlag(uTID, "DORMANT", dormant);
+			SetActorProperty(uTID, APROP_Friendly, friendly);
+			SetActorPropertyString(uTID, APROP_SpecialActionClass, GetActorPropertyString(0, APROP_SpecialActionClass));
 			ChangeActorFlag(uTID, "DROPPED", dropped);
-			ChangeActorFlag(uTID, "FRIENDLY", friendly);
 			ChangeActorFlag(uTID, "STEALTH", stealth);
 			ChangeActorFlag(uTID, "STANDSTILL", standstill);
+			ChangeActorFlag(uTID, "BOSSDEATH", bossdeath);
 			
 			SetActorProperty(uTID, APROP_SpawnFlags, spawnFlags);
-			SetThingSpecial(uTID, thingSpecial, thingArg0, thingArg1, thingArg2, thingArg3, thingArg4);
+			SetThingSpecial(uTID, thingSpecial, thingArg0, thingArg1, thingArg2, thingArg3, thingArg4);		
 
 			if(GetCVar("sh_debug_spawns"))
-				log(s:replace, s:"(TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorProperty(0, APROP_Species), s:")");
+				log(s:replace, s:" (SAC: ", s:GetActorPropertyString(0, APROP_SpecialActionClass), s:", TID: ", d:thisTID, s:") has been swapped with ", s:with, s:" (Species: ", s:GetActorPropertyString(0, APROP_Species), s:")");
 
 			// These must be last!
 			// Stops RandomSpawners from doing anything.
 			// NEVER REMOVE THIS, THE CONSEQUENCES ARE SEVERE IF YOU DO. (IE: Memory rape and potential system freeze and/or BSOD.)
-			SetActorProperty(0, APROP_Species, "NullHax"); 
+			SetActorPropertyString(0, APROP_Species, "NullHax");
 			Thing_Remove(0);
 
 			SetActivator(uTID);
@@ -1640,6 +1652,29 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				
 				addPlasmaLocation(); // This checks if it is a plasma rifle, and if so, cache location.
 			}
+			
+			if(canMultiply)
+			{
+				int multiplier = GetCVar("sh_enemy_mult");
+					
+				switch(GameSkill())
+				{
+					case SHSKILL_DEMONIC:
+					{
+						if(multiplier < 2)
+							multiplier = 2;
+						break;
+					}
+					case SHSKILL_OKUPLOK:
+					{
+						multiplier = 100;
+						break;
+					}
+				}
+				
+				if(multiplier > 1)
+					multiply_actor(clamp(multiplier, 2, 100));
+			}
 
 			if(GetCVar("sh_compat_swaps"))
 			{
@@ -1720,29 +1755,6 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				actor_swap("SpiderMastermind",	GetCVarString("sh_swap_mastermind"),	256);
 				actor_swap("WolfensteinSS",		GetCVarString("sh_swap_wolfss"),		256);
 				actor_swap("CommanderKeen",		GetCVarString("sh_swap_keen"),			256);
-			}
-
-			if(canMultiply)
-			{
-				int multiplier = GetCVar("sh_enemy_mult");
-					
-				switch(GameSkill())
-				{
-					case SHSKILL_DEMONIC:
-					{
-						if(multiplier < 2)
-							multiplier = 2;
-						break;
-					}
-					case SHSKILL_OKUPLOK:
-					{
-						multiplier = 100;
-						break;
-					}
-				}
-				
-				if(multiplier > 1)
-					multiply_actor(clamp(multiplier, 2, 100));
 			}
 
 			break;

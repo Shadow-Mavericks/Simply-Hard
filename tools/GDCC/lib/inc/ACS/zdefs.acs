@@ -250,15 +250,16 @@
 #define APROP_Counter6          106
 #define APROP_Counter7          107
 
-// Zandro stuff
-#define APROP_Special			200
-#define APROP_Args0				201
-#define APROP_Args1				202
-#define APROP_Args2				203
-#define APROP_Args3				204
-#define APROP_Args4				205
-#define APROP_SpawnFlags		206
-#define APROP_GibHealth			207
+// Striker's Zandro stuff
+#define APROP_Special				200
+#define APROP_Args0					201
+#define APROP_Args1					202
+#define APROP_Args2					203
+#define APROP_Args3					204
+#define APROP_Args4					205
+#define APROP_SpawnFlags			206
+#define APROP_GibHealth				207
+#define APROP_SpecialActionClass	208
 
 #define MTF_AMBUSH				0x0008
 #define MTF_DORMANT				0x0010
