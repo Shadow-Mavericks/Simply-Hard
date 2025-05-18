@@ -417,7 +417,7 @@ ACTOR SuperShawtgun : SH_Weapon
 			// A 7
 			FSSG A 0 A_PlaySound ("weapons/sshotf", CHAN_WEAPON)
 			FSSG A 0 A_FireBullets(11.2, 7.1, 20, 5, "SH_PlayerBulletPuff")
-			FSSG A 0 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			FSSG A 0 A_SetPitch(pitch-2.5, 0)//SPF_INTERPOLATE)
 			FSSF A 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			FSSF B 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			FSSG AAA 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
@@ -516,7 +516,7 @@ ACTOR SuperShawtgun : SH_Weapon
 			// A 7
 			FSSG S 0 A_FireBullets (16, 11, 40, 3, "SH_PlayerBulletPuff")
 			FSSG S 0 A_PlaySound ("weapons/sshotf", CHAN_WEAPON)
-			FSSG S 0 A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			FSSG S 0 A_SetPitch(pitch-2.5, 0)//SPF_INTERPOLATE)
 			FSSF Q 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			FSSF R 1 Bright A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			FSSG SSS 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
