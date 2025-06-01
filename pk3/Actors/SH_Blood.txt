@@ -67,7 +67,7 @@ actor SH_BloodDroplet : SH_Blood
 	+BOUNCEONCEILINGS
 	+BOUNCEONFLOORS
 	+BOUNCEAUTOOFFFLOORONLY
-	-BOUNCEONWALLS	
+	-BOUNCEONWALLS
 	States
 	{
 		Spawn:
@@ -91,9 +91,11 @@ actor SH_BloodDroplet : SH_Blood
 		Crash:
 		Bounce.Floor:
 			BLDD A 0 A_SpawnItemEx("SH_BloodSplash", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION | SXF_TRANSFERTRANSLATION | SXF_TRANSFERSCALE, 0)
+			BLDD A 0 A_Stop
 			BLDD A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
 			BLDD A 0 A_ChangeFlag("FORCEYBILLBOARD", true)
 			BLDD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
+			BLDD A 0 A_ChangeFlag("BOUNCEONFLOORS", false)
 			BLDD A 0 A_ChangeFlag("MISSILE", false)
 			BLDD A 0 A_JumpTo("Splat")
 			stop
@@ -426,6 +428,7 @@ actor SH_BouncyGib1
 	Projectile
 	-NOGRAVITY
 	-CANPASS
+	-NOLIFTDROP
 	+NOTRIGGER
 	+NOTELEPORT
 	+NOBLOCKMONST
@@ -452,12 +455,17 @@ actor SH_BouncyGib1
 			BGB1 ABCDEFG 2 A_SpawnItemEx("SH_BloodDropletTrail", frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(0.0, 16.0), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE | SXF_TRANSFERTRANSLATION, 64)
 			loop
 		Death:
+			TNT1 A 0 A_ChangeFlag("MISSILE", false)
+			TNT1 A 0 A_ChangeFlag("BOUNCEONFLOORS", false)
 			TNT1 A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
 			TNT1 A 0 A_ChangeFlag("CORPSE", true)
 			TNT1 A 0 A_JumpTo("OnGround")
 			stop
 		Crash:
 			TNT1 A 0 A_Scream
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_ChangeFlag("MISSILE", false)
+			TNT1 A 0 A_ChangeFlag("BOUNCEONFLOORS", false)
 			TNT1 A 0 A_ChangeFlag("MOVEWITHSECTOR", true)
 			TNT1 A 0 A_JumpTo("OnGround")
 			stop
@@ -630,7 +638,8 @@ actor SH_BouncyGib9 : SH_BouncyGib1
 
 actor SH_GibSplash : SH_BaseParticle
 {
-	Scale 0.04
+	XScale 0.04
+	YScale 0.014
 	Gravity 0.25
 	-NOGRAVITY
 	-NOINTERACTION
@@ -638,7 +647,7 @@ actor SH_GibSplash : SH_BaseParticle
 	States
 	{
 		Spawn:
-			12XS A 0 NoDelay A_ClientsideACSExecute("SET_SCALE_TO_OWNER_RADIUS")
+			12XS A 0 NoDelay A_ClientsideACSExecute("SET_SCALE_TO_OWNER_DIMENSIONS")
 			12XS ABCDEFGH 2
 			stop
 	}

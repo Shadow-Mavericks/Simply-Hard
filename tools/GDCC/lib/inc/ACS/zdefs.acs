@@ -261,6 +261,47 @@
 #define APROP_GibHealth				207
 #define APROP_SpecialActionClass	208
 
+#define MDATA_Sector	0
+#define MDATA_Line		1
+
+#define SECTProp_Special			0	// Sector->Special
+#define SECTProp_Tag				1	// Sector->tag
+#define SECTProp_LightLevel 		2	// Sector->lightlevel
+#define SECTProp_Gravity			3	// Sector->gravity
+#define SECTProp_Damage				4	// Sector->damage
+#define SECTProp_MeansOfDeath		5	// Sector->mod
+#define SECTProp_FloorHeight		6	// Sector->floorplane.d
+#define SECTProp_CeilingHeight		7	// Sector->ceilingplane.d
+#define SECTProp_FloorTexture		8	// TexMan[Sector->planes[0].Texture]->Name
+#define SECTProp_CeilingTexture		9	// TexMan[Sector->planes[1].Texture]->Name
+#define SECTProp_SeqType			10	// Sector->seqType
+#define SECTProp_SeqName			11	// Sector->seqName
+#define SECTProp_Sky				12	// Sector->sky
+#define SECTProp_SoundOriginX		13	// Sector->soundorg[0]
+#define SECTProp_SoundOriginY		14	// Sector->soundorg[1]
+#define SECTProp_FloorReflection	15	// Sector->reflect[0]
+#define SECTProp_CeilingReflection	16	// Sector->reflect[1]
+#define SECTProp_LineCount			17	// Sector->linecount
+#define SECTProp_SectorLineIndex	18	// Sector->lines[value] - lines?
+#define SECTProp_FloorXOffset		19	// Sector->planes[0].xform.xoffs
+#define SECTProp_CeilingXOffset 	20	// Sector->planes[1].xform.xoffs
+#define SECTProp_FloorYOffset 		21	// Sector->planes[0].xform.yoffs
+#define SECTProp_CeilingYOffset 	22	// Sector->planes[1].xform.yoffs
+#define SECTProp_FloorXScale 		23	// Sector->planes[0].xform.xscale
+#define SECTProp_CeilingXScale 		24	// Sector->planes[1].xform.xscale
+#define SECTProp_FloorYScale 		25	// Sector->planes[0].xform.yscale
+#define SECTProp_CeilingYScale 		26	// Sector->planes[1].xform.yscale
+#define SECTProp_FloorAngle 		27	// Sector->planes[0].xform.angle
+#define SECTProp_CeilingAngle 		28	// Sector->planes[1].xform.angle
+#define SECTProp_FloorBaseAngle 	29	// Sector->planes[0].xform.base_angle
+#define SECTProp_CeilingBaseAngle 	30	// Sector->planes[1].xform.base_angle
+#define SECTProp_FloorBaseYOffset 	31	// Sector->planes[0].xform.base_yoffs
+#define SECTProp_CeilingBaseYOffset 32	// Sector->planes[1].xform.base_yoffs
+#define SECTProp_FloorAlpha 		33	// Sector->planes[0].alpha
+#define SECTProp_CeilingAlpha 		34	// Sector->planes[1].alpha
+#define SECTProp_FloorLight 		35	// Sector->planes[0].Light
+#define SECTProp_CeilingLight 		36	// Sector->planes[1].Light
+
 #define MTF_AMBUSH				0x0008
 #define MTF_DORMANT				0x0010
 #define MTF_SINGLE				0x0100

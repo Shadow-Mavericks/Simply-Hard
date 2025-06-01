@@ -258,6 +258,36 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 	}
 }
 
+script "SPECIAL_MAP_EFFECTS" OPEN
+{
+	int index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER1")) != -1)
+	{
+		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER2")) != -1)
+	{
+		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER3")) != -1)
+	{
+		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER4")) != -1)
+	{
+		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+}
 
 // Kill script, for things like orbs, lives, and box drops.
 int timeOfLastLifeDrop;
@@ -1449,26 +1479,6 @@ script "GET_PLASMA_POSITIONS" OPEN CLIENTSIDE
 	GiveActorInventory(PICKUP_SPRITE_TAG, "PlasmaLocatorHax", 1);
 	Delay(1);
 	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
-}
-
-script "SET_SCALE_TO_OWNER_RADIUS" (void) CLIENTSIDE
-{
-	int oldTID = ActivatorTID();
-	int thisTID = UniqueTID();
-	int thisScaleX = GetActorProperty(0, APROP_ScaleX);
-	int thisScaleY = GetActorProperty(0, APROP_ScaleY);
-	Thing_ChangeTID(0, thisTID);
-	if(SetActivatorToTarget(thisTID))
-	{
-		int ownerRadius = GetActorProperty(0, APROP_Radius);
-		
-		thisScaleX = fixedmul(thisScaleX, ownerRadius);
-		thisScaleY = fixedmul(thisScaleY, ownerRadius);
-		SetActorProperty(thisTID, APROP_ScaleX, thisScaleX);
-		SetActorProperty(thisTID, APROP_ScaleY, thisScaleY);
-	}
-	SetActivator(thisTID);
-	Thing_ChangeTID(thisTID, oldTID);
 }
 
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
@@ -2814,4 +2824,66 @@ script "GET_RECOIL_Y" (int tics) CLIENTSIDE
 script "CHECK_SKY" (void) CLIENTSIDE
 {
 	SetResultValue(CheckActorCeilingTexture(0, "F_SKY1"));
+}
+
+script "SET_SCALE_TO_OWNER_RADIUS" (void) CLIENTSIDE
+{
+	int oldTID = ActivatorTID();
+	int thisTID = UniqueTID();
+	int thisScaleX = GetActorProperty(0, APROP_ScaleX);
+	int thisScaleY = GetActorProperty(0, APROP_ScaleY);
+	Thing_ChangeTID(0, thisTID);
+	if(SetActivatorToTarget(thisTID))
+	{
+		int ownerRadius = GetActorProperty(0, APROP_Radius);
+		
+		thisScaleX = fixedmul(thisScaleX, ownerRadius);
+		thisScaleY = fixedmul(thisScaleY, ownerRadius);
+		SetActorProperty(thisTID, APROP_ScaleX, thisScaleX);
+		SetActorProperty(thisTID, APROP_ScaleY, thisScaleY);
+	}
+	SetActivator(thisTID);
+	Thing_ChangeTID(thisTID, oldTID);
+}
+
+
+script "SET_SCALE_TO_OWNER_DIMENSIONS" (void) CLIENTSIDE
+{
+	int oldTID = ActivatorTID();
+	int thisTID = UniqueTID();
+	int thisScaleX = GetActorProperty(0, APROP_ScaleX);
+	int thisScaleY = GetActorProperty(0, APROP_ScaleY);
+	Thing_ChangeTID(0, thisTID);
+	if(SetActivatorToTarget(thisTID))
+	{
+		int ownerRadius = GetActorProperty(0, APROP_Radius);
+		int ownerHeight = GetActorProperty(0, APROP_Height) * 4; // x4 due to death height.
+		
+		thisScaleX = fixedmul(thisScaleX, ownerRadius);
+		thisScaleY = fixedmul(thisScaleY, ownerHeight);
+		SetActorProperty(thisTID, APROP_ScaleX, thisScaleX);
+		SetActorProperty(thisTID, APROP_ScaleY, thisScaleY);
+	}
+	SetActivator(thisTID);
+	Thing_ChangeTID(thisTID, oldTID);
+}
+
+// MapData tests
+// -------------
+script "MDATA" (void)
+{
+	str test = GetMapData(0, MDATA_Sector, SECTProp_FloorTexture);
+	str test2 = GetMapData(20, MDATA_Sector, SECTProp_FloorTexture);
+	printbold(d:test, s:", ", s:test, s:", ", s:test2);
+	
+	int index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "CEIL1_2")) != -1)
+	{
+		log(s:"Sector ", d:index, s:" has texture CEIL1_2");
+		SetMapData(index, MDATA_Sector, SECTProp_FloorHeight, 128.0);
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	SetMapData(10, MDATA_Sector, SECTProp_Tag, 1);
+	Sector_SetColor(1, 64, 0, 255, 0);
 }

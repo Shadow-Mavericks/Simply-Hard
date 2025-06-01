@@ -565,6 +565,9 @@ special
    fixed -184:GetSkinPropertyFixed(2, int, str, int, int),
    str   -184:GetSkinPropertyString(2, int, str, int, int),
    int   -185:IsPlayerContestingControlPoint(2, int, int),
+   int   -197:GetMapData(3, int, int, int),
+   int   -198:SetMapData(4, int, int, int, int),
+   int   -199:FindMapData(4, int, int, int, int),
 
    // ZDoom's (continued)
    int   -200:CheckClass(1, str, int, int),

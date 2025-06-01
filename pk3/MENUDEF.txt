@@ -202,6 +202,15 @@ OptionMenu "CreditSounds"
 {
 	Title "SH Credits - Sounds"
 	
+	StaticText "StrikerTheHedgefox", 1
+	StaticText "Fiend's SSG Fire"
+	
+	StaticText "KunaiKitsune & StrikerTheHedgefox", 1
+	StaticText "PDW Fire"
+	StaticText "Burst Shotgun Fire"
+	StaticText "Acid Chaingun Fire"
+	StaticText ""
+	
 	StaticText "Mor'ladim & Jojikiba", 1
 	StaticText "Crow Sounds"
 	StaticText ""

@@ -40,18 +40,12 @@ Shellcasing3	Scase3
 chainguncasing1	50cal1	
 chainguncasing2	50cal2
 
-$volume chainguncasing1 0.25
-$volume chainguncasing2 0.25
-$volume Bulletcasing1 0.25
-$volume Bulletcasing2 0.25
-$volume Bulletcasing3 0.25
-$volume Shellcasing1 0.25
-$volume Shellcasing2 0.25
-$volume Shellcasing3 0.25
-
 $random Weapons/Bulletcasing { Bulletcasing1 Bulletcasing2 Bulletcasing3 }
 $random Weapons/Shellcasing { Shellcasing1 Shellcasing2 Shellcasing3 }
 $random Weapons/Chainguncasing { Chainguncasing1 Chainguncasing2 }
+$volume Weapons/Shellcasing 0.25
+$volume Weapons/Bulletcasing 0.25
+$volume Weapons/Chainguncasing 0.25
 
 // Gosimers sniper 
 Weapon/Sniperrail_Fire1 GSNPFIR
@@ -1868,9 +1862,6 @@ $limit weapon/D3DDEVSHOT 0
 $limit weapon/D3DDEVBOOM 0
 $limit weapon/D3DDEVSPAWN 0
 $limit weapon/D3DDEVFLY 0
-
-Weapon/Fiend_SSG_Fire	SSHTGN
-Weapon/Fiend_SSG_Reload	SSHTGNR
 
 //Gosimers Lightning gun
 Weapon/Litning_STOP	thunstop
