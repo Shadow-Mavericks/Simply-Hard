@@ -307,7 +307,7 @@ Actor PlasmaExplosion
 
 Actor KewlBFG : BFGBall
 {
-	Damage (1000)
+	Damage (1200)
 	DeathSound "weapons/bfgx"
 	RenderStyle Add
 	DamageType "Acid"
@@ -366,7 +366,7 @@ Actor KewlBFG : BFGBall
 			TNT1 AAAA 0 A_SpawnItemEx ("BFGVapour", frandom(-16.0,16.0), frandom(-16.0,16.0), frandom(-16.0,16.0), 0, 0, 0, 0, SXF_ABSOLUTEMOMENTUM)
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BFGParticle2", 0, 0, 0,  (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_SetDamageType("AcidBFGExtra")
-			TNT1 A 0 A_Explode(600, 384, 0, true, 128)
+			TNT1 A 0 A_Explode(400, 384, 0, true, 128)
 			stop
 	}
 }
@@ -385,7 +385,7 @@ actor BlueKewlBFG : KewlBFG
 			TNT1 AAAA 0 A_SpawnItemEx ("BlueBFGVapour", frandom(-16.0,16.0), frandom(-16.0,16.0), frandom(-16.0,16.0), 0, 0, 0, 0, SXF_ABSOLUTEMOMENTUM)
 			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx ("BlueBFGParticle2", 0, 0, 0,  (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), (frandom(-5.0,5.0)), 0, SXF_CLIENTSIDE|SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION)
 			TNT1 A 0 A_SetDamageType("BFGExtra")
-			TNT1 A 0 A_Explode(600, 384, 0, true, 128)
+			TNT1 A 0 A_Explode(400, 384, 0, true, 128)
 			stop
 	}
 }

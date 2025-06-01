@@ -1,62 +1,42 @@
 # HG changeset patch
 # User StrikerTheHedgefox <mossj32@gmail.com>
-# Date 1744341597 10800
-#      Fri Apr 11 00:19:57 2025 -0300
-# Node ID 84aeed09e092da39a3262ec5212184e912318651
-# Parent  90c8d2b24b3c2b749e60c1178bfbefbd23036916
+# Date 1744872126 10800
+#      Thu Apr 17 03:42:06 2025 -0300
+# Node ID 128627054d8b04a42164c2d1c4810ce51048e4a4
+# Parent  ebc6cb0488eeb311f2e0512e293fa45dc5dc0e6c
 # EXP-Topic strikers_stuff
-Add A_JumpTo codepointer. An instant, and predictable state jump.
-- Useful for jumping to child/ancestor actor states, which is something "goto"
-  cannot do, and doesn't run into the same issues that "A_Jump(256, "State")"
-  and A_JumpIf(1, "State") do.
+Fix infinite bouncing bug, hopefully.
 
-diff -r 90c8d2b24b3c -r 84aeed09e092 docs/zandronum-history.txt
---- a/docs/zandronum-history.txt	Sat Apr 12 14:13:31 2025 -0400
-+++ b/docs/zandronum-history.txt	Fri Apr 11 00:19:57 2025 -0300
-@@ -11,6 +11,9 @@
- =
- ===============================================================================================================
+diff -r ebc6cb0488ee -r 128627054d8b src/p_map.cpp
+--- a/src/p_map.cpp	Thu Apr 17 02:08:57 2025 -0300
++++ b/src/p_map.cpp	Thu Apr 17 03:42:06 2025 -0300
+@@ -3477,7 +3477,7 @@
+ 	}
  
-+3.3
-+---
-++	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ 	// The amount of bounces is limited
+-	if (mo->bouncecount>0 && --mo->bouncecount == 0)
++	if ((mo->GetDefault()->bouncecount > 0) && (--mo->bouncecount <= 0))
+ 	{
+ 		if (mo->flags & MF_MISSILE)
+ 			P_ExplodeMissile(mo, line, NULL);
+@@ -3545,7 +3545,7 @@
+ 		|| ((BlockingMobj->player == NULL) && (!(BlockingMobj->flags3 & MF3_ISMONSTER)))
+ 		))
+ 	{
+-		if (mo->bouncecount > 0 && --mo->bouncecount == 0) return false;
++		if ((mo->GetDefault()->bouncecount > 0) && (--mo->bouncecount <= 0)) return false;
  
- 3.2
- ---
-diff -r 90c8d2b24b3c -r 84aeed09e092 src/thingdef/thingdef_codeptr.cpp
---- a/src/thingdef/thingdef_codeptr.cpp	Sat Apr 12 14:13:31 2025 -0400
-+++ b/src/thingdef/thingdef_codeptr.cpp	Fri Apr 11 00:19:57 2025 -0300
-@@ -6067,3 +6067,22 @@
+ 		if (mo->flags7 & MF7_HITTARGET)	mo->target = BlockingMobj;
+ 		if (mo->flags7 & MF7_HITMASTER)	mo->master = BlockingMobj;
+diff -r ebc6cb0488ee -r 128627054d8b src/p_mobj.cpp
+--- a/src/p_mobj.cpp	Thu Apr 17 02:08:57 2025 -0300
++++ b/src/p_mobj.cpp	Thu Apr 17 03:42:06 2025 -0300
+@@ -1814,7 +1814,7 @@
+ 	}
  
- 	ACTION_SET_RESULT(res);
- }
-+
-+//===========================================================================
-+//
-+// [JM] A_JumpTo - A predictable, 100% chance jump. Useful for jumping to states of ancestor classes.
-+//
-+//===========================================================================
-+
-+// Instantly jumps to the specified state.
-+// Functions like a goto that can jump to the states of actors that inherit a state containing this function.
-+
-+DEFINE_ACTION_FUNCTION_PARAMS(AActor, A_JumpTo)
-+{
-+	ACTION_PARAM_START(1);
-+	ACTION_PARAM_STATE(jump, 0);
-+
-+	ACTION_SET_RESULT(false);	// Jumps should never set the result for inventory state chains!
-+
-+	ACTION_JUMP(jump, 0);
-+}
-diff -r 90c8d2b24b3c -r 84aeed09e092 wadsrc/static/actors/actor.txt
---- a/wadsrc/static/actors/actor.txt	Sat Apr 12 14:13:31 2025 -0400
-+++ b/wadsrc/static/actors/actor.txt	Fri Apr 11 00:19:57 2025 -0300
-@@ -188,6 +188,7 @@
- 	action native A_FaceConsolePlayer(float MaxTurnAngle = 0); // [Dusk]
- 	action native A_ClientsideACSExecute(string script, int arg1=0, int arg2=0, int arg3=0, int arg4=0); // [JM]
- 	action native A_GivePlayerMedal(name medal, bool silent, int giveto = AAPTR_DEFAULT); // [AK]
-+	action native A_JumpTo(state label); // [JM]
- 
- 	action native A_MissileAttack();
- 	action native A_MeleeAttack();
+ 	// The amount of bounces is limited
+-	if (bouncecount>0 && --bouncecount==0)
++	if ((GetDefault()->bouncecount > 0) && (--bouncecount <= 0))
+ 	{
+ 		if (flags & MF_MISSILE)
+ 			P_ExplodeMissile(this, NULL, NULL);

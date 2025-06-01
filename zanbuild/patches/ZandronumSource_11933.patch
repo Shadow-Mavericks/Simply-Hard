@@ -1,42 +1,85 @@
 # HG changeset patch
-# User StrikerTheHedgefox <mossj32@gmail.com>
-# Date 1743761613 10800
-#      Fri Apr 04 07:13:33 2025 -0300
-# Node ID 57041369f51ae8b3502c6a321cafff2aa44337aa
-# Parent  1d896309cd8588893a1fee07ce38e7081143e125
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1744968010 10800
+#      Fri Apr 18 06:20:10 2025 -0300
+# Node ID 790d5caff9455019c872942017064b830d45f51d
+# Parent  17013ea1eae4ee3dc6ba535ef61f5f1fdc0f55b7
 # EXP-Topic strikers_stuff
-Let FakeInventory make use of the "Activation" thing property. Vastly increases its usefulness.
+Add APROP_Special and APROP_Args0-4.
 
-diff -r 1d896309cd85 -r 57041369f51a docs/zandronum-history.txt
---- a/docs/zandronum-history.txt	Fri Apr 04 07:07:02 2025 -0300
-+++ b/docs/zandronum-history.txt	Fri Apr 04 07:13:33 2025 -0300
-@@ -13,6 +13,7 @@
- 
- 3.3
- ---
-+*+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
- *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
+diff -r 17013ea1eae4 -r 790d5caff945 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 18 03:32:43 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 18 06:20:10 2025 -0300
+@@ -24,6 +24,7 @@
+ +	- Backport ThruBits actor property with +ALLOWTHRUBITS and +ALLOWTHRUFLAGS flags. [StrikerTheHedgefox]
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
+++	- Added APROP_Special, and APROP_Args0-4 to Get/Set/CheckActorProperty. [StrikerTheHedgefox]
  +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+ +	- Added "hidelives = true/false" token to SBARINFO, allowing to disable the built-in lives display on the HUD. [StrikerTheHedgefox]
  +	- Backported A_WeaponOffset from ZDoom Revision 115dbd0, with alterations necessary for Zandronum's current codebase. [StrikerTheHedgefox]
-diff -r 1d896309cd85 -r 57041369f51a src/thingdef/olddecorations.cpp
---- a/src/thingdef/olddecorations.cpp	Fri Apr 04 07:07:02 2025 -0300
-+++ b/src/thingdef/olddecorations.cpp	Fri Apr 04 07:13:33 2025 -0300
-@@ -88,7 +88,17 @@
- 			return ( true );
- 		}
+diff -r 17013ea1eae4 -r 790d5caff945 src/p_acs.cpp
+--- a/src/p_acs.cpp	Fri Apr 18 03:32:43 2025 -0300
++++ b/src/p_acs.cpp	Fri Apr 18 06:20:10 2025 -0300
+@@ -4899,6 +4899,18 @@
+ 			SERVERCOMMANDS_SetThingProperty( actor, APROP_StencilColor );
+ 		break;
  
--		INTBOOL success = P_ExecuteSpecial(special, NULL, toucher, false,
-+		// [JM] Let's make this thing way more useful through the Activation property.
-+		AActor* activatorPtr = toucher;
++	case APROP_Special: // [JM]
++		actor->special = value;
++		break;
 +
-+		if (activationtype & THINGSPEC_ThingTargets)
-+			target = toucher;
-+		if (activationtype & THINGSPEC_TriggerTargets)
-+			toucher->target = this;
-+		if ((activationtype & THINGSPEC_ThingActs) && !(activationtype & THINGSPEC_TriggerActs))
-+			activatorPtr = this;
++	case APROP_Args0: // [JM]
++	case APROP_Args1: // [JM]
++	case APROP_Args2: // [JM]
++	case APROP_Args3: // [JM]
++	case APROP_Args4: // [JM]
++		actor->args[property - APROP_Args0] = value;
++		break;
 +
-+		INTBOOL success = P_ExecuteSpecial(special, NULL, activatorPtr, false,
- 			args[0], args[1], args[2], args[3], args[4]);
+ 	default:
+ 		// do nothing.
+ 		break;
+@@ -4998,6 +5010,13 @@
+ 	case APROP_NameTag:		return GlobalACSStrings.AddString(actor->GetTag());
+ 	case APROP_StencilColor:return actor->fillcolor;
  
- 		if (success)
++	case APROP_Special:		return actor->special; // [JM]
++	case APROP_Args0:		return actor->args[0]; // [JM]
++	case APROP_Args1:		return actor->args[1]; // [JM]
++	case APROP_Args2:		return actor->args[2]; // [JM]
++	case APROP_Args3:		return actor->args[3]; // [JM]
++	case APROP_Args4:		return actor->args[4]; // [JM]
++
+ 	default:				return 0;
+ 	}
+ }
+@@ -5044,6 +5063,12 @@
+ 		case APROP_ViewHeight:
+ 		case APROP_AttackZOffset:
+ 		case APROP_StencilColor:
++		case APROP_Special: // [JM]
++		case APROP_Args0: // [JM]
++		case APROP_Args1: // [JM]
++		case APROP_Args2: // [JM]
++		case APROP_Args3: // [JM]
++		case APROP_Args4: // [JM]
+ 			return (GetActorProperty(tid, property) == value);
+ 
+ 		// Boolean values need to compare to a binary version of value
+diff -r 17013ea1eae4 -r 790d5caff945 src/p_acs.h
+--- a/src/p_acs.h	Fri Apr 18 03:32:43 2025 -0300
++++ b/src/p_acs.h	Fri Apr 18 06:20:10 2025 -0300
+@@ -423,6 +423,12 @@
+ 	APROP_ViewHeight	= 39,
+ 	APROP_AttackZOffset	= 40,
+ 	APROP_StencilColor	= 41,
++	APROP_Special		= 200, // [JM] Reserving some space.
++	APROP_Args0			= 201, // [JM]
++	APROP_Args1			= 202, // [JM]
++	APROP_Args2			= 203, // [JM]
++	APROP_Args3			= 204, // [JM]
++	APROP_Args4			= 205, // [JM]
+ };	
+ 
+ // [Dusk] Enumeration for GetTeamProperty

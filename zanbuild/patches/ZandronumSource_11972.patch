@@ -2,12 +2,12 @@
 # User Jordon Moss <mossj32@gmail.com>
 # Date 1745640917 10800
 #      Sat Apr 26 01:15:17 2025 -0300
-# Node ID 0d5ea5e07d6204a05682006b9181893b2eac88c6
-# Parent  44d2c3f3cafbb7c91aba4894255b3f15cd298b5c
+# Node ID 23057c3943ce06965b84c62a44f0650d157eeb19
+# Parent  c68134624e1b531ea8565bb254af52d8afba3b4a
 # EXP-Topic strikers_stuff
 Add SpecialActorClass property.
 
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 docs/zandronum-history.txt
+diff -r c68134624e1b -r 23057c3943ce docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Sun Apr 20 22:53:52 2025 -0300
 +++ b/docs/zandronum-history.txt	Sat Apr 26 01:15:17 2025 -0300
 @@ -19,6 +19,7 @@
@@ -18,7 +18,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 docs/zandronum-history.txt
  *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
  *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
  +	- Made RandomSpawners pass AMBUSH, FRIENDLY, STEALTH, DORMANT, and STANDSTILL flags down to the actor if set via scripts. [StrikerTheHedgefox]
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/actor.h
+diff -r c68134624e1b -r 23057c3943ce src/actor.h
 --- a/src/actor.h	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/actor.h	Sat Apr 26 01:15:17 2025 -0300
 @@ -1039,6 +1039,8 @@
@@ -30,7 +30,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/actor.h
  	int				special1;		// Special info
  	int				special2;		// Special info
  	int 			health;
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/g_shared/a_randomspawner.cpp
+diff -r c68134624e1b -r 23057c3943ce src/g_shared/a_randomspawner.cpp
 --- a/src/g_shared/a_randomspawner.cpp	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/g_shared/a_randomspawner.cpp	Sat Apr 26 01:15:17 2025 -0300
 @@ -208,7 +208,7 @@
@@ -42,7 +42,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/g_shared/a_randomspawner.cpp
  			if (rep && ((rep->flags4 & MF4_BOSSDEATH) || (rep->flags2 & MF2_BOSS)))
  				boss = true;
  
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_acs.cpp
+diff -r c68134624e1b -r 23057c3943ce src/p_acs.cpp
 --- a/src/p_acs.cpp	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/p_acs.cpp	Sat Apr 26 01:15:17 2025 -0300
 @@ -4923,6 +4923,10 @@
@@ -72,7 +72,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_acs.cpp
  	}
  	if (string == NULL) string = "";
  	return (!stricmp(string, FBehavior::StaticLookupString(value)));
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_acs.h
+diff -r c68134624e1b -r 23057c3943ce src/p_acs.h
 --- a/src/p_acs.h	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/p_acs.h	Sat Apr 26 01:15:17 2025 -0300
 @@ -432,6 +432,7 @@
@@ -83,7 +83,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_acs.h
  };	
  
  // [Dusk] Enumeration for GetTeamProperty
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_enemy.cpp
+diff -r c68134624e1b -r 23057c3943ce src/p_enemy.cpp
 --- a/src/p_enemy.cpp	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/p_enemy.cpp	Sat Apr 26 01:15:17 2025 -0300
 @@ -3695,11 +3695,17 @@
@@ -116,7 +116,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/p_enemy.cpp
  	
  	// Do generic special death actions first
  	bool checked = false;
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/thingdef/thingdef_properties.cpp
+diff -r c68134624e1b -r 23057c3943ce src/thingdef/thingdef_properties.cpp
 --- a/src/thingdef/thingdef_properties.cpp	Sun Apr 20 22:53:52 2025 -0300
 +++ b/src/thingdef/thingdef_properties.cpp	Sat Apr 26 01:15:17 2025 -0300
 @@ -2951,3 +2951,12 @@
@@ -132,7 +132,7 @@ diff -r 44d2c3f3cafb -r 0d5ea5e07d62 src/thingdef/thingdef_properties.cpp
 +	PROP_STRING_PARM(str, 0);
 +	defaults->SpecialActionClass = PClass::FindClass(str);
 +}
-diff -r 44d2c3f3cafb -r 0d5ea5e07d62 wadsrc/static/actors/actor.txt
+diff -r c68134624e1b -r 23057c3943ce wadsrc/static/actors/actor.txt
 --- a/wadsrc/static/actors/actor.txt	Sun Apr 20 22:53:52 2025 -0300
 +++ b/wadsrc/static/actors/actor.txt	Sat Apr 26 01:15:17 2025 -0300
 @@ -26,6 +26,7 @@

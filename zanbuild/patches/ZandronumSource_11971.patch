@@ -2,12 +2,12 @@
 # User Jordon Moss <mossj32@gmail.com>
 # Date 1745200432 10800
 #      Sun Apr 20 22:53:52 2025 -0300
-# Node ID 44d2c3f3cafbb7c91aba4894255b3f15cd298b5c
+# Node ID c68134624e1b531ea8565bb254af52d8afba3b4a
 # Parent  31a8ee9802826d63f67220f06a08e59dbc060143
 # EXP-Topic strikers_stuff
 Add +LOCKEDTOCEILING and +LOCKEDTOFLOOR flags.
 
-diff -r 31a8ee980282 -r 44d2c3f3cafb docs/zandronum-history.txt
+diff -r 31a8ee980282 -r c68134624e1b docs/zandronum-history.txt
 --- a/docs/zandronum-history.txt	Fri Apr 18 08:39:01 2025 -0300
 +++ b/docs/zandronum-history.txt	Sun Apr 20 22:53:52 2025 -0300
 @@ -18,6 +18,7 @@
@@ -18,7 +18,7 @@ diff -r 31a8ee980282 -r 44d2c3f3cafb docs/zandronum-history.txt
  *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
  *-	- Send inventory that inherits from CustomInventory and Inventory on full update. Fixes issues where weapon checks for inventory fails for late-joining clients, or after a map change. [StrikerTheHedgefox]
  +	- Made RandomSpawners pass AMBUSH, FRIENDLY, STEALTH, DORMANT, and STANDSTILL flags down to the actor if set via scripts. [StrikerTheHedgefox]
-diff -r 31a8ee980282 -r 44d2c3f3cafb src/actor.h
+diff -r 31a8ee980282 -r c68134624e1b src/actor.h
 --- a/src/actor.h	Fri Apr 18 08:39:01 2025 -0300
 +++ b/src/actor.h	Sun Apr 20 22:53:52 2025 -0300
 @@ -493,6 +493,8 @@
@@ -30,22 +30,25 @@ diff -r 31a8ee980282 -r 44d2c3f3cafb src/actor.h
  
  // --- mobj.renderflags ---
  
-diff -r 31a8ee980282 -r 44d2c3f3cafb src/p_mobj.cpp
+diff -r 31a8ee980282 -r c68134624e1b src/p_mobj.cpp
 --- a/src/p_mobj.cpp	Fri Apr 18 08:39:01 2025 -0300
 +++ b/src/p_mobj.cpp	Sun Apr 20 22:53:52 2025 -0300
-@@ -4077,6 +4077,11 @@
+@@ -4077,6 +4077,14 @@
  		y += vely;
  		z += velz;
  		LinkToWorld ();
 +
-+		if (this->HFXFlags & HFXF_LOCKEDTOCEILING)
++		if (this->HFXFlags & (HFXF_LOCKEDTOCEILING | HFXF_LOCKEDTOFLOOR))
 +		{
-+			z = this->Sector->ceilingplane.ZatPoint(x, y);
++			floorz = this->Sector->floorplane.ZatPoint(x, y);
++			ceilingz = this->Sector->ceilingplane.ZatPoint(x, y);
++
++			z = (this->HFXFlags & HFXF_LOCKEDTOCEILING) ? ceilingz : floorz;
 +		}
  	}
  	else
  	{
-@@ -4437,7 +4442,15 @@
+@@ -4437,7 +4445,15 @@
  			}
  
  		}
@@ -62,7 +65,7 @@ diff -r 31a8ee980282 -r 44d2c3f3cafb src/p_mobj.cpp
  		{	// Handle Z velocity and gravity
  			if (((flags2 & MF2_PASSMOBJ) || (flags & MF_SPECIAL)) && !(i_compatflags & COMPATF_NO_PASSMOBJ))
  			{
-@@ -4540,6 +4553,7 @@
+@@ -4540,6 +4556,7 @@
  			if (!PoisonDurationReceived) PoisonDamageReceived = 0;
  		}
  	}
@@ -70,14 +73,15 @@ diff -r 31a8ee980282 -r 44d2c3f3cafb src/p_mobj.cpp
  	// [BC] Don't tick states while predicting.
  	if ( CLIENT_PREDICT_IsPredicting( ))
  		return;
-diff -r 31a8ee980282 -r 44d2c3f3cafb src/thingdef/thingdef_data.cpp
+diff -r 31a8ee980282 -r c68134624e1b src/thingdef/thingdef_data.cpp
 --- a/src/thingdef/thingdef_data.cpp	Fri Apr 18 08:39:01 2025 -0300
 +++ b/src/thingdef/thingdef_data.cpp	Sun Apr 20 22:53:52 2025 -0300
-@@ -283,6 +283,7 @@
+@@ -283,6 +283,8 @@
  	DEFINE_FLAG(HFXF, DECALUSESTRANSLATION, AActor, HFXFlags),
  	DEFINE_FLAG(HFXF, DECALUSESSPRITESCALE, AActor, HFXFlags),
  	DEFINE_FLAG(HFXF, NEVERADJUSTSPRITECLIPPING, AActor, HFXFlags),
 +	DEFINE_FLAG(HFXF, LOCKEDTOCEILING, AActor, HFXFlags),
++	DEFINE_FLAG(HFXF, LOCKEDTOFLOOR, AActor, HFXFlags),
  
  	// [BB] New DECORATE network related flag defines here.
  	DEFINE_FLAG(NETFL, NONETID, AActor, NetworkFlags),

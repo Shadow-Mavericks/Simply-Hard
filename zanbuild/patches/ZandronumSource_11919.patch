@@ -1,0 +1,47 @@
+# HG changeset patch
+# User StrikerTheHedgefox <mossj32@gmail.com>
+# Date 1743804858 10800
+#      Fri Apr 04 19:14:18 2025 -0300
+# Node ID 6f2821774da3941ea788caa33c7d9d03e9edb4e2
+# Parent  5bc4d465b4c3043237af68a0a5a1f3ea3227b68f
+# EXP-Topic strikers_stuff
+Allow using GLSL shaders on camera textures.
+
+diff -r 5bc4d465b4c3 -r 6f2821774da3 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Tue Apr 08 19:48:06 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 04 19:14:18 2025 -0300
+@@ -13,6 +13,7 @@
+ 
+ 3.3
+ ---
++*+	- Added the ability to apply hardware shaders to cameratextures. Must have a texture in the "textures" folder to replace with the cameratexture for this to work. [StrikerTheHedgefox]
+ *+	- Added +DECALUSESTRANSLATION, allowing an actor to pass its translation down to its decal. Useful to change decal color on the fly, or to pass the color of blood particles down to the decal. Pal index 255 is used set the color for shaded decals. [StrikerTheHedgefox]
+ *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
+ *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
+diff -r 5bc4d465b4c3 -r 6f2821774da3 src/gl/textures/gl_material.cpp
+--- a/src/gl/textures/gl_material.cpp	Tue Apr 08 19:48:06 2025 -0300
++++ b/src/gl/textures/gl_material.cpp	Fri Apr 04 19:14:18 2025 -0300
+@@ -623,6 +623,10 @@
+ 	else if (tx->bHasCanvas)
+ 	{
+ 		expanded = false;
++		if ((gl.shadermodel > 2) && (tx->gl_info.shaderindex >= FIRST_USER_SHADER)) // [JM]
++		{
++			mShaderIndex = tx->gl_info.shaderindex;
++		}
+ 	}
+ 	else if (gl.shadermodel > 2) 
+ 	{
+diff -r 5bc4d465b4c3 -r 6f2821774da3 src/textures/animations.cpp
+--- a/src/textures/animations.cpp	Tue Apr 08 19:48:06 2025 -0300
++++ b/src/textures/animations.cpp	Fri Apr 04 19:14:18 2025 -0300
+@@ -635,6 +635,9 @@
+ 		fitwidth = oldtex->GetScaledWidth ();
+ 		fitheight = oldtex->GetScaledHeight ();
+ 		viewer->UseType = oldtex->UseType;
++		// [JM] Pass down any user shaders defined for this texture.
++		viewer->gl_info.shaderspeed = oldtex->gl_info.shaderspeed;
++		viewer->gl_info.shaderindex = oldtex->gl_info.shaderindex;
+ 		ReplaceTexture (picnum, viewer, true);
+ 	}
+ 	else

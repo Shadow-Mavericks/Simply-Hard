@@ -261,27 +261,6 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 script "SPECIAL_MAP_EFFECTS" OPEN
 {
 	int index = 0;
-	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER1")) != -1)
-	{
-		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
-		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
-	}
-	
-	index = 0;
-	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER2")) != -1)
-	{
-		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
-		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
-	}
-	
-	index = 0;
-	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER3")) != -1)
-	{
-		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
-		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
-	}
-	
-	index = 0;
 	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER4")) != -1)
 	{
 		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
@@ -529,7 +508,7 @@ script "ON_KILL" KILL
 		}
 	}
 	
-	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
+	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "ICECORPSE") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
 		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorPropertyString(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
 		{
@@ -1337,8 +1316,7 @@ script "HPBAR_LOGIC" (void) // CLIENTSIDE // NOPE, CAN'T DO CLIENTSIDE BECAUSE Z
 script "ACID_TICKER" (void)
 {
 	int radius = GetActorProperty(0, APROP_Radius);
-	Thing_SetTranslation(0, 7000);
-	
+		
 	if(PlayerNumber() != -1 && CheckInventory("PowerAcidStatus"))
 	{
 		SetCameraToTexture(0, "ACIDFX", 90);
@@ -1346,6 +1324,10 @@ script "ACID_TICKER" (void)
 		SetFont("ACIDFX");
 		SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
 		HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.0, 1.0);
+	}
+	else
+	{
+		Thing_SetTranslation(0, 7000);
 	}
 	
 	while(CheckInventory("PowerAcidStatus"))
@@ -1422,8 +1404,10 @@ script "ACID_TICKER" (void)
 			SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
 			HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_LAYER_UNDERHUD, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.1, 1.0, 1.0);
 		}
-	
-		Thing_SetTranslation(0, 0);
+		else
+		{
+			Thing_SetTranslation(0, 0);
+		}
 	}
 }
 

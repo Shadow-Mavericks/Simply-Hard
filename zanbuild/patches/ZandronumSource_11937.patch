@@ -1,47 +1,60 @@
 # HG changeset patch
-# User StrikerTheHedgefox <mossj32@gmail.com>
-# Date 1743804858 10800
-#      Fri Apr 04 19:14:18 2025 -0300
-# Node ID 6f2821774da3941ea788caa33c7d9d03e9edb4e2
-# Parent  5bc4d465b4c3043237af68a0a5a1f3ea3227b68f
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1744976341 10800
+#      Fri Apr 18 08:39:01 2025 -0300
+# Node ID 31a8ee9802826d63f67220f06a08e59dbc060143
+# Parent  020695547d33a6335060fa28443bc1058614ee8c
 # EXP-Topic strikers_stuff
-Allow using GLSL shaders on camera textures.
+Add APROP_GibHealth.
 
-diff -r 5bc4d465b4c3 -r 6f2821774da3 docs/zandronum-history.txt
---- a/docs/zandronum-history.txt	Tue Apr 08 19:48:06 2025 -0300
-+++ b/docs/zandronum-history.txt	Fri Apr 04 19:14:18 2025 -0300
-@@ -13,6 +13,7 @@
+diff -r 020695547d33 -r 31a8ee980282 docs/zandronum-history.txt
+--- a/docs/zandronum-history.txt	Fri Apr 18 07:15:51 2025 -0300
++++ b/docs/zandronum-history.txt	Fri Apr 18 08:39:01 2025 -0300
+@@ -26,6 +26,7 @@
+ +	- Backport A_FaceTarget flags from ZDoom revision 53fd57d6, and add a new flag, FAF_PITCHFROMORIGIN for A_FaceTarget. [StrikerTheHedgefox]
+ +	- Backport APROP_DamageType. [StrikerTheHedgefox]
+ +	- Hitting ice corpses now trigger damage events. [StrikerTheHedgefox]
++*	- Added APROP_GibHealth, which lets you retrieve the gib health of an actor. [StrikerTheHedgefox]
+ +	- Added APROP_SpawnFlags, which gets/sets the map spawn flags of an actor. Useful for passing these down to other actors. [StrikerTheHedgefox]
+ +	- Added APROP_Special, and APROP_Args0-4 to Get/Set/CheckActorProperty. [StrikerTheHedgefox]
+ +	- Added A_JumpTo codepointer, which jumps to a state instantly & with prediction. Useful for jumping to an ancestor actor's state without the issues A_Jump with a 256 chance has. [StrikerTheHedgefox]
+diff -r 020695547d33 -r 31a8ee980282 src/p_acs.cpp
+--- a/src/p_acs.cpp	Fri Apr 18 07:15:51 2025 -0300
++++ b/src/p_acs.cpp	Fri Apr 18 08:39:01 2025 -0300
+@@ -4920,6 +4920,9 @@
+ 		actor->HandleSpawnFlags();
+ 		break;
  
- 3.3
- ---
-+*+	- Added the ability to apply hardware shaders to cameratextures. Must have a texture in the "textures" folder to replace with the cameratexture for this to work. [StrikerTheHedgefox]
- *+	- Added +DECALUSESTRANSLATION, allowing an actor to pass its translation down to its decal. Useful to change decal color on the fly, or to pass the color of blood particles down to the decal. Pal index 255 is used set the color for shaded decals. [StrikerTheHedgefox]
- *+	- Added +DECALUSESSPRITESCALE, which multiplies an actor's decal scale by the sprite scale. [StrikerTheHedgefox]
- *+	- FakeInventory actors can now make use of the "Activation" thing property, vastly increasing its utility. Allows the item to target the player collecting the item and vice/versa, or for the item itself to be the activator. [StrikerTheHedgefox]
-diff -r 5bc4d465b4c3 -r 6f2821774da3 src/gl/textures/gl_material.cpp
---- a/src/gl/textures/gl_material.cpp	Tue Apr 08 19:48:06 2025 -0300
-+++ b/src/gl/textures/gl_material.cpp	Fri Apr 04 19:14:18 2025 -0300
-@@ -623,6 +623,10 @@
- 	else if (tx->bHasCanvas)
- 	{
- 		expanded = false;
-+		if ((gl.shadermodel > 2) && (tx->gl_info.shaderindex >= FIRST_USER_SHADER)) // [JM]
-+		{
-+			mShaderIndex = tx->gl_info.shaderindex;
-+		}
++	case APROP_GibHealth: // [JM]
++		break; // Can't set this.
++
+ 	default:
+ 		// do nothing.
+ 		break;
+@@ -5027,6 +5030,7 @@
+ 	case APROP_Args3:		return actor->args[3]; // [JM]
+ 	case APROP_Args4:		return actor->args[4]; // [JM]
+ 	case APROP_SpawnFlags:	return actor->SpawnFlags; // [JM]
++	case APROP_GibHealth:	return actor->GibHealth();
+ 
+ 	default:				return 0;
  	}
- 	else if (gl.shadermodel > 2) 
- 	{
-diff -r 5bc4d465b4c3 -r 6f2821774da3 src/textures/animations.cpp
---- a/src/textures/animations.cpp	Tue Apr 08 19:48:06 2025 -0300
-+++ b/src/textures/animations.cpp	Fri Apr 04 19:14:18 2025 -0300
-@@ -635,6 +635,9 @@
- 		fitwidth = oldtex->GetScaledWidth ();
- 		fitheight = oldtex->GetScaledHeight ();
- 		viewer->UseType = oldtex->UseType;
-+		// [JM] Pass down any user shaders defined for this texture.
-+		viewer->gl_info.shaderspeed = oldtex->gl_info.shaderspeed;
-+		viewer->gl_info.shaderindex = oldtex->gl_info.shaderindex;
- 		ReplaceTexture (picnum, viewer, true);
- 	}
- 	else
+@@ -5080,6 +5084,7 @@
+ 		case APROP_Args2: // [JM]
+ 		case APROP_Args3: // [JM]
+ 		case APROP_Args4: // [JM]
++		case APROP_GibHealth: // [JM]
+ 			return (GetActorProperty(tid, property) == value);
+ 
+ 		case APROP_SpawnFlags: // [JM]
+diff -r 020695547d33 -r 31a8ee980282 src/p_acs.h
+--- a/src/p_acs.h	Fri Apr 18 07:15:51 2025 -0300
++++ b/src/p_acs.h	Fri Apr 18 08:39:01 2025 -0300
+@@ -431,6 +431,7 @@
+ 	APROP_Args3			= 204, // [JM]
+ 	APROP_Args4			= 205, // [JM]
+ 	APROP_SpawnFlags	= 206, // [JM]
++	APROP_GibHealth		= 207, // [JM]
+ };	
+ 
+ // [Dusk] Enumeration for GetTeamProperty
