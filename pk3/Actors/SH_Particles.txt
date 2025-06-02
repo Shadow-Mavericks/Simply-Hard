@@ -12,7 +12,8 @@ ACTOR TinyAcid : SH_BaseParticle
 	+FORCEYBILLBOARD
 	+DONTSPLASH
 	+CLIENTSIDEONLY
-	-NOCLIP
+	+NOCLIP // NOCLIP and CORPSE together is a significant optimization for actors that only ever move vertically.
+	+CORPSE
 	-NOGRAVITY
 	-EXPLODEONWATER
 	-NOINTERACTION
@@ -22,6 +23,7 @@ ACTOR TinyAcid : SH_BaseParticle
 			BLUD Z 0 NoDelay A_SpawnItemEx("LongSmoke", 0, 0, 4, 0, 0, 0, 0, SXF_TRANSFERSCALE | SXF_CLIENTSIDE, 128)
 			BLUD Z 500
 			Stop
+		Crash:
 		Death:
 			XDT1 EFGHIJKL 2
 			stop
