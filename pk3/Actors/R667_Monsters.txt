@@ -1921,11 +1921,11 @@ ACTOR TerminatorBlaster
    States
    {
    Spawn:
-	  BLST A 1 Bright
+	  TBLS A 1 Bright
 	  loop
    Death:
-	  BLST B 6 Bright A_Explode(40,72,1)
-	  BLST CDEFGHIJKL 3 Bright
+	  TBLS B 6 Bright A_Explode(40,72,1)
+	  TBLS CDEFGHIJKL 3 Bright
 	  stop
    }
 }

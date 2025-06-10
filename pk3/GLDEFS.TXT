@@ -3405,18 +3405,18 @@ Size 26
 
 Object TerminatorBlaster
 {
-Frame BLSTA { Light TerminatorBlaster }
-Frame BLSTB { Light TerminatorBlaster2 }
-Frame BLSTC { Light TerminatorBlaster3 }
-Frame BLSTD { Light TerminatorBlaster4 }
-Frame BLSTE { Light TerminatorBlaster5 }
-Frame BLSTF { Light TerminatorBlaster6 }
-Frame BLSTG { Light TerminatorBlaster7 }
-Frame BLSTH { Light TerminatorBlaster8 }
-Frame BLSTI { Light TerminatorBlaster9 }
-Frame BLSTJ { Light TerminatorBlaster10 }
-Frame BLSTK { Light TerminatorBlaster11 }
-Frame BLSTL { Light TerminatorBlaster12 }
+Frame TBLSA { Light TerminatorBlaster }
+Frame TBLSB { Light TerminatorBlaster2 }
+Frame TBLSC { Light TerminatorBlaster3 }
+Frame TBLSD { Light TerminatorBlaster4 }
+Frame TBLSE { Light TerminatorBlaster5 }
+Frame TBLSF { Light TerminatorBlaster6 }
+Frame TBLSG { Light TerminatorBlaster7 }
+Frame TBLSH { Light TerminatorBlaster8 }
+Frame TBLSI { Light TerminatorBlaster9 }
+Frame TBLSJ { Light TerminatorBlaster10 }
+Frame TBLSK { Light TerminatorBlaster11 }
+Frame TBLSL { Light TerminatorBlaster12 }
 }
 
 Pointlight RedStar
