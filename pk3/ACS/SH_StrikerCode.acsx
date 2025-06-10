@@ -508,7 +508,7 @@ script "ON_KILL" KILL
 		}
 	}
 	
-	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "ICECORPSE") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
+	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "ICECORPSE") && !CheckInventory("WhoFrozeMeHax") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
 		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorPropertyString(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
 		{
