@@ -107,7 +107,6 @@ actor SH_BloodDroplet : SH_Blood
 			CBLD A 0 A_ChangeFlag("FORCEXYBILLBOARD", false)
 			CBLD A 0 A_ChangeFlag("MISSILE", false)
 			CBLD A 0 A_ChangeFlag("BOUNCEONCEILINGS", false)
-			CBLD A 0 A_ChangeFlag("BOUNCEONFLOORS", false)
 			CBLD A 0 A_ChangeFlag("DOOMBOUNCE", false)
 			CBLD A 0 A_ChangeFlag("USEBOUNCESTATE", false)
 			CBLD A 0 A_PlaySound("BloodDrip", CHAN_AUTO)
@@ -362,8 +361,8 @@ ACTOR SH_GibSpawner : CustomInventory
 			TNT1 A 0 A_ChangeFlag("NOTIMEFREEZE", true)
 			TNT1 A 0 A_XScream
 			TNT1 A 0 A_NoBlocking
-			TNT1 AAAAAAAA 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, frandom(1.0, height-1.0), frandom(1.25, 2.5)*(radius/20.0), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_USEBLOODCOLOR, 64)
-			TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("SH_BloodDroplet", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 8.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 64)
+			TNT1 AAAAAA 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, frandom(1.0, height-1.0), frandom(1.25, 2.5)*(radius/20.0), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_USEBLOODCOLOR, 64)
+			TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("SH_BloodDroplet", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 8.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 64)
 			TNT1 A 0 A_SpawnItemEx("SH_BouncyGib1", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0)
 			TNT1 AAAA 0 A_SpawnItemEx("SH_BouncyGib2", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 64)
 			TNT1 AA 0 A_SpawnItemEx("SH_BouncyGib3", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 32)
@@ -379,8 +378,8 @@ ACTOR SH_GibSpawner : CustomInventory
 			goto DoChecks
 			
 		ExtraChunky:
-			TNT1 AAAAA 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, frandom(1.0, height-1.0), frandom(1.25, 2.5)*(radius/20.0), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_USEBLOODCOLOR, 64)
-			TNT1 AAAAA 0 A_SpawnItemEx("SH_BloodDroplet", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 8.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 128)
+			TNT1 AAA 0 A_SpawnItemEx("SH_BloodSpurt", 0, 0, frandom(1.0, height-1.0), frandom(1.25, 2.5)*(radius/20.0), 0, frandom(1.5, 3.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE | SXF_USEBLOODCOLOR, 64)
+			TNT1 AAA 0 A_SpawnItemEx("SH_BloodDroplet", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 8.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 128)
 			TNT1 AA 0 A_SpawnItemEx("SH_BouncyGib1", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0)
 			TNT1 A 0 A_SpawnItemEx("SH_BouncyGib5", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0)
 			TNT1 A 0 A_SpawnItemEx("SH_BouncyGib7", frandom(-radius/2.0, radius/2.0), frandom(-radius/2.0, radius/2.0), frandom(1.0, height), frandom(-4.0, 4.0)+(velx/2.0), frandom(-4.0, 4.0)+(vely/2.0), frandom(2.0, 6.0)+(velz/2.0), angle, SXF_CLIENTSIDE | SXF_USEBLOODCOLOR | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0)
