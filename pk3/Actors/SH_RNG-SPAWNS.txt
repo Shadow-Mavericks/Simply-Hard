@@ -215,8 +215,8 @@ Actor SH_RandomCyberdemonSpawn : Randomspawner
 	Dropitem "DarkInquisitor"			255 1
 	Dropitem "D16Cyberdemon"			255	1
 	Dropitem "Zyberdemon"				255	1
+	Dropitem "BOSSTerminator"			255 1
 	//Dropitem "N_Cyberdemon_Magic"		255 1
-	//Dropitem "BOSSTerminator"			255 1
 	//Dropitem "Annihilator"			255 1
 	//Dropitem "FlyingCyberMind"		255 1
 }

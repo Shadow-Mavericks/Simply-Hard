@@ -1826,6 +1826,7 @@ ACTOR BOSSTerminator
 	+FLOORCLIP
 	+MISSILEMORE
 	+BOSS
+	+BOSSDEATH
 	+DONTHURTSPECIES
 	+NORADIUSDMG
 	Missiletype Grenadeblast
@@ -1837,6 +1838,9 @@ ACTOR BOSSTerminator
 	States
 	{
 		Spawn:
+			TERM A 0 NoDelay A_SetUserVar("user_hpbar_offset", 8)
+			goto SpawnLoop
+		SpawnLoop:
 			TERM AB 10 A_Look
 			Loop
 		See:
@@ -1917,7 +1921,7 @@ ACTOR BOSSTerminator
 			TERM X 6 A_Fall
 			TERM Y 6
 			TERM Z 1 A_Playsound("Terminator/terstepA")
-			TERM Z 5
+			TERM Z 5 A_BossDeath
 			TERM [ -1
 			Stop
 	}
