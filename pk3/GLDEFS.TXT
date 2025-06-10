@@ -6188,11 +6188,11 @@ Size 35
 
 Object WarlordofhellBall
 {
-	Frame BALMA { Light WarlordofhellBall }
-	Frame BALMB { Light WarlordofhellBall }
-	Frame BALMC { Light WarlordofhellBall2 }
-	Frame BALMD { Light WarlordofhellBall3 }
-	Frame BALME { Light WarlordofhellBall4 }
+	Frame WOHBA { Light WarlordofhellBall }
+	Frame WOHBB { Light WarlordofhellBall }
+	Frame WOHBC { Light WarlordofhellBall2 }
+	Frame WOHBD { Light WarlordofhellBall3 }
+	Frame WOHBE { Light WarlordofhellBall4 }
 }
 
 

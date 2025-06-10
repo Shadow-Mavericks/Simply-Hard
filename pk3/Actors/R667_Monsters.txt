@@ -1811,9 +1811,9 @@ Actor DevPuff
 //created by: Vader
 ///////////////////////////////////////////////////////////////////
 
-
 ACTOR BOSSTerminator
 {
+	Tag "Terminator"
 	Health 4000
 	Radius 24
 	Height 64
@@ -1835,99 +1835,118 @@ ACTOR BOSSTerminator
 	DeathSound "monster/termdth"
 	ActiveSound "Terminator/termact"
 	States
-   {
-   Spawn:
-	   TERM AB 10 A_Look
-	   Loop
-   See:
-	   TERM A 1 A_Playsound("Terminator/terstepA")
-	   TERM A 3 A_Chase
-	   TERM A 4 A_Chase
-	   TERM B 4 A_Chase
-	   TERM B 4 A_Chase
-	   TERM C 1 A_Playsound("Terminator/terstepA")
-	   TERM C 3 A_Chase
-	   TERM C 4 A_Chase
-	   TERM D 4 A_Chase
-	   TERM D 4 A_Chase
-	   Loop
-   Pain:
-	   TERM L 3
-	   TERM L 3 A_Pain
-	   Goto See
-   Missile:
-	   TERM E 0 A_Jump(192, 5)
-	   TERM E 8 A_FaceTarget
-	   TERM F 8 Bright A_CustomMissile("TerminatorBlaster",38,15,0,0)
-	   TERM E 0 A_jump(128, 1)
-	   Goto See
-	   TERM E 8 A_Spidrefire
-	   Goto Missile+1
-	   TERM G 0 A_Jump(160, 9)
-	   TERM G 2 A_Facetarget
-	   TERM H 1 Bright A_CustomBulletAttack (15, 8, 2, 4, "Terminatorpuff")
-	   TERM H 1 Bright A_Playsound("Terminator/tershotB")
-	   TERM G 2 A_Facetarget
-	   TERM I 1 Bright A_CustomBulletAttack (15, 8, 2, 4, "Terminatorpuff")
-	   TERM I 1 Bright A_Playsound("Terminator/tershotB")
-	   TERM G 0 A_jump(16, 2)
-	   TERM G 1 A_Spidrefire
-	   Goto Missile+7
-	   TERM J 0 A_Jump(128, 3)
-	   TERM J 8 A_Facetarget
-	   TERM K 8 Bright A_CustomMissile("Redstar", 38, -15, 0, 0)
-	   Goto See
-	   TERM J 0 A_Jumpifcloser(192, 3)
-	   TERM J 8 A_Facetarget
-	   TERM K 8 Bright A_CustomMissile("Redgrenade", 38, -15, 0, 0)
-	   Goto See
-	   TERM J 8 A_Facetarget
-	   TERM K 8 Bright A_CustomMissile("Redstar", 38, -15, 0, 0)
-	   Goto See
-   Death:
-	   TERM M 6 A_Scream
-	   TERM N 4
-	   TERM OPQ 4 Bright
-	   TERM R 0 Bright A_FaceTarget
-	   TERM R 0 Bright A_SpawnItemEx("TerminatorHead", 15, 0, 90, 10, 0, 0, -170, 128)
-	   TERM R 0 Bright A_SpawnItemEx("TerminatorShoulder", 60, 0, 75, 8, 0, 0, -70, 128)
-	   TERM R 4 Bright A_SpawnItemEx("TerminatorArm", 60, 0, 0, 3, 0, 0, -90, 128)
-	   TERM STUV 4 Bright
-	   TERM W 4
-	   TERM X 6 A_Fall
-	   TERM Y 6
-	   TERM Z 1 A_Playsound("Terminator/terstepA")
-	   TERM Z 5
-	   TERM [ -1
-	   Stop
-   }
+	{
+		Spawn:
+			TERM AB 10 A_Look
+			Loop
+		See:
+			TERM A 1 A_Playsound("Terminator/terstepA")
+			TERM A 3 A_Chase
+			TERM A 4 A_Chase
+			TERM B 4 A_Chase
+			TERM B 4 A_Chase
+			TERM C 1 A_Playsound("Terminator/terstepA")
+			TERM C 3 A_Chase
+			TERM C 4 A_Chase
+			TERM D 4 A_Chase
+			TERM D 4 A_Chase
+			Loop
+		Pain:
+			TERM L 3
+			TERM L 3 A_Pain
+			Goto See
+
+		Missile:
+			TERM E 0 A_Jump(192, "Attack2Check")
+			goto Attack1
+			
+		Attack1:
+			TERM E 8 A_FaceTarget
+			TERM F 8 Bright A_CustomMissile("TerminatorBlaster",38,15,0,0)
+			TERM E 0 A_Jump(128, "Attack1Refire")
+			goto See
+		Attack1Refire:
+			TERM E 8 A_SpidRefire
+			goto Attack1
+		
+		Attack2Check:
+			TERM G 0 A_Jump(160, "Attack3Check")
+			goto Attack2		
+		Attack2:
+			TERM G 2 A_Facetarget
+			TERM H 1 Bright A_CustomBulletAttack (15, 8, 2, 4, "Terminatorpuff")
+			TERM H 1 Bright A_Playsound("Terminator/tershotB")
+			TERM G 2 A_Facetarget
+			TERM I 1 Bright A_CustomBulletAttack (15, 8, 2, 4, "Terminatorpuff")
+			TERM I 1 Bright A_Playsound("Terminator/tershotB")
+			TERM G 0 A_Jump(16, "Attack3Check")
+			TERM G 1 A_SpidRefire
+			loop
+		
+		Attack3Check:
+			TERM J 0 A_Jump(128, "Attack4Check")
+			goto Attack3
+		Attack3:
+			TERM J 8 A_Facetarget
+			TERM K 8 Bright A_CustomMissile("Redstar", 38, -15, 0, 0)
+			Goto See
+		
+		Attack4Check:
+			TERM J 0 A_JumpifCloser(192, "Attack5")
+			goto Attack4
+		Attack4:
+			TERM J 8 A_Facetarget
+			TERM K 8 Bright A_CustomMissile("Redgrenade", 38, -15, 0, 0)
+			Goto See
+			
+		Attack5:
+			TERM J 8 A_Facetarget
+			TERM K 8 Bright A_CustomMissile("Redstar", 38, -15, 0, 0)
+			Goto See
+		
+		Death:
+			TERM M 6 A_Scream
+			TERM N 4
+			TERM OPQ 4 Bright
+			TERM R 0 Bright A_FaceTarget
+			TERM R 0 Bright A_SpawnItemEx("TerminatorHead", 15, 0, 90, 10, 0, 0, -170, 128)
+			TERM R 0 Bright A_SpawnItemEx("TerminatorShoulder", 60, 0, 75, 8, 0, 0, -70, 128)
+			TERM R 4 Bright A_SpawnItemEx("TerminatorArm", 60, 0, 0, 3, 0, 0, -90, 128)
+			TERM STUV 4 Bright
+			TERM W 4
+			TERM X 6 A_Fall
+			TERM Y 6
+			TERM Z 1 A_Playsound("Terminator/terstepA")
+			TERM Z 5
+			TERM [ -1
+			Stop
+	}
 }
 
 
 ACTOR TerminatorBlaster
 {
-   Radius 8
-   Height 12
-   Speed 24
-   Damage 15
-   PROJECTILE
-   RENDERSTYLE ADD
-   alpha 0.85
-   +THRUGHOST
-   SeeSound "monster/brufir"
-   DeathSound "weapons/hellex"
-   DONTHURTSHOOTER
-   Decal RevenantScorch
-   States
-   {
-   Spawn:
-	  TBLS A 1 Bright
-	  loop
-   Death:
-	  TBLS B 6 Bright A_Explode(40,72,1)
-	  TBLS CDEFGHIJKL 3 Bright
-	  stop
-   }
+	Radius 8
+	Height 12
+	Speed 24
+	Damage 15
+	PROJECTILE
+	RENDERSTYLE ADD
+	alpha 0.85
+	+THRUGHOST
+	SeeSound "monster/brufir"
+	DeathSound "weapons/hellex"
+	Decal RevenantScorch
+	States
+	{
+		Spawn:
+			TBLS A 1 Bright
+			loop
+		Death:
+			TBLS B 6 Bright A_Explode(40, 72, 0)
+			TBLS CDEFGHIJKL 3 Bright
+			stop
+	}
 }
 
 actor Redstar
@@ -1946,15 +1965,12 @@ actor Redstar
 	Decal CacoScorch
 	States
 	{
-	Spawn:
-		STAR A 3 Bright A_SeekerMissile (10,15)
-		STAR B 3 Bright A_SeekerMissile (10,15)
-		STAR C 3 Bright A_SeekerMissile (10,15)
-		STAR D 3 Bright A_SeekerMissile (10,15)
-		Loop
-	Death:
-		STAR EFGHIJKLMNO 3 Bright
-		Stop
+		Spawn:
+			STAR ABCD 3 Bright A_SeekerMissile(10, 15)
+			Loop
+		Death:
+			STAR EFGHIJKLMNO 3 Bright
+			Stop
 	}
 }
 
@@ -2004,13 +2020,10 @@ actor Redgrenade
 	}
 }
 
-ACTOR Grenadetrail
+ACTOR GrenadeTrail : SH_BaseParticle
 {
-	PROJECTILE
-	+NOCLIP
-		Renderstyle ADD
+	Renderstyle Add
 	Alpha 0.6
-	DamageType Redblast
 	States
 	{
 	Spawn:
@@ -2043,20 +2056,20 @@ actor Grenadeblast
 
 ACTOR Terminatorpuff : Bulletpuff
 {
-		Renderstyle ADD
+	Renderstyle ADD
 	Alpha 0.75
 	scale 0.75
 	Decal Bulletchip
 	States
 	{
-	Spawn:
-	Melee:
-		TPUF A 2 Bright
-		TPUF A 0 A_Jump(128,10)
-		TPUF BCDEFGH 2 Bright
-		Stop
-		TPUF IJKLMNO 2 Bright
-		Stop
+		Spawn:
+		Melee:
+			TPUF A 2 Bright
+			TPUF A 0 A_Jump(128,10)
+			TPUF BCDEFGH 2 Bright
+			Stop
+			TPUF IJKLMNO 2 Bright
+			Stop
 	}
 }
 
@@ -2068,14 +2081,14 @@ ACTOR TerminatorArm
 	Mass 1000
 	scale 1.2
 	+DOOMBOUNCE
-	  States
+	States
 	{
-	Spawn:
-		 TARM A 5
-		 TARM B 5 A_Fall
-		 TARM CDE 5
-		 TARM F -1
-		 Stop
+		Spawn:
+			TARM A 5
+			TARM B 5 A_Fall
+			TARM CDE 5
+			TARM F -1
+			Stop
 	}
 }
 
@@ -2088,16 +2101,15 @@ actor TerminatorHead
 	+DOOMBOUNCE
 	+DROPOFF
 	+Missile
-	scale 1.2
-
+	Scale 1.2
 	States
 	{
-	Spawn:
-		THAD DEFGHABC 2
-		loop
-	Death:
-		THAD I -1
-		loop
+		Spawn:
+			THAD DEFGHABC 2
+			loop
+		Death:
+			THAD I -1
+			loop
 	}
 }
 
@@ -3982,25 +3994,25 @@ Actor WarlordOfHell 22282
 
 Actor WarlordOfHellBall
 {
-  Radius 6
-  Height 8
-  Speed 15
-  Damage 8
-  Projectile
-  SeeSound "imp/attack"
-  DeathSound "imp/shotx"
-  Decal BaronScorch
+	Radius 6
+	Height 8
+	Speed 15
+	Damage 8
+	Projectile
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+	Decal BaronScorch
 	RenderStyle Add
 	Alpha 0.75
-  States
-  {
-  Spawn:
-	BALM AB 4 Bright
-	Loop
-  Death:
-	BALM CDE 6 Bright
-	Stop
-  }
+	States
+	{
+		Spawn:
+			WOHB AB 4 Bright
+			Loop
+		Death:
+			WOHB CDE 6 Bright
+			Stop
+	}
 }
 
 // Cyber Baron created by Ben2k9/Virtue
