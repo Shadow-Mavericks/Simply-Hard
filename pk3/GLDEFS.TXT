@@ -9496,22 +9496,22 @@ Size 10
 
 Object RictusFire
 {
-Frame CFCFA { Light RictusFire }
-Frame CFCFB { Light RictusFire }
-Frame CFCFC { Light RictusFire }
-Frame CFCFD { Light RictusFire }
-Frame CFCFE { Light RictusFire }
-Frame CFCFF { Light RictusFire }
-Frame CFCFG { Light RictusFire }
-Frame CFCFH { Light RictusFire }
-Frame CFCFI { Light RictusFire }
-Frame CFCFJ { Light RictusFire }
-Frame CFCFK { Light RictusFire }
-Frame CFCFL { Light RictusFire }
-Frame CFCFM { Light RictusFire }
-Frame CFCFN { Light RictusFire2 }
-Frame CFCFO { Light RictusFire3 }
-Frame CFCFP { Light RictusFire4 }
+Frame RCTFA { Light RictusFire }
+Frame RCTFB { Light RictusFire }
+Frame RCTFC { Light RictusFire }
+Frame RCTFD { Light RictusFire }
+Frame RCTFE { Light RictusFire }
+Frame RCTFF { Light RictusFire }
+Frame RCTFG { Light RictusFire }
+Frame RCTFH { Light RictusFire }
+Frame RCTFI { Light RictusFire }
+Frame RCTFJ { Light RictusFire }
+Frame RCTFK { Light RictusFire }
+Frame RCTFL { Light RictusFire }
+Frame RCTFM { Light RictusFire }
+Frame RCTFN { Light RictusFire2 }
+Frame RCTFO { Light RictusFire3 }
+Frame RCTFP { Light RictusFire4 }
 }
 
 Flickerlight2 MiniRictusFire
@@ -9543,22 +9543,22 @@ Size 5
 
 Object MiniRictusFire
 {
-Frame CFCFA { Light RictusFire }
-Frame CFCFB { Light RictusFire }
-Frame CFCFC { Light RictusFire }
-Frame CFCFD { Light RictusFire }
-Frame CFCFE { Light RictusFire }
-Frame CFCFF { Light RictusFire }
-Frame CFCFG { Light RictusFire }
-Frame CFCFH { Light RictusFire }
-Frame CFCFI { Light RictusFire }
-Frame CFCFJ { Light RictusFire }
-Frame CFCFK { Light RictusFire }
-Frame CFCFL { Light RictusFire }
-Frame CFCFM { Light RictusFire }
-Frame CFCFN { Light RictusFire2 }
-Frame CFCFO { Light RictusFire3 }
-Frame CFCFP { Light RictusFire4 }
+	Frame RCTFA { Light RictusFire }
+	Frame RCTFB { Light RictusFire }
+	Frame RCTFC { Light RictusFire }
+	Frame RCTFD { Light RictusFire }
+	Frame RCTFE { Light RictusFire }
+	Frame RCTFF { Light RictusFire }
+	Frame RCTFG { Light RictusFire }
+	Frame RCTFH { Light RictusFire }
+	Frame RCTFI { Light RictusFire }
+	Frame RCTFJ { Light RictusFire }
+	Frame RCTFK { Light RictusFire }
+	Frame RCTFL { Light RictusFire }
+	Frame RCTFM { Light RictusFire }
+	Frame RCTFN { Light RictusFire2 }
+	Frame RCTFO { Light RictusFire3 }
+	Frame RCTFP { Light RictusFire4 }
 }
 
 Pointlight PoisonSoulDeath1

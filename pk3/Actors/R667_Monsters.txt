@@ -11140,22 +11140,22 @@ actor RictusKamakazi
 
 actor RictusFire
 {
-  radius 6
-  height 8
-  speed 1
-  damage 0
-  renderstyle Add
-  +NOBLOCKMAP
-  +NOGRAVITY
-  +MISSILE
-  +NOTELEPORT
-  +DONTSPLASH
-  states
-  {
-  Spawn:
-	CFCF ABCDEFGHIJKLMNOP 1 bright
-	stop
-  }
+	radius 6
+	height 8
+	speed 1
+	damage 0
+	renderstyle Add
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+MISSILE
+	+NOTELEPORT
+	+DONTSPLASH
+	states
+	{
+		Spawn:
+			RCTF ABCDEFGHIJKLMNOP 1 bright
+			stop
+	}
 }
 
 actor MiniRictusFire : RictusFire
