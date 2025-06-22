@@ -1,0 +1,31 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1750631506 10800
+#      Sun Jun 22 19:31:46 2025 -0300
+# Node ID ccd470f0d18912e5f2e0c8354740eece59758610
+# Parent  46422999994e4171a4dd2d7100e6cd6fa4fd47c3
+# EXP-Topic strikers_stuff
+Allow inventory-based jumps be handled by the client in CustomInventory Use states.
+
+diff -r 46422999994e -r ccd470f0d189 src/thingdef/thingdef_codeptr.cpp
+--- a/src/thingdef/thingdef_codeptr.cpp	Sun Jun 22 01:22:54 2025 -0300
++++ b/src/thingdef/thingdef_codeptr.cpp	Sun Jun 22 19:31:46 2025 -0300
+@@ -903,6 +903,7 @@
+ // State jump function
+ //
+ //==========================================================================
++
+ void DoJumpIfInventory(AActor * owner, DECLARE_PARAMINFO)
+ {
+ 	ACTION_PARAM_START(4);
+@@ -917,6 +918,10 @@
+ 		(( CallingState == self->player->psprites[ps_weapon].state ) || ( CallingState == self->player->psprites[ps_flash].state )))
+ 	{
+ 	}
++	else if (stateowner->IsKindOf(RUNTIME_CLASS(ACustomInventory)) && stateowner->InStateSequence(CallingState, stateowner->FindState(NAME_Use)))
++	{
++		// [JM] Let CustomInventory do this.
++	}
+ 	else
+ 	{
+ 		if ( NETWORK_InClientMode() )
