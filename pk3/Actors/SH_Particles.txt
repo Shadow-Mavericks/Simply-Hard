@@ -398,6 +398,10 @@ actor SH_TeleporterParticles_Red
 {
 	Radius 1
 	Height 1
+	
+	+ALLOWCLIENTSPAWN
+	+CLIENTSIDEONLY
+	
 	var int user_x;
 	var int user_y;
 	States

@@ -484,6 +484,11 @@ script "SPECIAL_MAP_EFFECTS" OPEN
 		put_sound_on_line(index, 103);
 		index++;
 	}
+}
+
+script "SPECIAL_MAP_EFFECTS_CLIENTSIDE" OPEN CLIENTSIDE
+{
+	int index;
 	
 	index = 0;
 	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "GATE1")) != -1)
