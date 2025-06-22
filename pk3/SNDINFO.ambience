@@ -5,12 +5,19 @@ WaterSmall WATRSML1
 WaterMedium WATRMED1
 WaterLarge WATRLRG1
 
+HellTeleport1 HELTELE1
+HellTeleport2 HELTELE2
+HellTeleport3 HELTELE3
+
 $ambient 90 WaterSmall POINT 1.5 CONTINUOUS 0.125
 $ambient 91 WaterMedium POINT 1.25 CONTINUOUS 0.15
 $ambient 92 WaterLarge POINT 1.0 CONTINUOUS 0.25
 
 $ambient 100 Terminal POINT 2.0 CONTINUOUS 1.0
 $ambient 103 CompHum3 POINT 2.0 CONTINUOUS 1.0
+$ambient 104 HellTeleport1 POINT 2.5 CONTINUOUS 0.125
+$ambient 105 HellTeleport2 POINT 2.5 CONTINUOUS 0.125
+$ambient 106 HellTeleport3 POINT 2.5 CONTINUOUS 0.150
 $ambient 255 Terminal POINT 2.0 CONTINUOUS 1.0 // KEEP THIS ENTRY!
 
 

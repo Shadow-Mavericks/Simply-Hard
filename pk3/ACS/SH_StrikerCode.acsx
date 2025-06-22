@@ -423,10 +423,12 @@ function void put_particles_in_teleporter(int index, int type)
 				if(type == 1)
 				{
 					SpawnForced("SH_TeleporterParticles_White", x, y, z, uTID, 0);
+					put_sound_in_sector(index, 106, 106, 0, 0, 0);
 				}
 				else
 				{
 					SpawnForced("SH_TeleporterParticles_Red", x, y, z, uTID, 0);
+					put_sound_in_sector(index, 104, 105, 0, 0, 0);
 				}
 				SetUserVariable(uTID, "user_x", sector_size.x);
 				SetUserVariable(uTID, "user_y", sector_size.y);
@@ -528,6 +530,8 @@ script "QUEUE_FOR_DELETION" (void)
 	if(PlayerNumber() != -1) // Don't do this to players.
 		terminate;
 
+	SetActorProperty(0, APROP_RenderStyle, STYLE_Translucent);
+	SetActorProperty(0, APROP_Alpha, 0.0);
 	Delay(1);
 	Thing_Remove(0);
 }
