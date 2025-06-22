@@ -73,7 +73,7 @@ actor Star_Follower
 			TNT1 A 0 A_SetUserVar(user_timer, user_timer+1)
 			TNT1 A 0 A_JumpIf(user_timer >= 35*30, "Poof")
 			TNT1 A 0 A_Warp(AAPTR_TARGET, -12, 0, 0, 0, WARPF_NOCHECKPOSITION|WARPF_STOP)
-			TNT1 A 1 A_SpawnItemEx("Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 1 A_SpawnItemEx("Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0), 0, 0, frandom(5.0, 15.0), 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_CheckFlag("SOLID", "Spawn", AAPTR_TARGET)
 			goto Poof
 		Poof:
@@ -94,9 +94,9 @@ actor Super_Follower
 			TNT1 A 0 A_SetUserVar(user_timer, user_timer+1)
 			TNT1 A 0 A_JumpIf(user_timer >= 35*30, "Poof")
 			TNT1 A 0 A_Warp(AAPTR_TARGET, -12, 0, 0, 0, WARPF_NOCHECKPOSITION|WARPF_STOP)
-			TNT1 A 0 A_SpawnItemEx("Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
-			TNT1 A 0 A_SpawnItemEx("Super_Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0))
-			TNT1 A 1 A_SpawnItemEx("Super_Trail")
+			TNT1 A 0 A_SpawnItemEx("Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0), 0.0, 0.0, frandom(5.0, 15.0), 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("Super_Star", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(5.0, 60.0), 0.0, 0.0, frandom(5.0, 15.0), 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 1 A_SpawnItemEx("Super_Trail", 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_CheckFlag("SOLID", "Spawn", AAPTR_TARGET)
 			goto Poof
 		Poof:
@@ -125,23 +125,23 @@ actor Hyper_Follower
 			TNT1 A 0 A_Jump(255, "t1", "t2", "t3", "t4", "t5")
 
 		t1:
-			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Green")
+			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Green", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			goto cont
 
 		t2:
-			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Red")
+			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Red", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			goto cont
 
 		t3:
-			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Purple")
+			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Purple", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			goto cont
 
 		t4:
-			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Blue")
+			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Blue", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			goto cont
 
 		t5:
-			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Yellow")
+			TNT1 A 1 A_SpawnItemEx("Hyper_Trail_Yellow", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			goto cont
 
 		cont:
@@ -165,8 +165,6 @@ actor Star : SH_BaseParticle
 	States
 	{
 		Spawn:
-			TNT1 A 0
-			TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
 			STR1 AFEDCBA 1 bright
 			stop
 	}
@@ -191,8 +189,6 @@ actor Super_Star : SH_BaseParticle
 	States
 	{
 		Spawn:
-			TNT1 A 0
-			TNT1 A 0 ThrustThingZ(0, random(5,15), 0, 0)
 			STR7 AFEDCBA 1 bright
 			stop
 	}
@@ -263,19 +259,7 @@ actor Hyper_Star_Yellow : SH_BaseParticle
 	}
 }
 
-actor Star_NoRise : SH_BaseParticle
-{
-	-CLIENTSIDEONLY
-	Scale 0.05
-	States
-	{
-		Spawn:
-			STR1 AFEDCBA 1 bright
-			stop
-	}
-}
-
-actor Red_Star_NoRise : SH_BaseParticle
+actor Red_Star : SH_BaseParticle
 {
 	Scale 0.05
 	States
@@ -286,13 +270,24 @@ actor Red_Star_NoRise : SH_BaseParticle
 	}
 }
 
-actor Blue_Star_NoRise : SH_BaseParticle
+actor Blue_Star : SH_BaseParticle
 {
 	Scale 0.05
 	States
 	{
 		Spawn:
 			STR6 FEDCBA 2 bright
+			stop
+	}
+}
+
+actor White_Star : SH_BaseParticle
+{
+	Scale 0.05
+	States
+	{
+		Spawn:
+			STR1 FEDCBA 2 bright
 			stop
 	}
 }

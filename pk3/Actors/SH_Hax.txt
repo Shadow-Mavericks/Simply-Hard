@@ -221,3 +221,8 @@ actor PingLight : DynamicLight
 	+ALLOWCLIENTSPAWN
 	-DORMANT
 }
+
+actor SH_AmbientSound : AmbientSound // Hack to make the sound not kill itself immediately.
+{
+	Args 255, 100
+}

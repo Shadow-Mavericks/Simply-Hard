@@ -260,6 +260,7 @@
 #define APROP_SpawnFlags			206
 #define APROP_GibHealth				207
 #define APROP_SpecialActionClass	208
+#define APROP_Sector				209
 
 #define MDATA_Sector	0
 #define MDATA_Line		1
@@ -301,6 +302,33 @@
 #define SECTProp_CeilingAlpha 		34	// Sector->planes[1].alpha
 #define SECTProp_FloorLight 		35	// Sector->planes[0].Light
 #define SECTProp_CeilingLight 		36	// Sector->planes[1].Light
+#define SECTProp_BoundingBoxTop		37	// Sector->bbox[0]
+#define SECTProp_BoundingBoxBottom	38	// Sector->bbox[1]
+#define SECTProp_BoundingBoxLeft	39	// Sector->bbox[2]
+#define SECTProp_BoundingBoxRight	40	// Sector->bbox[3]
+
+#define LINEProp_FrontSector		0	// Line->frontsector - sectors
+#define LINEProp_BackSector			1	// Line->backsector - sectors
+#define LINEProp_Vertex1X			2	// Line->v1->x;
+#define LINEProp_Vertex2X			3	// Line->v2->x;
+#define LINEProp_Vertex1Y			4	// Line->v1->y;
+#define LINEProp_Vertex2Y			5	// Line->v2->y;
+#define LINEProp_BoundingBoxTop		6	// Line->bbox[0] // ORDER OF THESE ENUMS IS IMPORTANT HERE!
+#define LINEProp_BoundingBoxBottom	7	// Line->bbox[1]
+#define LINEProp_BoundingBoxLeft	8	// Line->bbox[2]
+#define LINEProp_BoundingBoxRight	9	// Line->bbox[3]
+#define LINEProp_FrontTopTexture	10	// Line->sidedef[0]->GetTexture(side::top)
+#define LINEProp_BackTopTexture		11	// Line->sidedef[1]->GetTexture(side::top)
+#define LINEProp_FrontMidTexture	12	// Line->sidedef[0]->GetTexture(side::mid)
+#define LINEProp_BackMidTexture		13	// Line->sidedef[1]->GetTexture(side::mid)
+#define LINEProp_FrontBottomTexture	14	// Line->sidedef[0]->GetTexture(side::bottom)
+#define LINEProp_BackBottomTexture	15	// Line->sidedef[1]->GetTexture(side::bottom)
+#define LINEProp_Special			16	// Line->special
+#define LINEProp_Args0				17	// Line->args[0]
+#define LINEProp_Args1				18	// Line->args[1]
+#define LINEProp_Args2				19	// Line->args[2]
+#define LINEProp_Args3				20	// Line->args[3]
+#define LINEProp_Args4				21	// Line->args[4]
 
 #define MTF_AMBUSH				0x0008
 #define MTF_DORMANT				0x0010

@@ -1,0 +1,442 @@
+# HG changeset patch
+# User Jordon Moss <mossj32@gmail.com>
+# Date 1750566174 10800
+#      Sun Jun 22 01:22:54 2025 -0300
+# Node ID 46422999994e4171a4dd2d7100e6cd6fa4fd47c3
+# Parent  6cd1ae47a34fa3362321e4b129daa8c66c875cc1
+# EXP-Topic strikers_stuff
+More work on Get/Set/FindMapData. Adds more properties and fixes SECTProp_SectorLineIndex.
+Also, add APROP_Sector.
+
+diff -r 6cd1ae47a34f -r 46422999994e src/p_acs.cpp
+--- a/src/p_acs.cpp	Sun Jun 01 00:06:29 2025 -0300
++++ b/src/p_acs.cpp	Sun Jun 22 01:22:54 2025 -0300
+@@ -5036,6 +5036,7 @@
+ 	case APROP_SpawnFlags:	return actor->SpawnFlags; // [JM]
+ 	case APROP_GibHealth:	return actor->GibHealth();
+ 	case APROP_SpecialActionClass:	return GlobalACSStrings.AddString((actor->SpecialActionClass) ? actor->SpecialActionClass->TypeName : actor->GetClass()->ActorInfo->GetReplacee()->Class->TypeName);
++	case APROP_Sector:		return actor->Sector - sectors;
+ 
+ 	default:				return 0;
+ 	}
+@@ -5105,6 +5106,7 @@
+ 		case APROP_Notarget:
+ 		case APROP_Notrigger:
+ 		case APROP_Dormant:
++		case APROP_Sector:
+ 			return (GetActorProperty(tid, property) == (!!value));
+ 
+ 		// Strings are covered by GetActorProperty, but they're fairly
+@@ -5643,6 +5645,36 @@
+ 	SECTProp_CeilingAlpha,			// Sector->planes[1].alpha
+ 	SECTProp_FloorLight,			// Sector->planes[0].Light
+ 	SECTProp_CeilingLight,			// Sector->planes[1].Light
++	SECTProp_BoundingBoxTop,		// Sector->bbox[0] // ORDER OF THESE ENUMS IS IMPORTANT HERE!
++	SECTProp_BoundingBoxBottom,		// Sector->bbox[1]
++	SECTProp_BoundingBoxLeft,		// Sector->bbox[2]
++	SECTProp_BoundingBoxRight,		// Sector->bbox[3]
++};
++
++enum MapDataLineProperties
++{
++	LINEProp_FrontSector,			// Line->frontsector - sectors
++	LINEProp_BackSector,			// Line->backsector - sectors
++	LINEProp_Vertex1X,				// Line->v1->x;
++	LINEProp_Vertex2X,				// Line->v2->x;
++	LINEProp_Vertex1Y,				// Line->v1->y;
++	LINEProp_Vertex2Y,				// Line->v2->y;
++	LINEProp_BoundingBoxTop,		// Line->bbox[0] // ORDER OF THESE ENUMS IS IMPORTANT HERE!
++	LINEProp_BoundingBoxBottom,		// Line->bbox[1]
++	LINEProp_BoundingBoxLeft,		// Line->bbox[2]
++	LINEProp_BoundingBoxRight,		// Line->bbox[3]
++	LINEProp_FrontTopTexture,		// Line->sidedef[0]->GetTexture(side::top)
++	LINEProp_BackTopTexture,		// Line->sidedef[1]->GetTexture(side::top)
++	LINEProp_FrontMidTexture,		// Line->sidedef[0]->GetTexture(side::mid)
++	LINEProp_BackMidTexture,		// Line->sidedef[1]->GetTexture(side::mid)
++	LINEProp_FrontBottomTexture,	// Line->sidedef[0]->GetTexture(side::bottom)
++	LINEProp_BackBottomTexture,		// Line->sidedef[1]->GetTexture(side::bottom)
++	LINEProp_Special,				// Line->special
++	LINEProp_Args0,					// Line->args[0]
++	LINEProp_Args1,					// Line->args[1]
++	LINEProp_Args2,					// Line->args[2]
++	LINEProp_Args3,					// Line->args[3]
++	LINEProp_Args4,					// Line->args[4]
+ };
+ 
+ int DLevelScript::SideFromID(int id, int side)
+@@ -9408,13 +9440,8 @@
+ 					{
+ 						if (funcIndex == ACSF_GetMapData)
+ 						{
+-							if (value >= Sector->linecount)
+-								return Sector->lines[0] - lines;
+-
+-							if (Sector->linecount <= 0)
+-								return -1;
+-
+-							return Sector->lines[value] - lines;
++							Printf("GetMapData: SECTProp_SectorLineIndex cannot be got! (did you mean to use find?)");
++							return -1;
+ 						}
+ 
+ 						if (funcIndex == ACSF_SetMapData)
+@@ -9425,8 +9452,13 @@
+ 
+ 						if (funcIndex == ACSF_FindMapData)
+ 						{
+-							Printf("SetMapData: SECTProp_SectorLineIndex cannot be searched for!");
+-							return -1;
++							if (value >= Sector->linecount)
++								return Sector->lines[0] - lines;
++
++							if (Sector->linecount <= 0)
++								return -1;
++
++							return Sector->lines[value] - lines;
+ 						}
+ 					}
+ 
+@@ -9700,6 +9732,304 @@
+ 						return -1;
+ 					}
+ 
++					case SECTProp_BoundingBoxTop:		// Sector->bbox[0]
++					case SECTProp_BoundingBoxBottom:	// Sector->bbox[1]
++					case SECTProp_BoundingBoxLeft:		// Sector->bbox[2]
++					case SECTProp_BoundingBoxRight:		// Sector->bbox[3]
++					{
++						int position = property - SECTProp_BoundingBoxTop;
++
++						if (funcIndex == ACSF_GetMapData)
++							return Sector->bbox[position];
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: SECTProp_BoundingBoxTop/Bottom/Left/Right cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numsectors; i++)
++							{
++								if (sectors[i].bbox[position] == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					default:
++						Printf("Get/Set/FindMapData: Unknown sector property type %d", property);
++						return -1; // Unimplemented
++				}
++			}
++			else if (dataType == MDATA_Line)
++			{
++				line_t* Line = &lines[index];
++				if (index < 0 || index > numlines)
++					return -1;
++
++				switch (property)
++				{
++					case LINEProp_FrontSector:
++					{
++						if (funcIndex == ACSF_GetMapData)
++							return Line->frontsector - sectors;
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: LINEProp_FrontSector cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								int sectorIndex = lines[i].frontsector - sectors;
++								if (sectorIndex == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_BackSector:
++					{
++						if (funcIndex == ACSF_GetMapData)
++							return Line->backsector - sectors;
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: LINEProp_BackSector cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								int sectorIndex = lines[i].backsector - sectors;
++								if (sectorIndex == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_Vertex1X:				// Line->v1->x;
++					case LINEProp_Vertex2X:				// Line->v2->x;
++					{
++						if (funcIndex == ACSF_GetMapData)
++							return (property == LINEProp_Vertex1X) ? Line->v1->x : Line->v2->x;
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: LINEProp_Vertex1/2X cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								vertex_t* vertex = (property == LINEProp_Vertex1X) ? lines[i].v1 : lines[i].v2;
++								if (vertex->x == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_Vertex1Y:				// Line->v1->y;
++					case LINEProp_Vertex2Y:				// Line->v2->y;
++					{
++						if (funcIndex == ACSF_GetMapData)
++							return (property == LINEProp_Vertex1Y) ? Line->v1->y : Line->v2->y;
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: LINEProp_Vertex1/2Y cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								vertex_t* vertex = (property == LINEProp_Vertex1Y) ? lines[i].v1 : lines[i].v2;
++								if (vertex->y == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_FrontTopTexture:
++					case LINEProp_BackTopTexture:
++					case LINEProp_FrontMidTexture:
++					case LINEProp_BackMidTexture:
++					case LINEProp_FrontBottomTexture:
++					case LINEProp_BackBottomTexture:
++					{
++						const int side = ((property == LINEProp_FrontTopTexture) || (property == LINEProp_FrontMidTexture) || (property == LINEProp_FrontBottomTexture)) ? SIDE_FRONT : SIDE_BACK;
++						
++						int position = 0;
++						switch (property)
++						{
++							case LINEProp_FrontTopTexture:
++							case LINEProp_BackTopTexture:
++								position = side_t::top;
++								break;
++							case LINEProp_FrontMidTexture:
++							case LINEProp_BackMidTexture:
++								position = side_t::mid;
++								break;
++							case LINEProp_FrontBottomTexture:
++							case LINEProp_BackBottomTexture:
++								position = side_t::bottom;
++								break;
++						}
++
++						side_t* sidedef = Line->sidedef[side];
++						if (sidedef == nullptr)
++							return -1;
++
++						FTextureID texture = sidedef->GetTexture(position);
++
++						if (funcIndex == ACSF_GetMapData)
++							return GlobalACSStrings.AddString(TexMan[texture]->Name);
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							const char* texname = FBehavior::StaticLookupString(value);
++
++							if (texname == NULL)
++								return -1;
++
++							FTextureID newtex = TexMan.GetTexture(texname, FTexture::TEX_Wall, FTextureManager::TEXMAN_Overridable);
++							if (newtex != texture)
++							{
++								sidedef->SetTexture(position, newtex);
++
++								uint32_t shift = 0;
++								shift += position;
++								if (side)
++									shift += 3;
++
++								Line->TexChangeFlags |= 1 << shift;
++
++								if (NETWORK_GetState() == NETSTATE_SERVER)
++									SERVERCOMMANDS_SetLineTexture(index);
++
++								return 1;
++							}
++
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							const char* texname = FBehavior::StaticLookupString(value);
++
++							for (int i = index; i < numlines; i++)
++							{
++								if (lines[i].sidedef[side] == nullptr)
++									continue;
++
++								if (!stricmp(texname, TexMan[lines[i].sidedef[side]->GetTexture(position)]->Name))
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_BoundingBoxTop:		// Line->bbox[0]
++					case LINEProp_BoundingBoxBottom:	// Line->bbox[1]
++					case LINEProp_BoundingBoxLeft:		// Line->bbox[2]
++					case LINEProp_BoundingBoxRight:		// Line->bbox[3]
++					{
++						int position = property - LINEProp_BoundingBoxTop;
++
++						if (funcIndex == ACSF_GetMapData)
++							return Line->bbox[position];
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Printf("SetMapData: LINEProp_BoundingBoxTop/Bottom/Left/Right cannot be set!");
++							return -1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								if (lines[i].bbox[position] == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_Special:				// Line->special
++					{
++						if (funcIndex == ACSF_GetMapData)
++							return Line->special;
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Line->special = value;
++							return 1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								if (lines[i].special == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++
++					case LINEProp_Args0:				// Line->args[0]
++					case LINEProp_Args1:				// Line->args[1]
++					case LINEProp_Args2:				// Line->args[2]
++					case LINEProp_Args3:				// Line->args[3]
++					case LINEProp_Args4:				// Line->args[4]
++					{
++						int position = property - LINEProp_Args0;
++						if (funcIndex == ACSF_GetMapData)
++							return Line->args[position];
++
++						if (funcIndex == ACSF_SetMapData)
++						{
++							Line->args[position] = value;
++							return 1;
++						}
++
++						if (funcIndex == ACSF_FindMapData)
++						{
++							for (int i = index; i < numlines; i++)
++							{
++								if (lines[i].args[position] == value)
++									return i;
++							}
++						}
++
++						return -1;
++					}
++					
+ 					default:
+ 						Printf("Get/Set/FindMapData: Unknown sector property type %d", property);
+ 						return -1; // Unimplemented
+diff -r 6cd1ae47a34f -r 46422999994e src/p_acs.h
+--- a/src/p_acs.h	Sun Jun 01 00:06:29 2025 -0300
++++ b/src/p_acs.h	Sun Jun 22 01:22:54 2025 -0300
+@@ -433,6 +433,7 @@
+ 	APROP_SpawnFlags	= 206, // [JM]
+ 	APROP_GibHealth		= 207, // [JM]
+ 	APROP_SpecialActionClass = 208, // [JM]
++	APROP_Sector		= 209, // [JM]
+ };	
+ 
+ // [Dusk] Enumeration for GetTeamProperty
+diff -r 6cd1ae47a34f -r 46422999994e src/p_setup.cpp
+--- a/src/p_setup.cpp	Sun Jun 01 00:06:29 2025 -0300
++++ b/src/p_setup.cpp	Sun Jun 22 01:22:54 2025 -0300
+@@ -3336,6 +3336,12 @@
+ 			}
+ 		}
+ 
++		// [JM] Save bounding box.
++		sector->bbox[0] = bbox.Top();
++		sector->bbox[1] = bbox.Bottom();
++		sector->bbox[2] = bbox.Left();
++		sector->bbox[3] = bbox.Right();
++
+ 		// set the soundorg to the middle of the bounding box
+ 		sector->soundorg[0] = bbox.Right()/2 + bbox.Left()/2;
+ 		sector->soundorg[1] = bbox.Top()/2 + bbox.Bottom()/2;
+diff -r 6cd1ae47a34f -r 46422999994e src/r_defs.h
+--- a/src/r_defs.h	Sun Jun 01 00:06:29 2025 -0300
++++ b/src/r_defs.h	Sun Jun 22 01:22:54 2025 -0300
+@@ -766,6 +766,8 @@
+ 	WORD MoreFlags;		// [RH] Internal sector flags
+ 	DWORD Flags;		// Sector flags
+ 
++	fixed_t		bbox[4]; // [JM] Bounding box of the sector.
++
+ 	// [RH] Action specials for sectors. Like Skull Tag, but more
+ 	// flexible in a Bloody way. SecActTarget forms a list of actors
+ 	// joined by their tracer fields. When a potential sector action

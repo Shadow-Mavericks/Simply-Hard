@@ -258,13 +258,259 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 	}
 }
 
+function void put_sound_on_line(int index, int ambient_num)
+{
+	vec2_t v1 = { GetMapData(index, MDATA_Line, LINEProp_Vertex1X), GetMapData(index, MDATA_Line, LINEProp_Vertex1Y) };
+	vec2_t v2 = { GetMapData(index, MDATA_Line, LINEProp_Vertex2X), GetMapData(index, MDATA_Line, LINEProp_Vertex2Y) };
+		
+	int length = GetDistance2D(v1, v2);
+		
+	if(length >= 64)
+	{
+		int frontsector = GetMapData(index, MDATA_Line, LINEProp_FrontSector);
+			
+		vec3_t pos = { v2.x + ((v1.x - v2.x)/2), v2.y + ((v1.y - v2.y)/2), get_sector_height(frontsector)/2 };
+				
+		int uTID = UniqueTID();
+		SpawnForced ("SH_AmbientSound", pos.x, pos.y, pos.z, uTID, 0);
+		SetThingSpecial(uTID, 0, ambient_num, 100, 0, 0, 0);
+		Thing_Deactivate(uTID);
+		Thing_Activate(uTID);
+			
+		//PrintBold(s:"Found wall: X:", f:pos.x, s:" Y:", f:pos.y, s:" Z:", f:pos.z);
+	}
+}
+
+#define SECTORSOUNDF_SIGHTCHECK		(1 << 0) // Do a sight check with sector's center, and if it fails, move sound to nearest vertex.
+#define SECTORSOUNDF_PLACEBORDER	(1 << 1) // Place sounds along map border. (if SECTORSOUNDF_SIGHTCHECK is true, only do it if sight check fails)
+#define SECTORSOUNDF_RANDOM			(1 << 2) // Ambient_num2 is a random range.
+
+function void put_sound_in_sector(int index, int sound1_min, int sound1_max, int sound2_min, int sound2_max, int flags)
+{
+	int linecount = GetMapData(index, MDATA_Sector, SECTProp_LineCount);
+	int floor_z = GetMapData(index, MDATA_Sector, SECTProp_FloorHeight);
+	int lineindex = 0;
+	int uTID = 0;
+	int i = 0;
+	int sound = 0;
+	
+	bool can_see = false;
+	bool center_not_in_sector = false;
+	
+	vec3_t pos = { GetMapData(index, MDATA_Sector, SECTProp_SoundOriginX), GetMapData(index, MDATA_Sector, SECTProp_SoundOriginY), floor_z };
+	vec3_t vert_pos;
+	
+	if(flags & SECTORSOUNDF_SIGHTCHECK)
+	{
+		int check_z = get_sector_height(index)/2;
+		vec3_t check_pos = { pos.x, pos.y, check_z };
+		
+		int min_distance = 0x7FFFFFFF;
+		
+		vec3_t closest_pos = { 0.0, 0.0, check_z };
+		
+		if(GetSector3D(check_pos) != index)
+			center_not_in_sector = true;
+			
+		for(i = 0; i < linecount; i++)
+		{
+			lineindex = FindMapData(index, MDATA_Sector, SECTProp_SectorLineIndex, i);
+			vert_pos.x = GetMapData(lineindex, MDATA_Line, LINEProp_Vertex1X);
+			vert_pos.y = GetMapData(lineindex, MDATA_Line, LINEProp_Vertex1Y);
+			vert_pos.z = check_z;
+			
+			if(check_sight(check_pos, vert_pos))
+				can_see = true;
+
+			int distance = GetDistance3D(check_pos, vert_pos);
+			if(distance < min_distance)
+			{
+				min_distance = distance;
+				closest_pos.x = vert_pos.x;
+				closest_pos.y = vert_pos.y;
+			}
+		}
+		
+		if(!can_see || center_not_in_sector)
+		{
+			pos.x = closest_pos.x;
+			pos.y = closest_pos.y;
+			//PrintBold(s:"Can't see!");
+		}
+	}
+	
+	if(flags & SECTORSOUNDF_PLACEBORDER)
+	{
+		if(((flags & SECTORSOUNDF_SIGHTCHECK) && (!can_see || center_not_in_sector)) || !(flags & SECTORSOUNDF_SIGHTCHECK))
+		{
+			int interval = max(linecount / 8, 4);
+			for(i = 0; i < linecount; i++)
+			{
+				if(!(i % interval))
+				{				
+					lineindex = FindMapData(index, MDATA_Sector, SECTProp_SectorLineIndex, i);
+					vert_pos.x = GetMapData(lineindex, MDATA_Line, LINEProp_Vertex1X);
+					vert_pos.y = GetMapData(lineindex, MDATA_Line, LINEProp_Vertex1Y);
+					vert_pos.z = floor_z;
+				
+					if(flags & SECTORSOUNDF_RANDOM)
+					{
+						if(flags & (SECTORSOUNDF_SIGHTCHECK))
+							sound = random(sound2_min, sound2_max);
+						else
+							sound = random(sound1_min, sound1_max);
+					}
+					else if (flags & (SECTORSOUNDF_SIGHTCHECK))
+						sound = (sound2_min + (lineindex % (abs(sound2_max-sound2_min)+1)));
+		
+					uTID = UniqueTID();
+					SpawnForced ("SH_AmbientSound", vert_pos.x, vert_pos.y, vert_pos.z, uTID, 0);
+					SetThingSpecial(uTID, 0, sound, 100, 0, 0, 0);
+					Thing_Deactivate(uTID);
+					Thing_Activate(uTID);
+				}
+			}
+		}
+		
+		if(((flags & SECTORSOUNDF_SIGHTCHECK) && !can_see && center_not_in_sector) || !(flags & SECTORSOUNDF_SIGHTCHECK))
+			return;
+	}
+	
+	sound = (flags & SECTORSOUNDF_RANDOM) ? random(sound1_min, sound1_max) : (sound1_min + (index % (abs(sound1_max-sound1_min)+1)));
+	uTID = UniqueTID();
+	SpawnForced ("SH_AmbientSound", pos.x, pos.y, pos.z, uTID, 0);
+	SetThingSpecial(uTID, 0, sound, 100, 0, 0, 0);
+	Thing_Deactivate(uTID);
+	Thing_Activate(uTID);
+}
+
+function void do_water_sounds(int index)
+{
+	vec2_t sector_size = get_sector_size(index);
+
+	if((sector_size.x > 32.0) && (sector_size.y > 32.0) && (sector_size.x <= 96.0) && (sector_size.y <= 96.0))
+	{
+		put_sound_in_sector(index, 90, 90, 0, 0, 0);
+	}
+	else if(((sector_size.x > 96.0) || (sector_size.y > 96.0)) && (sector_size.x <= 496.0) && (sector_size.y <= 496.0))
+	{
+		put_sound_in_sector(index, 91, 91, 0, 0, SECTORSOUNDF_SIGHTCHECK);
+	}
+	else if(((sector_size.x > 496.0) || (sector_size.y > 496.0)))
+	{
+		put_sound_in_sector(index, 92, 92, 90, 91, SECTORSOUNDF_SIGHTCHECK | SECTORSOUNDF_PLACEBORDER);
+	}
+}
+
+function void put_particles_in_teleporter(int index, int type)
+{
+	int linecount = GetMapData(index, MDATA_Sector, SECTProp_LineCount);
+	for(int i = 0; i < linecount; i++)
+	{
+		int lineindex = FindMapData(index, MDATA_Sector, SECTProp_SectorLineIndex, i);
+		int linespecial = GetMapData(lineindex, MDATA_Line, LINEProp_Special);
+		if((GetMapData(lineindex, MDATA_Line, LINEProp_BackSector) == index) && (linespecial == 70))
+		{
+			vec2_t sector_size = get_sector_size(index);
+			
+			if(sector_size.x >= 32.0 && sector_size.y >= 32.0)
+			{
+				int x = GetMapData(index, MDATA_Sector, SECTProp_SoundOriginX);
+				int y = GetMapData(index, MDATA_Sector, SECTProp_SoundOriginY);
+				int z = GetMapData(index, MDATA_Sector, SECTProp_FloorHeight);
+							
+				int uTID = UniqueTID();
+				if(type == 1)
+				{
+					SpawnForced("SH_TeleporterParticles_White", x, y, z, uTID, 0);
+				}
+				else
+				{
+					SpawnForced("SH_TeleporterParticles_Red", x, y, z, uTID, 0);
+				}
+				SetUserVariable(uTID, "user_x", sector_size.x);
+				SetUserVariable(uTID, "user_y", sector_size.y);
+				break;
+			}
+		}
+	}
+}
+
 script "SPECIAL_MAP_EFFECTS" OPEN
 {
-	int index = 0;
+	int index;
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER1")) != -1)
+	{
+		do_water_sounds(index);		
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER2")) != -1)
+	{
+		do_water_sounds(index);		
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER3")) != -1)
+	{
+		do_water_sounds(index);		
+		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+	}
+	
+	index = 0;
+	// Reflections for FWATER4.
 	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER4")) != -1)
 	{
+		do_water_sounds(index);	
+		
 		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
-		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Line, LINEProp_FrontMidTexture, "COMPSTA1")) != -1)
+	{
+		put_sound_on_line(index, 100);
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Line, LINEProp_FrontMidTexture, "COMPSTA2")) != -1)
+	{
+		put_sound_on_line(index, 103);
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "GATE1")) != -1)
+	{
+		put_particles_in_teleporter(index, 0);
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "GATE2")) != -1)
+	{
+		put_particles_in_teleporter(index, 0);
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "GATE3")) != -1)
+	{
+		put_particles_in_teleporter(index, 0);
+		index++;
+	}
+	
+	index = 0;
+	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "GATE4")) != -1)
+	{
+		put_particles_in_teleporter(index, 1);
+		index++;
 	}
 }
 
@@ -2850,24 +3096,4 @@ script "SET_SCALE_TO_OWNER_DIMENSIONS" (void) CLIENTSIDE
 	}
 	SetActivator(thisTID);
 	Thing_ChangeTID(thisTID, oldTID);
-}
-
-// MapData tests
-// -------------
-script "MDATA" (void)
-{
-	str test = GetMapData(0, MDATA_Sector, SECTProp_FloorTexture);
-	str test2 = GetMapData(20, MDATA_Sector, SECTProp_FloorTexture);
-	printbold(d:test, s:", ", s:test, s:", ", s:test2);
-	
-	int index = 0;
-	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "CEIL1_2")) != -1)
-	{
-		log(s:"Sector ", d:index, s:" has texture CEIL1_2");
-		SetMapData(index, MDATA_Sector, SECTProp_FloorHeight, 128.0);
-		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
-	}
-	
-	SetMapData(10, MDATA_Sector, SECTProp_Tag, 1);
-	Sector_SetColor(1, 64, 0, 255, 0);
 }

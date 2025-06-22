@@ -166,6 +166,53 @@ function int GetDistance3D(vec3_t pos1, vec3_t pos2)
 	return VectorLength3D(x, y, z);
 }
 
+function bool check_sight(vec3_t a, vec3_t b)
+{
+	int uTID1 = UniqueTID();
+	SpawnForced("MapSpot", a.x, a.y, a.z, uTID1, 0);
+	
+	int uTID2 = UniqueTID();
+	SpawnForced("MapSpot", b.x, b.y, b.z, uTID2, 0);
+	
+	bool result = CheckSight(uTID1, uTID2, CSF_NOFAKEFLOORS);
+	
+	Thing_Remove(uTID1);
+	Thing_Remove(uTID2);
+	
+	return result;
+}
+
+function int GetSector3D(vec3_t pos)
+{
+	int uTID = UniqueTID();
+	
+	SpawnForced("MapSpot", pos.x, pos.y, pos.z, uTID, 0);
+	int sector = GetActorProperty(uTID, APROP_Sector);
+	Thing_Remove(uTID);
+	
+	return sector;
+}
+
+function vec2_t get_sector_size(int index)
+{
+	int top = GetMapData(index, MDATA_Sector, SECTProp_BoundingBoxTop);
+	int bottom = GetMapData(index, MDATA_Sector, SECTProp_BoundingBoxBottom);
+	int left = GetMapData(index, MDATA_Sector, SECTProp_BoundingBoxLeft);
+	int right = GetMapData(index, MDATA_Sector, SECTProp_BoundingBoxRight);
+	
+	vec2_t size = { abs(right - left), abs(top - bottom) };
+	
+	return size;
+}
+
+function int get_sector_height(int index)
+{
+	int floor_z = GetMapData(index, MDATA_Sector, SECTProp_FloorHeight);
+	int ceiling_z = GetMapData(index, MDATA_Sector, SECTProp_CeilingHeight);
+	
+	return (ceiling_z - floor_z);
+}
+
 #libdefine SUBTRACT_OFFSET 1
 #libdefine SCREEN_RATIO 2
 

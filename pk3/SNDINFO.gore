@@ -26,7 +26,7 @@ GibLand3 dsflesh3
 GibLand4 dsflesh4
 $random GibLand { GibLand1 GibLand2 GibLand3 GibLand4 }
 $limit GibLand 0
-$volume GibLand 0.5
+$volume GibLand 0.25
 
 misc/gibbed1 dsslop1
 misc/gibbed2 dsslop2
