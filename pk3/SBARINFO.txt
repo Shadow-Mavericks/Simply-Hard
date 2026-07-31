@@ -439,6 +439,52 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 			drawselectedinventory alwaysshowcounter, center, BIGFONT, -19, -81, -36, -87, untranslated;
 		}
 	}
+	
+	playertype "Striker"
+	{
+		Alpha 0.5
+		{
+			DrawString spleen3, PitchBlack, "Aura:", 9, -49, 1, alignment(left);
+			DrawNumber 4, spleen3, PitchBlack, AbilityCharge, alignment(left), 77, -49;
+			
+			DrawString spleen3, PitchBlack, "Health:", 9, -36, 1, alignment(left);
+			DrawNumber 4, spleen3, PitchBlack, Health, alignment(left), 77, -36;
+			
+			DrawString spleen3, PitchBlack, "Armor:", 9, -23, 1, alignment(left);
+			DrawNumber 4, spleen3, PitchBlack, Armor, alignment(left), 77, -23;
+		}
+		DrawString spleen3, Untranslated, "Aura:", 8, -50, 1, alignment(left);
+		DrawNumber 4, spleen3, ElecViolet, AbilityCharge, alignment(left), 76, -50;
+		
+		DrawString spleen3, Untranslated, "Health:", 8, -37, 1, alignment(left);
+		DrawNumber 4, spleen3, Red, Health, alignment(left), 76, -37;
+		
+		DrawString spleen3, Untranslated, "Armor:", 8, -24, 1, alignment(left);
+		DrawNumber 4, spleen3, Green, Armor, alignment(left), 76, -24;
+		
+		
+		usesammo
+		{
+			IsSelected "WaltherPPK"
+			{
+				Alpha 0.5
+				{
+					DrawNumber 3, spleen3, PitchBlack, ammo2, alignment(right), -8, -23;
+				}
+				
+				InInventory "HedgefoxClip", 1 { drawimage "BOOLET", -45, -32; }
+				InInventory "HedgefoxClip", 2 { drawimage "BOOLET", -54, -32; }
+				InInventory "HedgefoxClip", 3 { drawimage "BOOLET", -63, -32; }
+				InInventory "HedgefoxClip", 4 { drawimage "BOOLET", -72, -32; }
+				InInventory "HedgefoxClip", 5 { drawimage "BOOLET", -81, -32; }
+				InInventory "HedgefoxClip", 6 { drawimage "BOOLET", -90, -32; }
+				InInventory "HedgefoxClip", 7 { drawimage "BOOLET", -99, -32; }
+				
+				
+				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
+			}		
+		}
+	}
 }
 
 statusbar inventory // Standard bar overlay (ZDoom Addition)

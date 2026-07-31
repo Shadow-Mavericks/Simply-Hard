@@ -182,6 +182,47 @@ function bool check_sight(vec3_t a, vec3_t b)
 	return result;
 }
 
+function bool check_target_sight(void)
+{
+	int oldTID = ActivatorTID();
+	int uTID = UniqueTID();	
+	Thing_ChangeTID(0, uTID);
+	
+	SetActivator(uTID, AAPTR_TARGET);
+	
+	int target_oldTID = ActivatorTID();
+	int target_uTID = UniqueTID();
+	Thing_ChangeTID(0, target_uTID);
+	
+	bool result = CheckSight(uTID, target_uTID, CSF_NOFAKEFLOORS);
+	
+	SetActivator(uTID, AAPTR_DEFAULT);
+	Thing_ChangeTID(uTID, oldTID);
+	Thing_ChangeTID(target_uTID, target_oldTID);
+	
+	return result;
+}
+
+function bool check_target_higher(void)
+{
+	int oldTID = ActivatorTID();
+	int uTID = UniqueTID();	
+	Thing_ChangeTID(0, uTID);
+	
+	int activatorZ = GetActorZ(0);
+	
+	SetActivator(uTID, AAPTR_TARGET);
+	
+	int targetZ = GetActorZ(0);
+	
+	bool result = !!(targetZ > activatorZ);
+	
+	SetActivator(uTID, AAPTR_DEFAULT);
+	Thing_ChangeTID(uTID, oldTID);
+	
+	return result;
+}
+
 function int GetSector3D(vec3_t pos)
 {
 	int uTID = UniqueTID();

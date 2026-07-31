@@ -502,6 +502,129 @@ actor MaximusPrime : SH_BasePlayer
 	}
 }
 
+ACTOR Striker : SH_BasePlayer
+{
+	Speed 1.125
+	Health 100
+	Radius 16
+	Height 56
+	Mass 100
+	
+	DamageFactor 1.125
+	DamageFactor "Void", 0.5 // Resistant to void
+	
+	PainChance 255
+	Player.SoundClass "Striker"
+	Player.ColorRange 112, 127
+	Player.DisplayName "Striker"
+	Player.CrouchSprite "PLYC"
+	Player.StartItem "PlayerCheckHax", 1
+	Player.StartItem "WaltherPPK"
+	Player.StartItem "Fists"
+	Player.StartItem "HedgefoxClip", 7
+	Player.StartItem "peastolClip", 105
+	Player.StartItem "StrikerToken"
+	
+	Player.WeaponSlot 1, "Fists", "UAC-Chainsaw"
+	Player.WeaponSlot 2, "WaltherPPK"
+	Player.WeaponSlot 3, "D3shotgun", "SuperShawtgun"
+	Player.WeaponSlot 4, "D3Chaingun"
+	Player.WeaponSlot 5, "Rawketlawnchair"
+	Player.WeaponSlot 6, "DEPlasmaRifle"
+	Player.WeaponSlot 7, "Fiendsrailgun"
+	Player.WeaponSlot 8, "DEBFG9500", "NuclearMissileLauncher"
+
+	BounceSound "PlayerHP/AlarmKunai"
+	Player.JumpZ 9
+	Player.AirCapacity 2.0
+	States
+	{
+		NoVoidStatus: // Flag
+		Spawn:
+			PLAY A -1
+			Loop
+		See:
+			PLAY ABCD 4
+			Loop
+		Missile:
+			PLAY E 12 
+			Goto Spawn
+		Melee:
+			PLAY F 6 BRIGHT
+			Goto Missile
+	
+		Pain:
+			PLAY G 4
+			PLAY G 4 A_Pain
+			Goto Spawn
+			
+		Pain.Void:
+			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*1)
+			Goto Pain
+			
+		Pain.Fire:
+			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
+			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
+			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
+			Goto Pain
+			
+		Pain.Electric:
+			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
+			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*3)
+			Goto Pain
+			
+		Pain.Ice:
+			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_GiveInventory("DebuffItem_Freeze", 1)
+			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
+			Goto Pain
+	
+		Pain.HeavyMetal:
+			PLAY G 0 A_GiveInventory("DebuffItem_HeavyMetal", 1)
+			PLAY G 0 A_SetBlend("FFFFFF", 0.3, 35*5)
+			Goto Pain
+	
+		Death.Drown:
+			PLAY I 0 A_SetBlend("0080FF", 0.8, 35)
+			PLAY I 0 A_PlaySound("water/drown", 2)
+			PLAY I 0 A_NoBlocking
+	
+		Death.DrownB:
+			PLAY I 10 A_FadeOut(0.01)
+			loop
+	
+		Ability:
+			TNT1 A 0 A_CustomMissile("medicalportal", 32, 0, 0, CMF_AIMDIRECTION, 0)
+			Goto Spawn
+		FlareAbility:
+			TNT1 A 0 A_CustomMissile("FlarenadeGReen", 32, 0, 0, CMF_AIMDIRECTION, 0)
+			Goto Spawn
+
+		Death:
+			PLAY H 10
+			PLAY I 10 A_PlayerScream
+			PLAY J 10 A_NoBlocking
+			PLAY KL 10
+			PLAY M 15
+			PLAY N -1
+			Stop
+		Death.SpawnTelefrag:
+			PLAY O 5
+			PLAY P 5 A_XScream
+			PLAY Q 5 A_NoBlocking
+			PLAY RSTUV 5
+			PLAY W -1
+			Stop
+		XDeath:
+			PLAY O 5
+			PLAY P 5 A_XScream
+			PLAY Q 5 A_NoBlocking
+			PLAY RSTUV 5
+			PLAY W -1
+			Stop
+		}
+}
+
 Actor FiendToken : SH_BaseToken
 {
 	Inventory.PickupMessage "You picked up a Fiend token"

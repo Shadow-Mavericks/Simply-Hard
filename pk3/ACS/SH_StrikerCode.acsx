@@ -6,6 +6,9 @@
 // All code in this file is by StrikerTheHedgefox.
 // Please ask permission if you want to use this!
 
+int timeOfLastLifeDrop;
+int numLivesSpawned;
+
 #define ONE_16 (1<<16)
 
 enum
@@ -521,10 +524,6 @@ script "SPECIAL_MAP_EFFECTS_CLIENTSIDE" OPEN CLIENTSIDE
 	}
 }
 
-// Kill script, for things like orbs, lives, and box drops.
-int timeOfLastLifeDrop;
-int numLivesSpawned;
-
 script "QUEUE_FOR_DELETION" (void)
 {
 	if(PlayerNumber() != -1) // Don't do this to players.
@@ -535,6 +534,8 @@ script "QUEUE_FOR_DELETION" (void)
 	Delay(1);
 	Thing_Remove(0);
 }
+
+// Kill script, for things like orbs, lives, and box drops.
 
 script "ON_KILL" KILL
 {

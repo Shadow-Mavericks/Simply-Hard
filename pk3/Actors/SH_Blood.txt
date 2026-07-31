@@ -177,7 +177,7 @@ actor SH_BloodDroplet2 : SH_BloodDroplet
 			loop
 		Splat:
 			BLS2 GHIJKLMN 3
-			BLS2 O 2100
+			BLS2 O 1050
 			stop
 	}
 }
@@ -194,7 +194,7 @@ actor SH_BloodDroplet3 : SH_BloodDroplet
 			loop
 		Splat:
 			BLS3 IJKLM 2
-			BLS3 N 2100
+			BLS3 N 1050
 			stop
 	}
 }
@@ -211,7 +211,7 @@ actor SH_BloodDroplet4 : SH_BloodDroplet
 			loop
 		Splat:
 			BLS4 IJKLM 2
-			BLS4 N 2100
+			BLS4 N 1050
 			stop
 	}
 }
@@ -631,7 +631,7 @@ actor SH_BouncyGib8 : SH_BouncyGib1
 			BGB8 ABCDEFG 2 A_SpawnItemEx("SH_BloodDropletTrail", frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(0.0, 16.0), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE | SXF_TRANSFERTRANSLATION, 64)
 			loop
 		OnGround:
-			BGB8 H 2100
+			BGB8 H 1050
 			stop
 	}
 }
@@ -646,7 +646,7 @@ actor SH_BouncyGib9 : SH_BouncyGib1
 			BGB9 ABCDEFG 3 A_SpawnItemEx("SH_BloodDropletTrail", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(0.0, 8.0), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE | SXF_TRANSFERTRANSLATION, 32)
 			loop
 		OnGround:
-			BGB9 A 2100
+			BGB9 A 1050
 			stop
 	}
 }

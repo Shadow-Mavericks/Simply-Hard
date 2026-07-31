@@ -50,6 +50,7 @@ enum
 #include "actors/SH_Weapons_Kunai.txt"
 #include "actors/SH_Weapons_Gosimer.txt"
 #include "actors/SH_Weapons_Max.txt"
+#include "actors/SH_Weapons_Striker.txt"
 
 #include "actors/SH_Kunai_SFX.txt"
 #include "actors/SH_MannCoBoxes.txt"

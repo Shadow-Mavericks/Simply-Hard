@@ -1,0 +1,107 @@
+Actor HedgefoxClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 7
+	ammo.Backpackmaxamount 7
+}
+
+ACTOR WaltherPPK : SH_Weapon
+{
+	Tag "Walther PPK-S"
+	Weapon.SelectionOrder 10
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 7
+	Weapon.AmmoGive2 30
+	Weapon.AmmoType1 "HedgefoxClip"
+	Weapon.AmmoType2 "peastolClip"
+	Weapon.slotnumber 2
+	Inventory.PickupSound "misc/w_pkup"
+	Inventory.RestrictedTo "Striker"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Weapon.SwayStyle "Normal"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 8
+	Decal bulletchip
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOALERT
+	States
+	{
+		Ready:
+			PPKS A 1 A_WeaponReady(WRF_ALLOWRELOAD)
+			Loop
+		Deselect:
+			PPKS AA 0 A_Lower
+			PPKS A 1 A_Lower
+			Goto Deselect+1
+		Select:
+			PPKS AA 0 A_Raise
+			PPKS A 1 A_Raise
+			Goto Select+1
+		Fire:
+			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			PPKS A 0 A_PlaySound("WaltherPPK", CHAN_WEAPON)
+			PPKS B 0 BRIGHT A_AlertMonsters
+			PPKS B 0 BRIGHT A_GunFlash
+			PPKS B 0 BRIGHT A_FireBullets(2, 2, 1, 20, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPKS B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			PPKS C 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			PPKS A 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			PPKS A 3
+			PPKS A 0 A_Refire
+			Goto Ready
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready
+			
+		Reload:
+			PPKS A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
+			goto Ready
+		CheckReload:
+			PPKS A 0 A_JumpIfInventory("HedgefoxClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			PPKS CCCC 1 A_WeaponOffset(2, 16, WOF_ADD)
+			goto ReloadEject
+
+		ReloadEject:
+			PPKS C 5 A_Playsound("GPistolMagOut", CHAN_AUTO)
+			PPKS CCCCC 1 A_WeaponOffset(-1, 0, WOF_ADD)
+			goto ReloadInsert
+
+		ReloadInsert:
+			PPKS A 0 A_WeaponOffset(0, -2, WOF_ADD)
+			PPKS A 2 A_Playsound("GPistolMagIn", CHAN_AUTO)
+			PPKS A 5 A_WeaponOffset(-3, 2, WOF_ADD)
+			goto ReloadLoop
+
+		ReloadLoop:
+			"####" A 0 A_TakeInventory("peastolClip", 1)
+			"####" A 0 A_GiveInventory("HedgefoxClip", 1)
+			"####" A 0 A_JumpIfInventory("HedgefoxClip", 0, "ReloadEnd")
+			"####" A 0 A_JumpIfInventory("peastolClip", 1, "ReloadLoop")
+			goto ReloadEnd
+
+		ReloadEnd:
+			PPKS AAAAAAAA 1 A_WeaponOffset(0, -8, WOF_ADD)
+			PPKS A 0 A_Refire
+			goto Ready
+			
+		Flash:
+			PPKF A 1 BRIGHT A_Light2
+			PPKF B 1 BRIGHT A_Light1
+			TNT1 A 0 A_Light0
+			Goto LightDone
+		Spawn:
+			PIST A -1
+			Stop
+	}
+}

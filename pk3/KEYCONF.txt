@@ -21,3 +21,4 @@ AddPlayerClass Fiend
 AddPlayerClass Kunai
 AddPlayerClass Gosimer
 AddPlayerClass MaximusPrime
+AddPlayerClass Striker

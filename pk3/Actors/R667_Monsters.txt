@@ -1811,9 +1811,10 @@ Actor DevPuff
 //created by: Vader
 ///////////////////////////////////////////////////////////////////
 
-ACTOR BOSSTerminator
+ACTOR BOSSTerminator : SH_BaseMonster
 {
 	Tag "Terminator"
+	Species "Cyberdemon"
 	Health 4000
 	Radius 24
 	Height 64
