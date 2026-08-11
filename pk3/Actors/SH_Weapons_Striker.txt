@@ -5,7 +5,244 @@ Actor HedgefoxClip : Ammo
 	ammo.Backpackmaxamount 7
 }
 
-ACTOR WaltherPPK : SH_Weapon
+Actor HedgefoxMACClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 30
+	ammo.Backpackmaxamount 30
+}
+
+Actor HedgefoxGrenadeClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 6
+	ammo.Backpackmaxamount 6
+}
+
+Actor HedgefoxCellClip : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 24
+	ammo.Backpackmaxamount 24
+}
+
+
+actor AbilityActive : SH_BaseToken
+{
+}
+
+actor StrikerBaseWeapon : SH_Weapon
+{
+	Inventory.RestrictedTo "Striker"
+	States
+	{
+		Abilities:
+			TNT1 A 1 A_TakeInventory("AbilityActive", 1)
+			TNT1 A 0 A_JumpIfInventory("DualFireHax", 1, "UseAbility")
+			loop
+		UseAbility:
+			TNT1 A 0 A_JumpIfInventory("AuraBallAbility", 1, "AuraBallCheck")
+			goto Abilities
+		AuraBallCheck:
+			TNT1 A 0 A_JumpIf(CallACS("STRIKER_USEAURA", 5), "AuraBall")
+			goto Abilities
+		AuraBall:
+			AAB0 A 0 A_GiveInventory("AbilityActive", 1)
+			AAB0 A 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			AAB0 AB 1
+			AAB0 CDEFGH 1 BRIGHT
+			AAB0 I 1 BRIGHT A_FireCustomMissile("AuraBall", 0, 0, -6, 0, 0, 0)
+			AAB0 JKLM 1 BRIGHT
+			AAB0 OPQR 1
+			goto Abilities
+			
+		HealSelf:
+			STSH AB 1
+			STSH C 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			STSH CDEFGHIJKL 1 BRIGHT
+			STSH M 0 BRIGHT A_PlaySound("Striker/SelfHeal", CHAN_AUTO)
+			STSH M 0 BRIGHT A_SetBlend("64 00 FF", 0.75, 15, "64 00 FF")
+			STSH M 1 BRIGHT ACS_NamedExecuteWithResult("STRIKER_SELFHEAL", 1)
+			STSH NOPQR 1 BRIGHT
+			goto Abilities
+			
+		NoAbilityUse:
+			TNT1 A 1
+			loop
+	}
+}
+
+actor PistolImbued : SH_BaseToken
+{
+	Inventory.MaxAmount 7
+}
+
+actor MACImbued : SH_BaseToken
+{
+	Inventory.MaxAmount 30
+}
+
+actor GrenadeImbued : SH_BaseToken
+{
+	Inventory.MaxAmount 6
+}
+
+actor FistSelector : SH_BaseToken
+{
+	Inventory.MaxAmount 3
+}
+
+actor ShotgunImbued : SH_BaseToken
+{
+}
+
+actor ShotgunEmpty : SH_BaseToken
+{
+}
+
+actor HealCounter : SH_BaseToken
+{
+	Inventory.MaxAmount 80
+}
+
+actor AuraBallAbility : SH_BaseToken
+{
+	Tag "Aura Sphere"
+}
+
+actor HealAbility : SH_BaseToken
+{
+	Tag "Aura Heal"
+}
+
+ACTOR StrikersFists : StrikerBaseWeapon
+{
+	Tag "Fists"
+	Weapon.SelectionOrder 9
+	Weapon.SlotNumber 1
+	Inventory.RestrictedTo "Striker"
+	Weapon.Kickback 100
+	Obituary "%o was beaten to the core by %k"
+	+WEAPON.WIMPY_WEAPON
+	+WEAPON.MELEEWEAPON
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOALERT
+	States
+	{
+	Ready:
+		TNT1 A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		TNT1 A 1 A_WeaponReady(WRF_ALLOWZOOM)
+		goto Ready+1
+	Deselect:
+		TNT1 AAAA 0 A_Lower
+		TNT1 A 1 A_Lower
+		Loop
+	Select:
+		TNT1 AAAA 0 A_Raise
+		TNT1 A 1 A_Raise
+		Loop
+	
+	Fire:
+		TNT1 A 0 A_JumpIfInventory("AbilityActive", 1, "CannotPunch")
+		TNT1 A 0 A_GunFlash("NoAbilityUse", GFF_NOEXTCHANGE)
+		
+		TNT1 A 0 A_PlaySound("skeleton/swing", CHAN_AUTO)
+		TNT1 A 0 A_JumpIfInventory("FistSelector", 3, "UppercutRight")
+		TNT1 A 0 A_JumpIfInventory("FistSelector", 2, "UppercutLeft")
+		TNT1 A 0 A_JumpIfInventory("FistSelector", 1, "SwingRight")
+		goto SwingLeft
+	CannotPunch:
+		TNT1 A 1
+		goto Ready+1
+	SwingLeft:
+		SPUN A 0 A_GiveInventory("FistSelector", 1)
+		SPUN AB 1
+		SPUN CDE 1 BRIGHT
+		goto SwingLeftHitNormal
+	SwingLeftHitNormal:
+		SPUN F 0 BRIGHT A_JumpIfInventory("PowerStrength", 1, "SwingLeftHitBerserk")
+		SPUN F 1 BRIGHT A_CustomPunch(50, true, 0, "StrikersVoidDrainPuff", 64.0)
+		SPUN GH 1 BRIGHT
+		SPUN IJ 1
+		TNT1 A 2
+		goto Ready+1
+	SwingLeftHitBerserk:
+		SPUN F 1 A_CustomPunch(150, true, 0, "StrikersVoidDrainPuff", 64.0)
+		SPUN GHIJ 1
+		TNT1 A 2
+		goto Ready+1
+		
+	SwingRight:
+		SPU2 A 0 A_GiveInventory("FistSelector", 1)
+		SPU2 AB 1
+		SPU2 CDE 1 BRIGHT
+		goto SwingHitRightNormal
+	SwingHitRightNormal:
+		SPU2 F 0 A_JumpIfInventory("PowerStrength", 1, "SwingRightHitBerserk")
+		SPU2 F 1 A_CustomPunch(60, true, 0, "StrikersVoidDrainPuff", 64.0)
+		SPU2 GH 1 BRIGHT
+		SPU2 IJ 1
+		TNT1 A 2
+		goto Ready+1
+	SwingRightHitBerserk:
+		SPU2 F 1 BRIGHT A_CustomPunch(160, true, 0, "StrikersVoidDrainPuff", 64.0)
+		SPU2 GH 1 BRIGHT
+		SPU2 IJ 1
+		TNT1 A 2
+		goto Ready+1
+	
+	UppercutLeft:
+		SPU3 A 0 A_GiveInventory("FistSelector", 1)
+		SPU3 AB 1
+		SPU3 CDE 1 BRIGHT
+		goto UppercutLeftHitNormal
+	UppercutLeftHitNormal:
+		SPU3 F 0 BRIGHT A_JumpIfInventory("PowerStrength", 1, "UppercutLeftHitBerserk")
+		SPU3 F 1 BRIGHT A_CustomPunch(60, true, 0, "StrikersUppercut", 64.0)
+		SPU3 GH 1 BRIGHT
+		SPU3 IJ 1
+		TNT1 A 2
+		goto Ready+1
+	UppercutLeftHitBerserk:
+		SPU3 F 1 A_CustomPunch(160, true, 0, "StrikersUppercut", 64.0)
+		SPU3 GHIJ 1
+		TNT1 A 2
+		goto Ready+1
+		
+	UppercutRight:
+		SPU4 A 0 A_TakeInventory("FistSelector", 3)
+		SPU4 AB 1
+		SPU4 CDE 1 BRIGHT
+		goto UppercutRightHitNormal
+	UppercutRightHitNormal:
+		SPU4 F 0 BRIGHT A_JumpIfInventory("PowerStrength", 1, "UppercutRightHitBerserk")
+		SPU4 F 1 BRIGHT A_CustomPunch(70, true, 0, "StrikersUppercut", 64.0)
+		SPU4 GH 1 BRIGHT
+		SPU4 IJ 1
+		TNT1 A 2
+		goto Ready+1
+	UppercutRightHitBerserk:
+		SPU4 F 1 A_CustomPunch(170, true, 0, "StrikersUppercut", 64.0)
+		SPU4 GHIJ 1
+		TNT1 A 2
+		goto Ready+1
+		
+	Zoom:
+	HealCheck:
+		"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+		"####" A 1
+		goto Ready+1
+	HealTrigger:
+		"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+		goto Ready
+		
+	NoAbilityUse:
+		TNT1 A 12
+		goto Abilities
+	}
+}
+
+ACTOR WaltherPPK : StrikerBaseWeapon
 {
 	Tag "Walther PPK-S"
 	Weapon.SelectionOrder 10
@@ -16,7 +253,6 @@ ACTOR WaltherPPK : SH_Weapon
 	Weapon.AmmoType2 "peastolClip"
 	Weapon.slotnumber 2
 	Inventory.PickupSound "misc/w_pkup"
-	Inventory.RestrictedTo "Striker"
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
@@ -32,55 +268,78 @@ ACTOR WaltherPPK : SH_Weapon
 	States
 	{
 		Ready:
-			PPKS A 1 A_WeaponReady(WRF_ALLOWRELOAD)
-			Loop
+			PPKS A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			PPKS A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
+			goto Ready+1
 		Deselect:
-			PPKS AA 0 A_Lower
+			PPKS AAA 0 A_Lower
 			PPKS A 1 A_Lower
-			Goto Deselect+1
+			Goto Deselect
 		Select:
-			PPKS AA 0 A_Raise
+			PPKS AAA 0 A_Raise 
 			PPKS A 1 A_Raise
-			Goto Select+1
+			Goto Select
 		Fire:
 			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			PPKS A 0 A_JumpIfInventory("PistolImbued", 1, "ImbuedFire")
+			goto NormalFire
+		NormalFire:
 			PPKS A 0 A_PlaySound("WaltherPPK", CHAN_WEAPON)
 			PPKS B 0 BRIGHT A_AlertMonsters
-			PPKS B 0 BRIGHT A_GunFlash
-			PPKS B 0 BRIGHT A_FireBullets(2, 2, 1, 20, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPKS B 0 BRIGHT A_FireBullets(2, 2, 1, CallACS("STRIKER_PPKDAMAGE"), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPKS B 0 BRIGHT A_Light2
 			PPKS B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			PPKS C 0 BRIGHT A_Light1
 			PPKS C 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			PPKS A 0 BRIGHT A_Light0
 			PPKS A 1 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			PPKS A 3
+			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
 			PPKS A 0 A_Refire
-			Goto Ready
+			Goto Ready+1
+		ImbuedFire:
+			PPKS A 0 A_PlaySound("WaltherPPK", CHAN_WEAPON)
+			PPKS A 0 A_PlaySound("AuraBlast", CHAN_AUTO)	
+			PPKS A 0 A_TakeInventory("PistolImbued", 1)
+			PPK2 B 0 BRIGHT A_AlertMonsters
+			PPK2 B 0 BRIGHT A_FireBullets(2, 2, 1, CallACS("STRIKER_PPKDAMAGE")*2, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPK2 B 0 BRIGHT A_Light2
+			PPK2 B 1 BRIGHT A_SetPitch(pitch-0.5, 0)//SPF_INTERPOLATE)
+			PPK2 C 0 BRIGHT A_Light1
+			PPK2 C 1 BRIGHT A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
+			PPKS A 0 BRIGHT A_Light0
+			PPKS A 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
+			PPKS A 3
+			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			PPKS A 0 A_Refire
+			Goto Ready+1
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
 			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
 			"####" A 1 Offset(0, 33)
 			"####" A 5 Offset(0, 32)
 			"####" A 0 A_Refire
-			goto Ready
+			goto Ready+1
 			
 		Reload:
 			PPKS A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
-			goto Ready
+			goto Ready+1
 		CheckReload:
 			PPKS A 0 A_JumpIfInventory("HedgefoxClip", 0, "Ready") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
-			PPKS CCCC 1 A_WeaponOffset(2, 16, WOF_ADD)
-			goto ReloadEject
+			PPKR A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
+			PPKR ABCDEF 1
+			goto ReloadHold
 
-		ReloadEject:
-			PPKS C 5 A_Playsound("GPistolMagOut", CHAN_AUTO)
-			PPKS CCCCC 1 A_WeaponOffset(-1, 0, WOF_ADD)
+		ReloadHold:
+			PPKR F 10 A_Playsound("GPistolMagIn", CHAN_AUTO)
 			goto ReloadInsert
 
 		ReloadInsert:
-			PPKS A 0 A_WeaponOffset(0, -2, WOF_ADD)
-			PPKS A 2 A_Playsound("GPistolMagIn", CHAN_AUTO)
-			PPKS A 5 A_WeaponOffset(-3, 2, WOF_ADD)
+			PPKR G 2
+			PPKR HI 2
+			PPKR I 2
 			goto ReloadLoop
 
 		ReloadLoop:
@@ -91,17 +350,1193 @@ ACTOR WaltherPPK : SH_Weapon
 			goto ReloadEnd
 
 		ReloadEnd:
-			PPKS AAAAAAAA 1 A_WeaponOffset(0, -8, WOF_ADD)
-			PPKS A 0 A_Refire
-			goto Ready
+			PPKR JKLMN 1
+			PPKR A 0 A_Refire
+			goto Ready+1
 			
-		Flash:
-			PPKF A 1 BRIGHT A_Light2
-			PPKF B 1 BRIGHT A_Light1
-			TNT1 A 0 A_Light0
-			Goto LightDone
+		Zoom:
+			PPKS A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			PPKS A 0 A_JumpIfInventory("PistolImbued", 7, "CannotImbue")
+			PPKS A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 0), "ImbueTrigger")
+			PPKS A 1 A_WeaponReady
+			goto Ready+1
+		CannotImbue:
+			PPKS A 1 A_WeaponReady
+			goto Ready+1
+		ImbueTrigger:
+			PPKS A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			PPKI ABCD 2
+			PPKI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			PPKI EFGHIJK 2 BRIGHT
+			PPKI LMN 2
+			goto Abilities
+			
+		HealCheck:
+			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+			goto CannotImbue
+		HealTrigger:
+			"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+			goto Ready
+
 		Spawn:
 			PIST A -1
 			Stop
+	}
+}
+
+ACTOR ModifiedMAC10 : StrikerBaseWeapon
+{
+	Tag "Modified MAC-10"
+	Weapon.SelectionOrder 8
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 30
+	Weapon.AmmoGive2 0
+	Weapon.AmmoType1 "HedgefoxMACClip"
+	Weapon.AmmoType2 "MGRounds"
+	Weapon.slotnumber 4
+	Inventory.PickupSound "misc/w_pkup"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Weapon.SwayStyle "Normal"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 8
+	Decal bulletchip
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOALERT
+	States
+	{
+		Ready:
+			SMAC A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			SMAC A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
+			goto Ready+1
+		Deselect:
+			SMAC AAA 0 A_Lower
+			SMAC A 1 A_Lower
+			Goto Deselect
+		Select:
+			SMAC AAA 0 A_Raise 
+			SMAC A 1 A_Raise
+			Goto Select
+		Fire:
+			SMAC A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMAC A 0 A_JumpIfInventory("MACImbued", 1, "ImbuedFire")
+			goto NormalFire
+		NormalFire:
+			SMAC B 0 BRIGHT A_AlertMonsters(96)
+			SMAC B 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMAC B 1 BRIGHT A_FireBullets(3, 2.5, 1, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC C 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMAC D 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMAC D 1 BRIGHT A_FireBullets(3, 2.5, -1, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC E 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMAC F 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMAC F 1 BRIGHT A_FireBullets(3, 2.5, -1, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC A 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMAC A 0 A_Refire
+			Goto Ready+1
+		ImbuedFire:
+			SMA2 B 0 BRIGHT A_AlertMonsters(128)
+			SMA2 B 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMA2 B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_5)
+			SMA2 B 0 BRIGHT A_TakeInventory("MACImbued", 1)
+			SMA2 B 1 BRIGHT A_FireBullets(3, 2.5, 1, 20, "StrikersVoidPuff_NoExplosion", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC C 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMA2 D 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMA2 D 0 BRIGHT A_PlaySound("AuraBlast", CHAN_5)
+			SMA2 D 0 BRIGHT A_TakeInventory("MACImbued", 1)
+			SMA2 D 1 BRIGHT A_FireBullets(3, 2.5, -1, 20, "StrikersVoidPuff_NoExplosion", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC E 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMA2 F 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
+			SMA2 F 0 BRIGHT A_PlaySound("AuraBlast", CHAN_5)
+			SMA2 F 0 BRIGHT A_TakeInventory("MACImbued", 1)
+			SMA2 F 1 BRIGHT A_FireBullets(3, 2.5, -1, 20, "StrikersVoidPuff_NoExplosion", FBF_USEAMMO | FBF_NORANDOM)
+			SMAC A 2 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SMA2 A 0 A_Refire
+			Goto Ready+1
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("MGRounds", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready+1
+			
+		Reload:
+			SMAC A 0 A_JumpIfInventory("MGRounds", 1, "CheckReload")
+			goto Ready+1
+		CheckReload:
+			SMAC A 0 A_JumpIfInventory("HedgefoxMACClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			SMAR A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
+			SMAR ABCDEFG 1
+			goto ReloadHold
+
+		ReloadHold:
+			SMAR H 10 A_Playsound("GPistolMagIn", CHAN_AUTO)
+			goto ReloadInsert
+
+		ReloadInsert:
+			SMAR I 2
+			SMAR J 8
+			goto ReloadLoop
+
+		ReloadLoop:
+			"####" A 0 A_TakeInventory("MGRounds", 1)
+			"####" A 0 A_GiveInventory("HedgefoxMACClip", 1)
+			"####" A 0 A_JumpIfInventory("HedgefoxMACClip", 0, "ReloadEnd")
+			"####" A 0 A_JumpIfInventory("MGRounds", 1, "ReloadLoop")
+			goto ReloadEnd
+
+		ReloadEnd:
+			SMAR KLMNO 1
+			SMAR A 0 A_Refire
+			goto Ready+1
+			
+		Zoom:
+			SMAC A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			SMAC A 0 A_JumpIfInventory("MACImbued", 25, "CannotImbue")
+			SMAC A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 1), "ImbueTrigger")
+			SMAC A 1 A_WeaponReady
+			goto Ready+1
+		CannotImbue:
+			SMAC A 1 A_WeaponReady
+			goto Ready+1
+		ImbueTrigger:
+			SMAC A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			SMAI ABCD 2
+			SMAI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			SMAI EFGHIJK 2 BRIGHT
+			SMAI LMN 2
+			goto Abilities
+			
+		HealCheck:
+			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+			goto CannotImbue
+		HealTrigger:
+			"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+			goto Ready
+			
+		Spawn:
+			PIST A -1
+			Stop
+	}
+}
+
+ACTOR WSTE-M5 : StrikerBaseWeapon
+{
+	Tag "WSTE-M5 Combat Shotgun"
+	Weapon.SelectionOrder 7
+	Weapon.KickBack 768
+	Weapon.AmmoUse 2
+	Weapon.AmmoGive 0 // Handled in ACS
+	Weapon.AmmoType "SuperShellz"
+	Weapon.slotnumber 3
+	Inventory.PickupSound "misc/w_pkup"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Weapon.SwayStyle "Normal"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 8
+	Decal bulletchip
+	States
+	{
+		Ready:
+			WSTE A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			WSTE A 1 A_WeaponReady(WRF_ALLOWZOOM)
+			goto Ready+1
+		Deselect:
+			WSTE AAA 0 A_Lower
+			WSTE A 1 A_Lower
+			Goto Deselect
+		Select:
+			WSTE A 0 A_TakeInventory("ShotgunEmpty", 1)
+			WSTE AAA 0 A_Raise
+			WSTE A 1 A_Raise
+			Goto Select
+		Fire:
+			WSTE B 0 BRIGHT A_JumpIfInventory("ShotgunImbued", 1, "ImbuedFire")
+			WSTE B 0 BRIGHT A_PlaySound("WSTEFire", CHAN_WEAPON)
+			WSTE B 0 BRIGHT A_FireBullets (9.2, 5.1, 16, 12, "SH_BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			WSTE B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
+			WSTE B 2 BRIGHT A_SetPitch(pitch-4.0)
+			WSTE CCDD 1 BRIGHT A_SetPitch(pitch+0.5)
+			WSTE EEFF 1 A_SetPitch(pitch+0.5)
+			WSTE G 2
+			WSTE H 2 A_CheckReload
+			goto ReloadAnim
+		ImbuedFire:
+			WST2 B 0 BRIGHT A_PlaySound("WSTEFire", CHAN_WEAPON)
+			WST2 B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
+			WST2 B 0 BRIGHT A_TakeInventory("SuperShellz", 2)
+			WST2 B 0 BRIGHT A_TakeInventory("ShotgunImbued", 1)
+			WST2 BBBBBBBBBBBBBBBB 0 BRIGHT A_FireCustomMissile("AuraShot", frandom(-9.2,9.2), 0, 6, 0, 0, frandom(-5.1, 5.1))
+			WST2 B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
+			WST2 B 2 BRIGHT A_SetPitch(pitch-4.0)
+			WST2 CCDD 1 BRIGHT A_SetPitch(pitch+0.5)
+			WSTE EEFF 1 A_SetPitch(pitch+0.5)
+			WSTE G 2
+			WSTE H 2 A_CheckReload
+			goto ReloadAnim
+		ReloadAnim:
+			WSTE I 2 A_PlaySound("WSTEFlip", CHAN_AUTO)
+			WSTE J 2 A_PlaySound("weapons/sshoto", CHAN_AUTO)
+			WSTE KLMNOPQRST 2
+			WSTE U 2 A_PlaySound("weapons/sshotc", CHAN_AUTO)
+			WSTE V 0 A_TakeInventory("ShotgunEmpty", 1)
+			WSTE VWXYZ 2
+			WSTE A 2
+			WSTE A 0 A_ReFire
+			Goto Ready+1
+		Zoom:
+			WSTE A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			WSTE A 0 A_JumpIfInventory("ShotgunImbued", 1, "CannotImbue")
+			WSTE A 0 A_JumpIf(CallACS("STRIKER_USEAURA", 25), "ImbueTrigger")
+			WSTE A 1 A_WeaponReady
+			goto Ready+1
+		CannotImbue:
+			WSTE A 1 A_WeaponReady
+			goto Ready+1
+		ImbueTrigger:
+			WSTE A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			WSTI ABCD 2
+			WSTI E 0 A_GiveInventory("ShotgunImbued", 1)
+			WSTI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			WSTI EFGHIJK 2 BRIGHT
+			WSTI LMN 2
+			goto Abilities
+			
+		HealCheck:
+			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+			goto CannotImbue
+		HealTrigger:
+			"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+			goto Ready
+			
+		Spawn:
+			WSTP A -1
+			Stop
+	}
+}
+
+ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
+{
+	Tag "Sawn-Off Shotgun w/ FRAG-12 Rounds"
+	Weapon.SelectionOrder 3
+	Weapon.KickBack 100
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 6
+	Weapon.AmmoGive2 0 // Handled in ACS
+	Weapon.AmmoType1 "HedgefoxGrenadeClip"
+	Weapon.AmmoType2 "Frag12Ammo"
+	Weapon.slotnumber 5
+	Inventory.PickupSound "misc/w_pkup"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Weapon.SwayStyle "Normal"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 8
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOALERT
+	States
+	{
+		Ready:
+			STKG A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			STKG A 1 A_WeaponReady(WRF_ALLOWZOOM | WRF_ALLOWRELOAD)
+			goto Ready+1
+		Deselect:
+			STKG AAA 0 A_Lower
+			STKG A 1 A_Lower
+			Goto Deselect
+		Select:
+			STKG AAA 0 A_Raise
+			STKG A 1 A_Raise
+			Goto Select
+		Fire:
+			STKG A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			STKG A 0 A_JumpIfInventory("GrenadeImbued", 1, "ImbuedFire")
+			goto NormalFire
+		
+		NormalFire:
+			STKG B 0 BRIGHT A_AlertMonsters
+			STKG B 0 BRIGHT A_PlaySound("Frag12Fire")
+			STKG B 0 BRIGHT A_FireCustomMissile("FRAG12Grenade", 0, true, 4, 0, 0, 3)
+			STKG B 2 BRIGHT A_SetPitch(pitch-5.0)
+			goto RecoilAnim
+		
+		ImbuedFire:
+			STKG B 0 BRIGHT A_TakeInventory("GrenadeImbued", 1)
+			STKG B 0 BRIGHT A_AlertMonsters
+			STKG B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
+			STKG B 0 BRIGHT A_PlaySound("Frag12Fire", CHAN_WEAPON)
+			STKG B 0 BRIGHT A_FireCustomMissile("FRAG12GrenadeImbued", 0, true, 4, 0, 0, 3)
+			STG2 B 2 BRIGHT A_SetPitch(pitch-5.0)
+			goto RecoilAnim
+			
+		RecoilAnim:
+			STKG CDDEF 1 A_SetPitch(pitch+1.0)
+			STKG G 1
+			STKG HIJKL 2
+			STKG A 7 A_JumpIfNoAmmo("ReloadOrDryfire")
+			STKG A 0 A_Refire
+			goto Ready+1
+			
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready+1		
+		Reload:
+			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STKG A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
+			goto Ready+1
+		CannotReload:
+			STKG A 1 A_WeaponReady
+			goto Ready+1
+		CheckReload:
+			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STKG A 0 A_JumpIfInventory("HedgefoxGrenadeClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			STGR A 0 A_GunFlash("NoAbilityUse", GFF_NOEXTCHANGE)
+			STGR A 0 A_Playsound("Gosimer/GrenadeL_open", CHAN_AUTO)
+			STGR ABCDEFGHIJ 1
+			goto ReloadHold
+		ReloadHold:
+			STGR J 10
+			goto ReloadLoop
+		ReloadLoop:
+			STGR K 2 A_PlaySound("weapons/sshotl", CHAN_AUTO)
+			STGR LJ 2
+			STGR A 0 A_TakeInventory("Frag12Ammo", 1)
+			STGR A 0 A_GiveInventory("HedgefoxGrenadeClip", 1)
+			STGR A 0 A_JumpIfInventory("HedgefoxGrenadeClip", 0, "ReloadEnd")
+			STGR A 0 A_JumpIfInventory("Frag12Ammo", 1, "ReloadLoop")
+			goto ReloadEnd
+		ReloadEnd:
+			STGR M 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			STGR MNOPQRSTU 1
+			STGR A 0 A_Refire
+			goto Ready+1
+			
+		Zoom:
+			STKG A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			STKG A 0 A_JumpIfInventory("GrenadeImbued", 6, "CannotImbue")
+			STKG A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 2), "ImbueTrigger")
+			STKG A 1 A_WeaponReady
+			goto Ready+1
+		CannotImbue:
+			STKG A 1 A_WeaponReady
+			goto Ready+1
+		ImbueTrigger:
+			STKG A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			STGI ABCD 2
+			STGI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			STGI EFGHIJK 2 BRIGHT
+			STGI LMN 2
+			goto Abilities
+			
+		HealCheck:
+			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+			goto CannotImbue
+		HealTrigger:
+			"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+			goto Ready
+			
+		Spawn:
+			WSTP A -1
+			Stop
+	}
+}
+
+ACTOR BCF2Repeater : StrikerBaseWeapon
+{
+	Tag "Bio-Chemical Fusion Repeater Mk.2"
+	Weapon.SelectionOrder 2
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 24
+	Weapon.AmmoGive2 0 // Handled by ACS.
+	Weapon.AmmoType1 "HedgefoxCellClip"
+	Weapon.AmmoType2 "Battery"
+	Weapon.slotnumber 6
+	Inventory.PickupSound "misc/w_pkup"
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	Weapon.SwayStyle "Normal"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 8
+	Decal bulletchip
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOALERT
+	States
+	{
+		Ready:
+			SBCF A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			SBCF A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
+			goto Ready+1
+		Deselect:
+			SBCF AAA 0 A_Lower
+			SBCF A 1 A_Lower
+			Goto Deselect
+		Select:
+			SBCF AAA 0 A_Raise 
+			SBCF A 1 A_Raise
+			Goto Select
+		Fire:
+			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			
+			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
+			SBCF B 0 BRIGHT A_AlertMonsters
+			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
+			SBCF B 0 BRIGHT A_Light2
+			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			SBCF C 0 BRIGHT A_Light1
+			SBCF C 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			SBCF A 0 BRIGHT A_Light0
+			SBCF A 2 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			
+			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
+			SBCF B 0 BRIGHT A_AlertMonsters
+			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
+			SBCF B 0 BRIGHT A_Light2
+			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
+			SBCF D 0 BRIGHT A_Light1
+			SBCF D 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			SBCF A 0 BRIGHT A_Light0
+			SBCF A 2 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
+			
+			SBCF A 1
+			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SBCF A 0 A_Refire
+			Goto Ready+1
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("Battery", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto Ready+1
+			
+		Reload:
+			SBCF A 0 A_JumpIfInventory("Battery", 1, "CheckReload")
+			goto Ready+1
+		CheckReload:
+			SBCF A 0 A_JumpIfInventory("HedgefoxCellClip", 0, "Ready") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			SBCR A 0 A_Playsound("Max/WepRaise", CHAN_AUTO)
+			SBCR ABCDEF 1
+			goto ReloadHold
+
+		ReloadHold:
+			SBCR G 10 A_Playsound("BCF2Load", CHAN_AUTO)
+			goto ReloadInsert
+
+		ReloadInsert:
+			SBCR G 2
+			SBCR HI 2
+			SBCR JK 2
+			goto ReloadLoop
+
+		ReloadLoop:
+			"####" A 0 A_TakeInventory("Battery", 1)
+			"####" A 0 A_GiveInventory("HedgefoxCellClip", 1)
+			"####" A 0 A_JumpIfInventory("HedgefoxCellClip", 0, "ReloadEnd")
+			"####" A 0 A_JumpIfInventory("Battery", 1, "ReloadLoop")
+			goto ReloadEnd
+
+		ReloadEnd:
+			SBCR LMNOPQR 1
+			SBCR A 0 A_Refire
+			goto Ready+1
+			
+		Zoom:
+			SBCF A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			SBCF A 1 A_WeaponReady
+			goto Ready+1
+		CannotImbue:
+			SBCF A 1 A_WeaponReady
+			goto Ready+1
+			
+		HealCheck:
+			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
+			goto CannotImbue
+		HealTrigger:
+			"####" A 18 A_GunFlash("HealSelf", GFF_NOEXTCHANGE)
+			goto Ready
+
+		Spawn:
+			PIST A -1
+			Stop
+	}
+}
+
+actor StrikersVoidPuff : SH_PlayerBulletPuff
+{
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Void"
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	+NOTIMEFREEZE
+	States
+	{
+		InstantStatus:
+		XDeath:
+			VPUF A 0 A_Explode(1, 32, 0, false, 32)
+			VPUF AAAA 0 A_SpawnItemEx("VoidFlame", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			VPUF AB 2 Bright
+			stop
+		Spawn:
+			VPUF AB 2 Bright
+			VPUF C 0 A_ChangeVelocity(0, frandom(-0.5, 0.5), frandom(1.0, 1.5), CVF_REPLACE)
+			VPUF C 0 A_SetTranslucent(0.5, 0)
+			VPUF CCCC 1 A_SetScale(scalex+0.0625)
+			//APUF DDDD 1 A_SetScale(scalex+0.0625)
+			goto Fade
+		Fade:
+			VPUF D 1 A_SetScale(scalex+0.03125)
+			VPUF D 0 A_FadeOut(0.025)
+			loop
+	}
+}
+
+actor StrikersVoidPuff_NoExplosion : SH_PlayerBulletPuff
+{
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Void"
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	+NOTIMEFREEZE
+	States
+	{
+		InstantStatus:
+		XDeath:
+			VPUF AAA 0 A_SpawnItemEx("VoidFlame", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			VPUF AB 2 Bright
+			stop
+		Spawn:
+			VPUF AB 2 Bright
+			VPUF C 0 A_ChangeVelocity(0, frandom(-0.5, 0.5), frandom(1.0, 1.5), CVF_REPLACE)
+			VPUF C 0 A_SetTranslucent(0.5, 0)
+			VPUF CCCC 1 A_SetScale(scalex+0.0625)
+			//APUF DDDD 1 A_SetScale(scalex+0.0625)
+			goto Fade
+		Fade:
+			VPUF D 1 A_SetScale(scalex+0.03125)
+			VPUF D 0 A_FadeOut(0.025)
+			loop
+	}
+}
+
+actor StrikersVoidDrainPuff : SH_PlayerBulletPuff
+{
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Void"
+	SeeSound "skeleton/melee"
+	AttackSound "*fist"
+	+PUFFONACTORS
+	+PUFFGETSOWNER
+	+NOTIMEFREEZE
+	States
+	{
+		InstantStatus:
+		DrainsEnergy:
+		XDeath:
+			VPUF AAAA 0 A_SpawnItemEx("VoidFlame", 0, 0, 0, frandom(-1.0, 1.0), frandom(-1.0, 1.0), frandom(-1.0, 1.0), 0, SXF_CLIENTSIDE, 0)
+			VPUF AB 2 Bright
+			stop
+		Melee:
+		Spawn:
+			VPUF C 0 A_ChangeVelocity(0, frandom(-0.5, 0.5), frandom(1.0, 1.5), CVF_REPLACE)
+			VPUF C 0 A_SetTranslucent(0.5, 0)
+			VPUF CCCC 1 A_SetScale(scalex+0.0625)
+			//APUF DDDD 1 A_SetScale(scalex+0.0625)
+			goto Fade
+		Fade:
+			VPUF D 1 A_SetScale(scalex+0.03125)
+			VPUF D 0 A_FadeOut(0.025)
+			loop
+	}
+}
+
+actor StrikersUppercut : StrikersVoidDrainPuff
+{
+	States
+	{
+		UpwardImpulse:
+			TNT1 A 0
+			stop
+	}
+}
+
+actor AuraSpewer
+{
+	Radius 1
+	Height 1
+	+NOINTERACTION
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+NOCLIP
+	-CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 AA 0 A_SpawnItemEx("DEMONENERGY_VIOLETSPAWNER", 0, 0, 0, frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), 0, SXF_NOCHECKPOSITION, 0)
+			stop
+	}
+}
+
+actor AuraShot : SH_BasePlayerFastProjectile
+{
+	Projectile
+	Obituary "%o was melted by %k's aura-imbued buckshot!"
+	Radius 4
+	Height 4
+	Speed 100
+	Damage (3)
+	Scale 0.1
+	RenderStyle Add
+	DamageType "Void"
+	Alpha 1.0
+	+RIPPER
+	+FORCEPAIN
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	+BLOODLESSIMPACT
+	States
+	{
+		InstantStatus:
+		Spawn:
+			AUR2 A 1 Bright
+			AUR2 A 1 bright A_ChangeFlag("EXTREMEDEATH", 0)
+			goto Loop1
+		Loop1:
+			AUR2 A 1 bright A_Jump(64, "StopRip")
+			loop
+		StopRip:
+			AUR2 A 0 bright A_ChangeFlag("RIPPER", 0)
+			AUR2 A 0 bright A_ChangeFlag("FORCEPAIN", 0)
+			goto MainLoop
+		MainLoop:
+			AUR2 A 1 bright A_Jump(64, "Death")
+			loop
+		Death:
+			AUR5 A 0 A_Stop
+			AUR5 A 0 A_SetScale(0.5)
+			AUR5 A 0 A_Explode(12, 96, 0, false, 48)
+			AUR1 A 0 A_Jump(256, "Fire1", "Fire2", "Fire3", "Fire4", "Fire5", "Fire6", "Fire7", "Fire8", "Fire9", "Fire10")
+			goto Fire1
+		Fire1:
+			AUR1 ABCDEFGHIJKLMNOPQR 1 BRIGHT
+			stop
+		Fire2:
+			AUR2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU22 AB 1 BRIGHT
+			stop
+		Fire3:
+			AUR3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			stop
+		Fire4:
+			AUR4 ABCDEFGHIJKLMNOPQRST 1 BRIGHT
+			stop
+		Fire5:
+			AUR5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU52 AB 1 BRIGHT
+			stop
+		Fire6:
+			AUR6 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU62 AB 1 BRIGHT
+			stop
+		Fire7:
+			AUR7 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU72 AB 1 BRIGHT
+			stop
+		Fire8:
+			AUR8 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU82 ABCD 1 BRIGHT
+			stop
+		Fire9:
+			AUR9 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU92 ABCD 1 BRIGHT
+			stop
+		Fire10:
+			AUR0 ABCDEFGHIJKLMNO 1 BRIGHT
+			stop
+	}
+}
+
+actor AuraBall : SH_BasePlayerFastProjectile
+{
+	Projectile
+	Obituary "%o was soul-shocked by %k's aura sphere."
+	Radius 4
+	Height 4
+	Speed 40
+	Damage (30)
+	Scale 0.32
+	RenderStyle Add
+	DamageType "Void"
+	Alpha 1.0
+	ReactionTime 5
+	SeeSound "fireball/fire"
+	+NEVERADJUSTSPRITECLIPPING
+	+FORCEPAIN
+	+FORCERADIUSDMG
+	States
+	{
+		Spawn:
+			SASB ABCDEFGH 1 Bright A_SpawnItemEx("VoidFlame", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, frandom(0.0, 2.0), 0, SXF_CLIENTSIDE, 0)
+			SASB A 0 A_Countdown
+			loop
+		Death:
+			AUR5 A 0 A_SpawnItemEx("AuraBallExplosionSphere", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			AUR5 A 0 A_Stop
+			AUR5 A 0 A_SetScale(0.6)
+			AUR5 A 0 A_Explode(30, 96, 0, false, 48)
+			AUR1 A 0 A_Jump(256, "Fire1", "Fire2", "Fire3", "Fire4", "Fire5", "Fire6", "Fire7", "Fire8", "Fire9", "Fire10")
+			goto Fire1
+		Fire1:
+			AUR1 ABCDEFGHIJKLMNOPQR 1 BRIGHT
+			stop
+		Fire2:
+			AUR2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU22 AB 1 BRIGHT
+			stop
+		Fire3:
+			AUR3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			stop
+		Fire4:
+			AUR4 ABCDEFGHIJKLMNOPQRST 1 BRIGHT
+			stop
+		Fire5:
+			AUR5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU52 AB 1 BRIGHT
+			stop
+		Fire6:
+			AUR6 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU62 AB 1 BRIGHT
+			stop
+		Fire7:
+			AUR7 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU72 AB 1 BRIGHT
+			stop
+		Fire8:
+			AUR8 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU82 ABCD 1 BRIGHT
+			stop
+		Fire9:
+			AUR9 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU92 ABCD 1 BRIGHT
+			stop
+		Fire10:
+			AUR0 ABCDEFGHIJKLMNO 1 BRIGHT
+			stop
+	}
+}
+
+actor AuraBallExplosionSphere : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	-CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			NULL A 1 Bright
+			NULL A 0 Bright A_FadeOut(0.125)
+			NULL A 0 Bright A_SetScale(scalex+0.125)
+			loop
+	}
+}
+
+actor Duke64ExplosionSmoke
+{
+	Projectile
+	Height 1
+	Radius 1
+	Speed 0
+	Damage 0
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.2
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+HEXENBOUNCE
+	+BLOODLESSIMPACT
+	+BOUNCEONACTORS
+	+THRUACTORS
+	+DONTSPLASH
+	States
+	{
+	Death:
+	Spawn:
+		D6SM A 1 A_SetScale(scalex+0.1)
+		D6SM A 0 A_FadeOut(0.01)
+		loop
+	}
+}
+
+
+actor Duke64Explosion : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	States
+	{
+	Spawn:
+		D6EX ABCDEFGHIJKLMNOPQ 2 BRIGHT
+		stop
+	}
+}
+
+actor Duke64ExplosionFast : Duke64Explosion
+{
+	States
+	{
+	Spawn:
+		D6EX ABCDEFGHIJKLMNOPQ 1 BRIGHT
+		stop
+	}
+}
+
+actor ClusterExplosion : SH_BaseParticle
+{
+	RenderStyle Add
+	Scale 0.10
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			XPLO ABCDEFGH 1 BRIGHT
+			stop
+	}
+}
+
+actor BCF2Explosion : SH_BaseParticle
+{
+	RenderStyle Add
+	Scale 0.20
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			XPLR ABCDEFGH 1 BRIGHT
+			stop
+	}
+}
+
+actor BCF2ExplosionSpark : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.5
+	BounceFactor 0.8
+	Gravity 0.4
+	-NOINTERACTION
+	-NOGRAVITY
+	-NOCLIP
+	+MISSILE
+	+HEXENBOUNCE
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		KPUF A 0 A_JumpIf(WaterLevel >= 1, "Death")
+		KPUF A 1 BRIGHT A_FadeOut(0.032)
+		loop
+	Death:
+		TNT1 A 1
+		stop
+	}
+}
+
+actor ClusterExplosionViolet : ClusterExplosion
+{
+	States
+	{
+		Spawn:
+			XPLP ABCDEFGH 1 BRIGHT
+			stop
+	}
+}
+
+actor Duke64ExplosionFastViolet : Duke64Explosion
+{
+	States
+	{
+	Spawn:
+		D6PE ABCDEFGHIJKLMNOPQ 1 BRIGHT
+		stop
+	}
+}
+
+actor GrenadeExplosionSpark : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.75
+	BounceFactor 0.8
+	Gravity 0.4
+	-NOCLIP
+	-NOINTERACTION
+	-NOGRAVITY
+	+MISSILE
+	+HEXENBOUNCE
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		PUFF A 0 A_JumpIf(WaterLevel >= 1, "Death")
+		PUFF A 1 BRIGHT A_FadeOut(0.032)
+		loop
+	Death:
+		TNT1 A 0
+		stop
+	}
+}
+
+actor GrenadePrimedSpark : GrenadeExplosionSpark
+{
+	Scale 0.25
+}
+
+actor SmallNadeSmoke : NadeSmoke
+{
+	Scale 0.25
+	States
+	{
+		Spawn:
+			TNT1 A 2
+			TNT1 A 0 A_ChangeVelocity(frandom(-0.75, 0.75), frandom(-0.75, 0.75), frandom(-0.75, 0.75), CVF_RELATIVE)
+			goto Spawn1
+		Spawn1:
+			D3DS A 1 A_FadeOut(0.01)
+			D3DS A 0 A_SetScale(scalex + 0.025)
+			D3DS A 0 A_JumpIf(alpha <= 0.45, "Spawn2")
+			loop
+		Spawn2:
+			D3DS B 1 A_FadeOut(0.01)
+			D3DS B 0 A_SetScale(scalex + 0.025)
+			D3DS B 0 A_JumpIf(alpha <= 0.3, "Spawn3")
+			loop
+		Spawn3:
+			D3DS C 1 A_FadeOut(0.01)
+			D3DS C 0 A_SetScale(scalex + 0.025)
+			D3DS C 0 A_JumpIf(alpha <= 0.15, "Spawn4")
+			loop
+		Spawn4:
+			D3DS D 1 A_FadeOut(0.01)
+			D3DS D 0 A_SetScale(scalex + 0.025)
+			loop
+	}
+}
+	
+
+actor FRAG12Grenade : SH_BasePlayerProjectile
+{
+	Projectile
+	Radius 4
+	Height 4
+	obituary "%o took %k's FRAG-12 cluster grenade to the face."
+	Damage (25)
+	Speed 64
+	bouncesound "weapons/grbnce"
+	BounceFactor 0.32
+	Scale 0.5
+	Gravity 0.5
+	+FORCEXYBILLBOARD
+	+FORCERADIUSDMG
+	+HEXENBOUNCE
+	+BOUNCEONACTORS
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			FLGR AAAA 1
+			FLGR A 0 A_ChangeFlag("HEXENBOUNCE", 0)
+			FLGR A 0 A_ChangeFlag("BOUNCEONACTORS", 0)
+			FLGR A 0 A_ChangeFlag("EXTREMEDEATH", 1)
+			goto Fly
+		
+		Fly:
+			FLGR A 1 BRIGHT A_SpawnItemEx("GrenadePrimedSpark", 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0),  frandom(-2.0, 2.0), 0, SXF_CLIENTSIDE, 0)
+			FLGR A 0 BRIGHT A_SpawnItemEx("SmallNadeSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			loop
+
+		Death:
+			TNT1 A 0 radius_quake(3, 16, 0, 4, 0)
+			TNT1 A 0 A_PlaySound("BigExplosion", CHAN_AUTO)
+			TNT1 A 0 A_Explode(64, 80, true, false, 48)
+			TNT1 AAA 0 A_SpawnItemEX("Duke64ExplosionSmoke", 0, 0, 0, frandom(-2.0,2.0), frandom(-2.0,2.0), frandom(-2.0,2.0), 0, SXF_CLIENTSIDE, 32)
+			TNT1 A 0 A_SpawnItemEX("Duke64ExplosionFast", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("GrenadeExplosionSpark", 0, 0, 0, frandom(3.0,10.0), 0, frandom(2.0,16.0), random(-180,180), SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("Cluster", 0, 0, 0, frandom(4.0,10.0), 0, frandom(4.0,16.0), random(-180,180), SXF_TRANSFERPOINTERS, 0)
+			TNT1 AA 5
+			stop
+	}
+}
+
+actor FRAG12GrenadeImbued : FRAG12Grenade
+{
+	Damage (50)
+	DamageType "Void"
+	States
+	{
+		InstantStatus:
+		Spawn:
+			FLGR AAAA 1
+			FLGR A 0 A_ChangeFlag("HEXENBOUNCE", 0)
+			FLGR A 0 A_ChangeFlag("BOUNCEONACTORS", 0)
+			FLGR A 0 A_ChangeFlag("EXTREMEDEATH", 1)
+			goto Fly
+		
+		Fly:
+			FLGR A 1 BRIGHT A_SpawnItemEx("GrenadePrimedSpark", 0, 0, 0, frandom(-2.0, 2.0), frandom(-2.0, 2.0),  frandom(-2.0, 2.0), 0, SXF_CLIENTSIDE, 0)
+			FLGR A 0 BRIGHT A_SpawnItemEx("SmallNadeSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FLGR A 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 192)
+			loop
+
+		Death:
+			TNT1 A 0 radius_quake(3, 16, 0, 4, 0)
+			TNT1 A 0 A_PlaySound("BigExplosion", CHAN_AUTO)
+			TNT1 A 0 A_Explode(64, 80, true, false, 48)
+			TNT1 AAA 0 A_SpawnItemEX("Duke64ExplosionSmoke", 0, 0, 0, frandom(-2.0,2.0), frandom(-2.0,2.0), frandom(-2.0,2.0), 0, SXF_CLIENTSIDE, 32)
+			TNT1 A 0 A_SpawnItemEX("Duke64ExplosionFastViolet", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAA 0 A_SpawnItemEx("VoidFlame", 0, 0, 0, frandom(-6.0,6.0), frandom(-6.0,6.0), frandom(-6.0,6.0), 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("VoidCluster", 0, 0, 0, frandom(4.0,10.0), 0, frandom(4.0,16.0), random(-180,180), SXF_TRANSFERPOINTERS, 0)
+			TNT1 AA 5
+			stop
+	}
+}
+
+actor Cluster : SH_BasePlayerProjectile
+{
+	Radius 2
+	Height 2
+	Scale 0.5
+	projectile
+	+FORCERADIUSDMG
+	+HEXENBOUNCE
+	+SKYEXPLODE
+	+FORCEXYBILLBOARD
+	+BOUNCEONACTORS
+	+EXPLODEONWATER
+	-NOGRAVITY
+	-BLOODLESSIMPACT
+	obituary "%o was clusterfucked by %k."
+	Damage 0
+	BounceSound "Max/FlakShardBounce"
+	var int user_timermax;
+	var int user_timer;
+	Args 56
+	States
+	{
+	Spawn:
+		KPUF A 0
+		KPUF A 0 A_SetGravity(frandom[cluster](0.9, 1.1)) 
+		KPUF A 0 A_SetArg(0, random[cluster](4, 56))
+		goto Fly
+	Fly:
+		KPUF A 1 A_SpawnItemEX("NadeSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+		KPUF A 0 A_CountdownArg(0, "Death")
+		loop
+	Death:
+		TNT1 A 0 A_PlaySound("ClusterExplode", CHAN_AUTO)
+		TNT1 A 0 A_Explode(32, 64, true, false, 48)
+		TNT1 A 1 A_SpawnItemEx("ClusterExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+		TNT1 A 2
+		stop
+	}
+}
+
+actor VoidCluster : Cluster
+{
+	DamageType "Void"
+	States
+	{
+		InstantStatus:
+		Spawn:
+			KPUF A 0
+			KPUF A 0 A_SetGravity(frandom[cluster](0.9, 1.1)) 
+			KPUF A 0 A_SetArg(0, random[cluster](4, 56))
+			goto Fly
+		Fly:
+			KPUF A 1 A_SpawnItemEx("VoidFlame", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 128)
+			KPUF A 0 A_CountdownArg(0, "Death")
+			loop
+		Death:
+			TNT1 A 0 A_PlaySound("ClusterExplode", CHAN_AUTO)
+			TNT1 A 0 A_Explode(32, 64, true, false, 48)
+			TNT1 A 1 A_SpawnItemEx("ClusterExplosionViolet", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 2
+			stop
+	}
+}
+
+actor BCF2Shot : SH_BasePlayerFastProjectile
+{
+	Projectile
+	Obituary "%o had a hole burned through them by %k's BCF-2!"
+	Radius 4
+	Height 4
+	Speed 100
+	Damage (5)
+	Scale 1.0
+	RenderStyle Add
+	Alpha 1.0
+	+RIPPER
+	+FORCEPAIN
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	+BLOODLESSIMPACT
+	States
+	{
+		Spawn:
+			BLAS A 1 Bright
+			BLAS A 0 bright A_ChangeFlag("RIPPER", 0)
+			BLAS A 0 bright A_ChangeFlag("FORCEPAIN", 0)
+			BLAS A 0 bright A_ChangeFlag("BLOODLESSIMPACT", 0)
+			BLAS A 0 bright A_ChangeFlag("EXTREMEDEATH", 0)
+			goto MainLoop
+		MainLoop:
+			BLAS A 1 bright
+			loop
+		Death:
+			AUR5 A 0 A_Explode(15, 48, 0, false, 48)
+			AUR5 A 0 A_PlaySound("BCF2Explosion", CHAN_AUTO)
+			TNT1 A 0 A_SpawnItemEx("BCF2Explosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAA 0 A_SpawnItemEx("BCF2ExplosionSpark", 0, 0, 0, frandom(0.0,6.0), 0, frandom(-1.0,6.0), random(-180,180), SXF_CLIENTSIDE, 0)
+			TNT1 A 1
+			stop
 	}
 }

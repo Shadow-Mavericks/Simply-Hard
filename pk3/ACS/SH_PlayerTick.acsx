@@ -22,6 +22,30 @@ str inv_music_list[NUM_INVUL_SONGS] = {
 	"SMG_STAR",
 };
 
+function void DoInputHax(void)
+{
+	// Dual Wielding Hax
+	int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+	if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
+	{
+		GiveInventory("DualFireHax", 1);
+	}
+	else if(!(buttons & BT_ALTATTACK) && CheckInventory("DualFireHax"))
+	{
+		TakeInventory("DualFireHax", 1);
+	}
+	
+	if((buttons & BT_USE) && !(oldbuttons & BT_USE))
+	{
+		GiveInventory("UseHax", 1);
+	}
+	else if(!(buttons & BT_USE) && CheckInventory("UseHax"))
+	{
+		TakeInventory("UseHax", 1);
+	}
+}
+
 script "SV_PLAYERTICKER" OPEN
 {
 	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
@@ -147,6 +171,14 @@ script "SV_PLAYERTICKER" OPEN
 				else if(CheckFlag(0, "NOBLOOD"))
 					ChangeFlag("NOBLOOD", false); //SetActorFlag(0, "NOBLOOD", false);
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				if(CheckInventory("AbilityCharge") == 0)
+				{
+					if(!(tickNum % 175))
+						Thing_Damage2(0, 1, "Drowning");					
+				}
+			}
 			
 			// Shield break sound.
 			int cur_armor = CheckInventory("Armor");
@@ -158,17 +190,7 @@ script "SV_PLAYERTICKER" OPEN
 				p_status[p].last_armor = cur_armor;
 			}
 			
-			// Dual Wielding Hax
-			int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
-			int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-			if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
-			{
-				GiveInventory("DualFireHax", 1);
-			}
-			else if(!(buttons & BT_ALTATTACK) && CheckInventory("DualFireHax"))
-			{
-				TakeInventory("DualFireHax", 1);
-			}
+			DoInputHax();
 		}
 
 		SetActivator(-1);
@@ -250,17 +272,7 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 				p_status[p].alarm_volume = 1.0;
 			}
 			
-			// Dual Wielding Hax
-			int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
-			int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-			if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
-			{
-				GiveInventory("DualFireHax", 1);
-			}
-			else if(!(buttons & BT_ALTATTACK) && CheckInventory("DualFireHax"))
-			{
-				TakeInventory("DualFireHax", 1);
-			}
+			DoInputHax();
 		}
 
 		SetActivator(-1);
@@ -336,4 +348,10 @@ script "DROP_TOKENS" (int gone) DISCONNECT
 	{
 		PrintBold(n:gone+1, s:" left the game and dropped all of their tokens!");
 	}
+}
+
+script "REMOVE_HAX" DEATH
+{
+	TakeInventory("DualFireHax", 1);
+	TakeInventory("UseHax", 1);
 }

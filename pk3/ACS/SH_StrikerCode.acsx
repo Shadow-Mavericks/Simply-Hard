@@ -9,8 +9,6 @@
 int timeOfLastLifeDrop;
 int numLivesSpawned;
 
-#define ONE_16 (1<<16)
-
 enum
 {
 	WADCOMPAT_UNINITIALIZED = 0,
@@ -848,8 +846,6 @@ script "GENERATE_DMG_TRANSLATIONS" OPEN
 	CreateTranslation(6005, 160:160=[0, 255, 255]:[0, 255, 255]); // Cyan
 	CreateTranslation(6006, 160:160=[255, 0, 255]:[255, 0, 255]); // Magenta
 	CreateTranslation(6007, 160:160=[255, 255, 255]:[255, 255, 255]); // White
-	
-	CreateTranslation(7000, 0:255=%[0.00,0.00,0.00]:[0.02,1.23,0.44]); // Acid
 }
 
 #define HIT_OTHER 0
@@ -857,6 +853,21 @@ script "GENERATE_DMG_TRANSLATIONS" OPEN
 
 function void hit_marker(int soundType, bool friendly)
 {
+	int pNum = PlayerNumber();
+	
+	// Prevent ear-rape
+	if((Timer() == p_status[pNum].last_hitsound_tick))
+	{
+		p_status[pNum].num_hitsounds++;
+		if(p_status[pNum].num_hitsounds > 9)
+			return;
+	}
+	else
+	{
+		p_status[pNum].last_hitsound_tick = Timer();
+		p_status[pNum].num_hitsounds = 0;
+	}
+	
 	if(friendly)
 		LocalAmbientSound("hitsound_friend", 64);
 	else
@@ -1232,7 +1243,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	int victimStatus = STATUS_NONE;
 	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 	bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
-	bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
+	bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || (victimPlayerNum != -1));
 
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
@@ -1278,7 +1289,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		}
 
 		wasConcussed = CheckActorClass(0, "ConcussionBlast");
-		if(CheckActorClass(0, "FistPuff") || wasConcussed)
+		if(CheckActorState(0, "UpwardImpulse", true) || wasConcussed)
 		{
 			int yeetForceBase = arg1;
 			yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
@@ -1569,104 +1580,6 @@ script "HPBAR_LOGIC" (void) // CLIENTSIDE // NOPE, CAN'T DO CLIENTSIDE BECAUSE Z
 	}
 }
 
-script "ACID_TICKER" (void)
-{
-	int radius = GetActorProperty(0, APROP_Radius);
-		
-	if(PlayerNumber() != -1 && CheckInventory("PowerAcidStatus"))
-	{
-		SetCameraToTexture(0, "ACIDFX", 90);
-
-		SetFont("ACIDFX");
-		SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
-		HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.0, 1.0);
-	}
-	else
-	{
-		Thing_SetTranslation(0, 7000);
-	}
-	
-	while(CheckInventory("PowerAcidStatus"))
-	{
-		SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
-		Delay(1);
-	}
-
-	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER) && !CheckActorState(0, "NoAcidMelt", true)) // If died while under effect of acid.
-	{
-		int timer = 105;
-		bool meltstarted = false;
-		while(1)
-		{
-			if(timer > 0)
-			{
-				timer--;
-				SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
-			}
-			else
-			{
-				int scaley = GetActorProperty(0, APROP_ScaleY);
-				int alpha = GetActorProperty(0, APROP_Alpha);
-				int numSplashes = (radius/16)>>16;
-				if(numSplashes <= 0)
-					numSplashes = 1;
-				scaley -= 0.025;
-				alpha -= 0.025;
-				
-				if(!meltstarted)
-				{
-					PlaySound (0, "AcidMelt", CHAN_AUTO, 1.0, false, ATTN_NORM, false);
-					
-					int uTID = UniqueTID();
-					int maxScale = radius/32;
-					if(maxScale < 0.5)
-						maxScale = 0.5;
-					
-					SpawnForced("AcidPuddle", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, 0);
-					SetUserVariable(uTID, "user_maxscale", maxScale);
-					meltstarted = true;
-				}
-				
-				if(alpha < 0.0) // Clamp alpha
-					alpha = 0;
-				
-				for(int i = 0; i < numSplashes; i++)
-				{
-					SpawnForced("AcidSplash", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0), 0, 0);
-				}
-					
-				if(scaley <= 0.0)
-				{
-					Thing_Remove(0);
-					break;
-				}
-				else
-				{
-					SetActorProperty(0, APROP_ScaleY, scaley);
-					SetActorProperty(0, APROP_Alpha, alpha);
-				}
-			}
-			
-			Delay(1);
-		}
-	}
-	else
-	{
-		if(PlayerNumber() != -1)
-		{
-			SetCameraToTexture(0, "ACIDFX", 90);
-
-			SetFont("ACIDFX");
-			SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
-			HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_LAYER_UNDERHUD, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.1, 1.0, 1.0);
-		}
-		else
-		{
-			Thing_SetTranslation(0, 0);
-		}
-	}
-}
-
 #define MAX_PLASMA_LOCS 32
 int num_plasma_locations;
 vec2_t plasma_locations[MAX_PLASMA_LOCS];
@@ -1735,19 +1648,22 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		}
 		case GAMEEVENT_ACTOR_DAMAGED:
 		{
+			int victimPlayerNum = PlayerNumber();
+			
 			bool attackerIsEnemy = false;
-			bool victimIsPlayer = (ClassifyActor(0) & ACTOR_PLAYER);
+			bool victimIsFriendly = (CheckFlag(0, "FRIENDLY") || (victimPlayerNum != -1));
+			bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 			bool instantStatusEffect = false;
 			bool inflictorIsMissile = false;
+			bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
 			int extremeDeathType = 0;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
 			int attackerPlayerNum = -1;
 			
-			if(victimIsPlayer && (GameType() == GAME_SINGLE_PLAYER))
+			if((victimPlayerNum != -1) && (GameType() == GAME_SINGLE_PLAYER))
 			{
-				int pNum = PlayerNumber();
-				if(arg1 >= victimHealth && GetPlayerLivesLeft(pNum) > 0)
+				if(arg1 >= victimHealth && GetPlayerLivesLeft(victimPlayerNum) > 0)
 				{
 					arg1 = 0; // Cancel out the damage.
 					ACS_NamedExecuteAlways("USELIFE_SINGLEPLAYER", 0);
@@ -1782,7 +1698,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					
 				if(!NoAcidStatus)
 				{
-					int acidThreshold = min(victimSpawnHealth/2, 200);
+					int acidThreshold = (victimPlayerNum != -1) ? 15 : min(victimSpawnHealth/2, 200);
 					
 					if(!CheckInventory("PowerAcidBuildTimer")) // If acid build timer has expired or hasn't yet started, reset.
 						TakeInventory("AcidAccumulation", 200);
@@ -1853,6 +1769,54 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 				}
 			}
+			else if(!StrIcmp(arg2, "Void"))
+			{
+				SetActivator(0, AAPTR_DAMAGE_INFLICTOR);
+				if(!CheckActorState(0, "DrainsEnergy", true) && !victimIsFriendly && victimCanBleed)
+				{
+					SpawnForced("AuraSpewer", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
+				}
+				
+				SetActivator(0, AAPTR_DAMAGE_TARGET);
+
+				bool NoVoidStatus = !!(CheckActorState(0, "NoVoidStatus", true));
+				
+				if(!NoVoidStatus)
+				{
+					int voidThreshold = (victimPlayerNum != -1) ? 15 : min(victimSpawnHealth/3, 200);
+					
+					if(!CheckInventory("PowerVoidBuildTimer")) // If void build timer has expired or hasn't yet started, reset.
+						TakeInventory("VoidAccumulation", 200);
+						
+					if(instantStatusEffect)
+						GiveInventory("VoidAccumulation", 200);
+					
+					GiveInventory("VoidAccumulation", arg1);
+					GiveInventory("VoidBuildTimer", 1);
+					
+					if(CheckInventory("VoidAccumulation") >= voidThreshold)
+					{
+						int alreadyVoid = CheckInventory("PowerVoidStatus");
+						TakeInventory("VoidAccumulation", 200);
+						GiveInventory("VoidStatus", 1);
+						ChangeFlag("FRIGHTENED", true);
+						
+						if(victimIsMonster && !victimIsFriendly && !CheckInventory("VoidTouched")) // Force change species to allow friendly fire.
+						{
+							str species = StrParam(s:"Confused", s:GetActorClass(0), d:random(0, 99999));
+							SetActorProperty(0, APROP_Species, species);
+						}
+						
+						if(!alreadyVoid)
+						{		
+							// Keep this last, because for some fucking reason ACS_NamedExecuteAlways/WithResult completely bunglefucks the AAPTR_DAMAGE_X pointers.
+							SetActivator(0, AAPTR_DAMAGE_TARGET);
+							ACS_NamedExecuteAlways("VOID_TICKER", 0);
+							GiveInventory("VoidTouched", 1);
+						}
+					}
+				}
+			}
 
 			// ****** ALWAYS KEEP THIS SHIT LAST! *********
 			SetResultValue(arg1);
@@ -1894,6 +1858,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 		{
 			bool isMapSpawned = (arg1 == GAMEEVENT_SPAWN_LEVELSPAWNED);
 			bool canMultiply = (isMapSpawned && CheckFlag(0, "ISMONSTER"));
+			
+			bool spawnedFriendly = (CheckFlag(0, "FRIENDLY") || GetActorProperty(0, APROP_SpawnFlags) & MTF_FRIENDLY);
+			if(spawnedFriendly)
+				GiveInventory("StartedFriendlyHax", 1);
+			if(CheckFlag(0, "FRIGHTENED"))
+				GiveInventory("StartedFrightenedHax", 1);
 			
 			if(isMapSpawned)
 			{
@@ -2143,6 +2113,11 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				droptype = DROPTYPE_RANDOM;
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_amount = 14;
+				ammo1_name = ".38 ACP Round";
+			}
 			break;
 		}
 		case AMMO_CLIPBOX:
@@ -2156,6 +2131,15 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				ammo1_class = "DF_EnergyUnit";
 				ammo1_amount = 45;
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_class = "MGRounds";
+				ammo1_amount = 90;
+				ammo1_name = "9mm Round";
+				ammo2_class = "PeastolClip";
+				ammo2_amount = 28;
+				ammo2_name = ".38 ACP Round";
 			}
 			else
 			{
@@ -2179,6 +2163,11 @@ script 13236 (int type) // "AMMO_PICKUP"
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 10;
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_class = "Supershellz";
+				ammo1_amount = 4;
+			}
 			else
 			{
 				ammo2_class = "Supershellz";
@@ -2197,6 +2186,11 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 30;
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_class = "Supershellz";
+				ammo1_amount = 12;
 			}
 			else
 			{
@@ -2224,6 +2218,12 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				ammo1_name = "Grenade";
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_class = "Frag12Ammo";
+				ammo1_amount = 1;
+				pickupsound = "AMMO/SHEL";
+			}
 			break;
 		}
 		case AMMO_ROCKETBOX:
@@ -2244,7 +2244,13 @@ script 13236 (int type) // "AMMO_PICKUP"
 			else if(CheckActorClass(0, "Gosimer"))
 			{
 				ammo1_name = "Grenade";
-			}		
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				ammo1_class = "Frag12Ammo";
+				ammo1_amount = 6;
+				pickupsound = "AMMO/SHELBAWX";
+			}
 			break;
 		}
 		case AMMO_CELL:
@@ -2413,7 +2419,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 
 	str weapon_class = "None";
 	str pickupsound = "misc/w_pkup";
-	str pickupsound_new = "None";
+	str pickupsound_new = "None"; // Sound that plays if picked up for first time
 
 	str ammo1_class = "None";
 	str ammo2_class = "None";
@@ -2503,6 +2509,23 @@ script 13237 (int type) // "WEAPON_PICKUP"
 					ammo1_amount = 15;
 				}
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				if(!dropped)
+				{
+					weapon_class = "AuraBallAbility";
+					ammo1_class = "AbilityCharge";
+					ammo1_amount = 40;
+				}
+				else
+				{
+					pickupsound = "AMMO/SHEL";
+					weapon_class = "None";
+					ammo1_class = "SuperShellz";
+					ammo1_amount = 2;
+					droptype = DROPTYPE_FULL;
+				}
+			}
 			break;
 		}
 
@@ -2533,6 +2556,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "FusionCutter";
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 50;
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "WSTE-M5";
+				ammo1_class = "SuperShellz";
+				ammo1_amount = 8;
 			}
 
 			break;
@@ -2575,6 +2604,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 					ammo1_amount = 30;
 				}
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "ModifiedMAC10";
+				ammo1_amount = 60;
+			}
 
 			break;
 		}
@@ -2607,6 +2641,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "MortarGun";
 				ammo1_amount = 3;
 				ammo1_name = "Mortar Shell";
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "Frag12GrenadeShotgun";
+				ammo1_class = "Frag12Ammo";
+				ammo1_amount = 6;
 			}
 			break;
 		}
@@ -2710,17 +2750,20 @@ script 13237 (int type) // "WEAPON_PICKUP"
 	{
 		droptype = DROPTYPE_NONE;
 		// If weapon is set to stay, and weapon already given.
-		if(GetCVar("sv_weaponstay") && CheckInventory(weapon_class))
+		if(GetCVar("sv_weaponstay") && (CheckInventory(weapon_class) || !StrIcmp(weapon_class, "None")))
 			terminate;
 	}
 
+	bool isWeaponDefined = !!(StrIcmp(weapon_class, "None"));
 	ammo1_amount = add_ammo(ammo1_class, ammo1_amount, droptype);
 	ammo2_amount = add_ammo(ammo2_class, ammo2_amount, droptype);
-	bool success = (ammo1_amount || ammo2_amount || !CheckInventory(weapon_class));
+	bool success = (ammo1_amount || ammo2_amount || (isWeaponDefined && !CheckInventory(weapon_class)));
 	if(success)
 	{
+		
 		bool isNew = false;
-		if(!CheckInventory(weapon_class))
+		
+		if(isWeaponDefined && !CheckInventory(weapon_class))
 		{
 			GiveInventory(weapon_class, 1);
 			if(GetUserCVar(PlayerNumber(), "switchonpickup") > 1)
@@ -2752,12 +2795,21 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			fade_rgb[2] = 255;
 		}
 
-		str weapon_name = GetClassTag(weapon_class);
+		str msg;
+		
+		if(isWeaponDefined) // If weapon not none
+		{
+			str weapon_name = GetClassTag(weapon_class);
+			msg = StrParam(s:weapontextcolor, s:weapon_name);
 
-		str msg = StrParam(s:weapontextcolor, s:weapon_name);
-
-		if(ammo1_amount > 0 || ammo2_amount > 0)
-			msg = StrParam(s:msg, s:ammotextcolor, s:" (+");
+			if(ammo1_amount > 0 || ammo2_amount > 0)
+				msg = StrParam(s:msg, s:ammotextcolor, s:" (+");
+		}
+		else
+		{
+			if(ammo1_amount > 0 || ammo2_amount > 0)
+				msg = StrParam(s:ammotextcolor);
+		}
 
 		if(ammo1_amount > 0)
 		{
@@ -2771,8 +2823,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			msg = StrParam(s:msg, d:ammo2_amount, s:" ", s:ammo2_name, s:suffix2);
 		}
 
-		if(ammo1_amount || ammo2_amount)
-			msg = StrParam(s:msg, s:")");
+		if(isWeaponDefined) // If weapon not none
+		{
+			if(ammo1_amount || ammo2_amount)
+				msg = StrParam(s:msg, s:")");
+		}
 
 		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
 
@@ -2936,6 +2991,149 @@ script "SUPERCHARGE_CHECK" (void)
 	}
 	else
 		SetResultValue(1);
+}
+
+// Striker's Class Functions
+// -------------------------
+
+script "STRIKER_PPKDAMAGE" (void)
+{
+	int damage = 15;
+	if(CheckInventory("Tier1upgradetoken"))
+		damage += 5;
+	if(CheckInventory("Tier2upgradetoken"))
+		damage += 5;
+	if(CheckInventory("Tier3upgradetoken"))
+		damage += 5;
+	if(CheckInventory("Tier4upgradetoken"))
+		damage += 5;
+	if(CheckInventory("Tier5upgradetoken"))
+		damage += 5;
+	if(CheckInventory("Tier6upgradetoken"))
+		damage += 10;
+	if(CheckInventory("Tier7upgradetoken"))
+		damage += 10;
+	if(CheckInventory("Tier8upgradetoken"))
+		damage += 10;
+	SetResultValue(damage);
+}
+
+function int useAura(int amount)
+{
+	int auraAmt = CheckInventory("AbilityCharge");
+	int healthAmt = GetActorProperty(0, APROP_Health);
+	
+	int damageAmt = 0;
+	
+	auraAmt -= amount;
+	if(auraAmt < 0)
+		damageAmt = abs(auraAmt/2);
+	
+	healthAmt -= damageAmt;
+	if(healthAmt <= 25 && damageAmt > 0)
+	{
+		Print(s:"\cgIf I keep doing this... I'll die.");
+		return 0;
+	}
+	
+	TakeInventory("AbilityCharge", amount);
+	if(damageAmt)
+		Thing_Damage(0, damageAmt, MOD_WATER);
+	
+	return 1;
+}
+
+script "STRIKER_USEAURA" (int amount)
+{
+	SetResultValue(useAura(amount));
+}
+
+script "STRIKER_IMBUE" (int type)
+{
+	int clipAmount;
+	int alreadyImbued;
+	int auraAmount;
+	
+	if(type == 1)
+	{
+		clipAmount = CheckInventory("HedgefoxMACClip");
+		alreadyImbued = CheckInventory("MACImbued");
+		auraAmount = (clipAmount-alreadyImbued);
+	}
+	else if(type == 2)
+	{
+		clipAmount = CheckInventory("HedgefoxGrenadeClip");
+		alreadyImbued = CheckInventory("GrenadeImbued");
+		auraAmount = (clipAmount-alreadyImbued)*8;
+	}
+	else
+	{
+		clipAmount = CheckInventory("HedgefoxClip");
+		alreadyImbued = CheckInventory("PistolImbued");
+		auraAmount = (clipAmount-alreadyImbued)*2;
+	}
+	
+	if(clipAmount <= alreadyImbued)
+	{
+		SetResultValue(0);
+		terminate;
+	}
+	
+	int result = useAura(auraAmount);
+	if(result)
+	{
+		if(type == 1)
+		{
+			GiveInventory("MACImbued", clipAmount);
+		}
+		else if(type == 2)
+		{
+			GiveInventory("GrenadeImbued", clipAmount);
+		}
+		else
+		{
+			GiveInventory("PistolImbued", clipAmount);
+		}
+	}
+	
+	SetResultValue(result);
+}
+
+script "STRIKER_SELFHEAL" (int mode)
+{
+	int maxHealth = 75;
+	int currentHealth = GetActorProperty(0, AProp_Health);
+	int auraAmount = CheckInventory("AbilityCharge");
+	if(currentHealth >= maxHealth || (!mode && !auraAmount) || !CheckInventory("HealAbility"))
+	{
+		SetResultValue(0);
+		terminate;
+	}
+	
+	if(!mode)
+	{
+		int healAmount = maxHealth - currentHealth;
+		int auraCost = fixedmul(healAmount<<16, 1.75)>>16;
+		
+		if(auraCost > auraAmount)
+		{
+			int finalAmount = auraCost - auraAmount;
+			healAmount = fixeddiv(finalAmount<<16, 1.75)>>16;
+		}
+			
+		if(healAmount <= 0)
+			healAmount = 1;
+		
+		TakeInventory("AbilityCharge", auraCost);
+		GiveInventory("HealCounter", healAmount);
+	}
+	else
+	{
+		SetActorProperty(0, AProp_Health, currentHealth+CheckInventory("HealCounter"));
+		TakeInventory("HealCounter", 9999);
+	}
+		
+	SetResultValue(1);
 }
 
 // ---------------------

@@ -2286,8 +2286,7 @@ Actor Bluelaser
 	Radius 10
 	Speed 50
 	Scale 0.5
-	Renderstyle add
-	Damagetype Fire
+	Renderstyle Add
 	DeathSound "weapons/plasmax"
 	Decal "Pulse"
 	+NOGRAVITY

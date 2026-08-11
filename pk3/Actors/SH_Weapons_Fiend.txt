@@ -34,7 +34,7 @@ ACTOR Fists : fist replaces Fist
 	Tag "Fisticuffs"
 	Weapon.SelectionOrder 9
 	Weapon.SlotNumber 1
-	Inventory.RestrictedTo "Fiend", "Striker"
+	Inventory.RestrictedTo "Fiend"
 	Weapon.Kickback 100
 	Obituary "$OB_MPFIST"
 	+WEAPON.WIMPY_WEAPON

@@ -196,6 +196,18 @@ OptionMenu "CreditSprites"
 	StaticText "IMX, MagicWazard, DBJ87", 1
 	StaticText "Revenant Ghoul"
 	StaticText ""
+	
+	StaticText "Ltnumbnutsthesecond", 1
+	StaticText "WSTE-M5 Combat Shotgun w/ Doom Hands"
+	StaticText ""
+	
+	StaticText "Lucas Kord", 1
+	StaticText "MAC-11 Sprites"
+	StaticText ""
+	
+	StaticText "chronoteeth", 1
+	StaticText "Sawn-Off Shotgun w/ FRAG-12 Rounds"
+	StaticText ""
 }
 
 OptionMenu "CreditSounds"

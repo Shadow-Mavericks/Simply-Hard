@@ -95,10 +95,10 @@ actor ImpBall_Fire 	: ImpBall_Base
 	States
 	{
 		Spawn:
-			FIR1 AB 1 Bright
+			IBAF AB 1 Bright
 			Loop
 		Death:
-			FIR1 CDE 6 Bright
+			IBAF CDE 6 Bright
 			Stop
 	}
 }

@@ -55,6 +55,10 @@ actor SpecialHax : SH_BaseHax // General purpose hack for monsters & items.
 }
 
 actor DualFireHax : SH_BaseToken { } // Used for dual wielding fire.
+actor UseHax : SH_BaseToken { } // Used for checking for use-key combos.
+
+actor VoidTouched : SH_BaseToken { } // Indicate that monster has been touched by void.
+
 
 actor TeleportHax : ArtiTeleport
 {
@@ -88,6 +92,14 @@ actor ExtremeDeathHax : SH_BaseHax // Hack to pass EXTREMEDEATH flag to generic 
 }
 
 actor NeedsBossDeathHax : SH_BaseHax // Signals to the ON_KILL script that we need a bossdeath hack.
+{
+}
+
+actor StartedFriendlyHax : SH_BaseHax // Signals to the damage code that this actor started friendly
+{
+}
+
+actor StartedFrightenedHax : SH_BaseHax // Signals to the damage code that this actor started frightened
 {
 }
 

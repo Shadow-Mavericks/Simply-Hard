@@ -421,3 +421,53 @@ actor SH_TeleporterParticles_White : SH_TeleporterParticles_Red
 			loop
 	}
 }
+
+actor VoidFlame : SH_BaseParticle
+{
+	Scale 0.3
+	RenderStyle Add
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			AUR1 A 0
+			AUR1 A 0 A_Jump(256, "Fire1", "Fire2", "Fire3", "Fire4", "Fire5", "Fire6", "Fire7", "Fire8", "Fire9", "Fire10")
+			goto Fire1
+		Fire1:
+			AUR1 ABCDEFGHIJKLMNOPQR 1 BRIGHT
+			stop
+		Fire2:
+			AUR2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU22 AB 1 BRIGHT
+			stop
+		Fire3:
+			AUR3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			stop
+		Fire4:
+			AUR4 ABCDEFGHIJKLMNOPQRST 1 BRIGHT
+			stop
+		Fire5:
+			AUR5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU52 AB 1 BRIGHT
+			stop
+		Fire6:
+			AUR6 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU62 AB 1 BRIGHT
+			stop
+		Fire7:
+			AUR7 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU72 AB 1 BRIGHT
+			stop
+		Fire8:
+			AUR8 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU82 ABCD 1 BRIGHT
+			stop
+		Fire9:
+			AUR9 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			AU92 ABCD 1 BRIGHT
+			stop
+		Fire10:
+			AUR0 ABCDEFGHIJKLMNO 1 BRIGHT
+			stop
+	}
+}

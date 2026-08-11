@@ -1,0 +1,137 @@
+#library "SH_StatusTypes"
+#import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
+
+script "GENERATE_STATUS_TRANSLATIONS" OPEN
+{
+	CreateTranslation(7000, 0:255=%[0.00,0.00,0.00]:[0.02,1.23,0.44]); // Acid
+}
+
+script "ACID_TICKER" (void)
+{
+	int radius = GetActorProperty(0, APROP_Radius);
+		
+	if(PlayerNumber() != -1 && CheckInventory("PowerAcidStatus"))
+	{
+		SetCameraToTexture(0, "ACIDFX", 90);
+
+		SetFont("ACIDFX");
+		SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
+		HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.0, 1.0);
+	}
+	else
+	{
+		Thing_SetTranslation(0, 7000);
+	}
+	
+	while(CheckInventory("PowerAcidStatus"))
+	{
+		SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
+		Delay(1);
+	}
+
+	if((GetActorProperty(0, APROP_Health) <= 0) && !(ClassifyActor(0) & ACTOR_PLAYER) && !CheckActorState(0, "NoAcidMelt", true)) // If died while under effect of acid.
+	{
+		int timer = 105;
+		bool meltstarted = false;
+		while(1)
+		{
+			if(timer > 0)
+			{
+				timer--;
+				SpawnForced("TinyAcid", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
+			}
+			else
+			{
+				int scaley = GetActorProperty(0, APROP_ScaleY);
+				int alpha = GetActorProperty(0, APROP_Alpha);
+				int numSplashes = (radius/16)>>16;
+				if(numSplashes <= 0)
+					numSplashes = 1;
+				scaley -= 0.025;
+				alpha -= 0.025;
+				
+				if(!meltstarted)
+				{
+					PlaySound (0, "AcidMelt", CHAN_AUTO, 1.0, false, ATTN_NORM, false);
+					
+					int uTID = UniqueTID();
+					int maxScale = radius/32;
+					if(maxScale < 0.5)
+						maxScale = 0.5;
+					
+					SpawnForced("AcidPuddle", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, 0);
+					SetUserVariable(uTID, "user_maxscale", maxScale);
+					meltstarted = true;
+				}
+				
+				if(alpha < 0.0) // Clamp alpha
+					alpha = 0;
+				
+				for(int i = 0; i < numSplashes; i++)
+				{
+					SpawnForced("AcidSplash", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0), 0, 0);
+				}
+					
+				if(scaley <= 0.0)
+				{
+					Thing_Remove(0);
+					break;
+				}
+				else
+				{
+					SetActorProperty(0, APROP_ScaleY, scaley);
+					SetActorProperty(0, APROP_Alpha, alpha);
+				}
+			}
+			
+			Delay(1);
+		}
+	}
+	else
+	{
+		if(PlayerNumber() != -1)
+		{
+			SetCameraToTexture(0, "ACIDFX", 90);
+
+			SetFont("ACIDFX");
+			SetHudSize(get_widescreen_xoffset(640, 480, 640, SCREEN_RATIO) >> 16, 360, false);
+			HudMessage(s:"A"; HUDMSG_FADEOUT | HUDMSG_LAYER_UNDERHUD, -6969, CR_UNTRANSLATED, get_widescreen_xoffset(640, 480, 0, SUBTRACT_OFFSET)+0.1, 0.1, 0.1, 1.0, 1.0);
+		}
+		else
+		{
+			Thing_SetTranslation(0, 0);
+		}
+	}
+}
+
+script "VOID_TICKER" (void)
+{
+	int radius = GetActorProperty(0, APROP_Radius);
+	
+	while(CheckInventory("PowerVoidStatus"))
+	{
+		if(random(0, 100) < 25)
+		{
+			SpawnForced("VoidFlame", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
+		}
+		
+		if(random(0, 100) < 1)
+		{
+			int lastFlag = CheckFlag(0, "FRIENDLY");
+			int newFlag = random(0, 1);
+			
+			if(newFlag != lastFlag)
+			{
+				ChangeFlag("FRIENDLY", newFlag);
+				SetActorState(0, "Spawn");
+			}
+		}
+		
+		Delay(1);
+	}
+	
+	ChangeFlag("FRIENDLY", !!(CheckInventory("StartedFriendlyHax")));	
+	ChangeFlag("FRIGHTENED", !!(CheckInventory("StartedFrightenedHax")));
+}

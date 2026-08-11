@@ -6,5 +6,6 @@ SH_MonsterCode
 SH_Abilities
 SH_SoundMusic
 SH_StrikerCode
+SH_StatusTypes
 SH_MannCoBox
 SH_Votes

@@ -32,3 +32,40 @@ ACTOR AcidStatus : PowerupGiver
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 }
+
+actor VoidAccumulation : SH_BaseToken // Used to track void damage accumulation.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 200
+	Inventory.InterHubAmount 0
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.INTERHUBSTRIP
+	-INVENTORY.PERSISTENTPOWER
+	-INVENTORY.UNDROPPABLE
+}
+
+Actor PowerVoidBuildTimer : Powerup { }
+ACTOR VoidBuildTimer : PowerupGiver
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "VoidBuildTimer"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+Actor PowerVoidStatus : PowerSpeed
+{
+	Speed -1.0 
+}
+
+ACTOR VoidStatus : PowerupGiver
+{
+	Inventory.PickupMessage "Touched by the void!"
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "VoidStatus"
+	Powerup.Color "88 00 FF", 0.33333
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}

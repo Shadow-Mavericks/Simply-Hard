@@ -1,11 +1,13 @@
 Actor Abilitycharge : Ammo
 {
+	Tag "Ability Charge"
 	Inventory.MaxAmount 1000
 	+INVENTORY.IGNORESKILL
 }
 
 Actor UltimateAbilityCharge : Ammo
 {
+	Tag "Ultimate Ability Charge"
 	Inventory.MaxAmount 2000
 	+INVENTORY.IGNORESKILL
 }
@@ -256,5 +258,20 @@ ACTOR DF_Missile : Ammo
 	Inventory.Icon "ACAMB0"
 	Ammo.BackpackAmount 5
 	Ammo.BackpackMaxAmount 40
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
+
+// ********* STRIKER'S AMMO ************
+ACTOR Frag12Ammo : Ammo
+{
+	Tag "FRAG-12 Shell"
+	Inventory.PickupMessage "Picked up some FRAG-12 Shells." // "Picked up a rocket."
+	Inventory.Amount 1
+	Inventory.MaxAmount 24
+	Inventory.Respawntics 6300
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 84
+	Inventory.Icon "ROCKA0"
+	Inventory.PickupSound "AMMO/SHEL"
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
 }

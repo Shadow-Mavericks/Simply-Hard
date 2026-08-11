@@ -159,6 +159,20 @@ model ShieldBlastSphere
 	FrameIndex NULL A 0 0
 }
 
+model AuraBallExplosionSphere
+{
+	Path "Models"
+	Model 0 "sphere.md3"
+	
+	Path "Textures"
+	Skin 0 "PURBUBBL.png"
+	
+	//ALIGNANGLE
+	scale 1.2 1.2 1.2
+
+	FrameIndex NULL A 0 0
+}
+
 Model AcidPuddle
 {
 	Path "models/bloodspot"

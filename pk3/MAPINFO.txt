@@ -14,6 +14,16 @@ gameinfo
 	ForceTextInMenus = true
 }
 
+/*
+DamageType AuraDrained
+{
+	Factor = 1.0
+	Obituary = "%o over-extended their lifeforce until they had none to give." 
+    ReplaceFactor
+	NoArmor
+}
+*/
+
 clearskills
 
 skill baby

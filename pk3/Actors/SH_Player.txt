@@ -57,11 +57,6 @@ ACTOR Fiend : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Void:
-			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
-			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Fire:
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
@@ -185,11 +180,6 @@ ACTOR Kunai : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Void:
-			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
-			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Fire:
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
@@ -310,11 +300,6 @@ ACTOR Gosimer : SH_BasePlayer
 			PLAY G 4
 			PLAY G 4 A_Pain
 			Goto Spawn
-			
-		Pain.Void:
-			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
-			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
-			Goto Pain
 			
 		Pain.Fire:
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
@@ -437,11 +422,6 @@ actor MaximusPrime : SH_BasePlayer
 			PLAY G 8
 			Goto Spawn
 		
-		Pain.Void:
-			PLAY G 0 A_GiveInventory("DebuffItem_Confuse", 1)
-			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*5)
-			Goto Pain
-		
 		Pain.Fire:
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
 			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
@@ -520,21 +500,22 @@ ACTOR Striker : SH_BasePlayer
 	Player.CrouchSprite "PLYC"
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "WaltherPPK"
-	Player.StartItem "Fists"
+	Player.StartItem "StrikersFists"
 	Player.StartItem "HedgefoxClip", 7
-	Player.StartItem "peastolClip", 105
+	Player.StartItem "peastolClip", 150
+	Player.StartItem "AbilityCharge", 100
+	Player.StartItem "StrikersPendant", 1
 	Player.StartItem "StrikerToken"
 	
-	Player.WeaponSlot 1, "Fists", "UAC-Chainsaw"
+	Player.WeaponSlot 1, "StrikersFists", "UAC-Chainsaw"
 	Player.WeaponSlot 2, "WaltherPPK"
-	Player.WeaponSlot 3, "D3shotgun", "SuperShawtgun"
-	Player.WeaponSlot 4, "D3Chaingun"
-	Player.WeaponSlot 5, "Rawketlawnchair"
-	Player.WeaponSlot 6, "DEPlasmaRifle"
-	Player.WeaponSlot 7, "Fiendsrailgun"
-	Player.WeaponSlot 8, "DEBFG9500", "NuclearMissileLauncher"
+	Player.WeaponSlot 3, "WSTE-M5"
+	Player.WeaponSlot 4, "ModifiedMAC10"
+	Player.WeaponSlot 5, "Frag12GrenadeShotgun"
+	Player.WeaponSlot 6, "BCF2Repeater"
+	Player.WeaponSlot 8, "NuclearMissileLauncher"
 
-	BounceSound "PlayerHP/AlarmKunai"
+	BounceSound "Striker/Heartbeat"
 	Player.JumpZ 9
 	Player.AirCapacity 2.0
 	States
@@ -557,10 +538,6 @@ ACTOR Striker : SH_BasePlayer
 			PLAY G 4
 			PLAY G 4 A_Pain
 			Goto Spawn
-			
-		Pain.Void:
-			PLAY G 0 A_SetBlend("8000FF", 0.3, 35*1)
-			Goto Pain
 			
 		Pain.Fire:
 			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)

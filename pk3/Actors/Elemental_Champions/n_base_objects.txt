@@ -34,12 +34,6 @@ actor Debuff_Burn 		: PowerSpeed
 	powerup.duration -5
 }
 
-actor Debuff_Confuse 	: PowerSpeed 		
-{ 
-	Speed -1.0 
-	powerup.duration -5
-}
-
 actor Debuff_Frozen 	: PowerSpeed 		
 { 
 	Speed 0.5 
@@ -56,15 +50,6 @@ actor Debuff_HeavyMetal : PowerSpeed
 // Debuff item definitions
 //////////////////////////////////////////////////////////////////
 	
-actor DebuffItem_Confuse	: PowerupGiver	
-	{
-	+INVENTORY.AUTOACTIVATE
-	+INVENTORY.ALWAYSPICKUP
-	+INVENTORY.QUIET
-	+INVENTORY.UNDROPPABLE
-	-INVENTORY.KEEPDEPLETED
-	powerup.type "Debuff_Confuse"	
-	}
 actor DebuffItem_Burn 		: PowerupGiver
 	{
 	+INVENTORY.AUTOACTIVATE

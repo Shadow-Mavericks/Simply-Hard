@@ -207,3 +207,35 @@ Max/WepRaise DFWEPON
 // Striker's Class
 // ---------------
 WaltherPPK WALTPPK
+
+WSTEFire1 wstesht1
+WSTEFire2 wstesht2
+WSTEFire3 wstesht3
+$random WSTEFire { WSTEFire1 WSTEFire2 WSTEFire3 }
+WSTEFlip wsteflip
+
+AuraFire aurafire
+AuraBlast aurablst
+
+MACFire macfire
+
+BigExp1 dsboom1
+BigExp2 dsboom2
+BigExp3 dsboom3
+$random BigExplosion { BigExp1 BigExp2 BigExp3 }
+$rolloff BigExp1 400 2400 
+$rolloff BigExp2 400 2400 
+$rolloff BigExp3 400 2400 
+
+ClusterExplode dsclustx
+$limit ClusterExplode 0
+
+Frag12Fire frag12
+
+BCF2Fire bcf2fire
+BCF2Load bcf2load
+BCF2Explosion1 bcf2exp1
+BCF2Explosion2 bcf2exp2
+BCF2Explosion3 bcf2exp3
+$random BCF2Explosion { BCF2Explosion1 BCF2Explosion2 BCF2Explosion3 }
+$limit BCF2Explosion 0

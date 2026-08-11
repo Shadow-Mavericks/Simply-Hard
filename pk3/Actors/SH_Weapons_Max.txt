@@ -1734,6 +1734,7 @@ ACTOR FistPuff
 
 	States
 	{
+		UpwardImpulse:
 		Spawn:
 			TNT1 AAAA 4
 			Stop

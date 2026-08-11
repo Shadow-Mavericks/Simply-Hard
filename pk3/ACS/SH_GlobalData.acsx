@@ -37,6 +37,9 @@
 #libdefine CLASS_GOSIMER 2
 #libdefine CLASS_MAX 3
 #libdefine CLASS_STRIKER 4
+#libdefine NUM_CLASSES 5
+
+#libdefine ONE_16 (1<<16)
 
 struct vec2_t
 {
@@ -61,6 +64,8 @@ struct PlayerData_t
 	int last_invul_type;
 	int last_armor;
 	int time_of_death;
+	int last_hitsound_tick;
+	int num_hitsounds;
 	bool debuff_gravity;
 };
 

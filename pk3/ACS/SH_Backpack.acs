@@ -46,4 +46,7 @@ script "BACKPACK_BELT_HANDLER" (int force_give_only)
 	AddAmmoCapacity("DF_PowerCell",       20);
 	AddAmmoCapacity("DF_PlasmaCartridge", 20);
 	AddAmmoCapacity("DF_Missile",          2);
+	
+	// Striker's Class
+	AddAmmoCapacity("Frag12Ammo", 6);
 }

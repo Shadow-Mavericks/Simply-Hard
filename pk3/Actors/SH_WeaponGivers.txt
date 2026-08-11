@@ -66,6 +66,14 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 		MaximusPrime_Dropped:
 			BRIF A -1
 			loop
+			
+		Striker:
+			SASP ABCDEFGH 1 Bright A_SpawnItemEx("VoidFlame", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, frandom(1.0, 2.0), 0, SXF_CLIENTSIDE, 192)
+			loop
+			
+		Striker_Dropped:
+			SAMO C -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_SHOTGUN) // Weapon Type
@@ -74,6 +82,7 @@ actor ShotgunGiver : WeaponGiver_Base replaces Shotgun
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 50)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 50)
 			goto Idle
 	}
 }
@@ -98,6 +107,10 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 		MaximusPrime:
 			FCUT A -1
 			loop
+			
+		Striker:
+			WSTP A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_SSG) // Weapon Type
@@ -107,6 +120,7 @@ actor SuperShotgunGiver : WeaponGiver_Base replaces SuperShotgun
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 75)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 40)
 			goto Idle
 	}
 }
@@ -135,6 +149,10 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 		MaximusPrime_Dropped:
 			AGUN A -1
 			loop
+			
+		Striker:
+			SMAC Z -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_CHAINGUN) // Weapon Type
@@ -144,6 +162,7 @@ actor ChaingunGiver : WeaponGiver_Base replaces Chaingun
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle
 	}
 }
@@ -168,6 +187,10 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 		MaximusPrime:
 			MOGU A -1
 			loop
+			
+		Striker:
+			STRG Z -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_ROCKET) // Weapon Type
@@ -177,6 +200,7 @@ actor RocketLauncherGiver : WeaponGiver_Base replaces RocketLauncher
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 100)
 			goto Idle
 	}
 }
