@@ -3079,7 +3079,11 @@ function int useAura(int amount)
 		return 0;
 	}
 	
-	TakeInventory("AbilityCharge", amount);
+	if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server only.
+	{
+		TakeInventory("AbilityCharge", amount);
+	}
+	
 	if(damageAmt)
 		Thing_Damage(0, damageAmt, MOD_WATER);
 	
@@ -3154,7 +3158,7 @@ script "STRIKER_RECKONINGCHECK" (void)
 		terminate;
 	}
 	
-	TakeInventory("AbilityCharge", reckoningCounter*3);
+	int result = useAura(reckoningCounter*3);
 	SetResultValue(1);
 }
 
@@ -3183,13 +3187,19 @@ script "STRIKER_SELFHEAL" (int mode)
 		if(healAmount <= 0)
 			healAmount = 1;
 		
-		TakeInventory("AbilityCharge", auraCost);
-		GiveInventory("HealCounter", healAmount);
+		if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server Only
+		{
+			TakeInventory("AbilityCharge", auraCost);
+			GiveInventory("HealCounter", healAmount);
+		}
 	}
 	else
 	{
-		SetActorProperty(0, AProp_Health, currentHealth+CheckInventory("HealCounter"));
-		TakeInventory("HealCounter", 9999);
+		if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server Only
+		{
+			SetActorProperty(0, AProp_Health, currentHealth+CheckInventory("HealCounter"));
+			TakeInventory("HealCounter", 9999);
+		}
 	}
 		
 	SetResultValue(1);
