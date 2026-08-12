@@ -173,6 +173,21 @@ model AuraBallExplosionSphere
 	FrameIndex NULL A 0 0
 }
 
+model ReckoningGrabSphere
+{
+	Path "Models"
+	Model 0 "sphere.md3"
+	
+	Path "Textures"
+	Skin 0 "PURBUBBL.png"
+	
+	//ALIGNANGLE
+	scale 1.2 1.2 1.2
+	ZOffset 24.0
+
+	FrameIndex NULL A 0 0
+}
+
 Model AcidPuddle
 {
 	Path "models/bloodspot"
@@ -213,6 +228,46 @@ model GreenShockwave
 	//ALIGNANGLE
 	INHERITACTORPITCH // Have to use this deprecated, shit name because Zandronum...
 	scale 8.0 8.0 8.0
+
+	FrameIndex NULL A 0 0
+	FrameIndex NULL B 0 1
+	FrameIndex NULL C 0 2
+	FrameIndex NULL D 0 3
+	FrameIndex NULL E 0 4
+	FrameIndex NULL F 0 5
+	FrameIndex NULL G 0 6
+	FrameIndex NULL H 0 7
+}
+
+model VioletShockwave
+{
+	Path "Models"
+	Model 0 "ring.md3"
+	Skin 0 "purpring.png"
+	
+	//ALIGNANGLE
+	INHERITACTORPITCH // Have to use this deprecated, shit name because Zandronum...
+	scale 4.0 4.0 4.0
+
+	FrameIndex NULL A 0 0
+	FrameIndex NULL B 0 1
+	FrameIndex NULL C 0 2
+	FrameIndex NULL D 0 3
+	FrameIndex NULL E 0 4
+	FrameIndex NULL F 0 5
+	FrameIndex NULL G 0 6
+	FrameIndex NULL H 0 7
+}
+
+model VioletShockwave_NoPitch
+{
+	Path "Models"
+	Model 0 "ring.md3"
+	Skin 0 "purpring.png"
+	
+	//ALIGNANGLE
+	INHERITACTORPITCH // Have to use this deprecated, shit name because Zandronum...
+	scale 4.0 4.0 4.0
 
 	FrameIndex NULL A 0 0
 	FrameIndex NULL B 0 1

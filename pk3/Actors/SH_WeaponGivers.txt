@@ -226,6 +226,10 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 		MaximusPrime:
 			CRIF A -1
 			loop
+			
+		Striker:
+			SBCF Z -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_PLASMA) // Weapon Type
@@ -291,6 +295,10 @@ actor BFGGiver : WeaponGiver_Base replaces BFG9000
 			
 		MaximusPrime:
 			ACAN B -1
+			loop
+			
+		Striker:
+			SRCP XYZY 1 Bright A_SpawnItemEx("VoidFlame", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, frandom(1.0, 2.0), 0, SXF_CLIENTSIDE, 192)
 			loop
 
 		Init:

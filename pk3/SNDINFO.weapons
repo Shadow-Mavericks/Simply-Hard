@@ -232,10 +232,26 @@ $limit ClusterExplode 0
 
 Frag12Fire frag12
 
-BCF2Fire bcf2fire
+BCF2Fire1 bcf2fire
+BCF2Fire2 bcf2fir2
+BCF2Fire3 bcf2fir3
+$random BCF2Fire { BCF2Fire1 BCF2Fire2 BCF2Fire3 }
 BCF2Load bcf2load
 BCF2Explosion1 bcf2exp1
 BCF2Explosion2 bcf2exp2
 BCF2Explosion3 bcf2exp3
 $random BCF2Explosion { BCF2Explosion1 BCF2Explosion2 BCF2Explosion3 }
 $limit BCF2Explosion 0
+
+ReckoningAttach1 reckatt1
+ReckoningAttach2 reckatt2
+ReckoningAttach3 reckatt3
+$random ReckoningAttach { ReckoningAttach1 ReckoningAttach2 ReckoningAttach3 }
+
+ReckoningExplosion1 reckexp1
+ReckoningExplosion2 reckexp2
+ReckoningExplosion3 reckexp3
+$random ReckoningExplosion { ReckoningExplosion1 ReckoningExplosion2 ReckoningExplosion3 }
+$limit ReckoningExplosion 0
+
+Reckoning reckning

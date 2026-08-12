@@ -1316,6 +1316,37 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			}
 		}
 		
+		if(CheckActorClass(0, "ReckoningRadiusCheck"))
+		{
+			if(victimIsMonster)
+			{
+				SetActivator(0, AAPTR_DAMAGE_TARGET);
+				int oldTID = ActivatorTID();
+				int uTID = UniqueTID(0);
+				Thing_ChangeTID(oldTID, uTID);
+				bool reckoningInEffect = !!(CheckInventory("ReckoningInEffect"));
+				bool voidTouched = !!(CheckInventory("VoidTouched"));
+				
+				SetActivator(0, AAPTR_DAMAGE_SOURCE);			
+				bool inViewCone = IsInViewCone (0, uTID, 90);
+				int reckoningCounter = CheckInventory("ReckoningCounter");
+				int auraAmount = CheckInventory("AbilityCharge");
+					
+				if(inViewCone && !reckoningInEffect && voidTouched)
+				{
+					if(reckoningCounter < 25 && ((reckoningCounter+1)*5 <= auraAmount))
+					{
+						GiveInventory("ReckoningCounter", 1);
+						SetActivator(0, AAPTR_DAMAGE_TARGET);
+						ACS_NamedExecuteWithResult("RECKONING_ACTION", attackerPlayerNum);
+					}
+				}
+				
+				Thing_ChangeTID(uTID, oldTID);
+			}
+			arg1 = 0;
+		}
+		
 		// Keep LAST!
 		if(GetCVar("sh_debug_damage"))
 		{
@@ -1333,7 +1364,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	{
 		if(attackerPlayerNum != -1) // Source is player
 		{
-			if(victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum))
+			if(arg1 && (victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum)))
 				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 
 			// Gosimer's Berserk Buff
@@ -1772,7 +1803,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			else if(!StrIcmp(arg2, "Void"))
 			{
 				SetActivator(0, AAPTR_DAMAGE_INFLICTOR);
-				if(!CheckActorState(0, "DrainsEnergy", true) && !victimIsFriendly && victimCanBleed)
+				if(CheckActorState(0, "DrainsEnergy", true) && !victimIsFriendly && victimCanBleed)
 				{
 					SpawnForced("AuraSpewer", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
 				}
@@ -1788,7 +1819,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					if(!CheckInventory("PowerVoidBuildTimer")) // If void build timer has expired or hasn't yet started, reset.
 						TakeInventory("VoidAccumulation", 200);
 						
-					if(instantStatusEffect)
+					if(instantStatusEffect && !CheckFlag(0, "BOSS"))
 						GiveInventory("VoidAccumulation", 200);
 					
 					GiveInventory("VoidAccumulation", arg1);
@@ -2679,6 +2710,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				ammo1_class = "DF_PowerCell";
 				ammo1_amount = 100;
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "BCF2Repeater";
+				ammo1_class = "Battery";
+				ammo1_amount = 48;
+			}
 			break;
 		}
 		
@@ -2741,6 +2778,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				ammo1_amount = 30;
 				ammo2_class = "DF_Missile";
 				ammo2_amount = 2;
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "ReckoningAbility";
+				ammo1_class = "AbilityCharge";
+				ammo1_amount = 100;
 			}
 			break;
 		}
@@ -3099,6 +3142,22 @@ script "STRIKER_IMBUE" (int type)
 	SetResultValue(result);
 }
 
+script "STRIKER_RECKONINGCHECK" (void)
+{
+	int reckoningCounter = CheckInventory("ReckoningCounter");
+	int auraAmount = CheckInventory("AbilityCharge");
+	TakeInventory("ReckoningCounter", 9999);
+	
+	if(auraAmount < 5 || reckoningCounter <= 0)
+	{
+		SetResultValue(0);
+		terminate;
+	}
+	
+	TakeInventory("AbilityCharge", reckoningCounter*3);
+	SetResultValue(1);
+}
+
 script "STRIKER_SELFHEAL" (int mode)
 {
 	int maxHealth = 75;
@@ -3134,6 +3193,99 @@ script "STRIKER_SELFHEAL" (int mode)
 	}
 		
 	SetResultValue(1);
+}
+
+script "RECKONING_ACTION" (int playerNum)
+{
+	if(CheckInventory("ReckoningInEffect"))
+		terminate;
+	
+	int originalX = GetActorX(0);
+	int originalY = GetActorY(0);
+	int originalZ = GetActorZ(0);
+	int angle = GetActorAngle(0);
+	int mass = GetActorProperty(0, APROP_Mass);
+	int radius = GetActorProperty(0, APROP_Radius);
+	int height = GetActorProperty(0, APROP_Height);
+	
+	if(GetActorProperty(0, AProp_Health) <= 0)
+		terminate;
+		
+	GiveInventory("ReckoningInEffect", 1);
+		
+	if(!CheckFlag(0, "ICECORPSE"))
+		SetActorState(0, "Pain", false);
+		
+	int oldTID1 = ActivatorTID();
+	int uTID1 = UniqueTID(0);
+	Thing_ChangeTID(0, uTID1);
+	
+	SetActivatorToPlayer(playerNum);
+	int playerTID = UniqueTID();
+	Thing_ChangeTID(0, playerTID);
+		
+	int orbTID = uniqueTID(0);
+	SpawnForced("ReckoningGrabSphere", originalX, originalY, originalZ, orbTID, angle);
+	SetUserVariable(orbTID, "user_radius", radius>>16);
+	SetUserVariable(orbTID, "user_height", height>>16);
+	SetUserVariable(orbTID, "user_damage", clamp(mass/2, 60, 400));
+	
+	SetActivator(orbTID); // Set the activator to the actor with the given TID.
+	SetPointer(AAPTR_TRACER, uTID1); // Give a new target to it.
+	SetPointer(AAPTR_TARGET, playerTID);
+	
+	SetActivator(uTID1);
+	Thing_ChangeTID(uTID1, oldTID1);
+	
+	int i = 0;
+	for(i = 0; i < 24; i++)
+	{
+		if(GetActorProperty(0, AProp_Health) <= 0 || (ClassifyActor(0) <= ACTOR_WORLD))
+		{
+			Thing_Remove(orbTID);
+			terminate;
+		}
+		
+		Warp(0, originalX, originalY, originalZ+(3.0*i), angle, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION , "", false, 0, 0, 0);	
+		SetActorVelocity(0, 0, 0, 0.0, false, false);
+		Delay(1);
+	}
+	
+	for(i = 0; i < 6; i++)
+	{
+		if(GetActorProperty(0, AProp_Health) <= 0 || (ClassifyActor(0) <= ACTOR_WORLD))
+		{
+			Thing_Remove(orbTID);
+			terminate;
+		}
+		
+		Warp(0, originalX, originalY, originalZ+(3.0*24), angle, WARPF_ABSOLUTEPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION , "", false, 0, 0, 0);
+		SetActorVelocity(0, 0, 0, 0.0, false, false);
+		Delay(1);
+	}
+	
+	if(GetActorProperty(0, AProp_Health) <= 0)
+	{
+		Thing_Remove(orbTID);
+		terminate;
+	}
+	
+	SetActorVelocity(0, 0, 0, -25.0, true, false);
+	ChangeFlag("BLASTED", true);
+	
+	if(!CheckFlag(0, "ICECORPSE"))
+		SetActorState(0, "Pain", false);
+	
+	while(1)
+	{		
+		if(GetActorVelZ(0) == 0.0 || (GetActorZ(0) <= GetActorFloorZ(0)))
+		{
+			SetActorState(orbTID, "Explode");		
+			TakeInventory("ReckoningInEffect", 1);
+			break;
+		}
+		Delay(1);
+	}
 }
 
 // ---------------------

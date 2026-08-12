@@ -31,6 +31,37 @@ actor AbilityActive : SH_BaseToken
 {
 }
 
+actor ReckoningCounter : SH_BaseToken
+{
+	Inventory.MaxAmount 25
+}
+
+actor ReckoningPlayerNumber : SH_BaseToken
+{
+	Inventory.MaxAmount 65
+}
+
+actor ReckoningInEffect : SH_BaseToken
+{
+	Inventory.MaxAmount 1
+}
+
+
+actor ReckoningRadiusCheck
+{
+	Radius 1
+	Height 1
+	+NOGRAVITY
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_Explode(1, 1024, 0, false, 1024)
+			stop
+	}
+}
+
 actor StrikerBaseWeapon : SH_Weapon
 {
 	Inventory.RestrictedTo "Striker"
@@ -41,8 +72,13 @@ actor StrikerBaseWeapon : SH_Weapon
 			TNT1 A 0 A_JumpIfInventory("DualFireHax", 1, "UseAbility")
 			loop
 		UseAbility:
+			TNT1 A 0 A_JumpIfInventory("UseHax", 1, "UseAbility_Combo")
 			TNT1 A 0 A_JumpIfInventory("AuraBallAbility", 1, "AuraBallCheck")
 			goto Abilities
+		UseAbility_Combo:
+			TNT1 A 0 A_JumpIfInventory("ReckoningAbility", 1, "ReckoningCheck")
+			goto Abilities
+		
 		AuraBallCheck:
 			TNT1 A 0 A_JumpIf(CallACS("STRIKER_USEAURA", 5), "AuraBall")
 			goto Abilities
@@ -56,7 +92,22 @@ actor StrikerBaseWeapon : SH_Weapon
 			AAB0 OPQR 1
 			goto Abilities
 			
+		ReckoningCheck:
+			TNT1 A 0 A_SpawnItemEx("ReckoningRadiusCheck", 0, 0, 32, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_JumpIf(CallACS("STRIKER_RECKONINGCHECK"), "Reckoning")
+			goto Abilities
+			
+		Reckoning:
+			SREC A 0 A_GiveInventory("AbilityActive", 1)
+			SREC A 0 A_PlaySound("Reckoning", CHAN_AUTO)
+			SREC ABCDEFGHIJLMNOP 2 BRIGHT
+			SREC Q 2 A_SetBlend("64 00 FF", 0.75, 15, "64 00 FF")
+			SREC RSTUVWX 2 BRIGHT
+			SREC X 0 A_TakeInventory("ReckoningCounter", 9999)
+			goto Abilities
+			
 		HealSelf:
+			STSH A 0 A_GiveInventory("AbilityActive", 1)
 			STSH AB 1
 			STSH C 0 A_PlaySound("AuraFire", CHAN_AUTO)
 			STSH CDEFGHIJKL 1 BRIGHT
@@ -108,6 +159,11 @@ actor HealCounter : SH_BaseToken
 actor AuraBallAbility : SH_BaseToken
 {
 	Tag "Aura Sphere"
+}
+
+actor ReckoningAbility : SH_BaseToken
+{
+	Tag "Reckoning"
 }
 
 actor HealAbility : SH_BaseToken
@@ -809,8 +865,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF A 1 A_Raise
 			Goto Select
 		Fire:
-			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
-			
+			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")		
 			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
 			SBCF B 0 BRIGHT A_AlertMonsters
 			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
@@ -820,7 +875,10 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF C 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			SBCF A 0 BRIGHT A_Light0
 			SBCF A 2 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
-			
+			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			SBCF A 0 A_Refire("Hold")
+			Goto Ready+1
+		Hold:
 			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
 			SBCF B 0 BRIGHT A_AlertMonsters
 			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
@@ -829,11 +887,9 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF D 0 BRIGHT A_Light1
 			SBCF D 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			SBCF A 0 BRIGHT A_Light0
-			SBCF A 2 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
-			
-			SBCF A 1
+			SBCF A 3 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)			
 			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
-			SBCF A 0 A_Refire
+			SBCF A 0 A_Refire("Fire")
 			Goto Ready+1
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("Battery", 1, "CheckReload")
@@ -1168,7 +1224,6 @@ actor AuraBallExplosionSphere : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 1.0
-	-CLIENTSIDEONLY
 	States
 	{
 		Spawn:
@@ -1176,6 +1231,62 @@ actor AuraBallExplosionSphere : SH_BaseParticle
 			NULL A 0 Bright A_FadeOut(0.125)
 			NULL A 0 Bright A_SetScale(scalex+0.125)
 			loop
+	}
+}
+
+// Intermediate actor for spawning flame particles, so I can transfer pitch/angle.
+actor VoidFlameSpawner : SH_BaseParticle
+{
+	-CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			TNT1 AAAAAAAAAAAAAAA 1 A_SpawnItemEx("VoidFlame", 0, 0, frandom(0.0, 16.0), frandom(-angle/5, angle/5), frandom(-angle/5, angle/5), frandom(0.0, 2.0), 0, SXF_CLIENTSIDE, 0)
+			stop
+	}
+}
+
+actor ReckoningGrabSphere : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Void"
+	+FORCERADIUSDMG
+	-CLIENTSIDEONLY
+	var int user_height;
+	var int user_radius;
+	var int user_damage;
+	States
+	{
+		Spawn:
+			NULL A 0 NoDelay A_SetScale(user_radius/20.0, 0.001)
+			NULL A 0 Bright A_PlaySound("ReckoningAttach", CHAN_AUTO)
+			NULL A 0 Bright A_SetTranslucent(0.0, 1) 
+			goto MainLoop
+		MainLoop:
+			NULL A 0 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
+			NULL A 1 Bright A_SetScale(user_radius/20.0, scaley+((user_height/48.0)/24.0))
+			NULL A 0 Bright A_SetTranslucent(alpha+0.0416666666666667, 1)
+			NULL A 0 Bright A_JumpIf(scaley >= (user_height/48.0), "SecondLoop")
+			loop
+		SecondLoop:
+			NULL A 1 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
+			loop
+		Explode:
+			TNT1 A 0 Bright A_Quake(3, 16, 0, 256, "")
+			TNT1 A 0 Bright A_PlaySound("ReckoningExplosion", CHAN_AUTO)
+			TNT1 A 0 Bright A_Explode(user_damage, user_radius, 0) 
+			TNT1 A 0 Bright A_SpawnItemEx("VioletShockwave_NoPitch", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 0)
+			TNT1 A 0 Bright A_SpawnItemEx("VoidFlameSpawner", 0, 0, 0, 0, 0, 0, user_radius, SXF_ABSOLUTEANGLE, 0) 
+			goto ScaleDown
+		ScaleDown:
+			NULL A 0 Bright A_SetScale(user_radius/20.0, scaley-((user_height/48.0)/6.0))
+			NULL A 0 Bright A_FadeOut(0.1666666666666667)
+			NULL A 1 Bright A_JumpIf(scaley <= 0.0, "Death")
+			loop
+		Death:
+			TNT1 A 0
+			stop
 	}
 }
 
@@ -1532,7 +1643,7 @@ actor BCF2Shot : SH_BasePlayerFastProjectile
 			BLAS A 1 bright
 			loop
 		Death:
-			AUR5 A 0 A_Explode(15, 48, 0, false, 48)
+			AUR5 A 0 A_Explode(11, 48, 0, false, 48)
 			AUR5 A 0 A_PlaySound("BCF2Explosion", CHAN_AUTO)
 			TNT1 A 0 A_SpawnItemEx("BCF2Explosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			TNT1 AAAA 0 A_SpawnItemEx("BCF2ExplosionSpark", 0, 0, 0, frandom(0.0,6.0), 0, frandom(-1.0,6.0), random(-180,180), SXF_CLIENTSIDE, 0)

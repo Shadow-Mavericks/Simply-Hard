@@ -142,3 +142,14 @@ model BCF2Shot
 
 	FrameIndex BLAS A 0 0
 }
+
+model BCF2ExplosionSpark
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BCFShot.png"
+	Scale 1.0 2.0 2.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex KPUF A 0 0
+}

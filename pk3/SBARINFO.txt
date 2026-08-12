@@ -484,6 +484,20 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 			drawselectedinventory alwaysshowcounter, center, BIGFONT, -20, -81, -37, -87, untranslated;
 		}
 		
+		InInventory Not "StrikersPendant", 1
+		{
+			InInventory "PendantCharge", 450 { drawimage "STRKPND9", 120, -72; }
+			else InInventory "PendantCharge", 400 { drawimage "STRKPND8", 120, -72; }
+			else InInventory "PendantCharge", 350 { drawimage "STRKPND7", 120, -72; }
+			else InInventory "PendantCharge", 300 { drawimage "STRKPND6", 120, -72; }
+			else InInventory "PendantCharge", 250 { drawimage "STRKPND5", 120, -72; }
+			else InInventory "PendantCharge", 200 { drawimage "STRKPND4", 120, -72; }
+			else InInventory "PendantCharge", 150 { drawimage "STRKPND3", 120, -72; }
+			else InInventory "PendantCharge", 100 { drawimage "STRKPND2", 120, -72; }
+			else InInventory "PendantCharge", 50 { drawimage "STRKPND1", 120, -72; }
+			else { drawimage "STRKPND0", 120, -72; }
+		}
+		
 		usesammo
 		{
 			IsSelected "WaltherPPK"

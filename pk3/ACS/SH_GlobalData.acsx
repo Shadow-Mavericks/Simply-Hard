@@ -396,6 +396,35 @@ function void HudMessageOnActor(int tid, int msgID, int hudX, int hudY, int xOff
 	}
 }
 
+function bool IsInViewCone(int viewerTid, int targetTid, int coneDegrees)
+{
+    // 1. Bit-shift coordinates right by 16 to get pure integer map units.
+    // This prevents 32-bit fixed-point arithmetic overflow on large maps.
+    int x = (GetActorX(targetTid) >> 16) - (GetActorX(viewerTid) >> 16);
+    int y = (GetActorY(targetTid) >> 16) - (GetActorY(viewerTid) >> 16);
+    
+    // Avoid calculations if actors are stacked exactly on top of each other
+    if (x == 0 && y == 0) return TRUE;
+
+    // 2. Fetch the target vector angle and the viewer's current looking direction
+    int targetAngle = VectorAngle(x, y);
+    int viewerAngle = GetActorAngle(viewerTid);
+
+    // 3. Measure the distance between angles
+    int angleDiff = viewerAngle - targetAngle;
+    if (angleDiff < 0) angleDiff = -angleDiff;
+
+    // 4. Force shortest-path wrapping across the 0.0/1.0 (0/360) seam
+    if (angleDiff > 0.5) angleDiff = 1.0 - angleDiff;
+
+    // 5. Calculate precise allowed half-cone variance.
+    // Multiplied by 1.0 (fixed-point) first to protect floating precision.
+    int maxDifference = FixedDiv(coneDegrees * 1.0, 360.0) / 2;
+
+    // 6. Return evaluation
+    return (angleDiff <= maxDifference);
+}
+
 // Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem
 // to have basic, important functions that have existed since 2016.
 function str ACSUtils_ChangeFlagName(str flag, bool value)

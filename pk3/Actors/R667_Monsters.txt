@@ -3443,17 +3443,22 @@ ACTOR Haedexebus : Hardfatso
 			UNMB CD 5 A_FaceTarget
 			Goto See
 		Missile2:
+			UNMB D 1
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
-			UNMB CD 5 A_FaceTarget
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB C 5 A_FaceTarget
+			UNMB D 3 A_FaceTarget
+			UNMB D 2
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
-			UNMB CD 5 A_FaceTarget
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, red, black, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, black, red, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB C 5 A_FaceTarget
+			UNMB D 3 A_FaceTarget
+			UNMB D 2
 			UNMB E 0 Bright A_PlaySound("UNMNRAIL")
-			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
-			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 1, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALR) A_CustomRailgun(random(10,20), 32, black, red, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
+			UNMB E 5 BRIGHT LIGHT(UNMNRALL) A_CustomRailgun(random(10,20), -32, red, black, RGF_NOPIERCING, 0, 0, none, 0, 0, 1000, random(8,16), 8.0, 2.0, "FatRail", -16)
 			UNMB CD 5 A_FaceTarget
 			Goto See
 		Pain:
