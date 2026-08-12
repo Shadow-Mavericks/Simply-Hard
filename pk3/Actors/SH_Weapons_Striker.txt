@@ -712,6 +712,7 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 	Weapon.ViewPitchOffset 8
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.NOALERT
+	+WEAPON.NOAUTOFIRE
 	States
 	{
 		Ready:
@@ -868,7 +869,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")		
 			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
 			SBCF B 0 BRIGHT A_AlertMonsters
-			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
+			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-2.0, 2.0), true, 8, 4, 0, frandom(-2.0, 2.0))
 			SBCF B 0 BRIGHT A_Light2
 			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			SBCF C 0 BRIGHT A_Light1
@@ -881,7 +882,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 		Hold:
 			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
 			SBCF B 0 BRIGHT A_AlertMonsters
-			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-3.0, 3.0), true, 8, 4, 0, frandom(-2.0, 2.0))
+			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-2.0, 2.0), true, 8, 4, 0, frandom(-2.0, 2.0))
 			SBCF B 0 BRIGHT A_Light2
 			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			SBCF D 0 BRIGHT A_Light1
@@ -896,7 +897,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
 			"####" A 1 Offset(0, 33)
 			"####" A 5 Offset(0, 32)
-			"####" A 0 A_Refire
+			"####" A 0 A_Refire("Fire")
 			goto Ready+1
 			
 		Reload:
@@ -1643,7 +1644,7 @@ actor BCF2Shot : SH_BasePlayerFastProjectile
 			BLAS A 1 bright
 			loop
 		Death:
-			AUR5 A 0 A_Explode(11, 48, 0, false, 48)
+			AUR5 A 0 A_Explode(15, 48, 0, false, 48)
 			AUR5 A 0 A_PlaySound("BCF2Explosion", CHAN_AUTO)
 			TNT1 A 0 A_SpawnItemEx("BCF2Explosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			TNT1 AAAA 0 A_SpawnItemEx("BCF2ExplosionSpark", 0, 0, 0, frandom(0.0,6.0), 0, frandom(-1.0,6.0), random(-180,180), SXF_CLIENTSIDE, 0)

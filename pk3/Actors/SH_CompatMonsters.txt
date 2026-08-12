@@ -150,6 +150,82 @@ actor MayhemImmolator
 	}
 }
 
+// MAYhem 18: Orange Edition
+// -------------------------
+
+Actor Mayhem18OShadow : SH_BaseMonster
+{
+	Tag "Shadow"
+	Health 120
+	Speed 10
+	Radius 20
+	Height 56
+	PainChance 200
+	Mass 100
+	RenderStyle "Translucent"
+	Alpha 0.5
+	SeeSound ""
+	PainSound ""
+	States
+	{
+	Spawn:
+		BSPI DD 10 A_Look
+		goto Spawn
+	See:
+		BSPI E 15 
+		goto WalkCycle
+	WalkCycle:
+		BSPI AAABBBCCCDDD 1 A_Chase
+		loop
+	Pain:
+		BSPI I 8 A_BabyMetal
+		goto WalkCycle
+	State_635:
+		BSPI AAABBBCCCDDD 1 A_Chase
+		goto WalkCycle
+	Missile:
+		BSPI E 20 A_FaceTarget
+		BSPI G 5 A_FaceTarget
+		BSPI H 3 Bright A_CustomMissile("Mayhem18OShadowBall")
+		BSPI G 5 A_FaceTarget
+		BSPI H 3 Bright A_CustomMissile("Mayhem18OShadowBall")
+		BSPI G 5 A_FaceTarget
+		BSPI H 3 Bright A_CustomMissile("Mayhem18OShadowBall")
+		BSPI G 5 A_FaceTarget
+		BSPI H 10 Bright A_CustomMissile("Mayhem18OShadowBall")
+		goto WalkCycle
+	Death:
+		BSPI J 8 
+		BSPI K 6 A_Scream
+		BSPI L 6 
+		BSPI M 6 A_Fall
+		BSPI NO 6 
+		BSPI P -1 A_BossDeath
+		stop
+	Raise:
+		BSPI PONMLKJ 5 
+		goto WalkCycle
+	}
+}
+
+Actor Mayhem18OShadowBall : ArachnotronPlasma
+{
+	Speed 10
+	Radius 6
+	Damage (16)
+	SeeSound "DSBSPSIT"
+	States
+	{
+	Spawn:
+		APLS AB 4 Bright 
+		goto Spawn
+	Death:
+		APBX A 5 Bright 
+		APBX BCDE 4 Bright 
+		stop
+	}
+}
+
 // MAYhem 2019: Blood for the Doom God
 // -----------------------------------
 

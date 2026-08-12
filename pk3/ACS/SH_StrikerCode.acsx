@@ -61,6 +61,7 @@ function void detect_wads(void)
 			
 			// Monster Swaps
 			SetCVarString("sh_swap_mastermind", "Cybruiser");
+			SetCVarString("sh_swap_arachnotron", "Mayhem18OShadow");
 			return;
 		}
 		
