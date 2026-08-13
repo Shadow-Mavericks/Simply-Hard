@@ -2879,6 +2879,9 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			PlaySound(0, pickupsound_new, CHAN_ITEM, 1.0, false);
 		else
 			PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
+			
+		if(isNew)
+			SetMugshotState("Grin");
 
 		FadeRange (fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.25, fade_rgb[0], fade_rgb[1], fade_rgb[2], 0.0, 0.25);
 
