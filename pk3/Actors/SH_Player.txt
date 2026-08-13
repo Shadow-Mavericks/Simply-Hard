@@ -498,6 +498,7 @@ ACTOR Striker : SH_BasePlayer
 	Player.ColorRange 112, 127
 	Player.DisplayName "Striker"
 	Player.CrouchSprite "PLYC"
+	Player.Face "STK"
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "WaltherPPK"
 	Player.StartItem "StrikersFists"

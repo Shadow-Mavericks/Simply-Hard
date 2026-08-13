@@ -1329,7 +1329,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 				bool voidTouched = !!(CheckInventory("VoidTouched"));
 				
 				SetActivator(0, AAPTR_DAMAGE_SOURCE);			
-				bool inViewCone = IsInViewCone (0, uTID, 90);
+				bool inViewCone = true;//IsInViewCone (0, uTID, 90);
 				int reckoningCounter = CheckInventory("ReckoningCounter");
 				int auraAmount = CheckInventory("AbilityCharge");
 					

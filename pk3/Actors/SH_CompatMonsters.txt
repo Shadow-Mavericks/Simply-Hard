@@ -178,7 +178,7 @@ Actor Mayhem18OShadow : SH_BaseMonster
 		BSPI AAABBBCCCDDD 1 A_Chase
 		loop
 	Pain:
-		BSPI I 8 A_BabyMetal
+		BSPI I 8 A_PlaySound("DSBSPWLK")
 		goto WalkCycle
 	State_635:
 		BSPI AAABBBCCCDDD 1 A_Chase
