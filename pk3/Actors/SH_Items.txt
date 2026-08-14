@@ -2119,3 +2119,8 @@ ACTOR StrikersPendant : CustomInventory
 			fail
 	}
 }
+
+actor ElementalShield : SH_BaseToken
+{
+	Inventory.MaxAmount 200
+}

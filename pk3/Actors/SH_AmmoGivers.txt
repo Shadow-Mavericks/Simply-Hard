@@ -215,12 +215,17 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 			PCEL C -1
 			loop
 			
+		Striker:
+			SAMO F -1
+			loop
+			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CELL) // Ammo Type
 			goto CheckSprite
 			
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle
 	}
 }
@@ -246,6 +251,10 @@ actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 			D3DA D -1
 			loop
 			
+		Striker:
+			SAMO G -1
+			loop
+			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_CELLBOX) // Ammo Type
 			goto CheckSprite
@@ -253,6 +262,7 @@ actor CellBoxGiver : AmmoGiver_Base replaces CellPack
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle
 	}
 }

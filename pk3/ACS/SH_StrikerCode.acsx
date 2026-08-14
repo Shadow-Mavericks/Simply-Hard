@@ -1227,6 +1227,20 @@ function int canDrawBar(void)
 	return true;
 }
 
+function int do_shield_logic(int arg1)
+{
+	int shield = CheckInventory("ElementalShield");
+	
+	shield -= arg1;
+	TakeInventory("ElementalShield", arg1);
+	if(shield > 0)
+		arg1 = 0;
+	else
+		arg1 = abs(shield);
+		
+	return arg1;
+}
+
 function int handle_damage_event(int type, int arg1, int damagetype)
 {
 	// -------------
@@ -1525,6 +1539,49 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			
 		if(arg1 > 0) // Final checks, if damage isn't nullified.
 		{
+			if(CheckActorClass(0, "Fiend"))
+			{
+				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				if(!StrIcmp(damagetype, "Ice"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				if(!StrIcmp(damagetype, "Fire"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			else if(CheckActorClass(0, "MaximusPrime"))
+			{
+				if(!StrIcmp(damagetype, "Electric"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				if(!StrIcmp(damagetype, "Void"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			else if(CheckActorClass(0, "DarkAssassin"))
+			{
+				if(!StrIcmp(damagetype, "HeavyMetal"))
+				{
+					arg1 = do_shield_logic(arg1);
+				}
+			}
+			
 			if(victimStatus & STATUS_ACID)
 			{
 				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))

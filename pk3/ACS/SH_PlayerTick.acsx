@@ -280,6 +280,26 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 	}
 }
 
+script "FIX_CLASSTOKENS" RESPAWN
+{
+	TakeInventory("FiendToken", 1);
+	TakeInventory("KunaiToken", 1);
+	TakeInventory("GosimerToken", 1);
+	TakeInventory("MaxToken", 1);
+	TakeInventory("StrikerToken", 1);
+		
+	if(CheckActorClass(0, "Fiend"))
+		GiveInventory("FiendToken", 1);
+	else if(CheckActorClass(0, "Kunai"))
+		GiveInventory("KunaiToken", 1);
+	else if(CheckActorClass(0, "Gosimer"))
+		GiveInventory("GosimerToken", 1);
+	else if(CheckActorClass(0, "MaximusPrime"))
+		GiveInventory("MaxToken", 1);
+	else if(CheckActorClass(0, "Striker"))
+		GiveInventory("StrikerToken", 1);
+}
+
 script "DROP_TOKENS" (int gone) DISCONNECT
 {
 	int uTID;

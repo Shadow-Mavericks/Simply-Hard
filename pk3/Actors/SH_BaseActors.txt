@@ -158,25 +158,11 @@ actor PortalUnit_Base
 	Damage 0
 	Gravity 1
 	Projectile
+	var int user_timer;
 	+DONTGIB
 	+THRUACTORS
 	+NOTIMEFREEZE
 	-NOGRAVITY
-}
-
-actor PortalPayout_Base
-{
-	Speed 0
-	Radius 1
-	Height 1
-	Scale 0.5
-	var int user_timer;
-	+THRUACTORS
-	+NOBLOOD
-	+INVULNERABLE
-	+DONTGIB
-	+NOTIMEFREEZE
-	+NOCLIP
 }
 
 //////////////////////////////////////////////////////////////////

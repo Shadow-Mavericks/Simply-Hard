@@ -33,6 +33,12 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		}
 		Drawnumber 3, TINYFONT, PeppermintCream, Armor, alignment(left), 43, -40, 1;
 		
+		InInventory ElementalShield, 1
+		{
+			drawimage "ACIDSHLD", 27, -108, center;
+			DrawNumber 3, SMALLFNT, Green, ElementalShield, alignment(center), 27, -108;
+		}
+		
 		DrawBar "FIENDULT", "FIENDULB", UltimateAbilityCharge, Vertical, 18, -28;
 		InInventory "UltimateAbilityCharge", 2000 { Drawimage "FIENDULR", 15, -31; }
 		
@@ -140,6 +146,12 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilitycharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 		
+		InInventory ElementalShield, 1
+		{
+			drawimage "ICESHLD", 27, -108, center;
+			DrawNumber 3, SMALLFNT, Cyan, ElementalShield, alignment(center), 27, -108;
+		}
+		
 		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
@@ -226,6 +238,12 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		DrawBar "ULTCHRG", "ULTNUFFN", UltimateAbilityCharge, Horizontal, reverse, -73, -6;
 		drawnumber 4, INDEXFONT, untranslated, Abilitycharge, -76, -12;
 		
+		InInventory ElementalShield, 1
+		{
+			drawimage "FIRESHLD", 27, -108, center;
+			DrawNumber 3, SMALLFNT, Orange, ElementalShield, alignment(center), 27, -108;
+		}
+		
 		InInventory "UltimateAbilityCharge", 2000
 		{
 			Drawimage "ULTRDY", -73, -6;
@@ -305,6 +323,12 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		else { drawimage "JKHLTH01", 21, -38; }
 
 		DrawKeyBar 6, Vertical, Reverse, 8, 2, -61;
+		
+		InInventory ElementalShield, 1
+		{
+			drawimage "ELECSHLD", 29, -79, center;
+			DrawNumber 3, SMALLFNT, Gold, ElementalShield, alignment(center), 29, -79;
+		}
 		
 		InInventory "BasicArmor", 200 { drawimage "JKSHLD11", 12, -49; }
 		else InInventory "BasicArmor", 175 { drawimage "JKSHLD10", 12, -49; }
@@ -466,6 +490,12 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		
 		DrawMugShot 5, 9, -90;
 		DrawBar "AURABAR", "DIVIDER", UltimateAbilitycharge, horizontal, interpolate(8), 9, -54;
+		
+		InInventory ElementalShield, 1
+		{
+			drawimage "VOIDSHLD", 27, -108, center;
+			DrawNumber 3, SMALLFNT, ElecViolet, ElementalShield, alignment(center), 27, -108;
+		}
 		
 		InInventory LifeTrackerHack, 1
 		{

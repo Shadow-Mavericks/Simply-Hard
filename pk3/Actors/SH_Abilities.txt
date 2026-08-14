@@ -9,48 +9,6 @@ Actor medicalportal : PortalUnit_Base
 			EUAB A 1
 			Goto Spawn+3
 		Death:
-			TNT1 A 0 A_SpawnItemEx ("Medportalpayout", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			Stop
-	}
-}
-
-Actor ammobagportal : PortalUnit_Base
-{
-	States
-	{
-		Spawn:
-			EUAB A 0
-			EUAB A 0
-			EUAB A 0
-			EUAB A 1
-			Goto Spawn+3
-		Death:
-			TNT1 A 0 A_SpawnItemEx ("ammobagportalpayout", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			Stop
-	}
-}
-
-Actor Armourportal : PortalUnit_Base
-{
-	States
-	{
-		Spawn:
-			EUAB A 0
-			EUAB A 0
-			EUAB A 0
-			EUAB A 1
-			Goto Spawn+3
-		Death:
-			TNT1 A 0 A_SpawnItemEx ("Armourportalpayout", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			Stop
-	}
-}
-
-ACTOR Medportalpayout : PortalPayout_Base
-{
-	States
-	{
-		Spawn:
 			EUAB A 1
 			FUAB A 1 Bright
 			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
@@ -75,11 +33,17 @@ ACTOR Medportalpayout : PortalPayout_Base
 	}
 }
 
-ACTOR ammobagportalpayout : PortalPayout_Base
+Actor ammobagportal : PortalUnit_Base
 {
 	States
 	{
 		Spawn:
+			EUAB A 0
+			EUAB A 0
+			EUAB A 0
+			EUAB A 1
+			Goto Spawn+3
+		Death:
 			EUAB A 1
 			GUAB A 1 Bright
 			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
@@ -101,6 +65,168 @@ ACTOR ammobagportalpayout : PortalPayout_Base
 			Stop
 	}
 }
+
+Actor Armourportal : PortalUnit_Base
+{
+	States
+	{
+		Spawn:
+			EUAB A 0
+			EUAB A 0
+			EUAB A 0
+			EUAB A 1
+			Goto Spawn+3
+		Death:
+			EUAB A 1
+			KUAB A 1 Bright
+			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
+			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
+			loop
+		SpawnBeam:
+			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_SetUserVar("user_timer", 0)
+			goto DelayBeforePayout
+		DelayBeforePayout:
+			EUAB A 1
+			KUAB A 1 Bright
+			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
+			TNT1 A 0 A_JumpIf(user_timer >= 10, "DoPayout") 
+			loop
+		DoPayout:
+			EUAB A 0 Bright A_RadiusGive("ShieldRegeneration", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
+			EUAB A 0 Bright A_RadiusGive("SentryBox", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
+			Stop
+	}
+}
+
+Actor Elementportal : PortalUnit_Base
+{
+	States
+	{
+		Spawn:
+			EUAB A 0
+			EUAB A 0
+			EUAB A 0
+			EUAB A 1
+			Goto Spawn+3
+		Death:
+			EUAB A 1
+			SUAB A 1 Bright
+			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
+			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
+			loop
+		SpawnBeam:
+			TNT1 A 0 A_spawnitemEX("elementportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_SetUserVar("user_timer", 0)
+			goto DelayBeforePayout
+		DelayBeforePayout:
+			EUAB A 1
+			SUAB A 1 Bright
+			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
+			TNT1 A 0 A_JumpIf(user_timer >= 10, "DoPayout") 
+			loop
+		DoPayout:
+			EUAB A 0 Bright A_RadiusGive("ElementalShield", 640, RGF_PLAYERS  | RGF_NOSIGHT, 200)
+			EUAB A 0 Bright A_RadiusGive("AbilityCharge", 640, RGF_PLAYERS  | RGF_NOSIGHT, 25)
+			Stop
+	}
+}
+
+actor PortalBeam_Base
+{
+	Radius 4
+	Height 18
+	Xscale 0.1
+	Yscale 4.0
+	RenderStyle Add
+	Alpha 1.0
+	+NOINTERACTION
+	+NOCLIP
+	+FORCEYBILLBOARD
+	+NOTIMEFREEZE
+}
+
+Actor mediportalbeam : PortalBeam_Base
+{
+	
+	States
+	{
+		Spawn:
+			LZAB A 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
+			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
+			Loop
+		Spawn2:
+			LZAB A 0 A_Playsound("Gaster/Teleport", Chan_auto)
+		Spawn3:
+			LZAB A 1 Bright A_JumpIf(scalex < 0.1, "End")
+			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
+			Loop
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor ammoportalbeam : PortalBeam_Base
+{
+	States
+	{
+		Spawn:
+			LZAB B 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
+			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
+			Loop
+		Spawn2:
+			LZAB B 0 A_Playsound("Gaster/Teleport", Chan_auto)
+		Spawn3:
+			LZAB B 1 Bright A_JumpIf(scalex < 0.1, "End")
+			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
+			Loop
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor shldportalbeam : PortalBeam_Base
+{
+	States
+	{
+		Spawn:
+			LZAB C 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
+			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
+			Loop
+		Spawn2:
+			LZAB C 0 A_Playsound("Gaster/Teleport", Chan_auto)
+		Spawn3:
+			LZAB C 1 Bright A_JumpIf(scalex < 0.1, "End")
+			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
+			Loop
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
+Actor elementportalbeam : PortalBeam_Base
+{
+	States
+	{
+		Spawn:
+			LZAB E 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
+			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
+			Loop
+		Spawn2:
+			LZAB E 0 A_Playsound("Gaster/Teleport", Chan_auto)
+		Spawn3:
+			LZAB E 1 Bright A_JumpIf(scalex < 0.1, "End")
+			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
+			Loop
+		End:
+			TNT1 A 0
+			stop
+	}
+}
+
 
 Actor GosimerPortalItems : CustomInventory
 {
@@ -183,33 +309,6 @@ ACTOR KunaiUltRadiusGiver : CustomInventory
 	}
 }
 
-ACTOR armourportalpayout : PortalPayout_Base
-{
-	States
-	{
-		Spawn:
-			EUAB A 1
-			KUAB A 1 Bright
-			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
-			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
-			loop
-		SpawnBeam:
-			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
-			TNT1 A 0 A_SetUserVar("user_timer", 0)
-			goto DelayBeforePayout
-		DelayBeforePayout:
-			EUAB A 1
-			KUAB A 1 Bright
-			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
-			TNT1 A 0 A_JumpIf(user_timer >= 10, "DoPayout") 
-			loop
-		DoPayout:
-			EUAB A 0 Bright A_RadiusGive("ShieldRegeneration", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
-			EUAB A 0 Bright A_RadiusGive("SentryBox", 640, RGF_PLAYERS  | RGF_NOSIGHT, 1)
-			Stop
-	}
-}
-
 Actor ShieldRegeneration : CustomInventory
 {
 	+INVENTORY.ALWAYSPICKUP
@@ -219,75 +318,5 @@ Actor ShieldRegeneration : CustomInventory
 		Pickup:
 			TNT1 A 0 ACS_NamedExecuteAlways("shieldRegeneration", 0)
 			Stop
-	}
-}
-
-Actor mediportalbeam
-{
-	Radius 4
-	Height 18
-	Yscale 4.0
-	xscale 0.1
-	RenderStyle Add
-	Alpha 1.0
-	+NOINTERACTION
-	+NOCLIP
-	+FORCEYBILLBOARD
-	+NOTIMEFREEZE
-	States
-	{
-		Spawn:
-			LZAB A 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
-			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
-			Loop
-		Spawn2:
-			LZAB A 0 A_Playsound("Gaster/Teleport", Chan_auto)
-		Spawn3:
-			LZAB A 1 Bright A_JumpIf(scalex < 0.1, "End")
-			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
-			Loop
-		End:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor ammoportalbeam : mediportalbeam
-{
-	States
-	{
-		Spawn:
-			LZAB B 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
-			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
-			Loop
-		Spawn2:
-			LZAB B 0 A_Playsound("Gaster/Teleport", Chan_auto)
-		Spawn3:
-			LZAB B 1 Bright A_JumpIf(scalex < 0.1, "End")
-			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
-			Loop
-		End:
-			TNT1 A 0
-			stop
-	}
-}
-
-Actor shldportalbeam : mediportalbeam
-{
-	States
-	{
-		Spawn:
-			LZAB C 1 Bright A_JumpIf(scalex > 1.0, "Spawn2")
-			TNT1 A 1 Bright A_SetScale(scalex+0.05, Scaley+1.0)
-			Loop
-		Spawn2:
-			LZAB C 0 A_Playsound("Gaster/Teleport", Chan_auto)
-		Spawn3:
-			LZAB C 1 Bright A_JumpIf(scalex < 0.1, "End")
-			TNT1 A 1 Bright A_SetScale(scalex-0.05, scaley-0.0)
-			Loop
-		End:
-			TNT1 A 0
-			stop
 	}
 }

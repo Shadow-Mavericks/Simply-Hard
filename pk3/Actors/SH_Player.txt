@@ -12,7 +12,7 @@ ACTOR Fiend : SH_BasePlayer
 	PainChance 255
 	Player.SoundClass "Fiendzy"
 	Player.ColorRange 112, 127
-	Player.DisplayName "Fiendzy"
+	Player.DisplayName "Fiend"
 	Player.CrouchSprite "PLYC"
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "Renettim9"
@@ -23,6 +23,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "MEDBAG"
 	Player.startItem "FiendsFlare", 10
 	Player.startItem "Dispenser", 1
+	Player.StartItem "ElementalShield", 100
 	
 	Player.WeaponSlot 1, "Fists", "UAC-Chainsaw"
 	Player.WeaponSlot 2, "Renettim9"
@@ -132,7 +133,7 @@ ACTOR Kunai : SH_BasePlayer
 	PainChance 255
 	Player.SoundClass "Marine"
 	Player.ColorRange 112, 127
-	Player.DisplayName "Bulk Bogan"
+	Player.DisplayName "Kunai"
 	Player.CrouchSprite "PLYC"
 	
 	Player.StartItem "PlayerCheckHax", 1
@@ -144,6 +145,7 @@ ACTOR Kunai : SH_BasePlayer
 	Player.StartItem "KunaiToken"
 	Player.StartItem "KunaiGastersummon", 2
 	Player.StartItem "SentryBox"
+	Player.StartItem "ElementalShield", 100
 	
 	Player.WeaponSlot 1, "SoulReaper"
 	Player.WeaponSlot 2, "Kunaisrevolver"
@@ -252,7 +254,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.MaxHealth 150
 	Player.SoundClass "Marine"
 	Player.ColorRange 112, 127
-	Player.DisplayName "Dookie Nookie"
+	Player.DisplayName "Gosimer"
 	Player.CrouchSprite "PLYC"
 	
 	Player.StartItem "PlayerCheckHax", 1
@@ -265,6 +267,7 @@ ACTOR Gosimer : SH_BasePlayer
 	//Player.StartItem "Flashlight"
 	Player.StartItem "GosimersBackpack", 1
 	Player.StartItem "DeployableShield", 1
+	Player.StartItem "ElementalShield", 100
 	
 	Player.WeaponSlot 1, "UAC-Chainsaw"
 	Player.WeaponSlot 2, "GosimersHandgun"
@@ -378,7 +381,7 @@ actor MaximusPrime : SH_BasePlayer
 	DamageFactor "MaxExplosion", 0.67
 	DamageFactor "Electric", 0.5 // Max's class resists lightning a bit.
 
-	Player.DisplayName "Rebel Scum"
+	Player.DisplayName "Max"
 	Player.CrouchSprite "PLYC"
 	Player.SoundClass "MaximusPrime"
 	
@@ -388,6 +391,7 @@ actor MaximusPrime : SH_BasePlayer
 	Player.StartItem "DF_EnergyUnit", 100
 	Player.StartItem "MaxToken"
 	Player.Startitem "MaxShield100", 1
+	Player.StartItem "ElementalShield", 100
 	
 	Player.WeaponSlot 1, "Lightsaber", "DFFist"
 	Player.WeaponSlot 2, "BryarPistol"
@@ -507,6 +511,7 @@ ACTOR Striker : SH_BasePlayer
 	Player.StartItem "AbilityCharge", 100
 	Player.StartItem "StrikersPendant", 1
 	Player.StartItem "StrikerToken"
+	Player.StartItem "ElementalShield", 100
 	
 	Player.WeaponSlot 1, "StrikersFists", "UAC-Chainsaw"
 	Player.WeaponSlot 2, "WaltherPPK"
@@ -572,7 +577,7 @@ ACTOR Striker : SH_BasePlayer
 			loop
 	
 		Ability:
-			TNT1 A 0 A_CustomMissile("medicalportal", 32, 0, 0, CMF_AIMDIRECTION, 0)
+			TNT1 A 0 A_CustomMissile("elementportal", 32, 0, 0, CMF_AIMDIRECTION, 0)
 			Goto Spawn
 		FlareAbility:
 			TNT1 A 0 A_CustomMissile("FlarenadeGReen", 32, 0, 0, CMF_AIMDIRECTION, 0)
