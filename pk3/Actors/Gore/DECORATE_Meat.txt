@@ -28,7 +28,6 @@ actor BloodTrails
 // Blood trails spawned by FlyingBlood
 actor Brutal_FlyingBloodTrail8
 {
- game Doom
  scale 0.70
  Mass 0
    Decal BrutalBloodSplat

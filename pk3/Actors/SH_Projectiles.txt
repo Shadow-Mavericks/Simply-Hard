@@ -606,7 +606,6 @@ ACTOR BFGZap : SH_BaseParticle
 {
 	RenderStyle Add
 	Alpha 1.0
-	Game Doom
 	+NOGRAVITY
 	+DONTSPLASH
 	+NOTIMEFREEZE

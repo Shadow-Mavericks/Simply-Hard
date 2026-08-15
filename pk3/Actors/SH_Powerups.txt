@@ -570,7 +570,6 @@ Actor Gosimerbag
 
 Actor GosimersAmmoSphere : PowerupGiver
 {
-	Game Doom
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
 	+INVENTORY.FANCYPICKUPSOUND
@@ -594,7 +593,6 @@ Actor RandomInventoryItems : Randomspawner
 
 Actor Joy : Custominventory
 {
-	Game Doom
 	scale 0.05
 	Inventory.PickupMessage "Joy... Do you have it in you?"
 	Inventory.RespawnTics "99999999"
@@ -624,7 +622,6 @@ Actor Joy : Custominventory
 
 actor JoySpeed : PowerupGiver
 {
-	Game Doom
 	inventory.pickupmessage "Turbocharge!!."
 	inventory.maxamount 0
 	powerup.duration -45

@@ -32,7 +32,6 @@ Stop
 actor SuperGore
 {
 Decal BloodSplat
- game Doom
 	Alpha 0.4
 +FORCEXYBILLBOARD
 +GHOST
@@ -58,7 +57,6 @@ Scale 1.0
 actor SuperGoreSmall
 {
 Decal BloodSplat
- game Doom
 	Alpha 0.7
 +FORCEXYBILLBOARD
 +GHOST

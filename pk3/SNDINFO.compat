@@ -1,3 +1,18 @@
+weapons/shotgf			dsshotgn
+weapons/shotgr			dssgcock
+weapons/sshotf			dsdshtgn
+weapons/sshoto			dsdbopn
+weapons/sshotc			dsdbcls
+weapons/sshotl			dsdbload
+weapons/plasmaf			dsplasma
+weapons/plasmax			dsfirxpl
+weapons/bfgf			dsbfg
+weapons/bfgx			dsrxplod
+$limit weapons/plasmaf 0
+$limit weapons/chngun 0
+$limit weapons/rocklf 0
+$limit weapons/rocklx 0
+
 DSSPISIT DSSPISIT
 DSSPIDTH DSSPIDTH
 

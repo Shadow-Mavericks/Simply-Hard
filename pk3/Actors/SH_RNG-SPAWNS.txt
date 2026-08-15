@@ -92,13 +92,14 @@ Actor Lostpainis : SH_BaseMonsterRandomSpawner replaces Lostsoul
 	Height 56
 	Dropitem "hardsoul"					255 100
 	Dropitem "Dragoonsoul"				255 25
+	Dropitem "ForgottenOne"				255 25
 	Dropitem "Babycaco"					255 5
 	Dropitem "Phantasm"					255 5
-	Dropitem "PoisonSoul"				255 5
-	Dropitem "PsychicSoul"				255 3
+	Dropitem "PoisonSoul"				255 5	
 	Dropitem "Rictus"					255 4
 	Dropitem "Esoul"					255 4
-	Dropitem "ForgottenOne"				255 25
+	Dropitem "Terror",					255 4
+	Dropitem "PsychicSoul"				255 3
 }
 
 Actor SH_RandomDemonSpawn : SH_BaseMonsterRandomSpawner

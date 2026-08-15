@@ -899,7 +899,6 @@ Actor Plasmaclip : Ammo
 ACTOR DEPlasmaRifle : SH_Weapon
 {
 	Tag "Plasma Rifle"
-	Game Doom
 	Scale 1
 
 	Weapon.SelectionOrder 1

@@ -1974,9 +1974,6 @@ actor Lightsaber : SH_Weapon
 actor PowerSupercharge : PowerDoubleFiringSpeed { }
 actor DF_SuperCharge : PowerupGiver
 {
-	Game Doom
-	Game Heretic
-	Game Hexen
 	Scale 0.6
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP

@@ -239,7 +239,6 @@ ACTOR Hardimp : SH_BaseMonster
 
 ACTOR Critimp : Hardimp
 {
-	Game Doom
 	Health 60
 	Radius 20
 	Height 56

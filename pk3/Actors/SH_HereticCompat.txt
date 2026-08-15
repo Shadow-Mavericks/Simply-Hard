@@ -1,0 +1,159 @@
+actor Heretic_Backpack : RandomSpawner Replaces BagOfHolding
+{
+	DropItem "Backpack", 255 100
+}
+
+actor Heretic_GreenArmor : RandomSpawner Replaces SilverShield
+{
+	DropItem "GreenArmor", 255 100
+}
+
+actor Heretic_BlueArmor : RandomSpawner Replaces EnchantedShield
+{
+	DropItem "BlueArmor", 255 100
+}
+
+actor Heretic_BlurSphere : RandomSpawner Replaces ArtiInvisibility
+{
+	DropItem "BlurSphere", 255 100
+}
+
+actor Heretic_Allmap : RandomSpawner Replaces SuperMap
+{
+	DropItem "Allmap", 255 100
+}
+
+actor Heretic_Melee : RandomSpawner Replaces Gauntlets
+{
+	DropItem "Chainsaw", 255 100
+	DropItem "Berserk", 255 5
+}
+
+actor Heretic_Shotgun : RandomSpawner Replaces Crossbow
+{
+	DropItem "Shotgun", 255 100
+}
+
+actor Heretic_Chaingun : RandomSpawner Replaces Blaster
+{
+	DropItem "Chaingun", 255 100
+}
+
+actor Heretic_RocketLauncher : RandomSpawner Replaces PhoenixRod
+{
+	DropItem "RocketLauncher", 255 100
+}
+
+actor Heretic_PlasmaRifle : RandomSpawner Replaces SkullRod
+{
+	DropItem "PlasmaRifle", 255 100
+	DropItem "SuperShotgun", 255 100
+}
+
+actor Heretic_BFG9000 : RandomSpawner Replaces Mace
+{
+	DropItem "BFG9000", 255 100
+}
+
+//actor Heretic_BFG9000_KexNonRandom : RandomSpawner 3105
+//{
+//	DropItem "BFG9000", 255 100
+//}
+
+actor Heretic_Clip : RandomSpawner replaces GoldWandAmmo
+{
+	DropItem "Clip", 255 100
+}
+
+actor Heretic_ClipBox : RandomSpawner replaces GoldWandHefty
+{
+	DropItem "ClipBox", 255 100
+}
+
+actor Heretic_Shell : RandomSpawner replaces CrossbowAmmo
+{
+	DropItem "Shell", 255 100
+}
+
+actor Heretic_ShellBox : RandomSpawner replaces CrossbowHefty
+{
+	DropItem "ShellBox", 255 100
+}
+
+actor Heretic_RocketAmmo : RandomSpawner replaces PhoenixRodAmmo
+{
+	DropItem "RocketAmmo", 255 100
+}
+
+actor Heretic_RocketBox : RandomSpawner replaces PhoenixRodHefty
+{
+	DropItem "RocketBox", 255 100
+}
+
+actor Heretic_CellOrShell : RandomSpawner replaces SkullRodAmmo
+{
+	DropItem "Cell", 255 50
+	DropItem "Shell", 255 100
+}
+
+actor Heretic_CellOrShellBox : RandomSpawner replaces SkullRodHefty
+{
+	DropItem "Cell", 255 100
+	DropItem "ShellBox", 255 100
+}
+
+actor Heretic_Cell : RandomSpawner replaces MaceAmmo
+{
+	DropItem "Cell", 255 100
+}
+
+actor Heretic_CellPack : RandomSpawner replaces MaceHefty
+{
+	DropItem "CellPack", 255 100
+}
+
+actor Heretic_RandomSmallAmmo : RandomSpawner replaces BlasterAmmo
+{
+	DropItem "Clip", 255 100
+	DropItem "Cell", 255 100
+	DropItem "Shell", 255 100
+}
+
+actor Heretic_RandomLargeAmmo : RandomSpawner replaces BlasterHefty
+{
+	DropItem "ClipBox", 255 100
+	DropItem "CellPack", 255 100
+	DropItem "ShellBox", 255 100
+}
+
+actor SH_HereticImp : HereticImp
+{
+}
+
+actor SH_HereticImpLeader : HereticImpLeader
+{
+}
+
+actor Heretic_RandomImp : SH_BaseMonsterRandomSpawner Replaces HereticImp
+{
+	Radius 16
+	Height 36
+	+ISMONSTER
+	+SPAWNFLOAT
+	DropItem "SH_HereticImp", 255 100
+	DropItem "BabyCaco", 255 25
+	DropItem "ForgottenOne", 255, 25
+}
+
+actor Heretic_RandomImpLeader : SH_BaseMonsterRandomSpawner Replaces HereticImpLeader
+{
+	Radius 16
+	Height 36
+	+ISMONSTER
+	+SPAWNFLOAT
+	DropItem "SH_HereticImpLeader", 255 100
+	DropItem "BabyCaco", 255 50
+	DropItem "ForgottenOne", 255, 25
+	DropItem "DragoonSoul", 255, 25
+	DropItem "Terror", 255, 1
+}

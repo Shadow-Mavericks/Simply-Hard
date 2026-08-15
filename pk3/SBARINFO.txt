@@ -35,8 +35,8 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 		
 		InInventory ElementalShield, 1
 		{
-			drawimage "ACIDSHLD", 27, -108, center;
-			DrawNumber 3, SMALLFNT, Green, ElementalShield, alignment(center), 27, -108;
+			drawimage "ACIDSHLD", 32, -72, center;
+			DrawNumber 3, SMALLFNT, Green, ElementalShield, alignment(center), 32, -72;
 		}
 		
 		DrawBar "FIENDULT", "FIENDULB", UltimateAbilityCharge, Vertical, 18, -28;

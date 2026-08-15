@@ -1,6 +1,5 @@
 ACTOR N_Archvile_Base : SH_BaseMonster 
 {
-	Game Doom
 	Health 700
 	Radius 20
 	Height 56

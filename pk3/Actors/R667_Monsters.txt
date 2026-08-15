@@ -2426,6 +2426,7 @@ actor TimeImp
   speed 20
   +NOTIMEFREEZE
   +DONTRIP
+  +FLOORCLIP
   radius 20
   height 56
   mass 100
@@ -2436,7 +2437,6 @@ actor TimeImp
   activesound "timeimp/active"
   meleesound "timeimp/claw"
   MONSTER
-  +FLOORCLIP
   states
   {
   Spawn:
@@ -3099,65 +3099,70 @@ actor TimeImp
 	Goto See
   }
 }
+
 ACTOR TimeImpA
 {
-   Radius 0
-   Height 0
-   Speed 0
-   PROJECTILE
-   +NOCLIP
-   +NOBLOCKMAP
-   RENDERSTYLE Translucent
-   ALPHA 0.60
-   -CANBLAST
-   +NOTIMEFREEZE
-   States
-   {
-   Spawn:
-	  SIMP A 1
-	  SIMP A 1 A_FadeOut(0.02)
-	  goto Spawn+1
-   }
+	Radius 0
+	Height 0
+	Speed 0
+	PROJECTILE
+	+NOCLIP
+	+NOBLOCKMAP
+	RENDERSTYLE Translucent
+	ALPHA 0.60
+	-CANBLAST
+	+NOTIMEFREEZE
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			SIMP A 1
+			SIMP A 1 A_FadeOut(0.02)
+			goto Spawn+1
+	}
 }
+
 ACTOR TimeImpB
 {
-   Radius 0
-   Height 0
-   Speed 0
-   PROJECTILE
-   +NOCLIP
-   +NOBLOCKMAP
-   RENDERSTYLE Translucent
-   ALPHA 0.60
-   -CANBLAST
-   +NOTIMEFREEZE
-   States
-   {
-   Spawn:
-	  SIMP B 1
-	  SIMP B 1 A_FadeOut(0.02)
-	  goto Spawn+1
-   }
+	Radius 0
+	Height 0
+	Speed 0
+	PROJECTILE
+	+NOCLIP
+	+NOBLOCKMAP
+	RENDERSTYLE Translucent
+	ALPHA 0.60
+	-CANBLAST
+	+NOTIMEFREEZE
+	+CLIENTSIDEONLY
+	States
+	{
+		Spawn:
+			SIMP B 1
+			SIMP B 1 A_FadeOut(0.02)
+			goto Spawn+1
+	}
 }
+
 ACTOR TimeImpC
 {
-   Radius 0
-   Height 0
-   Speed 0
-   PROJECTILE
-   +NOCLIP
-   +NOBLOCKMAP
-   RENDERSTYLE Translucent
-   ALPHA 0.60
-   -CANBLAST
-   +NOTIMEFREEZE
-   States
-   {
-   Spawn:
-	  SIMP C 1
-	  SIMP C 1 A_FadeOut(0.02)
-	  goto Spawn+1
-   }
+	Radius 0
+	Height 0
+	Speed 0
+	PROJECTILE
+	+NOCLIP
+	+NOBLOCKMAP
+	RENDERSTYLE Translucent
+	ALPHA 0.60
+	-CANBLAST
+	+NOTIMEFREEZE
+	States
+	{
+		Spawn:
+			SIMP C 1
+			SIMP C 1 A_FadeOut(0.02)
+			goto Spawn+1
+	}
 }
 ACTOR TimeImpD
 {
@@ -3220,39 +3225,42 @@ Actor HealImpFriendly : HealImp
 }
 actor SpImpBall
 {
-  Radius 6
-  Height 8
-  Projectile
-  +RANDOMIZE
-  RenderStyle Add
-  Alpha 1
-  SeeSound "timeball/attack"
-  DeathSound "timeball/hit"
-  Speed 25
-  damage 5
-  +NOTIMEFREEZE
-  states
-  {
-  Spawn:
-	SBLA A 1 A_SpawnItem("SpBallTrailA",-12)
-	SBLA A 2 bright
-	SBLA B 1 A_SpawnItem("SpBallTrailB",-12)
-	SBLA B 2 bright
-	loop
-  Death:
-	SBLA CDE 6 bright
-	stop
-  }
+	Radius 6
+	Height 8
+	Projectile
+	RenderStyle Add
+	Alpha 1
+	SeeSound "timeball/attack"
+	DeathSound "timeball/hit"
+	Speed 20
+	damage (20)
+	+NOTIMEFREEZE
+	+RANDOMIZE
+	states
+	{
+		Spawn:
+			SBLA A 1 A_SpawnItem("SpBallTrailA",-12)
+			SBLA A 2 bright
+			SBLA B 1 A_SpawnItem("SpBallTrailB",-12)
+			SBLA B 2 bright
+			loop
+		Death:
+			SBLA CDE 6 bright
+			stop
+	}
 }
+
 Actor SpImpBallFast : SpImpBall
 {
-Speed 35
+	Speed 30
 }
+
 Actor SpImpBallFast2 : SpImpBall
 {
-Speed 30
-Damage 3
+	Speed 25
+	Damage 3
 }
+
 ACTOR SpBallTrailA
 {
    Radius 0
@@ -3293,6 +3301,7 @@ ACTOR SpBallTrailB
 	  goto Spawn+1
    }
 }
+
 Actor ImpGhostOutIn
 {
    Radius 0
@@ -3319,6 +3328,7 @@ Actor ImpGhostOutIn
 	  stop
    }
 }
+
 Actor ImpGhostOut : ImpGhostOutIn
 {
    States
@@ -3331,25 +3341,28 @@ Actor ImpGhostOut : ImpGhostOutIn
 	  stop
    }
 }
+
 actor TimeFreezeImp : PowerupGiver
 {
- inventory.pickupmessage "Time Freezer!!"
- inventory.maxamount 0
- powerup.type "TimeFreezer"
- powerup.duration -5
- +AUTOACTIVATE
- +INVENTORY.FANCYPICKUPSOUND
-   states
- {
- Spawn:
-   TNT1 A 0
-   stop
- }
+	inventory.pickupmessage "Time Freezer!!"
+	inventory.maxamount 0
+	powerup.type "TimeFreezer"
+	powerup.duration -5
+	+AUTOACTIVATE
+	+INVENTORY.FANCYPICKUPSOUND
+	states
+	{
+		Spawn:
+			TNT1 A 0
+			stop
+	}
 }
+
 Actor TimeSlowImp : TimeFreezeImp
 {
-powerup.duration -1
+	powerup.duration -1
 }
+
 Actor TimeShock
 {
    Radius 4
@@ -3368,33 +3381,34 @@ Actor TimeShock
 	  stop
    }
 }
+
 Actor TimeImpFriendly : TimeImp
 {
-+FRIENDLY
-States
-{
-  Death:
-	SIMP A 0 A_JumpIfInventory("Shell",1,2)
-	Goto DeathRaiseFriendly
-	SIMP I 8
-	SIMP A 0 A_SpawnItem("ImpGhostOut")
-	SIMP J 8 A_Scream
-	SIMP K 6
-	SIMP L 6 A_NoBlocking
-	SIMP M -1
-	stop
-  DeathRaiseFriendly:
-	SIMP A 0 A_Stop
-	SIMP I 8 A_GiveInventory("Shell",1)
-	SIMP A 0 A_GiveInventory("RocketAmmo",1)
-	SIMP A 0 A_SpawnItem("ImpGhostOutIn")
-	SIMP J 8 A_Scream
-	SIMP K 6
-	SIMP L 6 A_NoBlocking
-	SIMP M 140
-	SIMP M -1 A_SpawnItem ("HealImpFriendly")
-	stop
-}
+	+FRIENDLY
+	States
+	{
+		Death:
+			SIMP A 0 A_JumpIfInventory("Shell",1,2)
+			Goto DeathRaiseFriendly
+			SIMP I 8
+			SIMP A 0 A_SpawnItem("ImpGhostOut")
+			SIMP J 8 A_Scream
+			SIMP K 6
+			SIMP L 6 A_NoBlocking
+			SIMP M -1
+			stop
+		DeathRaiseFriendly:
+			SIMP A 0 A_Stop
+			SIMP I 8 A_GiveInventory("Shell",1)
+			SIMP A 0 A_GiveInventory("RocketAmmo",1)
+			SIMP A 0 A_SpawnItem("ImpGhostOutIn")
+			SIMP J 8 A_Scream
+			SIMP K 6
+			SIMP L 6 A_NoBlocking
+			SIMP M 140
+			SIMP M -1 A_SpawnItem ("HealImpFriendly")
+			stop
+	}
 }
 
 //Mostly inspired to DeVloek Volacubi one - Thankx to MagicWazard for suggestions!
@@ -10252,7 +10266,7 @@ actor SuperFlyingImpBall
 ACTOR Terror 3124
 {
    //$Category "ZDoom Monster pack"
-   Health 100
+   Health 50
    Radius 16
    Height 56
    Mass 50
@@ -10260,14 +10274,14 @@ ACTOR Terror 3124
    Damage 0
    PainChance 256
    Monster
-   +FLOAT +NOGRAVITY +NOICEDEATH
+   +FLOAT
+   +NOGRAVITY
+   +NOICEDEATH
    AttackSound "skull/melee"
    PainSound "skull/pain"
    DeathSound "skull/death"
    ActiveSound "skull/active"
    Obituary "%o was blasted by a Terror."
-   ExplosionDamage 160
-   ExplosionRadius 128
    RenderStyle SoulTrans
    States
    {
@@ -10290,8 +10304,7 @@ ACTOR Terror 3124
 	  TERR E 3 BRIGHT A_Pain
 	  Goto See
    Death:
-	  TERR F 0 BRIGHT A_Die
-	  TERR F 0 BRIGHT A_Explode
+	  TERR F 0 BRIGHT A_Explode(30, 128)
 	  TERR F 6 BRIGHT A_NoGravity
 	  TERR G 6 BRIGHT A_Scream
 	  TERR H 6 BRIGHT
@@ -11411,7 +11424,6 @@ actor NullProjectile
 
 actor Phantasm
 {
-	Game Doom
 	//$Category Monsters
 	//$Title "Phantasm"
 	Health 50

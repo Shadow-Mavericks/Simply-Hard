@@ -35,7 +35,6 @@ ACTOR TinyBlood
 actor Brutal_Blood : Blood
 {
 	Decal BrutalBloodSplat
-	game Doom
 	+FORCEXYBILLBOARD
 	+NOBLOCKMAP
 	+NOGRAVITY
@@ -117,7 +116,6 @@ actor Brutal_FlyingBloodTrail5 : 12BloodTrail
 
 ACTOR Brutal_FlyingBlood
 {
-	game Doom
 	scale 0.9
 	speed 7
 	health 1
@@ -242,12 +240,10 @@ actor GiantBloodSpot: Brutal_BloodSpot
 
 actor BigBloodSpot: GiantBloodSpot
 {
-	game Doom
 }
 
 actor MediumBloodSpot: GiantBloodSpot
 {
-	game Doom
 	states
 	{
 		Spawn:
@@ -798,7 +794,6 @@ ACTOR GoreBloodFly: Brutal_FlyingBlood
 
 ACTOR WallRedBlood
 {
- game Doom
  scale 0.6
  speed 7
  health 1

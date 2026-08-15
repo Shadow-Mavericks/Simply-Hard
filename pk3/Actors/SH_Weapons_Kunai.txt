@@ -185,7 +185,7 @@ Actor PowerShieldGateCooldown : Powerup { }
 ACTOR ShieldGateCooldown : PowerupGiver
 {
 	Inventory.MaxAmount 0
-	Powerup.Duration 175
+	Powerup.Duration 350
 	Powerup.Type "ShieldGateCooldown"
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
@@ -383,7 +383,6 @@ actor FrostShotBallSmall : FrostShotBallBig
 ACTOR Soulreaper : SH_Weapon
 {
 	Tag "Soul-Reaper"
-	Game Doom
 	Inventory.ForbiddenTo "Maximusprime"
 	Weapon.SelectionOrder 8
 	Weapon.slotnumber 1

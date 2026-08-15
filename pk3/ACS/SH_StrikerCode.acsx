@@ -24,19 +24,50 @@ enum
 	WADCOMPAT_SARGASSO,
 };
 
+enum
+{
+	IWAD_DOOM = 0,
+	IWAD_HERETIC,
+};
+
 function void detect_wads(void)
 {
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		return;
 
 	// We only need to do this once, the first time any map is loaded.
 	if(GetCVar("sh_compat_mode") != WADCOMPAT_UNINITIALIZED)
 		return;
 
-	int startIndex;
+	int startIndex = -1;
 	int size;
 	int find_pos;
 	str lump_data;
+	
+	while(true)
+	{
+		startIndex = LumpOpen("EXTENDED", startIndex + 1);
+		if(startIndex == -1)
+			break;
+		
+		find_pos = 0;
+		size = LumpGetInfo(startIndex, LUMP_INFO_SIZE);	
+		if(size == 18)
+		{
+			lump_data = LumpReadString(startIndex, 0, size);
+			find_pos = seek_string(lump_data, "Extended Version", 0);
+			if(find_pos != -1)
+			{
+				Log(s:"Detected Heretic IWAD");
+				SetCVar("sh_iwad_detected", IWAD_HERETIC);
+				break;
+			}
+		}
+	}
+	
+	startIndex = -1;
+	size = 0;
+	find_pos = 0;
 
 	while(true)
 	{
@@ -153,7 +184,7 @@ function void detect_wads(void)
 	
 	// Try ZMAPINFO lumps.
 	// Clear everything.
-	startIndex = 0;
+	startIndex = -1;
 	size = 0;
 	find_pos = 0;
 	lump_data = "None";
@@ -190,7 +221,7 @@ function void detect_wads(void)
 	
 	// Try DEHACKED lumps.
 	// Clear everything.
-	startIndex = 0;
+	startIndex = -1;
 	size = 0;
 	find_pos = 0;
 	lump_data = "None";
@@ -255,6 +286,15 @@ script "WAD_COMPAT_TEXTURE_SWAPS" OPEN
 		case WADCOMPAT_BTSXE2:
 		{
 			ReplaceTextures("DBRAIN1", "LFALL2");
+			break;
+		}
+	}
+	
+	switch (GetCVar("sh_iwad_detected"))
+	{
+		case IWAD_HERETIC:
+		{
+			ReplaceTextures("LAVA1", "HERLAVA1");
 			break;
 		}
 	}
@@ -927,7 +967,7 @@ function bool checkEvenGround(int x, int y, int radius, int maxDiff)
 
 function void multiply_actor(int mult)
 {
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		return;
 
 	vec3_t pos = { GetActorX(0), GetActorY(0), GetActorZ(0) };
@@ -941,6 +981,7 @@ function void multiply_actor(int mult)
 	int thingArg2 = GetActorProperty(0, APROP_Args2);
 	int thingArg3 = GetActorProperty(0, APROP_Args3);
 	int thingArg4 = GetActorProperty(0, APROP_Args4);
+	bool spawnFloat = CheckFlag(0, "SPAWNFLOAT");
 	
 	//bool ambush = CheckFlag(0, "AMBUSH");
 	//bool friendly = CheckFlag(0, "FRIENDLY");
@@ -976,6 +1017,7 @@ function void multiply_actor(int mult)
 			}
 
 			int newFloorZ = GetSectorFloorZ(0, pos.x >> 16, pos.y >> 16);
+			int newCeilZ = GetSectorCeilingZ(0, pos.x >> 16, pos.y >> 16);
 			int floorZDiff = abs(floorZ - newFloorZ);
 			int beaconTID = UniqueTID(0);
 
@@ -995,6 +1037,9 @@ function void multiply_actor(int mult)
 					{
 						int uTID = UniqueTID(0);
 
+						if(spawnFloat)
+							newFloorZ = newFloorZ + random(0, newCeilZ-newFloorZ);
+							
 						spawnPassed = Spawn(GetActorClass(0), pos.x, pos.y, newFloorZ, uTID, angle);
 
 						if(spawnPassed)
@@ -1159,7 +1204,7 @@ function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int he
 
 script "KUNAI_SAP" (int type)
 {
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	int sapAmt = GetUserVariable(0, "user_healamt");
@@ -1231,12 +1276,21 @@ function int do_shield_logic(int arg1)
 {
 	int shield = CheckInventory("ElementalShield");
 	
-	shield -= arg1;
-	TakeInventory("ElementalShield", arg1);
-	if(shield > 0)
-		arg1 = 0;
-	else
-		arg1 = abs(shield);
+	if(shield)
+	{
+		shield -= arg1;
+		TakeInventory("ElementalShield", arg1);
+		if(shield > 0)
+		{
+			PlaySound(0, "ShieldHit", CHAN_AUTO, 1.0, false);
+			arg1 = 0;
+		}
+		else
+		{
+			PlaySound(0, "ShieldBreak", CHAN_AUTO, 1.0, false);
+			arg1 = abs(shield);
+		}
+	}
 		
 	return arg1;
 }
@@ -1448,97 +1502,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			{
 				return 0;
 			}
-
-			if(CheckActorClass(0, "MaximusPrime"))
-			{
-				if(directMonsterDamage) // Reduce Melee Damage
-				{
-					fixedDamage = fixedmul(arg1<<16, 0.78);
-					arg1 = fixedDamage>>16;
-					if(arg1 < 1)
-						arg1 = 1;
-				}
-
-				// Monster melee passes through shields.
-				if(CheckInventory("BasicArmor") > 0 && !directMonsterDamage)
-				{
-					// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
-					fixedDamage = arg1 << 16;
-					int shields = CheckInventory("BasicArmor") << 16;
-					int healthDmg = 0;
-
-					// The amount of shield energy left after taking *half* damage.
-					int halfShieldDmg = fixedDamage >> 1;
-					shields = max(0, shields - halfShieldDmg);
-
-					if (shields < (50<<16))
-					{
-						// healthDmg += shieldDmg * (1 - shields/50.0)
-						int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
-						healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
-					}
-
-					// Now take the other half away.
-					shields = max(0, shields - halfShieldDmg);
-					TakeInventory("BasicArmor", 99999);
-					GiveInventory("NullArmorHack", shields>>16);
-
-					arg1 = healthDmg>>16;
-					ActivatorSound("Max/ShieldDamage", 127);
-
-					FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
-				}
-			}
-			else if(CheckActorClass(0, "Kunai"))
-			{
-				if(CheckInventory("BasicArmor") > 0)
-				{
-					if(arg1 >= 50)
-						ActivatorSound("HitHeavy", 127);
-					else if(arg1 >= 25)
-						ActivatorSound("HitMedium", 127);
-					else
-						ActivatorSound("HitLight", 127);
-
-					FadeRange (255, 0, 0, min(fixedmul(arg1<<16, 0.01), 1.0), 255, 0, 0, 0.0, 0.5);
-
-					if(arg1 > CheckInventory("BasicArmor") && !CheckInventory("PowerShieldGateCooldown"))
-					{
-						arg1 = 0;
-						GiveInventory("ShieldGate", 1);
-						GiveInventory("ShieldGateCooldown", 1);
-						GiveInventory("ShieldBlast", 1);
-						TakeInventory("BasicArmor", 9999);
-						ActivatorSound("ShieldBlast", 127);
-					}
-				}
-			}
-			else
-			{
-				if(CheckInventory("BasicArmor") > 0)
-				{
-					ActivatorSound("Shield/Hit", 127);
-					FadeRange (8, 255, 48, min(fixedmul(arg1<<16, 0.01), 1.0), 8, 255, 48, 0.0, 0.5);
-				}
-			}
-		}
-		
-		if(victimStatus & STATUS_FROZEN) // Note: arg1 can be 0 on a radius damage hit, but can still shatter ice, so don't check for it here.
-		{
-			if(CheckInventory("WhoFrozeMeHax"))
-			{
-				int playerWhoFrozeMe = CheckInventory("WhoFrozeMeHax")-1;
-				TakeInventory("WhoFrozeMeHax", 9999); // So it doesn't happen more than once per corpse. (Prevents shotguns giving tons of ammo)
-				
-				kunai_health_sap(playerWhoFrozeMe, victimSpawnHealth, 0, 40, AAPTR_DAMAGE_TARGET, SAP_AMMO);
-				SetActivator(0, AAPTR_DAMAGE_TARGET); // Unclobber activator after kunai_health_sap function.
-			}
 			
-			ChangeFlag("NOTIMEFREEZE", true); // Remove time freeze if we shatter an enemy during it.
-		}
-			
-		if(arg1 > 0) // Final checks, if damage isn't nullified.
-		{
 			if(CheckActorClass(0, "Fiend"))
 			{
 				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
@@ -1581,7 +1545,100 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 					arg1 = do_shield_logic(arg1);
 				}
 			}
+
+			if(arg1 > 0)
+			{
+				if(CheckActorClass(0, "MaximusPrime"))
+				{
+					if(directMonsterDamage) // Reduce Melee Damage
+					{
+						fixedDamage = fixedmul(arg1<<16, 0.78);
+						arg1 = fixedDamage>>16;
+						if(arg1 < 1)
+							arg1 = 1;
+					}
+
+					// Monster melee passes through shields.
+					if(CheckInventory("BasicArmor") > 0 && !directMonsterDamage)
+					{
+						// [JM] Credit to Lucius for "The Force Engine" code referenced/ported here.
+						fixedDamage = arg1 << 16;
+						int shields = CheckInventory("BasicArmor") << 16;
+						int healthDmg = 0;
+
+						// The amount of shield energy left after taking *half* damage.
+						int halfShieldDmg = fixedDamage >> 1;
+						shields = max(0, shields - halfShieldDmg);
+
+						if (shields < (50<<16))
+						{
+							// healthDmg += shieldDmg * (1 - shields/50.0)
+							int fracDmgToHealth = ONE_16 - fixeddiv(shields, (50<<16));
+							healthDmg += fixedmul(fracDmgToHealth, fixedDamage);
+						}
+
+						// Now take the other half away.
+						shields = max(0, shields - halfShieldDmg);
+						TakeInventory("BasicArmor", 99999);
+						GiveInventory("NullArmorHack", shields>>16);
+
+						arg1 = healthDmg>>16;
+						ActivatorSound("Max/ShieldDamage", 127);
+
+						FadeRange (0, 255, 0, min(fixedmul(fixedDamage, 0.01), 1.0), 0, 255, 0, 0.0, 0.5);
+					}
+				}
+				else if(CheckActorClass(0, "Kunai"))
+				{
+					if(CheckInventory("BasicArmor") > 0)
+					{
+						if(arg1 >= 50)
+							ActivatorSound("HitHeavy", 127);
+						else if(arg1 >= 25)
+							ActivatorSound("HitMedium", 127);
+						else
+							ActivatorSound("HitLight", 127);
+
+						FadeRange (255, 0, 0, min(fixedmul(arg1<<16, 0.01), 1.0), 255, 0, 0, 0.0, 0.5);
+
+						if(arg1 > CheckInventory("BasicArmor") && !CheckInventory("PowerShieldGateCooldown"))
+						{
+							arg1 = 0;
+							GiveInventory("ShieldGate", 1);
+							GiveInventory("ShieldGateCooldown", 1);
+							GiveInventory("ShieldBlast", 1);
+							TakeInventory("BasicArmor", 9999);
+							ActivatorSound("ShieldBlast", 127);
+						}
+					}
+				}
+				else
+				{
+					if(CheckInventory("BasicArmor") > 0)
+					{
+						ActivatorSound("Shield/Hit", 127);
+						FadeRange (8, 255, 48, min(fixedmul(arg1<<16, 0.01), 1.0), 8, 255, 48, 0.0, 0.5);
+					}
+				}
+			}
+		}
+		
+		if(victimStatus & STATUS_FROZEN) // Note: arg1 can be 0 on a radius damage hit, but can still shatter ice, so don't check for it here.
+		{
+			if(CheckInventory("WhoFrozeMeHax"))
+			{
+				int playerWhoFrozeMe = CheckInventory("WhoFrozeMeHax")-1;
+				TakeInventory("WhoFrozeMeHax", 9999); // So it doesn't happen more than once per corpse. (Prevents shotguns giving tons of ammo)
+				
+				kunai_health_sap(playerWhoFrozeMe, victimSpawnHealth, 0, 40, AAPTR_DAMAGE_TARGET, SAP_AMMO);
+				SetActivator(0, AAPTR_DAMAGE_TARGET); // Unclobber activator after kunai_health_sap function.
+			}
 			
+			ChangeFlag("NOTIMEFREEZE", true); // Remove time freeze if we shatter an enemy during it.
+		}
+			
+		if(arg1 > 0) // Final checks, if damage isn't nullified.
+		{
 			if(victimStatus & STATUS_ACID)
 			{
 				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
@@ -2155,7 +2212,7 @@ function int add_ammo(str ammo_class, int amount, int droptype)
 script 13236 (int type) // "AMMO_PICKUP"
 {
 	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	str ammo1_class = "None";
@@ -2503,7 +2560,7 @@ script 13236 (int type) // "AMMO_PICKUP"
 script 13237 (int type) // "WEAPON_PICKUP"
 {
 	SetResultValue(0); // Starting result should always be 0, only set to 1 on success.
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	str weapon_class = "None";
@@ -3013,7 +3070,7 @@ script "REFRESH_PICKUP_SPRITES" ENTER CLIENTSIDE
 
 script 13238 (void) // "PICK_UP_SENTRY"
 {
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	SetResultValue(0);
@@ -3140,7 +3197,7 @@ function int useAura(int amount)
 		return 0;
 	}
 	
-	if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server only.
+	if(isServer()) // Server only.
 	{
 		TakeInventory("AbilityCharge", amount);
 	}
@@ -3248,7 +3305,7 @@ script "STRIKER_SELFHEAL" (int mode)
 		if(healAmount <= 0)
 			healAmount = 1;
 		
-		if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server Only
+		if(isServer()) // Server Only
 		{
 			TakeInventory("AbilityCharge", auraCost);
 			GiveInventory("HealCounter", healAmount);
@@ -3256,7 +3313,7 @@ script "STRIKER_SELFHEAL" (int mode)
 	}
 	else
 	{
-		if(IsNetworkGame() && (ConsolePlayerNumber() == -1)) // Server Only
+		if(isServer()) // Server Only
 		{
 			SetActorProperty(0, AProp_Health, currentHealth+CheckInventory("HealCounter"));
 			TakeInventory("HealCounter", 9999);

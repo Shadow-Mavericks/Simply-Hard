@@ -18,6 +18,7 @@ enum
 // NoGenericGibs:				// FLAG! - Disables generic gib deaths on this enemy.
 // NoAcidMelt:					// FLAG! - Disables acid element corpse melting on this enemy.
 // InstantStatus:				// FLAG! - Makes this projectile inflict status effects instantly, without need of buildup.
+// DrainsEnergy:				// FLAG! - Must be combined with Void Damage type, drains energy from target when hit.
 
 #include "actors/SH_BaseActors.txt"
 #include "actors/SH_Hax.txt"
@@ -54,6 +55,8 @@ enum
 
 #include "actors/SH_Kunai_SFX.txt"
 #include "actors/SH_MannCoBoxes.txt"
+
+#include "actors/SH_HereticCompat.txt"
 
 #include "actors/gore/Decorate_Fluids.txt"
 #include "actors/gore/Decorate_Meat.txt"

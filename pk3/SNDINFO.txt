@@ -6,6 +6,9 @@ PlayerHP/AlarmGosimer HPGALARM
 PlayerHP/AlarmKunai HPKALARM
 PlayerHP/AlarmMax HPMALARM
 
+ShieldHit shieldht
+ShieldBreak shieldbk
+
 //Extra life pickup
 oneman oneman
 oneman/usedup	OMANUSED

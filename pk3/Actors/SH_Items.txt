@@ -1095,7 +1095,6 @@ ACTOR HealthPainis_200max : Health
 
 ACTOR Spencerhp : Health
 {
-	Game Doom
 	+COUNTITEM
 	+INVENTORY.QUIET
 	+INVENTORY.ALWAYSPICKUP
@@ -1114,7 +1113,6 @@ ACTOR Spencerhp : Health
 
 ACTOR NerfedMedkit : Health
 {
-	Game Doom
 	scale 1
 	Inventory.Amount 20
 	Inventory.PickupSound "HEALTH/NMEDKIT"
@@ -1130,7 +1128,6 @@ ACTOR NerfedMedkit : Health
 
 ACTOR NerfedStimpack : Health
 {
-	Game Doom
 	scale 1
 	Inventory.Amount 5
 	Inventory.PickupSound "HEALTH/NSTIM"
@@ -1146,7 +1143,6 @@ ACTOR NerfedStimpack : Health
 
 ACTOR NormalMedkit : Health
 {
-	Game Doom
 	scale 1
 	Inventory.Amount 25
 	Inventory.PickupSound "HEALTH/MMEDKIT"
@@ -1162,7 +1158,6 @@ ACTOR NormalMedkit : Health
 
 ACTOR NormalStimpack : Health
 {
-	Game Doom
 	Inventory.Amount 10
 	Inventory.PickupSound "HEALTH/MSTIM"
 	Inventory.RespawnTics "99999999"
@@ -1177,7 +1172,6 @@ ACTOR NormalStimpack : Health
 
 ACTOR BuffedMedkit : Health
 {
-	Game Doom
 	scale 0.75
 	Inventory.Amount 30
 	Inventory.PickupSound "HEALTH/BMEDKIT"
@@ -1194,7 +1188,6 @@ ACTOR BuffedMedkit : Health
 
 ACTOR BuffedStimpack : Health
 {
-	Game Doom
 	scale 1
 	Inventory.Amount 15
 	Inventory.PickupSound "HEALTH/BSTIM"

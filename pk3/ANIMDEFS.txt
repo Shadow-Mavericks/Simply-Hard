@@ -59,15 +59,15 @@ Texture SPORT1
 
 // Blood animation -------------------------------------------------------------
 
-flat BLOOD1
+flat optional BLOOD1
 	pic BLOOD1 tics 8
 	pic BLOOD1 tics 8
 
-flat BLOOD2
+flat optional BLOOD2
 	pic BLOOD2 tics 8
 	pic BLOOD2 tics 8
 	
-flat BLOOD3
+flat optional BLOOD3
 	pic BLOOD3 tics 8
 	pic BLOOD3 tics 8
 	
@@ -97,15 +97,15 @@ flat optional BLOOD02
 
 // Nukage animation ------------------------------------------------------------
 
-flat NUKAGE1
+flat optional NUKAGE1
 	pic NUKAGE1 tics 8
 	pic NUKAGE1 tics 8
 	
-flat NUKAGE2
+flat optional NUKAGE2
 	pic NUKAGE2 tics 8
 	pic NUKAGE2 tics 8
 	
-flat NUKAGE3
+flat optional NUKAGE3
 	pic NUKAGE3 tics 8
 	pic NUKAGE3 tics 8
 	
@@ -177,19 +177,19 @@ texture optional SLMFALL4
 
 // Water animation -------------------------------------------------------------
 
-flat FWATER1
+flat optional FWATER1
 	pic FWATER1 tics 8
 	pic FWATER1 tics 8
 	
-flat FWATER2
+flat optional FWATER2
 	pic FWATER2 tics 8
 	pic FWATER2 tics 8
 	
-flat FWATER3
+flat optional FWATER3
 	pic FWATER3 tics 8
 	pic FWATER3 tics 8
 	
-flat FWATER4
+flat optional FWATER4
 	pic FWATER4 tics 8
 	pic FWATER4 tics 8
 	
@@ -251,19 +251,19 @@ texture optional PUFALL4
 	
 // LAVA TEXTURE
 
-flat LAVA1
+flat optional LAVA1
 	pic LAVA1 tics 8
 	pic LAVA1 tics 8
 
-flat LAVA2
+flat optional LAVA2
 	pic LAVA2 tics 8
 	pic LAVA2 tics 8
 
-flat LAVA3
+flat optional LAVA3
 	pic LAVA3 tics 8
 	pic LAVA3 tics 8
 	
-flat LAVA4
+flat optional LAVA4
 	pic LAVA4 tics 8
 	pic LAVA4 tics 8
 	
@@ -358,40 +358,40 @@ texture optional GRYFALL4
 	pic GRYFALL4 tics 8
 	
 // Lava Rock
-flat RROCK05
+flat optional RROCK05
 	pic RROCK08 tics 8
 	pic RROCK08 tics 8
 	
-flat RROCK06
+flat optional RROCK06
 	pic RROCK08 tics 8
 	pic RROCK08 tics 8
 	
-flat RROCK07
+flat optional RROCK07
 	pic RROCK08 tics 8
 	pic RROCK08 tics 8
 	
-flat RROCK08
+flat optional RROCK08
 	pic RROCK08 tics 8
 	pic RROCK08 tics 8
 	
 // Small Lava Rock
-flat SLIME09
+flat optional SLIME09
 	pic SLIME12 tics 8
 	pic SLIME12 tics 8
 	
-flat SLIME10
+flat optional SLIME10
 	pic SLIME12 tics 8
 	pic SLIME12 tics 8
 	
-flat SLIME11
+flat optional SLIME11
 	pic SLIME12 tics 8
 	pic SLIME12 tics 8
 	
-flat SLIME12
+flat optional SLIME12
 	pic SLIME12 tics 8
 	pic SLIME12 tics 8
 
-texture FIREBLU1
+texture optional FIREBLU1
 	pic	FIREBL01 tics 2
 	pic	FIREBL02 tics 2
 	pic	FIREBL03 tics 2
@@ -425,7 +425,7 @@ texture FIREBLU1
 	pic	FIREBL31 tics 2
 	pic	FIREBL32 tics 2
 	
-texture FIREBLU2
+texture optional FIREBLU2
 	pic	FIREBL01 tics 2
 	pic	FIREBL02 tics 2
 	pic	FIREBL03 tics 2
