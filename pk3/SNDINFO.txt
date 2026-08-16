@@ -240,6 +240,19 @@ Manncobox/Series3  Mannbox2
 Manncobox/Series4  Mannbox4
 Manncobox/Pickup   Mannget
 Manncobox/Pickup1  Mannget1  //Johntron
+Manncobox/DogBark  dogbark
+
+Pink/BadExplosion badexplo
+$rolloff Pink/BadExplosion 800 5600
+Pink/Mew pinkmew
+Pink/LaughLong pinklgh1
+Pink/LaughShort pinklgh2
+Pink/Throw1 pinkthr1
+Pink/Throw2 pinkthr2
+$random Pink/Throw { Pink/Throw1 Pink/Throw2 }
+Pink/BombThrow pinkbthr
+Pink/BombExplode pinkbex
+$limit Pink/BombExplode 0
 
 //-----------------------oLD OUT DATED PORTED MESSY CODE BELLOW! *[I have yet to optimize everything...]
 

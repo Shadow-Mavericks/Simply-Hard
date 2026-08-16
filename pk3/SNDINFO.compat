@@ -1,3 +1,10 @@
+$pitchshiftrange 2
+weapons/sawup			dssawup
+weapons/sawidle			dssawidl
+weapons/sawfull			dssawful
+weapons/sawhit			dssawhit
+$pitchshiftrange 4
+
 weapons/shotgf			dsshotgn
 weapons/shotgr			dssgcock
 weapons/sshotf			dsdshtgn

@@ -15149,67 +15149,6 @@ Actor Smoke
 	}
 }
 
-Actor ImpWarlord // Simply Hard ActiveBox version
-{
-	Health 180
-	Radius 20
-	Height 56
-	Speed 10
-	PainChance 60
-	MeleeThreshold 196
-	scale 1.1
-	Monster
-	+FLOORCLIP
-	+DONTRIP
-	+THRUSPECIES
-	SeeSound "imp/sight"
-	PainSound "imp/pain"
-	DeathSound "imp/death"
-	ActiveSound "imp/active"
-	Obituary "%o couldn't run from the imp warlord's fireball."
-	HitObituary "%o was beaten to death by an imp warlord."
-	States
-	{
-	Spawn:
-		WARL AB 10 A_Look
-		Loop
-	See:
-		WARL AABBCCDD 3 A_Chase
-		Loop
-	Melee:
-		WARL E 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("implord/maceswing")
-		WARL F 4 A_FaceTarget
-		WARL G 5 A_CustomMeleeAttack(Random(1,8)*7, "implord/macehit", "None")
-		Goto See
-	Pain:
-		TNT1 A 0 A_Jump(128, 2)
-		WARL H 8 A_Pain
-		Goto See
-		WARL I 1
-		TNT1 A 0 A_SetReflectiveInvulnerable
-		WARL IIIIII 4 A_FaceTarget
-		TNT1 A 0 A_Jump(160, 5)
-		WARL IIII 4 A_FaceTarget
-		Goto Pain+4
-		TNT1 A 0 A_UnSetReflectiveInvulnerable
-	Goto See
-	Death:
-		TNT1 A 0 A_FaceTarget
-		TNT1 A 0 A_SpawnItemEx("WarlordMace", 0, 0, 32, 4, 0, 0, -90, 128)
-		WARL R 8 A_SpawnItemEx("WarlordShield", 0, 0, 32, 5, 0, 0, 90, 128)
-		WARL S 8 A_Scream
-		WARL T 6
-		WARL U 6 A_Fall
-		WARL V -1
-		Stop
-	Raise:
-		WARL VU 8
-		WARL TSR 6
-		Goto See
-	}
-}
-
 ACTOR MeleeRevenant : SH_BaseMonster
 {
 	Species "Revenant"

@@ -7,6 +7,9 @@ const int AMMO_ROCKET		= 4;
 const int AMMO_ROCKETBOX	= 5;
 const int AMMO_CELL			= 6;
 const int AMMO_CELLBOX		= 7;
+const int AMMO_RAILGUN		= 8;
+const int AMMO_RAILBOX		= 9;
+const int AMMO_SMALLMG		= 10;
 
 actor ClipGiver : AmmoGiver_Base replaces Clip
 {
@@ -64,6 +67,38 @@ actor ClipBoxGiver : AmmoGiver_Base replaces ClipBox
 
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
+			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			goto Idle
+	}
+}
+
+actor MGAmmoGiver : AmmoGiver_Base 15342
+{
+	//$Sprite CLIPA0
+	States
+	{
+		Base:
+			AMMO B -1
+			loop
+		
+		MaximusPrime:
+			ENGU A -1
+			loop
+			
+		Gosimer:
+			D3DA F -1
+			loop
+			
+		Striker:
+			AMMO B -1
+			loop
+
+		Init:
+			TNT1 A 0 A_SetArg(1, AMMO_SMALLMG) // Ammo Type
+			goto CheckSprite
+
+		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 30)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			goto Idle
 	}

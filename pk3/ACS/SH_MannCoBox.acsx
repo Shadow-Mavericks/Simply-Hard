@@ -198,11 +198,27 @@ MannCoBoxData_t tier5_bad[] =
 	{ "Corrupt Gosimer!",				"CorruptGosimer",	50,		DELAY_NONE },
 	{ "Corrupt Kunai!",					"CorruptKunai",		50,		DELAY_NONE },
 	{ "Corrupt Trio!",					"CorruptTrio",		50,		DELAY_BOSSLAUGH },
-	{ "Deja Vu!",						"DejaVu",			50,		DELAY_NONE },
 	{ "Kart Racists!",					"Kartrape",			50,		DELAY_NONE },
 	{ "A Flood of Annoying Zombies!",	"BigZombieHorde",	25,		DELAY_BOSSLAUGH },
 	{ "A Warlord Imp Army!",			"ImpWarlordHorde",	25,		DELAY_BOSSLAUGH },
 	{ "A Horde of Ettins!",				"EttinHordeSpawn",	25,		DELAY_BOSSLAUGH },
+};
+
+
+int tier7_totalweight[2];
+int tier7_numentries[2];
+MannCoBoxData_t tier7_good[] =
+{
+	{ "An Extra Life!",										"ExtraLife",			50,		DELAY_NONE },
+	{ "An Extra Life... \cgAnd a White Rabbit!",			"ExtraLifeRabbit",		5,		DELAY_NONE },
+	{ "A Friendly Archspeen!",								"FriendlyArchSpeen",	1,		DELAY_LAUGH },
+};
+
+MannCoBoxData_t tier7_bad[] =
+{
+	{ "The dog absorbed the reward, sorry.",	"YouLose",			15,		DELAY_NONE },
+	{ "Deja Vu!",								"DejaVu",			25,		DELAY_NONE },
+	{ "Pink!",									"Pink",				75,		DELAY_NONE },
 };
 
 // This function adds up the weights of all good and bad results, which is used to determine the outcomes in MANNCO_PICK.
@@ -265,6 +281,17 @@ script "TALLY_WEIGHTS" OPEN
 	for(i = 0; i < tier5_numentries[BAD]; i++)
 		tier5_totalweight[BAD] += tier5_bad[i].weight;
 	// ------
+	
+	// Tier 7
+	// ------
+	tier7_numentries[GOOD] = sizeof(tier7_good) / sizeof(tier7_good[0]);
+	for(i = 0; i < tier7_numentries[GOOD]; i++)
+		tier7_totalweight[GOOD] += tier7_good[i].weight;
+
+	tier7_numentries[BAD] = sizeof(tier7_bad) / sizeof(tier7_bad[0]);
+	for(i = 0; i < tier7_numentries[BAD]; i++)
+		tier7_totalweight[BAD] += tier7_bad[i].weight;
+	// ------
 
 	if(GetCVar("sh_debug_boxes"))
 	{
@@ -283,6 +310,9 @@ script "TALLY_WEIGHTS" OPEN
 
 		log(s:"Tier 5 (GOOD): ", d:tier5_numentries[GOOD], s:" with total weight of ", d:tier5_totalweight[GOOD], s:".");
 		log(s:"Tier 5 (BAD): ", d:tier5_numentries[BAD], s:" with total weight of ", d:tier5_totalweight[BAD], s:".");
+		
+		log(s:"Tier 7 (GOOD): ", d:tier7_numentries[GOOD], s:" with total weight of ", d:tier7_totalweight[GOOD], s:".");
+		log(s:"Tier 7 (BAD): ", d:tier7_numentries[BAD], s:" with total weight of ", d:tier7_totalweight[BAD], s:".");
 	}
 }
 
@@ -384,6 +414,25 @@ script "MANNCO_PICK" (int tier)
 					delaytype = (!type) ? tier5_good[i].delaytype : tier5_bad[i].delaytype;
 					pickedName = (!type) ? tier5_good[i].name : tier5_bad[i].name;
 					pickedState = (!type) ? tier5_good[i].state : tier5_bad[i].state;
+					break;
+				}
+
+				rnd -= weight;
+			}
+			break;
+		}
+		
+		case 7:
+		{
+			rnd = random(0, tier7_totalweight[type]-1);
+			for(i=0; i < tier7_numentries[type]; i++)
+			{
+				weight = (!type) ? tier7_good[i].weight : tier7_bad[i].weight;
+				if(rnd < weight)
+				{
+					delaytype = (!type) ? tier7_good[i].delaytype : tier7_bad[i].delaytype;
+					pickedName = (!type) ? tier7_good[i].name : tier7_bad[i].name;
+					pickedState = (!type) ? tier7_good[i].state : tier7_bad[i].state;
 					break;
 				}
 

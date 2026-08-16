@@ -1,5 +1,6 @@
 #include "actors/monsters/ArchSpeen.txt"
 #include "actors/monsters/Doom2016Cyber.txt"
+#include "actors/monsters/ImpWarlord.txt"
 #include "actors/monsters/Zyberdemon.txt"
 
 ACTOR SH_Zombieman : SH_BaseMonster

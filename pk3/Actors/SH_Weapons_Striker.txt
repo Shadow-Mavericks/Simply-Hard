@@ -50,7 +50,7 @@ actor ReckoningInEffect : SH_BaseToken
 actor ReckoningRadiusCheck : SH_BaseParticle
 {
 	Radius 8
-	Height 16
+	Height 48
 	+NOGRAVITY
 	+FORCERADIUSDMG
 	+NODAMAGETHRUST
@@ -59,6 +59,21 @@ actor ReckoningRadiusCheck : SH_BaseParticle
 	{
 		Spawn:
 			TNT1 A 0 NoDelay A_Explode(1, 1024, 0, false, 1024)
+			stop
+	}
+}
+
+ACTOR ReckoningTrigger : CustomInventory
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	States
+	{
+		Use:
+			TNT1 A 0 ACS_NamedExecuteWithResult("RECKONING_ACTION")
+			TNT1 A 0 A_RailWait
 			stop
 	}
 }
@@ -95,7 +110,9 @@ actor StrikerBaseWeapon : SH_Weapon
 			goto Abilities
 			
 		ReckoningCheck:
-			TNT1 A 0 A_SpawnItemEx("ReckoningRadiusCheck", 0, 0, 32, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 ACS_NamedExecuteWithResult("STRIKER_SETRECKONING")
+			TNT1 A 0 A_RadiusGive("ReckoningTrigger", 1024.0, RGF_MONSTERS | RGF_OBJECTS | RGF_NOSIGHT, 1) 
+			//TNT1 A 0 A_SpawnItemEx("ReckoningRadiusCheck", 0, 0, 32, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
 			TNT1 A 0 A_JumpIf(CallACS("STRIKER_RECKONINGCHECK"), "Reckoning")
 			goto Abilities
 			
@@ -1249,15 +1266,22 @@ actor VoidFlameSpawner : SH_BaseParticle
 	}
 }
 
-actor ReckoningGrabSphere : SH_BaseParticle
+actor ReckoningGrabSphere
 {
 	Radius 8
 	Height 16
 	RenderStyle Add
 	Alpha 1.0
 	DamageType "Void"
+	+NOSPAWNEVENTSCRIPT
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+DROPOFF
+	+NOTELEPORT
+	+NOTIMEFREEZE
+	+DONTSPLASH
+	+NOTRIGGER
 	+FORCERADIUSDMG
-	-CLIENTSIDEONLY
 	var int user_height;
 	var int user_radius;
 	var int user_damage;
@@ -1269,20 +1293,20 @@ actor ReckoningGrabSphere : SH_BaseParticle
 			NULL A 0 Bright A_SetTranslucent(0.0, 1) 
 			goto MainLoop
 		MainLoop:
-			NULL A 0 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
+			NULL A 0 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_STOP | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
 			NULL A 1 Bright A_SetScale(user_radius/20.0, scaley+((user_height/48.0)/24.0))
 			NULL A 0 Bright A_SetTranslucent(alpha+0.0416666666666667, 1)
 			NULL A 0 Bright A_JumpIf(scaley >= (user_height/48.0), "SecondLoop")
 			loop
 		SecondLoop:
-			NULL A 1 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
+			NULL A 1 Bright A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_STOP | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
 			loop
 		Explode:
-			TNT1 A 0 Bright A_Quake(3, 16, 0, 256, "")
-			TNT1 A 0 Bright A_PlaySound("ReckoningExplosion", CHAN_AUTO)
-			TNT1 A 0 Bright A_Explode(user_damage, (user_radius*5)/4, 0, false, user_radius) 
-			TNT1 A 0 Bright A_SpawnItemEx("VioletShockwave_NoPitch", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 0)
-			TNT1 A 0 Bright A_SpawnItemEx("VoidFlameSpawner", 0, 0, 0, 0, 0, 0, user_radius, SXF_ABSOLUTEANGLE, 0) 
+			NULL A 0 Bright A_Quake(3, 16, 0, 256, "")
+			NULL A 0 Bright A_PlaySound("ReckoningExplosion", CHAN_AUTO)
+			//NULL A 0 Bright A_Explode(user_damage, (user_radius*5.0)/4.0, 0, false, user_radius) 
+			NULL A 0 Bright A_SpawnItemEx("VioletShockwave_NoPitch", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 0)
+			NULL A 0 Bright A_SpawnItemEx("VoidFlameSpawner", 0, 0, 0, 0, 0, 0, user_radius, SXF_ABSOLUTEANGLE, 0) 
 			goto ScaleDown
 		ScaleDown:
 			NULL A 0 Bright A_SetScale(user_radius/20.0, scaley-((user_height/48.0)/6.0))
