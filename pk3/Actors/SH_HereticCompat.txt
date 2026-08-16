@@ -356,12 +356,69 @@ actor SH_MummyLeader : MummyLeader
 {
 }
 
+actor SH_FleshGolem : Mummy
+{
+	hitobituary "%o was beaten down by a flesh golem"
+	obituary "%o was flayed by a flesh golem"
+	PainChance 96
+	
+	States
+	{
+		Spawn:
+			MUM2 AB 10 A_Look
+			Loop
+		See:
+			MUM2 AABBCCDD 2 A_Chase
+			Loop
+		Melee:
+			MUM2 E 5 A_FaceTarget
+			MUM2 F 5 A_CustomMeleeAttack(random[MummyAttack](1,8)*2, "mummy/attack2", "mummy/attack")
+			MUM2 G 5
+			Goto See
+		Pain:
+			MUM2 H 4
+			MUM2 H 4 A_Pain
+			Goto See
+		Death:
+			MUM2 I 5
+			MUM2 JJJJJJJJJJ 0 A_SpawnItemEx("SH_BloodDroplet", frandom(-16.0, 16.0), frandom(-16.0, 16.0), frandom(24.0, 48.0), MOMX+frandom(-8.0, 8.0), MOMY+frandom(-8.0, 8.0), MOMZ+frandom(2.0, 12.0), Random(-180, 180), SXF_CLIENTSIDE | SXF_ABSOLUTEMOMENTUM, 64)
+			MUM2 J 5 A_Scream
+			MUM2 K 5 A_SpawnItemEx("MummySoul", 0,0,10, 0,0,1)
+			MUM2 L 5
+			MUM2 M 5 A_NoBlocking
+			MUM2 NO 5
+			MUM2 P 10500
+			goto Fade
+		Fade:
+			"####" "#" 1 A_FadeOut(0.05)
+			loop
+	}
+}
+
+actor SH_FleshGolemLeader : SH_FleshGolem 
+{
+	Health 125
+	PainChance 64
+	States
+	{
+		Missile:
+			MUMM X 3 A_FaceTarget
+			MUMM Y 3 Bright A_FaceTarget
+			MUMM X 3 A_FaceTarget
+			MUMM Y 3 Bright A_FaceTarget
+			MUMM X 3 A_FaceTarget
+			MUMM Y 3 Bright A_CustomComboAttack("MummyFX1", 32, random[MummyAttack2](1,8)*2, "mummy/attack2")
+			Goto See
+	}
+}
+
 actor Heretic_RandomMummy : SH_BaseMonsterRandomSpawner Replaces Mummy
 {
 	Radius 22
 	Height 62
 	+ISMONSTER
 	DropItem "SH_Mummy", 255 100
+	DropItem "SH_FleshGolem", 255 100
 	DropItem "ImpWarlord", 255 10
 	DropItem "ChainsawZombie", 255 2
 	DropItem "MeleeRevenant", 255 2
@@ -374,6 +431,7 @@ actor Heretic_RandomMummyLeader : SH_BaseMonsterRandomSpawner Replaces MummyLead
 	Height 62
 	+ISMONSTER
 	DropItem "SH_MummyLeader", 255 100
+	DropItem "SH_FleshGolemLeader", 255 100
 	DropItem "NamiDarkImp", 255 15
 	DropItem "SuicideBomber", 255 10
 	DropItem "RocketZombie", 255 2
