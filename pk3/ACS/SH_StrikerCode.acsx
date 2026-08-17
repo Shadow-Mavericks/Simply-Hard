@@ -3362,7 +3362,7 @@ script "RECKONING_ACTION" (void)
 	SetActivator(uTID1);
 	Thing_ChangeTID(uTID1, oldTID1);
 	
-	if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE"))
+	if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE") && (GetActorProperty(0, AProp_Health) > 0))
 		SetActorState(0, "Pain", false);
 	
 	int i = 0;
@@ -3426,7 +3426,7 @@ script "RECKONING_ACTION" (void)
 			if(!CheckFlag(0, "FLOAT"))
 				SetActorVelocity(0, 0, 0, 8.0, true, false);
 				
-			if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE"))
+			if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE") && (GetActorProperty(0, AProp_Health) > 0))
 				SetActorState(0, "Pain", false);
 
 			break;
