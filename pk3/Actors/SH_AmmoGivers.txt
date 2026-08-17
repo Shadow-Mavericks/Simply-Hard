@@ -98,7 +98,7 @@ actor MGAmmoGiver : AmmoGiver_Base 15342
 			goto CheckSprite
 
 		SetScale:
-			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 30)
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			goto Idle
 	}

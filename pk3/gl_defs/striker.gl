@@ -1,0 +1,11 @@
+Pointlight AuraBall
+{
+	Color 0.25 0.0 1.0
+	Size 64
+}
+
+Pointlight BCF2Shot
+{
+	Color 1.0 0.02 0.0
+	Size 48
+}

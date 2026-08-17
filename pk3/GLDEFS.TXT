@@ -21,7 +21,9 @@
 #include gl_defs/puffs.gl
 #include gl_defs/soulreaper.gl
 #include gl_defs/xstars.gl
+
 #include gl_defs/darkforces.gl
+#include gl_defs/striker.gl
 
 Glow
 {

@@ -344,8 +344,9 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 	{
 		Ready:
 			PPKS A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
 			PPKS A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
-			goto Ready+1
+			goto ReadyLoop
 		Deselect:
 			PPKS AAA 0 A_Lower
 			PPKS A 1 A_Lower
@@ -371,7 +372,7 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 			PPKS A 3
 			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
 			PPKS A 0 A_Refire
-			Goto Ready+1
+			Goto ReadyLoop
 		ImbuedFire:
 			PPKS A 0 A_PlaySound("WaltherPPK", CHAN_WEAPON)
 			PPKS A 0 A_PlaySound("AuraBlast", CHAN_AUTO)	
@@ -387,20 +388,20 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 			PPKS A 3
 			PPKS A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
 			PPKS A 0 A_Refire
-			Goto Ready+1
+			Goto ReadyLoop
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
 			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
 			"####" A 1 Offset(0, 33)
 			"####" A 5 Offset(0, 32)
 			"####" A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		Reload:
 			PPKS A 0 A_JumpIfInventory("peastolClip", 1, "CheckReload")
-			goto Ready+1
+			goto ReadyLoop
 		CheckReload:
-			PPKS A 0 A_JumpIfInventory("HedgefoxClip", 0, "Ready") // 0 == At Capacity
+			PPKS A 0 A_JumpIfInventory("HedgefoxClip", 0, "ReadyLoop") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
 			PPKR A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
@@ -427,17 +428,17 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 		ReloadEnd:
 			PPKR JKLMN 1
 			PPKR A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		Zoom:
 			PPKS A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
 			PPKS A 0 A_JumpIfInventory("PistolImbued", 7, "CannotImbue")
 			PPKS A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 0), "ImbueTrigger")
 			PPKS A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CannotImbue:
 			PPKS A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		ImbueTrigger:
 			PPKS A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
 			goto Ready
@@ -488,8 +489,9 @@ ACTOR ModifiedMAC10 : StrikerBaseWeapon
 	{
 		Ready:
 			SMAC A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
 			SMAC A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
-			goto Ready+1
+			goto ReadyLoop
 		Deselect:
 			SMAC AAA 0 A_Lower
 			SMAC A 1 A_Lower
@@ -514,7 +516,7 @@ ACTOR ModifiedMAC10 : StrikerBaseWeapon
 			SMAC F 1 BRIGHT A_FireBullets(3, 2.5, -1, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 			SMAC A 2 A_JumpIfNoAmmo("ReloadOrDryfire")
 			SMAC A 0 A_Refire
-			Goto Ready+1
+			Goto ReadyLoop
 		ImbuedFire:
 			SMA2 B 0 BRIGHT A_AlertMonsters(128)
 			SMA2 B 0 BRIGHT A_PlaySound("MACFire", CHAN_WEAPON)
@@ -533,7 +535,7 @@ ACTOR ModifiedMAC10 : StrikerBaseWeapon
 			SMA2 F 1 BRIGHT A_FireBullets(3, 2.5, -1, 20, "StrikersVoidPuff_NoExplosion", FBF_USEAMMO | FBF_NORANDOM)
 			SMAC A 2 A_JumpIfNoAmmo("ReloadOrDryfire")
 			SMA2 A 0 A_Refire
-			Goto Ready+1
+			Goto ReadyLoop
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("MGRounds", 1, "CheckReload")
 			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
@@ -544,9 +546,9 @@ ACTOR ModifiedMAC10 : StrikerBaseWeapon
 			
 		Reload:
 			SMAC A 0 A_JumpIfInventory("MGRounds", 1, "CheckReload")
-			goto Ready+1
+			goto ReadyLoop
 		CheckReload:
-			SMAC A 0 A_JumpIfInventory("HedgefoxMACClip", 0, "Ready") // 0 == At Capacity
+			SMAC A 0 A_JumpIfInventory("HedgefoxMACClip", 0, "ReadyLoop") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
 			SMAR A 0 A_Playsound("GPistolMagOut", CHAN_AUTO)
@@ -572,17 +574,17 @@ ACTOR ModifiedMAC10 : StrikerBaseWeapon
 		ReloadEnd:
 			SMAR KLMNO 1
 			SMAR A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		Zoom:
 			SMAC A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
 			SMAC A 0 A_JumpIfInventory("MACImbued", 25, "CannotImbue")
 			SMAC A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 1), "ImbueTrigger")
 			SMAC A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CannotImbue:
 			SMAC A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		ImbueTrigger:
 			SMAC A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
 			goto Ready
@@ -630,8 +632,9 @@ ACTOR WSTE-M5 : StrikerBaseWeapon
 	{
 		Ready:
 			WSTE A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
 			WSTE A 1 A_WeaponReady(WRF_ALLOWZOOM)
-			goto Ready+1
+			goto ReadyLoop
 		Deselect:
 			WSTE AAA 0 A_Lower
 			WSTE A 1 A_Lower
@@ -674,16 +677,16 @@ ACTOR WSTE-M5 : StrikerBaseWeapon
 			WSTE VWXYZ 2
 			WSTE A 2
 			WSTE A 0 A_ReFire
-			Goto Ready+1
+			Goto ReadyLoop
 		Zoom:
 			WSTE A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
 			WSTE A 0 A_JumpIfInventory("ShotgunImbued", 1, "CannotImbue")
 			WSTE A 0 A_JumpIf(CallACS("STRIKER_USEAURA", 25), "ImbueTrigger")
 			WSTE A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CannotImbue:
 			WSTE A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		ImbueTrigger:
 			WSTE A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
 			goto Ready
@@ -736,8 +739,9 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 	{
 		Ready:
 			STKG A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
 			STKG A 1 A_WeaponReady(WRF_ALLOWZOOM | WRF_ALLOWRELOAD)
-			goto Ready+1
+			goto ReadyLoop
 		Deselect:
 			STKG AAA 0 A_Lower
 			STKG A 1 A_Lower
@@ -773,7 +777,7 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 			STKG HIJKL 2
 			STKG A 7 A_JumpIfNoAmmo("ReloadOrDryfire")
 			STKG A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
@@ -781,17 +785,17 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 			"####" A 1 Offset(0, 33)
 			"####" A 5 Offset(0, 32)
 			"####" A 0 A_Refire
-			goto Ready+1		
+			goto ReadyLoop		
 		Reload:
 			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
 			STKG A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
-			goto Ready+1
+			goto ReadyLoop
 		CannotReload:
 			STKG A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CheckReload:
 			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
-			STKG A 0 A_JumpIfInventory("HedgefoxGrenadeClip", 0, "Ready") // 0 == At Capacity
+			STKG A 0 A_JumpIfInventory("HedgefoxGrenadeClip", 0, "ReadyLoop") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
 			STGR A 0 A_GunFlash("NoAbilityUse", GFF_NOEXTCHANGE)
@@ -813,17 +817,17 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 			STGR M 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
 			STGR MNOPQRSTU 1
 			STGR A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		Zoom:
 			STKG A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
 			STKG A 0 A_JumpIfInventory("GrenadeImbued", 6, "CannotImbue")
 			STKG A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 2), "ImbueTrigger")
 			STKG A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CannotImbue:
 			STKG A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		ImbueTrigger:
 			STKG A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
 			goto Ready
@@ -874,8 +878,9 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 	{
 		Ready:
 			SBCF A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
 			SBCF A 1 A_WeaponReady(WRF_ALLOWRELOAD | WRF_ALLOWZOOM)
-			goto Ready+1
+			goto ReadyLoop
 		Deselect:
 			SBCF AAA 0 A_Lower
 			SBCF A 1 A_Lower
@@ -897,7 +902,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF A 2 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
 			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
 			SBCF A 0 A_Refire("Hold")
-			Goto Ready+1
+			Goto ReadyLoop
 		Hold:
 			SBCF B 0 A_PlaySound("BCF2Fire", CHAN_WEAPON)
 			SBCF B 0 BRIGHT A_AlertMonsters
@@ -910,20 +915,20 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF A 3 A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)			
 			SBCF A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
 			SBCF A 0 A_Refire("Fire")
-			Goto Ready+1
+			Goto ReadyLoop
 		ReloadOrDryfire:
 			"####" A 0 A_JumpIfInventory("Battery", 1, "CheckReload")
 			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
 			"####" A 1 Offset(0, 33)
 			"####" A 5 Offset(0, 32)
 			"####" A 0 A_Refire("Fire")
-			goto Ready+1
+			goto ReadyLoop
 			
 		Reload:
 			SBCF A 0 A_JumpIfInventory("Battery", 1, "CheckReload")
-			goto Ready+1
+			goto ReadyLoop
 		CheckReload:
-			SBCF A 0 A_JumpIfInventory("HedgefoxCellClip", 0, "Ready") // 0 == At Capacity
+			SBCF A 0 A_JumpIfInventory("HedgefoxCellClip", 0, "ReadyLoop") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
 			SBCR A 0 A_Playsound("Max/WepRaise", CHAN_AUTO)
@@ -950,15 +955,15 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 		ReloadEnd:
 			SBCR LMNOPQR 1
 			SBCR A 0 A_Refire
-			goto Ready+1
+			goto ReadyLoop
 			
 		Zoom:
 			SBCF A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
 			SBCF A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 		CannotImbue:
 			SBCF A 1 A_WeaponReady
-			goto Ready+1
+			goto ReadyLoop
 			
 		HealCheck:
 			"####" A 0 A_JumpIf(CallACS("STRIKER_SELFHEAL", 0), "HealTrigger")
@@ -1191,7 +1196,7 @@ actor AuraBall : SH_BasePlayerFastProjectile
 	States
 	{
 		Spawn:
-			SASB ABCDEFGH 1 Bright A_SpawnItemEx("VoidFlame", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, frandom(0.0, 2.0), 0, SXF_CLIENTSIDE, 0)
+			SASB ABCDEFGH 1 Bright Light("AuraBall") A_SpawnItemEx("VoidFlame", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, frandom(0.0, 2.0), 0, SXF_CLIENTSIDE, 0)
 			SASB A 0 A_Countdown
 			loop
 		Death:
@@ -1662,14 +1667,14 @@ actor BCF2Shot : SH_BasePlayerFastProjectile
 	States
 	{
 		Spawn:
-			BLAS A 1 Bright
+			BLAS A 1 Bright Light("BCF2Shot")
 			BLAS A 0 bright A_ChangeFlag("RIPPER", 0)
 			BLAS A 0 bright A_ChangeFlag("FORCEPAIN", 0)
 			BLAS A 0 bright A_ChangeFlag("BLOODLESSIMPACT", 0)
 			BLAS A 0 bright A_ChangeFlag("EXTREMEDEATH", 0)
 			goto MainLoop
 		MainLoop:
-			BLAS A 1 bright
+			BLAS A 1 bright Light("BCF2Shot")
 			loop
 		Death:
 			AUR5 A 0 A_Explode(15, 48, 0, false, 48)

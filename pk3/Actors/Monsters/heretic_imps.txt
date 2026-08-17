@@ -1,0 +1,692 @@
+actor SH_HereticImp : HereticImp
+{
+	+FLOATBOB
+	States
+	{
+		Death:
+			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
+			IMPX G 4 A_ImpDeath
+			IMPX H 5
+			Wait
+		XDeath:
+			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
+			IMPX S 5 A_ImpXDeath1
+			IMPX TU 5
+			IMPX V 5 A_Gravity
+			IMPX W 5 
+			Wait
+	}
+}
+
+actor SH_HereticImpLeader : HereticImpLeader
+{
+	+FLOATBOB
+	States
+	{
+		Death:
+			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
+			IMPX G 4 A_ImpDeath
+			IMPX H 5
+			Wait
+		XDeath:
+			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
+			IMPX S 5 A_ImpXDeath1
+			IMPX TU 5
+			IMPX V 5 A_Gravity
+			IMPX W 5 
+			Wait
+	}
+}
+
+ACTOR SH_HereticFireImpBall : HereticImpBall
+{
+	Speed 30
+	FastSpeed 50
+	Damage (8)
+	Alpha 1.0
+	RenderStyle Add
+	DamageType "Fire"
+	States
+	{
+	Spawn:
+		FX10 AABBCC 1 Bright A_SpawnItemEx("SH_HereticFireImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		FX10 DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticFireImpBallTrail : SH_BaseParticle
+{
+	Radius 2
+	Height 2
+	Alpha 1.0
+	Renderstyle Add
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+NOINTERACTION
+	States
+	{
+		Spawn:
+			FX10 DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticVoidImpBall : SH_HereticFireImpBall
+{
+	DamageType "Void"
+	States
+	{
+	Spawn:
+		I3BL AABBCC 1 Bright A_SpawnItemEx("SH_HereticVoidImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		I3BL DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticVoidImpBallTrail : SH_HereticFireImpBallTrail
+{
+	States
+	{
+		Spawn:
+			I3BL DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticAcidImpBall : SH_HereticFireImpBall
+{
+	DamageType "Acid"
+	States
+	{
+	Spawn:
+		I4BL AABBCC 1 Bright A_SpawnItemEx("SH_HereticAcidImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		I4BL DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticAcidImpBallTrail : SH_HereticFireImpBallTrail
+{
+	States
+	{
+		Spawn:
+			I4BL DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticIceImpBall : SH_HereticFireImpBall
+{
+	DamageType "Ice"
+	States
+	{
+	Spawn:
+		I5BL AABBCC 1 Bright A_SpawnItemEx("SH_HereticIceImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		I5BL DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticIceImpBallTrail : SH_HereticFireImpBallTrail
+{
+	States
+	{
+		Spawn:
+			I5BL DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticElectricImpBall : SH_HereticFireImpBall
+{
+	DamageType "Electric"
+	States
+	{
+	Spawn:
+		I6BL AABBCC 1 Bright A_SpawnItemEx("SH_HereticElectricImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		I6BL DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticElectricImpBallTrail : SH_HereticFireImpBallTrail
+{
+	States
+	{
+		Spawn:
+			I6BL D 0 NoDelay A_SpawnItemEx("Particle_Lightning3", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 64)
+			I6BL DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticMetalImpBall : SH_HereticFireImpBall
+{
+	DamageType "HeavyMetal"
+	States
+	{
+	Spawn:
+		I7BL AABBCC 1 Bright A_SpawnItemEx("SH_HereticMetalImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
+		Loop
+	Death:
+		I7BL DEFG 5 Bright
+		Stop
+	}
+}
+
+actor SH_HereticMetalImpBallTrail : SH_HereticFireImpBallTrail
+{
+	States
+	{
+		Spawn:
+			I7BL DEFG 1 Bright
+			stop
+	}
+}
+
+ACTOR SH_HereticFireImpChunk1
+{
+	Mass 5
+	Radius 4
+	+NOBLOCKMAP
+	+MOVEWITHSECTOR
+	States
+	{
+		Spawn:
+			IMP2 M 5
+			IMP2 NO 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticFireImpChunk2 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP2 P 5
+			IMP2 QR 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticAcidImpChunk1 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP4 M 5
+			IMP4 NO 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticAcidImpChunk2 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP4 P 5
+			IMP4 QR 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticIceImpChunk1 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP5 M 5
+			IMP5 NO 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticIceImpChunk2 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP5 P 5
+			IMP5 QR 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticElectricImpChunk1 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP6 M 5
+			IMP6 NO 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticElectricImpChunk2 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP6 P 5
+			IMP6 QR 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticMetalImpChunk1 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP7 M 5
+			IMP7 NO 700
+			Stop
+	}
+}
+
+ACTOR SH_HereticMetalImpChunk2 : SH_HereticFireImpChunk1
+{
+	States
+	{
+		Spawn:
+			IMP7 P 5
+			IMP7 QR 700
+			Stop
+	}
+}
+
+actor SH_HereticFireImp : SH_HereticImp
+{
+	DropItem "HealthBonus", 48
+	States
+	{
+		Spawn:
+			IMP2 ABCB 10 A_Look
+			Loop
+		See:
+			"####" AABBCCBB 3 A_Chase
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Fire")
+			Goto See
+		Missile:
+			"####" A 0 A_Jump(96, "Throw")
+			"####" A 8 A_FaceTarget
+			"####" B 6 A_SkullAttack(12)
+			"####" CBAB 6
+			Goto Missile+3
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticFireImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+		Pain:
+			"####" G 3
+			"####" G 3 A_Pain
+			Goto See
+		Death:
+			"####" S 0 A_ChangeFlag("FLOATBOB", 0)
+			"####" G 4 A_ImpDeath
+			"####" H 5
+			Wait
+		XDeath:
+			"####" S 0 A_ChangeFlag("FLOATBOB", 0)
+			"####" S 5 A_ImpXDeath1
+			"####" TU 5
+			"####" V 5 A_Gravity
+			"####" W 5 
+			Wait
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticFireImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticFireImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+		Fade:
+			"####" "#" 1 A_FadeOut(0.05)
+			loop
+		XCrash:
+			"####" X 7
+			"####" Y 7 A_NoBlocking
+			"####" Z 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticFireImpLeader : SH_HereticFireImp
+{
+	Health 80
+	PainChance 128
+	Speed 12
+	-MISSILEMORE
+	+MISSILEEVENMORE
+	+FLOATBOB
+	AttackSound "himp/attack"
+	DropItem "HealthBonus", 64
+	States
+	{
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Fire")
+			Goto See
+		Missile:
+			"####" A 0 A_Jump(132, "Throw")
+			"####" A 6 A_FaceTarget
+			"####" B 6 A_SkullAttack(12)
+			"####" CBAB 6
+			Goto Missile+3
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticFireImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticFireImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticFireImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+	}
+}
+
+actor SH_HereticVoidImp : SH_HereticFireImp
+{
+	DamageType "Void"
+	States
+	{
+		Spawn:
+			IMP3 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Void")
+			Goto See
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticVoidImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+	}
+}
+
+actor SH_HereticVoidImpLeader : SH_HereticFireImpLeader
+{
+	DamageType "Void"
+	States
+	{
+		Spawn:
+			IMP3 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Void")
+			Goto See
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticVoidImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticVoidImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticVoidImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+	}
+}
+
+actor SH_HereticAcidImp : SH_HereticFireImp
+{
+	DamageType "Acid"
+	BloodColor "10 A6 74"
+	States
+	{
+		Spawn:
+			IMP4 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Acid")
+			Goto See
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticAcidImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticAcidImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticAcidImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticAcidImpLeader : SH_HereticFireImpLeader
+{
+	DamageType "Acid"
+	BloodColor "10 A6 74"
+	States
+	{
+		Spawn:
+			IMP4 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Acid")
+			Goto See
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticAcidImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticAcidImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticAcidImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticAcidImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticAcidImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticIceImp : SH_HereticFireImp
+{
+	DamageType "Ice"
+	States
+	{
+		Spawn:
+			IMP5 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Ice")
+			Goto See
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticIceImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticIceImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticIceImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticIceImpLeader : SH_HereticFireImpLeader
+{
+	DamageType "Ice"
+	States
+	{
+		Spawn:
+			IMP5 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Ice")
+			Goto See
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticIceImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticIceImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticIceImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticIceImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticIceImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticElectricImp : SH_HereticFireImp
+{
+	DamageType "Electric"
+	BloodColor "DA A5 20"
+	States
+	{
+		Spawn:
+			IMP6 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Electric")
+			Goto See
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticElectricImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticElectricImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticElectricImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticElectricImpLeader : SH_HereticFireImpLeader
+{
+	DamageType "Electric"
+	BloodColor "DA A5 20"
+	States
+	{
+		Spawn:
+			IMP6 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "Electric")
+			Goto See
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticElectricImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticElectricImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticElectricImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticElectricImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticElectricImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticMetalImp : SH_HereticFireImp
+{
+	DamageType "HeavyMetal"
+	BloodColor "B1 60 02"
+	States
+	{
+		Spawn:
+			IMP7 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "HeavyMetal")
+			Goto See
+		Throw:
+			"####" DE 4 A_FaceTarget
+			"####" F 6 A_CustomComboAttack("SH_HereticMetalImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticMetalImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticMetalImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}
+
+actor SH_HereticMetalImpLeader : SH_HereticFireImpLeader
+{
+	DamageType "HeavyMetal"
+	BloodColor "B1 60 02"
+	States
+	{
+		Spawn:
+			IMP7 ABCB 10 A_Look
+			Loop
+		Melee:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack", "HeavyMetal")
+			Goto See
+		Throw:
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticMetalImpBall", 32, 0, 0, CMF_AIMOFFSET) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticMetalImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			"####" DE 3 A_FaceTarget
+			"####" F 5 A_CustomMissile("SH_HereticMetalImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
+			Goto See
+		Crash:
+			"####" I 0 A_SpawnItemEx("SH_HereticMetalImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_SpawnItemEx("SH_HereticMetalImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
+			"####" I 0 A_JumpIf(special == 666, "XCrash")
+			"####" I 7
+			"####" J 7 A_ScreamAndUnblock
+			"####" K 7
+			"####" L 10500
+			goto Fade
+	}
+}

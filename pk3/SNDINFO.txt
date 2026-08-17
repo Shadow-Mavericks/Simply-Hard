@@ -1,10 +1,12 @@
 Chainsaw/shutoff	DSSAWDN
 
 //HP Alarms
+$pitchshiftrange 0
 PlayerHP/Alarmfiend HPFALARM
 PlayerHP/AlarmGosimer HPGALARM
 PlayerHP/AlarmKunai HPKALARM
 PlayerHP/AlarmMax HPMALARM
+$pitchshiftrange 4
 
 ShieldHit shieldht
 ShieldBreak shieldbk

@@ -1,3 +1,5 @@
+#include "actors/monsters/heretic_imps.txt"
+
 actor Heretic_Backpack : RandomSpawner Replaces BagOfHolding
 {
 	DropItem "Backpack", 255 100
@@ -124,206 +126,6 @@ actor Heretic_RandomLargeAmmo : RandomSpawner replaces BlasterHefty
 	DropItem "ShellBox", 255 100
 }
 
-actor SH_HereticImp : HereticImp
-{
-	+FLOATBOB
-	States
-	{
-		Death:
-			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMPX G 4 A_ImpDeath
-			IMPX H 5
-			Wait
-		XDeath:
-			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMPX S 5 A_ImpXDeath1
-			IMPX TU 5
-			IMPX V 5 A_Gravity
-			IMPX W 5 
-			Wait
-	}
-}
-
-actor SH_HereticImpLeader : HereticImpLeader
-{
-	+FLOATBOB
-	States
-	{
-		Death:
-			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMPX G 4 A_ImpDeath
-			IMPX H 5
-			Wait
-		XDeath:
-			IMPX S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMPX S 5 A_ImpXDeath1
-			IMPX TU 5
-			IMPX V 5 A_Gravity
-			IMPX W 5 
-			Wait
-	}
-}
-
-ACTOR SH_FireImpBall : HereticImpBall
-{
-	Speed 30
-	FastSpeed 50
-	Damage (8)
-	Alpha 1.0
-	RenderStyle Add
-	DamageType "Fire"
-	States
-	{
-	Spawn:
-		FX10 AABBCC 1 Bright A_SpawnItemEx("FireImpBallTrail", 0, 0, 0, random(-1,1), random(-1,1), random(-1,1), random(-180,180), SXF_CLIENTSIDE, 0)
-		Loop
-	Death:
-		FX10 DEFG 5 Bright
-		Stop
-	}
-}
-
-ACTOR FireImpChunk1
-{
-	Mass 5
-	Radius 4
-	+NOBLOCKMAP
-	+MOVEWITHSECTOR
-	States
-	{
-		Spawn:
-			IMP2 M 5
-			IMP2 NO 700
-			Stop
-	}
-}
-
-ACTOR FireImpChunk2
-{
-	Mass 5
-	Radius 4
-	+NOBLOCKMAP
-	+MOVEWITHSECTOR
-	States
-	{
-		Spawn:
-			IMP2 P 5
-			IMP2 QR 700
-			Stop
-	}
-}
-
-actor FireImpBallTrail : SH_BaseParticle
-{
-	Radius 2
-	Height 2
-	Alpha 1.0
-	Renderstyle Add
-	+NOGRAVITY
-	+NOBLOCKMAP
-	+NOINTERACTION
-	States
-	{
-		Spawn:
-			FX10 DEFG 1 Bright
-			stop
-	}
-}
-
-actor SH_FireImp : SH_HereticImp
-{
-	DropItem "HealthBonus", 48
-	States
-	{
-		Spawn:
-			IMP2 ABCB 10 A_Look
-			Loop
-		See:
-			IMP2 AABBCCBB 3 A_Chase
-			Loop
-		Melee:
-			IMP2 DE 4 A_FaceTarget
-			IMP2 F 6 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack")
-			Goto See
-		Missile:
-			IMP2 A 0 A_Jump(75, "Throw")
-			IMP2 A 8 A_FaceTarget
-			IMP2 B 6 A_SkullAttack(12)
-			IMP2 CBAB 6
-			Goto Missile+3
-		Throw:
-			IMP2 DE 4 A_FaceTarget
-			IMP2 F 6 A_CustomComboAttack("SH_FireImpBall", 32, random[ImpMsAttack2](5,12), "himp/leaderattack")
-			Goto See
-		Pain:
-			IMP2 G 3
-			IMP2 G 3 A_Pain
-			Goto See
-		Death:
-			IMP2 S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMP2 G 4 A_ImpDeath
-			IMP2 H 5
-			Wait
-		XDeath:
-			IMP2 S 0 A_ChangeFlag("FLOATBOB", 0)
-			IMP2 S 5 A_ImpXDeath1
-			IMP2 TU 5
-			IMP2 V 5 A_Gravity
-			IMP2 W 5 
-			Wait
-		Crash:
-			IMP2 I 0 A_SpawnItemEx("FireImpChunk1", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
-			IMP2 I 0 A_SpawnItemEx("FireImpChunk2", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0,4.0), 9, 0, SXF_CLIENTSIDE, 0)
-			IMP2 I 0 A_JumpIf(special == 666, "XCrash")
-			IMP2 I 7
-			IMP2 J 7 A_ScreamAndUnblock
-			IMP2 K 7
-			IMP2 L 10500
-			goto Fade
-		Fade:
-			"####" "#" 1 A_FadeOut(0.05)
-			loop
-		XCrash:
-			IMP2 X 7
-			IMP2 Y 7 A_NoBlocking
-			IMP2 Z 10500
-			goto Fade
-	}
-}
-
-actor SH_FireImpLeader : SH_FireImp
-{
-	Health 80
-	PainChance 128
-	Speed 12
-	-MISSILEMORE
-	+MISSILEEVENMORE
-	+FLOATBOB
-	AttackSound "himp/attack"
-	DropItem "HealthBonus", 64
-	States
-	{
-		Melee:
-			IMP2 DE 3 A_FaceTarget
-			IMP2 F 5 A_CustomMeleeAttack(random[ImpMeAttack](5,12), "himp/attack", "himp/attack")
-			Goto See
-		Missile:
-			IMP2 A 0 A_Jump(132, "Throw")
-			IMP2 A 6 A_FaceTarget
-			IMP2 B 6 A_SkullAttack(12)
-			IMP2 CBAB 6
-			Goto Missile+3
-		Throw:
-			IMP2 DE 3 A_FaceTarget
-			IMP2 F 5 A_CustomMissile("SH_FireImpBall", 32, 0, 0, CMF_AIMOFFSET) 
-			IMP2 DE 3 A_FaceTarget
-			IMP2 F 5 A_CustomMissile("SH_FireImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
-			IMP2 DE 3 A_FaceTarget
-			IMP2 F 5 A_CustomMissile("SH_FireImpBall", 32, 0, frandom(-2.0, 2.0), CMF_AIMOFFSET, frandom(-2.0, 2.0)) 
-			Goto See
-	}
-}
-
 actor Heretic_RandomImp : SH_BaseMonsterRandomSpawner Replaces HereticImp
 {
 	Radius 16
@@ -331,7 +133,12 @@ actor Heretic_RandomImp : SH_BaseMonsterRandomSpawner Replaces HereticImp
 	+ISMONSTER
 	+SPAWNFLOAT
 	DropItem "SH_HereticImp", 255 100
-	DropItem "SH_FireImp", 255 100
+	DropItem "SH_HereticFireImp", 255 16
+	DropItem "SH_HereticVoidImp", 255 16
+	DropItem "SH_HereticAcidImp", 255 16
+	DropItem "SH_HereticIceImp", 255 16
+	DropItem "SH_HereticElectricImp", 255 16
+	DropItem "SH_HereticMetalImp", 255 16
 	DropItem "ForgottenOne", 255, 25
 }
 
@@ -342,7 +149,12 @@ actor Heretic_RandomImpLeader : SH_BaseMonsterRandomSpawner Replaces HereticImpL
 	+ISMONSTER
 	+SPAWNFLOAT
 	DropItem "SH_HereticImpLeader", 255 100
-	DropItem "SH_FireImpLeader", 255 100
+	DropItem "SH_HereticFireImpLeader", 255 16
+	DropItem "SH_HereticVoidImpLeader", 255 16
+	DropItem "SH_HereticAcidImpLeader", 255 16
+	DropItem "SH_HereticIceImpLeader", 255 16
+	DropItem "SH_HereticElectricImpLeader", 255 16
+	DropItem "SH_HereticMetalImpLeader", 255 16
 	DropItem "BabyCaco", 255 25
 	DropItem "DragoonSoul", 255, 25
 	DropItem "Terror", 255, 1
@@ -419,7 +231,9 @@ actor Heretic_RandomMummy : SH_BaseMonsterRandomSpawner Replaces Mummy
 	+ISMONSTER
 	DropItem "SH_Mummy", 255 100
 	DropItem "SH_FleshGolem", 255 100
-	DropItem "ImpWarlord", 255 10
+	DropItem "ImpWarlord", 255 25
+	DropItem "QuakeFodder", 255 10
+	DropItem "ZombieFodder", 255 10
 	DropItem "ChainsawZombie", 255 2
 	DropItem "MeleeRevenant", 255 2
 	DropItem "SuicideBomber", 255 1
@@ -441,11 +255,49 @@ actor SH_Knight : Knight
 {
 }
 
-actor RandomKnight : SH_BaseMonsterRandomSpawner Replaces Knight
+actor Heretic_RandomKnight : SH_BaseMonsterRandomSpawner Replaces Knight
 {
 	Radius 22
 	Height 62
 	+ISMONSTER
 	DropItem "SH_Knight", 255 100
 	DropItem "Squire", 255 16
+}
+
+actor SH_KnightGhost : KnightGhost
+{
+}
+
+actor Heretic_RandomKnightGhost : SH_BaseMonsterRandomSpawner Replaces KnightGhost
+{
+	Radius 22
+	Height 62
+	+ISMONSTER
+	DropItem "SH_KnightGhost", 255 100
+	DropItem "RevGhoul", 255 10
+}
+
+actor SH_Wizard : Wizard
+{
+	BloodColor "64 00 FF"
+}
+
+actor Heretic_RandomWizard : SH_BaseMonsterRandomSpawner replaces Wizard
+{
+	Radius 16
+	Height 68
+	+ISMONSTER
+	DropItem "SH_Wizard", 255 100
+}
+
+actor SH_Barrel : Barrel
+{
+}
+
+actor Heretic_RandomBarrel : RandomSpawner replaces Barrel
+{
+	Radius 12
+	Height 32
+	DropItem "SH_Barrel", 255 100
+	DropItem "KagoHive_Solid", 255 1
 }

@@ -742,7 +742,7 @@ script "ON_KILL" KILL
 		else if (boxChance < 1)
 			boxChance = 1;
 
-		if(specialBoxRNG <= 1)
+		if(specialBoxRNG <= 2)
 		{
 			doBoxSpawn = 2;
 		}
@@ -3290,7 +3290,7 @@ script "STRIKER_IMBUE" (int type)
 }
 
 int reckoning_playernum;
-#define AURA_COST_PER_ENEMY 4
+#define AURA_COST_PER_ENEMY 5
 
 script "STRIKER_SETRECKONING" (void)
 {
@@ -3362,7 +3362,7 @@ script "RECKONING_ACTION" (void)
 	SetActivator(uTID1);
 	Thing_ChangeTID(uTID1, oldTID1);
 	
-	if(!CheckFlag(0, "ICECORPSE"))
+	if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE"))
 		SetActorState(0, "Pain", false);
 	
 	int i = 0;
@@ -3400,9 +3400,6 @@ script "RECKONING_ACTION" (void)
 	
 	SetActorVelocity(0, 0, 0, -25.0, true, false);
 	
-	if(!CheckFlag(0, "ICECORPSE"))
-		SetActorState(0, "Pain", false);
-	
 	while(1)
 	{
 		if(GetActorProperty(0, AProp_Health) <= 0 || (ClassifyActor(0) <= ACTOR_WORLD))
@@ -3426,7 +3423,12 @@ script "RECKONING_ACTION" (void)
 			SetActivator(uTID2);
 			Thing_ChangeTID(uTID2, oldTID2);
 			
-			SetActorVelocity(0, 0, 0, 10.0, true, false);
+			if(!CheckFlag(0, "FLOAT"))
+				SetActorVelocity(0, 0, 0, 8.0, true, false);
+				
+			if(!CheckFlag(0, "ICECORPSE") && !CheckFlag(0, "INVULNERABLE"))
+				SetActorState(0, "Pain", false);
+
 			break;
 		}
 		Delay(1);

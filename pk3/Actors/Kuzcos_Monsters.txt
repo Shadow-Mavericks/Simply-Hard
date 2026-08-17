@@ -2511,14 +2511,26 @@ actor papyrusBoom
   }
 }
 
-ACTOR Kagohive
+actor KagoHiveExplosion : SH_BaseParticle
+{
+	Scale 2.0
+	States
+	{
+		Spawn:
+			DTHX ABCDE 1 BRIGHT
+			stop
+	}
+}
+
+ACTOR KagoHive
 {
 	Health 400
-	Radius 20
-	Height 48
+	Radius 12
+	Height 32
+	DeathHeight 32
 	Mass 0x7FFFFFFF
 	Speed 0
-	Scale 1.5
+	Scale 1.125
 	PainChance 256
 	Meleethreshold 384
 	BloodColor "aed433"
@@ -2556,13 +2568,22 @@ ACTOR Kagohive
 			Goto Spawn
 		Death:
 			KAGO AAAAAAAAAA 0 Bright A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
-			DTHX A 0 BRIGHT A_setscale(2.0)
 			DTHX A 0 BRIGHT A_Scream
-			DTHX A 1 BRIGHT A_Die
-			DTHX B 1 BRIGHT 
-			DTHX C 1 BRIGHT 
-			DTHX D 1 BRIGHT 
-			DTHX E 1 BRIGHT 
+			KAGO A 0 A_SpawnItemEx("KagoHiveExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			Stop
+	}
+}
+
+actor KagoHive_Solid : KagoHive
+{
+	+SOLID
+	States
+	{
+		Death:
+			KAGO AAAAAAAAAA 0 Bright A_SpawnItemEx("Kago", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
+			DTHX A 0 BRIGHT A_Scream
+			KAGO A 0 A_SpawnItemEx("KagoHiveExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KAGO I -1
 			Stop
 	}
 }
