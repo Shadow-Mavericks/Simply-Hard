@@ -795,7 +795,7 @@ script "ON_KILL" KILL
 				SpawnForced("ActiveBox1", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), deltaruneBoxTID, random(0, 255));
 				SetUserVariable(deltaruneBoxTID, "user_tier", 7);
 
-				HudMessageBold(s:"A tier... wait, what the fuck kind of box is this? Anyway, it was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0, s:"!\n\cjWhat kind of nonsense will come out?";
+				HudMessageBold(s:"A Tier... the fuck? A strange box was dropped by ", s:(startsWithVowel(StrParam(n:0))) ? "an " : "a ", n:0, s:"!\n\cjWhat kind of nonsense will come out?";
 				HUDMSG_TYPEON | HUDMSG_LOG, 70, CR_GOLD, 320.4, 128.1, 30.0, 0.01, 0.5);
 			}
 			else

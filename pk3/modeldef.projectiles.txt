@@ -143,6 +143,50 @@ model BCF2Shot
 	FrameIndex BLAS A 0 0
 }
 
+model BCF2Shot_Bounce1
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BCFShot.png"
+	Scale 8.0 2.0 2.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model BCF2Shot_Bounce2
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BCFShot.png"
+	Scale 8.0 2.0 2.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model BCF2Shot_Bounce3
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BCFShot.png"
+	Scale 8.0 2.0 2.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
+model BCF2Shot_Bounce4
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "BCFShot.png"
+	Scale 8.0 2.0 2.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex BLAS A 0 0
+}
+
 model BCF2ExplosionSpark
 {
 	Path "models/Projectiles"
@@ -152,4 +196,37 @@ model BCF2ExplosionSpark
 	PITCHFROMMOMENTUM
 
 	FrameIndex KPUF A 0 0
+}
+
+model FastCluster
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "Tracer.png"
+	Scale 4.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex KPUF A 0 0
+}
+
+model AuraShot
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "VioletTracer.png"
+	Scale 4.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex VPUF A 0 0
+}
+
+model PoweredSMGShot
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "VioletTracer.png"
+	Scale 4.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex VPUF A 0 0
 }

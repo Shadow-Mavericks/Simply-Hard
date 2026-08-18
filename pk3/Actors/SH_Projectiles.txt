@@ -2814,7 +2814,6 @@ ACTOR Beem_Slash
 	Projectile
 	+NOTIMEFREEZE
 	+RIPPER
-	Deathsound "BladeBeam/death"
 	States
 	{
 		Spawn:
@@ -2823,11 +2822,13 @@ ACTOR Beem_Slash
 
 		Spawn2:
 			TNT1 A 1 A_SpawnItemEX("Beem_Slash_Particle", 0, 0, 0)
-			TNT1 A 0 A_playsound("Bladebeam/attack", 6, 1.0, 1)
+			TNT1 A 0 A_Playsound("Bladebeam/fly", CHAN_6, 1.0, 1)
 			loop
 
 		Death:
-			TNT1 A 0 A_Stopsound(6)
+			TNT1 A 0 A_StopSound(CHAN_6)
+			TNT1 A 0 A_PlaySound("BladeBeam/impact", CHAN_AUTO)
+			TNT1 A 1
 			stop
 	}
 }

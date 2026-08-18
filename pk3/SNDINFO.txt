@@ -403,15 +403,6 @@ weapons/nuclearmissileflamewall	dsflwgrn
 
 $random weapons/nuclearmissilefire { weapons/nuclearmissilefire1 weapons/nuclearmissilefire2 }
 
-Weapons/SRswing1	SRSWING1
-Weapons/SRswing2	SRSWING2
-Weapons/SRsWing3	SRSWING3
-Weapons/SReaperhit	Swordcut
-Weapons/Sreaperwall	Swordwal
-
-$random weapons/srswing { Weapons/SRswing1 Weapons/SRswing2 Weapons/SRswing3 }
-
-
 queen/sight quesit
 queen/pain quepain
 queen/death quedie
@@ -1399,9 +1390,6 @@ RevGhoul/cloud		GHOULCLD
 
 Cybermind/Pain					DSDMPAIN
 Cybermind/Attack				DSRLAUNC
-
-Bladebeam/attack	BEMSWOSH
-BladeBeam/death		BEEMDIE
 
 weapons/diasht dsdiasht point 9.9
 weapons/firex3 dsfirex3 point 9.9

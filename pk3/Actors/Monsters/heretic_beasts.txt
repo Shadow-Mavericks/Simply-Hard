@@ -1,0 +1,304 @@
+actor SH_BeastBall : BeastBall replaces BeastBall
+{
+	States
+	{
+		Spawn:
+			FRB1 AABBCC 2 Bright A_SpawnItemEx("Puffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+	}
+}
+
+ACTOR SH_Beast : Beast
+{
+	DropItem "CrossbowAmmo", 84, 10
+	States
+	{
+		Spawn:
+			BEAS AB 10 A_Look
+			Loop
+		See:
+			"####" ABCDEF 3 A_Chase
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("BeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack")
+			Goto See
+		Pain:
+			"####" G 3
+			"####" G 3 A_Pain
+			Goto See
+		Death:
+			"####" R 6
+			"####" S 6 A_Scream
+			"####" TUV 6
+			"####" W 6 A_NoBlocking
+			"####" XY 6
+			"####" Z -1
+			Stop
+		XDeath:
+			"####" J 5
+			"####" K 6 A_Scream
+			"####" L 5
+			"####" M 6
+			"####" N 5
+			"####" O 6 A_NoBlocking
+			"####" P 5
+			"####" Q -1
+			Stop
+	}
+}
+
+ACTOR SH_FirePuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B2BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_FireBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Fire"
+	States
+	{
+		Spawn:
+			B2BL AABBCC 2 Bright A_SpawnItemEx("SH_FirePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B2BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_FireBeast : SH_Beast
+{
+	DamageType "Fire"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA2 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_FireBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Fire")
+			Goto See
+	}
+}
+
+ACTOR SH_VoidPuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B3BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_VoidBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Void"
+	States
+	{
+		Spawn:
+			B3BL AABBCC 2 Bright A_SpawnItemEx("SH_VoidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B3BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_VoidBeast : SH_Beast
+{
+	DamageType "Void"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA3 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_VoidBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Void")
+			Goto See
+	}
+}
+
+ACTOR SH_AcidPuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B4BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_AcidBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Acid"
+	States
+	{
+		Spawn:
+			B4BL AABBCC 2 Bright A_SpawnItemEx("SH_AcidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B4BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_AcidBeast : SH_Beast
+{
+	DamageType "Acid"
+	BloodColor "20 AA 37"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA4 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_AcidBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Acid")
+			Goto See
+	}
+}
+
+ACTOR SH_IcePuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B5BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_IceBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Ice"
+	States
+	{
+		Spawn:
+			B5BL AABBCC 2 Bright A_SpawnItemEx("SH_IcePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B5BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_IceBeast : SH_Beast
+{
+	DamageType "Ice"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA5 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_IceBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Ice")
+			Goto See
+	}
+}
+
+ACTOR SH_ElectricPuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B6BL D 0 NoDelay A_SpawnItemEx("Particle_Lightning4", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 64)
+			B6BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_ElectricBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Electric"
+	States
+	{
+		Spawn:
+			B6BL AABBCC 2 Bright A_SpawnItemEx("SH_ElectricPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B6BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_ElectricBeast : SH_Beast
+{
+	DamageType "Electric"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA6 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_ElectricBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Electric")
+			Goto See
+	}
+}
+
+ACTOR SH_MetalPuffy : Puffy
+{
+	States
+	{
+		Spawn:
+			B7BL DEFGH 4
+			Stop
+	}
+}
+
+ACTOR SH_MetalBeastBall : BeastBall
+{
+	Damage (16)
+	DamageType "Metal"
+	States
+	{
+		Spawn:
+			B7BL AABBCC 2 Bright A_SpawnItemEx("SH_MetalPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			Loop
+		Death:
+			B7BL DEFGH 4
+			Stop
+	}
+}
+
+actor SH_MetalBeast : SH_Beast
+{
+	DamageType "HeavyMetal"
+	BloodColor "1F 3B 4D"
+	DropItem "CrossbowAmmo", 84, 10
+	DropItem "HealthBonus", 32
+	States
+	{
+		Spawn:
+			BEA7 AB 10 A_Look
+			Loop
+		Missile:
+			"####" H 10 A_FaceTarget
+			"####" I 10 Bright A_CustomComboAttack("SH_MetalBeastBall", 32, random[BeastAttack](1,8)*3, "beast/attack", "Electric")
+			Goto See
+	}
+}

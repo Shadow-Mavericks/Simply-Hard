@@ -488,7 +488,7 @@ ACTOR Soulreaper : SH_Weapon
 			Goto Ready
 		Bladebem:
 			KBLD D 0 A_AlertMonsters(384)
-			KBLD D 1 A_playsound("weapons/srswing", Chan_6)
+			KBLD D 1 A_playsound("BladeBeam/attack", Chan_6)
 			KBLD E 1
 			KBLD F 1 A_takeinventory("AbilityCharge",25)
 			KBLD G 1 A_FireCustomMissile("Beem_Slash",0,0,0,0,0)

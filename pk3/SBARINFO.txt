@@ -562,68 +562,37 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 					DrawNumber 3, spleen3, PitchBlack, ammo2, alignment(right), -8, -23;
 				}
 				
-				InInventory "HedgefoxMACClip", 1 { drawimage "BOOLET", -45, -32; }
-				InInventory "HedgefoxMACClip", 2 { drawimage "BOOLET", -54, -32; }
-				InInventory "HedgefoxMACClip", 3 { drawimage "BOOLET", -63, -32; }
-				InInventory "HedgefoxMACClip", 4 { drawimage "BOOLET", -72, -32; }
-				InInventory "HedgefoxMACClip", 5 { drawimage "BOOLET", -81, -32; }
-				InInventory "HedgefoxMACClip", 6 { drawimage "BOOLET", -90, -32; }
-				InInventory "HedgefoxMACClip", 7 { drawimage "BOOLET", -99, -32; }
-				InInventory "HedgefoxMACClip", 8 { drawimage "BOOLET", -108, -32; }
-				InInventory "HedgefoxMACClip", 9 { drawimage "BOOLET", -117, -32; }
-				InInventory "HedgefoxMACClip", 10 { drawimage "BOOLET", -126, -32; }
-				InInventory "HedgefoxMACClip", 11 { drawimage "BOOLET", -135, -32; }
-				InInventory "HedgefoxMACClip", 12 { drawimage "BOOLET", -144, -32; }
-				InInventory "HedgefoxMACClip", 13 { drawimage "BOOLET", -153, -32; }
-				InInventory "HedgefoxMACClip", 14 { drawimage "BOOLET", -162, -32; }
-				InInventory "HedgefoxMACClip", 15 { drawimage "BOOLET", -171, -32; }
-				InInventory "HedgefoxMACClip", 16 { drawimage "BOOLET", -180, -32; }
-				InInventory "HedgefoxMACClip", 17 { drawimage "BOOLET", -189, -32; }
-				InInventory "HedgefoxMACClip", 18 { drawimage "BOOLET", -198, -32; }
-				InInventory "HedgefoxMACClip", 19 { drawimage "BOOLET", -207, -32; }
-				InInventory "HedgefoxMACClip", 20 { drawimage "BOOLET", -216, -32; }
-				InInventory "HedgefoxMACClip", 21 { drawimage "BOOLET", -225, -32; }
-				InInventory "HedgefoxMACClip", 22 { drawimage "BOOLET", -234, -32; }
-				InInventory "HedgefoxMACClip", 23 { drawimage "BOOLET", -243, -32; }
-				InInventory "HedgefoxMACClip", 24 { drawimage "BOOLET", -252, -32; }
-				InInventory "HedgefoxMACClip", 25 { drawimage "BOOLET", -261, -32; }
-				InInventory "HedgefoxMACClip", 26 { drawimage "BOOLET", -270, -32; }
-				InInventory "HedgefoxMACClip", 27 { drawimage "BOOLET", -279, -32; }
-				InInventory "HedgefoxMACClip", 28 { drawimage "BOOLET", -288, -32; }
-				InInventory "HedgefoxMACClip", 29 { drawimage "BOOLET", -297, -32; }
-				InInventory "HedgefoxMACClip", 30 { drawimage "BOOLET", -306, -32; }
-				
-				InInventory "MacImbued", 1 { drawimage "IMBOOLET", -45, -32; }
-				InInventory "MacImbued", 2 { drawimage "IMBOOLET", -54, -32; }
-				InInventory "MacImbued", 3 { drawimage "IMBOOLET", -63, -32; }
-				InInventory "MacImbued", 4 { drawimage "IMBOOLET", -72, -32; }
-				InInventory "MacImbued", 5 { drawimage "IMBOOLET", -81, -32; }
-				InInventory "MacImbued", 6 { drawimage "IMBOOLET", -90, -32; }
-				InInventory "MacImbued", 7 { drawimage "IMBOOLET", -99, -32; }
-				InInventory "MacImbued", 8 { drawimage "IMBOOLET", -108, -32; }
-				InInventory "MacImbued", 9 { drawimage "IMBOOLET", -117, -32; }
-				InInventory "MacImbued", 10 { drawimage "IMBOOLET", -126, -32; }
-				InInventory "MacImbued", 11 { drawimage "IMBOOLET", -135, -32; }
-				InInventory "MacImbued", 12 { drawimage "IMBOOLET", -144, -32; }
-				InInventory "MacImbued", 13 { drawimage "IMBOOLET", -153, -32; }
-				InInventory "MacImbued", 14 { drawimage "IMBOOLET", -162, -32; }
-				InInventory "MacImbued", 15 { drawimage "IMBOOLET", -171, -32; }
-				InInventory "MacImbued", 16 { drawimage "IMBOOLET", -180, -32; }
-				InInventory "MacImbued", 17 { drawimage "IMBOOLET", -189, -32; }
-				InInventory "MacImbued", 18 { drawimage "IMBOOLET", -198, -32; }
-				InInventory "MacImbued", 19 { drawimage "IMBOOLET", -207, -32; }
-				InInventory "MacImbued", 20 { drawimage "IMBOOLET", -216, -32; }
-				InInventory "MacImbued", 21 { drawimage "IMBOOLET", -225, -32; }
-				InInventory "MacImbued", 22 { drawimage "IMBOOLET", -234, -32; }
-				InInventory "MacImbued", 23 { drawimage "IMBOOLET", -243, -32; }
-				InInventory "MacImbued", 24 { drawimage "IMBOOLET", -252, -32; }
-				InInventory "MacImbued", 25 { drawimage "IMBOOLET", -261, -32; }
-				InInventory "MacImbued", 26 { drawimage "IMBOOLET", -270, -32; }
-				InInventory "MacImbued", 27 { drawimage "IMBOOLET", -279, -32; }
-				InInventory "MacImbued", 28 { drawimage "IMBOOLET", -288, -32; }
-				InInventory "MacImbued", 29 { drawimage "IMBOOLET", -297, -32; }
-				InInventory "MacImbued", 30 { drawimage "IMBOOLET", -306, -32; }
-							
+				InInventory "HedgefoxMACClip", 1 { drawimage "BOOLET", -45, -32; InInventory "MacImbued", 1 { drawimage "IMBOOLET", -45, -32; } }
+				InInventory "HedgefoxMACClip", 2 { drawimage "BOOLET", -54, -32; InInventory "MacImbued", 2 { drawimage "IMBOOLET", -54, -32; } }
+				InInventory "HedgefoxMACClip", 3 { drawimage "BOOLET", -63, -32; InInventory "MacImbued", 3 { drawimage "IMBOOLET", -63, -32; } }
+				InInventory "HedgefoxMACClip", 4 { drawimage "BOOLET", -72, -32; InInventory "MacImbued", 4 { drawimage "IMBOOLET", -72, -32; } }
+				InInventory "HedgefoxMACClip", 5 { drawimage "BOOLET", -81, -32; InInventory "MacImbued", 5 { drawimage "IMBOOLET", -81, -32; } }
+				InInventory "HedgefoxMACClip", 6 { drawimage "BOOLET", -90, -32; InInventory "MacImbued", 6 { drawimage "IMBOOLET", -90, -32; } }
+				InInventory "HedgefoxMACClip", 7 { drawimage "BOOLET", -99, -32; InInventory "MacImbued", 7 { drawimage "IMBOOLET", -99, -32; } }
+				InInventory "HedgefoxMACClip", 8 { drawimage "BOOLET", -108, -32; InInventory "MacImbued", 8 { drawimage "IMBOOLET", -108, -32; } }
+				InInventory "HedgefoxMACClip", 9 { drawimage "BOOLET", -117, -32; InInventory "MacImbued", 9 { drawimage "IMBOOLET", -117, -32; } }
+				InInventory "HedgefoxMACClip", 10 { drawimage "BOOLET", -126, -32; InInventory "MacImbued", 10 { drawimage "IMBOOLET", -126, -32; } }
+				InInventory "HedgefoxMACClip", 11 { drawimage "BOOLET", -135, -32; InInventory "MacImbued", 11 { drawimage "IMBOOLET", -135, -32; } }
+				InInventory "HedgefoxMACClip", 12 { drawimage "BOOLET", -144, -32; InInventory "MacImbued", 12 { drawimage "IMBOOLET", -144, -32; } }
+				InInventory "HedgefoxMACClip", 13 { drawimage "BOOLET", -153, -32; InInventory "MacImbued", 13 { drawimage "IMBOOLET", -153, -32; } }
+				InInventory "HedgefoxMACClip", 14 { drawimage "BOOLET", -162, -32; InInventory "MacImbued", 14 { drawimage "IMBOOLET", -162, -32; } }
+				InInventory "HedgefoxMACClip", 15 { drawimage "BOOLET", -171, -32; InInventory "MacImbued", 15 { drawimage "IMBOOLET", -171, -32; } }
+				InInventory "HedgefoxMACClip", 16 { drawimage "BOOLET", -180, -32; InInventory "MacImbued", 16 { drawimage "IMBOOLET", -180, -32; } }
+				InInventory "HedgefoxMACClip", 17 { drawimage "BOOLET", -189, -32; InInventory "MacImbued", 17 { drawimage "IMBOOLET", -189, -32; } }
+				InInventory "HedgefoxMACClip", 18 { drawimage "BOOLET", -198, -32; InInventory "MacImbued", 18 { drawimage "IMBOOLET", -198, -32; } }
+				InInventory "HedgefoxMACClip", 19 { drawimage "BOOLET", -207, -32; InInventory "MacImbued", 19 { drawimage "IMBOOLET", -207, -32; } }
+				InInventory "HedgefoxMACClip", 20 { drawimage "BOOLET", -216, -32; InInventory "MacImbued", 20 { drawimage "IMBOOLET", -216, -32; } }
+				InInventory "HedgefoxMACClip", 21 { drawimage "BOOLET", -225, -32; InInventory "MacImbued", 21 { drawimage "IMBOOLET", -225, -32; } }
+				InInventory "HedgefoxMACClip", 22 { drawimage "BOOLET", -234, -32; InInventory "MacImbued", 22 { drawimage "IMBOOLET", -234, -32; } }
+				InInventory "HedgefoxMACClip", 23 { drawimage "BOOLET", -243, -32; InInventory "MacImbued", 23 { drawimage "IMBOOLET", -243, -32; } }
+				InInventory "HedgefoxMACClip", 24 { drawimage "BOOLET", -252, -32; InInventory "MacImbued", 24 { drawimage "IMBOOLET", -252, -32; } }
+				InInventory "HedgefoxMACClip", 25 { drawimage "BOOLET", -261, -32; InInventory "MacImbued", 25 { drawimage "IMBOOLET", -261, -32; } }
+				InInventory "HedgefoxMACClip", 26 { drawimage "BOOLET", -270, -32; InInventory "MacImbued", 26 { drawimage "IMBOOLET", -270, -32; } }
+				InInventory "HedgefoxMACClip", 27 { drawimage "BOOLET", -279, -32; InInventory "MacImbued", 27 { drawimage "IMBOOLET", -279, -32; } }
+				InInventory "HedgefoxMACClip", 28 { drawimage "BOOLET", -288, -32; InInventory "MacImbued", 28 { drawimage "IMBOOLET", -288, -32; } }
+				InInventory "HedgefoxMACClip", 29 { drawimage "BOOLET", -297, -32; InInventory "MacImbued", 29 { drawimage "IMBOOLET", -297, -32; } }
+				InInventory "HedgefoxMACClip", 30 { drawimage "BOOLET", -306, -32; InInventory "MacImbued", 30 { drawimage "IMBOOLET", -306, -32; } }
+								
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}
 			IsSelected "Frag12GrenadeShotgun"

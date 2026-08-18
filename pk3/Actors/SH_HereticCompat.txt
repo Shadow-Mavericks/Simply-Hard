@@ -1,3 +1,4 @@
+#include "actors/monsters/heretic_beasts.txt"
 #include "actors/monsters/heretic_imps.txt"
 
 actor Heretic_Backpack : RandomSpawner Replaces BagOfHolding
@@ -262,6 +263,7 @@ actor Heretic_RandomKnight : SH_BaseMonsterRandomSpawner Replaces Knight
 	+ISMONSTER
 	DropItem "SH_Knight", 255 100
 	DropItem "Squire", 255 16
+	DropItem "ChainmailEttin", 5
 }
 
 actor SH_KnightGhost : KnightGhost
@@ -288,6 +290,20 @@ actor Heretic_RandomWizard : SH_BaseMonsterRandomSpawner replaces Wizard
 	Height 68
 	+ISMONSTER
 	DropItem "SH_Wizard", 255 100
+}
+
+actor Heretic_RandomBeast : SH_BaseMonsterRandomSpawner replaces Beast
+{
+	Radius 32
+	Height 74
+	+ISMONSTER
+	DropItem "SH_Beast", 255 100
+	DropItem "SH_FireBeast", 255 16
+	DropItem "SH_VoidBeast", 255 16
+	DropItem "SH_AcidBeast", 255 16
+	DropItem "SH_IceBeast", 255 16
+	DropItem "SH_ElectricBeast", 255 16
+	DropItem "SH_MetalBeast", 255 16
 }
 
 actor SH_Barrel : Barrel

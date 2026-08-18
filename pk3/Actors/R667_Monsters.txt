@@ -14203,7 +14203,7 @@ ACTOR ChainmailEttin
 {
   Game Hexen
   Health 500
-  Radius 25
+  Radius 24
   Height 68
   Mass 175
   Speed 15

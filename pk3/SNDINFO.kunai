@@ -1,3 +1,33 @@
+Weapons/SRswing1	SRSWING1
+Weapons/SRswing2	SRSWING2
+Weapons/SRsWing3	SRSWING3
+$random weapons/srswing { Weapons/SRswing1 Weapons/SRswing2 Weapons/SRswing3 }
+
+Weapons/SReaperHit1 swrdcut1
+Weapons/SReaperHit2 swrdcut2
+Weapons/SReaperHit3 swrdcut3
+Weapons/SReaperHit4 swrdcut4
+$random Weapons/SReaperhit { Weapons/SReaperHit1 Weapons/SReaperHit2 Weapons/SReaperHit3 Weapons/SReaperHit4 }
+
+Weapons/SReaperWall1 swrdwal1
+Weapons/SReaperWall2 swrdwal2
+Weapons/SReaperWall3 swrdwal3
+$random Weapons/SReaperWall { Weapons/SReaperWall1 Weapons/SReaperWall2 Weapons/SReaperWall3 }
+
+BladeBeam/Attack1 beamfir1
+BladeBeam/Attack2 beamfir2
+BladeBeam/Attack3 beamfir3
+$random BladeBeam/attack { BladeBeam/Attack1 BladeBeam/Attack2 BladeBeam/Attack3 }
+
+BladeBeam/fly beamfly
+
+BladeBeam/impact1	beamimp1
+BladeBeam/impact2	beamimp2
+BladeBeam/impact3	beamimp3
+$random BladeBeam/impact { BladeBeam/impact1 BladeBeam/impact2 BladeBeam/impact3 }
+$limit BladeBeam/impact 0
+$rolloff BladeBeam/impact 400 2400
+
 SOTNHeartbeat sv_hrtbt
 $limit SOTNHeartbeat 0
 
