@@ -1847,6 +1847,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					if(CheckInventory("AcidAccumulation") >= acidThreshold)
 					{
 						bool isExtra = !StrIcmp(arg2, "AcidBFGExtra");
+						bool isVolatile = false;
 						int alreadyAcid = CheckInventory("PowerAcidStatus");
 						TakeInventory("AcidAccumulation", 200);
 						GiveInventory("AcidStatus", 1);
@@ -1876,15 +1877,42 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							ACS_NamedExecuteAlways("ACID_TICKER", 0);
 						}
 						
+						if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+							isVolatile = CheckActorState(0, "Volatile", true);
+						
 						if(!inflictorIsMissile)
 						{
 							if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
 								SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0), 0, 0);
 						}
-						else if(!isLaser && !isExtra && ((instantStatusEffect && !alreadyAcid) || !instantStatusEffect))
+						else if(!isLaser && !isExtra && ((instantStatusEffect && !alreadyAcid) || !instantStatusEffect || isVolatile))
 						{
 							if(SetActivator(0, AAPTR_DAMAGE_TARGET))
-								SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0)+random(0.0, GetActorProperty(0, APROP_Height)), 0, 0);
+							{
+								if(!isVolatile)
+								{
+									SpawnForced("AcidBurst", GetActorX(0), GetActorY(0), GetActorZ(0)+random(0.0, GetActorProperty(0, APROP_Height)), 0, 0);
+								}
+								else
+								{
+									int acidExpUTID = UniqueTID();
+									int acidRadius = clamp(GetActorProperty(0, AProp_Radius)*2, 32.0, 128.0);
+
+									SpawnForced("AcidExplosion", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), acidExpUTID, 0);
+									if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+									{
+										int playerUTID = UniqueTID();
+										Thing_ChangeTID(0, playerUTID);
+										
+										// Set target on acid explosion.
+										SetActivator(acidExpUTID);
+										SetPointer(AAPTR_TARGET, playerUTID);
+										SetUserVariable(acidExpUTID, "user_radius", acidRadius);
+										SetActorProperty(acidExpUTID, AProp_ScaleX, clamp(acidRadius/32, 0.25, 1.0));
+										SetActorProperty(acidExpUTID, AProp_ScaleY, clamp(acidRadius/32, 0.25, 1.0));
+									}
+								}
+							}
 						}
 					}
 				}

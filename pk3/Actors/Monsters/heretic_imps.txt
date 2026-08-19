@@ -357,7 +357,7 @@ actor SH_HereticFireImp : SH_HereticImp
 			"####" I 7
 			"####" J 7 A_ScreamAndUnblock
 			"####" K 7
-			"####" L 10500
+			"####" L 10500 CanRaise
 			goto Fade
 		Fade:
 			"####" "#" 1 A_FadeOut(0.05)
@@ -365,7 +365,7 @@ actor SH_HereticFireImp : SH_HereticImp
 		XCrash:
 			"####" X 7
 			"####" Y 7 A_NoBlocking
-			"####" Z 10500
+			"####" Z 10500 CanRaise
 			goto Fade
 	}
 }

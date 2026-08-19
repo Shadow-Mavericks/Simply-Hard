@@ -172,6 +172,27 @@ actor AcidBurst : SH_BaseParticle
 	}
 }
 
+actor AcidExplosion : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Acid"
+	+FORCERADIUSDMG
+	-CLIENTSIDEONLY
+	-NOCLIP
+	var int user_radius;
+	States
+	{
+		InstantStatus:
+		Spawn:
+			AXPL A 0 NoDelay A_ChangeFlag("NOEXTREMEDEATH", random(0,1))
+			AXPL A 0 A_PlaySound("AcidExplosion", CHAN_AUTO, 1.0, false, 0.5)
+			AXPL A 0 A_Explode(30, user_radius, 0, false, user_radius)
+			AXPL ABCDEFGHIJKLM 1 Bright
+			stop
+	}
+}
+
 actor AcidPuddle : SH_BaseParticle
 {
 	Translation "0:255=%[0.00,0.13,0.00]:[0.25,2.00,0.63]"
@@ -447,11 +468,61 @@ actor SH_TeleporterParticles_White : SH_TeleporterParticles_Red
 	}
 }
 
-actor VoidFlame : SH_BaseParticle
+actor BasicFlame : SH_BaseParticle
 {
-	Scale 0.3
 	RenderStyle Add
 	Alpha 1.0
+	Scale 0.3
+	States
+	{
+		Spawn:
+			FIR1 A 0
+			FIR1 A 0 A_Jump(256, "Fire1", "Fire2", "Fire3", "Fire4", "Fire5", "Fire6", "Fire7", "Fire8", "Fire9", "Fire10")
+			goto Fire1
+		Fire1:
+			FIR1 ABCDEFGHIJKLMNOPQR 1 BRIGHT
+			stop
+		Fire2:
+			FIR2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI22 AB 1 BRIGHT
+			stop
+		Fire3:
+			FIR3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			stop
+		Fire4:
+			FIR4 ABCDEFGHIJKLMNOPQRST 1 BRIGHT
+			stop
+		Fire5:
+			FIR5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI52 AB 1 BRIGHT
+			stop
+		Fire6:
+			FIR6 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI62 AB 1 BRIGHT
+			stop
+		Fire7:
+			FIR7 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI72 AB 1 BRIGHT
+			stop
+		Fire8:
+			FIR8 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI82 ABCD 1 BRIGHT
+			stop
+		Fire9:
+			FIR9 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+			FI92 ABCD 1 BRIGHT
+			stop
+		Fire10:
+			FIR0 ABCDEFGHIJKLMNO 1 BRIGHT
+			stop
+	}
+}
+
+actor VoidFlame : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 1.0
+	Scale 0.3
 	States
 	{
 		Spawn:

@@ -1,0 +1,62 @@
+ACTOR SH_ChaingunGuy
+{
+	Health 70
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 170
+	Monster
+	PainChance "Mightyboot", 255
+	+FLOORCLIP
+	SeeSound "Heavyweapond00d/See"
+	PainSound "chainguy/pain"
+	DeathSound "Heavyweapond00d/Die"
+	ActiveSound "chainguy/active"
+	AttackSound "chainguy/attack"
+	Obituary "$OB_CHAINGUY"
+	Dropitem "Chaingun"
+	Dropitem "Clip" 100
+	Dropitem "ClipBox" 20
+	States
+	{
+		Spawn:
+			CGUY AB 10 A_Look
+			Loop
+		See:
+			CGUY AABBCCDD 3 A_Chase
+			Loop
+		Missile:
+			CGUY E 10 A_FaceTarget
+			CGUY FE 3 Bright A_CPosAttack
+			CGUY F 1 A_CPosRefire
+			Goto Missile+1
+		Pain.Mightyboot:
+			TNT1 A 0 A_Facetarget
+			TNT1 A 0 ThrustThing(angle*256/360+128, 10, 0, 0)
+			Goto See
+		Pain:
+			CGUY G 3
+			CGUY G 3 A_Pain
+			Goto See
+		Death:
+			CGUY H 5
+			CGUY I 5 A_Scream
+			CGUY J 5 A_NoBlocking
+			CGUY KLM 5
+			TNT1 A 0
+			CGUY N -1
+			Stop
+		XDeath:
+			CGUY O 5
+			CGUY P 5 A_XScream
+			CGUY Q 5 A_NoBlocking
+			CGUY RS 5
+			CGUY T -1
+			Stop
+		Ice:
+			CGUY G 5 A_GenericFreezeDeath
+			CGUY G 1 A_FreezeDeathChunks
+			wait
+	}
+}

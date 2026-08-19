@@ -177,6 +177,18 @@ OptionMenu "CreditSprites"
 	StaticText "NightmareGore Gibs"
 	StaticText ""
 	
+	StaticText "Serghei", 1
+	StaticText "Renetti M9"
+	StaticText "Doom 3 Shotgun"
+	StaticText "Doom 3 Plasma Rifle"
+	StaticText "PDW"
+	StaticText "BFG9000"
+	StaticText ""
+	
+	StaticText "Serghei & Craneo", 1
+	StaticText "BCF-2 Repeater"
+	StaticText ""
+	
 	StaticText "DBThanatos", 1
 	StaticText "Doom4Doom Armor Pickups"
 	StaticText ""
@@ -216,6 +228,7 @@ OptionMenu "CreditSounds"
 	
 	StaticText "StrikerTheHedgefox", 1
 	StaticText "Fiend's SSG Fire"
+	StaticText ""
 	
 	StaticText "KunaiKitsune & StrikerTheHedgefox", 1
 	StaticText "PDW Fire"

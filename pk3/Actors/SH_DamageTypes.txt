@@ -1,6 +1,8 @@
 // This file is for defining damage type related effects.
 // Code by StrikerTheHedgefox
 
+// Acid
+// ----
 actor AcidAccumulation : SH_BaseToken // Used to track acid damage accumulation.
 {
 	Inventory.Amount 1
@@ -33,6 +35,8 @@ ACTOR AcidStatus : PowerupGiver
 	+INVENTORY.ALWAYSPICKUP
 }
 
+// Void
+// ----
 actor VoidAccumulation : SH_BaseToken // Used to track void damage accumulation.
 {
 	Inventory.Amount 1
@@ -68,4 +72,82 @@ ACTOR VoidStatus : PowerupGiver
 	Powerup.Color "88 00 FF", 0.33333
 	+INVENTORY.AUTOACTIVATE
 	+INVENTORY.ALWAYSPICKUP
+}
+
+// Fire
+// ----
+actor FireAccumulation : SH_BaseToken // Used to track void damage accumulation.
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 200
+	Inventory.InterHubAmount 0
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.INTERHUBSTRIP
+	-INVENTORY.PERSISTENTPOWER
+	-INVENTORY.UNDROPPABLE
+}
+
+Actor PowerFireBuildTimer : Powerup { }
+ACTOR FireBuildTimer : PowerupGiver
+{
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "VoidBuildTimer"
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+Actor PowerFireStatus : PowerSpeed
+{
+	Speed 1.1
+}
+
+ACTOR FireStatus : PowerupGiver
+{
+	Inventory.PickupMessage "Burned by flame!"
+	Inventory.MaxAmount 0
+	Powerup.Duration 175
+	Powerup.Type "FireStatus"
+	Powerup.Color "FF 64 00", 0.33333
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+}
+
+actor BurningFire
+{
+	Radius 8
+	Height 16
+	RenderStyle Add
+	Alpha 1.0
+	DamageType "Burn"
+	+NOSPAWNEVENTSCRIPT
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+DROPOFF
+	+NOTELEPORT
+	+NOTIMEFREEZE
+	+DONTSPLASH
+	+NOTRIGGER
+	+FORCERADIUSDMG
+	+NODAMAGETHRUST
+	var int user_height;
+	var int user_radius;
+	var int user_burntimer;
+	States
+	{
+		Spawn:
+			NULL A 0 Bright NoDelay A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_STOP | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
+			NULL A 1 Bright // Spawn fire.
+			NULL A 0 Bright A_SetUserVar("user_burntimer", user_burntimer+1)
+			NULL A 0 Bright A_JumpIf(user_burntimer >= 18, "DoBurn")
+			NULL A 0 Bright A_JumpIfInventory("PowerFireStatus", 1, "Spawn")
+			goto Death
+		DoBurn:
+			NULL A 0 A_Explode(3, user_radius+20.0, 0, false, user_radius+10.0) 
+			NULL A 0 A_SetUserVar("user_burntimer", 0)
+			goto Spawn
+		Death:
+			TNT1 A 0
+			stop
+	}
 }

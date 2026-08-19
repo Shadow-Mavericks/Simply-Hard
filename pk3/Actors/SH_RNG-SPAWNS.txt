@@ -3,13 +3,10 @@ Actor SH_RandomZombiemanSpawn : SH_BaseMonsterRandomSpawner
 	Radius 20
 	Height 56
 	DropItem "SH_Zombieman"			255 100
-	DropItem "SH_Zombieman2"		255 80
-	DropItem "SH_Zombieman3"		255 60
 	DropItem "Flamerzombie"			255 5
 	Dropitem "Rocketzombie"			255 5
 	Dropitem "Chainsawzombie"		255 5
 	Dropitem "FemaleSergeant"		255 5
-	Dropitem "FemalePlasma"			255 5
 	Dropitem "Enemysentrygun"		255 1
 }
 
@@ -17,18 +14,14 @@ Actor SH_RandomShotgunGuySpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
-	Dropitem "HardShotgunGuy"		255 100
-	Dropitem "HardShotgunGuy1"		255 80
-	Dropitem "HardShotgunGuy2"		255 60
+	Dropitem "SH_ShotgunGuy"		255 100
 	Dropitem "SSGZombie"			255 5
 	DropItem "Flamerzombie"			255 5
 	DropItem "FreezeRifleGuy"		255 5
 	Dropitem "Enemysentrygun"		255 5
 	Dropitem "Rocketzombie"			255 5
-	DropItem "Bfgguy"				255 2
 	DropItem "ASGGUY"				255 3
 	Dropitem "FemaleSergeant"		255 5
-	Dropitem "FemalePlasma"			255 5
 }
 
 Actor SH_RandomImpSpawn : SH_BaseMonsterRandomSpawner
@@ -57,7 +50,8 @@ Actor SH_RandomChaingunGuySpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
-	DropItem "HardChaingunguy"		255 100
+	DropItem "SH_ChaingunGuy"		255 100
+	Dropitem "FemalePlasma"			255 5
 	Dropitem "LaserGunMajor"		255 5
 	Dropitem "DoubleChaingunguy"	255 5
 	Dropitem "Enemysentrygun"		255 5

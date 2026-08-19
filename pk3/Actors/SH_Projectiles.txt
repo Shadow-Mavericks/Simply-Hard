@@ -1,26 +1,3 @@
-//Bouncing rail projectile for Fiendzy's class
-Actor Fiendzys_PlasmaBall : SH_BasePlayerProjectile
-{
-	Radius 13
-	Height 8
-	Speed 40
-	Damage (10*(Random(1,4)))
-	RenderStyle Add
-	Alpha 1.0
-	SeeSound "weapons/plasmaf"
-	DeathSound "weapons/plasmax"
-	Obituary "$OB_MPPLASMARIFLE" // "%o was melted by %k's plasma gun."
-	States
-	{
-	Spawn:
-		FPBL AB 6 Bright
-		Loop
-	Death:
-		FPBL CDEF 4 Bright
-		Stop
-	}
-}
-
 actor SH_ArachnotronPlasma : SH_BaseEnemyProjectile
 {
 	Radius 13

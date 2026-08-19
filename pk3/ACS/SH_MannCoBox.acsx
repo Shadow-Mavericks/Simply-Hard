@@ -209,16 +209,23 @@ int tier7_totalweight[2];
 int tier7_numentries[2];
 MannCoBoxData_t tier7_good[] =
 {
-	{ "An Extra Life!",										"ExtraLife",			50,		DELAY_NONE },
-	{ "An Extra Life... \cgAnd a White Rabbit!",			"ExtraLifeRabbit",		5,		DELAY_NONE },
-	{ "A Friendly Archspeen!",								"FriendlyArchSpeen",	1,		DELAY_LAUGH },
+	{ "An Extra Life!",										"ExtraLife",			10,	DELAY_NONE },
+	{ "An Extra Life... \cgAnd a White Rabbit!",			"ExtraLifeRabbit",		10,	DELAY_NONE },
+	{ "A Tier 1 Weapon Upgrade!",							"T1Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 2 Weapon Upgrade!",							"T2Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 3 Weapon Upgrade!",							"T3Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 4 Weapon Upgrade!",							"T4Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 5 Weapon Upgrade!",							"T5Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 6 Weapon Upgrade!",							"T6Upgrade",			10,	DELAY_NONE },
+	{ "A Tier 7 Weapon Upgrade!",							"T7Upgrade",			10,	DELAY_NONE },
+	{ "A Friendly Archspeen!",								"FriendlyArchSpeen",	10,	DELAY_LAUGH },
 };
 
 MannCoBoxData_t tier7_bad[] =
 {
-	{ "The dog absorbed the reward, sorry.",	"YouLose",			15,		DELAY_NONE },
-	{ "Deja Vu!",								"DejaVu",			25,		DELAY_NONE },
-	{ "Pink!",									"Pink",				75,		DELAY_NONE },
+	{ "The dog absorbed the reward, sorry.",	"YouLose",			10,		DELAY_NONE },
+	{ "Deja Vu!",								"DejaVu",			10,		DELAY_NONE },
+	{ "Pink!",									"Pink",				10,		DELAY_NONE },
 };
 
 // This function adds up the weights of all good and bad results, which is used to determine the outcomes in MANNCO_PICK.

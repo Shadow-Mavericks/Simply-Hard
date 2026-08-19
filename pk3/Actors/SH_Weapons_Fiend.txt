@@ -25,6 +25,59 @@ actor FiendsAcidPuff : SH_PlayerBulletPuff
 	}
 }
 
+//Bouncing rail projectile for Fiendzy's class
+Actor Fiendzys_PlasmaBall : SH_BasePlayerProjectile
+{
+	Radius 13
+	Height 8
+	Speed 40
+	Damage (10*(Random(1,4)))
+	RenderStyle Add
+	Alpha 1.0
+	SeeSound "weapons/plasmaf"
+	DeathSound "weapons/plasmax"
+	Obituary "$OB_MPPLASMARIFLE" // "%o was melted by %k's plasma gun."
+	+SPAWNSOUNDSOURCE
+	States
+	{
+	Spawn:
+		FPBL AB 6 Bright
+		Loop
+	Death:
+		FPBL CDEF 4 Bright
+		Stop
+	}
+}
+
+actor Fiendzys_AcidPlasmaBallTrail : SH_BaseParticle
+{
+	Scale 0.25
+	Alpha 0.5
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			GPLE ABCD 1 Bright A_FadeOut(0.1)
+			stop
+	}
+}
+
+actor Fiendzys_AcidPlasmaBall : Fiendzys_PlasmaBall
+{
+	Damage (20)
+	DamageType "Acid"
+	States
+	{
+		Volatile:
+		Spawn:
+			GPLS A 1 Bright A_SpawnItemEx("Fiendzys_AcidPlasmaBallTrail", 0, 0, 0, frandom(-0.25, 0.5), frandom(-0.25, 0.25), frandom(-0.25, 0.25), 0, SXF_CLIENTSIDE, 0)
+			loop
+		Death:
+			GPLE ABCD 2 Bright
+			stop
+	}
+}
+
 //-----------------
 //----< Fists >----
 //-----------------
@@ -176,7 +229,7 @@ ACTOR RenettiM9 : SH_Weapon
 
 actor AcidM9 : RenettiM9
 {
-	Tag "Twin Acid M9s"
+	Tag "Twin Acid M9s (Tier 1 Upgrade)"
 	Weapon.SisterWeapon "RenettiM9"
 	+WEAPON.POWERED_UP
 	States
@@ -889,13 +942,6 @@ ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 //----< Plasma >----
 //------------------
 
-//Removed for balance reasons. < Used to be for a Reload mechanic >
-Actor Plasmaclip : Ammo
-{
-	Inventory.MaxAmount 100
-}
-
-
 ACTOR DEPlasmaRifle : SH_Weapon
 {
 	Tag "Plasma Rifle"
@@ -910,11 +956,12 @@ ACTOR DEPlasmaRifle : SH_Weapon
 	Weapon.BobStyle "InverseSmooth"
 	Weapon.SlotNumber 6
 	Weapon.Slotpriority 2
-	Inventory.Forbiddento "Maximusprime"
-	Inventory.ForbiddenTo "Kunai"
-	Inventory.ForbiddenTo "Gosimer"
+	
+	Weapon.PowerupItem "Tier6upgradetoken"
+	Weapon.SisterWeapon "VolatilePlasmaRifle"
+	
 	Inventory.Restrictedto "Fiend"
-	Inventory.Respawntics"4200"
+	Inventory.Respawntics "4200"
 	Inventory.PickupSound "weapon/plasmaget"
 	Inventory.PickupMessage "$GOTPLASMA"
 	States
@@ -931,29 +978,14 @@ ACTOR DEPlasmaRifle : SH_Weapon
 			FPLG A 1 A_Raise
 			Goto Select+1
 		Fire:
-			TNT1 A 0 A_Jumpifinventory("Tier6upgradetoken",1,"Goldfire")
-			TNT1 A 0 A_JUMP(250, "Muzzleflash1","Muzzleflash2")
-		Muzzleflash1:
-			FPLF A 2 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)
-			FPLF B 1
-			FPLG A 1 A_REFIRE("Fire")
-			Goto Ready
-		Muzzleflash2:
-			FPLF C 2 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)
-			FPLF B 1
-			FPLG A 1 A_REFIRE("Fire")
-			Goto Ready
-		GoldFire:
-			TNT1 A 0 A_JUMP(250, "GOLDMuzzleflash1","GOLDMuzzleflash2")
-		GOLDMuzzleflash1:
-			FPLF A 1 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)
-			FPLF B 1
-			FPLG A 1 A_REFIRE("GoldFire")
-			Goto Ready
-		GOLDMuzzleflash2:
-			FPLF C 1 Bright A_FireCustomMissile("Fiendzys_PlasmaBall",0,1,0,0,0)
-			FPLF B 1
-			FPLF B 1 A_REFIRE("GoldFire")
+			FPLG B 0 Bright A_FireCustomMissile("Fiendzys_PlasmaBall", frandom(-2, 2), true, 0, 0, 0)
+			FPLG B 0 Bright A_SetPitch(pitch-0.5)
+			FPLG B 0 Bright A_ClientsideACSExecute("SET_RECOIL_VALUE", random(-2, 2), 0)
+			FPLG B 1 Bright A_WeaponOffset(CallACS("GET_RECOIL_X", 0)/FIXED, 32, 0)
+			FPLG C 0 Bright A_SetPitch(pitch+0.25)
+			FPLG C 1 Bright A_WeaponOffset(CallACS("GET_RECOIL_X", 1)/FIXED, 32, 0)
+			FPLG A 2 A_SetPitch(pitch+0.25)
+			FPLG A 0 A_REFIRE("Fire")
 			Goto Ready
 		Altfire:
 			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
@@ -996,6 +1028,75 @@ ACTOR DEPlasmaRifle : SH_Weapon
 		Spawn:
 			DEPG A -1
 			Stop
+	}
+}
+
+actor VolatilePlasmaRifle : DEPlasmaRifle
+{
+	Tag "Volatile Plasma Rifle (Tier 6 Upgrade)"
+	Weapon.SisterWeapon "DEPlasmaRifle"
+	+WEAPON.POWERED_UP
+	States
+	{
+		Ready:
+			GPLG A 1 A_WeaponReady
+			Loop
+		Deselect:
+			TNT1 AA 0 A_Lower
+			GPLG A 1 A_Lower
+			Goto Deselect+1
+		Select:
+			TNT1 AA 0 A_Raise
+			GPLG A 1 A_Raise
+			Goto Select+1
+		Fire:
+			GPLG B 0 Bright A_FireCustomMissile("Fiendzys_AcidPlasmaBall", frandom(-2, 2), true, 0, 0, 0)
+			GPLG B 0 Bright A_SetPitch(pitch-0.5)
+			GPLG B 0 Bright A_ClientsideACSExecute("SET_RECOIL_VALUE", random(-2, 2), 0)
+			GPLG B 1 Bright A_WeaponOffset(CallACS("GET_RECOIL_X", 0)/FIXED, 32, 0)
+			GPLG C 0 Bright A_SetPitch(pitch+0.25)
+			GPLG C 1 Bright A_WeaponOffset(CallACS("GET_RECOIL_X", 1)/FIXED, 32, 0)
+			GPLG A 2 A_SetPitch(pitch+0.25)
+			GPLG A 0 A_REFIRE("Fire")
+			Goto Ready
+		Altfire:
+			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+			Goto Ready
+			RLGG A 1 Offset ( -26, 70 )
+			RLGG A 1 Offset ( -25, 60 )
+			RLGG A 2 Offset ( -23, 52 )
+			RLGG A 2 Offset ( -20, 47 )
+			RLGG A 3 Offset ( -15, 42 )
+			RLGG A 3 Offset ( -10, 37 )
+			RLGG A 4 Offset ( -5, 34 )
+			RLGG A 4 Offset ( 0, 32 )
+		ALTHOLD:
+			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
+			Goto ALTFirestop
+			RLGF A 1 Bright
+			RLGG B 1 Bright
+			RLGG C 1 Bright
+			RLGG F 0 A_Playsound("weapon/Gpistol",Chan_Auto)
+			RLGG D 1 A_Takeinventory("AbilityCharge",2)
+			RLGG D 0 A_FireCustomMissile("Healgunshot",0,0,0,0,0)
+			RLGG D 1 Bright A_RailAttack(0, 0, 1, "00 00 FF", "ff ff ff", RGF_FULLBRIGHT|RGF_SILENT, 10, "SH_PlayerBulletPuff", 0, 0, 256, 10, 1.0, 4.0, "Healgunblast")
+			RLGG A 1 A_Refire
+		ALTFirestop:
+			RLGG A 4 Offset ( 0, 32 )
+			RLGG A 4 Offset ( -5, 34 )
+			RLGG A 3 Offset ( -10, 37 )
+			RLGG A 3 Offset ( -15, 42 )
+			RLGG A 2 Offset ( -20, 47 )
+			RLGG A 2 Offset ( -23, 52 )
+			RLGG A 1 Offset ( -25, 60 )
+			RLGG A 1 Offset ( -26, 70 )
+			goto Ready
+		Flash:
+			TNT1 A 2 Bright A_Light1
+			TNT1 A 1 A_Light0
+			TNT1 A 2 Bright A_Light1
+			TNT1 A 1 A_Light0
+			Goto LightDone
 	}
 }
 

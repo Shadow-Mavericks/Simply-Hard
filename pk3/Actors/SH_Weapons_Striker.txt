@@ -46,23 +46,6 @@ actor ReckoningInEffect : SH_BaseToken
 	Inventory.MaxAmount 1
 }
 
-
-actor ReckoningRadiusCheck : SH_BaseParticle
-{
-	Radius 8
-	Height 48
-	+NOGRAVITY
-	+FORCERADIUSDMG
-	+NODAMAGETHRUST
-	-CLIENTSIDEONLY
-	States
-	{
-		Spawn:
-			TNT1 A 0 NoDelay A_Explode(1, 1024, 0, false, 1024)
-			stop
-	}
-}
-
 ACTOR ReckoningTrigger : CustomInventory
 {
 	Inventory.Amount 1
@@ -1482,7 +1465,7 @@ actor ReckoningGrabSphere
 		Explode:
 			NULL A 0 Bright A_Quake(3, 16, 0, 256, "")
 			NULL A 0 Bright A_PlaySound("ReckoningExplosion", CHAN_AUTO)
-			//NULL A 0 Bright A_Explode(user_damage, (user_radius*5.0)/4.0, 0, false, user_radius) 
+			NULL A 0 Bright //A_Explode(user_damage, user_radius+20.0, 0, false, user_radius) 
 			NULL A 0 Bright A_SpawnItemEx("VioletShockwave_NoPitch", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 0)
 			NULL A 0 Bright A_SpawnItemEx("VoidFlameSpawner", 0, 0, 0, 0, 0, 0, user_radius, SXF_ABSOLUTEANGLE, 0) 
 			goto ScaleDown
