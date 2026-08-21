@@ -250,6 +250,10 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 			PCEL C -1
 			loop
 			
+		Gosimer:
+			AGAS A -1
+			loop
+			
 		Striker:
 			SAMO F -1
 			loop
@@ -259,6 +263,7 @@ actor CellGiver : AmmoGiver_Base replaces Cell
 			goto CheckSprite
 			
 		SetScale:
+			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 90)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
 			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle

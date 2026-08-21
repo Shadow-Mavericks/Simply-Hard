@@ -220,7 +220,7 @@ actor PlasmaRifleGiver : WeaponGiver_Base replaces PlasmaRifle
 			loop
 
 		Gosimer:
-			THUN Z -1
+			WFLM A -1
 			loop
 			
 		MaximusPrime:

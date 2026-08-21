@@ -2298,10 +2298,12 @@ script 13236 (int type) // "AMMO_PICKUP"
 	str ammo1_class = "None";
 	str ammo1_name = "None";
 	int ammo1_amount = 0;
+	bool ammo1_nosuffix = 0;
 
 	str ammo2_class = "None";
 	str ammo2_name = "None";
 	int ammo2_amount = 0;
+	bool ammo2_nosuffix = 0;
 
 	str pickupsound = "misc/i_pkup";
 	str extrasound = "None";
@@ -2524,6 +2526,11 @@ script 13236 (int type) // "AMMO_PICKUP"
 			{
 				extrasound = "Jim/taunt6";
 			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				ammo1_name = "Fuel";
+				ammo1_nosuffix = true;
+			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
 				if(!nearPlasma)
@@ -2583,6 +2590,8 @@ script 13236 (int type) // "AMMO_PICKUP"
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
+				ammo1_name = "Fuel";
+				ammo1_nosuffix = true;
 				ammo2_class = "DevastatorAmmo";
 				ammo2_amount = 50;
 			}
@@ -2609,9 +2618,9 @@ script 13236 (int type) // "AMMO_PICKUP"
 		str suffix2 = "";
 
 		// Add a plural suffix, if applicable.
-		if((ammo1_amount) > 1)
+		if((ammo1_amount) > 1 && !ammo1_nosuffix)
 			suffix1 = "s";
-		if ((ammo2_amount) > 1)
+		if ((ammo2_amount) > 1 && !ammo2_nosuffix)
 			suffix2 = "s";
 
 		if(CheckActorClass(0, "MaximusPrime"))
@@ -2926,8 +2935,10 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
-				pickupsound_new = "Weapon/thunderboltget";
-				weapon_class = "Lightning_Rifle";
+				//pickupsound_new = "Weapon/thunderboltget";
+				//weapon_class = "Lightning_Rifle";
+				pickupsound_new = "weapon/Flameget";
+				weapon_class = "SH_Flameshot";
 				ammo1_amount = 40;
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
