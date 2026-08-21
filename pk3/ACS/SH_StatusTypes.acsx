@@ -134,4 +134,6 @@ script "VOID_TICKER" (void)
 	
 	ChangeFlag("FRIENDLY", !!(CheckInventory("StartedFriendlyHax")));	
 	ChangeFlag("FRIGHTENED", !!(CheckInventory("StartedFrightenedHax")));
+	if(CheckInventory("StartedFriendlyHax"))
+		SetActorState(0, "Spawn");
 }

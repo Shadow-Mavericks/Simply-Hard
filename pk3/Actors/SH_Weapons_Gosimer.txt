@@ -7,7 +7,7 @@ ACTOR GosimersExplosivepuff : SH_PlayerBulletPuff
 	+PUFFONACTORS
 	+PUFFGETSOWNER
 	+FORCERADIUSDMG
-	DamageType "PlayerExplosivePuff"
+	DamageType "Fire"
 	RenderStyle ADD
 	Alpha 1.0
 	Scale 0.3
@@ -105,18 +105,25 @@ Actor CritNadez_Base : Nadez_Base
 	SeeSound "Weapons/GrenLF"
 	+FORCERADIUSDMG
 	+EXTREMEDEATH
+	var int user_flameangle;
 	States
 	{
+		InstantStatusEffect:
 		Spawn:
 			SGRN A 1 Bright A_SpawnItemEx("NadeSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			SGRN A 0 Bright A_SpawnItemEx("CritNadeFireTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			loop
 		Death:
+			DEXP A 0 Bright A_SpawnItemEx("BasicFlame", 0, 0, 0, frandom(6.0, 8.0), 0, frandom(-1.0, 1.0), user_flameangle, SXF_CLIENTSIDE | SXF_TRANSFERSCALE, 0)
+			DEXP A 0 A_SetUserVar("user_flameangle", user_flameangle+15)
+			DEXP A 0 A_JumpIf(user_flameangle < 360, "Death")
+			goto Boom
+		Boom:
 			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
 			DEXP A 0 Bright A_SetScale(0.2, 0.2)
 			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
 			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(192, 192)
+			DEXP A 0 Bright A_Explode(128, 192)
 			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}
@@ -138,13 +145,12 @@ Actor CritBouncyNadez : CritNadez_Base
 {
 	BounceType Doom
 	BounceSound "Weapon/nadebounce"
-	Damage 40
 }
 
 Actor CritImpactNadez : CritNadez_Base
 {
 	Speed 40
-	Damage 60
+	Damage 40
 }
 
 
@@ -1278,5 +1284,110 @@ Actor Propulsion_Rifle : SH_Weapon
 		Spawn:
 			GSNP G -1
 			Stop
+	}
+}
+
+
+Actor SH_Flameshot : SH_Weapon
+{
+	Tag "Flamethrower"
+	Obituary "%o was BBQed by %k's flamethrower."
+	Inventory.PickupSound "weapon/Flameget"
+	Inventory.PickupMessage "You got the flamethrower! Time for a BBQ!"
+	Inventory.ForbiddenTo "Fiend"
+	Inventory.ForbiddenTo "Kunai"
+	Inventory.RestrictedTo "Gosimer"
+	Weapon.AmmoType "Battery"
+	Weapon.AmmoGive 0 // Handled by ACS
+	Weapon.AmmoUse 1
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "Smooth"
+	
+	Weapon.SisterWeapon "SH_SuperFlameshot"
+	Weapon.PowerupItem "Tier6upgradetoken"
+	
+	+WEAPON.NOAUTOAIM
+	+WEAPON.EXPLOSIVE
+	States
+	{
+		Spawn:
+			WFLM A -1
+			Loop
+		Ready:
+			FLMG A 1 A_WeaponReady
+			Loop
+		Deselect:
+			FLMG A 0 A_StopSound(CHAN_WEAPON)
+			FLMG A 1 A_Lower
+			Loop
+		Select:
+			FLMG A 1 A_Raise
+			Loop
+		Fire:
+			FLMG A 2 A_PLAYSOUND("Weapon/Flameshotstart", CHAN_5)
+			goto Hold
+		Hold:
+			FLMG B 0 bright A_GunFlash
+			FLMG B 0 bright A_PlaySound("Weapon/FlameShotLOOP", CHAN_WEAPON, 1.0, true)
+			FLMG B 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			FLMG C 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
+			FLMG D 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			FLMG E 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
+			FLMG A 2 bright A_ReFire
+			Goto Fireend
+		Fireend:
+			FLMG A 2 A_playsound("Weapon/Flameshotend",chan_weapon)
+			Goto Ready
+		Flash:
+			TNT1 A 2 A_Light1
+			TNT1 A 2 A_Light2
+			TNT1 A 1 A_Light1
+			TNT1 A 1 A_Light0
+			goto LightDone
+	}
+}
+
+Actor SH_SuperFlameshot : SH_FlameShot
+{
+	Tag "Super Flamethrower (Tier 6 Upgrade)"
+	Weapon.SisterWeapon "SH_Flameshot"
+	+WEAPON.POWERED_UP
+	States
+	{
+		Spawn:
+			WFLM A -1
+			Loop
+		Ready:
+			GLMG A 1 A_WeaponReady
+			Loop
+		Deselect:
+			GLMG A 0 A_StopSound(CHAN_WEAPON)
+			GLMG A 1 A_Lower
+			Loop
+		Select:
+			GLMG A 1 A_Raise
+			Loop
+		Fire:
+			GLMG A 2 A_PLAYSOUND("Weapon/Flameshotstart", CHAN_5)
+			goto Hold
+		Hold:
+			GLMG B 0 bright A_GunFlash
+			GLMG B 0 bright A_PlaySound("Weapon/FlameshotCrit", CHAN_WEAPON, 1.0, true)
+			GLMG B 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			GLMG C 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
+			GLMG D 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			GLMG E 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
+			GLMG A 2 bright A_ReFire
+			Goto Fireend
+		Fireend:
+			GLMG A 2 A_playsound("Weapon/Flameshotend",chan_weapon)
+			Goto Ready
+		Flash:
+			TNT1 A 2 A_Light1
+			TNT1 A 2 A_Light2
+			TNT1 A 1 A_Light1
+			TNT1 A 1 A_Light0
+			goto LightDone
 	}
 }

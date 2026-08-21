@@ -59,10 +59,6 @@ enum
 
 #include "actors/SH_HereticCompat.txt"
 
-#include "actors/gore/Decorate_Fluids.txt"
-#include "actors/gore/Decorate_Meat.txt"
-#include "actors/gore/Decorate_Supergore.txt"
-
 #include "actors/R667_Monsters.txt"
 #include "actors/R667_Weapons.txt"
 #include "actors/R667_SFX_Spawners.txt"

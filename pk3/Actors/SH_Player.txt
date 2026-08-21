@@ -58,19 +58,13 @@ ACTOR Fiend : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Fire:
-			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
-			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
-			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Electric:
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*3)
 			Goto Pain
 			
 		Pain.Ice:
-			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_TakeInventory("PowerFireStatus", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Freeze", 1)
 			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
 			Goto Pain
@@ -182,19 +176,13 @@ ACTOR Kunai : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Fire:
-			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
-			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
-			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Electric:
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
 			
 		Pain.Ice:
-			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_TakeInventory("PowerFireStatus", 1)
 			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
 			Goto Pain
 			
@@ -287,6 +275,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.AirCapacity 0.5
 	States
 	{
+		NoFireStatus:
 		Spawn:
 			PLAY A -1
 			Loop
@@ -304,18 +293,13 @@ ACTOR Gosimer : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Fire:
-			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
-			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Electric:
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
 		
 		Pain.Ice:
-			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_TakeInventory("PowerFireStatus", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Freeze", 1)
 			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
 			Goto Pain
@@ -426,18 +410,13 @@ actor MaximusPrime : SH_BasePlayer
 			PLAY G 8
 			Goto Spawn
 		
-		Pain.Fire:
-			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
-			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Electric:
 			//PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*2)
 			Goto Pain
 			
 		Pain.Ice:
-			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_TakeInventory("PowerFireStatus", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Freeze", 1)
 			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
 			Goto Pain
@@ -545,19 +524,13 @@ ACTOR Striker : SH_BasePlayer
 			PLAY G 4 A_Pain
 			Goto Spawn
 			
-		Pain.Fire:
-			PLAY G 0 A_TakeInventory("Debuff_Frozen", 1)
-			PLAY G 0 A_GiveInventory("DebuffItem_Burn", 1)
-			PLAY G 0 A_SetBlend("FF8000", 0.3, 35*5)
-			Goto Pain
-			
 		Pain.Electric:
 			PLAY G 0 A_GiveInventory("DebuffItem_Blind", 1)
 			PLAY G 0 A_SetBlend("FFFFFF", 1.0, 35*3)
 			Goto Pain
 			
 		Pain.Ice:
-			PLAY G 0 A_TakeInventory("Debuff_Burn", 1)
+			PLAY G 0 A_TakeInventory("PowerFireStatus", 1)
 			PLAY G 0 A_GiveInventory("DebuffItem_Freeze", 1)
 			PLAY G 0 A_SetBlend("8080FF", 0.3, 35*5)
 			Goto Pain

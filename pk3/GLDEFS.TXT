@@ -184,7 +184,7 @@ Object Flameshotfire
 	Frame AATK { Light FlameshotRed }
 }
 
-object Flameshotice
+object FlameshotSuper
 {
 	Frame AATK { Light FlameshotBlue }
 }
@@ -6646,54 +6646,6 @@ DisableFullBright
 BrightMap Sprite FSPIH5
 {
 map "brightmaps/Realm667/Monsters/Fusionspider/BMBLACK.png"
-DisableFullBright
-}
-
-BrightMap Sprite FLMGA0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGA0.png"
-DisableFullBright
-}
-
-BrightMap Sprite FLMGB0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGB0.png"
-DisableFullBright
-}
-
-BrightMap Sprite FLMGC0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGC0.png"
-DisableFullBright
-}
-
-BrightMap Sprite FLMGD0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGD0.png"
-DisableFullBright
-}
-
-BrightMap Sprite GLMGA0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGA0.png"
-DisableFullBright
-}
-
-BrightMap Sprite GLMGB0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGB0.png"
-DisableFullBright
-}
-
-BrightMap Sprite GLMGC0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGC0.png"
-DisableFullBright
-}
-
-BrightMap Sprite GLMGD0
-{
-map "brightmaps/Realm667/Weapons/Flamethrower/FLMGD0.png"
 DisableFullBright
 }
 

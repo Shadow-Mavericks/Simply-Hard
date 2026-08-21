@@ -1797,14 +1797,27 @@ actor DFFist : SH_Weapon
 	}
 }
 
-actor SaberPuff : FistPuff
+actor SaberPuff
 {
+	RenderStyle add
+	Alpha 0.5
+	Speed 0
+	Mass 10
+	Mass 5
+
+	+PUFFONACTORS
+	+NOEXTREMEDEATH
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+RANDOMIZE
+	+ALLOWPARTICLES
+	+BLOODLESSIMPACT
+	-NOEXTREMEDEATH
+
 	Seesound "Max/lshit"
 	Attacksound "Max/lshitwall"
 	Deathsound "Max/lshit"
-	-NOEXTREMEDEATH
-	+ALLOWPARTICLES
-	+BLOODLESSIMPACT
+		
 	States
 	{
 		Spawn:

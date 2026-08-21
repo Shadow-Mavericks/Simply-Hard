@@ -5610,7 +5610,7 @@ ACTOR InfernoBomb
    States
    {
    Spawn:
-	  SBLL A 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL A 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5623,7 +5623,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL B 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL B 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5636,7 +5636,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL C 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL C 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5649,7 +5649,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL D 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL D 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5662,7 +5662,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL E 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL E 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5675,7 +5675,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL F 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL F 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5688,7 +5688,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL G 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL G 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5701,7 +5701,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL H 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL H 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5714,7 +5714,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL I 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL I 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -5727,7 +5727,7 @@ ACTOR InfernoBomb
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireParticleFloat", Random(-5,5), Random(-5,5), Random(-5,5), Random(-1, 1), Random(-1, 1), Random(2, 4), 0, 128, 0)
-	  SBLL J 2 A_SpawnItem("BombTrail",0,0)
+	  SBLL J 2 A_SpawnItemEx("BombTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
 	  TNT1 E 0 Bright A_SpawnItemEx("FireSpark", Random(-5,5), Random(-5,5), Random(0,10), Random(-5,5), Random(-5,5), Random(0,20), Random(90,270), 128)
@@ -9359,10 +9359,11 @@ actor DivineShadowAtkSmall : BFGBall
 	}
 }
 
-actor DivineShadowAtkTrail
+actor DivineShadowAtkTrail : SH_BaseParticle
 {
 	+NOINTERACTION
 	+NOGRAVITY
+	+CLIENTSIDEONLY
 
 	RenderStyle Add
 	Alpha 0.8
@@ -9396,21 +9397,21 @@ actor DivineShadowAtkLarge : BFGBall
 		goto SpawnLoop
 	SpawnLoop:
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 G 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 G 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 G 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 G 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 G 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 G 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 G 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 G 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 H 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 H 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 H 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 H 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 H 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 H 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 0 A_SeekerMissile(0, 3, SMF_PRECISE)
-		BFS2 H 1 BRIGHT A_SpawnItem("DivineShadowAtkTrail", 0, -16, false, false)
+		BFS2 H 1 BRIGHT A_SpawnItemEx("DivineShadowAtkTrail", 0, 0, -16, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		loop
 	Death:
 		BFE1 ABC 8 Bright
@@ -10293,7 +10294,7 @@ ACTOR Terror 3124
 	  Loop
    Melee:
 	  TERR A 0 BRIGHT A_Die
-	  Wait
+	  goto Death
    Missile:
 	  TERR C 10 BRIGHT A_FaceTarget
 	  TERR D 4 BRIGHT A_SkullAttack

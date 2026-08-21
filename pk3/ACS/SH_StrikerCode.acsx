@@ -1791,7 +1791,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			int extremeDeathType = 0;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
+			int victimTID = ActivatorTID();
+			int victimUniqueTID = 0;
 			int attackerPlayerNum = -1;
+			int attackerTID = 0;
+			int attackerUniqueTID = 0;
 			
 			if((victimPlayerNum != -1) && (GameType() == GAME_SINGLE_PLAYER))
 			{
@@ -1808,6 +1812,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				attackerPlayerNum = PlayerNumber();
 				attackerIsEnemy = (CheckFlag(0, "ISMONSTER") && !CheckFlag(0, "FRIENDLY"));
+				attackerTID = ActivatorTID();
 			}
 				
 			if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
@@ -1901,15 +1906,17 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 									SpawnForced("AcidExplosion", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), acidExpUTID, 0);
 									if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
 									{
-										int playerUTID = UniqueTID();
-										Thing_ChangeTID(0, playerUTID);
+										attackerUniqueTID = UniqueTID();
+										Thing_ChangeTID(0, attackerUniqueTID);
 										
 										// Set target on acid explosion.
 										SetActivator(acidExpUTID);
-										SetPointer(AAPTR_TARGET, playerUTID);
+										SetPointer(AAPTR_TARGET, attackerUniqueTID);
 										SetUserVariable(acidExpUTID, "user_radius", acidRadius);
 										SetActorProperty(acidExpUTID, AProp_ScaleX, clamp(acidRadius/32, 0.25, 1.0));
 										SetActorProperty(acidExpUTID, AProp_ScaleY, clamp(acidRadius/32, 0.25, 1.0));
+										
+										Thing_ChangeTID(0, attackerTID);
 									}
 								}
 							}
@@ -1964,7 +1971,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 						if(victimIsMonster && !victimIsFriendly && !CheckInventory("VoidTouched")) // Force change species to allow friendly fire.
 						{
 							str species = StrParam(s:"Confused", s:GetActorClass(0), d:random(0, 99999));
-							SetActorProperty(0, APROP_Species, species);
+							SetActorPropertyString(0, APROP_Species, species);
 						}
 						
 						if(!alreadyVoid)
@@ -1973,6 +1980,62 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							SetActivator(0, AAPTR_DAMAGE_TARGET);
 							ACS_NamedExecuteAlways("VOID_TICKER", 0);
 							GiveInventory("VoidTouched", 1);
+						}
+					}
+				}
+			}
+			else if(!StrIcmp(arg2, "Fire"))
+			{			
+				SetActivator(0, AAPTR_DAMAGE_TARGET);
+
+				bool NoFireStatus = !!(CheckActorState(0, "NoFireStatus", true));
+				
+				if(!NoFireStatus)
+				{
+					int fireThreshold = (victimPlayerNum != -1) ? 15 : min(victimSpawnHealth/3, 200);
+					int fireSpawnHeight = GetActorProperty(0, AProp_Height)>>16;
+					int fireSpawnRadius = GetActorProperty(0, AProp_Radius)>>16;
+					
+					if(!CheckInventory("PowerFireBuildTimer")) // If void build timer has expired or hasn't yet started, reset.
+						TakeInventory("FireAccumulation", 200);
+						
+					if(instantStatusEffect)
+						GiveInventory("FireAccumulation", 200);
+					
+					GiveInventory("FireAccumulation", arg1);
+					GiveInventory("FireBuildTimer", 1);
+					
+					if(CheckInventory("FireAccumulation") >= fireThreshold)
+					{
+						int alreadyBurning = CheckInventory("PowerFireStatus");
+						TakeInventory("FireAccumulation", 200);
+						GiveInventory("FireStatus", 1);
+						// Todo: Take real ice status when I redo it.
+						TakeInventory("Debuff_Frozen", 1);
+						
+						if(!alreadyBurning)
+						{
+							int fireUTID = UniqueTID();
+							SpawnForced("BurningFire", GetActorX(0), GetActorY(0), GetActorZ(0), fireUTID, 0);
+							
+							victimUniqueTID = UniqueTID();
+							Thing_ChangeTID(0, victimUniqueTID);
+							
+							if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+							{
+								attackerUniqueTID = UniqueTID();
+								Thing_ChangeTID(0, attackerUniqueTID);
+								if(SetActivator(fireUTID))
+								{
+									SetPointer(AAPTR_TARGET, attackerUniqueTID);
+									SetPointer(AAPTR_TRACER, victimUniqueTID);
+									SetActorProperty(fireUTID, APROP_Mass, fireSpawnHeight);
+									SetActorProperty(fireUTID, APROP_Stamina, fireSpawnRadius);
+									SetActorProperty(fireUTID, APROP_Damage, (victimPlayerNum != -1) ? 1 : 3);
+								}
+							}
+							
+							Thing_ChangeTID(victimUniqueTID, victimTID);
 						}
 					}
 				}
@@ -3373,7 +3436,7 @@ script "RECKONING_ACTION" (void)
 	
 	GiveInventory("ReckoningCounter", 1);
 	int playerTID = UniqueTID();
-	Thing_ChangeTID(0, playerTID);
+	Thing_ChangeTID(0, playerTID); // No need to restore this unlike status effects since reckoning is only done by players.
 		
 	int orbTID = uniqueTID(0);
 	int damage = clamp(mass/2, 75, 400);
