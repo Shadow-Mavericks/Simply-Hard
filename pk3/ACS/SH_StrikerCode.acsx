@@ -1993,8 +1993,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				if(!NoFireStatus)
 				{
 					int fireThreshold = (victimPlayerNum != -1) ? 15 : min(victimSpawnHealth/3, 200);
-					int fireSpawnHeight = GetActorProperty(0, AProp_Height)>>16;
-					int fireSpawnRadius = GetActorProperty(0, AProp_Radius)>>16;
+					int fireSpawnHeight = GetActorProperty(0, AProp_Height);
+					int fireSpawnRadius = GetActorProperty(0, AProp_Radius);
 					
 					if(!CheckInventory("PowerFireBuildTimer")) // If void build timer has expired or hasn't yet started, reset.
 						TakeInventory("FireAccumulation", 200);
@@ -2029,9 +2029,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 								{
 									SetPointer(AAPTR_TARGET, attackerUniqueTID);
 									SetPointer(AAPTR_TRACER, victimUniqueTID);
-									SetActorProperty(fireUTID, APROP_Mass, fireSpawnHeight);
-									SetActorProperty(fireUTID, APROP_Stamina, fireSpawnRadius);
-									SetActorProperty(fireUTID, APROP_Damage, (victimPlayerNum != -1) ? 1 : 3);
+									SetActorProperty(fireUTID, APROP_ScaleX, fireSpawnRadius);
+									SetActorProperty(fireUTID, APROP_ScaleY, fireSpawnHeight);
+									SetActorProperty(fireUTID, APROP_Damage, (victimPlayerNum != -1) ? 1 : 4);
 								}
 							}
 							

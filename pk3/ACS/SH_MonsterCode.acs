@@ -34,7 +34,7 @@ script "DivineShadow::Circle" (void)
 		if (i >= 35 && i < 70)
 		{
 			int rndI = random(0,4);
-			for (int j = 0; j < rndI; j++)
+			//for (int j = 0; j < rndI; j++)
 			{
 				//DivineShadowAtkSmall = actor
 				//1) pick random angle

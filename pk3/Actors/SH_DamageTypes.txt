@@ -131,29 +131,31 @@ actor BurningFire
 	+FORCERADIUSDMG
 	+NODAMAGETHRUST
 	+PAINLESS
-	// stamina is radius
-	// mass is height
+	-CLIENTSIDEONLY
+	// scalex is radius
+	// scaley is height
 	var int user_burntimer;
 	States
 	{
 		Spawn:
 			NULL A 0 Bright NoDelay A_Warp(AAPTR_TRACER, 0.0, 0.0, 0.0, 0.0, WARPF_NOCHECKPOSITION | WARPF_STOP | WARPF_INTERPOLATE | WARPF_COPYINTERPOLATION)
-			NULL A 1 Bright A_SpawnItemEx("BasicFlame", frandom(-stamina, stamina), frandom(-stamina, stamina), frandom(0.0, mass), 0, 0, frandom(0.0, 1.0), 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 128)
+			NULL A 1 Bright A_SpawnItemEx("BasicFlame", frandom(-scalex, scalex), frandom(-scalex, scalex), frandom(0.0, scaley), 0, 0, frandom(0.0, 1.0), 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 128)
 			NULL A 0 Bright A_SetUserVar("user_burntimer", user_burntimer+1)
 			NULL A 0 Bright A_JumpIf(user_burntimer >= 7, "DoBurn")
 			NULL A 0 Bright A_JumpIfInventory("PowerFireStatus", 1, "Spawn", AAPTR_TRACER)
-			goto Death
+			NULL A 1 Bright A_Jump(256, "Death")
+			wait
 		DoBurn:
 			NULL A 0 A_Jump(200, "Burn")
 			NULL A 0 A_ChangeFlag("PAINLESS", 0)
 			goto Burn
 		Burn:
-			NULL A 0 A_Explode(damage, stamina+20.0, 0, false, stamina+10.0) 
+			NULL A 0 A_Explode(damage, scalex+20.0, 0, false, scalex+10.0) 
 			NULL A 0 A_SetUserVar("user_burntimer", 0)
 			NULL A 0 A_ChangeFlag("PAINLESS", 1)
 			goto Spawn
 		Death:
-			TNT1 A 0
+			TNT1 A 1
 			stop
 	}
 }

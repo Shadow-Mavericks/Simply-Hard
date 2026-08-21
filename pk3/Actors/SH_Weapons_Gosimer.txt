@@ -1332,7 +1332,7 @@ Actor SH_Flameshot : SH_Weapon
 			FLMG B 0 bright A_PlaySound("Weapon/FlameShotLOOP", CHAN_WEAPON, 1.0, true)
 			FLMG B 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
 			FLMG C 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
-			FLMG D 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			FLMG D 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
 			FLMG E 1 bright A_FireCustomMissile("FlameshotFire", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
 			FLMG A 2 bright A_ReFire
 			Goto Fireend
@@ -1376,7 +1376,7 @@ Actor SH_SuperFlameshot : SH_FlameShot
 			GLMG B 0 bright A_PlaySound("Weapon/FlameshotCrit", CHAN_WEAPON, 1.0, true)
 			GLMG B 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
 			GLMG C 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
-			GLMG D 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 1, 0, 0, 0, frandom(2.5, 3.0))
+			GLMG D 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
 			GLMG E 1 bright A_FireCustomMissile("FlameshotSuper", frandom(-1.0,1.0), 0, 0, 0, 0, frandom(2.5, 3.0))
 			GLMG A 2 bright A_ReFire
 			Goto Fireend

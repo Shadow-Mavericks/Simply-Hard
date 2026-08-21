@@ -2311,7 +2311,7 @@ Actor OrbitComet : Comet
   Spawn:
 	COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
 	TNT1 A 0 A_CustomMissile("OrbitComet", 0, 0, 75)
-	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 	Stop
   }
 }
@@ -2323,7 +2323,7 @@ Actor OrbitComet2 : OrbitComet
   Spawn:
 	COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
 	TNT1 A 0 A_CustomMissile("OrbitComet2", 0, 0, -75)
-	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
 	Stop
   }
 }
@@ -2335,35 +2335,13 @@ Actor OrbitCometTail : CometTail
 
 Actor HellFire
 {
-	+NoBlockMap
-	+Painless
-	+BloodlessImpact
-	+Missile
-	+DropOff
-	States
-	{
-		Spawn:
-			TNT1 A 1
-			Loop
-		Death:
-			TNT1 A 0 Bright A_CustomMissile("HellFire1", 0, 0, -180, CMF_TRACKOWNER)
-			TNT1 A 0 Bright A_CustomMissile("HellFire1", 0, 16, -175, CMF_TRACKOWNER)
-			TNT1 A 0 Bright A_CustomMissile("HellFire1", 0, 32, -170, CMF_TRACKOWNER)
-			TNT1 A 0 Bright A_CustomMissile("HellFire1", 0, -16, -185, CMF_TRACKOWNER)
-			TNT1 A 0 Bright A_CustomMissile("HellFire1", 0, -32, -190, CMF_TRACKOWNER)
-			TNT1 A 10 Bright A_PlaySound("Afrit/Hellfire")
-			Stop
-	}
-}
-
-Actor HellFire1
-{
 	+Ripper
 	+NoExplodeFloor
 	+Painless
 	+BloodlessImpact
 	+Missile
 	+DropOff
+	SeeSound "Afrit/Hellfire"
 	Speed 2
 	States
 	{
