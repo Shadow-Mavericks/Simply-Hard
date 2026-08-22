@@ -93,9 +93,42 @@ skill okuplok
 	Key = "o"
 }
 
-map SH01 "Hunted?"
+map SH01 "Simply Toxic"
 {
-	next = "SH02"
+	Next 	=	"SH02"
+	Music	=	"D_DNK1"
+	sky1	=	"SH_RSKY3", 0.0
+	Nojump
+	Nocrouch
+}
+
+map SH02 "Familiar places"
+{
+	Next 	=	"SH03"
+	Music	=	"D_e1m5"
+	sky1	=	"SH_RSKY3", 0.0
+	Nojump
+	Nocrouch
+}
+
+
+map SH06 "Flood Zone act 2"
+{
+	Next 	=	"SH07"
+	Music	=	"D3D_FZ"
+	sky1	=	"SH6SKYG", 0.0
+}
+
+map SH07 "Unfinished Map"
+{
+	Next 	=	"hub"
+	Music	=	"D3D_FZ"
+	sky1	=	"SH6SKYG", 0.0
+}
+
+map SHSEC01 "Hunted?"
+{
+	next = "SHSEC02"
 	music = "Haunt1"
 	sky1 = "SH_RSKY2", 0.3
 	//author = "Gosimer"
@@ -103,7 +136,7 @@ map SH01 "Hunted?"
 	nocrouch
 }
 
-map SH02 "Tribute Of Blood"
+map SHSEC02 "Tribute Of Blood"
 {
 	next = "SH03"
 	music = "DIB_01"
@@ -111,20 +144,4 @@ map SH02 "Tribute Of Blood"
 	//author = "Gosimer"
 	nojump
 	nocrouch
-}
-
-map SH03 "Familiar places"
-{
-	Next 	=	"SH06"
-	Music	=	"D_e1m5"
-	sky1	=	"SH_RSKY3", 0.0
-	Nojump
-	Nocrouch
-}
-
-map SH06 "Flood Zone act 2"
-{
-	Next 	=	"SH07"
-	Music	=	"D3D_FZ"
-	sky1	=	"SH6SKYG", 0.0
 }

@@ -1,0 +1,38 @@
+actor PistolCasing
+{
+	Projectile
+	Radius 2
+	Height 2
+	Speed 4
+	Gravity 0.25
+	Scale 0.075
+	BounceType Doom
+	BounceFactor 0.75
+	BounceCount 5
+	BounceSound "Weapons/BulletCasing"
+	+NOTRIGGER
+	+CLIENTSIDEONLY
+	+ALLOWCLIENTSPAWN
+	+NOSPAWNEVENTSCRIPT
+	+NODAMAGEEVENTSCRIPT
+	+FORCEXYBILLBOARD
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			PBUL ABCDEFGH 2
+			loop
+		Death:
+			PBUL A 1050 A_Jump(128, "Death2", "Death3", "Death4")
+			stop
+		Death2:
+			PBUL C 1050
+			stop
+		Death3:
+			PBUL D 1050
+			stop
+		Death4:
+			PBUL H 1050
+			stop
+	}
+}

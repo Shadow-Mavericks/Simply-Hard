@@ -36,6 +36,7 @@ enum
 #include "actors/SH_Abilities.txt"
 #include "actors/SH_Barrels.txt"
 #include "actors/SH_Blood.txt"
+#include "actors/SH_Casings.txt"
 #include "actors/SH_Decorations.txt"
 #include "actors/SH_Monsters.txt"
 #include "actors/SH_CompatMonsters.txt"

@@ -351,6 +351,7 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 			PPKS A 0 A_PlaySound("WaltherPPK", CHAN_WEAPON)
 			PPKS B 0 BRIGHT A_AlertMonsters
 			PPKS B 0 BRIGHT A_FireBullets(2, 2, 1, CallACS("STRIKER_PPKDAMAGE"), "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPKS B 0 BRIGHT A_SpawnItemEx ("PistolCasing", cos(pitch)*16, 4, (CallACS("GET_VIEW_HEIGHT")-4.0)-(sin(pitch)*16), cos(pitch-frandom(45.0, 50.0))*2, frandom(1.0, 1.5), -sin(pitch-frandom(45.0, 50.0))*2, 0, SXF_CLIENTSIDE, 0)
 			PPKS B 0 BRIGHT A_Light2
 			PPKS B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			PPKS C 0 BRIGHT A_Light1
@@ -367,6 +368,7 @@ ACTOR WaltherPPK : StrikerBaseWeapon
 			PPKS A 0 A_TakeInventory("PistolImbued", 1)
 			PPK2 B 0 BRIGHT A_AlertMonsters
 			PPK2 B 0 BRIGHT A_FireBullets(2, 2, 1, CallACS("STRIKER_PPKDAMAGE")*2, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
+			PPK2 B 0 BRIGHT A_SpawnItemEx ("PistolCasing", cos(pitch)*16, 4, (CallACS("GET_VIEW_HEIGHT")-4.0)-(sin(pitch)*16), cos(pitch-frandom(45.0, 50.0))*2, frandom(1.0, 1.5), -sin(pitch-frandom(45.0, 50.0))*2, 0, SXF_CLIENTSIDE, 0)
 			PPK2 B 0 BRIGHT A_Light2
 			PPK2 B 1 BRIGHT A_SetPitch(pitch-0.5, 0)//SPF_INTERPOLATE)
 			PPK2 C 0 BRIGHT A_Light1
@@ -1198,7 +1200,7 @@ actor AuraShot : SH_BasePlayerFastProjectile
 	Height 4
 	Speed 100
 	Damage (3)
-	Scale 0.4
+	Scale 0.6
 	RenderStyle Add
 	DamageType "Void"
 	Alpha 1.0
@@ -1669,7 +1671,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 	Radius 4
 	Height 4
 	obituary "%o took %k's FRAG-12 cluster grenade to the face."
-	Damage (25)
+	Damage (32)
 	Speed 64
 	bouncesound "weapons/grbnce"
 	BounceFactor 0.32
@@ -1715,7 +1717,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 
 actor FRAG12GrenadeImbued : FRAG12Grenade
 {
-	Damage (50)
+	Damage (64)
 	DamageType "Void"
 	States
 	{
@@ -1775,7 +1777,7 @@ actor Cluster : SH_BasePlayerProjectile
 	Spawn:
 		KPUF A 0
 		KPUF A 0 A_SetGravity(frandom[cluster](0.9, 1.1)) 
-		KPUF A 0 A_SetArg(0, random[cluster](4, 56))
+		KPUF A 0 A_SetArg(0, random[cluster](2, 56))
 		goto Fly
 	Fly:
 		KPUF A 1 Bright A_SpawnItemEX("NadeSmoke", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
