@@ -301,9 +301,10 @@ function int seek_string(str string, str substring, int startPos)
 	if(startPos < 0)
 		return -1;
 
+	int firstChar = GetChar(substring, 0);
 	for(i = startPos; i < stringLength; i++)
 	{
-		if(GetChar(string, i) != GetChar(substring, 0))
+		if(GetChar(string, i) != firstChar)
 			continue;
 
 		firstMatchPos = i;

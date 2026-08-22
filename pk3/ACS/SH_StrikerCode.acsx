@@ -60,9 +60,12 @@ function void detect_wads(void)
 			{
 				Log(s:"Detected Heretic IWAD");
 				SetCVar("sh_iwad_detected", IWAD_HERETIC);
+				LumpClose(startIndex);
 				break;
 			}
 		}
+		
+		LumpClose(startIndex);
 	}
 	
 	startIndex = -1;
@@ -93,6 +96,7 @@ function void detect_wads(void)
 			// Monster Swaps
 			SetCVarString("sh_swap_mastermind", "Cybruiser");
 			SetCVarString("sh_swap_arachnotron", "Mayhem18OShadow");
+			LumpClose(startIndex);
 			return;
 		}
 		
@@ -109,6 +113,7 @@ function void detect_wads(void)
 			SetCVarString("sh_swap_wolfss",		"MayhemPlasmaMarine");
 			SetCVarString("sh_swap_baron",		"MayhemGrell");
 			SetCVarString("sh_swap_keen",		"SH_SuicideBomber");
+			LumpClose(startIndex);
 			return;
 		}
 		
@@ -143,6 +148,7 @@ function void detect_wads(void)
 		{
 			Log(s:"Strange Aeons Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_STRANGEAEONS);
+			LumpClose(startIndex);
 			return;
 		}
 
@@ -152,6 +158,7 @@ function void detect_wads(void)
 		{
 			Log(s:"Back To Saturn X: Episode 2 Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_BTSXE2);
+			LumpClose(startIndex);
 			return;
 		}
 		
@@ -165,7 +172,8 @@ function void detect_wads(void)
 			// Monster Swaps
 			SetCVarString("sh_swap_mastermind", "Valiant_CybruiserSpawner");
 			SetCVarString("sh_swap_hellknight",	"Valiant_PyroDemonSpawner");
-			SetCVarString("sh_swap_baron",		"Valiant_SuperMancubusSpawner");	
+			SetCVarString("sh_swap_baron",		"Valiant_SuperMancubusSpawner");
+			LumpClose(startIndex);
 			return;
 		}
 		
@@ -175,6 +183,7 @@ function void detect_wads(void)
 		{
 			Log(s:"Valiant Detected");
 			SetCVar("sh_compat_mode", WADCOMPAT_VALIANT);
+			LumpClose(startIndex);
 			return;
 		}
 
@@ -252,6 +261,7 @@ function void detect_wads(void)
 			SetCVarString("sh_swap_shotgunguy", "Sargasso_Sergeant");
 			SetCVarString("sh_swap_chaingunguy", "Sargasso_PulseLaserSergeant");
 			SetCVarString("sh_swap_wolfss", "Sargasso_PlasmaMarine");
+			LumpClose(startIndex);
 			return;
 		}
 		
@@ -269,6 +279,7 @@ function void detect_wads(void)
 			SetCVarString("sh_swap_painelemental", "None"); // Orange Caco Ball Thingy.
 			SetCVarString("sh_swap_hellknight", "None"); // Rocket Marine Thing.
 			SetCVarString("sh_swap_mastermind", "None"); // Flying Mastermind.
+			LumpClose(startIndex);
 			return;
 		}
 
@@ -276,6 +287,7 @@ function void detect_wads(void)
 		LumpClose(startIndex);
 	}
 
+	Log(s:"WAD Detection Finished.");
 	SetCVar("sh_compat_mode", WADCOMPAT_NORMAL);
 }
 
