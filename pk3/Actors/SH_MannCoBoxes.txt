@@ -529,7 +529,7 @@ Actor ActiveBox1 //Decorate by Fiendzy & StrikerTheHedgefox
 			"####" D 1 ACS_NamedExecuteWithResult("SV_SKELYDRIVER2")
 			goto Raddriver
 		Raddriver:
-			"####" D 1 A_SpawnItemEx ("Dejavuskelebob", 0, -48, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
+			"####" D 1 A_SpawnItemEx ("Dejavuskelebob", 0, 0, 1, 0, 0, 0, 90, SXF_TELEFRAG|SXF_NOCHECKPOSITION, 0)
 			Goto AlertAndDespawn
 			
 		Pink:

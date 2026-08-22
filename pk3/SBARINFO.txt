@@ -555,7 +555,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 							
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}	
-			IsSelected "ModifiedMAC10"
+			IsSelected "ModifiedMAC10", "EnhancedMAC10"
 			{
 				Alpha 0.5
 				{

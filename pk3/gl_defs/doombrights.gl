@@ -867,111 +867,111 @@ brightmap sprite SPOSF5
 	disablefullbright
 }
 
-brightmap sprite CPOSE1
+brightmap sprite CGUYE1
 {
 	map "brightmaps/doom/CPOSE1.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE2
+brightmap sprite CGUYE2
 {
 	map "brightmaps/doom/CPOSE2.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE3
+brightmap sprite CGUYE3
 {
 	map "brightmaps/doom/CPOSE3.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE4
+brightmap sprite CGUYE4
 {
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE5
+brightmap sprite CGUYE5
 {
 	map "brightmaps/doom/CPOSE5.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE6
+brightmap sprite CGUYE6
 {
 	map "brightmaps/doom/CPOSE6.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE7
+brightmap sprite CGUYE7
 {
 	map "brightmaps/doom/CPOSE7.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSE8
+brightmap sprite CGUYE8
 {
 	map "brightmaps/doom/CPOSE8.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF1
+brightmap sprite CGUYF1
 {
 	map "brightmaps/doom/CPOSF1.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF2
+brightmap sprite CGUYF2
 {
 	map "brightmaps/doom/CPOSF2.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF3
+brightmap sprite CGUYF3
 {
 	map "brightmaps/doom/CPOSF3.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF4
+brightmap sprite CGUYF4
 {
 	map "brightmaps/doom/CPOSF4.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF5
+brightmap sprite CGUYF5
 {
 	map "brightmaps/doom/CPOSF5.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF6
+brightmap sprite CGUYF6
 {
 	map "brightmaps/doom/CPOSF6.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF7
+brightmap sprite CGUYF7
 {
 	map "brightmaps/doom/CPOSF7.png"
 	iwad
 	disablefullbright
 }
 
-brightmap sprite CPOSF8
+brightmap sprite CGUYF8
 {
 	map "brightmaps/doom/CPOSF8.png"
 	iwad

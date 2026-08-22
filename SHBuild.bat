@@ -94,12 +94,16 @@ GOTO COMPILEACS
 :DEVBUILD_CONTINUED
 echo Compiling Simply Hard Dev Build...
 cd /d %~dp0
-del .\builds\Simply-Hard_DEV.pk3 /q
+REM del .\builds\Simply-Hard_DEV.pk3 /q
 del .\pk3\*.tmp /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
-7za a -y -tzip -mx=0 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* ..\builds\Simply-Hard_DEV.pk3 .\
+if exist ..\builds\Simply-Hard_DEV.pk3 (
+    7za u -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* ..\builds\Simply-Hard_DEV.pk3 .\
+) else (
+    7za a -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* ..\builds\Simply-Hard_DEV.pk3 .\
+)
 
 pause
 goto MENU

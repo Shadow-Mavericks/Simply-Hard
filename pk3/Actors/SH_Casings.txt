@@ -16,6 +16,7 @@ actor PistolCasing
 	+NOSPAWNEVENTSCRIPT
 	+NODAMAGEEVENTSCRIPT
 	+FORCEXYBILLBOARD
+	+MOVEWITHSECTOR
 	-NOGRAVITY
 	States
 	{
@@ -33,6 +34,174 @@ actor PistolCasing
 			stop
 		Death4:
 			PBUL H 1050
+			stop
+	}
+}
+
+actor RifleCasing : PistolCasing
+{
+	BounceSound "Weapons/ChaingunCasing"
+	States
+	{
+		Spawn:
+			PBU2 ABCDEFGHIJKL 2
+			loop
+		Death:
+			PBU2 A 1050 A_Jump(128, "Death2", "Death3", "Death4", "Death5", "Death6")
+			stop
+		Death2:
+			PBU2 D 1050
+			stop
+		Death3:
+			PBU2 E 1050
+			stop
+		Death4:
+			PBU2 F 1050
+			stop
+		Death5:
+			PBU2 K 1050
+			stop
+		Death6:
+			PBU2 L 1050
+			stop
+	}
+}
+
+actor ShortShotgunCasing : PistolCasing
+{
+	BounceSound "Weapons/ShellCasing"
+	States
+	{
+		Spawn:
+			PSHE ABCDEFGH 2
+			loop
+		Death:
+			PSHE A 1050 A_Jump(128, "Death2", "Death3", "Death4")
+			stop
+		Death2:
+			PSHE C 1050
+			stop
+		Death3:
+			PSHE D 1050
+			stop
+		Death4:
+			PSHE H 1050
+			stop
+	}
+}
+
+actor RedShotgunCasing : PistolCasing
+{
+	BounceSound "Weapons/ShellCasing"
+	States
+	{
+		Spawn:
+			PSH2 ABCDEFGHIJKL 2
+			loop
+		Death:
+			PSH2 B 1050 A_Jump(128, "Death2", "Death3", "Death4", "Death5", "Death6")
+			stop
+		Death2:
+			PSH2 C 1050
+			stop
+		Death3:
+			PSH2 D 1050
+			stop
+		Death4:
+			PSH2 I 1050
+			stop
+		Death5:
+			PSH2 J 1050
+			stop
+		Death6:
+			PSH2 K 1050
+			stop
+	}
+}
+
+actor CyanShotgunCasing : PistolCasing
+{
+	BounceSound "Weapons/ShellCasing"
+	States
+	{
+		Spawn:
+			PSH3 ABCDEFGHIJKL 2
+			loop
+		Death:
+			PSH3 B 1050 A_Jump(128, "Death2", "Death3", "Death4", "Death5", "Death6")
+			stop
+		Death2:
+			PSH3 C 1050
+			stop
+		Death3:
+			PSH3 D 1050
+			stop
+		Death4:
+			PSH3 I 1050
+			stop
+		Death5:
+			PSH3 J 1050
+			stop
+		Death6:
+			PSH3 K 1050
+			stop
+	}
+}
+
+actor GreenShotgunCasing : PistolCasing
+{
+	BounceSound "Weapons/ShellCasing"
+	States
+	{
+		Spawn:
+			PSH4 ABCDEFGHIJKL 2
+			loop
+		Death:
+			PSH4 B 1050 A_Jump(128, "Death2", "Death3", "Death4", "Death5", "Death6")
+			stop
+		Death2:
+			PSH4 C 1050
+			stop
+		Death3:
+			PSH4 D 1050
+			stop
+		Death4:
+			PSH4 I 1050
+			stop
+		Death5:
+			PSH4 J 1050
+			stop
+		Death6:
+			PSH4 K 1050
+			stop
+	}
+}
+
+actor BlueShotgunCasing : PistolCasing
+{
+	BounceSound "Weapons/ShellCasing"
+	States
+	{
+		Spawn:
+			PSH5 ABCDEFGHIJKL 2
+			loop
+		Death:
+			PSH5 B 1050 A_Jump(128, "Death2", "Death3", "Death4", "Death5", "Death6")
+			stop
+		Death2:
+			PSH5 C 1050
+			stop
+		Death3:
+			PSH5 D 1050
+			stop
+		Death4:
+			PSH5 I 1050
+			stop
+		Death5:
+			PSH5 J 1050
+			stop
+		Death6:
+			PSH5 K 1050
 			stop
 	}
 }

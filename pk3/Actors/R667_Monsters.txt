@@ -2260,77 +2260,75 @@ Actor Comet
 	}
 }
 
-Actor CometTail
+Actor CometTail : SH_BaseParticle
 {
-  Projectile
-  +NoClip
-  RenderStyle Add
-  Alpha 0.4
-  States
-  {
-  Spawn:
-	FRTB ABCDEFGHI 1 Bright
-	Stop
-  }
+	RenderStyle Add
+	Alpha 0.4
+	States
+	{
+		Spawn:
+			FRTB ABCDEFGHI 1 Bright
+			Stop
+	}
 }
 
 Actor CometDeathGlow : CometTail
 {
-  Scale 2.0
-  Alpha 0.6
-  States
-  {
-  Spawn:
-	FRTB ABCDEFGHI 3 Bright
-	Stop
-  }
+	Scale 2.0
+	Alpha 0.6
+	States
+	{
+		Spawn:
+			FRTB ABCDEFGHI 3 Bright
+			Stop
+	}
 }
 
-Actor CometDeath
+Actor CometDeath : SH_BaseParticle
 {
-  Projectile
-  RenderStyle Add
-  +NoClip
-  Alpha 0.7
-  States
-  {
-  Spawn:
-	COMT FGHI 3 Bright
-	Stop
-  }
+	Projectile
+	RenderStyle Add
+	+NoClip
+	Alpha 0.7
+	States
+	{
+		Spawn:
+			COMT FGHI 3 Bright
+			Stop
+	}
 }
 
 Actor OrbitComet : Comet
 {
-  SeeSound ""
-  +NoClip
-  Scale 0.28
-  Speed 5
-  States
-  {
-  Spawn:
-	COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
-	TNT1 A 0 A_CustomMissile("OrbitComet", 0, 0, 75)
-	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
-	Stop
-  }
+	SeeSound ""
+	+NoClip
+	Scale 0.28
+	Speed 5
+	States
+	{
+		Spawn:
+			COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+			TNT1 A 0 A_CustomMissile("OrbitComet", 0, 0, 75)
+			TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			Stop
+	}
 }
 
 Actor OrbitComet2 : OrbitComet
 {
-  States
-  {
-  Spawn:
-	COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
-	TNT1 A 0 A_CustomMissile("OrbitComet2", 0, 0, -75)
-	TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
-	Stop
-  }
+	States
+	{
+		Spawn:
+			COMT AABBCC 1 Bright A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, 128)
+			TNT1 A 0 A_CustomMissile("OrbitComet2", 0, 0, -75)
+			TNT1 A 0 A_SpawnItemEx("OrbitCometTail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE)
+			Stop
+	}
 }
 
 Actor OrbitCometTail : CometTail
 {
-  Scale 0.5
+	Scale 0.5
 }
 
 Actor HellFire
