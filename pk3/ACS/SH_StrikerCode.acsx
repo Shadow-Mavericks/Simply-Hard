@@ -1185,7 +1185,7 @@ function void actor_swap(str replace, str with, int chance)
 
 #define SAP_HEALTH 0
 #define SAP_AMMO 1
-#define MAX_ORBS_PER_TICK 15
+#define MAX_ORBS_PER_TICK 10
 
 function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int healDiv, int spawn_ptr, int type)
 {

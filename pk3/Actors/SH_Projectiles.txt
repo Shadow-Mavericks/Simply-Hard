@@ -2771,56 +2771,6 @@ actor DarkSeeker
     }
 }
 
-ACTOR Beem_Slash
-{
-	Damage (100)
-	Speed 30
-	Height 16
-	Radius 16
-	Projectile
-	+NOTIMEFREEZE
-	+RIPPER
-	States
-	{
-		Spawn:
-			TNT1 A 0
-			TNT1 A 0
-
-		Spawn2:
-			TNT1 A 1 A_SpawnItemEX("Beem_Slash_Particle", 0, 0, 0)
-			TNT1 A 0 A_Playsound("Bladebeam/fly", CHAN_6, 1.0, 1)
-			loop
-
-		Death:
-			TNT1 A 0 A_StopSound(CHAN_6)
-			TNT1 A 0 A_PlaySound("BladeBeam/impact", CHAN_AUTO)
-			TNT1 A 1
-			stop
-	}
-}
-
-ACTOR Beem_Slash_Particle
-{
-	+FORCEXYBILLBOARD
-	+NOGRAVITY
-	+NOINTERACTION
-//	+ROLLSPRITE
-	+CLIENTSIDEONLY
-	+NOTIMEFREEZE
-	Renderstyle "add"
-	Projectile
-	States
-	{
-		Spawn:
-			BEEM F 1 Bright A_FadeOut(0.05)
-			loop
-
-		Death:
-			TNT1 A 0
-			stop
-	}
-}
-
 // Eri_rocket_projectile
 
 Actor EriMissileTrail

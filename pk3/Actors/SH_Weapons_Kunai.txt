@@ -141,7 +141,7 @@ actor HealingSeeker
 			KPUF B 0 Bright A_SpawnItemEx("Red_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_JumpIfCloser(32, "Heal")
 			KPUF A 0 A_SetUserVar("user_timer", user_timer+1)
-			KPUF A 0 A_JumpIf(user_timer > 350, "Heal")
+			KPUF A 0 A_JumpIf(user_timer > 175, "Heal")
 			loop
 		Heal:
 			KPUF A 0 ACS_NamedExecuteWithResult("KUNAI_SAP")
@@ -167,7 +167,7 @@ actor AmmoSeeker : HealingSeeker
 			KBUF B 0 Bright A_SpawnItemEx("Blue_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KBUF A 0 A_JumpIfCloser(32, "GiveAmmo")
 			KPUF A 0 A_SetUserVar("user_timer", user_timer+1)
-			KPUF A 0 A_JumpIf(user_timer > 350, "GiveAmmo")
+			KPUF A 0 A_JumpIf(user_timer > 175, "GiveAmmo")
 			loop
 		GiveAmmo:
 			KBUF A 0 ACS_NamedExecuteWithResult("KUNAI_SAP", 1) // 1 = SAP_AMMO
@@ -386,6 +386,50 @@ actor FrostShotBallSmall : FrostShotBallBig
 	}
 }
 
+ACTOR Beam_Slash
+{
+	Damage (100)
+	Speed 30
+	Height 16
+	Radius 16
+	Projectile
+	+NOTIMEFREEZE
+	+RIPPER
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0
+
+		Spawn2:
+			TNT1 A 1 A_SpawnItemEX("Beam_Slash_Particle", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_Playsound("Bladebeam/fly", CHAN_6, 1.0, 1)
+			loop
+
+		Death:
+			TNT1 A 0 A_StopSound(CHAN_6)
+			TNT1 A 0 A_PlaySound("BladeBeam/impact", CHAN_AUTO)
+			TNT1 A 1
+			stop
+	}
+}
+
+ACTOR Beam_Slash_Particle : SH_BaseParticle
+{
+	Renderstyle "Add"
+	Alpha 1.0
+	States
+	{
+		Spawn:
+			BEEM F 1 Bright A_FadeOut(0.05)
+			loop
+
+		Death:
+			TNT1 A 0
+			stop
+	}
+}
+
 
 ACTOR Soulreaper : SH_Weapon
 {
@@ -498,7 +542,7 @@ ACTOR Soulreaper : SH_Weapon
 			KBLD D 1 A_playsound("BladeBeam/attack", Chan_6)
 			KBLD E 1
 			KBLD F 1 A_takeinventory("AbilityCharge",25)
-			KBLD G 1 A_FireCustomMissile("Beem_Slash",0,0,0,0,0)
+			KBLD G 1 A_FireCustomMissile("Beam_Slash",0,0,0,0,0)
 			KBLD H 1
 			KBLD I 1
 			KBLD J 2
