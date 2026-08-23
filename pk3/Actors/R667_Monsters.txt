@@ -160,35 +160,36 @@ ACTOR FlamerZombie : SH_BaseMonster
 
 ACTOR ZombieFire
 {
-   Radius 2
-   Height 4
-   Speed 16
-   Damage (2)
-   PROJECTILE
-   RENDERSTYLE ADD
-   DamageType Fire
-   ALPHA 0.67
-   Scale 0.67
-   SeeSound "weapons/flamer"
-   DeathSound "weapons/scorch"
-   +THRUGHOST
-   States
-   {
-   Spawn:
-	  NULL A 2 Bright
-	  FRFX AAABBBCCCDDD 2 Bright A_Explode(1,8,0)
-	  FRFX D 0 Bright A_Lowgravity
-	  FRFX EEEFFFGGG 2 Bright A_Explode(1,16,0)
-	  FRFX HHHIIIJJJ 2 Bright A_Explode(1,32,0)
-	  FRFX KKKLLLMMM 2 Bright A_Explode(1,64,0)
-	  FRFX NNNOOO 2 Bright
-	  stop
-   Death:
-	  FRFX HIJ 2 Bright A_Explode(1,32,0)
-	  FRFX J 0 A_CustomMissile ("ZombieDropFire",0,0,0,4)
-	  FRFX KLM 2 Bright A_Explode(1,64,0)
-	  FRFX NO 2 Bright
-	  stop
+	Radius 2
+	Height 4
+	Speed 16
+	Damage (2)
+	PROJECTILE
+	RENDERSTYLE ADD
+	DamageType Fire
+	ALPHA 0.67
+	Scale 0.67
+	SeeSound "weapons/flamer"
+	DeathSound "weapons/scorch"
+	+THRUGHOST
+	+NOSPAWNEVENTSCRIPT
+	States
+	{
+		Spawn:
+			NULL A 2 Bright
+			FRFX AAABBBCCCDDD 2 Bright A_Explode(1,8,0)
+			FRFX D 0 Bright A_Lowgravity
+			FRFX EEEFFFGGG 2 Bright A_Explode(1,16,0)
+			FRFX HHHIIIJJJ 2 Bright A_Explode(1,32,0)
+			FRFX KKKLLLMMM 2 Bright A_Explode(1,64,0)
+			FRFX NNNOOO 2 Bright
+			stop
+		Death:
+			FRFX HIJ 2 Bright A_Explode(1,32,0)
+			FRFX J 0 A_CustomMissile ("ZombieDropFire",0,0,0,4)
+			FRFX KLM 2 Bright A_Explode(1,64,0)
+			FRFX NO 2 Bright
+			stop
    }
 }
 

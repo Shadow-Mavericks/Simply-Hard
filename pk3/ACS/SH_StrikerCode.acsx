@@ -1185,6 +1185,8 @@ function void actor_swap(str replace, str with, int chance)
 
 #define SAP_HEALTH 0
 #define SAP_AMMO 1
+#define MAX_ORBS_PER_TICK 15
+
 function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int healDiv, int spawn_ptr, int type)
 {
 	if(SetActivatorToPlayer(playerNum)) // Set activator to player doing damage.
@@ -1204,10 +1206,19 @@ function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int he
 			
 		int dividedAmt = max(actualDmg/healDiv, 1);
 
-		int numOrbs = clamp((dividedAmt >> 1), 1, 10);		// Number of orbs is divided damage halved, clamped to 10.
+		int numOrbs = clamp((dividedAmt >> 1), 1, 5);		// Number of orbs is divided damage halved, clamped to 5.
 		int healAmt = max(dividedAmt/numOrbs, 1);			// Divvy up health given amongst the number of orbs.
+		int tick = Timer();
 		for(int i = 0; i < numOrbs; i++)
 		{
+			if(tick != p_status[playerNum].last_heal_orb_tick)
+				p_status[playerNum].num_heal_orbs = 0;
+
+			p_status[playerNum].num_heal_orbs++;
+			p_status[playerNum].last_heal_orb_tick = tick;
+			if(p_status[playerNum].num_heal_orbs > MAX_ORBS_PER_TICK)
+				break;
+			
 			int uTID = UniqueTID();
 			if(type == SAP_AMMO)
 			{
