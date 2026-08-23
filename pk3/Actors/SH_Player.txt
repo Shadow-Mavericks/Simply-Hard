@@ -247,7 +247,7 @@ ACTOR Gosimer : SH_BasePlayer
 	
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "GosimersHandgun"
-	Player.StartItem "UAC-Chainsaw"
+	Player.StartItem "FireAxe"
 	Player.StartItem "Shellz", 8
 	Player.StartItem "peastolClip", 250
 	Player.StartItem "DookiClip", 12
@@ -257,7 +257,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.StartItem "DeployableShield", 1
 	Player.StartItem "ElementalShield", 100
 	
-	Player.WeaponSlot 1, "UAC-Chainsaw"
+	Player.WeaponSlot 1, "FireAxe"
 	Player.WeaponSlot 2, "GosimersHandgun"
 	Player.WeaponSlot 3, "CombatShotgun"
 	Player.WeaponSlot 4, "BurstShotgun"

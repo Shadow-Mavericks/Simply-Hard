@@ -141,7 +141,7 @@ ACTOR UAC-Chainsaw : SH_Weapon
 	Weapon.UpSound "weapons/sawup"
 	Weapon.ReadySound "weapons/sawidle"
 	Inventory.PickupMessage "$GOTCHAINSAW"
-	Inventory.RestrictedTo "Gosimer", "Fiend"
+	Inventory.RestrictedTo "Fiend"
 	Inventory.PickupSound "weapon/chainget"
 	+WEAPON.MELEEWEAPON
 	States

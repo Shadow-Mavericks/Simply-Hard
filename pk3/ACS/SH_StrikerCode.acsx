@@ -1352,6 +1352,8 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		victimStatus |= STATUS_FROZEN;
 	if(CheckInventory("PowerAcidStatus"))
 		victimStatus |= STATUS_ACID;
+	if(CheckInventory("PowerFireStatus"))
+		victimStatus |= STATUS_FIRE;
 		
 	if(!StrIcmp(damagetype, "AcidLaser") && (victimStatus & STATUS_ACID))
 		return 0;
@@ -1646,6 +1648,20 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 				else
 				{
 					arg1 = fixedmul(arg1<<16, 1.5)>>16;
+				}
+			}
+			
+			if(victimStatus & STATUS_FIRE)
+			{
+				if(SetActivator(0, AAPTR_DAMAGE_INFLICTOR))
+				{
+					if(CheckActorState(0, "FireCrit", true))
+					{
+						arg1 = fixedmul(arg1<<16, 2.5)>>16;
+						PlaySound(0, "CritHit", CHAN_AUTO, 1.0, false);
+					}
+					
+					SetActivator(0, AAPTR_DAMAGE_TARGET);
 				}
 			}
 			

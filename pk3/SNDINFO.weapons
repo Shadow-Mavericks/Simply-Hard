@@ -88,6 +88,15 @@ Gosimer/GrenadeL_POOT	GNTGPOOT
 Gosimer/GrenadeL_open	GNTGOPEN
 Gosimer/GrenadeL_Close	GNTGCLS
 
+AxeFlesh1 axeflsh1
+AxeFlesh2 axeflsh2
+AxeFlesh3 axeflsh3
+$random AxeFlesh { AxeFlesh1 AxeFlesh2 AxeFlesh3 }
+$limit AxeFlesh 0
+
+AxeMiss axemiss
+$limit AxeMiss 0
+
 // -------------
 // Max's Weapons
 // -------------
