@@ -1,0 +1,304 @@
+#library "SH_Roulette"
+#import "SH_GlobalData.acsx"
+
+#include "zcommon.acs"
+
+struct Roulette_t
+{
+	str index;
+	str reward;
+	int amount;
+};
+
+struct Wheel_t
+{
+	int ticker;
+	int speed;
+	int spins;
+	int stage;
+	int chosen;
+	int failed;
+	int count;
+};
+
+int roulette1_picks[10] = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18 };
+#define WHEEL1_COUNT 20
+Roulette_t roulette1[WHEEL1_COUNT] = {
+	{ "0", "RageRune", 1 },
+	{ "1", "None", 1  },
+	{ "2", "RegenerationRune", 1  },
+	{ "3", "None", 1  },
+	{ "4", "DrainRune", 1  },
+	{ "5", "None", 1  },
+	{ "6", "ReflectionRune", 1  },
+	{ "7", "None", 1  },
+	{ "8", "ResistanceRune", 1  },
+	{ "9", "None", 1  },
+	{ "A", "SpreadRune", 1  },
+	{ "B", "None", 1  },
+	{ "C", "StrengthRune", 1  },
+	{ "D", "None", 1  },
+	{ "E", "HasteRune", 1  },
+	{ "F", "None", 1  },
+	{ "G", "ProsperityRune", 1  },
+	{ "H", "None" },
+	{ "I", "None" },
+	{ "J", "None" },
+};
+
+int roulette2_picks[9] = { 0, 2, 4, 6, 8, 10, 12, 14, 16 };
+#define WHEEL2_COUNT 18
+Roulette_t roulette2[WHEEL2_COUNT] = {
+	{ "0", "None", 1  },
+	{ "1", "None", 1  },
+	{ "2", "GuardSphere", 1  },
+	{ "3", "None", 1  },
+	{ "4", "TurboSphere", 1  },
+	{ "5", "None", 1  },
+	{ "6", "Normal_Invuln", 1  },
+	{ "7", "None", 1  },
+	{ "8", "SH_BlurSphere", 1  },
+	{ "9", "None", 1  },
+	{ "A", "MegaMap", 1  },
+	{ "B", "None", 1  },
+	{ "C", "SH_Berserk", 1  },
+	{ "D", "None", 1  },
+	{ "E", "SH_Megasphere", 1  },
+	{ "F", "None", 1  },
+	{ "G", "DoomSphere", 1  },
+	{ "H", "None", 1  },
+};
+
+int roulette3_picks[9] = { 0, 2, 4, 6, 8, 10, 12, 14, 16 };
+#define WHEEL3_COUNT 18
+Roulette_t roulette3[WHEEL2_COUNT] = {
+	{ "0", "None", 1  },
+	{ "1", "None", 1  },
+	{ "2", "Joy", 1  },
+	{ "3", "None", 1  },
+	{ "4", "RabbitFriend", 1  },
+	{ "5", "None", 1  },
+	{ "6", "ExtraLifeThingy", 1  },
+	{ "7", "None", 1  },
+	{ "8", "Dispenser", 1  },
+	{ "9", "None", 1  },
+	{ "A", "GosimersBackpack", 1  },
+	{ "B", "None", 1  },
+	{ "C", "DeployableShield", 1  },
+	{ "D", "None", 1  },
+	{ "E", "SentryBox", 1  },
+	{ "F", "None", 1  },
+	{ "G", "AbilityCharge", 600  },
+	{ "H", "None", 1  },
+};
+
+enum {
+	WHEEL_WINDUP,
+	WHEEL_SPIN,
+	WHEEL_WINDDOWN,
+	WHEEL_PICK,
+	WHEEL_FINISHED,
+};
+
+str speeds[3] = { "FST", "MED", "LOW" };
+
+#define ROULETTE_BASEX 320.0-95.0
+#define ROULETTE_BASEY 64.0
+#define ROULETTE_XOFFSET 24.0
+#define ROULETTE_YOFFSET 27.0
+#define ROULETTE_SEPARATION 50.0
+
+function Wheel_t do_wheel(int roulette_ticker, int index, Wheel_t wheel)
+{
+	if(wheel.stage != WHEEL_FINISHED)
+	{
+		Roulette_t roulette;
+		if(index == 0)
+			roulette = roulette1[wheel.ticker];
+		else if(index == 1)
+			roulette = roulette2[wheel.ticker];
+		else if(index == 2)
+			roulette = roulette3[wheel.ticker];
+			
+		if((roulette_ticker % wheel.speed) == 0)
+		{
+			if(wheel.stage == WHEEL_WINDUP)
+			{
+				if((wheel.ticker % (wheel.count/2)) == 0)
+				{
+					if(wheel.speed > 1)
+						wheel.speed--;
+					else
+					{
+						wheel.stage = WHEEL_SPIN;
+						if(isClientOrOffline())
+							PlaySound(0, "Roulette/Loop", CHAN_5, 1.0, true, ATTN_NORM, false);
+					}
+				}
+			}
+			else if(wheel.stage == WHEEL_WINDDOWN)
+			{
+				if((wheel.ticker % (wheel.count/2)) == 0)
+				{
+					if(wheel.speed < 3)
+						wheel.speed++;
+					else
+						wheel.stage = WHEEL_PICK;
+				}
+			}
+			else if(wheel.stage == WHEEL_PICK)
+			{
+				if(wheel.ticker == wheel.chosen)
+				{
+					wheel.stage = WHEEL_FINISHED;
+					
+					if(isClientOrOffline())
+						PlaySound(0, "Roulette/Ding", CHAN_AUTO, 1.0, false, ATTN_NORM, false); 
+						
+					if(StrIcmp(roulette.reward, "None") != 0)
+					{
+						if(isServer())
+							GiveInventory(roulette.reward, roulette.amount);
+					}
+					else
+						wheel.failed = 1;
+				}
+			}	
+			
+			if(wheel.stage != WHEEL_FINISHED)
+				wheel.ticker++;
+				
+			if(wheel.ticker == wheel.count)
+			{
+				wheel.ticker = 0;
+				wheel.spins++;
+				if(wheel.stage == WHEEL_SPIN && wheel.spins > (10)+(5*index))
+					wheel.stage = WHEEL_WINDDOWN;
+			}
+		}
+		
+		if(isClientOrOffline())
+		{
+			SetFont(strparam(s:"RLT", d:index+1, s:speeds[wheel.speed-1], s:roulette.index));
+			SetHudSize(640, 480, false);
+			HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -117+index, CR_UNTRANSLATED, ROULETTE_BASEX+ROULETTE_XOFFSET+(ROULETTE_SEPARATION*index)+0.1, ROULETTE_BASEY+ROULETTE_YOFFSET+0.1, 1.0, 1.0);
+		}
+	}
+	else
+	{
+		if(isClientOrOffline())
+		{
+			Roulette_t chosen;
+			if(index == 0)
+				chosen = roulette1[wheel.chosen];
+			else if(index == 1)
+				chosen = roulette2[wheel.chosen];
+			else if(index == 2)
+				chosen = roulette3[wheel.chosen];
+			
+			SetFont(strparam(s:"RLT", d:index+1, s:"END", s:chosen.index));
+			SetHudSize(640, 480, false);
+			HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -117+index, CR_UNTRANSLATED, ROULETTE_BASEX+ROULETTE_XOFFSET+(ROULETTE_SEPARATION*index)+0.1, ROULETTE_BASEY+ROULETTE_YOFFSET+0.1, 1.0, 1.0);
+		}
+	}
+	
+	return wheel;
+}
+
+script "GOSIMER_ROULETTE" (void)
+{	
+	int roulette_ticker = 0;
+	int end_ticker = 0;
+	
+	Wheel_t wheel1;
+	Wheel_t wheel2;
+	Wheel_t wheel3;
+	wheel1.speed = 3;
+	wheel2.speed = 3;
+	wheel3.speed = 3;
+	wheel1.count = WHEEL1_COUNT;
+	wheel2.count = WHEEL2_COUNT;
+	wheel3.count = WHEEL3_COUNT;
+	wheel1.chosen = roulette1_picks[random(0, (sizeof(roulette1_picks) / sizeof(roulette1_picks[0]))-1)];
+	wheel2.chosen = roulette2_picks[random(0, (sizeof(roulette2_picks) / sizeof(roulette2_picks[0]))-1)];
+	wheel3.chosen = roulette3_picks[random(0, (sizeof(roulette3_picks) / sizeof(roulette3_picks[0]))-1)];
+	
+	ACS_NamedExecuteWithResult("GOSIMER_ROULETTE_CLIENTSIDE", wheel1.chosen, wheel2.chosen, wheel3.chosen);
+	
+	while(1)
+	{	
+		wheel1 = do_wheel(roulette_ticker, 0, wheel1);
+		wheel2 = do_wheel(roulette_ticker, 1, wheel2);
+		wheel3 = do_wheel(roulette_ticker, 2, wheel3);
+		
+		if((wheel1.stage == WHEEL_FINISHED) && (wheel2.stage == WHEEL_FINISHED) && (wheel3.stage == WHEEL_FINISHED))
+		{
+			end_ticker++;
+			if(end_ticker >= 35)
+			{
+				if(wheel1.failed && wheel2.failed && wheel3.failed)
+				{
+					SetPlayerLivesLeft(0, GetPlayerLivesLeft(0)+1);
+					int explosionUTID = UniqueTID();
+					SpawnForced ("RouletteExplosion", GetActorX(0), GetActorY(0), GetActorZ(0)+24.0, explosionUTID, 0);
+				}
+				break;
+			}
+		}
+			
+		roulette_ticker++;
+		delay(1);
+	}
+}
+
+script "GOSIMER_ROULETTE_CLIENTSIDE" (int wheel1_chosen, int wheel2_chosen, int wheel3_chosen) CLIENTSIDE
+{
+	int roulette_ticker = 0;
+	int end_ticker = 0;
+	
+	Wheel_t wheel1;
+	Wheel_t wheel2;
+	Wheel_t wheel3;
+	wheel1.speed = 3;
+	wheel2.speed = 3;
+	wheel3.speed = 3;
+	wheel1.count = WHEEL1_COUNT;
+	wheel2.count = WHEEL2_COUNT;
+	wheel3.count = WHEEL3_COUNT;
+	wheel1.chosen = wheel1_chosen;
+	wheel2.chosen = wheel2_chosen;
+	wheel3.chosen = wheel3_chosen;
+	
+	PlaySound(0, "Roulette/Crank", CHAN_5, 1.0, false, ATTN_NORM, false);
+	
+	while(1)
+	{	
+		wheel1 = do_wheel(roulette_ticker, 0, wheel1);
+		wheel2 = do_wheel(roulette_ticker, 1, wheel2);
+		wheel3 = do_wheel(roulette_ticker, 2, wheel3);
+		
+		SetFont("ROULBACK");
+		SetHudSize(640, 480, false);
+		HudMessage(s:"A"; HUDMSG_LAYER_UNDERHUD | HUDMSG_ALPHA, -118, CR_UNTRANSLATED, ROULETTE_BASEX+0.1, ROULETTE_BASEY+0.1, 1.0, 1.0);
+		
+		if((wheel1.stage == WHEEL_FINISHED) && (wheel2.stage == WHEEL_FINISHED) && (wheel3.stage == WHEEL_FINISHED))
+		{
+			if(end_ticker == 0)
+			{
+				StopSound(0, CHAN_5);
+				
+				if(wheel1.failed && wheel2.failed && wheel3.failed)
+					PlaySound(0, "Roulette/Fail", CHAN_AUTO, 1.0, false, ATTN_NORM, false); 
+			}
+				
+			end_ticker++;
+			if(end_ticker >= 35)
+			{
+				break;
+			}
+		}
+			
+		roulette_ticker++;
+		delay(1);
+	}
+}

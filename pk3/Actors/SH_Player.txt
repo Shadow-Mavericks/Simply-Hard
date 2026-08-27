@@ -7,7 +7,6 @@ ACTOR Fiend : SH_BasePlayer
 	Mass 100
 	
 	DamageFactor 1.0
-	DamageFactor "Acid", 0.5 // Resistant to acid
 	
 	PainChance 255
 	Player.SoundClass "Fiendzy"
@@ -31,8 +30,9 @@ ACTOR Fiend : SH_BasePlayer
 	Player.WeaponSlot 4, "D3Chaingun"
 	Player.WeaponSlot 5, "Rawketlawnchair"
 	Player.WeaponSlot 6, "DEPlasmaRifle"
-	Player.WeaponSlot 7, "Fiendsrailgun"
-	Player.WeaponSlot 8, "DEBFG9500", "NuclearMissileLauncher"
+	Player.WeaponSlot 7, "DEBFG9500"
+	Player.WeaponSlot 8, "FiendsRailgun"
+	Player.WeaponSlot 0, "NuclearMissileLauncher"
 
 	BounceSound "PlayerHP/Alarmfiend"
 	Player.JumpZ 9
@@ -143,17 +143,18 @@ ACTOR Kunai : SH_BasePlayer
 	
 	Player.WeaponSlot 1, "SoulReaper"
 	Player.WeaponSlot 2, "Kunaisrevolver"
-	Player.WeaponSlot 3, "HelltechShotgun"
-	Player.WeaponSlot 4, "Streetsweeper"
-	Player.WeaponSlot 5, "PDW"
-	Player.WeaponSlot 6, "Cryobow"
-	Player.WeaponSlot 7, "KunaisKar98", "Channeler"
-	Player.WeaponSlot 8, "Vortexgun", "NuclearMissileLauncher"
+	Player.WeaponSlot 3, "HelltechShotgun", "Streetsweeper"
+	Player.WeaponSlot 4, "PDW"
+	Player.WeaponSlot 5, "Cryobow"
+	Player.WeaponSlot 6, "Channeler"
+	Player.WeaponSlot 7, "Vortexgun"
+	Player.WeaponSlot 8, "KunaisKar98"
+	Player.WeaponSlot 0, "NuclearMissileLauncher"
 
 	BounceSound "PlayerHP/AlarmKunai"
 
 	DamageFactor 1.25
-	DamageFactor "Ice", 0.5 // Resistant to ice
+	DamageFactor "Ice", 0.8 // Resistant to ice
 	
 	Player.JumpZ 10
 	Player.AirCapacity 1
@@ -259,17 +260,18 @@ ACTOR Gosimer : SH_BasePlayer
 	
 	Player.WeaponSlot 1, "FireAxe"
 	Player.WeaponSlot 2, "GosimersHandgun"
-	Player.WeaponSlot 3, "CombatShotgun"
-	Player.WeaponSlot 4, "BurstShotgun"
-	Player.WeaponSlot 5, "Hmachinegun"
-	Player.WeaponSlot 6, "BoomToob"
-	Player.WeaponSlot 7, "Propulsion_Rifle", "SH_Flameshot", "Lightning_Rifle"
-	Player.WeaponSlot 8, "micro_Devistator", "NuclearMissileLauncher"
+	Player.WeaponSlot 3, "CombatShotgun", "BurstShotgun"
+	Player.WeaponSlot 4, "Hmachinegun"
+	Player.WeaponSlot 5, "BoomToob"
+	Player.WeaponSlot 6, "SH_Flameshot"
+	Player.WeaponSlot 7, "micro_Devistator"
+	Player.WeaponSlot 8, "Propulsion_Rifle"
+	Player.WeaponSlot 9, "Lightning_Rifle"
+	Player.WeaponSlot 0, "NuclearMissileLauncher"
 	
 	BounceSound "PlayerHP/AlarmGosimer"
 
 	DamageFactor 0.75
-	DamageFactor "Fire", 0.5 // Resistant to fire
 
 	Player.JumpZ 7
 	Player.AirCapacity 0.5
@@ -363,7 +365,6 @@ actor MaximusPrime : SH_BasePlayer
 
 	DamageFactor "MaxBlasterBolt", 0.67
 	DamageFactor "MaxExplosion", 0.67
-	DamageFactor "Electric", 0.5 // Max's class resists lightning a bit.
 
 	Player.DisplayName "Max"
 	Player.CrouchSprite "PLYC"
@@ -384,7 +385,8 @@ actor MaximusPrime : SH_BasePlayer
 	Player.WeaponSlot 5, "FusionCutter"
 	Player.WeaponSlot 6, "MortarGun"
 	Player.WeaponSlot 7, "ConcRifle", "DisruptorRifle"
-	Player.WeaponSlot 8, "AssaultCannon", "NuclearMissileLauncher"
+	Player.WeaponSlot 8, "AssaultCannon"
+	Player.WeaponSlot 0, "NuclearMissileLauncher"
 	
 	BounceSound "PlayerHP/AlarmMax"
 	
@@ -474,7 +476,6 @@ ACTOR Striker : SH_BasePlayer
 	Mass 100
 	
 	DamageFactor 1.125
-	DamageFactor "Void", 0.5 // Resistant to void
 	
 	PainChance 255
 	Player.SoundClass "Striker"
@@ -498,7 +499,7 @@ ACTOR Striker : SH_BasePlayer
 	Player.WeaponSlot 4, "ModifiedMAC10"
 	Player.WeaponSlot 5, "Frag12GrenadeShotgun"
 	Player.WeaponSlot 6, "BCF2Repeater"
-	Player.WeaponSlot 8, "NuclearMissileLauncher"
+	Player.WeaponSlot 0, "NuclearMissileLauncher"
 
 	BounceSound "Striker/Heartbeat"
 	Player.JumpZ 9

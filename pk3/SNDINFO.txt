@@ -1928,6 +1928,13 @@ CritHit4 crithit4
 CritHit5 crithit5
 $random CritHit { CritHit1 CritHit2 CritHit3 CritHit4 CritHit5 }
 
+Roulette/Crank rltcrank
+Roulette/Loop rltloop
+Roulette/Ding rltding
+Roulette/Fail1 rltfail1
+Roulette/Fail2 rltfail2
+$random Roulette/Fail { Roulette/Fail1 Roulette/Fail2 }
+
 ping1 ping1
 ping2 ping2
 ping3 ping3

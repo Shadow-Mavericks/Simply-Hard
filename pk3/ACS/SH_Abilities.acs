@@ -37,7 +37,12 @@ Script "ULTIMATEABOOLITY" (Void) Net
 	if(CheckInventory("UltimateAbilityCharge") >= 2000)
 	{
 		AmbientSound("Fiends/Ultimate", 127);
-		if(CheckActorClass(0, "Gosimer") || CheckActorClass(0, "MaximusPrime"))
+		if(CheckActorClass(0, "Gosimer"))
+		{
+			ACS_NamedExecuteWithResult("BACKPACK_BELT_HANDLER", true);
+			GiveInventory("Health", 100);
+		}
+		if(CheckActorClass(0, "MaximusPrime"))
 		{
 			GiveInventory("spencerhp", 500);
 		}
@@ -52,6 +57,10 @@ Script "ULTIMATEABOOLITY" (Void) Net
 		if(CheckActorClass(0, "Kunai"))
 		{
 			GiveInventory("KunaiUltRadiusGiver", 1);
+		}
+		else if(CheckActorClass(0, "Gosimer"))
+		{
+			GiveInventory("GosimerUltRadiusGiver", 1);
 		}
 		else
 		{

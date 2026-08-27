@@ -1,0 +1,385 @@
+actor ImpBall_Base
+{ 
+	Radius 6
+	Height 8
+	Speed 15
+	FastSpeed 20
+	Damage (12)
+	Renderstyle Add
+	Alpha 1.0
+	SeeSound "imp/attack"
+	DeathSound "imp/shotx"
+	Projectile
+	+RANDOMIZE
+	States
+	{
+		Spawn:
+			IBAL A 1 Bright
+			Loop
+		Death:
+			IBAL CDE 6 Bright
+			Stop
+	}
+}
+
+ACTOR SH_DoomImp : SH_BaseMonster
+{
+	Tag "Imp"
+	Species "Imp"
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 8
+	PainChance 200
+	Monster
+	+FLOORCLIP
+	SeeSound "imp/sight"
+	PainSound "imp/pain"
+	DeathSound "imp/death"
+	ActiveSound "imp/active"
+	HitObituary "$OB_IMPHIT"
+	Obituary "$OB_IMP"
+	States
+	{
+		Spawn:
+			DIM1 AB 10 A_Look
+			Loop
+		See:
+			"####" AABBCCDD 3 A_Chase
+			Loop
+		Melee:
+			"####" EF 6 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (8, "imp/melee", "")
+			Goto See
+		Missile:
+			"####" EF 6 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			"####" EF 6 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			"####" EF 6 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			Goto See
+		Pain:
+			"####" H 2
+			"####" H 2 A_Pain
+			Goto See
+		Death:
+			"####" I 8
+			"####" J 8 A_Scream
+			"####" K 6
+			"####" L 6 A_NoBlocking
+			"####" M -1
+			Stop
+		XDeath:
+			"####" N 5
+			"####" O 5 A_XScream
+			"####" P 5
+			"####" Q 5 A_NoBlocking
+			"####" RST 5
+			"####" U -1
+			Stop
+		Ice:
+			"####" H 5 A_GenericFreezeDeath
+			"####" H 1 A_FreezeDeathChunks
+			wait
+		Raise:
+			"####" MLKJI 5
+			Goto See
+	}
+}
+
+ACTOR CritImp : SH_DoomImp
+{
+	Health 60
+	Radius 20
+	Height 56
+	Mass 100
+	Speed 12
+	PainChance 200
+	Monster
+	+FLOORCLIP
+	Translation "61:79=93:111"
+	SeeSound "imp/sight"
+	PainSound "imp/pain"
+	DeathSound "imp/death"
+	ActiveSound "imp/active"
+	HitObituary "$OB_IMPHIT"
+	Obituary "$OB_IMP"
+	States
+	{
+		Spawn:
+			DIM1 AB 6 A_Look
+			Loop
+		See:
+			DIM1 AABBCCDD 2 A_Chase
+			Loop
+		Melee:
+		Missile:
+			DIM1 A 0 A_Jump(60, "Critattack")
+			DIM1 EF 6 A_FaceTarget
+			DIM1 G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			DIM1 EF 6 A_FaceTarget
+			DIM1 G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			DIM1 EF 6 A_FaceTarget
+			DIM1 G 4 A_CustomMissile ("ImpBall_Base",38,0,0)
+			Goto See
+		Critattack:
+			DIM1 E 6 A_FaceTarget
+			DIM1 F 4 A_FaceTarget
+			DIM1 G 2 A_CustomMissile ("CRITimpball",38,0,0)
+			Goto See
+		Pain:
+			DIM1 H 2
+			DIM1 H 2 A_Pain
+			Goto See
+		Death:
+			DIM1 I 8
+			DIM1 J 8 A_Scream
+			DIM1 K 6
+			DIM1 L 6 A_NoBlocking
+			DIM1 M -1
+			Stop
+		XDeath:
+			DIM1 N 5
+			DIM1 O 5 A_XScream
+			DIM1 P 5
+			DIM1 Q 5 A_NoBlocking
+			DIM1 RST 5
+			DIM1 U -1
+			Stop
+		Ice:
+			DIM1 H 5 A_GenericFreezeDeath
+			DIM1 H 1 A_FreezeDeathChunks
+			wait
+
+		Raise:
+			DIM1 MLKJI 5
+			Goto See
+	}
+}
+
+// Fire Imp
+// --------
+actor ImpBall_Fire : ImpBall_Base
+{
+	DamageType "Fire" 
+	Scale 0.8
+	States
+	{
+		Spawn:
+			IBAF AB 1 Bright
+			Loop
+		Death:
+			IBAF CDE 6 Bright
+			Stop
+	}
+}
+
+actor SH_DoomFireImp : SH_DoomImp 
+{
+	Tag "Fire Imp"
+	BloodColor "FF 79 00"
+	States
+	{
+		Spawn:
+			DIM2 AB 10 A_Look
+			Loop
+		Melee:
+		    "####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Fire")
+			Goto See
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Fire") 
+			Goto See
+	}
+}
+
+// Void Imp
+// --------
+actor ImpBall_Void 	: ImpBall_Base 
+{ 
+	DamageType "Void" 
+	Scale 0.8
+	States
+	{
+		Spawn:
+			CNF1 AB 1 Bright
+			Loop
+		Death:
+			CNF1 CDE 6 Bright
+			Stop
+	}
+}
+
+actor SH_DoomVoidImp : SH_DoomImp 
+{
+	Tag "Void Imp"
+	BloodColor "CD 00 D2"
+	States
+	{
+		Spawn:
+			DIM3 AB 10 A_Look
+			Loop
+		Melee:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Void")
+			Goto See
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Void") 
+			Goto See
+	}
+}
+
+// Acid Imp
+// --------
+actor ImpBall_Acid : ImpBall_Base 
+{
+	DamageType "Acid"
+	Scale 0.8
+	States
+	{
+		Spawn:
+			ACD1 AB 1 Bright
+			Loop
+		Death:
+			ACD1 CDE 6 Bright
+			Stop
+	}
+}
+
+actor SH_DoomAcidImp : SH_DoomImp 
+{
+	Tag "Acid Imp"
+	BloodColor "00 7D 07"
+	States
+	{
+		Spawn:
+			DIM4 AB 10 A_Look
+			Loop
+		Melee:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Acid")
+			Goto See
+			
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile("ImpBall_Acid") 
+			Goto See
+	}
+}
+
+// Ice Imp
+// -------
+actor ImpBall_Ice : ImpBall_Base 
+{ 
+	Scale 0.8
+	Damage (7) 
+	DamageType "Ice" 
+	States
+	{
+		Spawn:
+			ICE1 AB 1 Bright
+			Loop
+		Death:
+			ICE1 CDE 6 Bright
+			Stop
+	}
+}
+
+actor SH_DoomIceImp : SH_DoomImp 
+{
+	BloodColor "00 90 C2"
+	+NOICEDEATH
+	States
+	{
+		Spawn:
+			DIM5 AB 10 A_Look
+			Loop
+		Melee:
+		    "####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (2, "imp/melee", "", "Ice")
+			Goto See
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Ice") 
+			Goto See
+	}
+}
+
+// Electric Imp
+// ------------
+actor ImpBall_Electric	: ImpBall_Base 
+{
+	Scale 0.8
+	DamageType "Electric"
+	+FORCEPAIN
+	+PIERCEARMOR
+	States
+	{
+		Spawn:
+			SHK1 AB 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			Loop
+		Death:
+			SHK1 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			Stop
+	}	
+}
+
+actor SH_DoomElectricImp : SH_DoomImp 
+{
+	BloodColor "B7 98 00"
+	States
+	{
+		Spawn:
+			DIM6 AB 10 A_Look
+			Loop
+		Melee:
+		    "####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (8, "imp/melee", "", "Electric")
+			Goto See
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Electric") 
+			Goto See
+	}
+}
+
+// Metal Imp
+// ---------
+
+actor ImpBall_Metal : ImpBall_Base 
+{ 
+	Scale 0.8
+	DamageType "HeavyMetal" 
+	States
+	{
+		Spawn:
+			MET1 AB 1 Bright
+			Loop
+		Death:
+			MET1 CDE 6 Bright
+			Stop
+	}
+}
+
+actor SH_DoomMetalImp : SH_DoomImp 
+{
+	States
+	{
+		Spawn:
+			DIM7 AB 10 A_Look
+			Loop
+		Melee:
+		    "####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMeleeAttack (2, "imp/melee", "", "HeavyMetal")
+			Goto See
+		Missile:
+			"####" EF 5 A_FaceTarget
+			"####" G 4 A_CustomMissile ("ImpBall_Metal") 
+			Goto See
+	}
+}

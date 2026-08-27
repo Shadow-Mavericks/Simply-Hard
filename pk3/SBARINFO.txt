@@ -8,6 +8,8 @@ height 0;
 
 statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 {
+	DrawImage runeicon, -32, 32, center;
+	
 	playertype "Fiend"
 	{
 		// Left Half

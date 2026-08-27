@@ -124,6 +124,11 @@ function bool isClient(void)
 	return (IsNetworkGame() && (ConsolePlayerNumber() != -1));
 }
 
+function bool isClientOrOffline(void)
+{
+	return (!isNetworkGame() || (IsNetworkGame() && (ConsolePlayerNumber() != -1)));
+}
+
 function int min (int a, int b)
 {
 	if (a < b)

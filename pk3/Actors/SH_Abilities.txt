@@ -277,6 +277,20 @@ actor FiendUltSetup : CustomInventory
 	}
 }
 
+actor GosimerUltSetup : CustomInventory
+{
+	Inventory.MaxAmount 0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+		Pickup:
+			TNT1 A 0 ACS_NamedExecuteWithResult("GOSIMER_ROULETTE")
+			stop
+	}
+}
+
 ACTOR FiendUltRadiusGiver : CustomInventory
 {
 	Inventory.MaxAmount 0
@@ -305,6 +319,20 @@ ACTOR KunaiUltRadiusGiver : CustomInventory
 			TNT1 A 0 Bright A_RadiusGive("Ultimatetimefreeze", 1024, RGF_PLAYERS | RGF_NOSIGHT, 10)
 			TNT1 A 0 Bright A_GiveInventory("BluearmorFilter", 10)
 			TNT1 A 0 Bright A_GiveInventory("Ultimatetimefreeze", 10)
+			Stop
+	}
+}
+
+ACTOR GosimerUltRadiusGiver : CustomInventory
+{
+	Inventory.MaxAmount 0
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.BIGPOWERUP
+	States
+	{
+		Pickup:
+			TNT1 A 0 Bright A_RadiusGive("GosimerUltSetup", 1024, RGF_PLAYERS | RGF_NOSIGHT | RGF_GIVESELF, 1)
 			Stop
 	}
 }

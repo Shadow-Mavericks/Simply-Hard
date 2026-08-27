@@ -1352,7 +1352,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	int victimStatus = STATUS_NONE;
 	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 	bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
-	bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || (victimPlayerNum != -1));
+	bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || ((victimPlayerNum != -1) && (GameType() != GAME_NET_DEATHMATCH)));
 
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
@@ -1410,7 +1410,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		{
 			if(victimCanBleed)
 			{
-				if(	CheckActorClass(0, "Beem_Slash") ||
+				if(	CheckActorClass(0, "Beam_Slash") ||
 					CheckActorClass(0, "SoulreaperPuff") ||
 					CheckActorClass(0, "SoulreaperPuff_SweetSpot"))
 				{
@@ -1444,7 +1444,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	{
 		if(attackerPlayerNum != -1) // Source is player
 		{
-			if(arg1 && (victimIsMonster || (victimIsFriendly && victimPlayerNum != attackerPlayerNum)))
+			if(arg1 && (victimIsMonster || (victimPlayerNum != attackerPlayerNum)))
 				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 
 			// Gosimer's Berserk Buff
@@ -1822,7 +1822,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			int victimPlayerNum = PlayerNumber();
 			
 			bool attackerIsEnemy = false;
-			bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || (victimPlayerNum != -1));
+			bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || ((victimPlayerNum != -1) && (GameType() != GAME_NET_DEATHMATCH)));
 			bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 			bool instantStatusEffect = false;
 			bool inflictorIsMissile = false;

@@ -27,6 +27,7 @@ enum
 
 #include "actors/Elemental_Champions/n_base_objects.txt"
 
+#include "actors/SH_InventoryBar.txt"
 #include "actors/SH_Items.txt"
 
 #include "actors/p_star.txt"
@@ -46,6 +47,7 @@ enum
 #include "actors/SH_Dispensers.txt"
 #include "actors/SH_Projectiles.txt"
 #include "actors/SH_RNG-Spawns.txt"
+#include "actors/SH_Runes.txt"
 
 #include "actors/SH_WeaponGivers.txt"
 #include "actors/SH_Weapons.txt"
@@ -69,9 +71,7 @@ enum
 #include "actors/Elemental_Champions/n_cyberdemons.txt"
 #include "actors/Elemental_Champions/n_cacodemons.txt"
 #include "actors/Elemental_Champions/n_demons.txt"
-#include "actors/Elemental_Champions/n_imps.txt"
 #include "actors/Elemental_Champions/n_mancubi.txt"
-#include "actors/Elemental_Champions/n_revenant.txt"
 
 #include "actors/Kuzcos_Monsters.txt"
 

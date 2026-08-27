@@ -7,6 +7,9 @@ script "DEATH_SOUNDS" DEATH
 {
 	if(IsNetworkGame() && ConsolePlayerNumber() != -1)
 		terminate;
+		
+	if(GameType() == GAME_NET_DEATHMATCH)
+		terminate;
 
 	str soundName = StrParam(s:"ded", d:random(1, NUM_DEATH_SOUNDS));
 	AmbientSound(soundName, 127);

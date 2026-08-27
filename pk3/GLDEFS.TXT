@@ -362,47 +362,6 @@ Object DMBall
 	Frame VORXF { Light DMBALL_5 }
 }
 
-//Flashlight
-pointlight FLASHLIGHT2
-{
-        color 1.0 1.0 1.0
-        size 128
-        offset 0 0 0
-}
-
-pointlight FLASHLIGHT2_2
-{
-        color 0.1 0.1 0.25
-        size 240
-        offset 0 0 0
-}
-
-pointlight FLASHLIGHT3
-{
-        color 0.5 0.5 0.75
-        size 128
-        offset 0 0 0
-}
-
-pointlight FLASHLIGHT3_3
-{
-        color 0.1 0.1 0.3
-        size 240
-        offset 0 0 0
-}
-
-object FlashLBeam
-{
-           frame TNT1A { light FLASHLIGHT2 }
-           frame TNT1A { light FLASHLIGHT2_2 }
-}
-
-object FlashLBeamglow
-{
-           frame TNT1A { light FLASHLIGHT3 }
-           frame TNT1A { light FLASHLIGHT3_3 }
-}
-
 pointlight FPLAS1
 {
         color 0.1 0.1 1.0

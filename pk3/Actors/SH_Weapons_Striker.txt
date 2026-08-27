@@ -1893,7 +1893,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 	States
 	{
 		Spawn:
-			FLGR AAAA 1
+			FLGR AAA 1
 			FLGR A 0 A_ChangeFlag("HEXENBOUNCE", 0)
 			FLGR A 0 A_ChangeFlag("BOUNCEONACTORS", 0)
 			FLGR A 0 A_ChangeFlag("EXTREMEDEATH", 1)
@@ -1931,7 +1931,7 @@ actor FRAG12GrenadeImbued : FRAG12Grenade
 	{
 		InstantStatus:
 		Spawn:
-			FLGR AAAA 1
+			FLGR AAA 1
 			FLGR A 0 A_ChangeFlag("HEXENBOUNCE", 0)
 			FLGR A 0 A_ChangeFlag("BOUNCEONACTORS", 0)
 			FLGR A 0 A_ChangeFlag("EXTREMEDEATH", 1)

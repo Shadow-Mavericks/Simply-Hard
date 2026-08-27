@@ -1533,7 +1533,7 @@ Actor Rockshadow
 }
 }
 
-ACTOR Papyrus : HardRevenant
+ACTOR Papyrus : SH_Revenant
 {
 	Health 300
 	Radius 20

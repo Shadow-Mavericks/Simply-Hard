@@ -195,6 +195,7 @@ actor UpgradeToken_Base : SH_BaseToken
 	scale 0.75
 	Inventory.PickupSound "Mannco/PLToken"
 	-INVENTORY.UNDROPPABLE
+	-INVENTORY.UNTOSSABLE
 	+SLIDESONWALLS
 	+CANBLAST
 	+NOBLOCKMONST

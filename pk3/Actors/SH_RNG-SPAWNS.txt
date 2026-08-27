@@ -28,18 +28,18 @@ Actor SH_RandomImpSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
-	DropItem "hardimp"				255 100
-	DropItem "Critimp"				255 25
+	DropItem "SH_DoomImp"			255 100
+	DropItem "SH_DoomFireImp"		255 16
+	DropItem "SH_DoomVoidImp"		255 16
+	DropItem "SH_DoomAcidImp"		255 16
+	DropItem "SH_DoomIceImp"		255 16
+	DropItem "SH_DoomElectricImp"	255 16
+	Dropitem "SH_DoomMetalImp"		255 16
+	DropItem "CritImp"				255 5
 	DropItem "NamiDarkimp"			255 5
 	Dropitem "CyberImp"				255 5
 	Dropitem "DarkCyberImp"			255 5
 	Dropitem "SuperFlyingImp"		255 5
-	Dropitem "N_Imp_Acid"			255 5
-	Dropitem "N_Imp_Void"			255 5
-	Dropitem "N_Imp_Fire"			255 5
-	Dropitem "N_Imp_Electric"		255 5
-	Dropitem "N_Imp_Heavymetal"		255 5
-	Dropitem "N_Imp_Ice"			255 5
 	Dropitem "RocketImp"			255 5
 	Dropitem "SH_Vulgar"			255 5
 	Dropitem "Squire"				255 3
@@ -66,17 +66,16 @@ Actor SH_RandomRevenantSpawn : SH_BaseMonsterRandomSpawner
 {
 	Radius 20
 	Height 56
-	Dropitem "HardRevenant" 			255 100
-	Dropitem "TryhardRevenant"			255 25
+	Dropitem "SH_Revenant" 				255 100
+	DropItem "SH_FireRevenant"			255 16
+	DropItem "SH_VoidRevenant"			255 16
+	DropItem "SH_AcidRevenant"			255 16
+	DropItem "SH_IceRevenant"			255 16
+	DropItem "SH_ElectricRevenant"		255 16
+	DropItem "SH_MetalRevenant"			255 16
 	Dropitem "Papyrus"					255 5
 	Dropitem "Beamrevenant"				255 5
 	DropItem "RevGhoul"					255 5
-	DropItem "N_Revenant_Acid"			255 5
-	DropItem "N_Revenant_Fire"			255 5
-	DropItem "N_Revenant_Ice"			255 5
-	DropItem "N_Revenant_Void"			255 5
-	DropItem "N_Revenant_Electric"		255 5
-	DropItem "N_Revenant_Heavymetal"	255 5
 	//DropItem "GhostSkeleton"	255 5
 }
 

@@ -7,5 +7,6 @@ SH_Abilities
 SH_SoundMusic
 SH_StrikerCode
 SH_StatusTypes
+SH_Roulette
 SH_MannCoBox
 SH_Votes

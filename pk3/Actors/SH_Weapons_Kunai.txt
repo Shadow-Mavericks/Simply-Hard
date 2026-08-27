@@ -944,6 +944,7 @@ ACTOR HelltechShotgun : SH_Weapon //Weapon from Laundry
 			"####" H 3
 			"####" A 4
 			"####" A 0 A_JumpIfInventory("PowerDoubleFiringSpeed", 1, "PumpAnimRage")
+			"####" A 0 A_JumpIfInventory("RuneDoubleFiringSpeed", 1, "PumpAnimRage")
 			goto PumpAnim
 		PumpAnim:
 			"####" III 1 A_WeaponOffset(2, -2, WOF_ADD)

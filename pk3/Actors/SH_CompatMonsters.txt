@@ -515,7 +515,7 @@ actor Mayhem19Skellie : SH_BaseMonster
 	}
 }
 
-actor Mayhem19ShadowImp : Hardimp
+actor Mayhem19ShadowImp : SH_DoomImp
 {
 	Tag "Shadow Imp"
 	RenderStyle Fuzzy

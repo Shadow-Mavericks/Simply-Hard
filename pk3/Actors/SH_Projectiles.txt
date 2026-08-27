@@ -2794,4 +2794,21 @@ Actor EriMissileTrail
 	}
 }
 
-
+Actor RouletteExplosion
+{
+	RenderStyle Add
+	Alpha 1.0
+	Scale 1.0
+	+FOILINVUL
+	+NOBLOCKMAP
+	States
+	{
+		Spawn:
+			DEXP A 0 Bright NoDelay A_PlaySound("weapon/D3DDEVBOOM", CHAN_AUTO)
+			DEXP A 0 Bright A_Quake(6.0, 100, 0, 1024, "") 
+			DEXP A 0 Bright A_Explode(5000, 256)
+			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
+			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright
+			Stop
+	}
+}
