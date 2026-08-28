@@ -1658,11 +1658,12 @@ actor AuraBall : SH_BasePlayerFastProjectile
 	Alpha 1.0
 	DamageType "Void"
 	ReactionTime 5
-	SeeSound "fireball/fire"
+	SeeSound "AuraBall"
 	+NEVERADJUSTSPRITECLIPPING
 	+FORCEPAIN
 	+FORCERADIUSDMG
 	+NODAMAGETHRUST
+	+SPAWNSOUNDSOURCE
 	States
 	{
 		Spawn:

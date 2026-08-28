@@ -15,7 +15,7 @@ Actor medicalportal : PortalUnit_Base
 			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
 			loop
 		SpawnBeam:
-			TNT1 A 0 A_spawnitemEX("mediportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_spawnitemEX("mediportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", 0)
 			goto DelayBeforePayout
 		DelayBeforePayout:
@@ -50,7 +50,7 @@ Actor ammobagportal : PortalUnit_Base
 			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
 			loop
 		SpawnBeam:
-			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", 0)
 			goto DelayBeforePayout
 		DelayBeforePayout:
@@ -83,7 +83,7 @@ Actor Armourportal : PortalUnit_Base
 			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
 			loop
 		SpawnBeam:
-			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_spawnitemEX("ammoportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", 0)
 			goto DelayBeforePayout
 		DelayBeforePayout:
@@ -116,7 +116,7 @@ Actor Elementportal : PortalUnit_Base
 			TNT1 A 0 A_JumpIf(user_timer >= 7, "SpawnBeam") 
 			loop
 		SpawnBeam:
-			TNT1 A 0 A_spawnitemEX("elementportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION, 0)
+			TNT1 A 0 A_spawnitemEX("elementportalbeam", 0, 0, 1, 0, 0, 0, 0, SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", 0)
 			goto DelayBeforePayout
 		DelayBeforePayout:

@@ -40,8 +40,8 @@ actor Booster : Base_Kart
 			BOST A 0 A_Recoil (-2)
 			BOST A 0 A_MeleeAttack
 			BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			BOST A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			BOST A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -54,7 +54,7 @@ actor Booster : Base_Kart
 			BOST A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			BOST A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			BOST A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			BOST A 0 A_StopSoundEx ("SoundSlot7")
 			BOST A 0 A_PlaySound ("weapons/rocklx")
 			BOST A 5 A_Scream
@@ -82,8 +82,8 @@ actor Bowser : Base_Kart
 			BWSR A 0 A_Recoil (-2)
 			BWSR A 0 A_MeleeAttack
 			BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			BWSR A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			BWSR A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -96,7 +96,7 @@ actor Bowser : Base_Kart
 			BWSR A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			BWSR A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			BWSR A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			BWSR A 0 A_StopSoundEx ("SoundSlot7")
 			BWSR A 0 A_PlaySound ("weapons/rocklx")
 			BWSR A 5 A_Scream
@@ -124,8 +124,8 @@ actor CaptainFalcon : Base_Kart
 			CPTF A 0 A_Recoil (-2)
 			CPTF A 0 A_MeleeAttack
 			CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			CPTF A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			CPTF A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -138,7 +138,7 @@ actor CaptainFalcon : Base_Kart
 			CPTF A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			CPTF A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			CPTF A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			CPTF A 0 A_StopSoundEx ("SoundSlot7")
 			CPTF A 0 A_PlaySound ("weapons/rocklx")
 			CPTF A 5 A_Scream
@@ -166,8 +166,8 @@ actor Crashbandicock : Base_Kart
 			CRSH A 0 A_Recoil (-2)
 			CRSH A 0 A_MeleeAttack
 			CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			CRSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			CRSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -180,7 +180,7 @@ actor Crashbandicock : Base_Kart
 			CRSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			CRSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			CRSH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			CRSH A 0 A_StopSoundEx ("SoundSlot7")
 			CRSH A 0 A_PlaySound ("weapons/rocklx")
 			CRSH A 5 A_Scream
@@ -208,8 +208,8 @@ actor DunkyKung : Base_Kart
 			DNKY A 0 A_Recoil (-2)
 			DNKY A 0 A_MeleeAttack
 			DNKY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			DNKY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			DNKY A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -250,8 +250,8 @@ actor HyperMetalSonic : Base_Kart
 			MSNC A 0 A_Recoil (-2)
 			MSNC A 0 A_MeleeAttack
 			MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			MSNC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			MSNC A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -264,7 +264,7 @@ actor HyperMetalSonic : Base_Kart
 			MSNC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			MSNC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MSNC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			MSNC A 0 A_StopSoundEx ("SoundSlot7")
 			MSNC A 0 A_PlaySound ("weapons/rocklx")
 			MSNC A 5 A_Scream
@@ -292,8 +292,8 @@ actor Knux : Base_Kart
 			KNUK A 0 A_Recoil (-2)
 			KNUK A 0 A_MeleeAttack
 			KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			KNUK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			KNUK A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -306,7 +306,7 @@ actor Knux : Base_Kart
 			KNUK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			KNUK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			KNUK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			KNUK A 0 A_StopSoundEx ("SoundSlot7")
 			KNUK A 0 A_PlaySound ("weapons/rocklx")
 			KNUK A 5 A_Scream
@@ -334,8 +334,8 @@ actor Koopa : Base_Kart
 			KOOP A 0 A_Recoil (-2)
 			KOOP A 0 A_MeleeAttack
 			KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			KOOP A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			KOOP A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -348,7 +348,7 @@ actor Koopa : Base_Kart
 			KOOP A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			KOOP A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			KOOP A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			KOOP A 0 A_StopSoundEx ("SoundSlot7")
 			KOOP A 0 A_PlaySound ("weapons/rocklx")
 			KOOP A 5 A_Scream
@@ -376,8 +376,8 @@ actor Linkin : Base_Kart
 			LINK A 0 A_Recoil (-2)
 			LINK A 0 A_MeleeAttack
 			LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			LINK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			LINK A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -390,7 +390,7 @@ actor Linkin : Base_Kart
 			LINK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			LINK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			LINK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			LINK A 0 A_StopSoundEx ("SoundSlot7")
 			LINK A 0 A_PlaySound ("weapons/rocklx")
 			LINK A 5 A_Scream
@@ -418,8 +418,8 @@ actor Luigi : Base_Kart
 			LUIG A 0 A_Recoil (-2)
 			LUIG A 0 A_MeleeAttack
 			LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			LUIG A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			LUIG A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -432,7 +432,7 @@ actor Luigi : Base_Kart
 			LUIG A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			LUIG A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			LUIG A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			LUIG A 0 A_StopSoundEx ("SoundSlot7")
 			LUIG A 0 A_PlaySound ("weapons/rocklx")
 			LUIG A 5 A_Scream
@@ -460,8 +460,8 @@ actor Mario : Base_Kart
 			MARI A 0 A_Recoil (-2)
 			MARI A 0 A_MeleeAttack
 			MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			MARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			MARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -474,7 +474,7 @@ actor Mario : Base_Kart
 			MARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			MARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			MARI A 0 A_StopSoundEx ("SoundSlot7")
 			MARI A 0 A_PlaySound ("weapons/rocklx")
 			MARI A 5 A_Scream
@@ -502,8 +502,8 @@ actor Megaman : Base_Kart
 			MGMN A 0 A_Recoil (-2)
 			MGMN A 0 A_MeleeAttack
 			MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			MGMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			MGMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -516,7 +516,7 @@ actor Megaman : Base_Kart
 			MGMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			MGMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MGMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			MGMN A 0 A_StopSoundEx ("SoundSlot7")
 			MGMN A 0 A_PlaySound ("weapons/rocklx")
 			MGMN A 5 A_Scream
@@ -544,8 +544,8 @@ actor Motobug : Base_Kart
 			MOTO A 0 A_Recoil (-2)
 			MOTO A 0 A_MeleeAttack
 			MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			MOTO A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			MOTO A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -558,7 +558,7 @@ actor Motobug : Base_Kart
 			MOTO A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			MOTO A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			MOTO A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			MOTO A 0 A_StopSoundEx ("SoundSlot7")
 			MOTO A 0 A_PlaySound ("weapons/rocklx")
 			MOTO A 5 A_Scream
@@ -586,8 +586,8 @@ actor Pacman : Base_Kart
 			PCMN A 0 A_Recoil (-2)
 			PCMN A 0 A_MeleeAttack
 			PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			PCMN A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			PCMN A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -600,7 +600,7 @@ actor Pacman : Base_Kart
 			PCMN A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			PCMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			PCMN A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			PCMN A 0 A_StopSoundEx ("SoundSlot7")
 			PCMN A 0 A_PlaySound ("weapons/rocklx")
 			PCMN A 5 A_Scream
@@ -628,8 +628,8 @@ actor Peach : Base_Kart
 			PECH A 0 A_Recoil (-2)
 			PECH A 0 A_MeleeAttack
 			PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			PECH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			PECH A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -642,7 +642,7 @@ actor Peach : Base_Kart
 			PECH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			PECH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			PECH A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			PECH A 0 A_StopSoundEx ("SoundSlot7")
 			PECH A 0 A_PlaySound ("weapons/rocklx")
 			PECH A 5 A_Scream
@@ -670,8 +670,8 @@ actor Robotnik : Base_Kart
 			RBNK A 0 A_Recoil (-2)
 			RBNK A 0 A_MeleeAttack
 			RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			RBNK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			RBNK A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -684,7 +684,7 @@ actor Robotnik : Base_Kart
 			RBNK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			RBNK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			RBNK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			RBNK A 0 A_StopSoundEx ("SoundSlot7")
 			RBNK A 0 A_PlaySound ("weapons/rocklx")
 			RBNK A 5 A_Scream
@@ -712,8 +712,8 @@ actor SolidSnake : Base_Kart
 			JACK A 0 A_Recoil (-2)
 			JACK A 0 A_MeleeAttack
 			JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			JACK A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			JACK A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -726,7 +726,7 @@ actor SolidSnake : Base_Kart
 			JACK A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			JACK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			JACK A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			JACK A 0 A_StopSoundEx ("SoundSlot7")
 			JACK A 0 A_PlaySound ("weapons/rocklx")
 			JACK A 5 A_Scream
@@ -754,8 +754,8 @@ actor Sonic : Base_Kart
 			SONC A 0 A_Recoil (-2)
 			SONC A 0 A_MeleeAttack
 			SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			SONC A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			SONC A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -768,7 +768,7 @@ actor Sonic : Base_Kart
 			SONC A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			SONC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			SONC A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			SONC A 0 A_StopSoundEx ("SoundSlot7")
 			SONC A 0 A_PlaySound ("weapons/rocklx")
 			SONC A 5 A_Scream
@@ -796,8 +796,8 @@ actor Tails : Base_Kart
 			TAIL A 0 A_Recoil (-2)
 			TAIL A 0 A_MeleeAttack
 			TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			TAIL A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			TAIL A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -810,7 +810,7 @@ actor Tails : Base_Kart
 			TAIL A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			TAIL A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			TAIL A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			TAIL A 0 A_StopSoundEx ("SoundSlot7")
 			TAIL A 0 A_PlaySound ("weapons/rocklx")
 			TAIL A 5 A_Scream
@@ -838,8 +838,8 @@ actor Toad : Base_Kart
 			TOAD A 0 A_Recoil (-2)
 			TOAD A 0 A_MeleeAttack
 			TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			TOAD A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			TOAD A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -852,7 +852,7 @@ actor Toad : Base_Kart
 			TOAD A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			TOAD A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			TOAD A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			TOAD A 0 A_StopSoundEx ("SoundSlot7")
 			TOAD A 0 A_PlaySound ("weapons/rocklx")
 			TOAD A 5 A_Scream
@@ -880,8 +880,8 @@ actor VariaSuitSamus : Base_Kart
 			VARI A 0 A_Recoil (-2)
 			VARI A 0 A_MeleeAttack
 			VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			VARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			VARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -894,7 +894,7 @@ actor VariaSuitSamus : Base_Kart
 			VARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			VARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			VARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			VARI A 0 A_StopSoundEx ("SoundSlot7")
 			VARI A 0 A_PlaySound ("weapons/rocklx")
 			VARI A 5 A_Scream
@@ -922,8 +922,8 @@ actor Wario : Base_Kart
 			WARI A 0 A_Recoil (-2)
 			WARI A 0 A_MeleeAttack
 			WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			WARI A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			WARI A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -936,7 +936,7 @@ actor Wario : Base_Kart
 			WARI A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
 			goto See
 		Death:
-			WARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, 160)
+			WARI A 5 A_SpawnItemEx ("Boom", 0, 0, 32, 0, 0, 0, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
 			WARI A 0 A_StopSoundEx ("SoundSlot7")
 			WARI A 0 A_PlaySound ("weapons/rocklx")
 			WARI A 5 A_Scream
@@ -964,8 +964,8 @@ actor Yoshi : Base_Kart
 			YOSH A 0 A_Recoil (-2)
 			YOSH A 0 A_MeleeAttack
 			YOSH A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			YOSH A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			YOSH A 0 A_ChangeFlag ("FRIGHTENED", 1)
@@ -1006,8 +1006,8 @@ actor ZeroSuitSamus : Base_Kart
 			SAMY A 0 A_Recoil (-2)
 			SAMY A 0 A_MeleeAttack
 			SAMY A 0 A_PlaySoundEx ("Segway/Go", "SoundSlot7", 1)
-			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, 160)
-			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, 160) 
+			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, 8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION)
+			SAMY A 0 A_SpawnItemEx ("SegwayPuff", 0, -8, 8, -4, 0, 2, 0, SXF_CLIENTSIDE | SXF_NOCHECKPOSITION) 
 			loop
 		Coward:
 			SAMY A 0 A_ChangeFlag ("FRIGHTENED", 1)

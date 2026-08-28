@@ -320,11 +320,11 @@ actor ImpBall_Electric	: ImpBall_Base
 	States
 	{
 		Spawn:
-			SHK1 AB 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			SHK1 AB 1 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
-			SHK1 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
-			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			SHK1 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}	
 }

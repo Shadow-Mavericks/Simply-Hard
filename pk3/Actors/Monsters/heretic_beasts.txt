@@ -3,7 +3,7 @@ actor SH_BeastBall : BeastBall replaces BeastBall
 	States
 	{
 		Spawn:
-			FRB1 AABBCC 2 Bright A_SpawnItemEx("Puffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			FRB1 AABBCC 2 Bright A_SpawnItemEx("Puffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 	}
 }
@@ -65,7 +65,7 @@ ACTOR SH_FireBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B2BL AABBCC 2 Bright A_SpawnItemEx("SH_FirePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B2BL AABBCC 2 Bright A_SpawnItemEx("SH_FirePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B2BL DEFGH 4
@@ -107,7 +107,7 @@ ACTOR SH_VoidBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B3BL AABBCC 2 Bright A_SpawnItemEx("SH_VoidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B3BL AABBCC 2 Bright A_SpawnItemEx("SH_VoidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B3BL DEFGH 4
@@ -149,7 +149,7 @@ ACTOR SH_AcidBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B4BL AABBCC 2 Bright A_SpawnItemEx("SH_AcidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B4BL AABBCC 2 Bright A_SpawnItemEx("SH_AcidPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B4BL DEFGH 4
@@ -192,7 +192,7 @@ ACTOR SH_IceBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B5BL AABBCC 2 Bright A_SpawnItemEx("SH_IcePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B5BL AABBCC 2 Bright A_SpawnItemEx("SH_IcePuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B5BL DEFGH 4
@@ -235,7 +235,7 @@ ACTOR SH_ElectricBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B6BL AABBCC 2 Bright A_SpawnItemEx("SH_ElectricPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B6BL AABBCC 2 Bright A_SpawnItemEx("SH_ElectricPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B6BL DEFGH 4
@@ -277,7 +277,7 @@ ACTOR SH_MetalBeastBall : BeastBall
 	States
 	{
 		Spawn:
-			B7BL AABBCC 2 Bright A_SpawnItemEx("SH_MetalPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION, 64)
+			B7BL AABBCC 2 Bright A_SpawnItemEx("SH_MetalPuffy", random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, random2[BeastPuff]()*0.015625, 0, 0, 0, 0, SXF_ABSOLUTEPOSITION | SXF_CLIENTSIDE, 64)
 			Loop
 		Death:
 			B7BL DEFGH 4

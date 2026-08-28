@@ -173,10 +173,10 @@ actor CacodemonBall_Electric : CacodemonBall_Base
 	States
 	{
 		Spawn:
-			CCOB AB 3 Bright A_SpawnItemEx("Particle_Lightning5")
+			CCOB AB 3 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
-			CCOB CDE 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			CCOB CDE 1 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
 			Stop
 	}

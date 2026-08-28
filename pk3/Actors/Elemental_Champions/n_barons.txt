@@ -172,8 +172,8 @@ actor BaronBall_Void : BaronBall_Base
 	States
 	{
 		Spawn:
-			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
-			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple")
+			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			CNF7 A 1 Bright A_SpawnItemEx ("BaronballtrailPurple", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
 			CNF7 CDE 6 Bright
@@ -208,8 +208,8 @@ actor BaronBall_Fire : BaronBall_Base
 	States
 	{
 		Spawn:
-			FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed")
-			FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed")
+			FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
 			FIR7 CDE 6 Bright
@@ -247,14 +247,14 @@ actor BaronBall_Electric : BaronBall_Base
 	States
 	{
 		Spawn:
-			SHK7 A 1 Bright A_SpawnItemEx("BaronballtrailYellow")
-			SHK7 A 0 Bright A_SpawnItemEx("Particle_Lightning5")
-			SHK7 B 1 Bright A_SpawnItemEx("Particle_Lightning5")
-			SHK7 B 0 Bright A_SpawnItemEx("BaronballtrailYellow")
+			SHK7 A 1 Bright A_SpawnItemEx("BaronballtrailYellow", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHK7 A 0 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHK7 B 1 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHK7 B 0 Bright A_SpawnItemEx("BaronballtrailYellow", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
-			SHK7 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5")
-			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			SHK7 CDE 3 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}
 }

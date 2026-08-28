@@ -215,13 +215,13 @@ ACTOR RevenantTracer_Electric : RevenantTracer_Base 30084
 	{
 		Spawn:
 			FATB AB 1 Bright A_Tracer
-			FATB AB 1 Bright A_SpawnItemEx("Particle_Lightning5")
+			FATB AB 1 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
-			FBXP A 8 Bright A_SpawnItemEx("Particle_Lightning5") 
-			FBXP B 6 Bright A_SpawnItemEx("Particle_Lightning5")
-			FBXP C 4 Bright A_SpawnItemEx("Particle_Lightning5")
-			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5")
+			FBXP A 8 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FBXP B 6 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FBXP C 4 Bright A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning5", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}
 }

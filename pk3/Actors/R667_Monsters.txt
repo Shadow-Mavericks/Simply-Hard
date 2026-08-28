@@ -690,25 +690,25 @@ ACTOR QueenBFG
 	{
 	Spawn:
 		CBTS A 2 BRIGHT A_SeekerMissile(1,4)//(1,90)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS B 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS C 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS D 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS E 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS F 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS G 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS H 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS I 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		CBTS J 2 BRIGHT A_SeekerMissile(1,4)
-		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,128)
+		TNT1 A 0 BRIGHT A_SpawnItemEx("ZWAVE",0,0,0,0,0,0,0,SXF_CLIENTSIDE)
 		Loop
 	Death:
 		CBTS K 0 Radius_Quake(15,15,0,40,0)
@@ -3461,19 +3461,19 @@ ACTOR FatRail : Blood
 //Some Hellforge Cannon defs here - thankx to Eriance!
 ACTOR RedPuff
 {
-Radius 0
-Height 1
-+NOGRAVITY
-+NOBLOCKMAP
-+FORCEXYBILLBOARD
-RENDERSTYLE ADD
-ALPHA 0.85
-States
+	Radius 0
+	Height 1
+	+NOGRAVITY
+	+NOBLOCKMAP
+	+FORCEXYBILLBOARD
+	RENDERSTYLE ADD
+	ALPHA 0.85
+	States
 	{
-	Spawn:
-	TNT1 A 3 Bright
-	RPUF ABCDE 3 Bright
-	Stop
+		Spawn:
+			TNT1 A 3 Bright
+			RPUF ABCDE 3 Bright
+			Stop
 	}
 }
 
@@ -3493,7 +3493,7 @@ ACTOR FatMace
 	States
 	{
 		Spawn:
-			RIP1 ABC 3 Bright A_SpawnItemEx("RedPuff",0,0,0,0,0,0,0,8)
+			RIP1 ABC 3 Bright A_SpawnItemEx("RedPuff",0,0,0,0,0,0,0, SXF_ABSOLUTEMOMENTUM | SXF_CLIENTSIDE)
 			loop
 		Death:
 			RIP1 D 0 Bright A_SetTranslucent (0.75,1)
@@ -14505,7 +14505,7 @@ ACTOR ZombFlesh
   States
   {
   Spawn:
-	ZGIB A 1 A_SpawnItemEx("ZombFleshTrail",0,0,0)
+	ZGIB A 1 A_SpawnItemEx("ZombFleshTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	Loop
    Death:
 	TNT1 B 1 A_PlaySound ("ZFlesh/miss")
@@ -14516,34 +14516,34 @@ ACTOR ZombFlesh
    }
 }
 
-Actor ZombFleshTrail
+Actor ZombFleshTrail : SH_BaseParticle
 {
-  Health 3
-  +NOBLOCKMAP
-  +NOTELEPORT
-  +NOGRAVITY
-  Scale 0.8
-  RenderStyle Translucent
-  Alpha 0.8
-  States
-  {
-  Spawn:
-	BL0D ABCD 3
-	Stop
-  }
+	Health 3
+	+NOBLOCKMAP
+	+NOTELEPORT
+	+NOGRAVITY
+	Scale 0.8
+	RenderStyle Translucent
+	Alpha 0.8
+	States
+	{
+		Spawn:
+			BL0D ABCD 3
+			Stop
+	}
 }
 
 ACTOR FodderSoul
 {
-  +NOBLOCKMAP
-  +NOGRAVITY
-  States
-  {
-  Spawn:
-	ZFSL ABC 5
-	ZFSL DEFG 9
-	Stop
-  }
+	+NOBLOCKMAP
+	+NOGRAVITY
+	States
+	{
+		Spawn:
+			ZFSL ABC 5
+			ZFSL DEFG 9
+			Stop
+	}
 }
 
 ACTOR BlackHoleImp : SH_BaseMonster

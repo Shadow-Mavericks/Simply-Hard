@@ -73,9 +73,9 @@ actor Rocket_Electric : Rawket
 	states
 	{
 		Spawn:
-			MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0)
-			MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0)
-			MISL A 1 A_SpawnItemEx("Particle_Lightning16")
+			MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE, 0)
+			MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE, 0)
+			MISL A 1 A_SpawnItemEx("Particle_Lightning16", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
 			MISL B 0 Bright A_Explode
@@ -83,10 +83,10 @@ actor Rocket_Electric : Rawket
 			PXPL AAAA 0 Bright A_SpawnItemEx("CryoSmoke2", 0, 0, 0, random(10, 30)*0.04, 0, random(0, 10)*0.04, random(1,360), SXF_CLIENTSIDE|SXF_NOCHECKPOSITION,64)
 			PXPL ABCDEFGH 1 Bright
 			PXPL IJKLLM 1 Bright A_FadeOut(0.1)
-			TNT1 AAA 3 Bright A_SpawnItemEx("Particle_Lightning16")
-			TNT1 AA 3 Bright A_SpawnItemEx("Particle_Lightning15")
-			TNT1 A 3 Bright A_SpawnItemEx("Particle_Lightning14")
-			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning13")
+			TNT1 AAA 3 Bright A_SpawnItemEx("Particle_Lightning16", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AA 3 Bright A_SpawnItemEx("Particle_Lightning15", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 3 Bright A_SpawnItemEx("Particle_Lightning14", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AAAAAA 3 A_SpawnItemEx("Particle_Lightning13", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Stop
 	}
 }

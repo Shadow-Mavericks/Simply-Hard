@@ -1363,7 +1363,7 @@ ACTOR SlowCryoShot : SH_BasePlayerProjectile
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
 			BSHT A 1 Bright
 			Loop
@@ -1439,7 +1439,7 @@ ACTOR SlowGoldCryoShot : SH_BasePlayerProjectile
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
 			GSHT A 1 Bright
 			Loop
@@ -1478,13 +1478,13 @@ ACTOR ChargeCryoShotBlue1 : SH_BasePlayerProjectile
 		Spawn:
 			BSHT A 0 Bright
 			BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1523,13 +1523,13 @@ ACTOR ChargeCryoShotGold1 : SH_BasePlayerProjectile
 		Spawn:
 			GSHT A 0 Bright
 			GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1571,13 +1571,13 @@ ACTOR ChargeCryoShotGold2 : SH_BasePlayerProjectile
 		Spawn1:
 			GSHT A 0 Bright
 			GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1620,13 +1620,13 @@ ACTOR ChargeCryoShotGold3 : SH_BasePlayerProjectile
 		Spawn1:
 			GSHT A 0 Bright
 			GSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("GoldCryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			GSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1668,13 +1668,13 @@ ACTOR ChargeCryoShotBlue2 : SH_BasePlayerProjectile
 		Spawn1:
 			BSHT A 0 Bright
 			BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1717,13 +1717,13 @@ ACTOR ChargeCryoShotBlue3 : SH_BasePlayerProjectile
 		Spawn1:
 			BSHT A 0 Bright
 			BSHT A 0 Bright A_PlaySound("weapons/cryobowflyby", CHAN_BODY, 1.0, 1)
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
-			TNT1 A 0 A_SpawnItemEx ("CryoTrail2")
+			TNT1 A 0 A_SpawnItemEx ("CryoTrail2", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			BSHT A 1 Bright A_BishopMissileWeave
 			Loop
 		Death:
@@ -1920,8 +1920,8 @@ Actor BlackHole
 			Loop
 		Death:
 			TNT1 A 0 A_StopSoundEx("Voice")
-			TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
-			TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("BHSmoke",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+			TNT1 A 0 A_SpawnItemEx("BHExplosion",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			TNT1 A 0 A_PlaySound("BHole/Explosion")
 			BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
 			BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
@@ -1958,22 +1958,22 @@ Actor DMBallTrap
 			VOIP ABCDEF 2 Bright A_SpawnItem("DMBTrail",0,0,0)
 			VOIP AA 1 Bright A_RadiusThrust(-220,130)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			VOIP BB 1 Bright A_RadiusThrust(-220,150)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			VOIP CC 1 Bright A_RadiusThrust(-220,150)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			VOIP DD 1 Bright A_RadiusThrust(-220,150)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			VOIP EE 1 Bright A_RadiusThrust(-220,150)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			VOIP FF 1 Bright A_RadiusThrust(-220,150)
 			TNT1 A 0 A_Explode(10,90,0)
-			TNT1 A 0 A_SpawnItem("DMBTrail",0,0,0)
+			TNT1 A 0 A_SpawnItemEx("DMBTrail",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 			Goto Spawn+6
 		Death:
 			TNT1 A 0 A_SpawnItem("NewBlackHoleTrap",0,0,0)
@@ -2024,8 +2024,8 @@ Spawn:
 	Loop
 Death:
 	TNT1 A 0 A_StopSoundEx("Voice")
-	TNT1 A 0 A_SpawnItem("BHSmoke",0,0,0)
-	TNT1 A 0 A_SpawnItem("BHExplosion",0,0,0)
+	TNT1 A 0 A_SpawnItemEx("BHSmoke",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
+	TNT1 A 0 A_SpawnItemEx("BHExplosion",0,0,0,0,0,0,0,SXF_CLIENTSIDE,0)
 	TNT1 A 0 A_PlaySound("BHole/Explosion")
 	BHOL A 1 Light("BHOLE_2") A_FadeOut(0.08)
 	BHOL B 1 Light("BHOLE_3") A_FadeOut(0.08)
@@ -2042,48 +2042,48 @@ Death:
 
 Actor BHSmoke : DMBTrail
 {
-Scale 2.2
-+NOCLIP
-+NOGRAVITY
-+FORCEXYBILLBOARD
-States
-{
-Spawn:
-	BHXP ABCDEFGHIJKLMNO 2 A_FadeOut(0.03)
-	Stop
-}
+	Scale 2.2
+	+NOCLIP
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		BHXP ABCDEFGHIJKLMNO 2 A_FadeOut(0.03)
+		Stop
+	}
 }
 
 Actor BHExplosion
 {
-+NOCLIP
-+NOGRAVITY
-+FORCEXYBILLBOARD
-States
-{
-Spawn:
-	DBX3 A 1 Light("BHEXP_1") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_2") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_3") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_4") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_5") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_6") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Light("BHEXP_7") Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	DBX3 A 1 Bright
-	TNT1 A 0 A_FadeOut(0.13)
-	Stop
-}
+	+NOCLIP
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	States
+	{
+	Spawn:
+		DBX3 A 1 Light("BHEXP_1") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_2") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_3") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_4") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_5") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_6") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Light("BHEXP_7") Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		DBX3 A 1 Bright
+		TNT1 A 0 A_FadeOut(0.13)
+		Stop
+	}
 }
 
 //Channeler

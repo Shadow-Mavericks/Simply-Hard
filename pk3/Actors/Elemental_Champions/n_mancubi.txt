@@ -28,8 +28,8 @@ actor MancubusBall_Normal : MancubusBall_Base
 	States
 	{
 	Spawn:
-    MANF A 1 Bright A_SpawnItemEx("RedFattrail")
-	MANF B 1 Bright A_SpawnItemEx("RedFattrail")
+    MANF A 1 Bright A_SpawnItemEx("RedFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	MANF B 1 Bright A_SpawnItemEx("RedFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     FIR7 C 8 Bright
@@ -47,8 +47,8 @@ actor MancubusBall_Acid : MancubusBall_Base
 	States
 	{
 	Spawn:
-    ACDF A 1 Bright A_SpawnItemEx("GreenFattrail")
-	ACDF B 1 Bright A_SpawnItemEx("GreenFattrail")
+    ACDF A 1 Bright A_SpawnItemEx("GreenFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	ACDF B 1 Bright A_SpawnItemEx("GreenFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     ACD7 C 8 Bright
@@ -85,8 +85,8 @@ actor MancubusBall_Void : MancubusBall_Base
 	States
 	{
 	Spawn:
-    CNFF A 1 Bright A_SpawnItemEx("PurpleFattrail")
-	CNFF B 1 Bright A_SpawnItemEx("PurpleFattrail")
+    CNFF A 1 Bright A_SpawnItemEx("PurpleFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	CNFF B 1 Bright A_SpawnItemEx("PurpleFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     CNF7 C 8 Bright
@@ -121,8 +121,8 @@ actor MancubusBall_Fire : MancubusBall_Base
 	States
 	{
 	Spawn:
-    FIRF A 1 Bright A_SpawnItemEx("orangeFattrail")
-	FIRF B 1 Bright A_SpawnItemEx("OrangeFattrail")
+    FIRF A 1 Bright A_SpawnItemEx("orangeFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	FIRF B 1 Bright A_SpawnItemEx("OrangeFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     FIR7 C 8 Bright
@@ -158,10 +158,10 @@ actor MancubusBall_Electric : MancubusBall_Base
 	States
 	{
 		Spawn:
-			SHKF A 1 Bright A_SpawnItemEx("Particle_Lightning8")
-			SHKF A 0 A_SpawnItemEx("Yellowfattrail")
-			SHKF B 1 Bright A_SpawnItemEx("Particle_Lightning8")
-			SHKF A 0 A_SpawnItemEx("Yellowfattrail")
+			SHKF A 1 Bright A_SpawnItemEx("Particle_Lightning8", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHKF A 0 A_SpawnItemEx("Yellowfattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHKF B 1 Bright A_SpawnItemEx("Particle_Lightning8", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			SHKF A 0 A_SpawnItemEx("Yellowfattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
 			SHK7 CCC 3 Bright A_SpawnItemEx("Particle_Lightning8")
@@ -199,8 +199,8 @@ actor MancubusBall_Ice : MancubusBall_Base
 	States
 	{
 	Spawn:
-    ICEF A 1 Bright A_SpawnItemEx("BlueFattrail")
-	ICEF B 1 Bright A_SpawnItemEx("BlueFattrail")
+    ICEF A 1 Bright A_SpawnItemEx("BlueFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	ICEF B 1 Bright A_SpawnItemEx("BlueFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     ICE7 C 8 Bright
@@ -237,8 +237,8 @@ actor MancubusBall_HeavyMetal : MancubusBall_Base
 	States
 	{
 	Spawn:
-    METF A 1 Bright A_SpawnItemEx("WHITEFattrail")
-	METF B 1 Bright A_SpawnItemEx("WHITEFattrail")
+    METF A 1 Bright A_SpawnItemEx("WHITEFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+	METF B 1 Bright A_SpawnItemEx("WHITEFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
     MET7 C 8 Bright
