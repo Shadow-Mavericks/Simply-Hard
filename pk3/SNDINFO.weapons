@@ -217,6 +217,12 @@ Max/WepRaise DFWEPON
 // ---------------
 WaltherPPK WALTPPK
 
+LeverActionFire1 stshtgn1
+LeverActionFire2 stshtgn2
+LeverActionFire3 stshtgn3
+$random LeverActionFire { LeverActionFire1 LeverActionFire2 LeverActionFire3 }
+LeverActionCock stshtcok
+
 WSTEFire1 wstesht1
 WSTEFire2 wstesht2
 WSTEFire3 wstesht3

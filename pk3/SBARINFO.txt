@@ -620,6 +620,25 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 							
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}
+			IsSelected "LeverAction"
+			{
+				Alpha 0.5
+				{
+					DrawNumber 3, spleen3, PitchBlack, ammo1, alignment(right), -8, -23;
+				}
+				
+				InInventory Not "ShotgunEmpty", 1
+				{
+					drawimage "MRLSHELL", -45, -32;
+					
+					InInventory "LeverShotgunImbued", 1
+					{
+						drawimage "IMBSHEL2", -45, -32;
+					}		
+				}
+				
+				DrawNumber 3, spleen3, Untranslated, ammo1, alignment(right), -9, -24;
+			}
 			IsSelected "WSTE-M5"
 			{
 				Alpha 0.5

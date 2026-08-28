@@ -495,7 +495,7 @@ ACTOR Striker : SH_BasePlayer
 	
 	Player.WeaponSlot 1, "StrikersFists", "UAC-Chainsaw"
 	Player.WeaponSlot 2, "WaltherPPK"
-	Player.WeaponSlot 3, "WSTE-M5"
+	Player.WeaponSlot 3, "LeverAction", "WSTE-M5"
 	Player.WeaponSlot 4, "ModifiedMAC10"
 	Player.WeaponSlot 5, "Frag12GrenadeShotgun"
 	Player.WeaponSlot 6, "BCF2Repeater"

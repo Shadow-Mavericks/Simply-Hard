@@ -742,7 +742,7 @@ ACTOR ChainsawZombie
 	Health 30
 	Radius 20
 	Height 56
-	Speed 32
+	Speed 16
 	MeleeDamage 1
 	PainChance 200
 	MONSTER
@@ -760,18 +760,12 @@ ACTOR ChainsawZombie
 		CHAN AB 10 A_Look
 		Loop
 	See:
-		CHAN A 4 Fast A_Chase
-		CHAN A 4 Fast A_Chase
+		CHAN AA 2 Fast A_Chase
 		CHAN B 0 Fast A_PlayWeaponSound("weapons/sawidle")
-		CHAN B 4 Fast A_Chase
-		CHAN B 4 Fast A_Chase
-		CHAN C 0 Fast A_PlayWeaponSound("weapons/sawidle")
-		CHAN C 4 Fast A_Chase
-		CHAN C 4 Fast A_Chase
+		CHAN BB 2 Fast A_Chase
+		CHAN CC 2 Fast A_Chase
 		CHAN D 0 Fast A_PlayWeaponSound("weapons/sawidle")
-		CHAN D 4 Fast A_Chase
-		CHAN D 4 Fast A_Chase
-		CHAN A 0 Fast A_PlayWeaponSound("weapons/sawidle")
+		CHAN DD 2 Fast A_Chase
 		Loop
 	Melee:
 		CHAN E 1 A_FaceTarget

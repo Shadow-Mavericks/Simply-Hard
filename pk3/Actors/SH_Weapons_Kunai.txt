@@ -135,13 +135,14 @@ actor HealingSeeker
 			KPUF A 0 A_ChangeVelocity(frandom(30, 32), 0.0, velz, CVF_RELATIVE | CVF_REPLACE)
 			goto Seek
 		Seek:
-			KPUF A 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
-			KPUF A 0 Bright A_SpawnItemEx("Red_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-			KPUF B 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
-			KPUF B 0 Bright A_SpawnItemEx("Red_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KPUF A 0 Bright A_SeekerMissile(180.0, 180.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KPUF AA 1 Bright A_SpawnItemEx("Red_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KPUF A 0 A_JumpIfCloser(32, "Heal")
+			KPUF B 0 Bright A_SeekerMissile(180.0, 180.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KPUF BB 1 Bright A_SpawnItemEx("Red_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KPUF B 0 A_JumpIfCloser(32, "Heal")
 			KPUF A 0 A_SetUserVar("user_timer", user_timer+1)
-			KPUF A 0 A_JumpIf(user_timer > 175, "Heal")
+			KPUF A 0 A_JumpIf(user_timer > 85, "Heal")
 			loop
 		Heal:
 			KPUF A 0 ACS_NamedExecuteWithResult("KUNAI_SAP")
@@ -161,11 +162,12 @@ actor AmmoSeeker : HealingSeeker
 			KBUF A 0 A_ChangeVelocity(frandom(30, 32), 0.0, velz, CVF_RELATIVE | CVF_REPLACE)
 			goto Seek
 		Seek:
-			KBUF A 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
-			KBUF A 0 Bright A_SpawnItemEx("Blue_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-			KBUF B 1 Bright A_SeekerMissile(12.0, 24.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
-			KBUF B 0 Bright A_SpawnItemEx("Blue_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KBUF A 0 Bright A_SeekerMissile(180.0, 180.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KBUF AA 1 Bright A_SpawnItemEx("Blue_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			KBUF A 0 A_JumpIfCloser(32, "GiveAmmo")
+			KBUF B 0 Bright A_SeekerMissile(180.0, 180.0, SMF_PRECISE | SMF_CURSPEED, 256, 256)
+			KBUF BB 1 Bright A_SpawnItemEx("Blue_Star", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			KBUF B 0 A_JumpIfCloser(32, "GiveAmmo")
 			KPUF A 0 A_SetUserVar("user_timer", user_timer+1)
 			KPUF A 0 A_JumpIf(user_timer > 175, "GiveAmmo")
 			loop

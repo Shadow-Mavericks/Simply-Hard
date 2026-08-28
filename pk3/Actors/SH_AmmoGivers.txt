@@ -157,6 +157,10 @@ actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 			D3DA C -1
 			loop
 			
+		Striker:
+			SAMO H -1
+			loop
+			
 		Init:
 			TNT1 A 0 A_SetArg(1, AMMO_SHELLBOX) // Ammo Type
 			goto CheckSprite
@@ -164,6 +168,7 @@ actor ShellBoxGiver : AmmoGiver_Base replaces ShellBox
 		SetScale:
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 60)
 			goto Idle
 	}
 }
