@@ -3,7 +3,7 @@ ACTOR RevenantTracer_Base : SH_BaseEnemyProjectile replaces RevenantTracer
 	Radius 11
 	Height 8
 	Speed 10
-	Damage (40) // 10
+	Damage (25)
 	Projectile
 	+SEEKERMISSILE
 	+RANDOMIZE
@@ -63,9 +63,9 @@ ACTOR SH_Revenant : SH_BaseMonster
 		Missile:
 			"####" J 1 Bright A_FaceTarget
 			"####" J 9 Bright A_FaceTarget
-			"####" K 10 A_SkelMissile
+			"####" K 10 A_CustomMissile ("RevenantTracer", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 4 Bright A_FaceTarget
-			"####" K 10 A_SkelMissile
+			"####" K 10 A_CustomMissile ("RevenantTracer", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			"####" K 10 A_FaceTarget
 			Goto See
 		Pain:
@@ -110,9 +110,9 @@ ACTOR SH_FireRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Fire",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Fire", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Fire",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Fire", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
@@ -139,9 +139,9 @@ ACTOR SH_VoidRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Void",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Void", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Void",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Void", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
@@ -167,9 +167,9 @@ ACTOR SH_AcidRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Acid",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Acid", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Acid",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Acid", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
@@ -196,9 +196,9 @@ ACTOR SH_IceRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Ice",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Ice", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Ice",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Ice", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
@@ -238,9 +238,9 @@ ACTOR SH_ElectricRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Electric",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Electric", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Electric",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Electric", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
@@ -266,9 +266,9 @@ ACTOR SH_MetalRevenant : SH_Revenant
 		Missile:
 			"####" J 0 Bright A_FaceTarget
 			"####" J 10 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Metal",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Metal", 50.0, -16, 0, CMF_CHECKTARGETDEAD)
 			"####" J 6 A_FaceTarget
-			"####" K 6 Bright A_CustomMissile("RevenantTracer_Metal",50,0,0)
+			"####" K 6 Bright A_CustomMissile ("RevenantTracer_Metal", 50.0, 16, 0, CMF_CHECKTARGETDEAD)
 			Goto See
 	}
 }
