@@ -875,7 +875,8 @@ ACTOR LeverAction : StrikerBaseWeapon
 		ImbuedFire:
 			SLEG B 0 BRIGHT A_PlaySound("LeverActionFire", CHAN_WEAPON)
 			SLEG B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
-			SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 20, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SLEG BBBBBBBB 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), 0, 6, 0, 0, frandom(-2.5, 2.5))
+			//SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 20, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			SLEG B 0 BRIGHT A_TakeInventory("LeverShotgunImbued", 1)
 			SLEG B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
 			SLE2 B 1 BRIGHT A_SetPitch(pitch-3.0)
@@ -1588,7 +1589,7 @@ actor PoweredSMGShot : SH_BasePlayerFastProjectile
 	Height 4
 	Damage (10)
 	Speed 75
-	ReactionTime 5
+	ReactionTime 6
 	RenderStyle Add
 	Alpha 1.0
 	DamageType "Void"
@@ -1603,7 +1604,7 @@ actor PoweredSMGShot : SH_BasePlayerFastProjectile
 			AUR5 A 0 A_SpawnItemEx("AuraBallExplosionSphere", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			AUR5 A 0 A_Stop
 			AUR5 A 0 A_SetScale(0.6)
-			AUR5 A 0 A_Explode(15, 64, 0, false, 32)
+			AUR5 A 0 A_Explode(10, 64, 0, false, 32)
 			AUR1 A 0 A_Jump(256, "Fire1", "Fire2", "Fire3", "Fire4", "Fire5", "Fire6", "Fire7", "Fire8", "Fire9", "Fire10")
 			goto Fire1
 		Fire1:
@@ -1642,6 +1643,16 @@ actor PoweredSMGShot : SH_BasePlayerFastProjectile
 		Fire10:
 			AUR0 ABCDEFGHIJKLMNO 1 BRIGHT
 			stop
+	}
+}
+
+actor ImbuedLeverActionShot : PoweredSMGShot
+{
+	States
+	{
+		Spawn:
+			VPUF A 1 Bright
+			loop
 	}
 }
 

@@ -230,3 +230,14 @@ model PoweredSMGShot
 
 	FrameIndex VPUF A 0 0
 }
+
+model ImbuedLeverActionShot
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "VioletTracer.png"
+	Scale 3.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex VPUF A 0 0
+}
