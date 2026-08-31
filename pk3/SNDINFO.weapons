@@ -61,7 +61,10 @@ $volume FrostBallRicochet 0.5
 // Channeler
 Channeler/Up dschanup
 Channeler/Fire dschanel
-Channeler/AltFire dschanfl
+Channeler/AltFire1 dschanfl
+Channeler/AltFire2 dschanf2
+Channeler/AltFire3 dschanf3
+$random Channeler/AltFire { Channeler/AltFire1 Channeler/AltFire2 Channeler/AltFire3 }
 
 // -----------------
 // Gosimer's Weapons

@@ -213,6 +213,7 @@ actor DispenserBubble
 	Alpha 0.25
 	+NOGRAVITY
 	+ISMONSTER
+	+NOTIMEFREEZE
 	-COUNTKILL
 	-SOLID
 	States
@@ -233,6 +234,7 @@ actor DispenserHologram
 	+BRIGHT
 	+ISMONSTER
 	+NOGRAVITY
+	+NOTIMEFREEZE
 	-COUNTKILL
 	-SOLID
 }
@@ -323,6 +325,7 @@ ACTOR spenserspawn1
 {
 	+DONTGIB
 	+ISMONSTER
+	+NOTIMEFREEZE
 	-SOLID
 	-COUNTKILL
 	var int user_loops;

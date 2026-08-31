@@ -370,7 +370,7 @@ script "DROP_TOKENS" (int gone) DISCONNECT
 	}
 }
 
-script "REMOVE_HAX" DEATH
+script "PLAYER_DEATH_HANDLER" DEATH
 {
 	TakeInventory("DualFireHax", 1);
 	TakeInventory("UseHax", 1);

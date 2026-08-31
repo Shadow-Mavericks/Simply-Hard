@@ -4,3 +4,6 @@ Striker/PendantUse penduse
 Striker/SelfHeal selfheal
 
 AuraBall auraball
+AuraBallHit aurabhit
+$limit AuraBall 0
+$limit AuraBallHit 0

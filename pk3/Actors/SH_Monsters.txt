@@ -1913,6 +1913,7 @@ actor FriendlyWhiteRabbit : WhiteRabbit
 {
 	+FRIENDLY
 	+FOILINVUL
+	+NOINFIGHTING
 }
 
 // DUKE 3D DRONE

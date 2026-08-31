@@ -2297,25 +2297,6 @@ ACTOR REDChannelerTrail : SH_BaseParticle
 	}
 }
 
-//Quake 2 Grenade  //CodeBase from HFC2X
-
-Actor Lisaplasma
-{
-	SeeSound ""
-	Speed 20
-	//MissileType "PlasmaVapor"
-	States
-	{
-	Spawn:
-		FKYU A 1 bright
-		Loop
-	Death:
-		FKYU A -1
-		stop
-	}
-}
-
-
 Actor Kewlplasma6 : Plasmaball //Sprites by Kunai Kitsune
 {
 	SeeSound ""

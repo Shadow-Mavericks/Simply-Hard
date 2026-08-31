@@ -1683,6 +1683,7 @@ actor AuraBall : SH_BasePlayerFastProjectile
 			loop
 		Death:
 			AUR5 A 0 A_SpawnItemEx("AuraBallExplosionSphere", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			AUR5 A 0 A_PlaySoundEx("AuraBallHit", CHAN_AUTO)
 			AUR5 A 0 A_Stop
 			AUR5 A 0 A_SetScale(0.6)
 			AUR5 A 0 A_Explode(30, 96, 0, false, 48)

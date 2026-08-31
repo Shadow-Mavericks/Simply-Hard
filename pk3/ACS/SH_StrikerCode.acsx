@@ -1805,6 +1805,73 @@ script "GET_PLASMA_POSITIONS" OPEN CLIENTSIDE
 	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
 }
 
+function void drop_runes(void)
+{
+	int uTID = 0;
+	int minVel = -4.0;
+	int maxVel = 4.0;
+	
+	uTID = UniqueTID();
+	bool dropped = false;
+	
+	if(CheckInventory("RuneDoubleFiringSpeed"))
+	{
+		SpawnForced("RageRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneDoubleDamage"))
+	{
+		SpawnForced("StrengthRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneDrain"))
+	{
+		SpawnForced("DrainRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneSpread"))
+	{
+		SpawnForced("SpreadRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneHalfDamage"))
+	{
+		SpawnForced("ResistanceRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneRegeneration"))
+	{
+		SpawnForced("RegenerationRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneProsperity"))
+	{
+		SpawnForced("ProsperityRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneReflection"))
+	{
+		SpawnForced("ReflectionRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneHighJump"))
+	{
+		SpawnForced("HighJumpRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	else if(CheckInventory("RuneSpeed25"))
+	{	
+		SpawnForced("HasteRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
+		dropped = true;
+	}
+	
+	if(dropped)
+	{
+		SetActorVelocity (uTID, random(minVel, maxVel), random(minVel, maxVel), random(3.0, maxVel*2), false, false);
+		ChangeActorFlag(uTID, "NOGRAVITY", 0);
+	}
+}
+
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
 #define GAMEEVENT_SPAWN_RANDOMSPAWNED 2
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
@@ -1864,8 +1931,12 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					extremeDeathType = 2;
 			}
 
-			// Handle damage types (Acid/Fire/Electric/Etc)	
-			if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
+			// Handle damage types (Acid/Fire/Electric/Etc)
+			if(attackerPlayerNum != -1 && victimIsFriendly)
+			{
+				// Do jack and shit.
+			}
+			else if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
 			{
 				SetActivator(0, AAPTR_DAMAGE_TARGET);
 				
@@ -2100,6 +2171,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					{
 						TakeInventory("ExtremeDeathHax", 9999);
 						GiveInventory("ExtremeDeathHax", 2);
+					}
+					
+					if(victimPlayerNum != -1)
+					{
+						drop_runes();
 					}
 				}
 				
@@ -2815,7 +2891,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			{
 				weapon_class = "LeverAction";
 				ammo1_class = "Shellz";
-				ammo1_amount = 12;
+				ammo1_amount = 8;
 			}
 			break;
 		}
