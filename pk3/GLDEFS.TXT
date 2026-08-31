@@ -26,6 +26,8 @@
 #include gl_defs/striker.gl
 
 #include gl_defs/brightmap_fiend.gl
+#include gl_defs/brightmap_elementaldoomimp.gl
+#include gl_defs/brightmap_elementalrevenant.gl
 
 Glow
 {

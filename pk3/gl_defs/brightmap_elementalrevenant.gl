@@ -1,0 +1,1217 @@
+// FIRE REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV2G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV2H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV2I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV2J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV2J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}
+
+// VOID REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV3G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV3H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV3I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV3J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV3J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}
+
+// ACID REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV4G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV4H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV4I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV4J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV4J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}
+
+// ICE REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV5G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV5H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV5I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV5J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV5J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}
+
+// ELECTRIC REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV6G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV6H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV6I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV6J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV6J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}
+
+// METAL REVENANT
+// --------
+
+// G
+
+Brightmap sprite REV7G1
+{
+	Map "brightmaps/ElementalRevenant/REV4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G2
+{
+	Map "brightmaps/ElementalRevenant/REV4G2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G3
+{
+	Map "brightmaps/ElementalRevenant/REV4G3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G4
+{
+	Map "brightmaps/ElementalRevenant/REV4G4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G5
+{
+	Map "brightmaps/ElementalRevenant/REV4G5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G6
+{
+	Map "brightmaps/ElementalRevenant/REV4G6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G7
+{
+	Map "brightmaps/ElementalRevenant/REV4G7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7G8
+{
+	Map "brightmaps/ElementalRevenant/REV4G8.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite REV7H1
+{
+	Map "brightmaps/ElementalRevenant/REV4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H2
+{
+	Map "brightmaps/ElementalRevenant/REV4H2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H3
+{
+	Map "brightmaps/ElementalRevenant/REV4H3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H4
+{
+	Map "brightmaps/ElementalRevenant/REV4H4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H5
+{
+	Map "brightmaps/ElementalRevenant/REV4H5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H6
+{
+	Map "brightmaps/ElementalRevenant/REV4H6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H7
+{
+	Map "brightmaps/ElementalRevenant/REV4H7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7H8
+{
+	Map "brightmaps/ElementalRevenant/REV4H8.png"
+	DisableFullBright
+}
+
+// I
+
+Brightmap sprite REV7I1
+{
+	Map "brightmaps/ElementalRevenant/REV4I1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I2
+{
+	Map "brightmaps/ElementalRevenant/REV4I2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I3
+{
+	Map "brightmaps/ElementalRevenant/REV4I3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I4
+{
+	Map "brightmaps/ElementalRevenant/REV4I4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I5
+{
+	Map "brightmaps/ElementalRevenant/REV4I5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I6
+{
+	Map "brightmaps/ElementalRevenant/REV4I6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I7
+{
+	Map "brightmaps/ElementalRevenant/REV4I7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7I8
+{
+	Map "brightmaps/ElementalRevenant/REV4I8.png"
+	DisableFullBright
+}
+
+// J
+
+Brightmap sprite REV7J1
+{
+	Map "brightmaps/ElementalRevenant/REV4J1.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J2
+{
+	Map "brightmaps/ElementalRevenant/REV4J2.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J3
+{
+	Map "brightmaps/ElementalRevenant/REV4J3.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J4
+{
+	Map "brightmaps/ElementalRevenant/REV4J4.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J5
+{
+	Map "brightmaps/ElementalRevenant/REV4J5.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J6
+{
+	Map "brightmaps/ElementalRevenant/REV4J6.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J7
+{
+	Map "brightmaps/ElementalRevenant/REV4J7.png"
+	DisableFullBright
+}
+
+Brightmap sprite REV7J8
+{
+	Map "brightmaps/ElementalRevenant/REV4J8.png"
+	DisableFullBright
+}

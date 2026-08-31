@@ -235,9 +235,15 @@ actor Heretic_RandomMummy : SH_BaseMonsterRandomSpawner Replaces Mummy
 	DropItem "ImpWarlord", 255 25
 	DropItem "QuakeFodder", 255 10
 	DropItem "ZombieFodder", 255 10
-	DropItem "ChainsawZombie", 255 2
 	DropItem "MeleeRevenant", 255 2
+	DropItem "ChainsawZombie", 255 1
 	DropItem "SuicideBomber", 255 1
+	DropItem "SH_DoomFireImp", 255 1
+	DropItem "SH_DoomVoidImp", 255 1
+	DropItem "SH_DoomAcidImp", 255 1
+	DropItem "SH_DoomIceImp", 255 1
+	DropItem "SH_FireElectricImp", 255 1
+	DropItem "SH_FireMetalImp", 255 1
 }
 
 actor Heretic_RandomMummyLeader : SH_BaseMonsterRandomSpawner Replaces MummyLeader
@@ -276,7 +282,13 @@ actor Heretic_RandomKnightGhost : SH_BaseMonsterRandomSpawner Replaces KnightGho
 	Height 62
 	+ISMONSTER
 	DropItem "SH_KnightGhost", 255 100
-	DropItem "RevGhoul", 255 10
+	DropItem "SH_FireRevenant", 255 5
+	DropItem "SH_VoidRevenant", 255 5
+	DropItem "SH_AcidRevenant", 255 5
+	DropItem "SH_IceRevenant", 255 5
+	DropItem "SH_ElectricRevenant", 255 5
+	DropItem "SH_MetalRevenant", 255 5
+	DropItem "RevGhoul", 255 2
 }
 
 actor SH_Wizard : Wizard

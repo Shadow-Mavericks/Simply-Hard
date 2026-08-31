@@ -1,0 +1,1108 @@
+// FIRE IMP
+// --------
+
+Brightmap sprite DIM2A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM2B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM2C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM2D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM2E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM2F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM2G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM2H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM2H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
+
+// VOID IMP
+// --------
+Brightmap sprite DIM3A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM3B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM3C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM3D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM3E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM3F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM3G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM3H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM3H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
+
+// ACID IMP
+// --------
+
+Brightmap sprite DIM4A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM4B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM4C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM4D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM4E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM4F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM4G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM4H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM4H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
+
+// ICE IMP
+// --------
+
+Brightmap sprite DIM5A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM5B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM5C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM5D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM5E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM5F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM5G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM5H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM5H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
+
+// ELECTRIC IMP
+// --------
+
+Brightmap sprite DIM6A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM6B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM6C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM6D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM6E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM6F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM6G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM6H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM6H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
+
+// METAL IMP
+// --------
+
+Brightmap sprite DIM7A1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7A2A8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A2A8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7A3A7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4A3A7.png"
+	DisableFullBright
+}
+
+// B
+
+Brightmap sprite DIM7B1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7B2AB
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B2B8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7B3B7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4B3B7.png"
+	DisableFullBright
+}
+
+// C
+
+Brightmap sprite DIM7C1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7C2C8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C2C8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7C3C7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4C3C7.png"
+	DisableFullBright
+}
+
+// D
+
+Brightmap sprite DIM7D1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7D2D8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D2D8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7D3D7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4D3D7.png"
+	DisableFullBright
+}
+
+// E
+
+Brightmap sprite DIM7E1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7E2E8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E2E8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7E3E7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E3E7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7E4E6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E4E6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7E5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4E5.png"
+	DisableFullBright
+}
+
+// F
+
+Brightmap sprite DIM7F1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7F2F8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F2F8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7F3F7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F3F7.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7F4F6
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F4F6.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7F5
+{
+	Map "brightmaps/ElementalDoomImp/DIM4F5.png"
+	DisableFullBright
+}
+
+// G
+
+Brightmap sprite DIM7G1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7G2G8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G2G8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7G3G7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4G3G7.png"
+	DisableFullBright
+}
+
+// H
+
+Brightmap sprite DIM7H1
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H1.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7H2H8
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H2H8.png"
+	DisableFullBright
+}
+
+Brightmap sprite DIM7H3H7
+{
+	Map "brightmaps/ElementalDoomImp/DIM4H3H7.png"
+	DisableFullBright
+}
