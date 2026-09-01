@@ -29,6 +29,8 @@
 #include gl_defs/brightmap_elementaldoomimp.gl
 #include gl_defs/brightmap_elementalrevenant.gl
 
+#include gl_defs/skyboxes.gl
+
 Glow
 {
 	Flats

@@ -1,0 +1,9 @@
+skybox GSKY fliptop
+{
+	GS_FRONT
+	GS_RIGHT
+	GS_BACK
+	GS_LEFT
+	GS_TOP
+	GS_BOTTM
+}

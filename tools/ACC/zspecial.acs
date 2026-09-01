@@ -451,6 +451,10 @@ special
     -166:LumpGetInfo(2),
     -167:LumpClose(1),
 	
+	-197:GetMapData(3),
+    -198:SetMapData(4),
+    -199:FindMapData(4),
+	
 	// -1xx are reserved for Zandronum
 	-200:CheckClass(1),
 	-201:DamageActor(6), // [arookas]

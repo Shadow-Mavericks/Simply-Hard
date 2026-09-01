@@ -97,7 +97,7 @@ map SH01 "Simply Toxic"
 {
 	Next 	=	"SH02"
 	Music	=	"D_DNK1"
-	sky1	=	"SH_RSKY3", 0.0
+	sky1	=	"GSKY", 0.0
 	Nojump
 	Nocrouch
 }

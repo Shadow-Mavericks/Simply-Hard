@@ -319,6 +319,99 @@
 #define APROP_Counter6      106
 #define APROP_Counter7      107
 
+// Striker's Zandro stuff
+#define APROP_Special				200
+#define APROP_Args0					201
+#define APROP_Args1					202
+#define APROP_Args2					203
+#define APROP_Args3					204
+#define APROP_Args4					205
+#define APROP_SpawnFlags			206
+#define APROP_GibHealth				207
+#define APROP_SpecialActionClass	208
+#define APROP_Sector				209
+
+#define MDATA_Sector	0
+#define MDATA_Line		1
+
+#define SECTProp_Special			0	// Sector->Special
+#define SECTProp_Tag				1	// Sector->tag
+#define SECTProp_LightLevel 		2	// Sector->lightlevel
+#define SECTProp_Gravity			3	// Sector->gravity
+#define SECTProp_Damage				4	// Sector->damage
+#define SECTProp_MeansOfDeath		5	// Sector->mod
+#define SECTProp_FloorHeight		6	// Sector->floorplane.d
+#define SECTProp_CeilingHeight		7	// Sector->ceilingplane.d
+#define SECTProp_FloorTexture		8	// TexMan[Sector->planes[0].Texture]->Name
+#define SECTProp_CeilingTexture		9	// TexMan[Sector->planes[1].Texture]->Name
+#define SECTProp_SeqType			10	// Sector->seqType
+#define SECTProp_SeqName			11	// Sector->seqName
+#define SECTProp_Sky				12	// Sector->sky
+#define SECTProp_SoundOriginX		13	// Sector->soundorg[0]
+#define SECTProp_SoundOriginY		14	// Sector->soundorg[1]
+#define SECTProp_FloorReflection	15	// Sector->reflect[0]
+#define SECTProp_CeilingReflection	16	// Sector->reflect[1]
+#define SECTProp_LineCount			17	// Sector->linecount
+#define SECTProp_SectorLineIndex	18	// Sector->lines[value] - lines?
+#define SECTProp_FloorXOffset		19	// Sector->planes[0].xform.xoffs
+#define SECTProp_CeilingXOffset 	20	// Sector->planes[1].xform.xoffs
+#define SECTProp_FloorYOffset 		21	// Sector->planes[0].xform.yoffs
+#define SECTProp_CeilingYOffset 	22	// Sector->planes[1].xform.yoffs
+#define SECTProp_FloorXScale 		23	// Sector->planes[0].xform.xscale
+#define SECTProp_CeilingXScale 		24	// Sector->planes[1].xform.xscale
+#define SECTProp_FloorYScale 		25	// Sector->planes[0].xform.yscale
+#define SECTProp_CeilingYScale 		26	// Sector->planes[1].xform.yscale
+#define SECTProp_FloorAngle 		27	// Sector->planes[0].xform.angle
+#define SECTProp_CeilingAngle 		28	// Sector->planes[1].xform.angle
+#define SECTProp_FloorBaseAngle 	29	// Sector->planes[0].xform.base_angle
+#define SECTProp_CeilingBaseAngle 	30	// Sector->planes[1].xform.base_angle
+#define SECTProp_FloorBaseYOffset 	31	// Sector->planes[0].xform.base_yoffs
+#define SECTProp_CeilingBaseYOffset 32	// Sector->planes[1].xform.base_yoffs
+#define SECTProp_FloorAlpha 		33	// Sector->planes[0].alpha
+#define SECTProp_CeilingAlpha 		34	// Sector->planes[1].alpha
+#define SECTProp_FloorLight 		35	// Sector->planes[0].Light
+#define SECTProp_CeilingLight 		36	// Sector->planes[1].Light
+#define SECTProp_BoundingBoxTop		37	// Sector->bbox[0]
+#define SECTProp_BoundingBoxBottom	38	// Sector->bbox[1]
+#define SECTProp_BoundingBoxLeft	39	// Sector->bbox[2]
+#define SECTProp_BoundingBoxRight	40	// Sector->bbox[3]
+
+#define LINEProp_FrontSector		0	// Line->frontsector - sectors
+#define LINEProp_BackSector			1	// Line->backsector - sectors
+#define LINEProp_Vertex1X			2	// Line->v1->x;
+#define LINEProp_Vertex2X			3	// Line->v2->x;
+#define LINEProp_Vertex1Y			4	// Line->v1->y;
+#define LINEProp_Vertex2Y			5	// Line->v2->y;
+#define LINEProp_BoundingBoxTop		6	// Line->bbox[0] // ORDER OF THESE ENUMS IS IMPORTANT HERE!
+#define LINEProp_BoundingBoxBottom	7	// Line->bbox[1]
+#define LINEProp_BoundingBoxLeft	8	// Line->bbox[2]
+#define LINEProp_BoundingBoxRight	9	// Line->bbox[3]
+#define LINEProp_FrontTopTexture	10	// Line->sidedef[0]->GetTexture(side::top)
+#define LINEProp_BackTopTexture		11	// Line->sidedef[1]->GetTexture(side::top)
+#define LINEProp_FrontMidTexture	12	// Line->sidedef[0]->GetTexture(side::mid)
+#define LINEProp_BackMidTexture		13	// Line->sidedef[1]->GetTexture(side::mid)
+#define LINEProp_FrontBottomTexture	14	// Line->sidedef[0]->GetTexture(side::bottom)
+#define LINEProp_BackBottomTexture	15	// Line->sidedef[1]->GetTexture(side::bottom)
+#define LINEProp_Special			16	// Line->special
+#define LINEProp_Args0				17	// Line->args[0]
+#define LINEProp_Args1				18	// Line->args[1]
+#define LINEProp_Args2				19	// Line->args[2]
+#define LINEProp_Args3				20	// Line->args[3]
+#define LINEProp_Args4				21	// Line->args[4]
+
+#define MTF_AMBUSH				0x0008
+#define MTF_DORMANT				0x0010
+#define MTF_SINGLE				0x0100
+#define MTF_COOPERATIVE			0x0200
+#define MTF_DEATHMATCH			0x0400
+#define MTF_SHADOW				0x0800
+#define MTF_ALTSHADOW			0x1000
+#define MTF_FRIENDLY			0x2000
+#define MTF_STANDSTILL			0x4000
+#define MTF_STRIFESOMETHING		0x8000
+#define MTF_SECRET				0x080000
+#define MTF_NOINFIGHTING		0x100000
+
 // Render Styles ------------------------------------------------------------
 
 #define STYLE_None			0	// Do not draw

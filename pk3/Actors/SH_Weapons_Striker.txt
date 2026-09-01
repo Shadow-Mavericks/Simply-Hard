@@ -862,7 +862,7 @@ ACTOR LeverAction : StrikerBaseWeapon
 			goto NormalFire
 		NormalFire:
 			SLEG B 0 BRIGHT A_PlaySound("LeverActionFire", CHAN_WEAPON)
-			SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 10, "SH_BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 			SLEG B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
 			SLEG B 1 BRIGHT A_SetPitch(pitch-3.0)
 			SLEG CDD 1 A_SetPitch(pitch+1.0)
@@ -967,7 +967,7 @@ ACTOR WSTE-M5 : StrikerBaseWeapon
 			goto NormalFire
 		NormalFire:
 			WSTE B 0 BRIGHT A_PlaySound("WSTEFire", CHAN_WEAPON)
-			WSTE B 0 BRIGHT A_FireBullets (9.2, 5.1, 16, 12, "SH_BulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			WSTE B 0 BRIGHT A_FireBullets (9.2, 5.1, 16, 12, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
 			WSTE B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
 			WSTE B 2 BRIGHT A_SetPitch(pitch-4.0)
 			WSTE CCDD 1 BRIGHT A_SetPitch(pitch+0.5)
