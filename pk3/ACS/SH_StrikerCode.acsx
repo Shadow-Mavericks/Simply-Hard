@@ -2560,8 +2560,10 @@ script 13236 (int type) // "AMMO_PICKUP"
 			}
 			else if(CheckActorClass(0, "Striker"))
 			{
-				ammo1_class = "Supershellz";
-				ammo1_amount = 12;
+				ammo1_class = "Shellz";
+				ammo1_amount = 10;
+				ammo2_class = "Supershellz";
+				ammo2_amount = 10;
 			}
 			else
 			{
