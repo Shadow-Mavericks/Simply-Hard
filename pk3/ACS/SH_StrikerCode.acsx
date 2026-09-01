@@ -887,7 +887,7 @@ function void PrintDamage(int damage)
 	if(z+10.0 >= ceilingZ)
 		z = (ceilingZ-10.0) + Random(-10.0, 0.0);
 
-	int TranslationNumber = Random(6000, 6007);
+	int TranslationNumber = Random(6001, 6007);
 
 	int NumberID = UniqueTID(6000, 500);
 	Spawn(strparam(s:"Digit1Num", d:Digit1), x, y, z, NumberID, 0);

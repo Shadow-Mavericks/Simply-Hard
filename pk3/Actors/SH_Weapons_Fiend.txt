@@ -916,14 +916,7 @@ ACTOR Rawketlawnchair : SH_Weapon //Zdoom spriting carnival
 			"####" A 0 A_ReFire
 			Goto Ready
 		GoldFire:
-			FRLF A 0 A_Jump(100,"Critfire")
 			FRLF A 0 A_playsound("RLAWNCH", Chan_weapon)
-			FRLF A 1 Bright A_GunFlash
-			FRLF A 0 A_FireCustomMissile("FiendsRawket",0, true, 0, 0, 0)
-			goto FireAnim
-		CritFire:
-			FRLF A 0 A_playsound("RLAWNCH", Chan_weapon)
-			NULL A 0 A_Playsound("Weapon/Critshot",Chan_auto)
 			FRLF A 1 Bright A_GunFlash
 			FRLF A 0 A_FireCustomMissile("FiendsCRocket", 0, true, 0, 0, 0)
 			goto FireAnim

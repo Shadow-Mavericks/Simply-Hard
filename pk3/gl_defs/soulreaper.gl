@@ -80,3 +80,63 @@ BrightMap Sprite KBLDK0
 	Map "brightmaps/Weapon/KBLDJ0.png"
 	DisableFullBright
 }
+
+
+BrightMap Sprite KBL2A0
+{
+	Map "brightmaps/Weapon/KBL2A0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2B0
+{
+	Map "brightmaps/Weapon/KBL2A0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2C0
+{
+	Map "brightmaps/Weapon/KBL2A0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBL2D0
+{
+	Map "brightmaps/Weapon/KBL2D0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2E0
+{
+	Map "brightmaps/Weapon/KBL2D0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2F0
+{
+	Map "brightmaps/Weapon/KBL2D0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBL2G0
+{
+	Map "brightmaps/Weapon/KBL2G0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2H0
+{
+	Map "brightmaps/Weapon/KBL2G0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2I0
+{
+	Map "brightmaps/Weapon/KBL2G0.png"
+	DisableFullBright
+}
+
+BrightMap Sprite KBL2J0
+{
+	Map "brightmaps/Weapon/KBL2J0.png"
+	DisableFullBright
+}
+BrightMap Sprite KBL2K0
+{
+	Map "brightmaps/Weapon/KBL2J0.png"
+	DisableFullBright
+}

@@ -99,15 +99,12 @@ ACTOR FiendsRawket : SH_BasePlayerProjectile
 
 ACTOR FiendsCRocket : FiendsRawket //Recolor by Fiend Kitsune
 {
-	Speed 60
-	Damage 20
 	DamageType "Acid"
 	SeeSound "weapons/rocklf"
 	DeathSound "weapons/rocklx"
-	Obituary "%o is blasting off again!"
+	Obituary "%o was melted by %k's acidic rocket!"
 	States
 	{
-		InstantStatus: // Flag
 		Spawn:
 			CRCK A 0 NoDelay A_Jump(32, "Gibby")
 			goto SpawnLoop
