@@ -56,6 +56,7 @@ actor SpecialHax : SH_BaseHax // General purpose hack for monsters & items.
 
 actor DualFireHax : SH_BaseToken { } // Used for dual wielding fire.
 actor UseHax : SH_BaseToken { } // Used for checking for use-key combos.
+actor ReloadZoomHax : SH_BaseToken { } // Used for checking for zoom+reload-key combos
 
 actor VoidTouched : SH_BaseToken { } // Indicate that monster has been touched by void.
 

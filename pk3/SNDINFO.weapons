@@ -7,6 +7,18 @@ Weapon/Machinegunfire	DEMGFIRE
 $limit Weapon/Machinegunfire 0
 $volume Weapon/Machinegunfire 0.5
 
+FiendShotgun1 fshotg1
+FiendShotgun2 fshotg2
+FiendShotgun3 fshotg3
+$random FiendShotgun { FiendShotgun1 FiendShotgun2 FiendShotgun3 }
+$limit FiendShotgun 0
+
+FiendAcidShotgun1 fashotg1
+FiendAcidShotgun2 fashotg2
+FiendAcidShotgun3 fashotg3
+$random FiendAcidShotgun { FiendAcidShotgun1 FiendAcidShotgun2 FiendAcidShotgun3 }
+$limit FiendAcidShotgun 0
+
 ShotgunCockDown shtgcok1
 ShotgunCockUp shtgcok2
 

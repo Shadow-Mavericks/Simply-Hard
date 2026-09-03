@@ -107,7 +107,7 @@ pointlight HYPER_STAR_RED_FLASHF
 
 pointlight HYPER_STAR_PURPLE_FLASHA
 {
-    color 1.0 0.5 1.0
+    color 0.5 0.0 1.0
     size 16
     dontlightself 1
 }

@@ -5,7 +5,12 @@ weapons/sawfull			dssawful
 weapons/sawhit			dssawhit
 $pitchshiftrange 4
 
-weapons/shotgf			dsshotgn
+weapons/shotgf1			dsshotgn
+weapons/shotgf2			dsshotg2
+weapons/shotgf3			dsshotg3
+$random weapons/shotgf { weapons/shotgf1 weapons/shotgf2 weapons/shotgf3 }
+$limit weapons/shotgf 0
+
 weapons/shotgr			dssgcock
 weapons/sshotf			dsdshtgn
 weapons/sshoto			dsdbopn

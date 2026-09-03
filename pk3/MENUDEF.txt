@@ -220,6 +220,10 @@ OptionMenu "CreditSprites"
 	StaticText "chronoteeth", 1
 	StaticText "Sawn-Off Shotgun w/ FRAG-12 Rounds"
 	StaticText ""
+	
+	StaticText "JDRedAlert", 1
+	StaticText "Mare's Leg/Lever Action"
+	StaticText ""
 }
 
 OptionMenu "CreditSounds"

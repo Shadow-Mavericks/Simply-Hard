@@ -170,9 +170,8 @@ actor Star : SH_BaseParticle
 	}
 }
 
-actor Ring_Star : SH_BaseParticle
+actor Ring_Star : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -183,9 +182,8 @@ actor Ring_Star : SH_BaseParticle
 	}
 }
 
-actor Super_Star : SH_BaseParticle
+actor Super_Star : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -194,9 +192,8 @@ actor Super_Star : SH_BaseParticle
 	}
 }
 
-actor Hyper_Star_Green : SH_BaseParticle
+actor Hyper_Star_Green : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -207,9 +204,8 @@ actor Hyper_Star_Green : SH_BaseParticle
 	}
 }
 
-actor Hyper_Star_Red : SH_BaseParticle
+actor Hyper_Star_Red : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -220,9 +216,8 @@ actor Hyper_Star_Red : SH_BaseParticle
 	}
 }
 
-actor Hyper_Star_Purple : SH_BaseParticle
+actor Hyper_Star_Purple : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -233,9 +228,8 @@ actor Hyper_Star_Purple : SH_BaseParticle
 	}
 }
 
-actor Hyper_Star_Blue : SH_BaseParticle
+actor Hyper_Star_Blue : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -246,9 +240,8 @@ actor Hyper_Star_Blue : SH_BaseParticle
 	}
 }
 
-actor Hyper_Star_Yellow : SH_BaseParticle
+actor Hyper_Star_Yellow : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -259,9 +252,8 @@ actor Hyper_Star_Yellow : SH_BaseParticle
 	}
 }
 
-actor Red_Star : SH_BaseParticle
+actor Red_Star : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -270,9 +262,8 @@ actor Red_Star : SH_BaseParticle
 	}
 }
 
-actor Blue_Star : SH_BaseParticle
+actor Blue_Star : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:
@@ -281,9 +272,8 @@ actor Blue_Star : SH_BaseParticle
 	}
 }
 
-actor White_Star : SH_BaseParticle
+actor White_Star : Star
 {
-	Scale 0.05
 	States
 	{
 		Spawn:

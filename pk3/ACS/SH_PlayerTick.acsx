@@ -44,6 +44,15 @@ function void DoInputHax(void)
 	{
 		TakeInventory("UseHax", 1);
 	}
+	
+	if((buttons & BT_RELOAD) && (buttons & BT_ZOOM) && !CheckInventory("ReloadZoomHax"))
+	{
+		GiveInventory("ReloadZoomHax", 1);
+	}
+	else if((!(buttons & BT_RELOAD) || !(buttons & BT_ZOOM)) && CheckInventory("ReloadZoomHax"))
+	{
+		TakeInventory("ReloadZoomHax", 1);
+	}
 }
 
 script "SV_PLAYERTICKER" OPEN
@@ -175,7 +184,7 @@ script "SV_PLAYERTICKER" OPEN
 			{
 				if(CheckInventory("AbilityCharge") == 0)
 				{
-					if(!(tickNum % 175))
+					if(!(tickNum % 70))
 						Thing_Damage2(0, 1, "Drowning");					
 				}
 			}

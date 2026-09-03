@@ -3653,17 +3653,20 @@ script "STRIKER_SELFHEAL" (int mode)
 	
 	if(!mode)
 	{
-		int healAmount = maxHealth - currentHealth;
-		int auraCost = fixedmul(healAmount<<16, 1.75)>>16;
+		int healAmount = maxHealth - currentHealth;		
+		int auraCost = (healAmount * 7) / 4; // 1.75 aura cost per health point. (healAmount * 7) / 4
 		
-		if(auraCost > auraAmount)
-		{
-			int finalAmount = auraCost - auraAmount;
-			healAmount = fixeddiv(finalAmount<<16, 1.75)>>16;
+		if(auraCost > auraAmount) // If you cannot afford the full heal, scale healAmount down to what you CAN afford
+		{		
+			healAmount = (auraAmount * 4) / 7; // Inverse cost.
+			auraCost = (healAmount * 7) / 4; // Recalculate the actual cost for this reduced healing amount to avoid rounding errors
 		}
 			
 		if(healAmount <= 0)
+		{
 			healAmount = 1;
+			auraCost = 1;
+		}
 		
 		if(isServer()) // Server Only
 		{
@@ -3675,11 +3678,59 @@ script "STRIKER_SELFHEAL" (int mode)
 	{
 		if(isServer()) // Server Only
 		{
-			SetActorProperty(0, AProp_Health, currentHealth+CheckInventory("HealCounter"));
+			SetActorProperty(0, AProp_Health, currentHealth + CheckInventory("HealCounter"));
 			TakeInventory("HealCounter", 9999);
 		}
 	}
 		
+	SetResultValue(1);
+}
+
+int striker_healcounter = 0;
+script "STRIKER_CLEAR_HEAL_COUNT" (void)
+{
+	striker_healcounter = 0;
+}
+
+script "STRIKER_HEAL_COUNTER" (void)
+{
+	int health = GetActorProperty(0, AProp_Health);
+	if(health < 200)
+		striker_healcounter++;
+}
+
+script "STRIKER_HEALOTHERCHECK" (void)
+{
+	if(!CheckInventory("HealAbility"))
+	{
+		SetResultValue(0);
+		terminate;
+	}
+	
+	if(!striker_healcounter)
+	{
+		SetResultValue(0);
+		Print(s:"Nobody nearby to heal...");
+		terminate;
+	}
+	
+	int health = GetActorProperty(0, AProp_Health);
+	int aura = CheckInventory("AbilityCharge");
+	if(health <= 25)
+	{
+		Print(s:"I have nothing left to give...");
+		SetResultValue(0);
+		terminate;
+	}
+	else if(aura < 25)
+	{
+		Print(s:"I don't have enough aura energy...");
+		SetResultValue(0);
+		terminate;
+	}
+	
+	TakeInventory("AbilityCharge", 25);
+	SetActorProperty(0, AProp_Health, health-25);
 	SetResultValue(1);
 }
 

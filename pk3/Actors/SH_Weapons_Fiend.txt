@@ -334,6 +334,10 @@ Actor D3shotgun : SH_Weapon
 	Weapon.BobStyle "InverseSmooth"
 	Weapon.SlotNumber 3
 	Weapon.SlotPriority 1
+	
+	Weapon.SisterWeapon "AcidShotgun"
+	Weapon.PowerupItem "Tier2upgradetoken"
+	
 	Inventory.ForbiddenTo "Maximusprime"
 	Inventory.ForbiddenTo "Kunai"
 	Inventory.ForbiddenTo "Gosimer"
@@ -345,48 +349,46 @@ Actor D3shotgun : SH_Weapon
 	States
 	{
 		Ready:
-			FSGA A 0 A_jumpifinventory("Tier2upgradetoken",1,"Goldready")
 			FSGA A 1 A_WeaponReady
 			Loop
 		Deselect:
-			FSGA A 0 A_jumpifinventory("Tier2upgradetoken",1,"Golddeselect")
 			FSGA AA 0 A_Lower
 			FSGA A 1 A_Lower
 			Goto Deselect+1
 		Select:
-			FSGA A 0 A_jumpifinventory("Tier2upgradetoken",1,"goldselect")
 			FSGA AA 0 A_Raise
 			FSGA A 1 A_Raise
 			Goto Select+1
 		Fire:
-			FSGA A 0 a_jumpifinventory("Tier2upgradetoken",1,"GoldFire")
 			FSGA F 1 Bright
-			FSGA F 0 A_FireBullets (5.6, 3, 8, 12, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FSGA F 0 A_FireBullets (5.6, 3, 9, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FSGA F 0 A_FireBullets (0, 0, 1, 6, "SH_PlayerBulletPuff", FBF_NORANDOM)
+			FSGA F 0 A_PlaySound ("FiendShotgun", CHAN_WEAPON)
 			goto FireAnim
 		FireAnim:
 			"####" F 0 A_JumpIfInventory("PowerDoubleFiringSpeed", 1, "RageFireAnim")
 			"####" F 0 A_JumpIfInventory("RuneDoubleFiringSpeed", 1, "RageFireAnim")
-			"####" F 0 A_PlaySound ("weapons/shotgf", CHAN_WEAPON)
 			"####" F 0 A_GunFlash
-			"####" G 1 Bright A_SetPitch(pitch-1.0, 0)//SPF_INTERPOLATE)
-			"####" AA 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
-			"####" BB 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
+			"####" G 1 Bright A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			"####" AA 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
+			"####" BB 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			"####" BBB 1 A_WeaponOffset(-6, 0, WOF_ADD)
 			"####" C 0 A_PlaySound("ShotgunCockDown", CHAN_AUTO)
 			"####" CCCCC 1 A_WeaponOffset(-3, 0, WOF_ADD)
+			"####" D 0 A_SpawnItemEx ("GreenShotgunCasing", cos(pitch)*16, -10, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(45.0, 50.0))*2, frandom(-1.0, -2.0), -sin(pitch-frandom(45.0, 50.0))*2, 0, SXF_CLIENTSIDE, 0)
 			"####" DDDD 1 A_WeaponOffset(-3, 6, WOF_ADD)
 			"####" C 0 A_PlaySound("ShotgunCockUp", CHAN_AUTO)
 			"####" CCCCC 1 A_WeaponOffset(5, -4, WOF_ADD)
 			"####" BBBBB 1 A_WeaponOffset(4, 0, WOF_ADD)
 			"####" A 3 A_WeaponOffset(0, 32, 0)
 			"####" A 7 A_ReFire
+			"####" A 0 A_JumpTo("Ready")
 			Goto Ready
 		RageFireAnim:
-			"####" F 0 A_PlaySound ("weapons/shotgf", CHAN_WEAPON)
 			"####" F 0 A_GunFlash
-			"####" G 1 Bright A_SetPitch(pitch-1.0, 0)//SPF_INTERPOLATE)
-			"####" AA 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
-			"####" B 1 A_SetPitch(pitch+0.25, 0)//SPF_INTERPOLATE)
+			"####" G 1 Bright A_SetPitch(pitch-2.0, 0)//SPF_INTERPOLATE)
+			"####" AA 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
+			"####" B 1 A_SetPitch(pitch+0.5, 0)//SPF_INTERPOLATE)
 			"####" BB 1 A_WeaponOffset(-7, 0, WOF_ADD)
 			"####" C 0 A_PlaySound("ShotgunCockDown", CHAN_AUTO)
 			"####" CC 1 A_WeaponOffset(-7, 0, WOF_ADD)
@@ -396,7 +398,9 @@ Actor D3shotgun : SH_Weapon
 			"####" BB 1 A_WeaponOffset(8, 0, WOF_ADD)
 			"####" A 3 A_WeaponOffset(0, 32, 0)
 			"####" A 7 A_ReFire
+			"####" A 0 A_JumpTo("Ready")
 			Goto Ready
+			
 		Altfire:
 			RLGG A 0 A_JumpifInventory("Abilitycharge",2,1)
 			Goto Ready
@@ -428,29 +432,39 @@ Actor D3shotgun : SH_Weapon
 			RLGG A 2 Offset ( -23, 52 )
 			RLGG A 1 Offset ( -25, 60 )
 			RLGG A 1 Offset ( -26, 70 )
+			RLGG A 0 A_JumpTo("Ready")
 			goto Ready
-		Goldready:
-			FGSG A 1 A_WeaponReady
-			Loop
-		GoldDeselect:
-			FGSG AA 0 A_Lower
-			FGSG A 1 A_Lower
-			Goto goldDeselect+1
-		GoldSelect:
-			FGSG AA 0 A_Raise
-			FGSG A 1 A_Raise
-			Goto goldSelect+1
-		GoldFire:
-			FGSG F 1 Bright
-			FGSG F 0 A_FireBullets (5.6, 3, 8, 12, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
-			goto FireAnim
-		Flash:
-			TNT1 A 1 Bright A_Light1
-			TNT1 B 1 Bright A_Light2
-			Goto LightDone
+			
 		Spawn:
 			SHOT A -1
 			Stop
+	}
+}
+
+actor AcidShotgun : D3Shotgun
+{
+	Tag "Acid Shotgun (Tier 2 Upgrade)"
+	Weapon.SisterWeapon "D3Shotgun"
+	+WEAPON.POWERED_UP
+	States
+	{
+		Ready:
+			FGSG A 1 A_WeaponReady
+			Loop
+		Deselect:
+			FGSG AA 0 A_Lower
+			FGSG A 1 A_Lower
+			Goto Deselect+1
+		Select:
+			FGSG AA 0 A_Raise
+			FGSG A 1 A_Raise
+			Goto Select+1
+		Fire:
+			FGSG F 1 Bright
+			FGSG F 0 A_FireBullets (5.6, 3, 9, 10, "FiendsAcidPuff", FBF_USEAMMO | FBF_NORANDOM)
+			FSGA F 0 A_FireBullets (0, 0, 1, 6, "FiendsAcidPuff", FBF_NORANDOM)
+			FGSG F 0 A_PlaySound ("FiendAcidShotgun", CHAN_WEAPON)
+			goto FireAnim
 	}
 }
 
