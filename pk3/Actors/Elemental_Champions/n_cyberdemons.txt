@@ -73,8 +73,8 @@ actor Rocket_Electric : Rawket
 	states
 	{
 		Spawn:
-			MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE, 0)
-			MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE, 0)
+			MISL AAAAAAA 0 A_SpawnItemEx ("CryoSmoke3", 0, 0, 0, (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE | SXF_ABSOLUTEVELOCITY, 0)
+			MISL AAAA 0 A_SpawnItemEx ("CryoSmoke4", 0, 0, 0,  (momx*0.5), (momy*0.5), (momz*0.5), 0, SXF_CLIENTSIDE  | SXF_ABSOLUTEVELOCITY, 0)
 			MISL A 1 A_SpawnItemEx("Particle_Lightning16", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
