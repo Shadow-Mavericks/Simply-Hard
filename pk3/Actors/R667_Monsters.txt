@@ -380,8 +380,13 @@ ACTOR SSGZombie
 		Loop
 	Missile:
 		GPOS E 10 A_FaceTarget
-		GPOS F 8 BRIGHT A_CustomBulletAttack(11.2, 7.1, 20, 3, "Bulletpuff")
+		GPOS F 8 BRIGHT A_CustomBulletAttack(11.2, 7.1, 6, random[SSGPosAttack](1,5)*3, "Bulletpuff", 0, CBAF_NORANDOM)
 		GPOS E 8
+		GPOS A 0 A_PlaySound("weapons/sshoto", CHAN_AUTO)
+		GPOS AABB 4 A_Wander
+		GPOS C 0 A_PlaySound("weapons/sshotl", CHAN_AUTO)
+		GPOS CCDD 4 A_Wander
+		GPOS D 0 A_PlaySound("weapons/sshotc", CHAN_AUTO)
 		Goto See
 	Pain:
 		GPOS G 3
@@ -12543,12 +12548,7 @@ actor DarkInquisitorGibber
 		NULL A 0 A_Gravity
 		NULL A 0
 		NULL A 0 A_PlaySound("darkinquisitor/gibbage")
-		NULL A 1 A_SpawnItemEx ("Shrapnel1", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-		NULL A 1 A_SpawnItemEx ("Shrapnel2", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-		NULL A 1 A_SpawnItemEx ("Shrapnel3", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-		NULL A 1 A_SpawnItemEx ("Shrapnel3", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-		NULL A 1 A_SpawnItemEx ("Shrapnel2", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-		NULL A 1 A_SpawnItemEx ("Shrapnel1", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
+		NULL AAAAAA 1 A_SpawnItemEx ("Shrapnel1", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
 		stop
 	}
 }
@@ -12569,9 +12569,7 @@ actor InquisitorDeathExplosion
 	states
 	{
 		Spawn:
-			TNT1 A 0 A_SpawnItemEx ("Shrapnel1", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-			TNT1 A 0 A_SpawnItemEx ("Shrapnel2", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
-			TNT1 A 0 A_SpawnItemEx ("Shrapnel3", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
+			TNT1 AAA 0 A_SpawnItemEx ("Shrapnel1", 0, 0, random(0,42), random(2,6), random(2,6), 0, random(0,360), 160)
 			R045 MNOPQ 3 bright A_Explode
 			stop
 	}

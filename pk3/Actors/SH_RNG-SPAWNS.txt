@@ -17,11 +17,11 @@ Actor SH_RandomShotgunGuySpawn : SH_BaseMonsterRandomSpawner
 	Dropitem "SH_ShotgunGuy"		255 100
 	Dropitem "SSGZombie"			255 5
 	DropItem "Flamerzombie"			255 5
-	DropItem "FreezeRifleGuy"		255 5
-	Dropitem "Enemysentrygun"		255 5
+	DropItem "FreezeRifleGuy"		255 5	
 	Dropitem "Rocketzombie"			255 5
 	DropItem "ASGGUY"				255 3
 	Dropitem "FemaleSergeant"		255 5
+	Dropitem "Enemysentrygun"		255 1
 }
 
 Actor SH_RandomImpSpawn : SH_BaseMonsterRandomSpawner

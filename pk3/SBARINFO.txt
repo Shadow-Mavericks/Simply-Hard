@@ -10,6 +10,11 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 {
 	DrawImage runeicon, -32, 32, center;
 	
+	InInventory ThrowPower, 1
+	{
+		DrawBar "THRWBAR", "DIVIDER", ThrowPower, horizontal, -44+center, 64+center;
+	}
+	
 	playertype "Fiend"
 	{
 		// Left Half

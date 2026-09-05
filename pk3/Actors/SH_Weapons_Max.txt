@@ -1,7 +1,10 @@
 // Damage Falloff Calc = fix16(basedamage) - (fix16(falloff) * tics/rate) >> 16
+// Projectile Speed is divided by 4 from Dark Forces to get Doom value.
+// Timer values are also divided by 4.
+// Gravity is approximately 0.7
 
 const int DARKFORCES_DMG_MULT = 2;
-const int DARKFORCES_RAD_MULT = 6;
+const int DARKFORCES_RAD_MULT = 4;
 const int DARKFORCES_TIC_SHIFT = 2;
 
 actor BlastBolt : SH_BasePlayerFastProjectile
@@ -2001,3 +2004,369 @@ actor DF_SuperCharge : PowerupGiver
 		stop
 	}
 }
+
+const int THERMALDET_THROW_PITCH = 25;
+const int THERMALDET_THROW_HEIGHT = 1;
+
+// 14 Min Velocity for Primary
+// 5 Min Velocity for Secondary
+
+actor ThermalDetonators : SH_Weapon
+{
+	Tag "Thermal Detonator"
+
+	weapon.selectionorder 110
+	weapon.Kickback 200
+	Weapon.AmmoType1 "GrenadeAmmo"
+	Weapon.AmmoUse1 1
+	Weapon.AmmoType2 "GrenadeAmmo"
+	Weapon.AmmoUse2 1
+	
+	Inventory.RestrictedTo "MaximusPrime"
+
+	Obituary "o% was incinerated by %k's thermal detonator."
+	weapon.BobStyle "InverseSmooth"
+	Weapon.SlotNumber 4
+	weapon.BobRangeX 1
+	weapon.BobRangeY 1
+	weapon.bobspeed 1
+	
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 24
+	
+	+WEAPON.NOALERT
+	+WEAPON.CHEATNOTWEAPON
+	+WEAPON.NOAUTOAIM
+	States
+	{
+		Ready:
+			TDET A 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+			TDET A 1 A_WeaponReady
+			loop
+		ReadyNoAmmo:
+			TDET D 0 A_JumpIfInventory("GrenadeAmmo", 1, "Ready")
+			TDET D 1 A_WeaponReady
+			loop
+		Deselect:
+			TDET A 0 A_JumpIfNoAmmo("DeselectNoAmmo")
+			TDET A 1 A_Lower
+			TNT1 AA 0 A_Lower
+			loop
+		DeselectNoAmmo:
+			TDET D 0 A_JumpIfInventory("GrenadeAmmo", 1, "Deselect")
+			TDET D 1 A_Lower
+			TDET DD 0 A_Lower
+			loop
+		Select:
+			TDET A 0 A_JumpIfNoAmmo("SelectNoAmmo")
+			TDET A 1 A_Raise
+			TNT1 AA 0 A_Raise
+			loop
+		SelectNoAmmo:
+			TDET D 0 A_JumpIfInventory("GrenadeAmmo", 1, "Select")
+			TDET D 1 A_Raise
+			TDET DD 0 A_Raise
+			loop
+		Fire:
+			TDET B 2
+			TNT1 A 0 A_Refire("HoldStart")
+			goto Throw
+		HoldStart:
+			TNT1 A 2
+			goto Hold
+		Hold:
+			TNT1 A 1 A_GiveInventory("ThrowPower", 1)
+			TNT1 A 0 A_Refire("Hold")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 29, "Throw29")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 28, "Throw28")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 27, "Throw27")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 26, "Throw26")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 25, "Throw25")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 24, "Throw24")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 23, "Throw23")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 22, "Throw22")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 21, "Throw21")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 20, "Throw20")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 19, "Throw19")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 18, "Throw18")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 17, "Throw17")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 16, "Throw16")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 15, "Throw15")
+			goto Throw
+		Throw29:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator29", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw28:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator28", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw27:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator27", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw26:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator26", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw25:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator25", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw24:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator24", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw23:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator23", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw22:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator22", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw21:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator21", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw20:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator20", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw19:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator19", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw18:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator18", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw17:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator17", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw16:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator16", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw15:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator15", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		Throw:
+			TNT1 A 0 A_FireCustomMissile("ThermalDetonator", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		ThrowEnd:
+			TDET C 12 A_TakeInventory("ThrowPower", 29)
+			TDET B 0 A_JumpIfNoAmmo("ReadyNoAmmo")
+			TDET B 8
+			TDET A 3
+			TDET A 0 A_Refire("Fire")
+			goto Ready
+			
+			
+		AltFire:
+			TDET B 2
+			TNT1 A 0 A_Refire("AltHoldStart")
+			goto AltThrow
+		AltHoldStart:
+			TNT1 A 2
+			goto AltHold
+		AltHold:
+			TNT1 A 1 A_GiveInventory("ThrowPower", 1)
+			TNT1 A 0 A_Refire("AltHold")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 29, "AltThrow29")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 28, "AltThrow28")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 27, "AltThrow27")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 26, "AltThrow26")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 25, "AltThrow25")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 24, "AltThrow24")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 23, "AltThrow23")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 22, "AltThrow22")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 21, "AltThrow21")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 20, "AltThrow20")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 19, "AltThrow19")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 18, "AltThrow18")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 17, "AltThrow17")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 16, "AltThrow16")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 15, "AltThrow15")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 14, "AltThrow14")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 13, "AltThrow13")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 12, "AltThrow12")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 11, "AltThrow11")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 10, "AltThrow10")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 9, "AltThrow9")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 8, "AltThrow8")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 7, "AltThrow7")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 6, "AltThrow6")
+			TNT1 A 0 A_JumpIfInventory("ThrowPower", 5, "AltThrow")
+			goto AltThrow
+		AltThrow29:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator29", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow28:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator28", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow27:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator27", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow26:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator26", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow25:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator25", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow24:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator24", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow23:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator23", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow22:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator22", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow21:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator21", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow20:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator20", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow19:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator19", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow18:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator18", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow17:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator17", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow16:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator16", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow15:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator15", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow14:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator14", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow13:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator13", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow12:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator12", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow11:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator11", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow10:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator10", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow9:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator9", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow8:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator8", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow7:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator7", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow6:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator6", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+		AltThrow:
+			TNT1 A 0 A_FireCustomMissile("BouncyThermalDetonator", 0, true, 8, THERMALDET_THROW_HEIGHT, 0, THERMALDET_THROW_PITCH)
+			goto ThrowEnd
+	}
+}
+
+actor ThermalDetonator : SH_BasePlayerProjectile
+{
+	Obituary "%o was incinerated by %k's thermal detonator."
+	Radius 8
+	Height 8
+	Speed 14
+	Damage (0)
+	Gravity 0.7
+	
+	DamageType "MaxExplosion"
+
+	Scale 0.8
+
+	PROJECTILE
+	+NEVERADJUSTSPRITECLIPPING
+	+FORCEXYBILLBOARD
+	+NOTIMEFREEZE
+	+FORCERADIUSDMG
+	-NOGRAVITY
+	-NOTELEPORT
+	
+	States
+	{
+		Spawn:
+			THRM A 1 BRIGHT
+			Loop
+		Death:
+		Explode:
+			TNT1 A 0 A_PlaySound("Max/SmlExplo", CHAN_AUTO)
+			TNT1 A 0 A_PlaySound("Max/ThermalDetonatorBounce", CHAN_AUTO)
+			TNT1 A 0 A_SetTranslucent(1.0, 1)
+			TNT1 A 0 A_ChangeFlag("NOGRAVITY", true)
+			TNT1 A 0 Bright A_Quake (1, 6, 0, 60 * DARKFORCES_RAD_MULT, "") 
+			TNT1 A 0 Bright A_Quake (2, 6, 0, 40 * DARKFORCES_RAD_MULT, "") 
+			TNT1 A 0 Bright A_Quake (4, 6, 0, 30 * DARKFORCES_RAD_MULT, "") 
+			TDEX A 3 bright A_Explode(60 * DARKFORCES_DMG_MULT, 30 * DARKFORCES_RAD_MULT, XF_HURTSOURCE)
+			TDEX BCDEFGHIJKL 3 bright
+			stop
+	}
+}
+
+actor ThermalDetonator15 : ThermalDetonator { Speed 15 }
+actor ThermalDetonator16 : ThermalDetonator { Speed 16 }
+actor ThermalDetonator17 : ThermalDetonator { Speed 17 }
+actor ThermalDetonator18 : ThermalDetonator { Speed 18 }
+actor ThermalDetonator19 : ThermalDetonator { Speed 19 }
+actor ThermalDetonator20 : ThermalDetonator { Speed 20 }
+actor ThermalDetonator21 : ThermalDetonator { Speed 21 }
+actor ThermalDetonator22 : ThermalDetonator { Speed 22 }
+actor ThermalDetonator23 : ThermalDetonator { Speed 23 }
+actor ThermalDetonator24 : ThermalDetonator { Speed 24 }
+actor ThermalDetonator25 : ThermalDetonator { Speed 25 }
+actor ThermalDetonator26 : ThermalDetonator { Speed 26 }
+actor ThermalDetonator27 : ThermalDetonator { Speed 27 }
+actor ThermalDetonator28 : ThermalDetonator { Speed 28 }
+actor ThermalDetonator29 : ThermalDetonator { Speed 29 }
+
+actor BouncyThermalDetonator : ThermalDetonator
+{
+	Speed 5
+	BounceFactor 0.45
+	WallBounceFactor 0.89
+	BounceType Doom
+	BounceSound "Max/ThermalDetonatorBounce"
+	+BOUNCEONACTORS
+	var int user_timer;
+	States
+	{
+		Spawn:
+			THRM A 1 A_SetUserVar("user_timer", user_timer+1)
+			THRM A 0 A_JumpIf(user_timer >= 105, "Explode")
+			loop
+		Death:
+			THRM A 0 A_PlaySound("Max/ThermalDetonatorBounce", CHAN_AUTO)
+			goto DeathLoop
+		DeathLoop:
+			THRM A 1 A_SetUserVar("user_timer", user_timer+1)
+			THRM A 0 A_JumpIf(user_timer >= 105, "Explode")
+			loop
+	}
+}
+
+actor BouncyThermalDetonator6 : BouncyThermalDetonator { Speed 6 }
+actor BouncyThermalDetonator7 : BouncyThermalDetonator { Speed 7 }
+actor BouncyThermalDetonator8 : BouncyThermalDetonator { Speed 8 }
+actor BouncyThermalDetonator9 : BouncyThermalDetonator { Speed 9 }
+actor BouncyThermalDetonator10 : BouncyThermalDetonator { Speed 10 }
+actor BouncyThermalDetonator11 : BouncyThermalDetonator { Speed 11 }
+actor BouncyThermalDetonator12 : BouncyThermalDetonator { Speed 12 }
+actor BouncyThermalDetonator13 : BouncyThermalDetonator { Speed 13 }
+actor BouncyThermalDetonator14 : BouncyThermalDetonator { Speed 14 }
+actor BouncyThermalDetonator15 : BouncyThermalDetonator { Speed 15 }
+actor BouncyThermalDetonator16 : BouncyThermalDetonator { Speed 16 }
+actor BouncyThermalDetonator17 : BouncyThermalDetonator { Speed 17 }
+actor BouncyThermalDetonator18 : BouncyThermalDetonator { Speed 18 }
+actor BouncyThermalDetonator19 : BouncyThermalDetonator { Speed 19 }
+actor BouncyThermalDetonator20 : BouncyThermalDetonator { Speed 20 }
+actor BouncyThermalDetonator21 : BouncyThermalDetonator { Speed 21 }
+actor BouncyThermalDetonator22 : BouncyThermalDetonator { Speed 22 }
+actor BouncyThermalDetonator23 : BouncyThermalDetonator { Speed 23 }
+actor BouncyThermalDetonator24 : BouncyThermalDetonator { Speed 24 }
+actor BouncyThermalDetonator25 : BouncyThermalDetonator { Speed 25 }
+actor BouncyThermalDetonator26 : BouncyThermalDetonator { Speed 26 }
+actor BouncyThermalDetonator27 : BouncyThermalDetonator { Speed 27 }
+actor BouncyThermalDetonator28 : BouncyThermalDetonator { Speed 28 }
+actor BouncyThermalDetonator29 : BouncyThermalDetonator { Speed 29 }

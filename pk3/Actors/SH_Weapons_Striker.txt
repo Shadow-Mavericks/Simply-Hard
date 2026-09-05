@@ -76,6 +76,14 @@ ACTOR HealTest : CustomInventory
 	}
 }
 
+ACTOR StrikerHealthGiver : Health
+{
+	+INVENTORY.QUIET
+	+INVENTORY.ALWAYSPICKUP
+	Inventory.Amount 1
+	Inventory.MaxAmount 125
+}
+
 ACTOR StrikerHealer : CustomInventory
 {
 	Inventory.MaxAmount 0
@@ -86,7 +94,7 @@ ACTOR StrikerHealer : CustomInventory
 	{
 		Pickup:
 			TNT1 A 0 BRIGHT A_SetBlend("64 00 FF", 0.75, 15, "64 00 FF")
-			TNT1 A 0 BRIGHT A_GiveInventory("HealthPainis_200max", 5)
+			TNT1 A 0 BRIGHT A_GiveInventory("StrikerHealthGiver", 25)
 			TNT1 A 0 BRIGHT A_GiveInventory("AbilityCharge", 25)
 			TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Hyper_Star_Purple", frandom(-24, 24), frandom(-24, 24), 8.0, 0, 0, 0, frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
 			Stop
@@ -165,7 +173,7 @@ actor StrikerBaseWeapon : SH_Weapon
 			
 		HealOtherCheck:
 			"####" A 0 ACS_NamedExecuteWithResult("STRIKER_CLEAR_HEAL_COUNT")
-			"####" A 0 A_RadiusGive("HealTest", 96.0, RGF_PLAYERS | RGF_NOSIGHT, 1) 
+			"####" A 0 A_RadiusGive("HealTest", 114.0, RGF_PLAYERS | RGF_NOSIGHT, 1) 
 			"####" A 0 A_JumpIf(CallACS("STRIKER_HEALOTHERCHECK"), "HealOtherTrigger")
 			goto CannotHeal
 		HealOtherTrigger:
@@ -178,7 +186,7 @@ actor StrikerBaseWeapon : SH_Weapon
 			STHO C 0 A_PlaySound("AuraFire", CHAN_AUTO)
 			STHO CD 1
 			STHO EFGHIJ 1 BRIGHT
-			STSH M 0 BRIGHT A_PlaySound("Striker/SelfHeal", CHAN_AUTO)
+			STHO K 0 BRIGHT A_PlaySound("Striker/SelfHeal", CHAN_AUTO)
 			STHO K 0 BRIGHT A_RadiusGive("StrikerHealer", 128.0, RGF_PLAYERS | RGF_NOSIGHT, 25)
 			STHO K 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 24, 8.0, 0.0, 0.0, 0.0, SXF_CLIENTSIDE, 0)
 			STHO K 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 24, 8.0, 0.0, 0.0, 22.5, SXF_CLIENTSIDE, 0)

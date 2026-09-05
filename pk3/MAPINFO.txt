@@ -111,6 +111,14 @@ map SH02 "Familiar places"
 	Nocrouch
 }
 
+map SH03 "Prismatic Ruins"
+{
+	Next 	=	"SH04"
+	Music	=	"D_LAVC"
+	sky1	=	"SH_RSKY3", 0.0
+	Nojump
+	Nocrouch
+}
 
 map SH06 "Flood Zone act 2"
 {

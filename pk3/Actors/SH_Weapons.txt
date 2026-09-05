@@ -45,6 +45,11 @@ actor SH_MiniSentryBulletPuff : SH_BulletPuff
 	+ALLOWTHRUBITS
 }
 
+actor ThrowPower : SH_BaseToken
+{
+	Inventory.MaxAmount 29
+}
+
 // Mighty boot thing.
 ACTOR Shotgunmayray : Bulletpuff
 {

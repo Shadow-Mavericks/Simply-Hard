@@ -1482,3 +1482,112 @@ ACTOR FireAxe : SH_Weapon
 			Goto Ready
 	}
 }
+
+actor PipebombDetonator : SH_BaseToken { }
+
+ACTOR Pipebombs : SH_Weapon
+{
+	Tag "Pipebombs"
+	Weapon.SelectionOrder 9
+	Inventory.RestrictedTo "Gosimer"
+	Weapon.Kickback 100
+	Weapon.AmmoType "GrenadeAmmo"
+	Weapon.AmmoUse 1
+	Obituary "%o was blown to pieces by %k's pipebomb."
+	+WEAPON.NOAUTOFIRE
+	+WEAPON.NOALERT
+	States
+	{
+		Ready:
+			PIPE A 1 A_WeaponReady
+			Loop
+		Deselect:
+			PIPE AAA 0 A_Lower
+			PIPE A 1 A_Lower
+			Loop
+		Select:
+			PIPE AAA 0 A_Raise
+			PIPE A 1 A_Raise
+			Loop
+		Fire:
+			PIPE AAAA 1 A_WeaponOffset(0, 4, WOF_ADD)
+			PIPE BBBB 1 A_WeaponOffset(0, 4, WOF_ADD)
+			PIPE B 1
+			PIPE B 0 A_Refire("Hold")
+			goto Throw
+		Hold:
+			PIPE B 1 A_GiveInventory("ThrowPower", 1)
+			PIPE B 0 A_Refire("Hold")
+			goto Throw
+		Throw:
+			PIPE BBBB 1 A_WeaponOffset(0, -8, WOF_ADD)
+			PIPE B 0 A_FireCustomMissile("Pipebomb", 0, true, 4, 0, 0, 11.25)
+			PIPE CCCC 1 A_WeaponOffset(0, -8, WOF_ADD)
+			PIPE C 0 A_TakeInventory("ThrowPower", 1000)
+			PIPE CCCCCCCCCCCCCCCC 1 A_WeaponOffset(0, 7, WOF_ADD)
+			PIPE AAAAAAAA 1 A_WeaponOffset(0, -8, WOF_ADD)
+			PIPE A 0 A_WeaponOffset(0, 32, 0)
+			goto Ready
+		AltFire:
+			DETO A 0 A_WeaponOffset(0, 32, 0)
+			DETO ABC 1
+			DETO C 0 A_GiveInventory("PipebombDetonator", 1)
+			DETO BA 2
+			DETO A 2 A_TakeInventory("PipebombDetonator", 1)
+			PIPE A 0 A_WeaponOffset(0, 96, 0)
+			PIPE AAAAAAAA 1 A_WeaponOffset(0, -8, WOF_ADD)
+			PIPE A 0 A_Refire
+			goto Ready
+	}
+}
+
+actor Pipebomb
+{
+	Projectile
+	Health 20
+	Radius 8
+	Height 8
+	Speed 10
+	Gravity 0.75
+	Damage (0)
+	DamageType Fire
+	BounceType Doom
+	BounceFactor 0.75
+	BounceSound "Gosimer/PipebombBounce"
+	Scale 0.2
+	+FORCERADIUSDMG
+	+NOTARGETSWITCH
+	-NONSHOOTABLE
+	-NOBLOCKMAP
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			PIPB A 0 NoDelay ACS_NamedExecuteWithResult("CALC_CHARGED_VELOCITY", 8, 25)
+		SpawnLoop:
+			PIPB AAAABBBB 1 A_JumpIfInTargetInventory("PipebombDetonator", 1, "Detonate")
+			loop
+		Death:
+			PIPB A 0 A_SetShootable
+		DeathLoop:
+			PIPB A 1 A_JumpIfHealthLower(1, "Explode")
+			PIPB A 0 A_JumpIfInTargetInventory("PipebombDetonator", 1, "Detonate")
+			loop
+		Detonate:
+			PIPB AAAAA 2 A_Jump(128, "Explode")
+			goto Explode
+		Explode:
+			DEXP A 0 Bright A_ChangeFlag("EXTREMEDEATH", random(0, 1))
+			DEXP A 0 Bright A_Stop
+			DEXP A 0 Bright A_UnsetShootable
+			DEXP A 0 Bright A_SetTranslucent(1.0, 1)
+			DEXP A 0 Bright A_SetScale(0.1, 0.1)
+			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
+			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
+			DEXP A 0 Bright A_Explode(100, 144)
+			DEXP AAAAAA 0 Bright A_SpawnItemEx("Shrapnel1", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
+			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
+			stop
+	}
+}
+

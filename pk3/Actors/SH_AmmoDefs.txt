@@ -191,6 +191,18 @@ ACTOR Nukecharge : Ammo
 	}
 }
 
+ACTOR GrenadeAmmo : Ammo
+{
+	Tag "Grenade"
+	Inventory.PickupMessage "1 Grenade"
+	Inventory.Amount 1
+	Inventory.MaxAmount 50
+	Inventory.Icon "THRMA0"
+	Ammo.BackpackAmount 1
+	Ammo.BackpackMaxAmount 50
+	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.
+}
+
 // ********* GOSIMER'S AMMO ************
 ACTOR DevastatorAmmo : Ammo
 {

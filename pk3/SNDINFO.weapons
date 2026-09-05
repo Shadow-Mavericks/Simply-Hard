@@ -106,6 +106,8 @@ Gosimer/GrenadeL_POOT	GNTGPOOT
 Gosimer/GrenadeL_open	GNTGOPEN
 Gosimer/GrenadeL_Close	GNTGCLS
 
+Gosimer/PipebombBounce pbombbnc
+
 AxeFlesh1 axeflsh1
 AxeFlesh2 axeflsh2
 AxeFlesh3 axeflsh3
@@ -215,6 +217,7 @@ Max/LSSelect	DSSABREU
 Max/LSDeselect	DSSABREO
 
 // Explosions
+Max/SmlExplo SMLEXP
 Max/MedExplo MEDEXP
 Max/LrgExplo DFLRGEX
 $limit Max/MedExplo 0
@@ -230,6 +233,8 @@ Max/Zoom	DFZOOM
 
 Max/Trail DFTRAIL
 Max/WepRaise DFWEPON
+
+Max/ThermalDetonatorBounce THERMAL
 
 // Striker's Class
 // ---------------

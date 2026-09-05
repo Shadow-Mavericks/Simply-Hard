@@ -264,11 +264,10 @@ Actor SoulsphereGiver : Custominventory Replaces Soulsphere  //Soulsphere class 
 	+INVENTORY.ALWAYSPICKUP
 	Inventory.RespawnTics "99999999"
 	Inventory.PickupMessage "Picked up a Soulsphere +100 HP"
-	RenderStyle Add
 	States
 	{
 		Spawn:
-			SOUL ABCD 2 BRIGHT
+			SOUL ABCDCB 6 Bright
 			Loop
 		pickup:
 			TNT1 A 0 A_Jumpifinventory("FiendToken",1,"Fiend")
@@ -288,18 +287,6 @@ Actor SoulsphereGiver : Custominventory Replaces Soulsphere  //Soulsphere class 
 		Max:
 			TNT1 A 0 A_playsound("Max/ArmorGet", CHAN_6)
 			TNT1 A 0 A_GiveInventory("Soulsphere200Cap")
-			Stop
-	}
-}
-
-Actor BigolFuckyou
-{
-	Radius 4
-	Height 18
-	States
-	{
-		Spawn:
-			FKYU A -1
 			Stop
 	}
 }

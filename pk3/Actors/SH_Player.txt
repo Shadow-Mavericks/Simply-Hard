@@ -267,7 +267,7 @@ ACTOR Gosimer : SH_BasePlayer
 	Player.WeaponSlot 7, "micro_Devistator"
 	Player.WeaponSlot 8, "Propulsion_Rifle"
 	Player.WeaponSlot 9, "Lightning_Rifle"
-	Player.WeaponSlot 0, "NuclearMissileLauncher"
+	Player.WeaponSlot 0, "NuclearMissileLauncher", "Pipebombs"
 	
 	BounceSound "PlayerHP/AlarmGosimer"
 
@@ -361,10 +361,7 @@ actor MaximusPrime : SH_BasePlayer
 	Mass 100
 	PainChance 255
 
-	DamageFactor 0.75
-
-	DamageFactor "MaxBlasterBolt", 0.67
-	DamageFactor "MaxExplosion", 0.67
+	DamageFactor 1.0
 
 	Player.DisplayName "Max"
 	Player.CrouchSprite "PLYC"
@@ -373,7 +370,10 @@ actor MaximusPrime : SH_BasePlayer
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "BryarPistol"
 	Player.StartItem "DFFist"
+	Player.StartItem "ThermalDetonators"
 	Player.StartItem "DF_EnergyUnit", 100
+	Player.StartItem "GrenadeAmmo", 4
+	Player.StartItem "MaxBackpack", 1
 	Player.StartItem "MaxToken"
 	Player.Startitem "MaxShield100", 1
 	Player.StartItem "ElementalShield", 100
@@ -381,12 +381,13 @@ actor MaximusPrime : SH_BasePlayer
 	Player.WeaponSlot 1, "Lightsaber", "DFFist"
 	Player.WeaponSlot 2, "BryarPistol"
 	Player.WeaponSlot 3, "E11"
-	Player.WeaponSlot 4, "Autogun"
-	Player.WeaponSlot 5, "FusionCutter"
-	Player.WeaponSlot 6, "MortarGun"
-	Player.WeaponSlot 7, "ConcRifle", "DisruptorRifle"
-	Player.WeaponSlot 8, "AssaultCannon"
-	Player.WeaponSlot 0, "NuclearMissileLauncher"
+	Player.WeaponSlot 4, "ThermalDetonators"
+	Player.WeaponSlot 5, "Autogun"
+	Player.WeaponSlot 6, "FusionCutter"
+	Player.WeaponSlot 7, "DisruptorRifle"
+	Player.WeaponSlot 8, "MortarGun"
+	Player.WeaponSlot 9, "ConcRifle"
+	Player.WeaponSlot 0, "AssaultCannon", "NuclearMissileLauncher"
 	
 	BounceSound "PlayerHP/AlarmMax"
 	

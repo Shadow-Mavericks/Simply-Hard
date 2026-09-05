@@ -1229,11 +1229,13 @@ function void kunai_health_sap(int playerNum, int arg1, int victimHealth, int he
 				SpawnProjectile(0, "HealingSeeker", random(0,255), random(0, 30), random(-128, 128), 0, uTID);
 			}
 			
-			SetActivator(uTID);								// Set activator to orb.
-			SetPointer(AAPTR_TRACER, srcUTID);				// Set orb tracer to player.
-			SetPointer(AAPTR_TARGET, srcUTID);				// Set orb target to player.
-			SetUserVariable(uTID, "user_healamt", healAmt);	// Tell orb how much it heals.
-			SetActivator(0, spawn_ptr);						// Reset activator to spawner for next orb.
+			if(SetActivator(uTID))							// Set activator to orb.
+			{
+				SetPointer(AAPTR_TRACER, srcUTID);				// Set orb tracer to player.
+				SetPointer(AAPTR_TARGET, srcUTID);				// Set orb target to player.
+				SetUserVariable(uTID, "user_healamt", healAmt);	// Tell orb how much it heals.
+				SetActivator(0, spawn_ptr);						// Reset activator to spawner for next orb.
+			}
 		}
 
 		Thing_ChangeTID(srcUTID, oldTID); // We're finished. Revert player's TID.
@@ -1705,9 +1707,11 @@ script "CREATE_HP_BAR" (void)
 	Thing_ChangeTID(0, tgtUTID); // Give it our unique ID.
 	
 	// Set activator to the bar, and set its pointers to the target.
-	SetActivator(barTID);
-	SetPointer(AAPTR_TARGET, tgtUTID);
-	SetPointer(AAPTR_TRACER, tgtUTID);
+	if(SetActivator(barTID))
+	{
+		SetPointer(AAPTR_TARGET, tgtUTID);
+		SetPointer(AAPTR_TRACER, tgtUTID);
+	}
 	
 	// Restore target's TID back to normal.
 	Thing_ChangeTID(tgtUTID, oldTID);
@@ -1981,8 +1985,10 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 									//printbold(s:GetActorClass(0)); // Debug shid
 									int laserTID = UniqueTID();
 									SpawnForced("BFG_Laser_Firer", GetActorX(0), GetActorY(0), GetActorZ(0), laserTID, 0);
-									SetActivator(laserTID);
-									SetPointer(AAPTR_TARGET, targetTID);
+									if(SetActivator(laserTID))
+									{
+										SetPointer(AAPTR_TARGET, targetTID);
+									}
 								}
 								Thing_ChangeTID(targetTID, oldTID);
 							}
@@ -2020,13 +2026,15 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 										Thing_ChangeTID(0, attackerUniqueTID);
 										
 										// Set target on acid explosion.
-										SetActivator(acidExpUTID);
-										SetPointer(AAPTR_TARGET, attackerUniqueTID);
-										SetUserVariable(acidExpUTID, "user_radius", acidRadius);
-										SetActorProperty(acidExpUTID, AProp_ScaleX, clamp(acidRadius/32, 0.25, 1.0));
-										SetActorProperty(acidExpUTID, AProp_ScaleY, clamp(acidRadius/32, 0.25, 1.0));
+										if(SetActivator(acidExpUTID))
+										{
+											SetPointer(AAPTR_TARGET, attackerUniqueTID);
+											SetUserVariable(acidExpUTID, "user_radius", acidRadius);
+											SetActorProperty(acidExpUTID, AProp_ScaleX, clamp(acidRadius/32, 0.25, 1.0));
+											SetActorProperty(acidExpUTID, AProp_ScaleY, clamp(acidRadius/32, 0.25, 1.0));
+										}
 										
-										Thing_ChangeTID(0, attackerTID);
+										Thing_ChangeTID(attackerUniqueTID, attackerTID);
 									}
 								}
 							}
@@ -2040,9 +2048,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 				{
 					if(attackerPlayerNum != -1)
 					{
-						SetActivator(0, AAPTR_DAMAGE_TARGET);
-						TakeInventory("WhoFrozeMeHax", 9999);
-						GiveInventory("WhoFrozeMeHax", attackerPlayerNum+1);
+						if(SetActivator(0, AAPTR_DAMAGE_TARGET))
+						{
+							TakeInventory("WhoFrozeMeHax", 9999);
+							GiveInventory("WhoFrozeMeHax", attackerPlayerNum+1);
+						}
 					}
 				}
 			}
@@ -2790,6 +2800,8 @@ script 13236 (int type) // "AMMO_PICKUP"
 #define WEAPON_RAILGUN		8
 #define WEAPON_FLAME		9
 #define WEAPON_NUKE			10
+#define WEAPON_GRENADE		11
+#define WEAPON_GRENADEBOX	12
 
 script 13237 (int type) // "WEAPON_PICKUP"
 {
@@ -2847,6 +2859,10 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
 				weapon_class = "Lightsaber";
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "None";
 			}
 			break;
 		case WEAPON_PISTOL:
@@ -3127,6 +3143,40 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			}
 			break;
 		}
+		case WEAPON_GRENADE:
+		{
+			ammo1_class = "GrenadeAmmo";
+			ammo1_amount = 1;
+			droptype = DROPTYPE_FULL;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "ThermalDetonators";
+				ammo1_name = "Thermal Detonator";
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				weapon_class = "Pipebombs";
+				ammo1_name = "Pipebomb";
+			}
+		}
+		case WEAPON_GRENADEBOX:
+		{
+			ammo1_class = "GrenadeAmmo";
+			ammo1_amount = 5;
+			droptype = DROPTYPE_FULL;
+			
+			if(CheckActorClass(0, "MaximusPrime"))
+			{
+				weapon_class = "ThermalDetonators";
+				ammo1_name = "Thermal Detonator";
+			}
+			else if(CheckActorClass(0, "Gosimer"))
+			{
+				weapon_class = "Pipebombs";
+				ammo1_name = "Pipebomb";
+			}
+		}
 	}
 
 	if(!dropped)
@@ -3329,7 +3379,7 @@ script 13238 (void) // "PICK_UP_SENTRY"
 
 script "DROP_SENTRY" (bool used)
 {
-	if(IsNetworkGame() && (ConsolePlayerNumber() != -1)) // Hack to prevent Zandronum from executing this on a client
+	if(IsClient()) // Hack to prevent Zandronum from executing this on a client
 		terminate;
 
 	int playerNum = PlayerNumber();
@@ -3695,7 +3745,7 @@ script "STRIKER_CLEAR_HEAL_COUNT" (void)
 script "STRIKER_HEAL_COUNTER" (void)
 {
 	int health = GetActorProperty(0, AProp_Health);
-	if(health < 200)
+	if(health < 125)
 		striker_healcounter++;
 }
 
@@ -3709,8 +3759,10 @@ script "STRIKER_HEALOTHERCHECK" (void)
 	
 	if(!striker_healcounter)
 	{
+		if(IsServer())
+			Print(s:"Nobody nearby to heal...");
+			
 		SetResultValue(0);
-		Print(s:"Nobody nearby to heal...");
 		terminate;
 	}
 	
@@ -3718,19 +3770,27 @@ script "STRIKER_HEALOTHERCHECK" (void)
 	int aura = CheckInventory("AbilityCharge");
 	if(health <= 25)
 	{
-		Print(s:"I have nothing left to give...");
+		if(IsServer())
+			Print(s:"I have nothing left to give...");
+			
 		SetResultValue(0);
 		terminate;
 	}
 	else if(aura < 25)
 	{
-		Print(s:"I don't have enough aura energy...");
+		if(IsServer())
+			Print(s:"I don't have enough aura energy...");
+		
 		SetResultValue(0);
 		terminate;
 	}
 	
-	TakeInventory("AbilityCharge", 25);
-	SetActorProperty(0, AProp_Health, health-25);
+	if(isServer())
+	{
+		TakeInventory("AbilityCharge", 25);
+		SetActorProperty(0, AProp_Health, health-25);
+	}
+	
 	SetResultValue(1);
 }
 
@@ -3908,4 +3968,23 @@ script "GET_VIEW_HEIGHT" (void) CLIENTSIDE
 {
 	int height = GetActorViewHeight(0);
 	SetResultValue(height >> 16);
+}
+
+script "CALC_CHARGED_VELOCITY" (int min)
+{
+	int uTID = UniqueTID(0);
+	Thing_ChangeTID(0, uTID);
+	
+	int velx = GetActorVelX(0);
+	int vely = GetActorVelY(0);
+	int velz = GetActorVelZ(0);
+	
+	if(SetActivator(0, AAPTR_TARGET))
+	{
+		int throwPower = CheckInventory("ThrowPower");
+		if(throwPower < min)
+			throwPower = min;
+			
+		SetActorVelocity(uTID, (velx/10)*throwPower, (vely/10)*throwPower, (velz/10)*throwPower, false, false);
+	}
 }

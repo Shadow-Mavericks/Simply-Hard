@@ -862,3 +862,15 @@ actor PinkExplosionSpawner : SH_BaseEnemyProjectile
 			stop
 	}
 }
+
+Actor BigolFuckyou
+{
+	Radius 4
+	Height 18
+	States
+	{
+		Spawn:
+			FKYU A -1
+			Stop
+	}
+}
