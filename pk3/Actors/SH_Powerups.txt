@@ -630,3 +630,20 @@ Actor SH_BlurSphere : SH_CustomInventory Replaces BlurSphere
 			fail
 	}
 }
+
+ACTOR MaxDamageBoost : PowerupGiver
+{
+	Inventory.PickupMessage ""
+	Inventory.PickupAnnouncerEntry ""
+	Powerup.Duration -15
+	Powerup.Type Damage
+	Powerup.Color "00 64 FF", 0.33
+	+INVENTORY.AUTOACTIVATE
+	+INVENTORY.ALWAYSPICKUP
+	+INVENTORY.AUTOACTIVATE
+	+NOGRAVITY
+	-COUNTITEM
+	States
+	{
+	}
+}

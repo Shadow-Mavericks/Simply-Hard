@@ -290,21 +290,63 @@ actor Shrapnel1
 	-SOLID
 	States
 	{
-	Spawn:
-		SHRP LMN 5
-		loop
-	
-	Death:
-		SHRP L 0 A_Jump(256, "Death1", "Death2", "Death3")
-	Death1:
-		SHRP L 70
-		Stop
-	Death2:
-		SHRP M 70
-		Stop
-	Death3:
-		SHRP N 70
-		Stop
+		Spawn:
+			SHRP LMN 5
+			loop
+		
+		Death:
+			SHRP L 0 A_Jump(256, "Death1", "Death2", "Death3")
+		Death1:
+			SHRP L 70
+			Stop
+		Death2:
+			SHRP M 70
+			Stop
+		Death3:
+			SHRP N 70
+			Stop
+	}
+}
+
+actor Shrapnel2 : Shrapnel1
+{
+	States
+	{
+		Spawn:
+			SHR4 ABCDEFGHI 3
+			loop
+		Death:
+			SHR4 A 0 A_Jump(256, "Death1", "Death2", "Death3")
+		Death1:
+			SHR4 C 70
+			Stop
+		Death2:
+			SHR4 G 70
+			Stop
+		Death3:
+			SHR4 H 70
+			Stop
+	}
+}
+
+actor Shrapnel3 : Shrapnel1
+{
+	States
+	{
+		Spawn:
+			SHR5 ABCD 5
+			loop
+		Death:
+			SHR5 A 0 A_Jump(256, "Death1", "Death2", "Death3")
+		Death1:
+			SHR5 B 70
+			Stop
+		Death2:
+			SHR5 C 70
+			Stop
+		Death3:
+			SHR5 D 70
+			Stop
 	}
 }
 

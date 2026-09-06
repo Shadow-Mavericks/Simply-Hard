@@ -45,6 +45,16 @@ $limit SSWFire1 0
 $limit SSWFire2 0
 $limit SSWFire 0
 
+// Frostbomb
+Kunai/FrostBombBounce fbombbnc
+Kunai/FrostBombJump fbombjmp
+Kunai/FrostBombExplosion fbombexp
+Kunai/IcicleHit icicleht
+$limit Kunai/FrostBombBounce 0
+$limit Kunai/FrostBombJump 0
+$limit Kunai/FrostBombExplosion 0
+$limit Kunai/IcicleHit 0
+
 // Helltech Shotgun
 Kunaishotgun_FIRE1	KHTS_FR1
 Kunaishotgun_FIRE2	KHTS_FR2

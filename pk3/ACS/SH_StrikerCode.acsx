@@ -2846,6 +2846,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 	switch(type)
 	{
 		case WEAPON_CHAINSAW:
+		{
 			weapon_class = "UAC-Chainsaw";
 			if(CheckActorClass(0, "Fiend") || CheckActorClass(0, "Gosimer"))
 			{
@@ -2865,6 +2866,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "None";
 			}
 			break;
+		}
 		case WEAPON_PISTOL:
 			SetResultValue(0);  // Unused, for now.
 			terminate;
@@ -3159,6 +3161,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "Pipebombs";
 				ammo1_name = "Pipebomb";
 			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				weapon_class = "FrostBombs";
+				ammo1_name = "Frost Bomb";
+			}
+			break;
 		}
 		case WEAPON_GRENADEBOX:
 		{
@@ -3176,6 +3184,12 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "Pipebombs";
 				ammo1_name = "Pipebomb";
 			}
+			else if(CheckActorClass(0, "Kunai"))
+			{
+				weapon_class = "FrostBombs";
+				ammo1_name = "Frost Bomb";
+			}
+			break;
 		}
 	}
 

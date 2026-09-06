@@ -110,6 +110,8 @@ Weapon/Critssg   	CSSHTGN
 weapon/LMGGIRE	 	LMGFIRE
 Weapon/Nadeboom  	nadedie
 Weapon/nadebounce	nadebnc
+$limit Weapon/Nadeboom 0
+$limit Weapon/NadeBounce 0
 
 //Plasmashotgun
 PulseShotgun/Fire RAILGF2

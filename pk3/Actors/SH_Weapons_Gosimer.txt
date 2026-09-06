@@ -1488,12 +1488,21 @@ actor PipebombDetonator : SH_BaseToken { }
 ACTOR Pipebombs : SH_Weapon
 {
 	Tag "Pipebombs"
-	Weapon.SelectionOrder 9
 	Inventory.RestrictedTo "Gosimer"
+	
+	Weapon.SelectionOrder 9
 	Weapon.Kickback 100
 	Weapon.AmmoType "GrenadeAmmo"
 	Weapon.AmmoUse 1
+	
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "Smooth"
+	Weapon.SwayStyle "HorizontalOnly"
+	Weapon.ViewSwaySpeed 1.0
+	
 	Obituary "%o was blown to pieces by %k's pipebomb."
+	
 	+WEAPON.NOAUTOFIRE
 	+WEAPON.NOALERT
 	States
@@ -1557,13 +1566,14 @@ actor Pipebomb
 	Scale 0.2
 	+FORCERADIUSDMG
 	+NOTARGETSWITCH
+	+NOBLOOD
 	-NONSHOOTABLE
 	-NOBLOCKMAP
 	-NOGRAVITY
 	States
 	{
 		Spawn:
-			PIPB A 0 NoDelay ACS_NamedExecuteWithResult("CALC_CHARGED_VELOCITY", 8, 25)
+			PIPB A 0 NoDelay ACS_NamedExecuteWithResult("CALC_CHARGED_VELOCITY", 8)
 		SpawnLoop:
 			PIPB AAAABBBB 1 A_JumpIfInTargetInventory("PipebombDetonator", 1, "Detonate")
 			loop
@@ -1585,7 +1595,9 @@ actor Pipebomb
 			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
 			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
 			DEXP A 0 Bright A_Explode(100, 144)
-			DEXP AAAAAA 0 Bright A_SpawnItemEx("Shrapnel1", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
+			DEXP AAAA 0 Bright A_SpawnItemEx("Shrapnel1", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
+			DEXP AA 0 Bright A_SpawnItemEx("Shrapnel2", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
+			DEXP AA 0 Bright A_SpawnItemEx("Shrapnel3", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
 			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}

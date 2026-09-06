@@ -681,3 +681,83 @@ actor SH_GibMist : SH_BaseParticle
 			stop
 	}
 }
+
+actor IceGlitter : SH_BaseParticle
+{
+	Scale 0.01
+	Alpha 1.0
+	RenderStyle Add
+	Gravity 0.08
+	+CORPSE
+	-NOINTERACTION
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			BLSS AB 1 A_FadeOut(0.02)
+			loop
+		Crash:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor IceFog : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.10
+	States
+	{
+	Spawn:
+		IRFO A 0
+		IRFO A 0 A_SetScale(frandom(1.25, 2.0), frandom(1.25, 2.0))
+		goto Fog
+	Fog:
+		IRFO A 1 A_FadeOut(0.003)
+		loop
+	}
+}
+
+ACTOR SH_IceChunkReplacer : IceChunk replaces IceChunk
+{
+	Gravity 1.0
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_SpawnItemEx("IceGlitter", frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("IceFog", frandom(-8.0, 8.0), frandom(-8.0, 8.0), frandom(-8.0, 8.0), 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_SpawnItemEx("SH_IceChunk", 0, 0, 0, (velx*8.0)+frandom(-4.0,4.0), (vely*8.0)+frandom(-4.0,4.0), (velz*16.0)+frandom(1.0,8.0), angle, SXF_CLIENTSIDE | SXF_ABSOLUTEANGLE | SXF_ABSOLUTEVELOCITY, 0)
+			TNT1 AB 10 A_IceSetTics
+			Stop
+	}
+}
+
+actor SH_IceChunk
+{
+	Projectile
+	Radius 3
+	Height 4
+	Mass 5
+	BounceType Hexen
+	BounceCount 6
+	Gravity 0.8
+	Alpha 1.0
+	RenderStyle Add
+	-NOGRAVITY
+	States
+	{
+		Spawn:
+			ICEC A 0 NoDelay A_SetScale(frandom(0.5, 1.0))
+			goto SpawnLoop
+		SpawnLoop:
+			ICEC A 1
+			loop
+		Death:
+			ICEC BCDE 20
+			goto Fade
+		Fade:
+			"####" "#" 1 A_Fadeout(0.01)
+			loop
+	}
+}
