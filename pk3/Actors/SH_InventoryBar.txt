@@ -1095,10 +1095,10 @@ Actor Maxbag
 			IMIN Z 5
 			IMIN Z -1 A_Jump(256, "Individual", "Pack")
 		Individual:
-			IMIN ZZZZZ 1 A_SpawnItemEx ("GrenadeGiver", 0, 0, 22, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			IMIN ZZZZZZZZZZ 1 A_SpawnItemEx ("GrenadeGiver", 0, 0, 22, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
 			goto Despawn
 		Pack:
-			IMIN Z 1 A_SpawnItemEx ("GrenadeBoxGiver", 0, 0, 22, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
+			IMIN ZZ 1 A_SpawnItemEx ("GrenadeBoxGiver", 0, 0, 22, frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(2.0, 4.0), 0, SXF_NOCHECKPOSITION)
 			goto Despawn
 		Despawn:
 			IMIN Z 1 A_FADEOUT(0.005)

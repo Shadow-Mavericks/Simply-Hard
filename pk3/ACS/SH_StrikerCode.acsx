@@ -3178,6 +3178,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "FrostBombs";
 				ammo1_name = "Frost Bomb";
 			}
+			else if(CheckActorClass(0, "Fiend"))
+			{
+				weapon_class = "FragGrenades";
+				ammo1_name = "Frag Grenade";
+			}
 			break;
 		}
 		case WEAPON_GRENADEBOX:
@@ -3200,6 +3205,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			{
 				weapon_class = "FrostBombs";
 				ammo1_name = "Frost Bomb";
+			}
+			else if(CheckActorClass(0, "Fiend"))
+			{
+				weapon_class = "FragGrenades";
+				ammo1_name = "Frag Grenade";
 			}
 			break;
 		}
