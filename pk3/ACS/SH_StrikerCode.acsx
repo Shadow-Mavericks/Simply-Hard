@@ -832,6 +832,13 @@ script "ON_KILL" KILL
 		}
 	}
 	
+	if(spawnHealth >= 20 && random(0, 256) <= 1)
+	{
+		int grenadeTID = UniqueTID (0, 0);
+		SpawnForced("GrenadeGiver", GetActorX(0), GetActorY(0), GetActorZ(0)+(Height/2), grenadeTID, random(0, 255));
+		SetActorVelocity(grenadeTID, random(-4.0, 4.0), random(-4.0, 4.0), random(2.0, 6.0), false, false);
+	}
+	
 	if(!CheckFlag(0, "BOSS") && !CheckFlag(0, "NOBLOOD") && !CheckFlag(0, "ICECORPSE") && !CheckInventory("WhoFrozeMeHax") && CheckActorState(0, "XDeath", true) && !CheckActorState(0, "NoGenericGibs", true) && (CheckInventory("ExtremeDeathHax") != 2))
 	{
 		if((DeathHealth <= GetActorProperty(0, APROP_GibHealth)) || CheckActorPropertyString(0, APROP_DamageType, "Extreme") || (CheckInventory("ExtremeDeathHax") == 1))
@@ -2355,6 +2362,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 #define DROPTYPE_HALVED 1
 #define DROPTYPE_FULL 2
 #define DROPTYPE_RANDOM 3
+#define DROPTYPE_FULLNOMULTIPLY 4
 
 // Brutal shitfuck hack due to Zandronum not networking the "log" command for some buttfuck reason.
 // Use with "NamedSendNetworkString".
@@ -2370,7 +2378,11 @@ function int add_ammo(str ammo_class, int amount, int droptype)
 	if(amount == 0)
 		return 0;
 
-	if((GetCvar("sh_ammo_mult") > 1) || (GameSkill() == SHSKILL_OKUPLOK))
+	if(droptype == DROPTYPE_FULLNOMULTIPLY)
+	{
+		// Do nothing.
+	}
+	else if((GetCvar("sh_ammo_mult") > 1) || (GameSkill() == SHSKILL_OKUPLOK))
 	{
 		int multiplier = GetCvar("sh_ammo_mult");
 		if((GameSkill() == SHSKILL_OKUPLOK) && (multiplier < 4))
@@ -3149,7 +3161,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 		{
 			ammo1_class = "GrenadeAmmo";
 			ammo1_amount = 1;
-			droptype = DROPTYPE_FULL;
+			droptype = DROPTYPE_FULLNOMULTIPLY;
 			
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -3172,7 +3184,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 		{
 			ammo1_class = "GrenadeAmmo";
 			ammo1_amount = 5;
-			droptype = DROPTYPE_FULL;
+			droptype = DROPTYPE_FULLNOMULTIPLY;
 			
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -3596,7 +3608,7 @@ script "RECKONING_ACTION" (void)
 	int radius = GetActorProperty(0, APROP_Radius);
 	int height = GetActorProperty(0, APROP_Height);
 	
-	if(GetActorProperty(0, AProp_Health) <= 0)
+	if((GetActorProperty(0, AProp_Health) <= 0) || CheckFlag(0, "FRIENDLY"))
 		terminate;
 		
 	GiveInventory("ReckoningInEffect", 1);

@@ -135,6 +135,7 @@ Actor SpinnyDoomsauce : ArchSpeen
 {
 	Tag "Spinny Doomsauce, the friendly Archspeen!"
 	+FRIENDLY
+	-COUNTKILL
 }
 
 ACTOR ArchspeenWind : CustomInventory

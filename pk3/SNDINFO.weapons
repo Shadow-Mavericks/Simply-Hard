@@ -25,6 +25,14 @@ ShotgunCockUp shtgcok2
 AcidChaingun ACIDCHNG
 $limit AcidChaingun 0
 
+FragGrenadePrime fragprim
+FragGrenadeTimer fragtimr
+FragGrenadeBounce1 fragbnc1
+FragGrenadeBounce2 fragbnc2
+FragGrenadeBounce3 fragbnc3
+$random FragGrenadeBounce { FragGrenadeBounce1 FragGrenadeBounce2 FragGrenadeBounce3 }
+$limit FragGrenadeBounce 0
+
 // ---------------
 // Kunai's Weapons
 // ---------------

@@ -72,6 +72,7 @@ ACTOR Zyberdemon
 actor FreddieTheFriendlyZyberdemon : Zyberdemon
 {
 	+FRIENDLY
+	-COUNTKILL
 }
 
 ACTOR Microrocket

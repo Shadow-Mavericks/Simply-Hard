@@ -16,8 +16,10 @@ ACTOR Fiend : SH_BasePlayer
 	Player.StartItem "PlayerCheckHax", 1
 	Player.StartItem "Renettim9"
 	Player.StartItem "Fists"
+	Player.StartItem "FragGrenades"
 	Player.StartItem "Shellz", 6
 	Player.StartItem "peastolClip", 50
+	Player.StartItem "GrenadeAmmo", 2
 	Player.StartItem "FiendToken"
 	Player.StartItem "MEDBAG"
 	Player.startItem "FiendsFlare", 10
@@ -33,7 +35,7 @@ ACTOR Fiend : SH_BasePlayer
 	Player.WeaponSlot 7, "DEBFG9500"
 	Player.WeaponSlot 8, "FiendsRailgun"
 	Player.WeaponSlot 9, "Lightning_Rifle"
-	Player.WeaponSlot 0, "NuclearMissileLauncher"
+	Player.WeaponSlot 0, "NuclearMissileLauncher", "FragGrenades"
 
 	BounceSound "PlayerHP/Alarmfiend"
 	Player.JumpZ 9

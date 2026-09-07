@@ -2014,15 +2014,32 @@ ACTOR FrostBombs : SH_Weapon
 	States
 	{
 		Ready:
+			FRSB A 0 A_JumpIfNoAmmo("ReadyNoAmmo")
 			FRSB A 1 A_WeaponReady
 			Loop
 		Deselect:
+			FRSB A 0 A_JumpIfNoAmmo("DeselectNoAmmo")
 			FRSB AAA 0 A_Lower
 			FRSB A 1 A_Lower
 			Loop
 		Select:
+			FRSB A 0 A_JumpIfNoAmmo("SelectNoAmmo")
 			FRSB AAA 0 A_Raise
 			FRSB A 1 A_Raise
+			Loop
+		ReadyNoAmmo:
+			FRSB B 0 A_JumpIfInventory("GrenadeAmmo", 1, "Ready")
+			FRSB B 1 A_WeaponReady
+			Loop
+		DeselectNoAmmo:
+			FRSB B 0 A_JumpIfInventory("GrenadeAmmo", 1, "DeselectNoAmmo")
+			FRSB BBB 0 A_Lower
+			FRSB B 1 A_Lower
+			Loop
+		SelectNoAmmo:
+			FRSB B 0 A_JumpIfInventory("GrenadeAmmo", 1, "SelectNoAmmo")
+			FRSB BBB 0 A_Raise
+			FRSB B 1 A_Raise
 			Loop
 		Fire:
 			FRSB AAAAAAAA 1 A_WeaponOffset(2, 4, WOF_ADD)

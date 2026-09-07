@@ -59,13 +59,14 @@ actor SH_SuicideBomber
 			BMBE C 2 A_Recoil(-3)
 			BMBE C 0 A_FaceTarget
 			BMBE C 2 A_Recoil(-3)
-			BMBE A 0 A_Die
+			BMBE A 0 A_Die("Suicide")
 			goto Death
 		Pain:
 			BMBE A 3
 			BMBE A 3 A_Pain
 			goto See
 		Death:
+		Death.Suicide:
 			BMBE M 5 bright A_PlaySound("KamikazeBoom", CHAN_AUTO)
 			TNT1 A 0 A_Explode (75, 160)
 			TNT1 A 0 A_GiveInventory("SH_GibSpawner", 1)
@@ -75,6 +76,7 @@ actor SH_SuicideBomber
 			BMBE U -1
 			stop
 		Ice:
+			BMBE A 0 A_SpawnItemEx("GrenadeGiver", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(2.0, 6.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 0)
 			BMBE A 5 A_GenericFreezeDeath
 			BMBE A 1 A_FreezeDeathchunks
 			wait
@@ -359,7 +361,6 @@ ACTOR SSGZombie
 	Speed 9
 	PainChance 170
 	MONSTER
-	Translation "112:127=16:47"
 	+FloorClip
 	SEESOUND "SSGUNER/sight"
 	ATTACKSOUND "SSGUNER/SSG"
@@ -3671,7 +3672,8 @@ ACTOR ASGGuy
 	DeathSound "grunt/death"
 	ActiveSound "grunt/active"
 	Obituary "%o got emmenthal'd by an ASG guy."
-	DropItem Shellbox
+	DropItem "Shellbox"
+	DropItem "GrenadeGiver", 128
 	States
 	{
 	Spawn:
@@ -10296,6 +10298,7 @@ ACTOR RocketImp : SH_BaseMonster //20128
 	ActiveSound "Rocketimp/Idle"
 	Dropitem "RocketAmmo"
 	Dropitem "RocketLauncher", 25
+	DropItem "GrenadeGiver", 1
 	Obituary "%o was blown apart by a Robo Rocket Imp"
 
 	Monster

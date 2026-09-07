@@ -1508,16 +1508,33 @@ ACTOR Pipebombs : SH_Weapon
 	States
 	{
 		Ready:
+			PIPE A 0 A_JumpIfNoAmmo("ReadyNoAmmo")
 			PIPE A 1 A_WeaponReady
 			Loop
 		Deselect:
+			PIPE A 0 A_JumpIfNoAmmo("DeselectNoAmmo")
 			PIPE AAA 0 A_Lower
 			PIPE A 1 A_Lower
 			Loop
 		Select:
+			PIPE A 0 A_JumpIfNoAmmo("SelectNoAmmo")
 			PIPE AAA 0 A_Raise
 			PIPE A 1 A_Raise
 			Loop
+		ReadyNoAmmo:
+			NPIP A 0 A_JumpIfInventory("GrenadeAmmo", 1, "Ready")
+			NPIP A 1 A_WeaponReady
+			Loop
+		DeselectNoAmmo:
+			NPIP A 0 A_JumpIfInventory("GrenadeAmmo", 1, "Deselect")
+			NPIP AAA 0 A_Lower
+			NPIP A 1 A_Lower
+			Loop
+		SelectNoAmmo:
+			NPIP A 0 A_JumpIfInventory("GrenadeAmmo", 1, "Select")
+			NPIP AAA 0 A_Raise
+			NPIP A 1 A_Raise
+			Loop	
 		Fire:
 			PIPE AAAA 1 A_WeaponOffset(0, 4, WOF_ADD)
 			PIPE BBBB 1 A_WeaponOffset(0, 4, WOF_ADD)
