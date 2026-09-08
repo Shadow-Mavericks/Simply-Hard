@@ -223,7 +223,7 @@ MannCoBoxData_t tier7_good[] =
 
 MannCoBoxData_t tier7_bad[] =
 {
-	{ "The dog absorbed the reward, sorry.",	"YouLose",			10,		DELAY_NONE },
+	{ "The dog absorbed the reward, sorry.",	"AnnoyingDog",		10,		DELAY_NONE },
 	{ "Deja Vu!",								"DejaVu",			10,		DELAY_NONE },
 	{ "Pink!",									"Pink",				10,		DELAY_NONE },
 };
