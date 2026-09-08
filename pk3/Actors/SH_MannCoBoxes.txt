@@ -691,6 +691,8 @@ actor AnnoyingDog
 {
 	Radius 10
 	Height 10
+	Speed 5
+	Scale 0.5
 	-NOGRAVITY
 	+DROPOFF
 	+CANPASS
@@ -707,8 +709,11 @@ actor AnnoyingDog
 			loop
 		Sleep:
 			ADO2 AB 5
-			loop		
+			loop
 		Wander:
+			ADO4 A 0 A_LookEx(LOF_NOJUMP, 0, 0, 0, 360.0, "WanderLoop")
+			goto WanderLoop
+		WanderLoop:
 			ADO4 AB 5 A_Wander
 			loop
 		Bone:
@@ -717,7 +722,8 @@ actor AnnoyingDog
 		Balloon:
 			ADO6 A 0 A_ChangeFlag("FLOATBOB", true)
 			ADO6 A 0 A_ChangeFlag("FLOAT", true)
-			ADO6 A 0 A_ChangeFlag("NOGRAVITY", false)
+			ADO6 A 0 A_ChangeFlag("NOGRAVITY", true)
+			ADO6 A 0 A_LookEx(LOF_NOJUMP, 0, 0, 0, 360.0, "BalloonLoop")
 			goto BalloonLoop
 		BalloonLoop:
 			ADO6 A 5 A_Wander
