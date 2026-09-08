@@ -3184,6 +3184,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "FragGrenades";
 				ammo1_name = "Frag Grenade";
 			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "MolotovCocktails";
+				ammo1_name = "Molotov Cocktail";
+			}
 			break;
 		}
 		case WEAPON_GRENADEBOX:
@@ -3211,6 +3216,11 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			{
 				weapon_class = "FragGrenades";
 				ammo1_name = "Frag Grenade";
+			}
+			else if(CheckActorClass(0, "Striker"))
+			{
+				weapon_class = "MolotovCocktails";
+				ammo1_name = "Molotov Cocktail";
 			}
 			break;
 		}
