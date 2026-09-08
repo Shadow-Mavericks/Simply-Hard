@@ -1457,7 +1457,7 @@ actor FragGrenades : SH_Weapon
 	
 	Inventory.RestrictedTo "Fiend"
 
-	Obituary "o% was blown apart by %k's frag grenade."
+	Obituary "%o was blown apart by %k's frag grenade."
 	
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
@@ -1466,7 +1466,6 @@ actor FragGrenades : SH_Weapon
 	Weapon.SlotNumber 0
 	
 	+WEAPON.NOALERT
-	+WEAPON.CHEATNOTWEAPON
 	+WEAPON.NOAUTOAIM
 	States
 	{
@@ -1530,10 +1529,10 @@ actor FragGrenades : SH_Weapon
 
 actor FragGrenade : SH_BasePlayerProjectile
 {
-	Obituary "o% was blown apart by %k's frag grenade."
+	Obituary "%o was blown apart by %k's frag grenade."
 	Radius 8
 	Height 8
-	Speed 8
+	Speed 10
 	Damage (50)
 	Gravity 1.0
 

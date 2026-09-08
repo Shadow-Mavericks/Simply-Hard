@@ -27,7 +27,7 @@ function void DoInputHax(void)
 	// Dual Wielding Hax
 	int oldbuttons = GetPlayerInput(-1, INPUT_OLDBUTTONS);
 	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
-	if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK))
+	if((buttons & BT_ALTATTACK) && !(oldbuttons & BT_ALTATTACK) && !CheckInventory("DualFireHax"))
 	{
 		GiveInventory("DualFireHax", 1);
 	}
@@ -36,7 +36,7 @@ function void DoInputHax(void)
 		TakeInventory("DualFireHax", 1);
 	}
 	
-	if((buttons & BT_USE) && !(oldbuttons & BT_USE))
+	if((buttons & BT_USE) && !(oldbuttons & BT_USE) && !CheckInventory("UseHax"))
 	{
 		GiveInventory("UseHax", 1);
 	}

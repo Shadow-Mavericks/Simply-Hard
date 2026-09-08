@@ -1366,6 +1366,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
 	bool wasConcussed = false;
+	bool noHitMarker = CheckActorState(0, "NoHitMarker", true);
 	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));	
 	
 	if(CheckFlag(0, "ICECORPSE"))
@@ -1453,7 +1454,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	{
 		if(attackerPlayerNum != -1) // Source is player
 		{
-			if(arg1 && (victimIsMonster || (victimPlayerNum != attackerPlayerNum)))
+			if(arg1 && (victimIsMonster || (victimPlayerNum != attackerPlayerNum)) && !noHitMarker)
 				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
 
 			// Gosimer's Berserk Buff

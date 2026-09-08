@@ -312,3 +312,7 @@ $random ReckoningExplosion { ReckoningExplosion1 ReckoningExplosion2 ReckoningEx
 $limit ReckoningExplosion 0
 
 Reckoning reckning
+
+weapons/bottle dsbottle
+burningup dsburnup
+$limit weapons/bottle 0

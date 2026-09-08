@@ -208,11 +208,11 @@ actor BaronBall_Fire : BaronBall_Base
 	States
 	{
 		Spawn:
-			FIR7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
-			FIR7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FBL7 A 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			FBL7 B 1 Bright A_SpawnItemEx ("BaronballtrailRed", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			Loop
 		Death:
-			FIR7 CDE 6 Bright
+			FBL7 CDE 6 Bright
 			Stop
 	}
 }

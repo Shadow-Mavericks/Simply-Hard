@@ -497,6 +497,7 @@ ACTOR Striker : SH_BasePlayer
 	Player.StartItem "StrikersFists"
 	Player.StartItem "HedgefoxClip", 7
 	Player.StartItem "peastolClip", 150
+	Player.StartItem "GrenadeAmmo", 2
 	Player.StartItem "AbilityCharge", 100
 	Player.StartItem "StrikersPendant", 1
 	Player.StartItem "StrikerToken"
@@ -508,7 +509,7 @@ ACTOR Striker : SH_BasePlayer
 	Player.WeaponSlot 4, "ModifiedMAC10"
 	Player.WeaponSlot 5, "Frag12GrenadeShotgun"
 	Player.WeaponSlot 6, "BCF2Repeater"
-	Player.WeaponSlot 0, "NuclearMissileLauncher"
+	Player.WeaponSlot 0, "NuclearMissileLauncher", "MolotovCocktails"
 
 	BounceSound "Striker/Heartbeat"
 	Player.JumpZ 9

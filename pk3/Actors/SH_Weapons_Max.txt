@@ -1753,7 +1753,7 @@ actor DFFist : SH_Weapon
 	
 	Inventory.RestrictedTo "MaximusPrime"
 
-	Obituary "o% got knocked the fuck out by %k"
+	Obituary "%o got knocked the fuck out by %k"
 	weapon.BobStyle "InverseSmooth"
 	Weapon.SlotNumber 1
 	weapon.BobRangeX 1
@@ -1841,7 +1841,7 @@ actor Lightsaber : SH_Weapon
 	weapon.selectionorder 1000
 	weapon.kickback 250
 	Inventory.RestrictedTo "MaximusPrime"
-	Obituary "o% met %k's lightsaber"
+	Obituary "%o met %k's lightsaber"
 	weapon.BobStyle "InverseSmooth"
 	Inventory.PickupSound "Max/HealthBonus"
 	Weapon.UpSound "Max/LSSelect"
@@ -2024,7 +2024,7 @@ actor ThermalDetonators : SH_Weapon
 	
 	Inventory.RestrictedTo "MaximusPrime"
 
-	Obituary "o% was incinerated by %k's thermal detonator."
+	Obituary "%o was incinerated by %k's thermal detonator."
 	weapon.BobStyle "InverseSmooth"
 	Weapon.SlotNumber 4
 	weapon.BobRangeX 1
@@ -2035,7 +2035,6 @@ actor ThermalDetonators : SH_Weapon
 	Weapon.ViewPitchOffset 24
 	
 	+WEAPON.NOALERT
-	+WEAPON.CHEATNOTWEAPON
 	+WEAPON.NOAUTOAIM
 	States
 	{

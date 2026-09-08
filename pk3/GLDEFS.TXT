@@ -8783,20 +8783,20 @@ pointlight Fireball4
 
 Object Impball_Fire
 {
-	frame FIR1A	{ Light Fireball1 }
-	frame FIR1B { Light Fireball1 }
-	frame FIR1C { Light Fireball2 }
-	frame FIR1D { Light Fireball3 }
-	frame FIR1E { Light Fireball4 }
+	frame IBAFA	{ Light Fireball1 }
+	frame IBAFB { Light Fireball1 }
+	frame IBAFC { Light Fireball2 }
+	frame IBAFD { Light Fireball3 }
+	frame IBAFE { Light Fireball4 }
 }
 
 Object Baronball_Fire
 {
-	frame FIR7A	{ Light Fireball1 }
-	frame FIR7B { Light fireball1 }
-	frame FIR7C { Light Fireball2 }
-	frame FIR7D { Light Fireball3 }
-	frame FIR7E { Light Fireball4 }
+	frame FBL7A	{ Light Fireball1 }
+	frame FBL7B { Light fireball1 }
+	frame FBL7C { Light Fireball2 }
+	frame FBL7D { Light Fireball3 }
+	frame FBL7E { Light Fireball4 }
 }
 
 pointlight Shockball1

@@ -331,6 +331,10 @@ actor GrenadeGiver : WeaponGiver_Base 19218
 		MaximusPrime:
 			TDET Y -1
 			loop
+			
+		Striker:
+			MOLP A -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_GRENADE) // Weapon Type
@@ -340,6 +344,7 @@ actor GrenadeGiver : WeaponGiver_Base 19218
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 20)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle
 	}
 }
@@ -364,6 +369,10 @@ actor GrenadeBoxGiver : WeaponGiver_Base 19219
 		MaximusPrime:
 			TDET Z -1
 			loop
+			
+		Striker:
+			MOLP B -1
+			loop
 
 		Init:
 			TNT1 A 0 A_SetArg(1, WEAPON_GRENADEBOX) // Weapon Type
@@ -373,6 +382,7 @@ actor GrenadeBoxGiver : WeaponGiver_Base 19219
 			"####" "#" 0 A_SetUserVar(user_scale_Kunai, 100)
 			"####" "#" 0 A_SetUserVar(user_scale_Gosimer, 60)
 			"####" "#" 0 A_SetUserVar(user_scale_MaximusPrime, 80)
+			"####" "#" 0 A_SetUserVar(user_scale_Striker, 80)
 			goto Idle
 	}
 }
