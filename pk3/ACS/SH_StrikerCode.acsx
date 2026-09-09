@@ -3203,6 +3203,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			ammo1_class = "GrenadeAmmo";
 			ammo1_amount = 1;
 			droptype = DROPTYPE_FULLNOMULTIPLY;
+			dropped = true; // Force pickup
 			
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
@@ -3236,6 +3237,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 			ammo1_class = "GrenadeAmmo";
 			ammo1_amount = 5;
 			droptype = DROPTYPE_FULLNOMULTIPLY;
+			dropped = true; // Force pickup
 			
 			if(CheckActorClass(0, "MaximusPrime"))
 			{
