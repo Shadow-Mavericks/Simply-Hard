@@ -66,6 +66,7 @@ actor SH_SuicideBomber
 			BMBE A 3 A_Pain
 			goto See
 		Death:
+			BMBE M 0 A_SpawnItemEx("GrenadeGiver", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(2.0, 6.0), frandom(-180.0, 180.0), SXF_NOCHECKPOSITION, 235)
 		Death.Suicide:
 			BMBE M 5 bright A_PlaySound("KamikazeBoom", CHAN_AUTO)
 			TNT1 A 0 A_Explode (75, 160)

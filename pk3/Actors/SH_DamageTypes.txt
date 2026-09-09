@@ -120,6 +120,7 @@ actor BurningFire
 	RenderStyle Add
 	Alpha 1.0
 	DamageType "Burn"
+	Mass 0 // Mass controls self-damage infliction.
 	+NOSPAWNEVENTSCRIPT
 	+NOGRAVITY
 	+NOBLOCKMAP
@@ -150,7 +151,7 @@ actor BurningFire
 			NULL A 0 A_ChangeFlag("PAINLESS", 0)
 			goto Burn
 		Burn:
-			NULL A 0 A_Explode(damage, scalex+20.0, 0, false, scalex+10.0) 
+			NULL A 0 A_Explode(damage, scalex+20.0, Mass, false, scalex+10.0) 
 			NULL A 0 A_SetUserVar("user_burntimer", 0)
 			NULL A 0 A_ChangeFlag("PAINLESS", 1)
 			goto Spawn

@@ -7,3 +7,46 @@ AuraBall auraball
 AuraBallHit aurabhit
 $limit AuraBall 0
 $limit AuraBallHit 0
+
+Striker/Potion s_ahh
+
+Striker/PotionLowHealth1 s_need1
+Striker/PotionLowHealth2 s_need2
+Striker/PotionLowHealth3 s_toocls
+$random Striker/PotionLowHealth { Striker/PotionLowHealth1 Striker/PotionLowHealth2 Striker/PotionLowHealth3 }
+
+Striker/DoubleBarrelPickup1 s_dblsh1
+Striker/DoubleBarrelPickup2 s_dblsh2
+Striker/DoubleBarrelPickup3 s_dblsh3
+$random Striker/DoubleBarrelPickup { Striker/DoubleBarrelPickup1 Striker/DoubleBarrelPickup2 Striker/DoubleBarrelPickup3 }
+
+Striker/SingleBarrelPickup1 s_shotg1
+Striker/SingleBarrelPickup2 s_shotg2
+Striker/SingleBarrelPickup3 s_shotg3
+$random Striker/SingleBarrelPickup { Striker/SingleBarrelPickup1 Striker/SingleBarrelPickup2 Striker/SingleBarrelPickup3 }
+
+Striker/SelfHeal1 s_selfh1
+Striker/SelfHeal2 s_selfh2
+Striker/SelfHeal3 s_selfh3
+Striker/SelfHeal4 s_selfh4
+Striker/SelfHeal5 s_selfh5
+Striker/SelfHeal6 s_selfh6
+Striker/SelfHeal7 s_selfh7
+Striker/SelfHeal8 s_selfh8
+Striker/SelfHeal9 s_selfh9
+
+Striker/Pain1 s_pain1
+Striker/Pain2 s_pain2
+$random Striker/PainLow { Striker/Pain1 Striker/Pain2 }
+
+Striker/Pain3 s_pain3
+Striker/Pain4 s_pain4
+Striker/Pain5 s_pain5
+$random Striker/PainMed { Striker/Pain3 Striker/Pain4 Striker/Pain5 }
+
+$playersound	Striker	male	*land		s_land
+$playersound 	Striker	male	*jump		s_jump
+$playeralias 	Striker	male	*pain100	Striker/PainLow
+$playeralias 	Striker	male	*pain75		Striker/PainLow
+$playeralias 	Striker	male	*pain50		Striker/PainMed
+$playeralias 	Striker	male	*pain25		Striker/PainMed

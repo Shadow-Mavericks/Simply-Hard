@@ -2041,39 +2041,40 @@ ACTOR FrostBombs : SH_Weapon
 			FRSB BBB 0 A_Raise
 			FRSB B 1 A_Raise
 			Loop
+			
 		Fire:
-			FRSB AAAAAAAA 1 A_WeaponOffset(2, 4, WOF_ADD)
-			FRSB A 0 A_Refire("Hold")
+			FRSB CCCCCCCC 1 A_WeaponOffset(16, 2, WOF_ADD)
+			FRSB C 0 A_Refire("Hold")
 			goto Throw
 		Hold:
-			FRSB A 1 A_GiveInventory("ThrowPower", 1)
-			FRSB A 0 A_Refire("Hold")
+			FRSB C 1 A_GiveInventory("ThrowPower", 1)
+			FRSB C 0 A_Refire("Hold")
 			goto Throw
 		Throw:
-			FRSB AAAA 1 A_WeaponOffset(-4, -8, WOF_ADD)
-			FRSB B 0 A_FireCustomMissile("FrostBomb", 0, true, 4, 0, 0, 22.5)
-			FRSB BBBB 1 A_WeaponOffset(-4, -8, WOF_ADD)
-			FRSB B 0 A_TakeInventory("ThrowPower", 1000)
-			FRSB BBBBBBBBBBBBBBBB 1 A_WeaponOffset(2, 7, WOF_ADD)
-			FRSB AAAAAAAA 1 A_WeaponOffset(-2, -8, WOF_ADD)
-			FRSB A 0 A_WeaponOffset(0, 32, 0)
-			goto Ready
-			
-		AltFire:
-			FRSB CCCCCCCC 1 A_WeaponOffset(16, 2, WOF_ADD)
-			FRSB C 0 A_Refire("AltHold")
-			goto AltThrow
-		AltHold:
-			FRSB C 1 A_GiveInventory("ThrowPower", 1)
-			FRSB C 0 A_Refire("AltHold")
-			goto AltThrow
-		AltThrow:
 			FRSB CCCC 1 A_WeaponOffset(-16, -4, WOF_ADD)
 			FRSB D 0 A_FireCustomMissile("FrostBombFastThrow", 0, true, 4, 0, 0, 11.25)
 			FRSB DDDD 1 A_WeaponOffset(-16, 4, WOF_ADD)
 			FRSB D 0 A_TakeInventory("ThrowPower", 1000)
 			FRSB DDDDDDDDDDDDDDDD 1 A_WeaponOffset(-16, 7, WOF_ADD)
 			FRSB A 0 A_WeaponOffset(16, 96)
+			FRSB AAAAAAAA 1 A_WeaponOffset(-2, -8, WOF_ADD)
+			FRSB A 0 A_WeaponOffset(0, 32, 0)
+			goto Ready
+			
+		AltFire:
+			FRSB AAAAAAAA 1 A_WeaponOffset(2, 4, WOF_ADD)
+			FRSB A 0 A_Refire("AltHold")
+			goto AltThrow
+		AltHold:
+			FRSB A 1 A_GiveInventory("ThrowPower", 1)
+			FRSB A 0 A_Refire("AltHold")
+			goto AltThrow
+		AltThrow:
+			FRSB AAAA 1 A_WeaponOffset(-4, -8, WOF_ADD)
+			FRSB B 0 A_FireCustomMissile("FrostBomb", 0, true, 4, 0, 0, 22.5)
+			FRSB BBBB 1 A_WeaponOffset(-4, -8, WOF_ADD)
+			FRSB B 0 A_TakeInventory("ThrowPower", 1000)
+			FRSB BBBBBBBBBBBBBBBB 1 A_WeaponOffset(2, 7, WOF_ADD)
 			FRSB AAAAAAAA 1 A_WeaponOffset(-2, -8, WOF_ADD)
 			FRSB A 0 A_WeaponOffset(0, 32, 0)
 			goto Ready
@@ -2098,7 +2099,7 @@ Actor IceFogBright : SH_BaseParticle
 
 actor Icicle : SH_BasePlayerProjectile
 {
-	Damage (15)
+	Damage (20)
 	DamageType Ice
 	Radius 8
 	Height 4
@@ -2117,7 +2118,7 @@ actor Icicle : SH_BasePlayerProjectile
 			loop
 		Death:
 			ICIC A 0 A_PlaySound("Kunai/IcicleHit", CHAN_AUTO)
-			ICIC A 0 A_Explode(5, 32, 0, false, 16)
+			ICIC A 0 A_Explode(10, 32, 0, false, 20)
 			ICIC AA 0 A_SpawnItemEx("SH_IceChunk", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180, 180), SXF_CLIENTSIDE, 0)
 			TNT1 A 1
 			stop
@@ -2139,6 +2140,8 @@ actor FrostBombExplosion : SH_BaseParticle
 }
 
 const int FROSTBOMB_RADIUS = 128;
+const int FROSTBOMB_DURATION = 140;
+const int FROSTBOMB_START_DELAY = 25;
 
 actor FrostBomb : SH_BasePlayerProjectile
 {
@@ -2228,7 +2231,7 @@ actor FrostBomb : SH_BasePlayerProjectile
 			TNT1 AAA 0 A_SpawnItemEx("IceFogBright", frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-8.0, 8.0), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-180, 180), SXF_CLIENTSIDE, 0)
 			TNT1 AAA 0 A_SpawnItemEx("IceGlitter", frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-8.0, 8.0), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, -1.0), frandom(-180, 180), SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
-			TNT1 A 1 A_JumpIf(user_timer > 35, "StartRaining")
+			TNT1 A 1 A_JumpIf(user_timer > FROSTBOMB_START_DELAY, "StartRaining")
 			loop
 		StartRaining:
 			TNT1 A 0 A_SetUserVar("user_timer", 0)
@@ -2238,7 +2241,7 @@ actor FrostBomb : SH_BasePlayerProjectile
 			TNT1 AAA 0 A_SpawnItemEx("IceGlitter", frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-8.0, 8.0), frandom(-0.2, 0.2), frandom(-0.2, 0.2), frandom(-0.2, -1.0), frandom(-180, 180), SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_SpawnItemEx("Icicle", frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), frandom(-FROSTBOMB_RADIUS, FROSTBOMB_RADIUS), 0.0, 0, 0, frandom(-1.0, -2.0), frandom(-180, 180), SXF_TRANSFERPOINTERS, 0)
 			TNT1 A 0 A_SetUserVar("user_timer", user_timer+1)
-			TNT1 A 1 A_JumpIf(user_timer > 105, "EndRaining")
+			TNT1 A 1 A_JumpIf(user_timer > FROSTBOMB_DURATION, "EndRaining")
 			loop
 		EndRaining:
 			TNT1 A 1

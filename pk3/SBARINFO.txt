@@ -562,7 +562,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 							
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}	
-			IsSelected "ModifiedMAC10", "EnhancedMAC10"
+			else IsSelected "ModifiedMAC10", "EnhancedMAC10"
 			{
 				Alpha 0.5
 				{
@@ -602,7 +602,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 								
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}
-			IsSelected "Frag12GrenadeShotgun"
+			else IsSelected "Frag12GrenadeShotgun"
 			{
 				Alpha 0.5
 				{
@@ -625,7 +625,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 							
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}
-			IsSelected "LeverAction"
+			else IsSelected "LeverAction"
 			{
 				Alpha 0.5
 				{
@@ -644,7 +644,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 				
 				DrawNumber 3, spleen3, Untranslated, ammo1, alignment(right), -9, -24;
 			}
-			IsSelected "WSTE-M5"
+			else IsSelected "WSTE-M5"
 			{
 				Alpha 0.5
 				{
@@ -665,7 +665,7 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 				
 				DrawNumber 3, spleen3, Untranslated, ammo1, alignment(right), -9, -24;
 			}
-			IsSelected "BCF2Repeater"
+			else IsSelected "BCF2Repeater"
 			{
 				Alpha 0.5
 				{
@@ -676,6 +676,15 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 				DrawBar "BCFCELLF", "BCFCELLN", ammo1, Vertical, -44, -24;
 				
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
+			}
+			else
+			{
+				Alpha 0.5
+				{
+					DrawNumber 3, spleen3, PitchBlack, ammo1, alignment(right), -8, -23;
+				}
+				
+				DrawNumber 3, spleen3, Untranslated, ammo1, alignment(right), -9, -24;
 			}
 		}
 	}

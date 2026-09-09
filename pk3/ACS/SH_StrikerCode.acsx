@@ -517,6 +517,7 @@ script "SPECIAL_MAP_EFFECTS" OPEN
 		index++; // Move index ahead so we don't seek from this index again, which would be an infinite loop.
 	}
 	
+	/*
 	index = 0;
 	// Reflections for FWATER4.
 	while((index = FindMapData(index, MDATA_Sector, SECTProp_FloorTexture, "FWATER4")) != -1)
@@ -526,6 +527,7 @@ script "SPECIAL_MAP_EFFECTS" OPEN
 		SetMapData(index, MDATA_Sector, SECTProp_FloorReflection, 0.25);
 		index++;
 	}
+	*/
 	
 	index = 0;
 	while((index = FindMapData(index, MDATA_Line, LINEProp_FrontMidTexture, "COMPSTA1")) != -1)
@@ -927,6 +929,8 @@ script "GENERATE_DMG_TRANSLATIONS" OPEN
 
 #define HIT_OTHER 0
 #define HIT_FLESH 1
+#define HIT_BURN 2
+#define HIT_FIRE 3
 
 function void hit_marker(int soundType, bool friendly)
 {
@@ -953,6 +957,11 @@ function void hit_marker(int soundType, bool friendly)
 		{
 			case HIT_FLESH:
 				LocalAmbientSound("hitsound_flesh", 64);
+				break;
+			case HIT_BURN:
+				break;
+			case HIT_FIRE:
+				LocalAmbientSound("hitsound_fire", 32);
 				break;
 			default:
 				LocalAmbientSound("hitsound_generic", 32);
@@ -1455,7 +1464,14 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		if(attackerPlayerNum != -1) // Source is player
 		{
 			if(arg1 && (victimIsMonster || (victimPlayerNum != attackerPlayerNum)) && !noHitMarker)
-				hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
+			{
+				if(!StrIcmp(damagetype, "Burn"))
+					hit_marker(HIT_BURN, victimIsFriendly);
+				else if(!StrIcmp(damagetype, "Fire"))
+					hit_marker(HIT_FIRE, victimIsFriendly);
+				else
+					hit_marker(victimCanBleed ? HIT_FLESH : HIT_OTHER, victimIsFriendly);
+			}
 
 			// Gosimer's Berserk Buff
 			if(CheckActorClass(0, "Gosimer") && CheckInventory("PowerStrength"))
@@ -1906,6 +1922,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			bool instantStatusEffect = false;
 			bool inflictorIsMissile = false;
 			bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
+			bool victimEqual = IsPointerEqual(AAPTR_DAMAGE_SOURCE, AAPTR_DAMAGE_TARGET);
 			int extremeDeathType = 0;
 			int victimHealth = GetActorProperty(0, APROP_Health);
 			int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
@@ -1944,9 +1961,9 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			}
 
 			// Handle damage types (Acid/Fire/Electric/Etc)
-			if(attackerPlayerNum != -1 && victimIsFriendly)
+			if(attackerPlayerNum != -1 && victimIsFriendly && (attackerPlayerNum != victimPlayerNum))
 			{
-				// Do jack and shit.
+				// Do jack and shit if the victim is a friendly and not themself.
 			}
 			else if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
 			{
@@ -2148,24 +2165,45 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 							int fireUTID = UniqueTID();
 							SpawnForced("BurningFire", GetActorX(0), GetActorY(0), GetActorZ(0), fireUTID, 0);
 							
-							victimUniqueTID = UniqueTID();
-							Thing_ChangeTID(0, victimUniqueTID);
-							
-							if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+							if(victimEqual) // If setting self on fire, change how shit works.
 							{
-								attackerUniqueTID = UniqueTID();
-								Thing_ChangeTID(0, attackerUniqueTID);
+								victimUniqueTID = UniqueTID();
+								Thing_ChangeTID(0, victimUniqueTID);
+								
 								if(SetActivator(fireUTID))
 								{
-									SetPointer(AAPTR_TARGET, attackerUniqueTID);
+									SetPointer(AAPTR_TARGET, victimUniqueTID);
 									SetPointer(AAPTR_TRACER, victimUniqueTID);
 									SetActorProperty(fireUTID, APROP_ScaleX, fireSpawnRadius);
 									SetActorProperty(fireUTID, APROP_ScaleY, fireSpawnHeight);
 									SetActorProperty(fireUTID, APROP_Damage, (victimPlayerNum != -1) ? 1 : 4);
+									SetActorProperty(fireUTID, APROP_Mass, 1);
 								}
+								
+								Thing_ChangeTID(victimUniqueTID, victimTID);
 							}
-							
-							Thing_ChangeTID(victimUniqueTID, victimTID);
+							else
+							{
+								victimUniqueTID = UniqueTID();
+								Thing_ChangeTID(0, victimUniqueTID);
+								
+								if(SetActivator(0, AAPTR_DAMAGE_SOURCE))
+								{
+									attackerUniqueTID = UniqueTID();
+									Thing_ChangeTID(0, attackerUniqueTID);
+									if(SetActivator(fireUTID))
+									{
+										SetPointer(AAPTR_TARGET, attackerUniqueTID);
+										SetPointer(AAPTR_TRACER, victimUniqueTID);
+										SetActorProperty(fireUTID, APROP_ScaleX, fireSpawnRadius);
+										SetActorProperty(fireUTID, APROP_ScaleY, fireSpawnHeight);
+										SetActorProperty(fireUTID, APROP_Damage, (victimPlayerNum != -1) ? 1 : 4);
+										SetActorProperty(fireUTID, APROP_Mass, 0);
+									}
+								}
+								
+								Thing_ChangeTID(victimUniqueTID, victimTID);
+							}
 						}
 					}
 				}
@@ -2925,6 +2963,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "LeverAction";
 				ammo1_class = "Shellz";
 				ammo1_amount = 8;
+				pickupsound_new = "Striker/SingleBarrelPickup";
 			}
 			break;
 		}
@@ -2962,6 +3001,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "WSTE-M5";
 				ammo1_class = "SuperShellz";
 				ammo1_amount = 8;
+				pickupsound_new = "Striker/DoubleBarrelPickup";
 			}
 
 			break;
@@ -3312,9 +3352,9 @@ script 13237 (int type) // "WEAPON_PICKUP"
 		NamedSendNetworkString("LOGMESSAGE_HACK", msg, PlayerNumber());
 
 		if(isNew && (StrIcmp(pickupsound_new, "None") != 0))
-			PlaySound(0, pickupsound_new, CHAN_ITEM, 1.0, false);
-		else
-			PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
+			PlaySound(0, pickupsound_new, CHAN_VOICE, 1.0, false);
+		
+		PlaySound(0, pickupsound, CHAN_ITEM, 1.0, false);
 			
 		if(isNew)
 			SetMugshotState("Grin");
@@ -3775,6 +3815,9 @@ script "STRIKER_SELFHEAL" (int mode)
 	{
 		if(isServer()) // Server Only
 		{
+			if(currentHealth <= 25)
+				PlaySound(0, StrParam(s:"Striker/SelfHeal", d:random(1, 9)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
+				
 			SetActorProperty(0, AProp_Health, currentHealth + CheckInventory("HealCounter"));
 			TakeInventory("HealCounter", 9999);
 		}

@@ -6,6 +6,7 @@ $random hitsound_flesh { bullethit1 bullethit2 bullethit3 bullethit4 }
 
 hitsound_friend stahp
 hitsound_generic hitsound
+hitsound_fire sizzle
 
 BloodDrip1 DSBLUD01
 BloodDrip2 DSBLUD02

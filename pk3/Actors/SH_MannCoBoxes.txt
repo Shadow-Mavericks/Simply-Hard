@@ -702,13 +702,14 @@ actor AnnoyingDog
 	{
 		Spawn:
 			ADOG A 0 NoDelay A_ChangeVelocity(0.0, 0.0, 10.0, CVF_REPLACE)
-			ADOG A 0 A_Jump(256, "Maracas", "Sleep", "Wander", "Balloon", "Poster")
+			ADOG A 0 A_PlaySound("PomBark")
+			ADOG A 0 A_Jump(256, "Maracas", "Sleep", "Wander", "Bone", "Balloon", "Poster")
 			goto Maracas
 		Maracas:
 			ADOG ABCD 5
 			loop
 		Sleep:
-			ADO2 AB 5
+			ADO2 AB 6
 			loop
 		Wander:
 			ADO4 A 0 A_LookEx(LOF_NOJUMP, 0, 0, 0, 360.0, "WanderLoop")
@@ -717,7 +718,7 @@ actor AnnoyingDog
 			ADO4 AB 5 A_Wander
 			loop
 		Bone:
-			ADO5 ABCDEFGH 4 A_Wander
+			ADO5 ABCDEFGH 4
 			loop
 		Balloon:
 			ADO6 A 0 A_ChangeFlag("FLOATBOB", true)
