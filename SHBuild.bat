@@ -100,9 +100,9 @@ move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
 if exist ..\builds\Simply-Hard_DEV.pk3 (
-    7za u -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* -xr^^!*.autosave* -xr^^!*.bak* ..\builds\Simply-Hard_DEV.pk3 .\
+    7za u -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* -xr^^!*.autosave* -xr^^!*.bak ..\builds\Simply-Hard_DEV.pk3 .\
 ) else (
-    7za a -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* -xr^^!*.autosave* -xr^^!*.bak* ..\builds\Simply-Hard_DEV.pk3 .\
+    7za a -y -tzip -mx=0 -mmt -uq0 -xr^^!.GIT -xr^^!*.dbs -xr^^!*.tmp -xr^^!*.backup* -xr^^!*.autosave* -xr^^!*.bak ..\builds\Simply-Hard_DEV.pk3 .\
 )
 
 pause
@@ -119,7 +119,7 @@ del .\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 /q
 move /Y .\pk3\*.bak .\backups >nul 2>&1
 
 cd pk3
-7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.backup* -xr^^!*.tmp -xr^^!*.autosave* -xr^^!*.bak* ..\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 .\
+7za a -y -tzip -mx=9 -mmt -xr^^!.GIT -xr^^!*.dbs -xr^^!*.backup* -xr^^!*.tmp -xr^^!*.autosave* -xr^^!*.bak ..\builds\Simply-Hard_r%REVISIONNUMBER%.pk3 .\
 
 pause
 goto MENU
