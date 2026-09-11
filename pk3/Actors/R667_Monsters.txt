@@ -13430,7 +13430,7 @@ actor ProfaneAcidBall
 {
 	radius 3
 	height 3
-	damage (40)
+	damage (30)
 	speed 20
 	Renderstyle Add
 	Alpha 0.90

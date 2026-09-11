@@ -3819,7 +3819,7 @@ script "STRIKER_SELFHEAL" (int mode)
 	{
 		if(isServer()) // Server Only
 		{
-			if(currentHealth <= 30)
+			if(currentHealth <= 30 && (CheckInventory("HealCounter") >= 30))
 				PlaySound(0, StrParam(s:"Striker/SelfHeal", d:random(1, 9)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
 				
 			SetActorProperty(0, AProp_Health, currentHealth + CheckInventory("HealCounter"));
