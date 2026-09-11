@@ -32,9 +32,9 @@ actor MancubusBall_Normal : MancubusBall_Base
 	MANF B 1 Bright A_SpawnItemEx("RedFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
-    FIR7 C 8 Bright
-    FIR7 D 6 Bright
-    FIR7 E 4 Bright
+    FBL7 C 8 Bright
+    FBL7 D 6 Bright
+    FBL7 E 4 Bright
     Stop
   }
 }
@@ -125,9 +125,9 @@ actor MancubusBall_Fire : MancubusBall_Base
 	FIRF B 1 Bright A_SpawnItemEx("OrangeFattrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
     Loop
   Death:
-    FIR7 C 8 Bright
-    FIR7 D 6 Bright
-    FIR7 E 4 Bright
+    FBL7 C 8 Bright
+    FBL7 D 6 Bright
+    FBL7 E 4 Bright
     Stop
   }
 }

@@ -68,6 +68,7 @@ struct PlayerData_t
 	int num_hitsounds;
 	int num_heal_orbs;
 	int last_heal_orb_tick;
+	int last_voiceline_tick;
 	bool debuff_gravity;
 };
 

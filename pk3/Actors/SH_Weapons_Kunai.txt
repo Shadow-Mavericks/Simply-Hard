@@ -2118,7 +2118,7 @@ actor Icicle : SH_BasePlayerProjectile
 			loop
 		Death:
 			ICIC A 0 A_PlaySound("Kunai/IcicleHit", CHAN_AUTO)
-			ICIC A 0 A_Explode(10, 32, 0, false, 20)
+			ICIC A 0 A_Explode(20, 32, 0, false, 20)
 			ICIC AA 0 A_SpawnItemEx("SH_IceChunk", 0, 0, 0, frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(1.0, 6.0), frandom(-180, 180), SXF_CLIENTSIDE, 0)
 			TNT1 A 1
 			stop
@@ -2141,7 +2141,7 @@ actor FrostBombExplosion : SH_BaseParticle
 
 const int FROSTBOMB_RADIUS = 128;
 const int FROSTBOMB_DURATION = 140;
-const int FROSTBOMB_START_DELAY = 25;
+const int FROSTBOMB_START_DELAY = 20;
 
 actor FrostBomb : SH_BasePlayerProjectile
 {

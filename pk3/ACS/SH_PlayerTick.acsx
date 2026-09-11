@@ -384,3 +384,14 @@ script "PLAYER_DEATH_HANDLER" DEATH
 	TakeInventory("DualFireHax", 1);
 	TakeInventory("UseHax", 1);
 }
+
+script "RESET_TIMERS" ENTER
+{
+	int pNum = PlayerNumber();
+	if(pNum != -1)
+	{
+		p_status[pNum].last_hitsound_tick = 0;
+		p_status[pNum].last_heal_orb_tick = 0;
+		p_status[pNum].last_voiceline_tick = 0;
+	}
+}

@@ -3087,6 +3087,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "Frag12GrenadeShotgun";
 				ammo1_class = "Frag12Ammo";
 				ammo1_amount = 6;
+				pickupsound_new = "Striker/GLPickup";
 			}
 			break;
 		}
@@ -3126,6 +3127,7 @@ script 13237 (int type) // "WEAPON_PICKUP"
 				weapon_class = "BCF2Repeater";
 				ammo1_class = "Battery";
 				ammo1_amount = 48;
+				pickupsound_new = "Striker/BCFPickup";
 			}
 			break;
 		}
@@ -3817,7 +3819,7 @@ script "STRIKER_SELFHEAL" (int mode)
 	{
 		if(isServer()) // Server Only
 		{
-			if(currentHealth <= 25)
+			if(currentHealth <= 30)
 				PlaySound(0, StrParam(s:"Striker/SelfHeal", d:random(1, 9)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
 				
 			SetActorProperty(0, AProp_Health, currentHealth + CheckInventory("HealCounter"));
@@ -3884,6 +3886,30 @@ script "STRIKER_HEALOTHERCHECK" (void)
 	}
 	
 	SetResultValue(1);
+}
+
+script "STRIKER_HEALOTHER_VOICE" (void)
+{
+	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 30))
+		terminate;
+	
+	if(random(0, 100) <= 25)
+	{
+		PlaySound(0, StrParam(s:"Striker/HealOther", d:random(1, 13)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
+		p_status[PlayerNumber()].last_voiceline_tick = timer();
+	}
+}
+
+script "STRIKER_MOLOTOV_THROW" (void)
+{
+	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 30))
+		terminate;
+	
+	if(random(0, 100) <= 25)
+	{
+		PlaySound(0, StrParam(s:"Striker/MolotovThrow", d:random(1, 13)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
+		p_status[PlayerNumber()].last_voiceline_tick = timer();
+	}
 }
 
 // ---------------------

@@ -1532,7 +1532,7 @@ actor FragGrenade : SH_BasePlayerProjectile
 	Obituary "%o was blown apart by %k's frag grenade."
 	Radius 8
 	Height 8
-	Speed 10
+	Speed 12
 	Damage (50)
 	Gravity 1.0
 

@@ -1052,7 +1052,7 @@ Actor Bluhelffilter : CustomInventory
 		StrikerPickup:
 			TNT1 A 0 A_Giveinventory("HealthPainis")
 			TNT1 A 0 A_PlaySound("HPGET", CHAN_5)
-			TNT1 A 0 A_JumpIfHealthLower(5, "StrikerExtraLowHealth")
+			TNT1 A 0 A_JumpIfHealthLower(6, "StrikerExtraLowHealth")
 			TNT1 A 0 A_PlaySound("Striker/Potion", CHAN_VOICE)
 			Stop
 		StrikerExtraLowHealth:

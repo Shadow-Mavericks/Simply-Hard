@@ -363,13 +363,13 @@ Actor BaronballtrailRed : SH_BaseParticle
 		Spawn:
 			NULL A 3
 		Loopy:
-			FIR7 A 1 Bright A_FadeOut(0.025)
-			FIR7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			FIR7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			FBL7 A 1 Bright A_FadeOut(0.025)
+			FBL7 A 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			FBL7 A 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 
-			FIR7 B 1 Bright A_FadeOut(0.025)
-			FIR7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
-			FIR7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
+			FBL7 B 1 Bright A_FadeOut(0.025)
+			FBL7 B 0 Bright A_SetScale(scalex-0.05, scaley-0.05)
+			FBL7 B 0 Bright A_JumpIf(scalex <= 0.0, "Death")
 			loop
 		Death:
 			TNT1 A 0

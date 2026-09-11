@@ -8,7 +8,11 @@ AuraBallHit aurabhit
 $limit AuraBall 0
 $limit AuraBallHit 0
 
-Striker/Potion s_ahh
+Striker/Potion1 s_ahh
+Striker/Potion2 s_ahh2
+Striker/Potion3 s_ahh3
+Striker/Potion4 s_ahh4
+$random Striker/Potion { Striker/Potion1 Striker/Potion2 Striker/Potion3 Striker/Potion4 }
 
 Striker/PotionLowHealth1 s_need1
 Striker/PotionLowHealth2 s_need2
@@ -25,6 +29,15 @@ Striker/SingleBarrelPickup2 s_shotg2
 Striker/SingleBarrelPickup3 s_shotg3
 $random Striker/SingleBarrelPickup { Striker/SingleBarrelPickup1 Striker/SingleBarrelPickup2 Striker/SingleBarrelPickup3 }
 
+Striker/BFCPickup1 s_bcf1
+Striker/BFCPickup2 s_bcf2
+Striker/BFCPickup3 s_bcf3
+$random Striker/BCFPickup { Striker/BFCPickup1 Striker/BFCPickup2 Striker/BFCPickup3 }
+
+Striker/GLPickup1 s_gren1
+Striker/GLPickup2 s_gren2
+$random Striker/GLPickup { Striker/GLPickup1 Striker/GLPickup2 }
+
 Striker/SelfHeal1 s_selfh1
 Striker/SelfHeal2 s_selfh2
 Striker/SelfHeal3 s_selfh3
@@ -35,6 +48,34 @@ Striker/SelfHeal7 s_selfh7
 Striker/SelfHeal8 s_selfh8
 Striker/SelfHeal9 s_selfh9
 
+Striker/HealOther1 s_heal1
+Striker/HealOther2 s_heal2
+Striker/HealOther3 s_heal3
+Striker/HealOther4 s_heal4
+Striker/HealOther5 s_heal5
+Striker/HealOther6 s_heal6
+Striker/HealOther7 s_heal7
+Striker/HealOther8 s_heal8
+Striker/HealOther9 s_heal9
+Striker/HealOther10 s_heal10
+Striker/HealOther11 s_heal11
+Striker/HealOther12 s_heal12
+Striker/HealOther13 s_heal13
+
+Striker/MolotovThrow1 s_mtov1
+Striker/MolotovThrow2 s_mtov2
+Striker/MolotovThrow3 s_mtov3
+Striker/MolotovThrow4 s_mtov4
+Striker/MolotovThrow5 s_mtov5
+Striker/MolotovThrow6 s_mtov6
+Striker/MolotovThrow7 s_mtov7
+Striker/MolotovThrow8 s_mtov8
+Striker/MolotovThrow9 s_mtov9
+Striker/MolotovThrow10 s_mtov10
+Striker/MolotovThrow11 s_mtov11
+Striker/MolotovThrow12 s_mtov12
+Striker/MolotovThrow13 s_mtov13
+
 Striker/Pain1 s_pain1
 Striker/Pain2 s_pain2
 $random Striker/PainLow { Striker/Pain1 Striker/Pain2 }
@@ -44,8 +85,53 @@ Striker/Pain4 s_pain4
 Striker/Pain5 s_pain5
 $random Striker/PainMed { Striker/Pain3 Striker/Pain4 Striker/Pain5 }
 
-$playersound	Striker	male	*land		s_land
+Striker/UseFail1 s_grunt
+Striker/UseFail2 s_nouse1
+$random Striker/UseFail { Striker/UseFail1 Striker/UseFail2 }
+
+Striker/Taunt1 s_taun1
+Striker/Taunt2 s_taun2
+Striker/Taunt3 s_taun3
+Striker/Taunt4 s_taun4
+Striker/Taunt5 s_taun5
+Striker/Taunt6 s_taun6
+Striker/Taunt7 s_taun7
+Striker/Taunt8 s_taun8
+Striker/Taunt9 s_taun9
+Striker/Taunt10 s_taun10
+Striker/Taunt11 s_taun11
+Striker/Taunt12 s_taun12
+Striker/Taunt13 s_taun13
+Striker/Taunt14 s_taun14
+Striker/Taunt15 s_taun15
+Striker/Taunt16 s_taun16
+Striker/Taunt17 s_taun17
+
+$random Striker/Taunt {
+	Striker/Taunt1
+	Striker/Taunt2
+	Striker/Taunt3 
+	Striker/Taunt4 
+	Striker/Taunt5 
+	Striker/Taunt6 
+	Striker/Taunt7 
+	Striker/Taunt8 
+	Striker/Taunt9 
+	Striker/Taunt10 
+	Striker/Taunt11
+	Striker/Taunt12
+	Striker/Taunt13
+	Striker/Taunt14
+	Striker/Taunt15
+	Striker/Taunt16
+	Striker/Taunt17
+}
+
+$playersound	Striker male	*grunt		s_grunt
+$playersound	Striker	male	*land		LAND02
 $playersound 	Striker	male	*jump		s_jump
+$playeralias	Striker male	*taunt		Striker/Taunt
+$playeralias	Striker	male	*usefail	Striker/UseFail
 $playeralias 	Striker	male	*pain100	Striker/PainLow
 $playeralias 	Striker	male	*pain75		Striker/PainLow
 $playeralias 	Striker	male	*pain50		Striker/PainMed
