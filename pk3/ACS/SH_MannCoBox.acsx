@@ -102,6 +102,7 @@ MannCoBoxData_t tier2_bad[] =
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			50,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				50,	DELAY_NONE },
+	{ "The Big Succ!",						"BIGSUCC",			10,	DELAY_NONE },
 	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		5,	DELAY_NONE },
 };
 
@@ -132,12 +133,12 @@ MannCoBoxData_t tier3_bad[] =
 {
 	{ "A Suicide Bomber.",					"SuicideBomber",	25,	DELAY_NONE },
 	{ "The White Rabbit of Caerbannog!",	"WhiteRabbit",		10,	DELAY_NONE },
+	{ "Allahu Akbar.",						"SNAKBAR",			10,	DELAY_NONE },
 	{ "A Lone Kago.",						"OneKago",			30,	DELAY_NONE },
 	{ "You get nothing!",					"YouLose",			50,	DELAY_NONE },
 	{ "Absolutely nothing!",				"DED",				50,	DELAY_NONE },
 	{ "Nothing. Fuck you. KTHXBYE.",		"FuckYou",			50,	DELAY_NONE },
 	{ "The screams of an angry soldier.",	"WAAAAAAH",			50,	DELAY_NONE },
-	{ "A BFG Surprise!",					"BFGTrap",			30,	DELAY_NONE },
 	{ "A Bombing Run!",						"BombingRun",		25,	DELAY_LAUGH },
 	{ "A Kago Hive!",						"KagoHive",			15,	DELAY_NONE },
 };
@@ -163,16 +164,14 @@ MannCoBoxData_t tier4_good[] =
 
 MannCoBoxData_t tier4_bad[] =
 {
-	{ "The Big Succ!",					"BIGSUCC",			25,		DELAY_NONE },
 	{ "A Box of Farts N' Failure!",		"MANNFAIL",			50,		DELAY_NONE },
-	{ "Allahu Akbar.",					"SNAKBAR",			10,		DELAY_NONE },
 	{ "The White Rabbit of Caerbannog!","WhiteRabbit",		10,		DELAY_NONE },
 	{ "Grenade Vomit!",					"NadeVomit",		30,		DELAY_NONE },
 	{ "Acid Puke!",						"BaronBallVomit",	75,		DELAY_NONE },
 	{ "Bee Barf!",						"BeeVomit",			50,		DELAY_NONE },
 	{ "A Bruiser Demon!",				"BruiserDemon",		45,		DELAY_LONG },
 	{ "A Bunch of Rocket Imps!",		"RocketImps",		30,		DELAY_LONG },
-	{ "A Horde of Annoying Zombies.",	"MiniZombieHorde",	25,		DELAY_SHORT },
+	{ "A Horde of Annoying Zombies.",	"MiniZombieHorde",	10,		DELAY_SHORT },
 };
 
 int tier5_totalweight[2];

@@ -1987,6 +1987,7 @@ actor ImbuedLeverActionShot : PoweredSMGShot
 {
 	States
 	{
+		InstantStatus:
 		Spawn:
 			VPUF A 1 Bright
 			loop

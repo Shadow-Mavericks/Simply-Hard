@@ -76,17 +76,12 @@ ACTOR CacodemonBall_Base : SH_BaseEnemyProjectile
 	States
 	{
 		Spawn:
-			CCOB AB 4 Bright
+			BAL2 AB 4 BRIGHT Light("CACOBALL")
 			Loop
 		Death:
-			CCOB A 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB B 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB C 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB D 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB E 2 Bright A_SetScale(scalex-0.1, scaley-0.1) 
-			CCOB F 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB G 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
-			CCOB H 2 Bright A_SetScale(scalex-0.1, scaley-0.1)
+			BAL2 C 6 BRIGHT Light("CACOBALL_X1")
+			BAL2 D 6 BRIGHT Light("CACOBALL_X2")
+			BAL2 E 6 BRIGHT Light("CACOBALL_X3")
 			Stop
 	}
 }

@@ -7064,18 +7064,6 @@ Object Gasterblasterfollower
 	frame GDIE	{ light slot5klite }
 }
 
-Object CacodemonBall_Base
-{
-	frame CCOBA	{ light Meatballlite1 }
-	frame CCOBB	{ light Meatballlite1 }
-	frame CCOBC	{ light Meatballlite2 }
-	frame CCOBD	{ light Meatballlite2 }
-	frame CCOBE	{ light Meatballlite3 }
-	frame CCOBF	{ light Meatballlite3 }
-	frame CCOBG	{ light Meatballlite2 }
-	frame CCOBH	{ light Meatballlite2 }
-}
-
 pointlight meatballlite1
 {
         color 1 .25 .25

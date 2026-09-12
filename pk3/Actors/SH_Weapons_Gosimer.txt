@@ -93,7 +93,7 @@ Actor Nadez_Base
 			DEXP A 0 Bright A_SetScale(0.1, 0.1)
 			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
 			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(128, 192)
+			DEXP A 0 Bright A_Explode(160, 144)
 			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}
@@ -123,7 +123,7 @@ Actor CritNadez_Base : Nadez_Base
 			DEXP A 0 Bright A_SetScale(0.2, 0.2)
 			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
 			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(128, 192)
+			DEXP A 0 Bright A_Explode(160, 144)
 			DEXP ABCDEFGHIJKLMNOPQRST 1 Bright A_SetScale(scalex+0.1, scaley+0.1)
 			stop
 	}
@@ -1584,7 +1584,7 @@ actor Pipebomb
 	+FORCERADIUSDMG
 	+NOTARGETSWITCH
 	+NOBLOOD
-	-NONSHOOTABLE
+	+NOTAUTOAIMED
 	-NOBLOCKMAP
 	-NOGRAVITY
 	States
@@ -1611,7 +1611,7 @@ actor Pipebomb
 			DEXP A 0 Bright A_SetScale(0.1, 0.1)
 			DEXP A 0 Bright A_PlaySound("Weapon/Nadeboom", CHAN_AUTO)
 			DEXP A 0 Bright A_ChangeFlag("NoGravity", 1)
-			DEXP A 0 Bright A_Explode(100, 144)
+			DEXP A 0 Bright A_Explode(128, 192)
 			DEXP AAAA 0 Bright A_SpawnItemEx("Shrapnel1", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
 			DEXP AA 0 Bright A_SpawnItemEx("Shrapnel2", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)
 			DEXP AA 0 Bright A_SpawnItemEx("Shrapnel3", 0, 0, 0, frandom(-10.0, 10.0), frandom(-10.0, 10.0), frandom(3.0, 16.0), frandom(-180.0, 180.0), SXF_CLIENTSIDE, 0)

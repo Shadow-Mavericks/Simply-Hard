@@ -386,3 +386,4 @@ actor GrenadeBoxGiver : WeaponGiver_Base 19219
 			goto Idle
 	}
 }
+

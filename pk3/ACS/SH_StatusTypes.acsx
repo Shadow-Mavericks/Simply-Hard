@@ -109,6 +109,7 @@ script "ACID_TICKER" (void)
 script "VOID_TICKER" (void)
 {
 	int radius = GetActorProperty(0, APROP_Radius);
+	int playerNum = PlayerNumber();
 	
 	while(CheckInventory("PowerVoidStatus"))
 	{
@@ -117,23 +118,30 @@ script "VOID_TICKER" (void)
 			SpawnForced("VoidFlame", GetActorX(0)+random(-radius, radius), GetActorY(0)+random(-radius, radius), GetActorZ(0)+random(8.0, GetActorProperty(0, APROP_Height)), 0, 0);
 		}
 		
-		if(random(0, 100) < 1)
+		if(playerNum == -1)
 		{
-			int lastFlag = CheckFlag(0, "FRIENDLY");
-			int newFlag = random(0, 1);
-			
-			if(newFlag != lastFlag)
+			if(random(0, 100) < 1)
 			{
-				ChangeFlag("FRIENDLY", newFlag);
-				SetActorState(0, "Spawn");
+				int lastFlag = CheckFlag(0, "FRIENDLY");
+				int newFlag = random(0, 1);
+				
+				if(newFlag != lastFlag)
+				{
+					ChangeFlag("FRIENDLY", newFlag);
+					SetActorState(0, "Spawn");
+				}
 			}
 		}
 		
 		Delay(1);
 	}
 	
-	ChangeFlag("FRIENDLY", !!(CheckInventory("StartedFriendlyHax")));	
-	ChangeFlag("FRIGHTENED", !!(CheckInventory("StartedFrightenedHax")));
+	if(playerNum == -1)
+	{
+		ChangeFlag("FRIENDLY", !!(CheckInventory("StartedFriendlyHax")));	
+		ChangeFlag("FRIGHTENED", !!(CheckInventory("StartedFrightenedHax")));
+	}
+	
 	if(CheckInventory("StartedFriendlyHax"))
 		SetActorState(0, "Spawn");
 }

@@ -11013,7 +11013,7 @@ actor Rictus
 	loop
   Missile:
 	RICT A 0 A_LoopActiveSound
-	RICT A 0 A_JumpIfHealthLower (25,25)
+	RICT A 0 A_JumpIfHealthLower (25, "Kamikaze")
 	RICT A 1 A_FaceTarget
 	RICT AA 0 A_SpawnItemEx (RictusFire, random(1,-1), random(1,-1), random(1,-1), 2, 0, random(1,-1) , random(90,270), 160, 0)
 	RICT A 1 A_FaceTarget
@@ -11031,6 +11031,7 @@ actor Rictus
 	RICT B 1
 	RICT BB 0 A_SpawnItemEx (RictusFire, random(1,-1), random(1,-1), random(1,-1), 2, 0, random(1,-1) , random(90,270), 160, 0)
 	goto See
+  Kamikaze:
 	RICT A 0 A_CustomMissile (RictusKamakazi,0,0,0,0,0)
 	RICT A 1 A_Die("Kamikaze")
 	goto Death+7
@@ -11105,7 +11106,7 @@ actor RictusKamakazi
   height 56
   health 25
   speed 20
-  damage 20
+  damage (10)
   seesound "rictus/kamakazi"
   deathsound "rictus/kamakaziimpact"
   decal Scorch
@@ -11119,8 +11120,8 @@ actor RictusKamakazi
 	loop
   Death:
 	DRFX G 0 bright A_SetTranslucent (1, 1)
-	DRFX GGGGG 0 bright A_SpawnItemEx (RictusFire, random(1,-1), random(1,-1), random(1,-1), 6, 0, random(1,-1) , random(0,360), 128, 0)
-	DRFX G 4 bright A_Explode
+	DRFX GGGGG 0 bright A_SpawnItemEx("RictusFire", random(1,-1), random(1,-1), random(1,-1), 6, 0, random(1,-1) , random(0,360), 128, 0)
+	DRFX G 4 bright A_Explode(50, 64)
 	DRFX HIJKL 4 bright
 	stop
   }
