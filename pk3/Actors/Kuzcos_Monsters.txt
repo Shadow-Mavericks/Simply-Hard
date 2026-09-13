@@ -2567,7 +2567,7 @@ ACTOR KagoHive
 		Pain.Fire:
 		Pain.Burn:
 			KAGO A 0 Bright A_FaceTarget
-			KAGO A 4 A_SpawnItemEx("DEMONENERGY", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-3.0, 3.0), frandom(-3.0, 3.0), frandom(0.0, 3.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 0)
+			KAGO A 4 A_SpawnItemEx("DEMONENERGY", frandom(-radius, radius), frandom(-radius, radius), frandom(16.0, 32.0), frandom(-4.0, 4.0), frandom(-4.0, 4.0), frandom(0.0, 4.0), frandom(-180.0, 180.0), SXF_TRANSFERPOINTERS | SXF_NOCHECKPOSITION, 128)
 			KAGO BCDE 4 Bright
 			Goto Spawn
 		Pain:

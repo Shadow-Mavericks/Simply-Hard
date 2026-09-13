@@ -106,6 +106,8 @@ Striker/Taunt14 s_taun14
 Striker/Taunt15 s_taun15
 Striker/Taunt16 s_taun16
 Striker/Taunt17 s_taun17
+Striker/Taunt18 s_taun18
+Striker/Taunt19 s_taun19
 
 $random Striker/Taunt {
 	Striker/Taunt1
@@ -125,6 +127,8 @@ $random Striker/Taunt {
 	Striker/Taunt15
 	Striker/Taunt16
 	Striker/Taunt17
+	Striker/Taunt18
+	Striker/Taunt19
 }
 
 $playersound	Striker male	*grunt		s_grunt

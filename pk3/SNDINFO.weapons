@@ -288,6 +288,7 @@ ClusterExplode dsclustx
 $limit ClusterExplode 0
 
 Frag12Fire frag12
+GrenadePistolFire grenpist
 
 BCF2Fire1 bcf2fire
 BCF2Fire2 bcf2fir2

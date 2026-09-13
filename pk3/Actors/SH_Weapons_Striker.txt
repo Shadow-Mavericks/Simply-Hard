@@ -19,6 +19,13 @@ Actor HedgefoxGrenadeClip : Ammo
 	ammo.Backpackmaxamount 6
 }
 
+Actor HedgefoxGrenadeSingle : Ammo
+{
+	+INVENTORY.IGNORESKILL
+	Inventory.MaxAmount 1
+	ammo.Backpackmaxamount 1
+}
+
 Actor HedgefoxCellClip : Ammo
 {
 	+INVENTORY.IGNORESKILL
@@ -227,6 +234,11 @@ actor MACImbued : SH_BaseToken
 actor GrenadeImbued : SH_BaseToken
 {
 	Inventory.MaxAmount 6
+}
+
+actor SingleGrenadeImbued : SH_BaseToken
+{
+	Inventory.MaxAmount 1
 }
 
 actor FistSelector : SH_BaseToken
@@ -1097,7 +1109,143 @@ ACTOR WSTE-M5 : StrikerBaseWeapon
 	}
 }
 
-ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
+ACTOR Frag12GrenadePistol : StrikerBaseWeapon
+{
+	Tag "FRAG-12 Grenade Pistol"
+	Weapon.SelectionOrder 3
+	Weapon.KickBack 100
+	Weapon.AmmoUse1 1
+	Weapon.AmmoGive1 1
+	Weapon.AmmoGive2 0 // Handled in ACS
+	Weapon.AmmoType1 "HedgefoxGrenadeSingle"
+	Weapon.AmmoType2 "Frag12Ammo"
+	Weapon.slotnumber 5
+	Inventory.PickupSound "misc/w_pkup"
+	
+	Weapon.BobSpeed 1.5
+	Weapon.BobRangeX .5
+	Weapon.BobStyle "InverseSmooth"
+	
+	Weapon.SwayStyle "HorizontalOnly"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 4
+	
+	Weapon.SisterWeapon "Frag12GrenadeShotgun"
+	Weapon.PowerupItem "Tier5upgradetoken"
+	
+	+WEAPON.AMMO_OPTIONAL
+	+WEAPON.NOALERT
+	+WEAPON.NOAUTOFIRE
+	States
+	{
+		Ready:
+			STGP A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
+			STGP A 1 A_WeaponReady(WRF_ALLOWZOOM | WRF_ALLOWRELOAD)
+			goto ReadyLoop
+		Deselect:
+			STGP AAA 0 A_Lower
+			STGP A 1 A_Lower
+			Goto Deselect
+		Select:
+			STGP AAA 0 A_Raise
+			STGP A 1 A_Raise
+			Goto Select
+		Fire:
+			STGP A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			STGP A 0 A_JumpIfInventory("SingleGrenadeImbued", 1, "ImbuedFire")
+			goto NormalFire
+		
+		NormalFire:
+			STGP B 0 BRIGHT A_AlertMonsters
+			STGP B 0 BRIGHT A_PlaySound("GrenadePistolFire")
+			STGP B 0 BRIGHT A_FireCustomMissile("FRAG12Grenade", 0, true, 4, 0, 0, 3)
+			STGP B 2 BRIGHT A_SetPitch(pitch-5.0)
+			goto RecoilAnim
+		
+		ImbuedFire:
+			STGP B 0 BRIGHT A_TakeInventory("SingleGrenadeImbued", 1)
+			STGP B 0 BRIGHT A_AlertMonsters
+			STGP B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
+			STGP B 0 BRIGHT A_PlaySound("GrenadePistolFire", CHAN_WEAPON)
+			STGP B 0 BRIGHT A_FireCustomMissile("FRAG12GrenadeImbued", 0, true, 4, 0, 0, 3)
+			SGP2 B 2 BRIGHT A_SetPitch(pitch-5.0)
+			goto RecoilAnim
+			
+		RecoilAnim:
+			STGP C 0 A_SpawnItemEx ("BlueShotgunCasing", cos(pitch)*16, 10, (CallACS("GET_VIEW_HEIGHT")-7.0)-(sin(pitch)*16), cos(pitch-frandom(45.0, 50.0))*2, frandom(1.0, 1.5), -sin(pitch-frandom(45.0, 50.0))*2, 0, SXF_CLIENTSIDE, 0)
+			STGP CDEFG 1 A_SetPitch(pitch+1.0)
+			STGP HIJK 1
+			STGP A 8
+			STGP A 0 A_JumpIfNoAmmo("ReloadOrDryfire")
+			STKG A 0 A_Refire
+			goto ReadyLoop
+			
+		ReloadOrDryfire:
+			"####" A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
+			"####" A 0 A_Playsound("weapons/pistol/dry", CHAN_AUTO)
+			"####" A 1 Offset(0, 33)
+			"####" A 5 Offset(0, 32)
+			"####" A 0 A_Refire
+			goto ReadyLoop		
+		Reload:
+			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STKG A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
+			goto ReadyLoop
+		CannotReload:
+			STKG A 1 A_WeaponReady
+			goto ReadyLoop
+		CheckReload:
+			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STKG A 0 A_JumpIfInventory("HedgefoxGrenadeSingle", 0, "ReadyLoop") // 0 == At Capacity
+			goto ReloadStart
+		ReloadStart:
+			STGP L 0 A_GunFlash("NoAbilityUse", GFF_NOEXTCHANGE)
+			STGP L 0 A_Playsound("Gosimer/GrenadeL_open", CHAN_AUTO)
+			STGP LMNOPQR 2
+			goto ReloadHold
+		ReloadHold:
+			STGP S 8
+			STGP T 1 A_PlaySound("weapons/sshotl", CHAN_AUTO)
+			STGP A 0 A_TakeInventory("Frag12Ammo", 1)
+			STGP A 0 A_GiveInventory("HedgefoxGrenadeSingle", 1)
+			goto ReloadEnd
+		ReloadEnd:
+			STGP U 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+			STGP VWXA 2
+			STGP A 0 A_Refire
+			goto ReadyLoop
+			
+		Zoom:
+			STGP A 1 A_WeaponReady
+			STGP A 0 A_JumpIfInventory("ReloadZoomHax", 1, "HealOtherCheck")
+			STGP A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			STGP A 0 A_JumpIfInventory("SingleGrenadeImbued", 1, "CannotImbue")
+			STGP A 0 A_JumpIf(CallACS("STRIKER_IMBUE", 3), "ImbueTrigger")
+			goto ReadyLoop
+		CannotImbue:
+			STGP A 1 A_WeaponReady
+			goto ReadyLoop
+		ImbueTrigger:
+			STGP A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			SGPI ABCD 2
+			SGPI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			SGPI EFGHIJK 2 BRIGHT
+			SGPI LMN 2
+			goto Abilities
+			
+		Spawn:
+			WSTP A -1
+			Stop
+	}
+}
+
+ACTOR Frag12GrenadeShotgun : Frag12GrenadePistol
 {
 	Tag "Sawn-Off Shotgun w/ FRAG-12 Rounds"
 	Weapon.SelectionOrder 3
@@ -1109,18 +1257,24 @@ ACTOR Frag12GrenadeShotgun : StrikerBaseWeapon
 	Weapon.AmmoType2 "Frag12Ammo"
 	Weapon.slotnumber 5
 	Inventory.PickupSound "misc/w_pkup"
+	
 	Weapon.BobSpeed 1.5
 	Weapon.BobRangeX .5
 	Weapon.BobStyle "InverseSmooth"
+	
 	Weapon.SwayStyle "Normal"
 	Weapon.ViewSwaySpeed 1.0
 	Weapon.JumpSwaySpeed 1.0
 	Weapon.MotionSwaySpeed 1.0
 	Weapon.ViewPitchStyle "Centered"
 	Weapon.ViewPitchOffset 8
+	
+	Weapon.SisterWeapon "Frag12GrenadePistol"
+	
 	+WEAPON.AMMO_OPTIONAL
 	+WEAPON.NOALERT
 	+WEAPON.NOAUTOFIRE
+	+WEAPON.POWERED_UP
 	States
 	{
 		Ready:
@@ -1278,6 +1432,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF B 0 BRIGHT A_AlertMonsters
 			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-2.0, 2.0), true, 8, 4, 0, frandom(-2.0, 2.0))
 			SBCF B 0 BRIGHT A_Light2
+			SBCF B 0 BRIGHT A_SpawnItemEx ("BCF2Casing", cos(pitch)*16, 8, (CallACS("GET_VIEW_HEIGHT")-1.0)-(sin(pitch)*16), cos(pitch-frandom(75.0, 80.0))*2, frandom(0.5, 1.0), -sin(pitch-frandom(75.0, 80.0))*2, 0, SXF_CLIENTSIDE, 0)
 			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			SBCF C 0 BRIGHT A_Light1
 			SBCF C 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
@@ -1291,6 +1446,7 @@ ACTOR BCF2Repeater : StrikerBaseWeapon
 			SBCF B 0 BRIGHT A_AlertMonsters
 			SBCF B 0 BRIGHT A_FireCustomMissile("BCF2Shot", frandom(-2.0, 2.0), true, 8, 4, 0, frandom(-2.0, 2.0))
 			SBCF B 0 BRIGHT A_Light2
+			SBCF B 0 BRIGHT A_SpawnItemEx ("BCF2Casing", cos(pitch)*16, 8, (CallACS("GET_VIEW_HEIGHT")-1.0)-(sin(pitch)*16), cos(pitch-frandom(75.0, 80.0))*2, frandom(0.5, 1.0), -sin(pitch-frandom(75.0, 80.0))*2, 0, SXF_CLIENTSIDE, 0)
 			SBCF B 1 BRIGHT A_SetPitch(pitch-0.25, 0)//SPF_INTERPOLATE)
 			SBCF D 0 BRIGHT A_Light1
 			SBCF D 1 BRIGHT A_SetPitch(pitch+0.125, 0)//SPF_INTERPOLATE)
@@ -1509,7 +1665,7 @@ actor MolotovFlames
 	BounceFactor 0.0
 	RenderStyle Add
 	Scale 0.5
-	ReactionTime 80
+	ReactionTime 75
 	DamageType "Fire"
 	-SOLID
 	-NOGRAVITY
@@ -2335,7 +2491,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 	Radius 4
 	Height 4
 	obituary "%o took %k's FRAG-12 cluster grenade to the face."
-	Damage (32)
+	Damage (64)
 	Speed 64
 	bouncesound "weapons/grbnce"
 	BounceFactor 0.32
@@ -2344,7 +2500,6 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 	+FORCEXYBILLBOARD
 	+FORCERADIUSDMG
 	+HEXENBOUNCE
-	+BOUNCEONACTORS
 	-NOGRAVITY
 	States
 	{
@@ -2381,7 +2536,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 
 actor FRAG12GrenadeImbued : FRAG12Grenade
 {
-	Damage (64)
+	Damage (72)
 	DamageType "Void"
 	States
 	{
@@ -2405,7 +2560,7 @@ actor FRAG12GrenadeImbued : FRAG12Grenade
 		Explode:
 			TNT1 A 0 radius_quake(3, 16, 0, 4, 0)
 			TNT1 A 0 A_PlaySound("BigExplosion", CHAN_AUTO)
-			TNT1 A 0 A_Explode(64, 80, true, false, 48)
+			TNT1 A 0 A_Explode(72, 80, true, false, 48)
 			TNT1 AAA 0 A_SpawnItemEX("Duke64ExplosionSmoke", 0, 0, 0, frandom(-2.0,2.0), frandom(-2.0,2.0), frandom(-2.0,2.0), 0, SXF_CLIENTSIDE, 32)
 			TNT1 A 0 A_SpawnItemEX("Duke64ExplosionFastViolet", 0, 0, 4, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 			TNT1 AAAAA 0 A_SpawnItemEx("VoidFlame", 0, 0, 0, frandom(-6.0,6.0), frandom(-6.0,6.0), frandom(-6.0,6.0), 0, SXF_CLIENTSIDE, 0)

@@ -625,6 +625,17 @@ statusbar fullscreen, fullscreenoffsets, forcescaled// ZDoom HUD
 							
 				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
 			}
+			else IsSelected "Frag12GrenadePistol"
+			{
+				Alpha 0.5
+				{
+					DrawNumber 3, spleen3, PitchBlack, ammo2, alignment(right), -8, -23;
+				}
+				
+				InInventory "HedgefoxGrenadeSingle", 1 { drawimage "GRENSHEL", -45, -32; InInventory "SingleGrenadeImbued", 1 { drawimage "IMBGREN", -45, -32; } }	
+							
+				DrawNumber 3, spleen3, Untranslated, ammo2, alignment(right), -9, -24;
+			}
 			else IsSelected "LeverAction"
 			{
 				Alpha 0.5

@@ -52,6 +52,12 @@ $volume Weapons/Shellcasing 0.25
 $volume Weapons/Bulletcasing 0.25
 $volume Weapons/Chainguncasing 0.25
 
+BCF2Casing1 DSRCAS1
+BCF2Casing2 DSRCAS2
+BCF2Casing3 DSRCAS3
+$random Weapons/BCF2Casing { BCF2Casing1 BCF2Casing2 BCF2Casing3 }
+$limit Weapons/BFG2Casing 0
+
 // Gosimers sniper 
 Weapon/Sniperrail_Fire1 GSNPFIR
 Weapon/Sniperrail_Fire2 GSNPFIR2

@@ -3602,6 +3602,12 @@ script "STRIKER_IMBUE" (int type)
 		alreadyImbued = CheckInventory("GrenadeImbued");
 		auraAmount = (clipAmount-alreadyImbued)*8;
 	}
+	else if(type == 3)
+	{
+		clipAmount = CheckInventory("HedgefoxGrenadeSingle");;
+		alreadyImbued = CheckInventory("SingleGrenadeImbued");
+		auraAmount = (clipAmount-alreadyImbued)*8;
+	}
 	else
 	{
 		clipAmount = CheckInventory("HedgefoxClip");
@@ -3625,6 +3631,10 @@ script "STRIKER_IMBUE" (int type)
 		else if(type == 2)
 		{
 			GiveInventory("GrenadeImbued", clipAmount);
+		}
+		else if(type == 3)
+		{
+			GiveInventory("SingleGrenadeImbued", clipAmount);
 		}
 		else
 		{

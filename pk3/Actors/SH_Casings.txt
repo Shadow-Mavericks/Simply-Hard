@@ -206,3 +206,35 @@ actor BlueShotgunCasing : PistolCasing
 			stop
 	}
 }
+
+actor BCF2CasingSmoke : SH_BaseParticle
+{
+	RenderStyle Add
+	Alpha 0.7
+	Scale 0.05
+	+NOCLIP
+	States
+	{
+		Death:
+		Spawn:
+			XPLR F 1 BRIGHT
+			XPLR F 1 BRIGHT A_FadeOut(0.04)
+			goto Spawn+1
+	}
+}
+
+actor BCF2Casing : PistolCasing
+{
+	BounceType None
+	DeathSound "Weapons/BCF2Casing"
+	States
+	{
+		Spawn:
+			PBU3 ABCDEFGH 2 Bright
+			loop
+		Death:
+			TNT1 AAAAA 0 A_SpawnItemEx("BCF2CasingSmoke", 0, 0, 0, frandom(-1.0,1.0), frandom(-1.0,1.0), frandom(-1.0,1.0), 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 1
+			stop
+	}
+}
