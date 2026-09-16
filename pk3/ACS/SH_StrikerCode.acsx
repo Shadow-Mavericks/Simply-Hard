@@ -3900,7 +3900,7 @@ script "STRIKER_HEALOTHERCHECK" (void)
 
 script "STRIKER_HEALOTHER_VOICE" (void)
 {
-	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 30))
+	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 15))
 		terminate;
 	
 	if(random(0, 100) <= 25)
@@ -3912,7 +3912,7 @@ script "STRIKER_HEALOTHER_VOICE" (void)
 
 script "STRIKER_MOLOTOV_THROW" (void)
 {
-	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 30))
+	if((p_status[PlayerNumber()].last_voiceline_tick != 0) && (timer() - p_status[PlayerNumber()].last_voiceline_tick) < (ONE_SECOND * 15))
 		terminate;
 	
 	if(random(0, 100) <= 25)

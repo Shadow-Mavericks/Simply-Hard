@@ -4237,9 +4237,10 @@ ACTOR Rocketzombie
 	  Loop
    Missile:
 	  MPOS E 0 A_PLAYSOUND("Soldierboy/Fire", Chan_voice)
-	  MPOS EE 10 A_FaceTarget
-	  MPOS F 5
-	  MPOS G 13 A_CustomMissile ("Crocket",25,0,0)
+	  MPOS EE 15 A_FaceTarget
+	  MPOS E 0 A_FaceTarget
+	  MPOS F 5 Bright A_CustomMissile ("Crocket",25,0,0)
+	  MPOS G 13 
 	  Goto See
    Pain:
 	  MPOS H 2

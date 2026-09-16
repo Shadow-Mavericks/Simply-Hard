@@ -1,0 +1,229 @@
+flickerlight CACOBALL
+{
+    color 1.0 0.2 0.6
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1
+{
+    color 0.9 0.1 0.4
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2
+{
+    color 0.6 0.0 0.1
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3
+{
+    color 0.3 0.0 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Acid
+flickerlight CACOBALL_ACID
+{
+    color 0.0 1.0 0.2
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_ACID
+{
+    color 0.0 0.9 0.1
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_ACID
+{
+    color 0.0 0.6 0.0
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_ACID
+{
+    color 0.0 0.3 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Fire
+flickerlight CACOBALL_FIRE
+{
+    color 1.0 0.5 0.0
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_FIRE
+{
+    color 0.8 0.3 0.0
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_FIRE
+{
+    color 0.6 0.1 0.0
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_FIRE
+{
+    color 0.3 0.05 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Ice
+flickerlight CACOBALL_ICE
+{
+    color 0.25 0.25 1.0
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_ICE
+{
+    color 0.1 0.1 0.8
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_ICE
+{
+    color 0.0 0.0 0.6
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_ICE
+{
+    color 0.0 0.0 0.3
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Void
+flickerlight CACOBALL_VOID
+{
+    color 0.4 0.0 1.0
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_VOID
+{
+    color 0.3 0.0 0.9
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_VOID
+{
+    color 0.2 0.0 0.8
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_VOID
+{
+    color 0.1 0.0 0.7
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Electric
+flickerlight CACOBALL_ELECTRIC
+{
+    color 1.0 1.0 0.0
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_ELECTRIC
+{
+    color 0.8 0.8 0.0
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_ELECTRIC
+{
+    color 0.6 0.6 0.0
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_ELECTRIC
+{
+    color 0.3 0.3 0.0
+    size 104
+    secondarySize 112
+    chance 0.25
+}
+
+// Metal
+flickerlight CACOBALL_METAL
+{
+    color 1.0 1.0 1.0
+    size 56
+    secondarySize 64
+    chance 0.5
+}
+
+flickerlight CACOBALL_X1_METAL
+{
+    color 0.8 0.8 0.8
+    size 72
+    secondarySize 80
+    chance 0.25
+}
+
+flickerlight CACOBALL_X2_METAL
+{
+    color 0.6 0.6 0.6
+    size 88
+    secondarySize 96
+    chance 0.25
+}
+
+flickerlight CACOBALL_X3_METAL
+{
+    color 0.3 0.3 0.3
+    size 104
+    secondarySize 112
+    chance 0.25
+}

@@ -69,6 +69,7 @@ struct PlayerData_t
 	int num_heal_orbs;
 	int last_heal_orb_tick;
 	int last_voiceline_tick;
+	int last_footstep_tick;
 	bool debuff_gravity;
 };
 
@@ -275,6 +276,25 @@ function int get_sector_height(int index)
 	int ceiling_z = GetMapData(index, MDATA_Sector, SECTProp_CeilingHeight);
 	
 	return (ceiling_z - floor_z);
+}
+
+// Functions
+function int GetVelocity(void)
+{
+	int vel;
+	int x = GetActorVelX(0);
+	int y = GetActorVelY(0);
+	int angle = VectorAngle(x, y);
+	
+	if(((angle + 0.125) % 0.5) > 0.25)
+	{
+		vel = FixedDiv(y, Sin(angle));
+	}
+	else
+	{
+		vel = FixedDiv(x, Cos(angle));
+	}
+	return vel >> 16;
 }
 
 #libdefine SUBTRACT_OFFSET 1

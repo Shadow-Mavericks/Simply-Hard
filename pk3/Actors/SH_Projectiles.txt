@@ -2725,7 +2725,7 @@ actor DarkSeeker
     Radius 8
     Height 6
     Speed 10
-    Damage (32)
+    Damage (25)
     +SEEKERMISSILE
     PROJECTILE
     RENDERSTYLE ADD
@@ -2736,9 +2736,9 @@ actor DarkSeeker
     States
     {
     Spawn:
-		CNF1 A 1 Bright A_SeekerMissile (5,5)
+		CNF1 A 1 Bright A_SeekerMissile (4,4)
 		CNF1 A 0 Bright A_SpawnItemEx("DarkSeekerTrailPurple")
-		ICE1 B 1 Bright A_SeekerMissile (5,5)
+		ICE1 B 1 Bright A_SeekerMissile (4,4)
 		ICE1 A 0 Bright A_SpawnItemEx("DarkSeekerTrailBlue")
         Loop
     Death:

@@ -281,6 +281,29 @@ script "CL_PLAYERTICKER" OPEN CLIENTSIDE
 				p_status[p].alarm_volume = 1.0;
 			}
 			
+			int DelayTime = 16 - GetVelocity() / 2;
+			if((tickNum - p_status[p].last_footstep_tick) >= DelayTime)
+			{
+				int StepVolume = 7 * GetVelocity();
+				if(GetActorZ(0) - GetActorFloorZ(0) == 0)
+				{
+					str floorTexture = GetActorFloorTexture(0);
+					str langDef = StrParam(s:"STEP_", s:floorTexture);
+					str stepSound = StrParam(l:langDef);
+					
+					if (stricmp(langDef, stepSound) == 0)
+					{
+						ActivatorSound("step/generic", StepVolume);
+					}
+					else
+					{
+						ActivatorSound(stepSound, stepVolume);
+					}
+					
+					p_status[p].last_footstep_tick = tickNum;
+				}
+			}
+			
 			DoInputHax();
 		}
 
@@ -393,5 +416,6 @@ script "RESET_TIMERS" ENTER
 		p_status[pNum].last_hitsound_tick = 0;
 		p_status[pNum].last_heal_orb_tick = 0;
 		p_status[pNum].last_voiceline_tick = 0;
+		p_status[pNum].last_footstep_tick = 0;
 	}
 }
