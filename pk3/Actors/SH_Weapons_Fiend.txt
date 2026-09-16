@@ -672,16 +672,18 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGN4 A 1 A_Raise
 			Loop
 		Fire:
+			TNT1 A 0 A_JumpIfInventory("PowerWeaponLevel2", 1, "PoweredFire")
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
-			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "SH_PlayerBulletPuff")
+			TNT1 AA 0 A_FireBullets(2.0, 1.5, -1, 5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			TNT1 A 0 A_GunFlash("DoRecoil")
 			FGF4 C 1 A_WeaponOffset(0, 2, WOF_ADD)
 			FGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
 			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
+			
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
-			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "SH_PlayerBulletPuff")
+			TNT1 AA 0 A_FireBullets(2.0, 1.5, -1, 5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
 			TNT1 A 0 A_GunFlash("DoRecoil")
 			FGF4 A 1 A_WeaponOffset(0, 2, WOF_ADD)
@@ -690,26 +692,63 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGN4 D 1
 			FGN4 A 2 A_ReFire("Hold")
 			goto FireDone
-		DoRecoil:
-			TNT1 A 1 A_SetPitch(pitch-0.5)
-			TNT1 A 1 A_SetPitch(pitch+0.25)
-			TNT1 A 1 A_SetPitch(pitch+0.25)
-			goto LightDone
 		Hold:
+			TNT1 A 0 A_JumpIfInventory("PowerWeaponLevel2", 1, "PoweredHold")
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
-			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "SH_PlayerBulletPuff")
+			TNT1 AA 0 A_FireBullets(5, 5, -1, 5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
 			TNT1 A 0 A_GunFlash("DoRecoil")
 			FGF4 C 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
 			FGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
 			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
+			
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
-			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "SH_PlayerBulletPuff")
+			TNT1 AA 0 A_FireBullets(5, 5, -1, 5, "SH_PlayerBulletPuff")
 			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
 			TNT1 A 0 A_GunFlash("DoRecoil")
 			FGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
 			FGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
+			FGN4 D 1
+			FGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		PoweredFire:
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_FireCustomMissile("AcidShot", frandom(-2.0,2.0), true, 0, 0, 0, frandom(-1.5,1.5)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			PGF4 C 1 A_WeaponOffset(0, 2, WOF_ADD)
+			PGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
+			FGN4 D 1
+			
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_FireCustomMissile("AcidShot", frandom(-2.0,2.0), true, 0, 0, 0, frandom(-1.5,1.5)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			PGF4 A 1 A_WeaponOffset(0, 2, WOF_ADD)
+			PGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
+			FGN4 D 1
+			FGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		PoweredHold:
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_FireCustomMissile("AcidShot", frandom(-3.0,3.0), true, 0, 0, 0, frandom(-2.0,2.0)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			PGF4 C 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			PGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			FGN4 C 1 A_WeaponOffset(0, 32, 0)
+			FGN4 D 1
+			
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 A 0 A_FireCustomMissile("AcidShot", frandom(-3.0,3.0), true, 0, 0, 0, frandom(-2.0,2.0)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			PGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			PGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
 			FGN4 C 1 A_WeaponOffset(0, 32, 0)
 			FGN4 D 1
 			FGN4 A 2 A_ReFire("Hold")
@@ -735,6 +774,14 @@ ACTOR D3Chaingun : SH_Weapon  //This weapon used to be an AK47 weapon (golden so
 			FGN4 C 9 A_WeaponReady
 			FGN4 D 9 A_WeaponReady
 			goto Ready
+		DoRecoil:
+			TNT1 A 0 A_Light2
+			TNT1 A 1 A_SetPitch(pitch-0.5)
+			TNT1 A 0 A_Light1
+			TNT1 A 1 A_SetPitch(pitch+0.25)
+			TNT1 A 0 A_Light0
+			TNT1 A 1 A_SetPitch(pitch+0.25)
+			goto LightDone
 		Spawn:
 			MGUN A -1
 			Stop
@@ -794,6 +841,7 @@ actor AcidMinigun : D3Chaingun
 			GGN4 A 1 A_Raise
 			Loop
 		Fire:
+			TNT1 A 0 A_JumpIfInventory("PowerWeaponLevel2", 1, "PoweredFire")
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
 			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
@@ -802,6 +850,7 @@ actor AcidMinigun : D3Chaingun
 			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
 			GGN4 C 1 A_WeaponOffset(0, 32, 0)
 			GGN4 D 1
+			
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_FireBullets(2.0, 1.5, 2, 5, "FiendsAcidPuff")
 			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
@@ -813,6 +862,7 @@ actor AcidMinigun : D3Chaingun
 			GGN4 A 2 A_ReFire("Hold")
 			goto FireDone
 		Hold:
+			TNT1 A 0 A_JumpIfInventory("PowerWeaponLevel2", 1, "PoweredHold")
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
 			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
@@ -821,9 +871,50 @@ actor AcidMinigun : D3Chaingun
 			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
 			GGN4 C 1 A_WeaponOffset(0, 32, 0)
 			GGN4 D 1
+			
 			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
 			TNT1 A 0 A_FireBullets(5, 5, 2, 5, "FiendsAcidPuff")
 			TNT1 A 0 A_Playsound("AcidChaingun", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			GGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			GGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		PoweredFire:
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AA 0 A_FireCustomMissile("AcidShot", frandom(-2.0,2.0), true, 0, 0, 0, frandom(-1.5,1.5)) 
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 C 1 A_WeaponOffset(0, 2, WOF_ADD)
+			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AA 0 A_FireCustomMissile("AcidShot", frandom(-2.0,2.0), true, 0, 0, 0, frandom(-1.5,1.5)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 A 1 A_WeaponOffset(0, 2, WOF_ADD)
+			GGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			GGN4 A 2 A_ReFire("Hold")
+			goto FireDone
+		PoweredHold:
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AA 0 A_FireCustomMissile("AcidShot", frandom(-3.0,3.0), true, 0, 0, 0, frandom(-2.0,2.0)) 
+			TNT1 A 0 A_Playsound("AcidChaingun", chan_Weapon)
+			TNT1 A 0 A_GunFlash("DoRecoil")
+			GGF4 C 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
+			GGF4 D 1 A_WeaponOffset(0, -1, WOF_ADD)
+			GGN4 C 1 A_WeaponOffset(0, 32, 0)
+			GGN4 D 1
+			
+			TNT1 A 0 A_SpawnItemEx ("RifleCasing", cos(pitch)*16, -6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(10.0, 15.0))*2, frandom(-3.0, -3.5), -sin(pitch-frandom(10.0, 15.0))*2, 0, SXF_CLIENTSIDE, 0)
+			TNT1 AA 0 A_FireCustomMissile("AcidShot", frandom(-3.0,3.0), true, 0, 0, 0, frandom(-2.0,2.0)) 
+			TNT1 A 0 A_Playsound("Weapon/Machinegunfire", Chan_weapon)
 			TNT1 A 0 A_GunFlash("DoRecoil")
 			GGF4 A 1 A_WeaponOffset(random(-1, 1), 2, WOF_ADD)
 			GGF4 B 1 A_WeaponOffset(0, -1, WOF_ADD)
@@ -852,6 +943,46 @@ actor AcidMinigun : D3Chaingun
 			GGN4 C 9 A_WeaponReady
 			GGN4 D 9 A_WeaponReady
 			goto Ready
+	}
+}
+
+actor AcidShot : SH_BasePlayerFastProjectile
+{
+	Projectile
+	Obituary "%o was corroded by %k's acid!"
+	Radius 4
+	Height 4
+	Speed 100
+	Damage (5)
+	Scale 0.6
+	RenderStyle Add
+	DamageType "Acid"
+	Alpha 1.0
+	+RIPPER
+	+FORCEPAIN
+	+FORCERADIUSDMG
+	+EXTREMEDEATH
+	+BLOODLESSIMPACT
+	States
+	{
+		Volatile:
+		Spawn:
+			APUF A 1 Bright
+			APUF A 1 bright A_ChangeFlag("EXTREMEDEATH", 0)
+			goto Loop1
+		Loop1:
+			APUF A 1 bright A_Jump(64, "StopRip")
+			loop
+		StopRip:
+			APUF A 0 bright A_ChangeFlag("RIPPER", 0)
+			APUF A 0 bright A_ChangeFlag("FORCEPAIN", 0)
+			goto MainLoop
+		MainLoop:
+			APUF A 1 bright
+			loop
+		Death:
+			GPLE ABCD 2 Bright
+			stop
 	}
 }
 

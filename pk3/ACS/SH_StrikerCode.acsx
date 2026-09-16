@@ -1368,6 +1368,11 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	int victimSpawnHealth = GetActorProperty(0, APROP_SpawnHealth);
 	int victimHealth = GetActorProperty(0, APROP_Health);
 	int victimStatus = STATUS_NONE;
+	int victimX = GetActorX(0);
+	int victimY = GetActorY(0);
+	int victimZ = GetActorZ(0);
+	int victimHeight = GetActorProperty(0, APROP_Height);
+	int victimAngle = GetActorAngle(0);
 	bool victimIsMonster = CheckFlag(0, "ISMONSTER");
 	bool victimCanBleed = !CheckFlag(0, "NOBLOOD");
 	bool victimIsFriendly = ((CheckFlag(0, "FRIENDLY") && CheckInventory("StartedFriendlyHax")) || ((victimPlayerNum != -1) && (GameType() != GAME_NET_DEATHMATCH)));
@@ -1375,6 +1380,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 	bool doTeamDamageScale = false;
 	bool directMonsterDamage = false;
 	bool wasConcussed = false;
+	bool upwardImpulse = false;
 	bool noHitMarker = CheckActorState(0, "NoHitMarker", true);
 	bool wasTelefrag = (!StrIcmp(damagetype, "spawntelefrag") || !StrIcmp(damagetype, "telefrag"));	
 	
@@ -1419,7 +1425,9 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		}
 
 		wasConcussed = CheckActorClass(0, "ConcussionBlast");
-		if(CheckActorState(0, "UpwardImpulse", true) || wasConcussed)
+		upwardImpulse = (CheckActorState(0, "UpwardImpulse", true) || (CheckActorState(0, "UpwardImpulseBelowMidsection", true) && GetActorZ(0) <= victimZ+(victimHeight/2)));
+		
+		if(upwardImpulse || wasConcussed)
 		{
 			int yeetForceBase = arg1;
 			yeetAmt = random(yeetForceBase >> 2, yeetForceBase);
@@ -1517,14 +1525,14 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		}
 
 		if(wasConcussed)
-			SpawnForced("ConcussionExtra", GetActorX(0), GetActorY(0), GetActorZ(0), 0, GetActorAngle(0));
+			SpawnForced("ConcussionExtra", victimX, victimY, victimZ, 0, victimAngle);
 		
 		if(!StrIcmp(damagetype, "AcidBFGExtra"))
-			SpawnForced("AcidBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
+			SpawnForced("AcidBFGExtra", victimX, victimY, victimZ+(victimHeight/2), 0, victimAngle);
 		else if(!StrIcmp(damagetype, "BFGExtra"))
-			SpawnForced("BlueBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
+			SpawnForced("BlueBFGExtra", victimX, victimY, victimZ+(victimHeight/2), 0, victimAngle);
 		else if(!StrIcmp(damagetype, "MonsterBFGExtra"))
-			SpawnForced("MonsterBFGExtra", GetActorX(0), GetActorY(0), GetActorZ(0)+(GetActorProperty(0, APROP_Height)/2), 0, GetActorAngle(0));
+			SpawnForced("MonsterBFGExtra", victimX, victimY, victimZ+(victimHeight/2), 0, victimAngle);
 
 		if(victimPlayerNum != -1)
 		{
@@ -1542,42 +1550,42 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 			
 			if(CheckActorClass(0, "Fiend"))
 			{
-				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
+				if(!StrCmp(damagetype, "Acid") || !StrCmp(damagetype, "AcidBFGExtra"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
 			}
 			else if(CheckActorClass(0, "Kunai"))
 			{
-				if(!StrIcmp(damagetype, "Ice"))
+				if(!StrCmp(damagetype, "Ice"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
 			}
 			else if(CheckActorClass(0, "Gosimer"))
 			{
-				if(!StrIcmp(damagetype, "Fire"))
+				if(!StrCmp(damagetype, "Fire"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
 			}
 			else if(CheckActorClass(0, "MaximusPrime"))
 			{
-				if(!StrIcmp(damagetype, "Electric"))
+				if(!StrCmp(damagetype, "Electric"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
 			}
 			else if(CheckActorClass(0, "Striker"))
 			{
-				if(!StrIcmp(damagetype, "Void"))
+				if(!StrCmp(damagetype, "Void"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
 			}
 			else if(CheckActorClass(0, "DarkAssassin"))
 			{
-				if(!StrIcmp(damagetype, "HeavyMetal"))
+				if(!StrCmp(damagetype, "HeavyMetal"))
 				{
 					arg1 = do_shield_logic(arg1);
 				}
@@ -1678,7 +1686,7 @@ function int handle_damage_event(int type, int arg1, int damagetype)
 		{
 			if(victimStatus & STATUS_ACID)
 			{
-				if(!StrIcmp(damagetype, "Acid") || !StrIcmp(damagetype, "AcidBFGExtra"))
+				if(!StrCmp(damagetype, "Acid") || !StrCmp(damagetype, "AcidBFGExtra"))
 				{
 					arg1 = fixedmul(arg1<<16, 1.25)>>16;
 				}
@@ -1965,11 +1973,11 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 			{
 				// Do jack and shit if the victim is a friendly and not themself.
 			}
-			else if(!StrIcmp(arg2, "Acid") || !StrIcmp(arg2, "AcidLaser") || !StrIcmp(arg2, "AcidBFGExtra"))
+			else if(!StrCmp(arg2, "Acid") || !StrCmp(arg2, "AcidLaser") || !StrCmp(arg2, "AcidBFGExtra"))
 			{
 				SetActivator(0, AAPTR_DAMAGE_TARGET);
 				
-				bool isLaser = !StrIcmp(arg2, "AcidLaser");
+				bool isLaser = !StrCmp(arg2, "AcidLaser");
 				bool NoAcidStatus = !!(CheckActorState(0, "NoAcidStatus", true));
 					
 				if(!NoAcidStatus)
@@ -1990,7 +1998,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					
 					if(CheckInventory("AcidAccumulation") >= acidThreshold)
 					{
-						bool isExtra = !StrIcmp(arg2, "AcidBFGExtra");
+						bool isExtra = !StrCmp(arg2, "AcidBFGExtra");
 						bool isVolatile = false;
 						int alreadyAcid = CheckInventory("PowerAcidStatus");
 						TakeInventory("AcidAccumulation", 200);
@@ -2067,7 +2075,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 				}
 			}
-			else if(!StrIcmp(arg2, "Ice"))
+			else if(!StrCmp(arg2, "Ice"))
 			{
 				if(arg1 >= victimHealth) // If this ice shot killed.
 				{
@@ -2081,7 +2089,7 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 				}
 			}
-			else if(!StrIcmp(arg2, "Void"))
+			else if(!StrCmp(arg2, "Void"))
 			{
 				SetActivator(0, AAPTR_DAMAGE_INFLICTOR);
 				if(CheckActorState(0, "DrainsEnergy", true) && !victimIsFriendly && victimCanBleed)
@@ -2131,8 +2139,8 @@ script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
 					}
 				}
 			}
-			else if(!StrIcmp(arg2, "Fire"))
-			{			
+			else if(!StrCmp(arg2, "Fire"))
+			{
 				SetActivator(0, AAPTR_DAMAGE_TARGET);
 
 				bool NoFireStatus = !!(CheckActorState(0, "NoFireStatus", true));
@@ -3808,11 +3816,11 @@ script "STRIKER_SELFHEAL" (int mode)
 		int auraCost = (healAmount * 7) / 4; // 1.75 aura cost per health point. (healAmount * 7) / 4
 		
 		if(auraCost > auraAmount) // If you cannot afford the full heal, scale healAmount down to what you CAN afford
-		{		
+		{
 			healAmount = (auraAmount * 4) / 7; // Inverse cost.
 			auraCost = (healAmount * 7) / 4; // Recalculate the actual cost for this reduced healing amount to avoid rounding errors
 		}
-			
+		
 		if(healAmount <= 0)
 		{
 			healAmount = 1;
@@ -3917,7 +3925,7 @@ script "STRIKER_MOLOTOV_THROW" (void)
 	
 	if(random(0, 100) <= 25)
 	{
-		PlaySound(0, StrParam(s:"Striker/MolotovThrow", d:random(1, 13)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
+		PlaySound(0, StrParam(s:"Striker/MolotovThrow", d:random(1, 18)), CHAN_VOICE, 1.0, false, ATTN_NORM, false);
 		p_status[PlayerNumber()].last_voiceline_tick = timer();
 	}
 }

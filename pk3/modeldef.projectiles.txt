@@ -241,3 +241,14 @@ model ImbuedLeverActionShot
 
 	FrameIndex VPUF A 0 0
 }
+
+model AcidShot
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "AcidTracer.png"
+	Scale 4.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex APUF A 0 0
+}

@@ -2130,6 +2130,7 @@ actor ThermalDetonator : SH_BasePlayerProjectile
 	
 	States
 	{
+		UpwardImpulseBelowMidsection:
 		Spawn:
 			THRM A 0 NoDelay ACS_NamedExecuteWithResult("CALC_CHARGED_VELOCITY", 14)
 			goto SpawnLoop
@@ -2161,6 +2162,7 @@ actor BouncyThermalDetonator : ThermalDetonator
 	var int user_timer;
 	States
 	{
+		UpwardImpulseBelowMidsection:
 		Spawn:
 			THRM A 0 NoDelay ACS_NamedExecuteWithResult("CALC_CHARGED_VELOCITY", 5)
 			goto SpawnLoop

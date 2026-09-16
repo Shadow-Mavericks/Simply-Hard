@@ -35,6 +35,9 @@ Weapon/FlameshotEND	FSEND
 //Armour
 GARMGET	GARMGET
 
+// Duke Item Get
+Duke/GET_ITEM GETITM19
+
 //Casings
 Bulletcasing1	9mmcal1		
 Bulletcasing2	9mmcal2

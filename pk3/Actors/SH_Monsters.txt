@@ -945,10 +945,8 @@ ACTOR Dragoonsoul
 	Damage 3
 	PainChance 256
 
-	Damagetype "poison"
-	Damagetype "fire"
-	damagefactor "fire", 0.75
-	damagefactor "poison", 0.75
+	damagefactor "Fire", 0.75
+	damagefactor "Poison", 0.75
 
 	PainSound "skull/pain"
 	DeathSound "skull/death"

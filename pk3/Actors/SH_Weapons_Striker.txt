@@ -195,7 +195,7 @@ actor StrikerBaseWeapon : SH_Weapon
 			STHO EFGHIJ 1 BRIGHT
 			STHO K 0 BRIGHT ACS_NamedExecuteWithResult("STRIKER_HEALOTHER_VOICE")
 			STHO K 0 BRIGHT A_PlaySound("Striker/SelfHeal", CHAN_AUTO)
-			STHO K 0 BRIGHT A_RadiusGive("StrikerHealer", 128.0, RGF_PLAYERS | RGF_NOSIGHT, 25)
+			STHO K 0 BRIGHT A_RadiusGive("StrikerHealer", 144.0, RGF_PLAYERS | RGF_NOSIGHT, 25)
 			STHO K 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 24, 8.0, 0.0, 0.0, 0.0, SXF_CLIENTSIDE, 0)
 			STHO K 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 24, 8.0, 0.0, 0.0, 22.5, SXF_CLIENTSIDE, 0)
 			STHO K 0 BRIGHT A_SpawnItemEx("VoidFlame", 0, 0, 24, 8.0, 0.0, 0.0, 45.0, SXF_CLIENTSIDE, 0)
@@ -2503,6 +2503,7 @@ actor FRAG12Grenade : SH_BasePlayerProjectile
 	-NOGRAVITY
 	States
 	{
+		UpwardImpulseBelowMidsection:
 		Spawn:
 			FLGR AAA 1
 			FLGR A 0 A_ChangeFlag("HEXENBOUNCE", 0)
@@ -2605,7 +2606,7 @@ actor Cluster : SH_BasePlayerProjectile
 		loop
 	Death:
 		TNT1 A 0 A_PlaySound("ClusterExplode", CHAN_AUTO)
-		TNT1 A 0 A_Explode(32, 64, true, false, 48)
+		TNT1 A 0 A_Explode(32, 64, false, false, 48)
 		TNT1 A 1 A_SpawnItemEx("ClusterExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 2
 		stop
@@ -2643,7 +2644,7 @@ actor FastCluster : SH_BasePlayerProjectile
 		loop
 	Death:
 		TNT1 A 0 A_PlaySound("ClusterExplode", CHAN_AUTO)
-		TNT1 A 0 A_Explode(32, 64, true, false, 48)
+		TNT1 A 0 A_Explode(32, 64, false, false, 48)
 		TNT1 A 1 A_SpawnItemEx("ClusterExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
 		TNT1 A 2
 		stop
