@@ -247,8 +247,19 @@ model AcidShot
 	Path "models/Projectiles"
 	Model 0 "Tracer.md3"
 	Skin 0 "AcidTracer.png"
-	Scale 4.0 4.0 4.0
+	Scale 8.0 4.0 4.0
 	PITCHFROMMOMENTUM
 
 	FrameIndex APUF A 0 0
+}
+
+model PoweredShotgunPellet
+{
+	Path "models/Projectiles"
+	Model 0 "Tracer.md3"
+	Skin 0 "Tracer.png"
+	Scale 6.0 4.0 4.0
+	PITCHFROMMOMENTUM
+
+	FrameIndex PUFF A 0 0
 }
