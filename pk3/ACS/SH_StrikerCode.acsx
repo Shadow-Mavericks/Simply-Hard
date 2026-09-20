@@ -1841,73 +1841,6 @@ script "GET_PLASMA_POSITIONS" OPEN CLIENTSIDE
 	SetActorState(PICKUP_SPRITE_TAG, "RecheckSprite", 0);
 }
 
-function void drop_runes(void)
-{
-	int uTID = 0;
-	int minVel = -4.0;
-	int maxVel = 4.0;
-	
-	uTID = UniqueTID();
-	bool dropped = false;
-	
-	if(CheckInventory("RuneDoubleFiringSpeed"))
-	{
-		SpawnForced("RageRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneDoubleDamage"))
-	{
-		SpawnForced("StrengthRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneDrain"))
-	{
-		SpawnForced("DrainRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneSpread"))
-	{
-		SpawnForced("SpreadRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneHalfDamage"))
-	{
-		SpawnForced("ResistanceRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneRegeneration"))
-	{
-		SpawnForced("RegenerationRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneProsperity"))
-	{
-		SpawnForced("ProsperityRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneReflection"))
-	{
-		SpawnForced("ReflectionRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneHighJump"))
-	{
-		SpawnForced("HighJumpRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	else if(CheckInventory("RuneSpeed25"))
-	{	
-		SpawnForced("HasteRune", GetActorX(0), GetActorY(0), GetActorZ(0), uTID, GetActorAngle(0));
-		dropped = true;
-	}
-	
-	if(dropped)
-	{
-		SetActorVelocity (uTID, random(minVel, maxVel), random(minVel, maxVel), random(3.0, maxVel*2), false, false);
-		ChangeActorFlag(uTID, "NOGRAVITY", 0);
-	}
-}
-
 #define GAMEEVENT_SPAWN_LEVELSPAWNED 1
 #define GAMEEVENT_SPAWN_RANDOMSPAWNED 2
 script "EVENT_HANDLER" (int type, int arg1, int arg2) EVENT
@@ -4124,5 +4057,78 @@ script "CALC_CHARGED_VELOCITY" (int min)
 			throwPower = min;
 			
 		SetActorVelocity(uTID, (velx/10)*throwPower, (vely/10)*throwPower, (velz/10)*throwPower, false, false);
+	}
+}
+
+#define RUNE_STRENGTH		0
+#define RUNE_RAGE			1
+#define RUNE_DRAIN			2
+#define RUNE_SPREAD			3
+#define RUNE_RESISTANCE		4
+#define RUNE_REGENERATION	5
+#define RUNE_PROSPERITY		6
+#define RUNE_REFLECTION		7
+#define RUNE_HIGHJUMP		8
+#define RUNE_HASTE			9
+
+script 13239 (int rune) // RUNE_PICKUP
+{
+	SetActorState(0, "Despawn", false);
+	SetActivatorToTarget(0);
+	
+	drop_runes();
+	
+	switch(rune)
+	{
+		case RUNE_STRENGTH:
+			log("Strength!");
+			AnnouncerSound("strength", true);
+			GiveInventory("StrengthRune", 1);
+			break;
+		case RUNE_RAGE:
+			log("Rage!");
+			AnnouncerSound("rage", true);
+			GiveInventory("RageRune", 1);
+			break;
+		case RUNE_DRAIN:
+			log("Drain!");
+			AnnouncerSound("drain", true);
+			GiveInventory("DrainRune", 1);
+			break;
+		case RUNE_SPREAD:
+			log("Spread!");
+			AnnouncerSound("spread", true);
+			GiveInventory("SpreadRune", 1);
+			break;
+		case RUNE_RESISTANCE:
+			log("Resistance!");
+			AnnouncerSound("resistance", true);
+			GiveInventory("ResistanceRune", 1);
+			break;
+		case RUNE_REGENERATION:
+			log("Regeneration!");
+			AnnouncerSound("regeneration", true);
+			GiveInventory("RegenerationRune", 1);
+			break;
+		case RUNE_PROSPERITY:
+			log("Prosperity!");
+			AnnouncerSound("prosperity", true);
+			GiveInventory("ProsperityRune", 1);
+			break;
+		case RUNE_REFLECTION:
+			log("Reflection!");
+			AnnouncerSound("reflection", true);
+			GiveInventory("ReflectionRune", 1);
+			break;
+		case RUNE_HIGHJUMP:
+			log("High Jump!");
+			AnnouncerSound("highjump", true);
+			GiveInventory("HighJumpRune", 1);
+			break;
+		case RUNE_HASTE:
+			log("Haste!");
+			AnnouncerSound("haste", true);
+			GiveInventory("HasteRune", 1);
+			break;
 	}
 }

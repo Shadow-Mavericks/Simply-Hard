@@ -289,6 +289,7 @@ actor SH_CustomInventory : CustomInventory
 	}
 }
 
+const int AMMO_PICKUP = 13236; // Must match base script.
 actor AmmoGiver_Base : SH_FakeInventory
 {
 	Radius 20
@@ -299,7 +300,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay A_SetSpecial(84, 13236, 0, false) // Set special to AMMO_PICKUP ACS Script (13236)
+			TNT1 A 0 NoDelay A_SetSpecial(84, AMMO_PICKUP, 0, false) // Set special to AMMO_PICKUP ACS Script (13236)
 			TNT1 A 0 Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 35 A_Jump(256, "Init")
@@ -307,6 +308,7 @@ actor AmmoGiver_Base : SH_FakeInventory
 	}
 }
 
+const int WEAPON_PICKUP = 13237; // Must match base script.
 actor WeaponGiver_Base : SH_FakeInventory
 {
 	Radius 20
@@ -316,7 +318,7 @@ actor WeaponGiver_Base : SH_FakeInventory
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay A_SetSpecial(84, 13237, 0, false) // Set special to WEAPON_PICKUP ACS Script (13237)
+			TNT1 A 0 NoDelay A_SetSpecial(84, WEAPON_PICKUP, 0, false) // Set special to WEAPON_PICKUP ACS Script (13237)
 			TNT1 A 0 Thing_ChangeTID(0, 69069) // Tag this as PICKUP_SPRITE_TAG (69069) so it can be manipulated by ACS.
 			TNT1 A 0 A_SetUserVar("user_scale_Base", 100)
 			TNT1 A 35 A_Jump(256, "Init") // Force jump to the init state of descendant actors.

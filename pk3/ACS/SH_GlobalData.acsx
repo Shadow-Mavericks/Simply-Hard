@@ -278,7 +278,6 @@ function int get_sector_height(int index)
 	return (ceiling_z - floor_z);
 }
 
-// Functions
 function int GetVelocity(void)
 {
 	int vel;
@@ -462,6 +461,87 @@ function bool IsInViewCone(int viewerTid, int targetTid, int coneDegrees)
 
     // 6. Return evaluation
     return (angleDiff <= maxDifference);
+}
+
+function int ShootActor(int sourceTID, str actorClass, int speed, int spawnOffsetDist)
+{
+    int angle = GetActorAngle(sourceTID);
+    int pitch = GetActorPitch(sourceTID);
+
+    int x = GetActorX(sourceTID) + FixedMul(cos(angle), FixedMul(cos(pitch), spawnOffsetDist << 16));
+    int y = GetActorY(sourceTID) + FixedMul(sin(angle), FixedMul(cos(pitch), spawnOffsetDist << 16));
+    int z = GetActorZ(sourceTID) + (GetActorProperty(sourceTID, APROP_Height) / 2) - FixedMul(sin(pitch), spawnOffsetDist << 16);
+
+    int projTID = UniqueTID();
+
+    if (SpawnForced(actorClass, x, y, z, projTID, angle >> 8)) // Convert to byte angle
+    {
+        SetActorPitch(projTID, pitch);
+        
+        int velX = FixedMul(cos(angle), FixedMul(cos(pitch), speed << 16));
+        int velY = FixedMul(sin(angle), FixedMul(cos(pitch), speed << 16));
+        int velZ = -FixedMul(sin(pitch), speed << 16); // looking UP is negative
+
+        SetActorVelocity(projTID, velX, velY, velZ, FALSE, FALSE);
+
+        return projTID;
+    }
+    
+    return 0;
+}
+
+function void drop_runes(void)
+{
+	if(CheckInventory("RuneDoubleFiringSpeed"))
+	{
+		ShootActor(0, "RageRuneGiver", 10, 16);
+		TakeInventory("RuneDoubleFiringSpeed", 1);
+	}
+	else if(CheckInventory("RuneDoubleDamage"))
+	{
+		ShootActor(0, "StrengthRuneGiver", 10, 16);
+		TakeInventory("RuneDoubleDamage", 1);
+	}
+	else if(CheckInventory("RuneDrain"))
+	{
+		ShootActor(0, "DrainRuneGiver", 10, 16);
+		TakeInventory("RuneDrain", 1);
+	}
+	else if(CheckInventory("RuneSpread"))
+	{
+		ShootActor(0, "SpreadRuneGiver", 10, 16);
+		TakeInventory("RuneSpread", 1);
+	}
+	else if(CheckInventory("RuneHalfDamage"))
+	{
+		ShootActor(0, "ResistanceRuneGiver", 10, 16);
+		TakeInventory("RuneHalfDamage", 1);
+	}
+	else if(CheckInventory("RuneRegeneration"))
+	{
+		ShootActor(0, "RegenerationRuneGiver", 10, 16);
+		TakeInventory("RuneRegeneration", 1);
+	}
+	else if(CheckInventory("RuneProsperity"))
+	{
+		ShootActor(0, "ProsperityRuneGiver", 10, 16);
+		TakeInventory("RuneProsperity", 1);
+	}
+	else if(CheckInventory("RuneReflection"))
+	{
+		ShootActor(0, "ReflectionRuneGiver", 10, 16);
+		TakeInventory("RuneReflection", 1);
+	}
+	else if(CheckInventory("RuneHighJump"))
+	{
+		ShootActor(0, "HighJumpRuneGiver", 10, 16);
+		TakeInventory("RuneHighJump", 1);
+	}
+	else if(CheckInventory("RuneSpeed25"))
+	{
+		ShootActor(0, "HasteRuneGiver", 10, 16);
+		TakeInventory("RuneSpeed25", 1);
+	}
 }
 
 // Imported from Korshun's ACSUtils, because Zandronum is an outdated piece of shit that doesn't seem

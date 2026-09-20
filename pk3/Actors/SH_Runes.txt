@@ -81,6 +81,36 @@ ACTOR StrengthRune : RuneGiver 5100
 	}
 }
 
+const int RUNE_PICKUP = 13239;
+const int RUNE_STRENGTH = 0;
+const int RUNE_RAGE = 1;
+const int RUNE_DRAIN = 2;
+const int RUNE_SPREAD = 3;
+const int RUNE_RESISTANCE = 4;
+const int RUNE_REGENERATION = 5;
+const int RUNE_PROSPERITY = 6;
+const int RUNE_REFLECTION = 7;
+const int RUNE_HIGHJUMP = 8;
+const int RUNE_HASTE = 9;
+
+actor StrengthRuneGiver
+{
+	Activation THINGSPEC_ThingActs | THINGSPEC_ThingTargets
+	+USESPECIAL
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_STRENGTH)
+			goto SpawnLoop
+		SpawnLoop:
+			STRR ABCD 6
+			Loop
+		Despawn:
+			TNT1 A 1
+			stop
+	}
+}
+
 //=================================================================================================
 //
 // Rage rune
@@ -109,6 +139,19 @@ ACTOR RageRune : RuneGiver 5101
 	}
 }
 
+actor RageRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_RAGE)
+			goto SpawnLoop
+		SpawnLoop:
+			RAGR ABCDEFGH 6
+			Loop
+	}
+}
+
 //=================================================================================================
 //
 // Drain rune
@@ -134,6 +177,19 @@ ACTOR DrainRune : RuneGiver 5102
 	Spawn:
 		DRAR ABCD 6
 		Loop
+	}
+}
+
+actor DrainRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_DRAIN)
+			goto SpawnLoop
+		SpawnLoop:
+			DRAR ABCD 6
+			Loop
 	}
 }
 
@@ -166,6 +222,19 @@ ACTOR SpreadRune : RuneGiver 5103
 	}
 }
 
+actor SpreadRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_SPREAD)
+			goto SpawnLoop
+		SpawnLoop:
+			SPRR ABCD 6
+			Loop
+	}
+}
+
 //=================================================================================================
 //
 // Resistance rune
@@ -191,6 +260,19 @@ ACTOR ResistanceRune : RuneGiver 5104
 	Spawn:
 		RESR ABCDEFGH 6
 		Loop
+	}
+}
+
+actor ResistanceRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_RESISTANCE)
+			goto SpawnLoop
+		SpawnLoop:
+			RESR ABCDEFGH 6
+			Loop
 	}
 }
 
@@ -223,6 +305,19 @@ ACTOR RegenerationRune : RuneGiver 5105
 	}
 }
 
+actor RegenerationRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_REGENERATION)
+			goto SpawnLoop
+		SpawnLoop:
+			REGR AB 6
+			Loop
+	}
+}
+
 //=================================================================================================
 //
 // Prosperity rune
@@ -248,6 +343,19 @@ ACTOR ProsperityRune : RuneGiver 5106
 	Spawn:
 		PRSR ABCD 6
 		Loop
+	}
+}
+
+actor ProsperityRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_PROSPERITY)
+			goto SpawnLoop
+		SpawnLoop:
+			PRSR ABCD 6
+			Loop
 	}
 }
 
@@ -280,6 +388,19 @@ ACTOR ReflectionRune : RuneGiver 5107
 	}
 }
 
+actor ReflectionRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_REFLECTION)
+			goto SpawnLoop
+		SpawnLoop:
+			REFR BA 6
+			Loop
+	}
+}
+
 //=================================================================================================
 //
 // High jump rune
@@ -305,6 +426,19 @@ ACTOR HighJumpRune : RuneGiver 5108
 	Spawn:
 		HIJR ABCD 6
 		Loop
+	}
+}
+
+actor HighJumpRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_HIGHJUMP)
+			goto SpawnLoop
+		SpawnLoop:
+			HIJR ABCD 6
+			Loop
 	}
 }
 
@@ -334,5 +468,18 @@ ACTOR HasteRune : RuneGiver 5109
 	Spawn:
 		HASR ABCD 6
 		Loop
+	}
+}
+
+actor HasteRuneGiver : StrengthRuneGiver
+{
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay A_SetSpecial(84, RUNE_PICKUP, RUNE_HASTE)
+			goto SpawnLoop
+		SpawnLoop:
+			HASR ABCD 6
+			Loop
 	}
 }

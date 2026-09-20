@@ -42,7 +42,7 @@ Roulette_t roulette1[WHEEL1_COUNT] = {
 	{ "F", "None", 1  },
 	{ "G", "ProsperityRune", 1  },
 	{ "H", "None" },
-	{ "I", "None" },
+	{ "I", "None" }, // Middle Finger
 	{ "J", "None" },
 };
 
@@ -108,16 +108,16 @@ str speeds[3] = { "FST", "MED", "LOW" };
 #define ROULETTE_YOFFSET 27.0
 #define ROULETTE_SEPARATION 50.0
 
-function Wheel_t do_wheel(int roulette_ticker, int index, Wheel_t wheel)
+function Wheel_t do_wheel(int roulette_ticker, int index, Wheel_t wheel, bool clientmode)
 {
 	if(wheel.stage != WHEEL_FINISHED)
 	{
 		Roulette_t roulette;
-		if(index == 0)
+		if(index == 0) // Runes
 			roulette = roulette1[wheel.ticker];
-		else if(index == 1)
+		else if(index == 1) // Powerups
 			roulette = roulette2[wheel.ticker];
-		else if(index == 2)
+		else if(index == 2) // Inventory
 			roulette = roulette3[wheel.ticker];
 			
 		if((roulette_ticker % wheel.speed) == 0)
@@ -157,8 +157,13 @@ function Wheel_t do_wheel(int roulette_ticker, int index, Wheel_t wheel)
 						
 					if(StrIcmp(roulette.reward, "None") != 0)
 					{
-						if(isServer())
+						if(isServer() && !clientmode)
+						{
+							if(index == 0) // If we get a rune, drop our existing one.
+								drop_runes();
+
 							GiveInventory(roulette.reward, roulette.amount);
+						}
 					}
 					else
 						wheel.failed = 1;
@@ -227,9 +232,9 @@ script "GOSIMER_ROULETTE" (void)
 	
 	while(1)
 	{	
-		wheel1 = do_wheel(roulette_ticker, 0, wheel1);
-		wheel2 = do_wheel(roulette_ticker, 1, wheel2);
-		wheel3 = do_wheel(roulette_ticker, 2, wheel3);
+		wheel1 = do_wheel(roulette_ticker, 0, wheel1, false);
+		wheel2 = do_wheel(roulette_ticker, 1, wheel2, false);
+		wheel3 = do_wheel(roulette_ticker, 2, wheel3, false);
 		
 		if((wheel1.stage == WHEEL_FINISHED) && (wheel2.stage == WHEEL_FINISHED) && (wheel3.stage == WHEEL_FINISHED))
 		{
@@ -273,9 +278,9 @@ script "GOSIMER_ROULETTE_CLIENTSIDE" (int wheel1_chosen, int wheel2_chosen, int 
 	
 	while(1)
 	{	
-		wheel1 = do_wheel(roulette_ticker, 0, wheel1);
-		wheel2 = do_wheel(roulette_ticker, 1, wheel2);
-		wheel3 = do_wheel(roulette_ticker, 2, wheel3);
+		wheel1 = do_wheel(roulette_ticker, 0, wheel1, true);
+		wheel2 = do_wheel(roulette_ticker, 1, wheel2, true);
+		wheel3 = do_wheel(roulette_ticker, 2, wheel3, true);
 		
 		SetFont("ROULBACK");
 		SetHudSize(640, 480, false);

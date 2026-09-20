@@ -2528,54 +2528,6 @@ Actor ActiveFlareGreen //You can give this a DoomEdNum, to place it in a map edi
 
 //Tribeams Code
 
-actor FlameshotFire : SH_BasePlayerProjectile
-{
-	Radius 6
-	Height 8
-	Speed 35
-	Damage (5)
-	Scale 0.1
-	DAMAGETYPE "Fire"
-	RenderStyle "Add"
-	Alpha 1.0
-	Gravity 0.25
-	+NOTIMEFREEZE
-	-NOGRAVITY
-	States
-	{
-		InstantStatus:
-		Spawn:
-			AATK ABCD 1 Bright A_SpawnItemEx("BasicFlame", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, 0, frandom(0.25,0.5), 0, SXF_CLIENTSIDE, 224)
-			Loop
-		Death:
-			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
-			AATK C 1 Bright A_FadeOut(0.17)
-			Loop
-	}
-}
-
-actor FlameshotSuper : FlameshotFire
-{
-	Radius 6
-	Height 8
-	Speed 35
-	Damage (9)
-	Scale 0.1
-	DAMAGETYPE "Fire"
-	RenderStyle "Add"
-	Alpha 1.0
-	States
-	{
-		Spawn:
-			AATK IJKL 1 Bright A_SpawnItemEx("BlueFlame", frandom(-2.0, 2.0), frandom(-2.0, 2.0), frandom(-2.0, 2.0), 0, 0, frandom(0.25,0.5), 0, SXF_CLIENTSIDE, 224)
-			Loop
-		Death:
-			AATK A 0 Bright A_SetScale(scalex+0.5, scaley+0.5)
-			AATK J 1 Bright A_FadeOut(0.17)
-			Loop
-	}
-}
-
 actor FlameshotICE2 : SH_BaseEnemyProjectile
 {
 	Radius 6
