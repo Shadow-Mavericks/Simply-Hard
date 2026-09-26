@@ -279,10 +279,10 @@ ACTOR Frag12Ammo : Ammo
 	Tag "FRAG-12 Shell"
 	Inventory.PickupMessage "Picked up some FRAG-12 Shells." // "Picked up a rocket."
 	Inventory.Amount 1
-	Inventory.MaxAmount 24
+	Inventory.MaxAmount 32
 	Inventory.Respawntics 6300
 	Ammo.BackpackAmount 1
-	Ammo.BackpackMaxAmount 84
+	Ammo.BackpackMaxAmount 92
 	Inventory.Icon "ROCKA0"
 	Inventory.PickupSound "AMMO/SHEL"
 	+INVENTORY.IGNORESKILL // Ammo doubling is now handled in ACS.

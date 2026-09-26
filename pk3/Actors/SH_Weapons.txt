@@ -184,7 +184,7 @@ Actor Tier1upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT ABCD 3 BRIGHT
+			TOK1 A 10 BRIGHT Light("TanUpgrade")
 			loop
 		pickup:
 			TNT1 A 0 A_Giveinventory("peastolclip",5)
@@ -199,10 +199,10 @@ Actor Tier2upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT EFGD 3 BRIGHT
+			TOK2 A 10 BRIGHT Light("WhiteUpgrade")
 			loop
 		pickup:
-			TNT1 A 0 A_Giveinventory("peastolclip",5)
+			TNT1 A 0 A_Giveinventory("shellz", 6)
 			Stop
 	}
 }
@@ -214,10 +214,10 @@ Actor Tier3upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT HIJD 6 BRIGHT
+			TOK3 A 10 BRIGHT Light("GreenUpgrade")
 			Loop
 		pickup:
-			TNT1 A 0 A_Giveinventory("shellz",4)
+			TNT1 A 0 A_Giveinventory("supershellz", 6)
 			Stop
 	}
 }
@@ -229,10 +229,10 @@ Actor Tier4upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT KLMD 3 BRIGHT
+			TOK4 A 10 BRIGHT Light("BlueUpgrade")
 			Loop
 		pickup:
-			TNT1 A 0 A_Giveinventory("shellz",4)
+			TNT1 A 0 A_Giveinventory("MGRounds", 32)
 			Stop
 	}
 }
@@ -244,7 +244,7 @@ Actor Tier5upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT NOPD 3 Bright
+			TOK5 A 10 BRIGHT Light("VioletUpgrade")
 			loop
 		pickup:
 			TNT1 A 0 A_Giveinventory("RoketAmmo",5)
@@ -260,7 +260,7 @@ Actor Tier6upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT QRSD 3 Bright
+			TOK6 A 10 BRIGHT Light("GoldUpgrade")
 			Loop
 	}
 }
@@ -272,7 +272,7 @@ Actor Tier7upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT TUVD 3 Bright
+			TOK7 A 10 BRIGHT Light("OrangeUpgrade")
 			Loop
 	}
 }
@@ -284,7 +284,7 @@ Actor Tier8upgradetoken : UpgradeToken_Base
 	States
 	{
 		Spawn:
-			GUGT WXYDD 3 Bright
+			TOK8 A 10 BRIGHT Light("RedUpgrade")
 			Loop
 	}
 }
@@ -303,7 +303,14 @@ Actor Allupgradetokens : CustomInventory
 	States
 	{
 		Spawn:
-			GUGT ABCDEFGDHIJDKLMDNOPDQRSDTUVDWXYD 3 Bright
+			TOK1 A 10 BRIGHT Light("TanUpgrade")
+			TOK2 A 10 BRIGHT Light("WhiteUpgrade")
+			TOK3 A 10 BRIGHT Light("GreenUpgrade")
+			TOK4 A 10 BRIGHT Light("BlueUpgrade")
+			TOK5 A 10 BRIGHT Light("VioletUpgrade")
+			TOK6 A 10 BRIGHT Light("GoldUpgrade")
+			TOK7 A 10 BRIGHT Light("OrangeUpgrade")
+			TOK8 A 10 BRIGHT Light("RedUpgrade")
 			loop
 		pickup:
 			TNT1 A 0 A_Giveinventory("Tier1upgradetoken",1)

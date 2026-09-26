@@ -88,44 +88,52 @@ pointlight GoldUpgradering
         size 160
 }
 
-object Tier1upgradetoken
+pointlight TanUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 0.784 0.494 0.235
+	size 160
 }
 
-object Tier2upgradetoken
+pointlight WhiteUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 1.0 1.0 1.0
+	size 160
 }
 
-object Tier3upgradetoken
+pointlight GreenUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 0.0 1.0 0.0
+	size 160
 }
 
-object Tier4upgradetoken
+pointlight BlueUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 0.0 0.0 1.0
+	size 160
 }
 
-object Tier5upgradetoken
+pointlight VioletUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 0.502 0 1
+	size 160
 }
 
-object Tier6upgradetoken
+pointlight GoldUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 1.0 0.8 0.0
+	size 160
 }
 
-object Tier7upgradetoken
+pointlight OrangeUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 1.0 0.502 0.0
+	size 160
 }
 
-object Allupgradetokens
+pointlight RedUpgrade
 {
-    frame GUGT { Light GoldUpgradering }
+	color 1.0 0.0 0.0
+	size 160
 }
 
 //Flares
