@@ -385,7 +385,7 @@ function void put_sound_in_sector(int index, int sound1_min, int sound1_max, int
 			}
 		}
 		
-		if(!can_see || center_not_in_sector)
+		if(!can_see || center_not_in_sector) // If none of the vertices can be seen, or center outside of the map.
 		{
 			pos.x = closest_pos.x;
 			pos.y = closest_pos.y;
@@ -3620,7 +3620,7 @@ script "RECKONING_ACTION" (void)
 	int originalY = GetActorY(0);
 	int originalZ = GetActorZ(0);
 	int floorZ = GetActorFloorZ(0);
-	int extraZDamage = clamp(((originalZ - floorZ) / 8) >> 16, 0, 256);
+	int extraZDamage = clamp(((originalZ - floorZ) / 5) >> 16, 0, 256);
 	int angle = GetActorAngle(0);
 	int mass = GetActorProperty(0, APROP_Mass);
 	int radius = GetActorProperty(0, APROP_Radius);
@@ -3647,7 +3647,7 @@ script "RECKONING_ACTION" (void)
 	Thing_ChangeTID(0, playerTID); // No need to restore this unlike status effects since reckoning is only done by players.
 		
 	int orbTID = uniqueTID(0);
-	int damage = clamp(mass/2, 75, 400) + extraZDamage;
+	int damage = clamp(mass/2, 100, 500) + extraZDamage;
 	SpawnForced("ReckoningGrabSphere", originalX, originalY, originalZ, orbTID, angle);
 	SetUserVariable(orbTID, "user_radius", radius>>16);
 	SetUserVariable(orbTID, "user_height", height>>16);
@@ -4073,6 +4073,9 @@ script "CALC_CHARGED_VELOCITY" (int min)
 
 script 13239 (int rune) // RUNE_PICKUP
 {
+	if(isClient()) // Hack to prevent Zandronum from executing this on a client
+		return;
+
 	SetActorState(0, "Despawn", false);
 	SetActivatorToTarget(0);
 	
@@ -4131,4 +4134,9 @@ script 13239 (int rune) // RUNE_PICKUP
 			GiveInventory("HasteRune", 1);
 			break;
 	}
+}
+
+script "DROP_RUNE" (void) NET
+{
+	drop_runes();
 }

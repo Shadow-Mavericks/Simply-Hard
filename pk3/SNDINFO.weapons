@@ -264,6 +264,11 @@ LeverActionFire3 stshtgn3
 $random LeverActionFire { LeverActionFire1 LeverActionFire2 LeverActionFire3 }
 LeverActionCock stshtcok
 
+WinchesterFire1 stwnchs1
+WinchesterFire2 stwnchs2
+WinchesterFire3 stwnchs3
+$random WinchesterFire { WinchesterFire1 WinchesterFire2 WinchesterFire3 }
+
 WSTEFire1 wstesht1
 WSTEFire2 wstesht2
 WSTEFire3 wstesht3

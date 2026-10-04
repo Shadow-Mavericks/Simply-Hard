@@ -108,7 +108,7 @@ pointlight GreenUpgrade
 
 pointlight BlueUpgrade
 {
-	color 0.0 0.0 1.0
+	color 0.0 0.5 1.0
 	size 160
 }
 

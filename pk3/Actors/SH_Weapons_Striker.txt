@@ -133,6 +133,7 @@ actor StrikerBaseWeapon : SH_Weapon
 			AAB0 A 0 A_PlaySound("AuraFire", CHAN_AUTO)
 			AAB0 AB 1
 			AAB0 CDEFGH 1 BRIGHT
+			AAB0 I 0 BRIGHT A_PlaySound("AuraBall", CHAN_AUTO)
 			AAB0 I 1 BRIGHT A_FireCustomMissile("AuraBall", 0, 0, -6, 0, 0, 0)
 			AAB0 JKLM 1 BRIGHT
 			AAB0 OPQR 1
@@ -904,7 +905,7 @@ actor EnhancedMAC10 : ModifiedMAC10
 
 ACTOR LeverAction : StrikerBaseWeapon
 {
-	Tag "Lever-Action Shotgun"
+	Tag "Mare's Leg"
 	Weapon.SelectionOrder 9
 	Weapon.KickBack 384
 	Weapon.AmmoUse 1
@@ -921,6 +922,10 @@ ACTOR LeverAction : StrikerBaseWeapon
 	Weapon.MotionSwaySpeed 1.0
 	Weapon.ViewPitchStyle "Centered"
 	Weapon.ViewPitchOffset 8
+	
+	Weapon.SisterWeapon "Winchester1887"
+	Weapon.PowerupItem "Tier2UpgradeToken"
+	
 	Decal bulletchip
 	States
 	{
@@ -957,7 +962,8 @@ ACTOR LeverAction : StrikerBaseWeapon
 		ImbuedFire:
 			SLEG B 0 BRIGHT A_PlaySound("LeverActionFire", CHAN_WEAPON)
 			SLEG B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
-			SLEG BBBBBBBB 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), 0, 6, 0, 0, frandom(-2.5, 2.5))
+			SLEG BBBBBBB 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), false, 6, 0, 0, frandom(-2.5, 2.5))
+			SLEG B 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), true, 6, 0, 0, frandom(-2.5, 2.5))
 			//SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 20, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
 			SLEG B 0 BRIGHT A_TakeInventory("LeverShotgunImbued", 1)
 			SLEG B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
@@ -998,6 +1004,96 @@ ACTOR LeverAction : StrikerBaseWeapon
 		Spawn:
 			SLEG Z -1
 			Stop
+	}
+}
+
+ACTOR Winchester1887 : LeverAction
+{
+	Tag "Winchester Model 1887 (Tier 2 Upgrade)"
+	
+	Weapon.SwayStyle "HorizontalOnly"
+	Weapon.ViewSwaySpeed 1.0
+	Weapon.JumpSwaySpeed 1.0
+	Weapon.MotionSwaySpeed 1.0
+	Weapon.ViewPitchStyle "Centered"
+	Weapon.ViewPitchOffset 4
+	
+	Weapon.SisterWeapon "LeverAction"
+
+	+WEAPON.POWERED_UP
+	States
+	{
+		Ready:
+			SWNC A 0 A_GunFlash("Abilities", GFF_NOEXTCHANGE)
+		ReadyLoop:
+			SWNC A 1 A_WeaponReady(WRF_ALLOWZOOM)
+			goto ReadyLoop
+		Deselect:
+			SWNC AAA 0 A_Lower
+			SWNC A 1 A_Lower
+			Goto Deselect
+		Select:
+			SWNC A 0 A_TakeInventory("ShotgunEmpty", 1)
+			SWNC AAA 0 A_Raise
+			SWNC A 1 A_Raise
+			Goto Select
+		Fire:
+			SWNC B 0 BRIGHT A_JumpIfInventory("PowerWeaponLevel2", 1, "BuffedFire")
+			SWNC B 0 BRIGHT A_JumpIfInventory("LeverShotgunImbued", 1, "ImbuedFire")
+			goto NormalFire
+		NormalFire:
+			SWNC B 0 BRIGHT A_PlaySound("WinchesterFire", CHAN_WEAPON)
+			SWNC B 0 BRIGHT A_FireBullets (3.0, 2.5, 10, 10, "SH_PlayerBulletPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SWNC B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
+			SWNC B 1 BRIGHT A_SetPitch(pitch-3.0)
+			SWNC CDA 1 A_SetPitch(pitch+1.0)
+			SWNC A 0 A_CheckReload
+			goto ReloadAnim
+		BuffedFire:
+			SWNC BBBB 0 BRIGHT A_FireCustomMissile("Cluster", frandom(-3.0, 3.0), 0, 6, 0, 0, frandom(0.0, 5.0))
+			SWNC B 0 BRIGHT A_JumpIfInventory("LeverShotgunImbued", 1, "ImbuedFire")
+			goto NormalFire
+		ImbuedFire:
+			SWNC B 0 BRIGHT A_PlaySound("WinchesterFire", CHAN_WEAPON)
+			SWNC B 0 BRIGHT A_PlaySound("AuraBlast", CHAN_AUTO)
+			SWNC BBBBBBBBB 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), false, 6, 0, 0, frandom(-2.5, 2.5))
+			SWNC B 0 BRIGHT A_FireCustomMissile("ImbuedLeverActionShot", frandom(-3.0, 3.0), true, 6, 0, 0, frandom(-2.5, 2.5))
+			//SLEG B 0 BRIGHT A_FireBullets (3.0, 2.5, 8, 20, "StrikersVoidPuff", FBF_USEAMMO | FBF_NORANDOM)
+			SWNC B 0 BRIGHT A_TakeInventory("LeverShotgunImbued", 1)
+			SWNC B 0 BRIGHT A_GiveInventory("ShotgunEmpty", 1)
+			SWN2 B 1 BRIGHT A_SetPitch(pitch-3.0)
+			SWNC CDA 1 A_SetPitch(pitch+1.0)
+			SWNC A 0 A_CheckReload
+			goto ReloadAnim
+		ReloadAnim:
+			SWNC EF 2
+			SWNC G 2 A_PlaySound("LeverActionCock", CHAN_AUTO)
+			SWNC HIJKL 2
+			SWNC M 0 A_SpawnItemEx ("RedShotgunCasing", cos(pitch)*16, 6, (CallACS("GET_VIEW_HEIGHT")-6.0)-(sin(pitch)*16), cos(pitch-frandom(45.0, 50.0))*2, frandom(1.0, 1.5), -sin(pitch-frandom(45.0, 50.0))*2, 0, SXF_CLIENTSIDE, 0)
+			SWNC M 2 A_TakeInventory("ShotgunEmpty", 1)
+			SWNC NOPQ 2
+			SWNC A 0 A_ReFire
+			Goto ReadyLoop
+		Zoom:
+			SWNC A 1 A_WeaponReady
+			SWNC A 0 A_JumpIfInventory("ReloadZoomHax", 1, "HealOtherCheck")
+			SWNC A 0 A_JumpIfInventory("UseHax", 1, "HealCheck")
+			SWNC A 0 A_JumpIfInventory("LeverShotgunImbued", 1, "CannotImbue")
+			SWNC A 0 A_JumpIf(CallACS("STRIKER_USEAURA", 12), "ImbueTrigger")	
+			goto ReadyLoop
+		CannotImbue:
+			SWNC A 1 A_WeaponReady
+			goto ReadyLoop
+		ImbueTrigger:
+			SWNC A 28 A_GunFlash("Imbue", GFF_NOEXTCHANGE)
+			goto Ready
+		Imbue:
+			SWNI ABCD 2
+			SWNI E 0 A_GiveInventory("LeverShotgunImbued", 1)
+			SWNI E 0 A_PlaySound("AuraFire", CHAN_AUTO)
+			SWNI EFGHIJK 2 BRIGHT
+			SWNI LMN 2
+			goto Abilities
 	}
 }
 
@@ -1192,15 +1288,15 @@ ACTOR Frag12GrenadePistol : StrikerBaseWeapon
 			"####" A 0 A_Refire
 			goto ReadyLoop		
 		Reload:
-			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
-			STKG A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
+			STGP A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STGP A 0 A_JumpIfInventory("Frag12Ammo", 1, "CheckReload")
 			goto ReadyLoop
 		CannotReload:
-			STKG A 1 A_WeaponReady
+			STGP A 1 A_WeaponReady
 			goto ReadyLoop
 		CheckReload:
-			STKG A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
-			STKG A 0 A_JumpIfInventory("HedgefoxGrenadeSingle", 0, "ReadyLoop") // 0 == At Capacity
+			STGP A 0 A_JumpIfInventory("AbilityActive", 1, "CannotReload")
+			STGP A 0 A_JumpIfInventory("HedgefoxGrenadeSingle", 0, "ReadyLoop") // 0 == At Capacity
 			goto ReloadStart
 		ReloadStart:
 			STGP L 0 A_GunFlash("NoAbilityUse", GFF_NOEXTCHANGE)
@@ -1247,7 +1343,7 @@ ACTOR Frag12GrenadePistol : StrikerBaseWeapon
 
 ACTOR Frag12GrenadeShotgun : Frag12GrenadePistol
 {
-	Tag "Sawn-Off Shotgun w/ FRAG-12 Rounds"
+	Tag "FRAG-12 Grenade Shotgun (Tier 5 Upgrade)"
 	Weapon.SelectionOrder 3
 	Weapon.KickBack 100
 	Weapon.AmmoUse1 1
@@ -2163,12 +2259,10 @@ actor AuraBall : SH_BasePlayerFastProjectile
 	Alpha 1.0
 	DamageType "Void"
 	ReactionTime 5
-	SeeSound "AuraBall"
 	+NEVERADJUSTSPRITECLIPPING
 	+FORCEPAIN
 	+FORCERADIUSDMG
 	+NODAMAGETHRUST
-	+SPAWNSOUNDSOURCE
 	States
 	{
 		Spawn:

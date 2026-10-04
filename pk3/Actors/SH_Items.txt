@@ -1280,6 +1280,7 @@ actor ExtraLifeThingy : CustomInventory 7001
 			ONEM A 0 A_ClearTarget
 			Loop
 		Succ:
+			ONEM A 0 A_JumpIfInTargetInventory("LifeTrackerHack", 10, "FuckThis")
 			ONEM A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
 			ONEM A 70 Bright A_PlaySound("FuckThis", CHAN_AUTO, 1.0)
 			ONEM A 0 A_ChangeFlag("NOGRAVITY", 1)
@@ -1291,7 +1292,14 @@ actor ExtraLifeThingy : CustomInventory 7001
 			"####" A 1 Bright A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
 			"####" "#" 0 Bright A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
 			"####" "#" 0 Bright A_SpawnItemEx("ExtraLifeTrail", 0, 0, 0, 0, 0, 0, 0, SXF_CLIENTSIDE, 0)
+			"####" "#" 0 Bright A_JumpIfInTargetInventory("LifeTrackerHack", 10, "DropBackDown")
 			loop
+		
+		DropBackDown:
+			"####" "#" 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" "#" 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" "#" 0 A_ChangeFlag("NOCLIP", 0)
+			goto FuckThis
 		
 		Pickup:
 			TNT1 A 0 A_JumpIf(ACS_NamedExecuteWithResult("ADDLIFE", 0) == 0, "Failure")

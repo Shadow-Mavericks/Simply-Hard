@@ -179,13 +179,38 @@ ACTOR UAC-Chainsaw : SH_Weapon
 
 Actor Tier1upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Pistol Upgrade token! Stats have been added!!!"
+	Inventory.PickupMessage "You picked up a Tier 1 Upgrade Token!"
 	Inventory.PickupSound "Mannco/PLToken"
 	States
 	{
 		Spawn:
-			TOK1 A 10 BRIGHT Light("TanUpgrade")
+			TOK1 ABCB 2 BRIGHT Light("TanUpgrade")
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			"####" A 0 A_ClearTarget
 			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier1UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("TanUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("TanUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("TanUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("TanUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("TanUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("TanUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("TanUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("TanUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier1UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 		pickup:
 			TNT1 A 0 A_Giveinventory("peastolclip",5)
 			Stop
@@ -194,13 +219,38 @@ Actor Tier1upgradetoken : UpgradeToken_Base
 
 Actor Tier2upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Shotgun Upgrade token! Stats have been added!!!"
+	Inventory.PickupMessage "You picked up a Tier 2 Upgrade Token!"
 	Inventory.PickupSound "Mannco/PLToken"
 	States
 	{
 		Spawn:
-			TOK2 A 10 BRIGHT Light("WhiteUpgrade")
+			TOK2 ABCB 2 BRIGHT Light("WhiteUpgrade")
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			"####" A 0 A_ClearTarget
 			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier2UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("WhiteUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("WhiteUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("WhiteUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("WhiteUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("WhiteUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("WhiteUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("WhiteUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("WhiteUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier2UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 		pickup:
 			TNT1 A 0 A_Giveinventory("shellz", 6)
 			Stop
@@ -209,13 +259,38 @@ Actor Tier2upgradetoken : UpgradeToken_Base
 
 Actor Tier3upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Super Shotgun Upgrade token! Stats have been added!!!"
+	Inventory.PickupMessage "You picked up a Tier 3 Upgrade Token!"
 	Inventory.PickupSound "Mannco/RLToken"
 	States
 	{
 		Spawn:
-			TOK3 A 10 BRIGHT Light("GreenUpgrade")
-			Loop
+			TOK3 ABCB 2 BRIGHT Light("GreenUpgrade")
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			"####" A 0 A_ClearTarget
+			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier3UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("GreenUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("GreenUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("GreenUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("GreenUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("GreenUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("GreenUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("GreenUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("GreenUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier3UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 		pickup:
 			TNT1 A 0 A_Giveinventory("supershellz", 6)
 			Stop
@@ -224,13 +299,38 @@ Actor Tier3upgradetoken : UpgradeToken_Base
 
 Actor Tier4upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Chaingun / Machinegun Upgrade token! Stats have been added!!!"
+	Inventory.PickupMessage "You picked up a Tier 4 Upgrade Token!"
 	Inventory.PickupSound "Mannco/RLToken"
 	States
 	{
 		Spawn:
-			TOK4 A 10 BRIGHT Light("BlueUpgrade")
-			Loop
+			TOK4 ABCB 2 BRIGHT Light("BlueUpgrade")
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			"####" A 0 A_ClearTarget
+			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier4UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("BlueUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("BlueUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("BlueUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("BlueUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("BlueUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("BlueUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("BlueUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("BlueUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier4UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 		pickup:
 			TNT1 A 0 A_Giveinventory("MGRounds", 32)
 			Stop
@@ -239,13 +339,38 @@ Actor Tier4upgradetoken : UpgradeToken_Base
 
 Actor Tier5upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Rocket launcher upgrade token! stats increased / added!"
+	Inventory.PickupMessage "You picked up a Tier 5 Upgrade Token!"
 	Inventory.PickupSound "Mannco/RLToken"
 	States
 	{
 		Spawn:
-			TOK5 A 10 BRIGHT Light("VioletUpgrade")
+			TOK5 ABCB 2 BRIGHT Light("VioletUpgrade")
+			"####" A 0 A_ClearTarget
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
 			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier5UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("VioletUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("VioletUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("VioletUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("VioletUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("VioletUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("VioletUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("VioletUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("VioletUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier5UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 		pickup:
 			TNT1 A 0 A_Giveinventory("RoketAmmo",5)
 			Stop
@@ -255,37 +380,112 @@ Actor Tier5upgradetoken : UpgradeToken_Base
 
 Actor Tier6upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Plasmarifle / Flame thrower upgrade token! stats increased / added!"
+	Inventory.PickupMessage "You picked up a Tier 6 Upgrade Token!"
 	Inventory.PickupSound "Mannco/PRToken"
 	States
 	{
 		Spawn:
-			TOK6 A 10 BRIGHT Light("GoldUpgrade")
-			Loop
+			TOK6 ABCB 2 BRIGHT Light("GoldUpgrade")
+			"####" A 0 A_ClearTarget
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier6UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("GoldUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("GoldUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("GoldUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("GoldUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("GoldUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("GoldUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("GoldUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("GoldUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier6UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 	}
 }
 
 Actor Tier7upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a BFG Upgrade upgrade token! HUGE BUFF'S APPLIED!!!"
+	Inventory.PickupMessage "You picked up a Tier 7 Upgrade Token!"
 	Inventory.PickupSound "Mannco/PRToken"
 	States
 	{
 		Spawn:
-			TOK7 A 10 BRIGHT Light("OrangeUpgrade")
-			Loop
+			TOK7 ABCB 2 BRIGHT Light("OrangeUpgrade")
+			"####" A 0 A_ClearTarget
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier7UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("OrangeUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("OrangeUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("OrangeUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("OrangeUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("OrangeUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("OrangeUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("OrangeUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("OrangeUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier7UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 	}
 }
 
 Actor Tier8upgradetoken : UpgradeToken_Base
 {
-	Inventory.PickupMessage "You picked up a Railgun Token!"
+	Inventory.PickupMessage "You picked up a Tier 8 Upgrade Token!"
 	Inventory.PickupSound "Mannco/PRToken"
 	States
 	{
 		Spawn:
-			TOK8 A 10 BRIGHT Light("RedUpgrade")
-			Loop
+			TOK8 ABCB 2 BRIGHT Light("RedUpgrade")
+			"####" A 0 A_ClearTarget
+			"####" A 0 A_LookEx(LOF_NOSOUNDCHECK | LOF_NOSEESOUND, 0.0, 128.0, 128.0, 360.0, "TokenCheck")
+			loop
+		TokenCheck:
+			"####" A 0 A_JumpIfInTargetInventory("Tier8UpgradeToken", 1, "Spawn") // Got the token? Back to spawn, which will clear the target.
+			"####" A 0 A_RearrangePointers(AAPTR_TARGET, AAPTR_MASTER, AAPTR_TARGET, 0)
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 1)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 1)
+			"####" A 0 A_ChangeFlag("NOCLIP", 1)
+			goto SuccLoop
+		SuccLoop:
+			"####" A 1 Bright Light("RedUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" A 0 Bright Light("RedUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("RedUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("RedUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" C 1 Bright Light("RedUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" C 0 Bright Light("RedUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 1 Bright Light("RedUpgrade") A_SeekerMissile(11.25, 22.50, SMF_PRECISE, 0, 0)
+			"####" B 0 Bright Light("RedUpgrade") A_Weave(4, 4, frandom(-1.0, 1.0), frandom(-1.0, 1.0))
+			"####" B 0 Bright A_JumpIfInTargetInventory("Tier8UpgradeToken", 1, "DropToGround")
+			loop
+		DropToGround:
+			"####" A 0 A_ChangeFlag("NOGRAVITY", 0)
+			"####" A 0 A_ChangeFlag("SEEKERMISSILE", 0)
+			"####" A 0 A_ChangeFlag("NOCLIP", 0)
+			goto Spawn
 	}
 }
 
@@ -303,14 +503,14 @@ Actor Allupgradetokens : CustomInventory
 	States
 	{
 		Spawn:
-			TOK1 A 10 BRIGHT Light("TanUpgrade")
-			TOK2 A 10 BRIGHT Light("WhiteUpgrade")
-			TOK3 A 10 BRIGHT Light("GreenUpgrade")
-			TOK4 A 10 BRIGHT Light("BlueUpgrade")
-			TOK5 A 10 BRIGHT Light("VioletUpgrade")
-			TOK6 A 10 BRIGHT Light("GoldUpgrade")
-			TOK7 A 10 BRIGHT Light("OrangeUpgrade")
-			TOK8 A 10 BRIGHT Light("RedUpgrade")
+			TOK1 ABCB 2 BRIGHT Light("TanUpgrade")
+			TOK2 ABCB 2 BRIGHT Light("WhiteUpgrade")
+			TOK3 ABCB 2 BRIGHT Light("GreenUpgrade")
+			TOK4 ABCB 2 BRIGHT Light("BlueUpgrade")
+			TOK5 ABCB 2 BRIGHT Light("VioletUpgrade")
+			TOK6 ABCB 2 BRIGHT Light("GoldUpgrade")
+			TOK7 ABCB 2 BRIGHT Light("OrangeUpgrade")
+			TOK8 ABCB 2 BRIGHT Light("RedUpgrade")
 			loop
 		pickup:
 			TNT1 A 0 A_Giveinventory("Tier1upgradetoken",1)

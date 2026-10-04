@@ -192,6 +192,7 @@ actor SH_BaseToken : Inventory
 //////////////////////////////////////////////////////////////////
 actor UpgradeToken_Base : SH_BaseToken
 {
+	Speed 15
 	scale 1.0
 	Inventory.PickupSound "Mannco/PLToken"
 	-INVENTORY.UNDROPPABLE
@@ -200,6 +201,9 @@ actor UpgradeToken_Base : SH_BaseToken
 	+CANBLAST
 	+NOBLOCKMONST
 	+DROPOFF
+	+DONTGIB
+	+SEEINVISIBLE
+	+NOTIMEFREEZE
 }
 
 //////////////////////////////////////////////////////////////////

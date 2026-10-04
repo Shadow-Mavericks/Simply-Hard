@@ -4,15 +4,18 @@ addmenukey "Flares" Flares
 addmenukey "Ultimate Ability" ClassUltimates
 addmenukey "Revive Player" RevivePlayer
 addmenukey "Ping Location" PingLocation
+addmenukey "Drop Rune" DropRune
 alias UseAbility "pukename ClassAbility"
 alias Flares "pukename FlareAbility"
 alias ClassUltimates "pukename ULTIMATEABOOLITY"
 alias RevivePlayer "pukename REVIVEPLAYER"
 alias PingLocation "pukename REQUEST_PING"
+alias DropRune "pukename DROP_RUNE"
 
 defaultbind l "RevivePlayer"
 defaultbind b "ClassUltimates"
 defaultbind ";" "PingLocation"
+defaultbind ' "DropRune"
 defaultbind mouse3 "UseAbility"
 defaultbind mouse5 "Flares"
 

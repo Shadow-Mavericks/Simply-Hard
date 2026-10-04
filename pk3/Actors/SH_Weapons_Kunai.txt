@@ -2111,11 +2111,19 @@ actor Icicle : SH_BasePlayerProjectile
 	-FORCEXYBILLBOARD
 	+FORCEYBILLBOARD
 	+FORCERADIUSDMG
+	+NOCLIP
 	States
 	{
 		Spawn:
+			ICIC A 0 NoDelay A_JumpIf(((z+height) < ceilingz) || (z <= floorz), "EnableClip")
 			ICIC A 1 Bright
 			loop
+		SpawnLoop:
+			ICIC A 1 Bright
+			loop
+		EnableClip:
+			ICIC A 0 A_ChangeFlag("NOCLIP", 0)
+			goto SpawnLoop
 		Death:
 			ICIC A 0 A_PlaySound("Kunai/IcicleHit", CHAN_AUTO)
 			ICIC A 0 A_Explode(20, 32, 0, false, 20)

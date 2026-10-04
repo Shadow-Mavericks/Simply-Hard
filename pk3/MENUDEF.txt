@@ -184,6 +184,7 @@ OptionMenu "CreditSprites"
 	StaticText "Doom 3 Plasma Rifle"
 	StaticText "PDW"
 	StaticText "BFG9000"
+	StaticText "Grenade Pistol"
 	StaticText ""
 	
 	StaticText "Serghei & Craneo", 1

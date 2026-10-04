@@ -83,7 +83,7 @@ MannCoBoxData_t tier2_good[] =
 	{ "A Mini-Sentry Box.",				"SENTREH",			45,	DELAY_NONE },
 	{ "A Dispenser!",					"DISPENSER",		45,	DELAY_NONE },
 	{ "An Ammo Expansion!",				"AmmoExpansion",	15,	DELAY_NONE },
-	{ "A Tier 5 Weapon!",				"T6Weapon",			15,	DELAY_NONE },
+	{ "A Tier 5 Weapon!",				"T5Weapon",			15,	DELAY_NONE },
 	{ "A Tier 6 Weapon!",				"T6Weapon",			10,	DELAY_NONE },
 	{ "A Tier 7 Weapon!",				"T7Weapon",			5,	DELAY_NONE },
 	{ "A Tier 4 Weapon Upgrade!",		"T4Upgrade",		15,	DELAY_NONE },

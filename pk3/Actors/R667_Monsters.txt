@@ -1498,7 +1498,6 @@ Actor Cybruiser : BaronOfHell
 	MeleeSound "baron/melee"
 	+FLOORCLIP
 	+MISSILEMORE
-	+BOSS
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
 	States

@@ -95,8 +95,14 @@ const int RUNE_HASTE = 9;
 
 actor StrengthRuneGiver
 {
+	RenderStyle Normal
+	Alpha 1.0
+	Scale 1.0
 	Activation THINGSPEC_ThingActs | THINGSPEC_ThingTargets
 	+USESPECIAL
+	-NOBLOCKMAP
+	-NOGRAVITY
+	-INVISIBLE
 	States
 	{
 		Spawn:
@@ -106,7 +112,8 @@ actor StrengthRuneGiver
 			STRR ABCD 6
 			Loop
 		Despawn:
-			TNT1 A 1
+			TNT1 A 0 A_ChangeFlag("USESPECIAL", 0)
+			TNT1 A 1 A_SetSpecial(0, 0, 0)
 			stop
 	}
 }
