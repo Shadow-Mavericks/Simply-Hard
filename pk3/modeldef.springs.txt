@@ -1,0 +1,44 @@
+Model BlueSpring {
+	Path "models"
+	Model 0 "spring.md3"
+	Skin 0 "spring.png"
+
+	InterpolateDoubledFrames
+	
+	FrameIndex SPRI A 0 0
+	FrameIndex SPRI B 0 1
+	FrameIndex SPRI C 0 2
+	FrameIndex SPRI D 0 3
+	FrameIndex SPRI E 0 4
+	FrameIndex SPRI F 0 5
+}
+
+Model GoldSpring {
+	Path "models"
+	Model 0 "spring.md3"
+	Skin 0 "spring.png"
+
+	InterpolateDoubledFrames
+	
+	FrameIndex SPRI A 0 0
+	FrameIndex SPRI B 0 1
+	FrameIndex SPRI C 0 2
+	FrameIndex SPRI D 0 3
+	FrameIndex SPRI E 0 4
+	FrameIndex SPRI F 0 5
+}
+
+Model RedSpring {
+	Path "models"
+	Model 0 "spring.md3"
+	Skin 0 "spring.png"
+
+	InterpolateDoubledFrames
+	
+	FrameIndex SPRI A 0 0
+	FrameIndex SPRI B 0 1
+	FrameIndex SPRI C 0 2
+	FrameIndex SPRI D 0 3
+	FrameIndex SPRI E 0 4
+	FrameIndex SPRI F 0 5
+}

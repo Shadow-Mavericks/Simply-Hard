@@ -905,7 +905,7 @@ actor EnhancedMAC10 : ModifiedMAC10
 
 ACTOR LeverAction : StrikerBaseWeapon
 {
-	Tag "Mare's Leg"
+	Tag "Custom .410 Mare's Leg"
 	Weapon.SelectionOrder 9
 	Weapon.KickBack 384
 	Weapon.AmmoUse 1

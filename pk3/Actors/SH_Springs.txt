@@ -1,0 +1,52 @@
+// Very basic spring. There's gotta be a better way to do it in Zandronum.
+
+const float py = 1.4142135623730950488016887242097;
+
+Actor SpringBase : SwitchableDecoration {
+	-NOINTERACTION
+	Height 24
+	Radius 24
+	Mass 0x7FFFFFFF
+	States {
+		Spawn:
+			SPRI A 0 NoDelay ACS_NamedExecuteAlways("SpringScript") // Spring Script
+			Goto Idle
+		Idle:
+			SPRI A 1 A_LookEx(LOF_NOSOUNDCHECK|LOF_DONTCHASEGOAL|LOF_NOJUMP, 0, Radius*py, 0, 360, 0) // Position check is done via async script
+			Loop
+		Active:
+			SPRI A 1 A_ActiveSound
+			SPRI BCDEFEEEDDDCCCBBBAAA 1 A_LookEx(LOF_NOSOUNDCHECK|LOF_DONTCHASEGOAL|LOF_NOJUMP, 0, Radius*py, 0, 360, 0) // Always be looking, just in case of other players
+			Goto Idle
+	}
+}
+
+Actor BlueSpring : SpringBase 15193 {
+	//$NotAngled
+	//$Category Springs
+	//$Title "Blue Spring (128)"
+	//$Color 1
+	ActiveSound "Sonic/BlueSpring"
+	Speed 128
+	Translation "112:119=200:207"
+}
+
+Actor GoldSpring : SpringBase 15194 {
+	//$NotAngled
+	//$Category Springs
+	//$Title "Gold Spring (256)"
+	//$Color 14
+	ActiveSound "Sonic/GoldSpring"
+	Speed 256
+	Translation "112:119=160:167"
+}
+
+Actor RedSpring : SpringBase 15195 {
+	//$NotAngled
+	//$Category Springs
+	//$Title "Red Spring (512)"
+	//$Color 4
+	ActiveSound "Sonic/RedSpring"
+	Speed 512
+	Translation "112:119=176:191"
+}

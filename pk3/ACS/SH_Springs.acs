@@ -1,0 +1,36 @@
+#library "SH_Springs"
+#include "zcommon.acs"
+
+function int Distance2D(int x1, int y1, int x2, int y2) {
+	int x = (x1 - x2) >> 16;
+	int y = (y1 - y2) >> 16;
+	return Sqrt(x*x + y*y) << 16;
+}
+
+Script "SpringScript" (void) {
+	int jumpHeight = GetActorProperty(0, APROP_Speed); // Jump Height
+	int myRadius = GetActorProperty(0, APROP_Radius);
+	int myX = GetActorX(0);
+	int myY = GetActorY(0);
+	int myZ = GetActorZ(0);
+	int myID = UniqueTID();
+	Thing_ChangeTID(0, myID);
+	while (GetActorProperty(myID, APROP_Health > 0)) {
+		SetActivator(myID, AAPTR_TARGET);
+		int theirX = GetActorX(0);
+		int theirY = GetActorY(0);
+		int theirZ = GetActorZ(0);
+		int theirHeight = GetActorProperty(0, APROP_Height);
+		int distanceXY = Distance2D(theirX, theirY, myX, myY);
+		int distanceZ = (theirZ - myZ) >> 16 << 16;
+		if (distanceXY <= myRadius && (distanceZ <= 8.0 && distanceZ >= -FixedDiv(theirHeight, 2.0))) {
+			Thing_Activate(myID);
+			SetActorPosition(0, theirX, theirY, myZ, false); // Clamp to Ground
+			int gravity = 1.0;
+			int velocity = Sqrt(2 * (jumpHeight >> 16) * gravity) >> 6;
+			ThrustThingZ(0, velocity, 0, 0);
+			Delay(1);
+		}
+		Delay(1);
+	}
+}

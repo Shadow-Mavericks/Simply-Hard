@@ -48,6 +48,7 @@ enum
 #include "actors/SH_Projectiles.txt"
 #include "actors/SH_RNG-Spawns.txt"
 #include "actors/SH_Runes.txt"
+#include "actors/SH_Springs.txt"
 
 #include "actors/SH_WeaponGivers.txt"
 #include "actors/SH_Weapons.txt"
